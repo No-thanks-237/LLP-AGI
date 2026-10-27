@@ -2,7 +2,7 @@
 
 ## Run the whole thing with one command
 
-    cd runs/20261016_144605_UTC_bc5_lhcb_downstream
+    cd runs/bc5_lhcb_downstream_v3
     python work/analysis/run_sensitivity.py
 
 That is the complete sensitivity: it runs the Monte-Carlo scan over the mass grid and then

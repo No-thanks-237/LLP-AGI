@@ -114,7 +114,7 @@ s=2.5e4；mH=1, tanb=5: s=3.0e5），因此**扫描范围内不存在短寿交�
 
 ## 复现
 
-依赖：Python 3.14 + numpy + matplotlib；Windows x64 预编译探测器内核
+依赖：Python 3.11+（本 run 用 3.14）+ numpy + matplotlib；Windows x64 预编译探测器内核
 （work/response/downstream_kernel.dll）；C++ g++（仅重建衰变程序时需要）。
 全部输入已在本 run 内（样本约 590 MB）。
 

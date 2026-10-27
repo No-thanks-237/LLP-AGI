@@ -10,9 +10,9 @@ references and temp/ scratch.
 * Units: GeV, metres, c = 1. hbar*c = 1.973269804e-16 GeV m.
 * Every produced table records the sha256 of the files it depends on.
 * Each stage writes its own validation report under logs/ and a machine-readable JSON.
-* Python: the interpreter is D:\py\python.exe (3.14); numpy + matplotlib available.
+* Python: 3.11+ (this run used 3.14); numpy + matplotlib available.
 * C++: g++ 15.2 (MSYS2 ucrt64). Light_scalar_decay needs -DM_PI=3.14159265358979323846.
-* Magnus: deployment/container/magnus.ps1 (wraps docker exec llp-magnus magnus ...).
+* Magnus: `deployment/container/magnus.ps1` (wraps `docker exec llp-magnus magnus ...`).
   Blueprint id "llp-job" is registered; submit via a python script inside the container:
     pin = magnus.custody_file(bundle_path, expire_minutes=..., max_downloads=3)
     res = magnus.run_blueprint('llp-job', args={'bundle': sec, 'job_name': name}, ...)

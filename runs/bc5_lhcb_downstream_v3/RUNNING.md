@@ -1,8 +1,9 @@
 # 如何运行 / 如何把这一版发给别人
 
-这个目录是**自带输入、可独立运行**的：把整个 `bc5_lhcb_downstream_v3/`（约 240 MB）拷到任何
-位置（Windows x64）就能重跑分析、重画所有图。目录内所有路径都由脚本自身的 `__file__` 推出，
-没有任何对 `E:\AAAwork\LLP-AGI\` 的依赖（参考数据已拷进 `inputs/phenomenology/`）。
+这个目录是**自带输入、可独立运行**的：把整个 `bc5_lhcb_downstream_v3/`（约 240 MB，含 Pythia
+母样本与强子化库；这些数据不在 git 仓库内）拷到任何位置（Windows x64）就能重跑分析、重画所有图。
+目录内所有路径都由脚本自身的 `__file__` 推出，不依赖仓库根目录（参考数据已拷进
+`inputs/phenomenology/`）。
 
 ## 1. 环境要求
 

@@ -1,7 +1,7 @@
 # outputs/figures — every figure and the script that makes it
 
-All commands are run from the run directory
-`E:\AAAwork\LLP-AGI\runs\bc5_lhcb_downstream_v3`, with `D:\py\python.exe`.
+All commands are run from the run directory `runs/bc5_lhcb_downstream_v3` (paths below are
+relative to it) with a Python 3.11+ interpreter (numpy + matplotlib).
 Model tag of the current products: **v3.6-2026-10-25** (Boiarska exclusive B production,
 strict-Winkler widths, v3.5 review fixes).  Nothing in this directory is hand-made.
 
@@ -55,16 +55,16 @@ Higgs, keeps only the pre-decay copy (|status| = 62).
 
 ## Regenerating everything except the exclusion curve
 
-```powershell
-D:\py\python.exe work/analysis/plot_branching_ratios.py
-D:\py\python.exe work/analysis/plot_branching_ratios_senscalc.py
-D:\py\python.exe work/analysis/plot_br_validation.py
-D:\py\python.exe work/analysis/plot_production.py
-D:\py\python.exe work/widths/validate_widths.py
-D:\py\python.exe work/analysis/validate_production.py
-D:\py\python.exe work/analysis/validate_hadronisation.py
-D:\py\python.exe work/analysis/validate_run.py
-D:\py\python.exe work/widths/audit_widths.py
+```bash
+python work/analysis/plot_branching_ratios.py
+python work/analysis/plot_branching_ratios_senscalc.py
+python work/analysis/plot_br_validation.py
+python work/analysis/plot_production.py
+python work/widths/validate_widths.py
+python work/analysis/validate_production.py
+python work/analysis/validate_hadronisation.py
+python work/analysis/validate_run.py
+python work/widths/audit_widths.py
 ```
 
 Removed in the v3.6 cleanup (they no longer described the code): the Omnes-vs-Winkler figure and
