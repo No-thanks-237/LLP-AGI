@@ -101,6 +101,8 @@ cd runs/20261025_1325_UTC_2HDM_lightH_lhcb_downstream/work/magnus/samples
 gh release download samples-2026-10 -R No-thanks-237/LLP-AGI -p minbias_pik.txt.gz -D .
 sha256sum minbias_pik.txt.gz
 # 期望 cc157eeef958d747da47df6c6e524b26de9eadeeeb73875678ff5cff8a9de41f
+# 或者直接在 https://github.com/No-thanks-237/LLP-AGI/releases/tag/samples-2026-10 下载，
+# 放到上面这个目录即可（文件名 minbias_pik.txt.gz）。
 ```
 
 不下载也可以：按 `logs/samples.md` / `logs/magnus_jobs.md` 记录的 Magnus 作业 ID 用
