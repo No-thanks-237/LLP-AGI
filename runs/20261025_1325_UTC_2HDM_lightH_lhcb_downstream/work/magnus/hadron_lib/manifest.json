@@ -1,0 +1,65 @@
+{
+ "run": "20261025_1325_UTC_2HDM_lightH_lhcb_downstream",
+ "created_utc": "2026-10-25T14:04:05.155868+00:00",
+ "job_id": "5b3b8b76029ea0af",
+ "bundle_sha256": "ff7cbd921a476ae1ee9fce3fa03ab94a56f6e9b07013c428a9bb8a5135d848fd",
+ "generator_source_sha256": "ebae345ef7cc76a5776b87e37b27ee25114f8bfe4d5951e98c42bf865f94ad28",
+ "generator": "Pythia 8.316, shadlib.cc verbatim from inputs/bc5_reuse",
+ "seeds": {
+  "gg": 911,
+  "ss": 912,
+  "cc": 913,
+  "tautau": 914
+ },
+ "n_sample_per_node": 1500,
+ "channels": {
+  "gg": {
+   "file": "hadron_lib_gg.txt.gz",
+   "sha256": "e4887686a8139c9a5ed361744d8b09e45315408f0ebc1e61ff8e892fce32be01",
+   "bytes": 3553441,
+   "rows": 153492,
+   "mass_nodes": 22,
+   "mass_file": "work/analysis/grids/mass_list_gg.txt",
+   "mass_list_sha256": "a87bf430103d2f72a9a2022e9a9a40de1fa5b586d7d71a5d961380831a61d6bc",
+   "seed": 911,
+   "empty_attempt_fraction": 0.03481818181818186,
+   "nonzero_charge_groups": 0
+  },
+  "ss": {
+   "file": "hadron_lib_ss.txt.gz",
+   "sha256": "41b09bed59d44b1aeeea1e93ad658bf180127c3e717975d1481770b0de5e3a19",
+   "bytes": 3056590,
+   "rows": 131018,
+   "mass_nodes": 22,
+   "mass_file": "work/analysis/grids/mass_list_ss.txt",
+   "mass_list_sha256": "a87bf430103d2f72a9a2022e9a9a40de1fa5b586d7d71a5d961380831a61d6bc",
+   "seed": 912,
+   "empty_attempt_fraction": 0.03572727272727272,
+   "nonzero_charge_groups": 0
+  },
+  "cc": {
+   "file": "hadron_lib_cc.txt.gz",
+   "sha256": "7974eab72d85b027f35c2950a26aa39eb63fd8561a5f7126b751deebcb50fb88",
+   "bytes": 2796903,
+   "rows": 119864,
+   "mass_nodes": 13,
+   "mass_file": "work/analysis/grids/mass_list_cc.txt",
+   "mass_list_sha256": "01bdacf342d5082abaa6baebead296d48c1813f3767a1b3d78a8b16b9f1a0679",
+   "seed": 913,
+   "empty_attempt_fraction": 0.0004615384615385132,
+   "nonzero_charge_groups": 0
+  },
+  "tautau": {
+   "file": "hadron_lib_tautau.txt.gz",
+   "sha256": "14b1279ba30c1384132463760c39eed76ae0e6ff680a94f8d6d9a6154c40a600",
+   "bytes": 1323877,
+   "rows": 55932,
+   "mass_nodes": 14,
+   "mass_file": "work/analysis/grids/mass_list_tau.txt",
+   "mass_list_sha256": "8e9544373033308b5a12785736f20879baf6e1baea483324bd557187642892c9",
+   "seed": 914,
+   "empty_attempt_fraction": 0.0,
+   "nonzero_charge_groups": 0
+  }
+ }
+}

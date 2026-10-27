@@ -1,0 +1,93 @@
+{
+ "_comment": "MC normalisation for the 2HDM light-H LHCb-downstream scan (this run). n_gen = number of generated events. sigma values in pb. B and H are the reused BC5 v3.6 samples (copied verbatim, sha256 in provenance_reused.json); inel is the NEW Pythia 8.316 SoftQCD:inelastic pi/K sample generated in this run (work/magnus/samples/minbias_pik.txt.gz).",
+ "B": {
+  "file": "bbar_heavy.txt.gz",
+  "role": "B+-/B0 (B_s, B_c rows must be dropped by the consumer) from pp -> b bbar, reweighted per-exclusive-channel to Br(B->X_s H)",
+  "n_gen": 800000,
+  "rows": 1509528,
+  "b_mesons_per_event": 1.8869,
+  "sigma_pb": 560000000.0,
+  "sigma_note": "560 ub total pp -> b bbar at 13 TeV (BC5 v3.6 value: LHCb PRL 118,052002 144+-21 ub in 2<eta<5 divided by the 0.2541 fraction measured in this sample; the 7 TeV check reproduces ~290 ub). 1 ub = 1e6 pb.",
+  "sha256": "ac8e1a054b1af0474d80c698b25739afec283edd50c9d7ba97668c343537f54b",
+  "source_job_id": "9d36fa12b8485053"
+ },
+ "inel": {
+  "file": "minbias_pik.txt.gz",
+  "role": "inelastic pp 13 TeV -> pi+-, K+-, K0/K0bar fragmentation hadrons at status 91/92 (no eta cut); consumer takes pi+- for pi->H e nu and K+-,K0/K0bar for K->pi H + K->H e nu",
+  "n_gen": 500000,
+  "rows": 22820428,
+  "sigma_pb": 79500000000.0,
+  "sigma_note": "inelastic pp cross section 79.5 mb (measured normalisation, as in BC5); Pythia sigmaGen is recorded separately in the job summary and in logs/samples.md",
+  "sha256": "cc157eeef958d747da47df6c6e524b26de9eadeeeb73875678ff5cff8a9de41f",
+  "source_job_id": "c588d44d0bd8ac7a",
+  "source_bundle_sha256": "bfaf8806619f18fbdff3d73f84a3e4f9ffb8939c5def972b03130807216bddd6",
+  "pythia_sigmaGen_mb": 78.048501,
+  "pythia_sigmaErr_mb": 3.8391346e-07,
+  "sigmaGen_vs_normalisation_note": "Pythia LO sigmaGen = 78.05 mb, the normalisation uses the measured 79.5 mb (DESIGN 4); the 1.8 % difference is recorded here, not corrected, because it affects a channel that is ~1e-4 of the signal.",
+  "events_with_pi_or_K": 490476,
+  "events_with_pi_or_K_abs_eta_lt6": 471041,
+  "rows_abs_eta_lt6": 19376263,
+  "rows_per_event_mean": 45.640856,
+  "charge_sum_piK": 213622,
+  "generation_seconds": 822,
+  "format_note": "10 columns: event pdg px py pz E x y z t (x,y,z in mm, t in mm/c); pdg in {211,-211,321,-321,311,-311}; status 91/92 fragmentation hadrons, no eta cut; K0/K0bar are flavour states -> consumer applies the 50/50 K_L/K_S treatment of DESIGN 3.3"
+ },
+ "H": {
+  "file": "higgs.txt.gz",
+  "role": "SM Higgs (status 62 pre-decay copy, 11 columns) reweighted per process to the 2HDM h production mixture; h->HH split into two H",
+  "n_gen": 200000,
+  "rows": 1411171,
+  "n_status62": 200000,
+  "sigma_pb": 55.4527,
+  "sigma_note": "sum of 13 TeV SM Higgs production cross sections [pb] (HXSWG, as BC5); reweighted per process to the 2HDM mixture",
+  "sha256": "7a62b1f01eec0dfa6be7b235a497f812946c1f9b6671e8e8b190ba5cb7e65dc0",
+  "source_job_id": "bc5_higgs4"
+ },
+ "luminosities_fb": [
+  25.0,
+  300.0
+ ],
+ "s_threshold": 2.302585093,
+ "hadron_lib": "../hadron_lib",
+ "hadron_lib_channels": [
+  "gg",
+  "ss",
+  "cc",
+  "tau"
+ ],
+ "hadron_lib_note": "work/magnus/hadron_lib/hadron_lib_{gg,ss,cc,tautau}.txt.gz; the 'tau' CHANNEL of the decay module maps to file channel 'tautau' (bc5_lib _LIB_MAP).",
+ "hadron_lib_info": {
+  "dir": "../hadron_lib",
+  "files": {
+   "cc": {
+    "rows": 119864,
+    "sha256": "7974eab72d85b027f35c2950a26aa39eb63fd8561a5f7126b751deebcb50fb88",
+    "n_mass_nodes": 13
+   },
+   "gg": {
+    "rows": 153492,
+    "sha256": "e4887686a8139c9a5ed361744d8b09e45315408f0ebc1e61ff8e892fce32be01",
+    "n_mass_nodes": 22
+   },
+   "ss": {
+    "rows": 131018,
+    "sha256": "41b09bed59d44b1aeeea1e93ad658bf180127c3e717975d1481770b0de5e3a19",
+    "n_mass_nodes": 22
+   },
+   "tautau": {
+    "rows": 55932,
+    "sha256": "14b1279ba30c1384132463760c39eed76ae0e6ff680a94f8d6d9a6154c40a600",
+    "n_mass_nodes": 14
+   }
+  },
+  "n_attempt_per_node": 1500,
+  "source_job_id": "5b3b8b76029ea0af",
+  "note": "generated on the exact per-channel subsets of work/analysis/grids/mass_grid.txt; all 71 open-channel (scan mass, channel) pairs have a node within the 0.6 % consumer tolerance (work/magnus/validation_interface.json); the consumer rotates each event by a random SO(3) matrix as in bc5_lib.HadronLib.",
+  "channel_file_map": {
+   "gg": "gg",
+   "ss": "ss",
+   "cc": "cc",
+   "tau": "tautau"
+  }
+ }
+}

@@ -1,0 +1,49 @@
+{
+ "run": "20261025_1325_UTC_2HDM_lightH_lhcb_downstream",
+ "created": "2026-10-25T21:35:19.515125+08:00",
+ "reused_from": "runs/bc5_lhcb_downstream_v3/work/magnus/samples/",
+ "files": {
+  "bbar_heavy.txt.gz": {
+   "sha256": "ac8e1a054b1af0474d80c698b25739afec283edd50c9d7ba97668c343537f54b",
+   "bytes": 36234474,
+   "source_job_id": "9d36fa12b8485053",
+   "source_run": "bc5_lhcb_downstream_v3 (v3.6)",
+   "generator": "Pythia 8.316, pp 13 TeV, HardQCD gg2bbbar/qqbar2bbbar, ParticleDecays:tau0Max=0, status 91/92 + 83/84 + 81/82/85/86",
+   "content": "B+-/B0/Bs/Bc fragmentation hadrons; rows 1509528, n_gen(events) 800000, B mesons/event 1.8869",
+   "n_rows": 1509528,
+   "n_gen": 800000,
+   "pdg_counts": {
+    "521": 342516,
+    "511": 342461,
+    "-511": 336891,
+    "-521": 334676,
+    "531": 76647,
+    "-531": 75243,
+    "541": 548,
+    "-541": 546
+   }
+  },
+  "higgs.txt.gz": {
+   "sha256": "7a62b1f01eec0dfa6be7b235a497f812946c1f9b6671e8e8b190ba5cb7e65dc0",
+   "bytes": 30545156,
+   "source_job_id": "bc5_higgs4",
+   "source_run": "bc5_lhcb_downstream_v3 (v3.6)",
+   "generator": "Pythia 8.316, HiggsSM:all, mh=125.25, 11 columns (event, pythia.info.code(), px..t, status)",
+   "content": "on-shell SM Higgs (status 62 pre-decay copy); rows 1411171, status-62 rows 200000, n_gen 200000",
+   "n_rows": 1411171,
+   "n_gen": 200000,
+   "n_status62": 200000,
+   "process_code_counts": {
+    "901": 41203,
+    "902": 1153221,
+    "903": 33,
+    "904": 23450,
+    "905": 41287,
+    "906": 37837,
+    "907": 98979,
+    "908": 11506,
+    "909": 3655
+   }
+  }
+ }
+}

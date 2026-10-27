@@ -116,7 +116,10 @@ s=2.5e4；mH=1, tanb=5: s=3.0e5），因此**扫描范围内不存在短寿交�
 
 依赖：Python 3.11+（本 run 用 3.14）+ numpy + matplotlib；Windows x64 预编译探测器内核
 （work/response/downstream_kernel.dll）；C++ g++（仅重建衰变程序时需要）。
-全部输入已在本 run 内（样本约 590 MB）。
+输入基本都在本 run 内：母样本 `work/magnus/samples/{bbar_heavy,higgs}.txt.gz` 与强子化库随
+git 仓库提供；只有 500k 事例的 `minbias_pik.txt.gz`（525 MB）因 GitHub 单文件限制放在
+Release `samples-2026-10` 里（`gh release download samples-2026-10 -R No-thanks-237/LLP-AGI
+-p minbias_pik.txt.gz -D work/magnus/samples`）。完整网格首次重跑约 35-45 分钟（8 workers）。
 
     python work/analysis/launch_scan.py --workers 8 --force --nsamp '{"B":17293,"inel":2500,"h":4620}' --b-mode foresee
     python work/analysis/aggregate_scan.py --indir work/analysis/scan_2hdm --out outputs/data/signal_scan.json --b-mode foresee

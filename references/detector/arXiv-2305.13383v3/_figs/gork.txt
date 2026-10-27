@@ -1,0 +1,1465 @@
+
+===== PAGE 1 =====
+Eur. Phys. J. C (2024) 84:608
+https://doi.org/10.1140/epjc/s10052-024-12906-3
+Regular Article - Experimental Physics
+LHCb potential to discover long-lived new physics particles with
+lifetimes above 100 ps
+Volodymyr Gorkavenko1,a, Brij Kishor Jashal2,3,b, Valerii Kholoimov1,2,c, Yehor Kyselov1,d, Diego Mendoza2,e,
+Maksym Ovchynnikov4,f
+, Arantza Oyanguren2,g, Volodymyr Svintozelskyi1,2,h, Jiahui Zhuo2,i
+1 Taras Shevchenko National University of Kyiv, Kyiv, Ukraine
+2 IFIC, Universitat de València-CSIC, Apt. Correus 22085, 46071 Valencia, Spain
+3 TIFR, Tata Institute of Fundamental Research, Mumbai, India
+4 Institut für Astroteilchen Physik, KIT, Karlsruher Institut für Technologie, Karlsruhe, Germany
+Received: 9 January 2024 / Accepted: 10 May 2024 / Published online: 12 June 2024
+© The Author(s) 2024
+Abstract
+For years, it has been believed that the main LHC
+detectors can play only a limited role of a lifetime frontier
+experiment exploring the parameter space of long-lived par-
+ticles (LLPs)—hypothetical particles with tiny couplings to
+the Standard Model. This paper demonstrates that the LHCb
+experiment may become a powerful lifetime frontier experi-
+ment if it uses the new Downstream algorithm reconstruct-
+ing tracks that do not allow hits in the LHCb vertex tracker.
+In particular, for many LLP scenarios, LHCb may be as sen-
+sitive as the proposed experiments beyond the main LHC
+detectors for various LLP models, including heavy neutral
+leptons, dark scalars, dark photons, and axion-like particles.
+1 Introduction
+The Standard Model (SM) of particle physics stands as a
+robust and well-established theory, providing a framework
+for understanding the fundamental particles and their inter-
+actions. Despite its impressive success over more than ﬁve
+decades, however, the SM falls short in explaining numerous
+observed phenomena across the realms of particle physics,
+astrophysics, and cosmology. One avenue for extending the
+a e-mail: gorkavol@gmail.com
+b e-mail: brij.kishor.jashal@cern.ch
+c e-mail: valerii.kholoimov@cern.ch
+d e-mail: kiselev883@gmail.com
+e e-mail: dmendoza@cern.ch
+f e-mail: maksym.ovchynnikov@cern.ch (corresponding author)
+g e-mail: Arantza.Oyanguren@iﬁc.uv.es
+h e-mail: volodymyr.svintozelskyi@cern.ch
+i e-mail: Jiahui.Zhuo@iﬁc.uv.es
+SM involves the introduction of particles with masses below
+the electroweak scale that interact with SM particles. These
+interactions are mediated by operators referred to as “por-
+tals” [1]. Accelerator experiments have already ruled out
+large coupling strengths for such particles, earning them
+the moniker “feebly interacting particles.” Small coupling
+means long lifetimes, and therefore they are also referred
+to as long-lived particles (LLPs). The concept of LLPs has
+gainedincreasingprominenceinthelastdecade,asevidenced
+by a growing body of literature (see [1–3] and related refer-
+ences), with numerous experimental efforts dedicated to their
+discovery.
+Initially, the primary approach to investigating LLPs
+involved utilizing the LHC’s main detectors, namely CMS,
+ATLAS, and LHCb. However, these ongoing searches at the
+LHC face notable limitations that hinder their efﬁcacy in
+probing LLPs [4–6]. For instance, the inner trackers have
+relatively small dimensions, restricting the effective decay
+volume and, consequently, the probability of LLP decays
+occurring within it. Additionally, the proximity of these
+trackers to the production point results in substantial back-
+ground contamination, necessitating stringent selection cri-
+teria that inevitably reduce the number of detectable LLP-
+related events. Another challenge arises from the limitations
+imposed by current triggering mechanisms, which require
+tagging of events at the LLP production vertex, often neces-
+sitating the presence of a high-pT lepton, meson, or asso-
+ciated jets. This pre-selection process further curtails the
+event rate with LLPs and constrains the range of LLP models
+amenable to investigation. For instance, the main production
+mode for GeV-scale heavy neutral leptons (N) involves the
+decay B →ℓ+ N, where the momentum of the lepton ℓis
+insufﬁcient for triggering.
+123
+
+===== PAGE 2 =====
+608
+Page 2 of 15
+Eur. Phys. J. C (2024) 84 :608
+Recognizing these constraints, the scientiﬁc community
+has begun exploring alternative experiments beyond the con-
+ﬁnes of the LHC detectors [2], encompassing both collider-
+based setups situated near the LHC and beam dump experi-
+ments adopting a displaced decay volume concept. These lat-
+ter experiments employ an extracted beam line aimed at a sta-
+tionary target, offering greater ﬂexibility in terms of geomet-
+ric dimensions and circumventing the limitations imposed by
+the existing LHC detector searches.
+Furthermore, in response to the challenges in detecting
+LLP’s, various innovative ideas have emerged to enhance
+the capabilities of ATLAS, CMS, and LHCb searches [7].
+These proposals encompass track-triggers that obviate the
+need for production vertex tagging and exploit displaced
+sections of the detector as an effective decay volume. For
+example, Ref. [8] explores the possibility of detecting decays
+occurring within the CMS muon chamber, albeit still requir-
+ing the presence of a high-pT prompt lepton.
+This paper presents a method to signiﬁcantly augment the
+reach of the LHCb experiment for probing LLPs by harness-
+ing novel algorithms developed under the new LHCb trig-
+ger software scheme [9]. In particular, the newly introduced
+Downstream algorithm [10] emerges as a pivotal tool for
+extending the search for LLPs with decay lifetimes signiﬁ-
+cantly exceeding 100 ps.
+The paper is structured as follows: In Sect. 2, we delve
+into the LHCb experiment, the trigger system, and the novel
+Downstream algorithm. Section 3 outlines expected signal
+signatures, encompassing production and decay modes spe-
+ciﬁc to various models, while discussing the LHCb experi-
+ment’s capacity to detect them. Section 4 scrutinizes antic-
+ipated background sources that could inﬂuence the search
+for Beyond the Standard Model (BSM) particles. Section 5.1
+provides an estimate of the signal yield, including a break-
+down of anticipated efﬁciencies, along with a qualitative
+comparison with other experimental proposals. Section 6
+presents the sensitivities of the LHCb experiment, incorpo-
+rating the Downstream algorithm across various LLP sce-
+narios. Finally, Sect. 7 concludes the paper.
+2 The LHCb experiment
+The LHCb forward spectrometer is one of the main detectors
+at the Large Hadron Collider (LHC) accelerator at CERN,
+with the primary purpose of searching for new physics
+through studies of CP violation and heavy-ﬂavor hadron
+decays. It has been operating during its Run 1 (2011–2012)
+and Run 2 (2015–2018) periods with very high performance,
+recording an integrated luminosity of 9 fb−1 at center-of-
+mass energies of 7, 8, and 13 TeV and delivering a plethora
+of accurate physics results and new particle discoveries.
+Fig. 1 The new LHCb detector operating during Run 3 [13]
+The upgraded LHCb detector, operational at present dur-
+ing the Run 3 of the LHC, has implied a major change in
+the experiment. The detectors have been almost completely
+renewed to allow running at an instantaneous luminosity ﬁve
+times larger than that of the previous running periods, in
+particular using new readout architectures. A full software
+trigger executed on graphics processing units (GPU) also
+represents one of the main features of the new LHCb design,
+allowing the reconstruction and selection of events in real
+time and widening the physics reach of the experiment. The
+main characteristics of the new LHCb detector are detailed in
+[11], and summarized in the following. As compared with the
+previous detector [12], one of the most important improve-
+ments concerns the new tracking system. The LHCb com-
+prises three subdetector tracking systems (VErtex LOcator,
+Upstream Tracker, and SciFi tracker), a particle identiﬁca-
+tion system based on two-ring imaging Cherenkov detectors,
+hadronic and electromagnetic calorimeters, and four muon
+chambers.
+The VErtex LOcator (VELO) is based on pixelated silicon
+sensors and is critical for determining the decay vertices of b
+and c ﬂavored hadrons. The Upstream Tracker (UT) contains
+vertically segmented silicon strips and continues the track-
+ing upstream of the VELO. It is also used to determine the
+momentum of charged particles and is useful for removing
+low-momentum tracks to prevent them from being extrapo-
+lated downstream, thus accelerating the software trigger by
+about a factor of 3. Tracking after the magnet is handled
+by the new scintillating ﬁber-based detector (SciFi). Two
+ring-imaging Cherenkov (RICH) detectors supply particle
+identiﬁcation. RICH1 is mainly for lower-momentum parti-
+cles, and RICH2 is for higher-momentum ones. The electro-
+magnetic calorimeter (ECAL) identiﬁes electrons and recon-
+structs photons and neutral pions. The hadronic calorimeter
+(HCAL) measures the energy deposits of hadrons, and four
+muon chambers M2–M5 are mostly used for muon identi-
+ﬁcation. The angular coverage of the LHCb detectors spans
+the range 2 < η < 5. Figure 1 shows the LHCb upgraded
+detector.
+123
+
+===== PAGE 3 =====
+Eur. Phys. J. C (2024) 84 :608
+Page 3 of 15
+608
+Fig. 2 Deﬁnition of the particle track types in the LHCb experiment,
+according to which detectors are hit. The different tracker layers and
+the magnet in the center are sketched
+2.1 Track types at LHCb
+The tracking system of the LHCb experiment consists of
+three subsystems, VELO, UT, and SciFi, which are respon-
+sible for reconstructing charged particles. A magnet, with a
+bending power of 4 Tm, is also necessary to curve particle
+trajectories in order to measure their momentum, p. Its polar-
+ity can be inverted, and it is used to control systematic effects
+coming from detector inefﬁciencies.
+Several track types are deﬁned depending on the subde-
+tectors involved in the reconstruction, as shown in Fig. 2.
+The main track types considered for physics analyses are
+as follows:
+Long tracks: they have information from at least the
+VELO and the SciFi, and possibly the UT. These are
+the main tracks used in physics analyses and at all stages
+of the trigger.
+Downstream tracks: they have information from the UT
+and the SciFi, but not VELO. They typically correspond
+to decay products of K0
+S and  hadron decays.
+T tracks: they only have hits from the SciFi. They are
+typically not included in physics analysis. Nevertheless,
+their potential for physics has recently been outlined [14].
+When simulating collision data, particle tracks meeting
+certain thresholds are deﬁned as being reconstructible and
+have an assigned type according to the subdetector recon-
+structibility. This is, in turn, based on the existence of recon-
+structed detector digits or clusters in the emulated detector,
+which are matched to simulated particles if the detector hits
+they originated from are properly linked [15]. Requirements
+for long tracks imply VELO and SciFi reconstructibility,
+downstream tracks must satisfy the UT and SciFi recon-
+structibility, and T-tracks only require the SciFi one.
+2.2 The high-level trigger (HLT)
+The trigger system of the LHCb detector in Run 3 and beyond
+is fully software-based for the ﬁrst time. It comprises two
+levels, HLT1 and HLT2, described in detail in Refs. [9,16].
+Most notably, the HLT1 level has to be executed at a rate
+of 30 MHz and, as such, suffers from heavy constraints on
+timing for event reconstruction.
+The ﬁrst HLT1 trigger performs partial event reconstruc-
+tion in order to reduce the data rate. Tracking algorithms play
+a key role in fast event decisions, and the fact that they are
+inherently parallelizable processes suggests a way to increase
+trigger performance. Thus, the HLT1 has been implemented
+on a number of GPUs using the Allen software project [17],
+which makes it possible to manage 4 TB/s and reduces the
+data rate by a factor of 30. After this initial selection, data
+are passed to a buffer system, which allows nearly real-time
+calibration and alignment of the detector. This is used for the
+full and improved event reconstruction carried out by HLT2.
+Due to timing constraints, the LHCb implementation in
+the HLT1 stage has been based on partial reconstruction and
+focuses solely on long tracks, i.e., tracks that have hits in
+the VELO. This trigger thus signiﬁcantly affects the identi-
+ﬁcation of particles with long lifetimes, particularly for LLP
+searches in LHCb, where some of the ﬁnal-state particles
+are created further than roughly a meter away from the IP
+and thus outside of the VELO acceptance. A new algorithm
+[18,19] has been developed and implemented to widen the
+reach of particle lifetimes of the HLT1 system. It is brieﬂy
+described in the following.
+2.3 The new Downstream algorithm
+A fast and high-performance algorithm has been developed
+to reconstruct tracks that do not allow hits in the VELO detec-
+tor [18].1 It is based on the extrapolation of SciFi seeds (or
+tracklets) to the UT detector, including the effect of the mag-
+netic ﬁeld in the x coordinate. Search windows in the UT
+detector for hits that are compatible with tracks coming from
+the SciFi, and that are not used by other reconstruction algo-
+rithms, are considered. In addition, fake tracks originating
+from spurious hits in the detector are suppressed by a neu-
+ral network with a unique hidden layer. The reconstruction
+efﬁciency for downstream tracks of the algorithm is about
+70%, with ghost rates (random combinations of hits) below
+20%. This has been veriﬁed for SM particles ( and K0
+S)
+and for LLPs in the hidden sector, in the range 0.25GeV/c2–
+4.7GeV/c2, decaying into muons or two hadrons. The track
+momentum resolution at this stage is less than 6% [19], and
+1 In practice the algorithm is also high-performing and highly efﬁcient
+for particles decaying after 30 cm, being able to recover some of the
+long tracks which have not been properly reconstructed.
+123
+
+===== PAGE 4 =====
+608
+Page 4 of 15
+Eur. Phys. J. C (2024) 84 :608
+the algorithm has high throughput that fulﬁlls the tight HLT1
+time requirements.
+3 Signal characterization
+3.1 Benchmark LLP models
+Many models with LLPs have been developed. In this paper,
+some of the benchmark models recommended by the Physics
+Beyond Colliders (PBC) working group [2] will be consid-
+ered, with the names as follows BCX:
+1. Dark photons V (BC1), which have kinetic mixing with
+the UY (1) SM hyperﬁeld. Below the electroweak (EW)
+scale, the coupling is given by the kinetic mixing param-
+eter ϵ. The dark photon phenomenology (how it is pro-
+duced in proton–proton collisions and its decay modes)
+is taken from Refs. [20,21].
+2. Higgs-like dark scalars S. Below the EW scale EW,
+the couplings are parameterized by the S-Higgs mixing
+angle θ ≪1 and the coupling α of the hSS operator.
+For BC4, α = 0, while for BC5, it is ﬁxed in a way such
+that Br(h →SS) = 0.01. The scalar phenomenology
+is taken from [22]. It is worth mentioning the difference
+between this description and the one used in sensitivity
+studies of many past experiments [2,3]. The latter consid-
+ered the so-called inclusive description of the production
+of the dark scalars from B mesons, when the branching
+ratio is approximated by the process b →s +S. It breaks
+down for large scalar masses mS ≳2−3 GeV (as quan-
+tum chromodynamics [QCD] enters the non-perturbative
+regime, and also because of wrong scalar kinematics) and
+hence is inapplicable. Reference [22] considers the exclu-
+sive description, when the branching ratio is the sum of
+various decay channels B →meson + S.
+3. Heavy neutral leptons (HNLs) N coupled to the active
+neutrino να: νe (BC6), νμ (BC7), or ντ (BC8). Below
+the EW scale, the coupling of HNLs to the SM is via the
+mass mixing with active neutrinos parameterized by the
+HNL–neutrino mixing angle Uα. The phenomenology
+description is taken from [23], with minor changes con-
+cerning the transition of the description of semileptonic
+decay widths of HNLs from the exclusive description
+(when the total width sums up from widths into partic-
+ular meson states) to the inclusive approach (when the
+total width is approximated by decay into quarks).
+4. Axion-like particles (ALPs). If deﬁned at some scale
+ALP > EW,ALPsmaycoupletovariouspseudoscalar
+SM operators, including Chern–Simons density of the
+gauge ﬁelds or the axial-vector currents of the matter;
+the Renormalization Group (RG) dynamics down to the
+ALP mass scale also induces other operators. For BC10,
+Table 1 Summary of the production and decay modes of the LLPs
+considered in this paper. Here, X denotes any SM state
+Model
+Production
+Decay modes
+Dark scalar [S]
+B(s) →SXs
+ℓ+ℓ−, π+π−,
+B →SSX
+K +K −, c¯c, gg . . .
+h →SS
+Heavy lepton [N]
+B/D →N X
+ℓq ¯q′, νq ¯q
+W →N + ℓ
+νℓ¯ℓ′, . . .
+Massive photon [V]
+UB−L mediator
+π/η/η′ →V X
+Bremsstrahlung
+Drell–Yan
+ℓ+ℓ−, π+π−,
+π+π−π0, K +K −
+Axion-like-particle
+[a]
+B(s) →aXs
+π0/η/η′ mixing
+Drell–Yan
+ℓ+ℓ−, η2π, 4π gg
+at ALP, ALPs universally couple to the fermion axial-
+vector current, while for BC11, they couple to the gluon
+Chern–Simons density. The description of the produc-
+tion and decay modes of these ALPs is taken from [24].
+Thus, the phenomenology for BC10 signiﬁcantly differs
+from the previously adopted description of ALP pro-
+duction and decay modes [2], where many production
+channels and hadronic decay modes have not been taken
+into account. The description of decays for BC11 differs
+somewhat from the other study [25], which results in a
+larger decay width (for the given ALP mass and cou-
+pling) and hence a shorter lifetime (see a discussion in
+Ref. [24]).
+5. B −L mediator, which couples to the anomaly-free com-
+bination of the baryon and lepton currents. The coupling
+is given in terms of the structure constant αB. Its produc-
+tion and decay channels are the same as for dark photons
+up to the fact that the coupling is universal and there is
+no mixing with ρ0 mesons [21].
+Reference [26] summarizes the main LLP’s production
+and decay modes that are relevant for high-energy experi-
+ments. They are mostly produced directly in proton–proton
+collisions, decays of various SM particles, or via mixing with
+light neutral mesons. Therefore, most of them are relevant for
+LHCb. For convenience, the processes are listed in Table 1.
+3.2 Event selection
+A potential event with LLPs is deﬁned by the presence of
+the reconstructed decay vertex located between the end of
+VELO (z ≈1 m) and the beginning of the UT tracker (zUT ≈
+2.5 m), in the pseudorapidity range 2 < η < 5.
+The vertex is reconstructed with the help of at least two
+tracks from decay products passing through both the UT and
+SciFi trackers. For the present study, only charged particles
+123
+
+===== PAGE 5 =====
+Eur. Phys. J. C (2024) 84 :608
+Page 5 of 15
+608
+Fig. 3 The average number of metastable decay products per LLP
+decay that may be detected— π±, K ±, K 0
+L, γ, e±, μ±—as a function
+of the LLP mass, for the models of HNLs coupled to the electron neu-
+trino, Higgs-like scalars with the mixing coupling, and ALPs coupled to
+gluons [26]. The dashed lines assume that only charged decay products
+are detectable, while the solid lines also include uncharged decay prod-
+ucts. For each case, the summation over all decay channels is performed,
+which may lead, in particular, to the dashed lines with nper decay < 2
+if there are modes with decays into neutral particles only. Jumps in the
+behavior of the lines are caused by the kinematic opening of new decay
+channels
+are considered detectable. Therefore, decays into solely neu-
+tral particles such as π0(→2γ ), γ, K 0
+L are treated as invis-
+ible.
+As indicated in Table 1, while the majority of decay modes
+of LLPs areexclusivetwo-bodydecays, theymayoftendecay
+into three or more particles. It is especially relevant for LLPs
+with m ≳1 GeV, which decay into quarks or gluons and
+hence produce a cascade of hadrons resulting from shower-
+ing and hadronization. Figure 3 illustrates the average mul-
+tiplicity of metastable particles (those having decay lengths
+cτp/m well exceeding the dimensions of LHCb) for selected
+models.
+This feature necessitates a consistent approach to LLP
+reconstruction. Reconstructing the many-particle vertex by
+as few tracks as possible clearly maximizes the yield of
+reconstructed events. Namely, each track is reconstructed
+with ﬁnite efﬁciency, which results from the non-ideal per-
+formance of the detector, which introduces a ﬁnite detection
+efﬁciency and kinematics measurement resolution. However,
+reconstructing more particles from the vertex and using PID
+criteria,2 one may reveal the properties of the LLP and hence
+discern different LLP scenarios (see, e.g., [27]).
+For the present study, the main interest is in estimating the
+region of LLP’s parameter space where the Downstream
+2 At HLT1 level, information from the electromagnetic calorimeter and
+muon chambers is available. Efforts are also being made to include the
+information of the RICH detectors.
+algorithm may see any signal. In this sense, it is enough
+to have two reconstructed tracks. The event reconstruction
+efﬁciency is then approximated by the squared reconstruction
+efﬁciency of the single track times the vertex reconstruction
+efﬁciency. The opportunities for reconstruction using many
+tracks will be studied in the future.
+The
+event
+reconstruction
+performance
+of
+the
+Downstream algorithm is a subject of ongoing investiga-
+tion. It includes, for example, the momentum dependence of
+the track reconstruction efﬁciency and the two-downstream-
+track vertex resolution.3 For the reference selection in this
+paper, the particles will be required to have the energy
+E > 5 GeV, and transverse momentum pT > 0.5 GeV,
+and the overall event reconstruction efﬁciency, ϵrec = 0.4, is
+considered.
+Potential ways to enhance the event yield that will be stud-
+ied in the future are worth mentioning. First, it may be sig-
+niﬁcantly improved if extending the z range with the recon-
+structed vertex until the beginning of the ﬁrst SciFi layer,
+which is located at z ≈7.7 m. Then, the vertices from
+z > zUT would be reconstructed with the help of the SciFi
+tracker only (i.e., using solely T tracks). Second, a sizable
+fraction of decays of LLPs may be into neutral particles such
+as γ and K 0
+L. Some particles, such as light ALPs coupled to
+gluons and ALPs coupled to photons, decay solely into pho-
+tons. Therefore, adding the option of reconstructing events
+using calorimeters would be essential for these LLPs.
+3.3 Case study: dark scalars
+Of particular interest is the dark scalar model denoted as BC4.
+These scalars can be generated through processes such as
+B →S+Xs/d, where Xq denotes a hadronic state containing
+the quark q. For mS ≪m B and in the limit θ2 ≪1, the
+collectivebranchingratiofor theseprocesses is of theorder of
+3.3θ2, and the production threshold is approximately m B −
+mπ ≈5.13 GeV/c2 [22]. Figure 4 illustrates the scalar’s
+decay probabilities as a function of its mass, normalized to
+unity.
+Decaysinvolvingtwomuonsandelectronsareparticularly
+pertinent for particles with masses below 1 GeV/c2, while
+the ππ/K K channels dominate within the 0.270–2 GeV/c2
+mass range. From a mass threshold of 2 GeV/c2 onward,
+there is a proliferation in track multiplicity, coinciding with
+the opening of various channels such as gluon–gluon (gg),
+s¯s, c¯c, and τ +τ −. These channels assume particular impor-
+tance due to the expectation of three or more “downstream”
+tracks originating from a common vertex. In the case of the
+3 Thelatterisexpectedtodegradewithitsmassm.However,theamount
+of background is expected to decrease in the domain of larger m, thereby
+rendering a larger mass resolution for high LLP masses less likely to
+signiﬁcantly impact the searches.
+123
+
+===== PAGE 6 =====
+608
+Page 6 of 15
+Eur. Phys. J. C (2024) 84 :608
+Fig. 4 Decay probabilities of a dark scalar into different channels as a
+function of its mass and normalized to unity [22]
+c¯c decay channel, two D mesons and many pions will be
+produced as a result of showering and hadronization. The
+Ds will decay afterward, and formally, the event would be
+a bunch of soft hadrons from the LLP’s decay vertex and
+two displaced hadron showers from Ds decays. However,
+the magnitude of the displacement, proportional to the decay
+length of D mesons, is well below the vertex resolution, so
+all the tracks should converge to the same origin.
+4 Background sources
+BackgroundeventsthatcouldmimictheBSMsignalatLHCb
+are expected to arise from different sources [28]. They are
+listed below. Some of these background events can be stud-
+ied with simulations [29], and other sources will be studied
+when Run 3 data are available. The main contributions are
+considered to come from the following:
+• Hadronic resonances: decays of light and heavy q ¯q reso-
+nances into a pair of hadrons (h+h−) or leptons (ℓ+ℓ−)
+are highly suppressed, as they decay promptly and from
+simulation studies no tracks are expected to be recon-
+structible as downstream tracks, whether they come from
+the interaction point or from decays of b and c hadrons.
+Light resonances can be produced by particle interac-
+tion with the beam pipe or detector material, decaying
+into muons or pions. This background can be suppressed
+by using control samples from data and vetoing speciﬁc
+regions of the detector.
+• Strange candidates: SM particles with long lifetimes
+(notably K0
+S and ) can also be mistaken as signal
+events. This could happen when the LLP is reconstructed
+in hadronic h+h−modes or for leptonic modes if the
+hadrons from the K0
+S, or the proton and pion from the
+, are misidentiﬁed as muons.4 This type of background
+can be rejected by imposing tighter particle identiﬁcation
+(PID) criteria and by vetoing pairs of particles that, after
+being assigned the proton or pion mass hypothesis, lie in
+the invariant mass region of K0
+S and  candidates.
+• Combinatorial background: random pairs of hadrons or
+leptons, associated or not with other particles from B-
+meson decays, could be wrongly attributed to LLP can-
+didates. MC simulations show that the amount of combi-
+natorial background drastically decreases with the mass
+of the LLP particle, being negligible for masses than
+2 GeV. This is expected since high-momentum tracks
+come from decays of b and charm hadrons. Information
+on the two-track and B-meson candidates can be used
+in a multivariate analysis, in particular, making use of
+a boosted decision tree (BDT) or neural network (NN),
+whicharehighlysuitableforreducingthissourceofback-
+ground. The vertex quality, impact parameter, transverse
+momenta, or track isolation criteria are examples of vari-
+ables that are expected to be very discriminating in this
+type of analysis.
+A NN classiﬁer can be used to suppress the background
+events, with a threshold that can be varied according to the
+desired performance. Using simulated events [29], a back-
+ground rejection rate larger than 99% and a signal efﬁciency
+of 87% can be obtained, assuming two-body decays for the
+latter. In this test the NN is trained using dedicated sig-
+nal samples with BSM candidates, in particular using dark
+scalars with masses ranging between 400 and 4500 MeV.
+Background events are obtained from minimum-bias simu-
+lations.5 Input variables are track properties of the recon-
+structed pairs (impact parameter, momentum and transverse
+momentum), vertex quality and position, and impact param-
+eter, quality, and momentum of the reconstructed parent par-
+ticle.
+This background reduction is expected since, at large life-
+times, most of the background comes from material inter-
+action, which has a very different topology and kinematics
+from the signal. The rejection rate could be even higher if the
+LLP decays into multiple particles.
+Secondary interactions of hadrons produced in beam–gas
+collisions can be used to map the location of material, as
+done in Ref. [30]. With this procedure, the background can
+be reduced to a negligible level.
+4 Decays of K0
+S to two leptons are highly suppressed in the SM, with
+branching fractions of order 10−12.
+5 Collisions that occur without any speciﬁc selection criteria applied.
+123
+
+===== PAGE 7 =====
+Eur. Phys. J. C (2024) 84 :608
+Page 7 of 15
+608
+5 LLP event yield and qualitative comparison with
+other proposals
+5.1 Signal yield
+The LLP exploration power of the Downstream algorithm
+is estimated as follows.
+To calculate the number of events with LLPs, it is neces-
+sary to know their production channels, the fraction of LLP
+ﬂying in the direction of the detector, the decay probabil-
+ity, and the fraction of the decay events that may be recon-
+structed. The semi-analytic approach described in [26,31] is
+used, which may be as accurate as pure Monte Carlo evalu-
+ation, combining this with transparency and speed of calcu-
+lations. The number of events is calculated as
+Nev = L
+
+i
+σ (i)
+pp→LLP
+
+dθdEdz f (i)(θ, E) · ϵaz(θ, z)
+×dPdec
+dz
+· ϵdet(m, θ, E, z) · ϵrec · ϵS/B.
+(1)
+The quantities entering Eq. (1) are the following:
+– L is the total integrated luminosity corresponding to the
+operating time of the experiment.
+– σ (i)
+pp→LLP is the LLP cross section in proton–proton col-
+lisions, accounting for the probability that a speciﬁc pro-
+cess i takes place, e.g., decays of mesons, direct produc-
+tion by proton–target collisions, etc.
+– z, θ, and E are, respectively, the position along the beam
+axis, the polar angle, and the energy of the LLP.
+– f (i)(θ, E) is the differential distribution of LLPs pro-
+duced in the process i in polar angle and energy.
+– ϵaz(θ, z) is the azimuthal acceptance:
+ϵaz = φdecay volume(θ, z)
+2π
+(2)
+where φ is the fraction of azimuthal coverage for which
+LLPs decaying at (z, θ) are inside the decay volume. For
+the speciﬁed setup, ϵaz = h(2 < η(θ) < 5), where h is
+the step function.
+–
+dPdec
+dz
+is the differential decay probability:
+dPdec
+dz
+= exp[−r(z, θ)/ldec]
+ldec
+dr(z, θ)
+dz
+,
+(3)
+where r = z/ cos(θ) is the modulus of the displacement
+of the LLP decay position from its production point, and
+ldec = cτ
+
+γ 2 −1 is the LLP decay length in the lab
+frame (with τ being the lifetime in terms of the LLP
+mass and the coupling to the SM particles g).
+– ϵdet(m, θ, E, z) is the decay product acceptance, i.e.,
+among those LLPs that are within the azimuthal accep-
+tance, the fraction of LLPs that have at least two decay
+products that point to the detector and that may be recon-
+structed. Schematically,
+ϵdet =
+
+j
+Br( j)
+vis(m) · ϵ(geom,j)
+det
+· ϵ(other cuts,j)
+det
+,
+(4)
+where j counts over the LLP decays into ﬁnal states (with
+the branching ratio denoted as Brvis) that are detectable.
+Depending on the presence of a calorimeter (EM and/or
+hadronic), they may encompass only those states featur-
+ing at least two charged particles, or also (if the calorime-
+ters are present) the states with at least two neutral par-
+ticles. For the Downstream algorithm, only charged
+decay products are considered visible; this way, the
+acceptance estimates are conservative. Generically, the
+reconstructed decay may also include some neutral states
+such as photons and K 0
+L. ϵ(geom)
+det
+denotes the fraction of
+visible decay products that point to the end of the detector
+(which is SciFi in the case of the Downstream setup),
+and ϵ(other cuts)
+det
+is the fraction of these decay products that
+additionally satisfy the remaining selection criteria (min-
+imum energy requirement, etc.).
+– ϵrec ≈0.4 is the reconstruction efﬁciency, i.e., the frac-
+tionof theevents that pass theazimuthal anddecayaccep-
+tance criteria that the detector can successfully recon-
+struct (see Sect. 3.2).
+– Finally, ϵS/B is the signal-preserving efﬁciency for the
+events that have been reconstructed, resulting from the
+background rejection. This efﬁciency is assumed to be
+87% on average.
+The number of events is calculated using Eq. (1), and the
+Downstream setup in SensCalc code [26] is incorpo-
+rated. A detailed discussion on the implementation and its
+validation by comparison with the LHCb simulation frame-
+work can be found in Appendix A.1. The parameters of the
+setup used for the implementation are described in Table 2.
+Here and below, it is assumed that the search will be per-
+formed in the regime when the background is negligible,
+resulting from a high performance of the signal selection
+criteria using neural network techniques.
+5.2 Comparison with LHC-based experiments
+To understand the LLP exploration abilities of the new
+Downstream algorithm, it is necessary to compare the LLP
+event yields at LHCb with LHC-based experiments. For the
+reference cases of the latter, the FASER and FASER2 exper-
+iments [32,33] are considered. FASER, a forward search
+experiment at the LHC designed to study neutrinos and
+search for weakly interacting, light new particles, is a cur-
+rently running experiment located 480 m downward from
+123
+
+===== PAGE 8 =====
+608
+Page 8 of 15
+Eur. Phys. J. C (2024) 84 :608
+Table 2 Setups of the LHCb with the Downstream algorithm and
+the FASER and FASER2 experiments used for the comparison of the
+signal rates. The columns are as follows: the name of the experiment,
+the integrated luminosity, the minimum and maximum longitudinal dis-
+placement covered by the decay volume, the minimum and maximum
+angles covered by the decay volume, and the selection criteria imposed
+on the LLP decay. Two different luminosities are considered for the
+Downstream algorithm in order to enable a proper comparison with
+FASER/FASER2 (see text for details)
+Experiment
+L (fb−1)
+(zmin, zmax) (m)
+(θmin, θmax) (mrad)
+Selection
+LHCb with Downstream
+25 (w FASER)
+300 (w FASER2)
+(1, 1.5)
+≈(1.3, 260)
+Two oppositely
+charged particles
+enter SciFi,
+p > 5 GeV/c
+ϵrec ≈0.4
+FASER
+150
+(480, 481.5)
+≈(0, 0.21)
+Two particles with
+zero total charge
+intersect the
+detector
+FASER2
+3000
+(480, 485)
+≈(0, 2.1)
+Two particles with
+zero total charge
+intersect the
+detector
+the ATLAS interaction point, in the far-forward direction.
+FASER2 is a possible upgrade of FASER with increased geo-
+metric size. It may be located either at the same placement as
+FASER, or at the Forward Physics Facility [34]; the ﬁrst setup
+is considered here. Apart from the fact that FASER is already
+running, this choice is motivated by the fact that FASER and
+FASER2havethesamecapabilitiesinreconstructingtheLLP
+kinematics (such as measuring the invariant mass and iden-
+tifying the decay products) as LHCb. The operating time of
+FASER is LHC Run 3, while for FASER2, it is HL-LHC.
+A list of the relevant parameters of the considered exper-
+iments is given in Table 2. For the LHCb experiment with
+the new Downstream algorithm, partial statistics of Run 3,
+L = 25 fb−1, are considered when comparing with FASER6
+and the full statistics until Run 6 L = 300 fb−1 are assumed
+for LHCb when comparing with FASER2. A conservative
+conﬁguration of the LHCb setup is considered with the effec-
+tive decay volume from z = 1 m (the end of VELO) until the
+UT layers. For the Downstream algorithm, it is required
+that the charged decay products have E > 5 GeV. For
+FASER and FASER2, the setups implemented in SensCalc
+are used without the requirement of any other selection crite-
+ria than the requisite for the decay products to pass through
+the detector.
+Considering the limit when cτ⟨γ ⟩≫Xexp, where
+Xexp is the geometric size of the whole experiment, from
+the production point until the end of the detector, the
+differential decay probability (3) reduces to dPdec/dz ≈
+1/(ldec cos(θ)). The expression (1) becomes
+6 For the LHCb experiment, integrated luminosity L = 15 fb−1 is
+expected for 2024, and a minimum of L = 30 fb−1 for the full Run 3.
+Nev,lower ≈L
+
+i
+σ (i)
+pp→LLP · ϵ(i),
+(5)
+where ϵ(i) is the total acceptance for the given production
+channel:
+ϵ(i) =
+
+dθdEdz f (i) · ϵaz ·
+ϵdet
+cos(θ)cτ
+
+γ 2 −1
+(6)
+This quantity may be decomposed as
+ϵ = ⟨ϵLLP⟩· z
+cτ ⟨(γ 2 −1)−1/2⟩· ⟨ϵdet⟩,
+(7)
+where ⟨ϵLLP⟩is the fraction of LLPs that intersect the decay
+volume,z = 1.5misthelongitudinallengthoftheeffective
+decay volume, z
+cτ ⟨(γ 2 −1)−1/2⟩is the mean decay proba-
+bility for the LLPs intersecting the decay volume, and ⟨ϵdet⟩
+is the mean decay product acceptance for the LLPs decayed
+inside. Equation (5) is very convenient for the comparison
+since the dependence on the LLP lifetime factorizes out. In
+particular, given the coupling g of the LLP to the SM, the
+minimum possible value of g that may be probed is given by
+g2
+lower(m) ≈(Nev,lower|g=1)−1/2,
+(8)
+which follows from the scaling N (i)
+prod, τ −1 ∝g2 in Eq. (5).
+Tounderstandtheimpactofdifferentluminosities,angular
+coverage, and decay volume length, in Eq. (6), the setting
+ϵ = 1 is ﬁrst applied, and then the various factors entering
+in the integrand sequentially included. The quantities that
+are compared are as follows: I0—the total number of LLPs
+produced during the runtime of the experiment (ϵ = 1);
+I1—the fraction of LLPs pointing to the decay volume (only
+f (i)ϵaz/z is included in Eq. (6)); I2—the fraction of the
+LLPs decaying inside (all the factors except for ϵdet·ϵrec·ϵS/B
+123
+
+===== PAGE 9 =====
+Eur. Phys. J. C (2024) 84 :608
+Page 9 of 15
+608
+Fig. 5 The ratio of the quantities Ii (see the text for deﬁnition) for the
+events at LHCb-Downstream and FASER (solid lines) or FASER2
+(dashed lines) for the models of heavy neutral leptons mixing with νe
+(the left panel) and dark scalar mixing with the Higgs boson (the right
+panel). The ratios have been computed using SensCalc [26]
+are included); I3—the fraction of the decay events which
+pass the reconstruction (all the factors are included).
+In Fig. 5, the expression to obtain the number of events (5)
+for the model of dark scalars and heavy neutral leptons cou-
+pled to the electron ﬂavor are compared. Decays of B and D
+(for HNLs) mesons produce these particles, while their visi-
+ble decays are leptonic, hadronic (for scalars), or semilep-
+tonic (for HNLs) [22,23]. Because of the similar proton
+collision energy, the only difference in I0 comes from dif-
+ferent integrated luminosities accumulated during the run-
+time of the experiments; the ratio is constant and equal to
+I0,Downstr/I0,FASER/FASER2 ≈0.08/0.1 for the two lumi-
+nosity values that are considered (and we do now show it
+in the plot). These are larger for FASER and especially for
+FASER2. However, a smaller angular coverage of the lat-
+ter experiments means that a much smaller fraction of the
+produced particles would ﬂy to the decay volume (I1). The
+decay probability approximately scales as z · ⟨p−1⟩. Over-
+all, this ratio is much smaller at FASER and FASER2 experi-
+ments: the LLPs ﬂying in the far-forward direction have mean
+momenta O(1 TeV/c), while LLPs within the angular cover-
+age of LHCb typically have p ∼50−100 GeV/c. Including
+the decay product acceptance ϵ does not lead to a qualitative
+change in the ratio of the number of events, especially if most
+of the decay modes contain at least two charged particles. In
+the case when there are only uncharged particles, it is conser-
+vatively assumed that it is not possible to reconstruct them
+with the Downstream algorithm, while FASER/FASER2
+are equipped with the calorimeter and hence may reconstruct
+such modes.
+Moreover,allowingtheLLPstodecaybetweentheUTand
+the SciFi layers, with the reconstruction of faraway tracks
+(T -tracks), will increase the decay probability even further.
+It is also useful to compare the sensitivity to “short-lived”
+LLPs, i.e., to those for which the typical decay length is sim-
+ilar to the distance to the decay volume zmin, cτ⟨p⟩/m ≲
+zmin. In this case, the scaling of the number of events with
+g is mainly due to the exponentially suppressed decay prob-
+ability Pdec ≈exp[−zminm/cτp]. The scaling of the max-
+imum value of the probed g may be roughly estimated as
+gupper ∝⟨p⟩/zmin [31]. Taking into account that the LLPs at
+FASER/FASER2 and LHCb have the momenta of the order
+of 1 TeV/c and 100 GeV/c correspondingly, and using zmin
+from Table 2,
+gDownstream
+upper
+gFASER/FASER2
+upper
+∼50
+(9)
+is obtained.
+To summarize, for the exploration power of extremely
+long-lived particles, the LHCb experiment with the inclu-
+sion of the new Downstream algorithm would perform
+much better than FASER and comparably to FASER2. In
+the parameter space where LLPs are short-lived, such that
+they decay before reaching the decay volume, the algorithm
+would deliver better sensitivity because of a much smaller
+distance to the decay volume.
+6 Sensitivity to LLPs
+To estimate the sensitivity, it is required that Nevents > 2.3,
+which corresponds to the 90% CL limit if assuming that
+the background is negligible [35,36] (see Sect. 4). Two
+values of the integrated luminosities will be considered:
+L = 25 fb−1, corresponding to partial statistics accumu-
+lated during Run 3 with the Downstream algorithm avail-
+able, and L = 300 fb−1, corresponding to the full HL-LHC
+phase.
+The sensitivities to the benchmark models described in
+Sect. 3 are shown in Figs. 6, 7, 8, and 9. For comparison,
+the ﬁgures show the sensitivities of FASER and FASER2
+experiments from [3], as well as various LHCb searches from
+[37,38].
+The considered LLPs have very different phenomenology,
+which determines the different status of the exclusion of their
+parameter space by past experiments. For some of them, the
+unconstrained parameter space includes only the domain of
+large lifetimes cτ ≫1 m. For the others, lifetimes cτ ≲1 m
+also remain unexplored. This is because, on the one hand,
+limitations of the past prompt searches in luminosity and
+efﬁciency, which leave small couplings unconstrained, and
+on the other hand, parametric smallness of the lifetime which
+preventedthepastbeamdumpexperimentswiththefarplace-
+ment of the decay volume, e.g., CHARM, to be able to search
+123
+
+===== PAGE 10 =====
+608
+Page 10 of 15
+Eur. Phys. J. C (2024) 84 :608
+Fig. 6 Sensitivity to dark photons (BC1, the left panel) and B −L
+mediators (the right panel) in the plane LLP mass-LLP coupling. The
+sensitivity of future LHCb searches restricted by VELO is taken from
+[37], while the excluded parameter space and the sensitivity of FASER
+and FASER2 experiments is taken from [3]. For the Downstream
+algorithm, in this and subsequent ﬁgures, two values of the inte-
+grated luminosity are assumed: 25 fb−1, corresponding to the partial
+statistics of Run 3, and 300 fb−1, which is the full statistics of Run 6.
+For the description of the models, see Sect. 3 and Ref. [26]. See the text
+for the discussion on the sensitivity
+Fig. 7 Sensitivity to Higgs-like scalars, models BC4 (the left panel)
+and BC5 (the right panel). The excluded domain, as well as sensitivities
+of FASER, FASER2, and the search of B →K S(→μμ), is taken
+from [3]
+for such LLPs. One of the powers of the Downstream setup
+is that it may search for LLPs in both these regimes.
+For dark photons and B −L mediators (Fig. 6), the sec-
+ond scenario is realized. In particular, in the mass range
+mV ≲0.6 GeV/c2, there is an underexplored parameter
+space of short lifetimes cτ ≲1 m. This mass range may
+be complementarily probed by various searches at LHCb,
+including the Downstream setup and the searches for res-
+onance in dielectron and dimuon invariant mass restricted
+by VELO [37]. Depending on the luminosity, it may be able
+to search for masses mV ≲1 GeV/c2. The upper bound
+of the sensitivities of FASER and FASER2 lies well below
+Fig. 8 Sensitivity to HNLs coupled solely to νe (the top left panel), νμ
+(the top right panel), and ντ (the bottom panel). The parameter space
+excluded by past experiments, as well as the sensitivity of FASER2, are
+taken from [3]. The bottom gray domain below the short-dashed line
+corresponds to the parameter space excluded by BBN [41,42]
+Fig. 9 The sensitivity to the ALPs universally coupled to fermions
+(BC10, the left panel) and to gluons (BC11, the right panel). The sensi-
+tivity of FASER2 and the excluded parameter space are taken from [3].
+For the discussion of sensitivity, see the text
+the sensitivity of Downstream, in good agreement with the
+estimate (9). The disconnected sensitivity regions in Fig. 6
+appear due to the interplay between the behaviors of the LLP
+production rate and its lifetime. For these mediators, cτ · g2
+123
+
+===== PAGE 11 =====
+Eur. Phys. J. C (2024) 84 :608
+Page 11 of 15
+608
+is parametrically very small, which requires a decrease in
+g2 to enable the LLPs to reach the decay volume before
+decaying. On the other hand, this would lead to a decrease
+in the production cross section σpp→LLP ∝g2. Parametri-
+cally, the ratio σpp→LLP/g2 is too small in the mass range
+0.5 GeV/c2 ≲m ≲0.6 GeV/c2 to compensate for this
+decrease. However, it is enhanced around the masses of ρ/ω
+mesons and their excitations (due to the mixing of the dark
+photons and B mediator with ω, ρ, φ [21]).
+Higgs-like scalars are efﬁciently produced by decays of B
+mesons. Apart from using the Downstream setup, it may
+be possible to search for them at LHCb by studying pro-
+cesses of the type B →K (∗) + S(→μμ) localized in
+VELO, where S would manifest itself via a resonant con-
+tribution in the dimuon invariant mass [28,39]. Compared
+with the projections of the future reach of this type of search
+as reported in [38], the Downstream setup would cover
+the lifetimes in two orders of magnitude larger (see Fig. 7).
+The main reason for this is a suppression of the event rate
+by the reconstruction efﬁciency for B →K (∗) + S(→μμ)
+(coming from the pT cut on the outgoing muons, reconstruc-
+tion of the kaon, and the requirement for the reconstructed
+B decay vertex to be sufﬁciently displaced), the branching
+ratio BrB→K+S ≈BrB→X+S/8, the effective decay volume
+limited by VELO, and the branching ratio S →μμ (see
+Fig. 4).
+As for the comparison with FASER/FASER2, for the
+model BC4 (zero trilinear coupling hSS), the obtained results
+are in agreement with the qualitative estimates made in
+Sect. 5.2. Compared to FASER, the Downstream setup
+may deliver much better sensitivity. As for FASER2, the
+Downstream sensitivity would probe the same or slightly
+larger lifetimes at thelower bound, whilefor theupper bound,
+the probed domain is extended to the range of smaller life-
+times, thanks to a much shorter distance to the decay volume.
+In the case of a nonzero hSS coupling (BC5), scalars may be
+produced by the decays Bs →SS and B →SSX and the
+two-body Higgs boson decays h →SS. The experiment may
+be searching for such scalars up to the production threshold
+from Higgs bosons, mS < mh/2, again thanks to a very small
+distance to the decay volume. This is impossible at FASER,
+while the reach of FASER2 is limited to the vicinity of the
+kinematic threshold mS ≃mh/2 due to the suppression in
+the number of scalars pointing to the detector [40].
+For HNLs N (Fig. 8), there are three mass domains
+depending on the main production channel—by the decays of
+D/τ (mN ≲2 GeV/c2), B (2 GeV/c2 ≲mN ≲m Bc −ml,
+where l is the lepton corresponding to the HNL mixing), and
+W (mN ≳m Bc). The Downstream setup allows an efﬁ-
+cient probe of the ﬁrst two domains, with the maximum mass
+of the HNL being as large as ≃20 GeV/c2. The HNLs pro-
+duced by decays of D/τ, following the kinematics of these
+particles, mainly point to the far-forward region not covered
+by LHCb. In comparison, FASER2 would be able to probe
+HNLs only up to masses 2 GeV/c2 ≲mN ≲3 GeV/c2,
+mainly because of its distant placement relative to the pro-
+duction point.
+Unlike the dark scalar case, there is no possibility to utilize
+thesignature B →K+N(→μμ)forHNLs.First,HNLsare
+fermions, and the angular momentum conservation, together
+with the HNL interaction properties, requires the presence of
+an additional lepton in the B decay. The probability of such
+process, Bs →K +N +ℓ, is highly suppressed [23]. Finally,
+the only HNL decay with the dimuon state is a three-body
+process N →μμν; as a result, the dimuon mass distribution
+is not resonant.
+The comparison with FASER/FASER2 shows the same
+pattern as in the case of dark scalars, again reproducing qual-
+itative conclusions of Sect. 5.2.
+For the ALPs with the universal coupling to fermions
+(Fig. 9), BC10, the situation is very similar to the case of
+dark scalars, since the dominant production channel is the
+same—decays of B mesons—while the decays into fermions
+have the similar Yukawa-like hierarchy: the corresponding
+decay width scales as a→f f ∝m2
+f . The gaps in the sensi-
+tivity correspond to the vicinity of the masses of the neutral
+light mesons m0 = π0, η, η′, where the description of the
+ALP phenomenology based on the mixing with these mesons
+becomes inadequate.
+In the case of the ALPs coupled to gluons (BC11),
+the mixing becomes the main production channel. This
+results in worse sensitivity of the Downstream setup rel-
+ative to FASER2. Indeed, m0s have a very narrow angular
+distribution—their characteristic pT is of the order of QCD.
+GiventhetypicalenergiesoftheorderofTeV,theangularﬂux
+of mesons starts falling at θ < 1 mrad, i.e., well below the
+angular coverage of LHCb but within the range of FASER2.
+In addition, an important decay channel of these ALPs (in the
+mass range ma ≲mη) is into a pair of photons [25], which
+are conservatively not considered as visible particles for the
+Downstream setup. Still, however, at the upper bound of
+the sensitivity, it would provide much better opportunities.
+It is important to stress again (see Sect. 3) that the descrip-
+tion of the ALP phenomenology considered in this paper dif-
+fers from the description used to calculate the sensitivity of
+FASER2, which makes the direct comparison more compli-
+cated.
+The sensitivities to all the LLPs considered in this paper
+may be improved if the effective decay volume extends from
+the end of the UT until the SciFi layers. At present, work is
+being developed to include faraway tracks, with hits only in
+the SciFi, and perform a fast vertexing at the HLT1, keeping
+a high throughput. This will extend the LLP search potential
+of LHCb even further.
+Finally,itisimportanttoconsiderthe Downstreamalgo-
+rithm over a landscape of future experiments. As a refer-
+123
+
+===== PAGE 12 =====
+608
+Page 12 of 15
+Eur. Phys. J. C (2024) 84 :608
+Fig. 10 Comparison of the sensitivities of future proposed and
+approved experiments to the model of Higgs-like scalars (BC4). See
+text for details
+ence model example for the comparison, Higgs-like scalars
+are chosen, because their production mode—decays of B
+mesons—is representative for many other LLPs, such as
+HNLs and ALPs, and it may be possible to search for them
+at many experiments located at different facilities. The com-
+parison of sensitivities is shown in Fig. 10. The included
+experiments are recently approved SHiP, FASER, FASER2,
+MATHUSLA, and CODEX-b. The sensitivity of CODEX-
+b is taken from [3] and the sensitivity of MATHUSLA
+from [43], while the sensitivity of SHiP is computed using
+SensCalc. The comparison is tricky, since the experiments
+may fall into different categories: already approved or at
+the stage of proposals (CODEX-b, MATHUSLA, FASER2);
+equipped with the full detector or with just tracking layers
+(MATHUSLA), which is crucial for identifying the LLP; or
+running at different times. Namely, while the Downstream
+algorithm is going to be run already in 2024, while FASER
+is already collecting the data, the timescale for the other
+experiments is rather shifted: SHiP is expected to run after
+2030[44],andMATHUSLAandCODEX-b,duringthehigh-
+luminosity phase of the LHC [3]. This way, it is seen that the
+Downstream algorithm is the best experiment to search for
+LLPs in the next few years.
+7 Conclusions
+The current search strategies employed at the LHC’s pri-
+mary detectors, namely ATLAS, CMS, and LHCb, are not
+well suited for exploring the parameter space associated with
+hypothetical long-lived particles (LLPs) in the GeV mass
+range. Consequently, there has been a surge in proposals
+for experiments beyond the LHC dedicated to the search for
+LLPs. This study demonstrates the potential for efﬁciently
+harnessingthecapabilities of theLHCbexperiment byimple-
+menting a novel Downstream algorithm. This approach
+enables the exploration of events lacking hits in the innermost
+LHCb tracker. In comparison with the existing search meth-
+ods employed by LHCb, this algorithm offers the advantages
+of triggering at the production vertex, enhanced background
+control, an expanded effective decay volume, and the ability
+to investigate various ﬁnal states resulting from the decays
+of LLPs.
+The Downstream setup holds promise for the investi-
+gation of a diverse range of LLPs, potentially rivaling the
+exploration potential of established LHC-based experiments
+like FASER2 (refer to Sect. 3). Leveraging the complete
+dataset from LHCb until Run 6, it becomes feasible to probe
+heavy neutral leptons (HNLs) with masses up to approx-
+imately 20 GeV/c2, as well as dark photons and B −L
+mediators with masses of around 1 GeV/c2. Moreover, this
+approach extends the search to Higgs-like scalars with life-
+times exceeding those accessible by the current LHCb search
+strategies, and to axion-like particles with various coupling
+patterns (as outlined in Sect. 6). Further enhancements in
+sensitivity can be achieved by increasing the effective decay
+volume and incorporating the possibility of reconstructing
+ﬁnal states comprising exclusively photons, contingent upon
+the development of new triggers.
+Acknowledgements The authors thank Andrii Usachov for the useful
+discussions concerning the experimental part. Part of this work is sup-
+ported by the State Agency of Research, Spanish Ministry of Innovation
+and Research and European Union-NextGenEU.
+Funding The authors acknowledge the support from project TED2021-
+130852B-I00 and CONEXION AIHUB-CSIC, and from the European
+Union’s Horizon 2020 research and innovation program under the Marie
+Sklodowska-Curie grant agreement No. 860881-HIDDeN. Support for
+V.S. and V.K. was provided by the US NSF cooperative agreement
+OAC-1836650 (IRIS-HEP) and the Simons Foundation.
+Data Availability Statement This manuscript has associated data in a
+data repository. [Author’s comment: All the input required to reproduce
+sensitivities comes with the publicly available SensCalc package,
+located by the following link: https://zenodo.org/doi/10.5281/zenodo.
+7957784].
+Code Availability Statement This manuscript has associated code/
+software in a data repository. [Author’s comment: All the ingredi-
+ents required to reproduce the sensitivity studies are already imple-
+mented in SensCalc repository, available at https://zenodo.org/doi/
+10.5281/zenodo.7957784.The Downstreamalgorithmisintherepos-
+itory https://gitlab.cern.ch/lhcb/Allen/-/merge_requests/1095, Jashal
+B.,OyangurenA.,ZhuoJ.,“Downstream/longlivedparticletrackrecon-
+struction” (2023).]
+Open Access This article is licensed under a Creative Commons Attri-
+bution 4.0 International License, which permits use, sharing, adaptation,
+distribution and reproduction in any medium or format, as long as you
+give appropriate credit to the original author(s) and the source, pro-
+vide a link to the Creative Commons licence, and indicate if changes
+were made. The images or other third party material in this article
+are included in the article’s Creative Commons licence, unless indi-
+123
+
+===== PAGE 13 =====
+Eur. Phys. J. C (2024) 84 :608
+Page 13 of 15
+608
+cated otherwise in a credit line to the material. If material is not
+included in the article’s Creative Commons licence and your intended
+use is not permitted by statutory regulation or exceeds the permit-
+ted use, you will need to obtain permission directly from the copy-
+right holder. To view a copy of this licence, visit http://creativecomm
+ons.org/licenses/by/4.0/.
+Funded by SCOAP3.
+Appendix A: Implementation of the setup for the
+Downstream algorithm in SensCalc
+The LHCb with the Downstream setup has been imple-
+mented in the SensCalc framework to estimate the number
+of events and allow for comparisons. The implementation is
+shown in Fig. 11, and details are given in the following.
+For the decay volume, conical frustum covering pseudo-
+rapidities 2 < η < 5 and located in the longitudinal dis-
+placement z from zmin = 1 m to zmax = 7.7 m is considered,
+where the ﬁrst SciFi layer is located. If the tracks must also
+intersect the UT, the size of the decay volume shrinks to
+zmax ≈2.5 m, which is the beginning of the UT. For the
+geometry of the SciFi layers, a parallelepiped with dimen-
+sions of 6.48 m × 4.83 m × 1.7 m with a hole of radius
+R = 9 cm to account for the beam pipe is used, following
+[11]. The magnetic ﬁeld of the dipole magnet is extended
+from z = 3.5 m to z = 7.5 m, with the integrated ﬁeld
+
+Bdl = 4 T · m.
+The setup is available with the current SensCalc reposi-
+tory [45]. Depending on details, there are three implemented
+options:
+– LHCb-downstream
+– LHCb-downstream-T-tracks-only
+– LHCb-downstream-full.
+The ﬁrst one corresponds to the setup considered in this
+paper— the one with the decay volume extending from
+z = 1 m to z = 2.5 m and SciFi as the detector. The sec-
+ond option also includes the domain 2.5 < z < zSciFi as the
+Fig. 11 The geometry of the LHCb as implemented in SensCalc.
+The thick black point corresponds to the origin of the coordinate frame,
+coinciding with the point of pp collisions. The blue region corresponds
+to the decay volume, while the red one is the detector. The green plane
+shows the location of the UT layers; if the tracks are also required to
+intersect the UT, the decay volume shrinks to the domain until the UT
+plane
+Fig. 12 The behavior of the decay product acceptance (10) if assum-
+ing ϵrec = 1, as estimated by SensCalc (blue) and predicted by the
+RapidSim simulations (red) [46]. See text for details
+decay volume; it corresponds to the scenario when the event
+may be reconstructed purely by T-tracks. Finally, the last one
+is a sketch of the full LHCb detector up to muon stations (see
+Fig. 1). Users may easily add new conﬁgurations or modify
+the existing ones.
+A.1 Validation
+To validate the prediction of SensCalc, the event rate for
+the dark scalar mixed with the standard Higgs boson is ana-
+lyzed. Speciﬁcally, the acceptance for the dark scalars to have
+2 < η < 5 and the z-dependence of the pure geometric part
+of the decay product acceptance (i.e., with ϵrec = 1) is stud-
+ied, which is deﬁned as
+ϵdet(mS, zS) ≡
+⟨fLLP
+dPdecay
+dz
+ϵdecay⟩θ,E
+⟨fLLP
+dPdecay
+dz
+⟩θ,E
+,
+(10)
+and results compared with the LHCb simulations.
+Simulations in this work are performed using a speciﬁc
+package called RapidSim [46], an application for fast simu-
+lation of phase-space decays of heavy hadrons, which allows
+for quick studies of the properties of signal and background
+decays in particle physics analyses. It includes realistic pro-
+duction kinematic distributions, efﬁciencies, and momentum
+resolutions.
+As shown in Fig. 12, good agreement is obtained between
+the acceptance predicted by SensCalc and the RapidSim
+simulation.
+References
+1. S. Alekhin et al., A facility to search for hidden particles
+at the CERN SPS: the SHiP physics case. Rep. Prog. Phys.
+123
+
+===== PAGE 14 =====
+608
+Page 14 of 15
+Eur. Phys. J. C (2024) 84 :608
+79(12), 124201 (2016). https://doi.org/10.1088/0034-4885/79/12/
+124201. arXiv:1504.04855 [hep-ph]
+2. J.
+Beacham
+et
+al.,
+Physics
+beyond
+colliders
+at
+CERN:
+beyond the standard model working group report. J. Phys. G
+47(1), 010501 (2020). https://doi.org/10.1088/1361-6471/ab4cd2.
+arXiv:1901.09966 [hep-ex]
+3. C. Antel et al., Feebly interacting particles: FIPs 2022 workshop
+report, in Workshop on Feebly-Interacting Particles (2023). https://
+inspirehep.net/literature/2656339. arXiv:2305.01715 [hep-ph]
+4. CMS Collaboration, A. Tumasyan et al., Search for long-lived
+heavy neutral leptons with displaced vertices in proton–proton col-
+lisions at √s = 13 TeV. JHEP 07, 081 (2022). https://doi.org/10.
+1007/JHEP07(2022)081. arXiv:2201.05578 [hep-ex]
+5. ATLAS Collaboration, G. Aad et al., Search for heavy neutral lep-
+tons in decays of W bosons using a dilepton displaced vertex in
+s = 13 TeV pp collisions with the ATLAS detector. Phys. Rev. Lett.
+131(6), 061803 (2023). https://doi.org/10.1103/PhysRevLett.131.
+061803. arXiv:2204.11988 [hep-ex]
+6. L. Caleﬁce, A. Hennequin, L. Henry, B. Jashal, D. Mendoza, A.
+Oyanguren, I. Sanderswood, C.Vázquez, J. Zhuo, Effect of the
+high-level trigger for detecting long-lived particles at LHCb. Front.
+Big Data Sec. Big Data AI High Energy Phys. 5 (2022). https://
+www.frontiersin.org/articles/10.3389/fdata.2022.1008737/full
+7. L. Shchutska, M. Ovchynnikov, Prospects for LLP searches at the
+LHC in Run 3 and HL-LHC. PoS LHCP2022, 094 (2023). https://
+doi.org/10.22323/1.422.0094
+8. CMS Collaboration, Search for long-lived heavy neutral leptons
+decaying in the CMS muon detectors in proton–proton collisions
+at √s = 13 TeV. Technical report, CERN, Geneva (2023). https://
+cds.cern.ch/record/2865227
+9. LHCbCollaboration,LHCbupgrade GPUhighlevel triggertechni-
+cal design report. Technical report, CERN, Geneva (2020). https://
+doi.org/10.17181/CERN.QDVA.5PIR. https://cds.cern.ch/record/
+2717938
+10. B. Jashal, A. Oyanguren, J. Zhuo, Downstream/long lived parti-
+cle track reconstruction (2023). https://gitlab.cern.ch/lhcb/Allen/
+-/merge_requests/1095
+11. LHCb Collaboration, I. Bediaga et al., Framework TDR for the
+LHCb upgrade: technical design report. Technical report (2012).
+https://cds.cern.ch/record/1443882
+12. LHCb Collaboration, A.A. Alves Jr. et al., The LHCb detector
+at the LHC. J. Instrum. 3(08), S08005 (2008). https://doi.org/10.
+1088/1748-0221/3/08/S08005
+13. LHCb Collaboration, R. Aaij et al., The LHCb upgrade I. https://
+inspirehep.net/literature/2660905. arXiv:2305.10515 [hep-ex]
+14. LHCb
+Collaboration,
+Long-lived
+particle
+reconstruction
+downstream of the LHCb magnet. Technical report (2022).
+arXiv:2211.10920. https://cds.cern.ch/record/2841793. All ﬁg-
+ures and tables, along with machine-readable versions and any
+supplementary material and additional information, are available at
+https://cern.ch/lhcbproject/Publications/p/LHCb-DP-2022-001.
+html (LHCb public pages)
+15. P. Li, E. Rodrigues, S. Stahl, Tracking deﬁnitions and conventions
+for Run 3 and beyond. Technical report, CERN, Geneva (2021).
+https://cds.cern.ch/record/2752971
+16. LHCb trigger and online upgrade technical design report. Technical
+report (2014). https://cds.cern.ch/record/1701361
+17. R. Aaij et al., Allen: a high level trigger on GPUs for LHCb.
+Comput. Softw. Big Sci. 4(1), 7 (2020). https://doi.org/10.1007/
+s41781-020-00039-7. arXiv:1912.09161 [physics.ins-det]
+18. B.K. Jashal, Triggering new discoveries: development of advanced
+HLT1 algorithms for detection of long-lived particles at LHCb
+(2023). https://cds.cern.ch/record/2881886. Presented 07 Nov
+2023
+19. LHCb Collaboration, Downstream track reconstruction in HLT1.
+https://cds.cern.ch/record/2875269
+20. SHiP Collaboration, C. Ahdida et al., Sensitivity of the SHiP exper-
+iment to dark photons decaying to a pair of charged particles.
+Eur. Phys. J. C 81(5), 451 (2021). https://doi.org/10.1140/epjc/
+s10052-021-09224-3. arXiv:2011.05115 [hep-ex]
+21. P. Ilten, Y. Soreq, M. Williams, W. Xue, Serendipity in dark
+photon searches. JHEP 06, 004 (2018). https://doi.org/10.1007/
+JHEP06(2018)004. arXiv:1801.04847 [hep-ph]
+22. I. Boiarska, K. Bondarenko, A. Boyarsky, V. Gorkavenko,
+M. Ovchynnikov, A. Sokolenko, Phenomenology of GeV-scale
+scalar portal. JHEP 11, 162 (2019). https://doi.org/10.1007/
+JHEP11(2019)162. arXiv:1904.10447 [hep-ph]
+23. K. Bondarenko, A. Boyarsky, D. Gorbunov, O. Ruchayskiy,
+Phenomenology of GeV-scale heavy neutral leptons. JHEP
+11,
+032
+(2018).
+https://doi.org/10.1007/JHEP11(2018)032.
+arXiv:1805.08567 [hep-ph]
+24. G.
+Dalla
+Valle
+Garcia,
+F.
+Kahlhoefer,
+M.
+Ovchynnikov,
+A. Zaporozhchenko, Phenomenology of axion-like particles
+with universal fermion couplings—revisited. https://inspirehep.
+net/literature/2706479. arXiv:2310.03524 [hep-ph]
+25. D. Aloni, Y. Soreq, M. Williams, Coupling QCD-scale axionlike
+particles to gluons. Phys. Rev. Lett. 123(3), 031803 (2019). https://
+doi.org/10.1103/PhysRevLett.123.031803.
+arXiv:1811.03474
+[hep-ph]
+26. M. Ovchynnikov, J.-L. Tastet, O. Mikulenko, K. Bondarenko, Sen-
+sitivities to feebly interacting particles: public and uniﬁed calcu-
+lations. Phys. Rev. D 108(7), 075028 (2023). https://doi.org/10.
+1103/PhysRevD.108.075028. arXiv:2305.13383 [hep-ph]
+27. O. Mikulenko, K. Bondarenko, A. Boyarsky, O. Ruchayskiy,
+Unveiling new physics with discoveries at Intensity Frontier (to
+appear). https://inspirehep.net/literature/2734109 arXiv [hep-ph]
+28. LHCb Collaboration, R. Aaij et al., Search for long-lived
+scalar particles in B+
+→
+K +χ(μ+μ−) decays. Phys. Rev.
+D 95(7), 071101 (2017). https://doi.org/10.1103/PhysRevD.95.
+071101. arXiv:1612.07818 [hep-ex]
+29. M. Mazurek, M. Clemencic, G. Corti, Gauss and Gaussino:
+the LHCb simulation software and its new experiment agnostic
+core framework. PoS ICHEP2022, 225 (2022). https://doi.org/10.
+22323/1.414.0225
+30. M. Alexander et al., Mapping the material in the LHCb
+vertex locator using secondary hadronic interactions. JINST
+13(06), P06008 (2018). https://doi.org/10.1088/1748-0221/13/06/
+P06008. arXiv:1803.07466 [physics.ins-det]
+31. K. Bondarenko, A. Boyarsky, M. Ovchynnikov, O. Ruchayskiy,
+Sensitivity of the intensity frontier experiments for neutrino and
+scalar portals: analytic estimates. JHEP 08, 061 (2019). https://
+doi.org/10.1007/JHEP08(2019)061. arXiv:1902.06240 [hep-ph]
+32. FASER Collaboration, A. Ariga et al., Technical proposal for
+FASER: ForwArd Search ExpeRiment at the LHC. https://
+inspirehep.net/literature/1711174. arXiv:1812.09139 [physics.ins-
+det]
+33. FASER Collaboration, A. Ariga et al., Letter of intent for FASER:
+ForwArd Search ExpeRiment at the LHC. https://inspirehep.net/
+literature/1704963. arXiv:1811.10243 [physics.ins-det]
+34. J.L. Feng et al., The forward physics facility at the high-luminosity
+LHC. J. Phys. G 50(3), 030501 (2023). https://doi.org/10.1088/
+1361-6471/ac865e. arXiv:2203.05090 [hep-ex]
+35. G.J. Feldman, R.D. Cousins, A uniﬁed approach to the clas-
+sical statistical analysis of small signals. Phys. Rev. D 57,
+3873–3889 (1998). https://doi.org/10.1103/PhysRevD.57.3873.
+arXiv:physics/9711021
+36. S.I. Bityukov, N.V. Krasnikov, Conﬁdence intervals for the param-
+eter of Poisson distribution in presence of background. https://
+inspirehep.net/literature/533831. arXiv:physics/0009064
+37. LHCb Collaboration, Future physics potential of LHCb. Technical
+report, CERN, Geneva (2022). https://cds.cern.ch/record/2806113
+123
+
+===== PAGE 15 =====
+Eur. Phys. J. C (2024) 84 :608
+Page 15 of 15
+608
+38. LHCb Collaboration, R. Aaij et al., Physics case for an
+LHCb Upgrade II—opportunities in ﬂavour physics, and beyond,
+in the HL-LHC era. https://inspirehep.net/literature/1691586.
+arXiv:1808.08865 [hep-ex]
+39. LHCb Collaboration, R. Aaij et al., Search for hidden-sector
+bosons in B0 →K ∗0μ+μ−decays. Phys. Rev. Lett. 115(16),
+161802 (2015). https://doi.org/10.1103/PhysRevLett.115.161802.
+arXiv:1508.04094 [hep-ex]
+40. I. Boiarska, K. Bondarenko, A. Boyarsky, M. Ovchynnikov, O.
+Ruchayskiy, A. Sokolenko, Light scalar production from Higgs
+bosons and FASER 2. JHEP 05, 049 (2020). https://doi.org/10.
+1007/JHEP05(2020)049. arXiv:1908.04635 [hep-ph]
+41. A. Boyarsky, M. Ovchynnikov, O. Ruchayskiy, V. Syvolap,
+Improved big bang nucleosynthesis constraints on heavy neutral
+leptons. Phys. Rev. D 104(2), 023517 (2021). https://doi.org/10.
+1103/PhysRevD.104.023517. arXiv:2008.00749 [hep-ph]
+42. N. Sabti, A. Magalich, A. Filimonova, An extended analysis of
+heavy neutral leptons during big bang nucleosynthesis. JCAP
+11, 056 (2020). https://doi.org/10.1088/1475-7516/2020/11/056.
+arXiv:2006.07387 [hep-ph]
+43. D. Curtin, J.S. Grewal, Long lived particle decays in MATHUSLA.
+Maksym Ovchynnikov. SensCalc. https://zenodo.org/doi/10.5281/
+zenodo.7957784. arXiv:2308.05860 [hep-ph]
+44. SHiP Collaboration, O.E.A. Aberle, BDF/SHiP at the ECN3 high-
+intensity beam facility. Technical report, CERN, Geneva (2022).
+https://cds.cern.ch/record/2839677
+45. M. Ovchynnikov, Senscalc. Oct. 2023 (2023) https://inspirehep.
+net/literature/2776297
+46. G. Cowan, D. Craik, M. Needham, RapidSim: an application for the
+fastsimulationofheavy-quarkhadrondecays.Comput.Phys.Com-
+mun. 214, 239–246 (2017). https://doi.org/10.1016/j.cpc.2017.01.
+029
+123

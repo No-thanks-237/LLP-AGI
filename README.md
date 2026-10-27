@@ -83,18 +83,29 @@ python work/analysis/signal_map.py         # 显著度图
 python work/analysis/make_manifest.py      # sha256 清单
 ```
 
-## 数据与第三方材料（不在本仓库内）
+## 数据与第三方材料
 
-仓库只放**程序、输入快照（小文件）、日志与最终产物**。以下内容因体积或再分发限制不包含：
-
-| 内容 | 说明 |
+| 内容 | 状态 |
 |---|---|
-| Pythia 母样本（`work/magnus/samples/`）与强子化库（`work/magnus/hadron_lib/`） | GB 级；按各 run `logs/samples.md` 记录的 Magnus 作业 ID 重新生成 |
-| 响应表缓存（`work/analysis/cache/`）与逐质量扫描 JSON | 由代码 + 样本自动重建（聚合结果已提交） |
-| `references/`（论文 PDF、FORESEE 工具、作者源码包） | 第三方材料，按各自许可从上游获取 |
-| `deployment/sources/`（ColliderAgent、Magnus 源码） | 第三方框架，见其上游仓库 |
+| Pythia 母样本（`work/magnus/samples/*.txt.gz`） | **随仓库提供**（每个 run 一份，便于独立重跑） |
+| 强子化库（`work/magnus/hadron_lib/*.txt.gz` + manifest） | **随仓库提供** |
+| 2HDM 的 500k 事例 pi/K minbias 样本（`minbias_pik.txt.gz`，525 MB） | **以 Release 资产发布**（超过 GitHub 单文件 100 MB 限制），见下 |
+| 响应表缓存（`work/analysis/cache/`）与逐质量扫描 JSON | 不入库，由代码 + 样本自动重建（聚合结果 `outputs/data/signal_scan.json` 已入库） |
+| `references/`（论文 PDF/LaTeX、FORESEE 工具、作者源码包） | **随仓库提供**，按各自许可使用 |
+| `deployment/sources/`（ColliderAgent、Magnus 源码） | 不入库，见其上游仓库（均为公开项目） |
 
-第三方代码/工具的出处与版本记录在各 run 的 `inputs/README.md`；
+下载 2HDM 的 minbias 样本（唯一不在 git 内的样本）：
+
+```bash
+cd runs/20261025_1325_UTC_2HDM_lightH_lhcb_downstream/work/magnus/samples
+gh release download samples-2026-10 -R No-thanks-237/LLP-AGI -p minbias_pik.txt.gz -D .
+sha256sum minbias_pik.txt.gz
+# 期望 cc157eeef958d747da47df6c6e524b26de9eadeeeb73875678ff5cff8a9de41f
+```
+
+不下载也可以：按 `logs/samples.md` / `logs/magnus_jobs.md` 记录的 Magnus 作业 ID 用
+`work/magnus/` 里的脚本重新生成（需要 Docker + Pythia 8.316 容器）。
+
 模型论文与公式来源：arXiv:2212.06186（light scalars / 2HDM 产生公式）、arXiv:1809.01876
 （Winkler 宽度）、arXiv:1904.10447（Boiarska 产生率）、arXiv:2105.07077 / 2305.13383（LHCb Downstream）。
 

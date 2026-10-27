@@ -22,5 +22,9 @@
 
 ## 数据
 
-母样本、强子化库、响应表缓存、逐质量扫描 JSON 不在仓库内（体积 GB 级或可自动重建），
-各 run 的 `logs/samples.md` / `logs/magnus_jobs.md` 记录了生成它们的 Magnus 作业 ID。
+* Pythia 母样本（`work/magnus/samples/*.txt.gz`）与强子化库（`work/magnus/hadron_lib/`）
+  **随仓库提供**；旧版 run（v1/v2）里字节相同的重复副本不重复入库。
+* 2HDM 的 500k 事例 pi/K minbias 样本（`minbias_pik.txt.gz`，525 MB）超过 GitHub 单文件
+  限制，以 **Release 资产** `samples-2026-10` 发布，取用方法见根 README 的"数据与第三方材料"。
+* 响应表缓存与逐质量扫描 JSON 不入库，可自动重建；`logs/samples.md` / `logs/magnus_jobs.md`
+  记录了生成样本的 Magnus 作业 ID。

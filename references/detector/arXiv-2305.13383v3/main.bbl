@@ -1,0 +1,499 @@
+\providecommand{\href}[2]{#2}\begingroup\raggedright\begin{thebibliography}{10}
+
+\bibitem{Beacham:2019nyx}
+J.~Beacham {\em et~al.}, ``{Physics Beyond Colliders at CERN: Beyond the
+  Standard Model Working Group Report},''
+  \href{https://dx.doi.org/10.1088/1361-6471/ab4cd2}{{\em J. Phys. G}
+  {\bfseries 47} no.~1, (2020) 010501},
+  \href{https://arxiv.org/abs/1901.09966}{{\ttfamily arXiv:1901.09966
+  [hep-ex]}}.
+
+\bibitem{Alekhin:2015byh}
+S.~Alekhin {\em et~al.}, ``{A facility to Search for Hidden Particles at the
+  CERN SPS: the SHiP physics case},''
+  \href{https://dx.doi.org/10.1088/0034-4885/79/12/124201}{{\em Rept. Prog.
+  Phys.} {\bfseries 79} no.~12, (2016) 124201},
+  \href{https://arxiv.org/abs/1504.04855}{{\ttfamily arXiv:1504.04855
+  [hep-ph]}}.
+
+\bibitem{Aberle:2839677}
+{\bfseries SHiP} Collaboration, O.~Aberle {\em et~al.}, ``{BDF/SHiP at the ECN3
+  high-intensity beam facility},'' tech. rep., CERN, Geneva, 2022.
+\newblock \url{http://cds.cern.ch/record/2839677}.
+
+\bibitem{Alviggi:2839484}
+{\bfseries SHADOWS} Collaboration, M.~Alviggi {\em et~al.}, ``{SHADOWS Letter
+  of Intent},'' tech. rep., CERN, Geneva, 2022.
+\newblock \url{https://cds.cern.ch/record/2839484}.
+
+\bibitem{CortinaGil:2839661}
+{\bfseries HIKE} Collaboration, E.~Cortina~Gil {\em et~al.}, ``{HIKE, High
+  Intensity Kaon Experiments at the CERN SPS: Letter of Intent},'' tech. rep.,
+  CERN, Geneva, 2022.
+\newblock \href{https://arxiv.org/abs/2211.16586}{{\ttfamily
+  arXiv:2211.16586}}.
+\newblock \url{https://cds.cern.ch/record/2839661}.
+\newblock Letter of Intent submitted to CERN SPSC. Address all correspondence
+  to hike-eb@cern.ch.
+
+\bibitem{DUNE:2020ypp}
+{\bfseries DUNE} Collaboration, B.~Abi {\em et~al.}, ``{Deep Underground
+  Neutrino Experiment (DUNE), Far Detector Technical Design Report, Volume II:
+  DUNE Physics},'' \href{https://arxiv.org/abs/2002.03005}{{\ttfamily
+  arXiv:2002.03005 [hep-ex]}}.
+
+\bibitem{DUNE:2020fgq}
+{\bfseries DUNE} Collaboration, B.~Abi {\em et~al.}, ``{Prospects for beyond
+  the Standard Model physics searches at the Deep Underground Neutrino
+  Experiment},'' \href{https://dx.doi.org/10.1140/epjc/s10052-021-09007-w}{{\em
+  Eur. Phys. J. C} {\bfseries 81} no.~4, (2021) 322},
+  \href{https://arxiv.org/abs/2008.12769}{{\ttfamily arXiv:2008.12769
+  [hep-ex]}}.
+
+\bibitem{Batell:2020vqn}
+B.~Batell, J.~A. Evans, S.~Gori, and M.~Rai, ``{Dark Scalars and Heavy Neutral
+  Leptons at DarkQuest},''
+  \href{https://dx.doi.org/10.1007/JHEP05(2021)049}{{\em JHEP} {\bfseries 05}
+  (2021) 049}, \href{https://arxiv.org/abs/2008.08108}{{\ttfamily
+  arXiv:2008.08108 [hep-ph]}}.
+
+\bibitem{MATHUSLA:2019qpy}
+{\bfseries MATHUSLA} Collaboration, H.~Lubatti {\em et~al.}, ``{Explore the
+  lifetime frontier with MATHUSLA},''
+  \href{https://dx.doi.org/10.1088/1748-0221/15/06/C06026}{{\em JINST}
+  {\bfseries 15} no.~06, (2020) C06026},
+  \href{https://arxiv.org/abs/1901.04040}{{\ttfamily arXiv:1901.04040
+  [hep-ex]}}.
+
+\bibitem{Cerci:2021nlb}
+S.~Cerci {\em et~al.}, ``{FACET: A new long-lived particle detector in the very
+  forward region of the CMS experiment},''
+  \href{https://dx.doi.org/10.1007/JHEP06(2022)110}{{\em JHEP} {\bfseries 2022}
+  no.~06, (2022) 110}, \href{https://arxiv.org/abs/2201.00019}{{\ttfamily
+  arXiv:2201.00019 [hep-ex]}}.
+
+\bibitem{FASER:2018bac}
+{\bfseries FASER} Collaboration, A.~Ariga {\em et~al.}, ``{Technical Proposal
+  for FASER: ForwArd Search ExpeRiment at the LHC},''
+  \href{https://arxiv.org/abs/1812.09139}{{\ttfamily arXiv:1812.09139
+  [physics.ins-det]}}.
+
+\bibitem{SHiP:2020sos}
+{\bfseries SHiP} Collaboration, C.~Ahdida {\em et~al.}, ``{SND@LHC},''
+  \href{https://arxiv.org/abs/2002.08722}{{\ttfamily arXiv:2002.08722
+  [physics.ins-det]}}.
+
+\bibitem{Bauer:2019vqk}
+M.~Bauer, O.~Brandt, L.~Lee, and C.~Ohm, ``{ANUBIS: Proposal to search for
+  long-lived neutral particles in CERN service shafts},''
+  \href{https://arxiv.org/abs/1909.13022}{{\ttfamily arXiv:1909.13022
+  [physics.ins-det]}}.
+
+\bibitem{Aielli:2019ivi}
+G.~Aielli {\em et~al.}, ``{Expression of interest for the CODEX-b detector},''
+  \href{https://dx.doi.org/10.1140/epjc/s10052-020-08711-3}{{\em Eur. Phys. J.
+  C} {\bfseries 80} no.~12, (2020) 1177},
+  \href{https://arxiv.org/abs/1911.00481}{{\ttfamily arXiv:1911.00481
+  [hep-ex]}}.
+
+\bibitem{Dercks:2018wum}
+D.~Dercks, H.~K. Dreiner, M.~Hirsch, and Z.~S. Wang, ``{Long-Lived Fermions at
+  AL3X},'' \href{https://dx.doi.org/10.1103/PhysRevD.99.055020}{{\em Phys. Rev.
+  D} {\bfseries 99} no.~5, (2019) 055020},
+  \href{https://arxiv.org/abs/1811.01995}{{\ttfamily arXiv:1811.01995
+  [hep-ph]}}.
+
+\bibitem{Boyarsky:2022epg}
+A.~Boyarsky, O.~Mikulenko, M.~Ovchynnikov, and L.~Shchutska, ``{Exploring the
+  potential of FCC-hh to search for particles from B mesons},''
+  \href{https://dx.doi.org/10.1007/JHEP01(2023)042}{{\em JHEP} {\bfseries 01}
+  (2023) 042}, \href{https://arxiv.org/abs/2204.01622}{{\ttfamily
+  arXiv:2204.01622 [hep-ph]}}.
+
+\bibitem{Kling:2021fwx}
+F.~Kling and S.~Trojanowski, ``{Forward experiment sensitivity estimator for
+  the LHC and future hadron colliders},''
+  \href{https://dx.doi.org/10.1103/PhysRevD.104.035012}{{\em Phys. Rev. D}
+  {\bfseries 104} no.~3, (2021) 035012},
+  \href{https://arxiv.org/abs/2105.07077}{{\ttfamily arXiv:2105.07077
+  [hep-ph]}}.
+
+\bibitem{Jerhot:2022chi}
+J.~Jerhot, B.~D\"obrich, F.~Ertas, F.~Kahlhoefer, and T.~Spadaro, ``{ALPINIST:
+  Axion-Like Particles In Numerous Interactions Simulated and Tabulated},''
+  \href{https://dx.doi.org/10.1007/JHEP07(2022)094}{{\em JHEP} {\bfseries 07}
+  (2022) 094}, \href{https://arxiv.org/abs/2201.05170}{{\ttfamily
+  arXiv:2201.05170 [hep-ph]}}.
+
+\bibitem{Mathematica}
+{Wolfram Research, Inc.}, ``Mathematica, {V}ersion 13.2,''
+\newblock \url{https://www.wolfram.com/mathematica}. Champaign, IL, 2022.
+
+\bibitem{SensCalc-Zenodo}
+M.~Ovchynnikov, ``{SensCalc}.'' 2023.
+\newblock \url{https://doi.org/10.5281/zenodo.7957784}.
+
+\bibitem{Bondarenko:2019yob}
+K.~Bondarenko, A.~Boyarsky, M.~Ovchynnikov, and O.~Ruchayskiy, ``{Sensitivity
+  of the intensity frontier experiments for neutrino and scalar portals:
+  analytic estimates},'' \href{https://dx.doi.org/10.1007/JHEP08(2019)061}{{\em
+  JHEP} {\bfseries 08} (2019) 061},
+  \href{https://arxiv.org/abs/1902.06240}{{\ttfamily arXiv:1902.06240
+  [hep-ph]}}.
+
+\bibitem{Boiarska:2021yho}
+I.~Boiarska, A.~Boyarsky, O.~Mikulenko, and M.~Ovchynnikov, ``{Constraints from
+  the CHARM experiment on heavy neutral leptons with tau mixing},''
+  \href{https://dx.doi.org/10.1103/PhysRevD.104.095019}{{\em Phys. Rev. D}
+  {\bfseries 104} no.~9, (2021) 095019},
+  \href{https://arxiv.org/abs/2107.14685}{{\ttfamily arXiv:2107.14685
+  [hep-ph]}}.
+
+\bibitem{Ovchynnikov:2022its}
+M.~Ovchynnikov, V.~Kryshtal, and K.~Bondarenko, ``{Sensitivity of the FACET
+  experiment to Heavy Neutral Leptons and Dark Scalars},''
+  \href{https://dx.doi.org/10.1007/JHEP02(2023)056}{{\em JHEP} {\bfseries 02}
+  (2023) 056}, \href{https://arxiv.org/abs/2209.14870}{{\ttfamily
+  arXiv:2209.14870 [hep-ph]}}.
+
+\bibitem{Coloma:2023adi}
+P.~Coloma, J.~L\'opez-Pav\'on, L.~Molina-Bueno, and S.~Urrea, ``{New Physics
+  searches using ProtoDUNE and the CERN SPS accelerator},''
+  \href{https://arxiv.org/abs/2304.06765}{{\ttfamily arXiv:2304.06765
+  [hep-ph]}}.
+
+\bibitem{Batell:2023mdn}
+B.~Batell, W.~Huang, and K.~J. Kelly, ``{Keeping it simple: simplified
+  frameworks for long-lived particles at neutrino facilities},''
+  \href{https://dx.doi.org/10.1007/JHEP08(2023)092}{{\em JHEP} {\bfseries 08}
+  (2023) 092}, \href{https://arxiv.org/abs/2304.11189}{{\ttfamily
+  arXiv:2304.11189 [hep-ph]}}.
+
+\bibitem{SensMC-GitHub}
+J.-L. Tastet, ``{SensMC}.'' 2023.
+\newblock \url{https://github.com/JLTastet/SensMC}.
+
+\bibitem{Bondarenko:2023fex}
+K.~Bondarenko, A.~Boyarsky, O.~Mikulenko, R.~Jacobsson, and M.~Ovchynnikov,
+  ``{Towards the optimal beam dump experiment to search for feebly interacting
+  particles},'' \href{https://arxiv.org/abs/2304.02511}{{\ttfamily
+  arXiv:2304.02511 [hep-ph]}}.
+
+\bibitem{SHiP:2018xqw}
+{\bfseries SHiP} Collaboration, C.~Ahdida {\em et~al.}, ``{Sensitivity of the
+  SHiP experiment to Heavy Neutral Leptons},''
+  \href{https://dx.doi.org/10.1007/JHEP04(2019)077}{{\em JHEP} {\bfseries 04}
+  (2019) 077}, \href{https://arxiv.org/abs/1811.00930}{{\ttfamily
+  arXiv:1811.00930 [hep-ph]}}.
+
+\bibitem{SHiP:2020vbd}
+{\bfseries SHiP} Collaboration, C.~Ahdida {\em et~al.}, ``{Sensitivity of the
+  SHiP experiment to dark photons decaying to a pair of charged particles},''
+  \href{https://dx.doi.org/10.1140/epjc/s10052-021-09224-3}{{\em Eur. Phys. J.
+  C} {\bfseries 81} no.~5, (2021) 451},
+  \href{https://arxiv.org/abs/2011.05115}{{\ttfamily arXiv:2011.05115
+  [hep-ex]}}.
+
+\bibitem{CERN-SHiP-NOTE-2015-009}
+{\bfseries SHiP} Collaboration, H.~Dijkstra and T.~Ruf, ``{Heavy Flavour
+  Cascade Production in a Beam Dump}.'' Dec, 2015.
+\newblock \url{https://cds.cern.ch/record/2115534}. CERN-SHiP-NOTE-2015-009.
+
+\bibitem{Boiarska:2019jym}
+I.~Boiarska, K.~Bondarenko, A.~Boyarsky, V.~Gorkavenko, M.~Ovchynnikov, and
+  A.~Sokolenko, ``{Phenomenology of GeV-scale scalar portal},''
+  \href{https://dx.doi.org/10.1007/JHEP11(2019)162}{{\em JHEP} {\bfseries 11}
+  (2019) 162}, \href{https://arxiv.org/abs/1904.10447}{{\ttfamily
+  arXiv:1904.10447 [hep-ph]}}.
+
+\bibitem{MATHUSLA:2022sze}
+{\bfseries MATHUSLA} Collaboration, C.~Alpigiani {\em et~al.}, ``{Recent
+  Progress and Next Steps for the MATHUSLA LLP Detector},'' in {\em {2022
+  Snowmass Summer Study}}.
+\newblock 3, 2022.
+\newblock \href{https://arxiv.org/abs/2203.08126}{{\ttfamily arXiv:2203.08126
+  [hep-ex]}}.
+
+\bibitem{Harland-Lang:2019zur}
+L.~Harland-Lang, J.~Jaeckel, and M.~Spannowsky, ``{A fresh look at ALP searches
+  in fixed target experiments},''
+  \href{https://dx.doi.org/10.1016/j.physletb.2019.04.045}{{\em Phys. Lett. B}
+  {\bfseries 793} (2019) 281--289},
+  \href{https://arxiv.org/abs/1902.04878}{{\ttfamily arXiv:1902.04878
+  [hep-ph]}}.
+
+\bibitem{Buonocore:2018xjk}
+L.~Buonocore, C.~Frugiuele, F.~Maltoni, O.~Mattelaer, and F.~Tramontano,
+  ``{Event generation for beam dump experiments},''
+  \href{https://dx.doi.org/10.1007/JHEP05(2019)028}{{\em JHEP} {\bfseries 05}
+  (2019) 028}, \href{https://arxiv.org/abs/1812.06771}{{\ttfamily
+  arXiv:1812.06771 [hep-ph]}}.
+
+\bibitem{deNiverville:2016rqh}
+P.~deNiverville, C.-Y. Chen, M.~Pospelov, and A.~Ritz, ``{Light dark matter in
+  neutrino beams: production modelling and scattering signatures at MiniBooNE,
+  T2K and SHiP},'' \href{https://dx.doi.org/10.1103/PhysRevD.95.035006}{{\em
+  Phys. Rev. D} {\bfseries 95} no.~3, (2017) 035006},
+  \href{https://arxiv.org/abs/1609.01770}{{\ttfamily arXiv:1609.01770
+  [hep-ph]}}.
+
+\bibitem{Ovchynnikov:2022rqj}
+M.~Ovchynnikov, T.~Schwetz, and J.-Y. Zhu, ``{Dipole portal and neutrinophilic
+  scalars at DUNE revisited: The importance of the high-energy neutrino
+  tail},'' \href{https://dx.doi.org/10.1103/PhysRevD.107.055029}{{\em Phys.
+  Rev. D} {\bfseries 107} no.~5, (2023) 055029},
+  \href{https://arxiv.org/abs/2210.13141}{{\ttfamily arXiv:2210.13141
+  [hep-ph]}}.
+
+\bibitem{Ballett:2019bgd}
+P.~Ballett, T.~Boschi, and S.~Pascoli, ``{Heavy Neutral Leptons from low-scale
+  seesaws at the DUNE Near Detector},''
+  \href{https://dx.doi.org/10.1007/JHEP03(2020)111}{{\em JHEP} {\bfseries 03}
+  (2020) 111}, \href{https://arxiv.org/abs/1905.00284}{{\ttfamily
+  arXiv:1905.00284 [hep-ph]}}.
+
+\bibitem{Kling:2022ehv}
+F.~Kling and P.~Qu\'\i{}lez, ``{ALP searches at the LHC: FASER as a
+  light-shining-through-walls experiment},''
+  \href{https://dx.doi.org/10.1103/PhysRevD.106.055036}{{\em Phys. Rev. D}
+  {\bfseries 106} no.~5, (2022) 055036},
+  \href{https://arxiv.org/abs/2204.03599}{{\ttfamily arXiv:2204.03599
+  [hep-ph]}}.
+
+\bibitem{Ahdida:2867743}
+C.~Ahdida {\em et~al.}, ``{Post-LS3 Experimental Options in ECN3},'' tech.
+  rep., CERN, Geneva, 2023.
+\newblock \url{https://cds.cern.ch/record/2867743}.
+
+\bibitem{DUNE:2021tad}
+{\bfseries DUNE} Collaboration, V.~Hewes {\em et~al.}, ``{Deep Underground
+  Neutrino Experiment (DUNE) Near Detector Conceptual Design Report},''
+  \href{https://dx.doi.org/10.3390/instruments5040031}{{\em Instruments}
+  {\bfseries 5} no.~4, (2021) 31},
+  \href{https://arxiv.org/abs/2103.13910}{{\ttfamily arXiv:2103.13910
+  [physics.ins-det]}}.
+
+\bibitem{FASER:2019aik}
+{\bfseries FASER} Collaboration, A.~Ariga {\em et~al.}, ``{FASER: ForwArd
+  Search ExpeRiment at the LHC},''
+  \href{https://arxiv.org/abs/1901.04468}{{\ttfamily arXiv:1901.04468
+  [hep-ex]}}.
+
+\bibitem{FASER:2020gpr}
+{\bfseries FASER} Collaboration, H.~Abreu {\em et~al.}, ``{Technical Proposal:
+  FASERnu},'' \href{https://arxiv.org/abs/2001.03073}{{\ttfamily
+  arXiv:2001.03073 [physics.ins-det]}}.
+
+\bibitem{Feng:2022inv}
+J.~L. Feng {\em et~al.}, ``{The Forward Physics Facility at the High-Luminosity
+  LHC},'' \href{https://dx.doi.org/10.1088/1361-6471/ac865e}{{\em J. Phys. G}
+  {\bfseries 50} no.~3, (2023) 030501},
+  \href{https://arxiv.org/abs/2203.05090}{{\ttfamily arXiv:2203.05090
+  [hep-ex]}}.
+
+\bibitem{CHARM:1983ayi}
+{\bfseries CHARM} Collaboration, F.~Bergsma {\em et~al.}, ``{A Search for
+  Decays of Heavy Neutrinos},''
+  \href{https://dx.doi.org/10.1016/0370-2693(83)90275-7}{{\em Phys. Lett. B}
+  {\bfseries 128} (1983) 361}.
+
+\bibitem{BEBCWA66:1986err}
+{\bfseries BEBC WA66} Collaboration, H.~Grassler {\em et~al.}, ``{Prompt
+  Neutrino Production in 400-{GeV} Proton Copper Interactions},''
+  \href{https://dx.doi.org/10.1016/0550-3213(86)90246-4}{{\em Nucl. Phys. B}
+  {\bfseries 273} (1986) 253--274}.
+
+\bibitem{Ilten:2018crw}
+P.~Ilten, Y.~Soreq, M.~Williams, and W.~Xue, ``{Serendipity in dark photon
+  searches},'' \href{https://dx.doi.org/10.1007/JHEP06(2018)004}{{\em JHEP}
+  {\bfseries 06} (2018) 004},
+  \href{https://arxiv.org/abs/1801.04847}{{\ttfamily arXiv:1801.04847
+  [hep-ph]}}.
+
+\bibitem{Bondarenko:2018ptm}
+K.~Bondarenko, A.~Boyarsky, D.~Gorbunov, and O.~Ruchayskiy, ``{Phenomenology of
+  GeV-scale Heavy Neutral Leptons},''
+  \href{https://dx.doi.org/10.1007/JHEP11(2018)032}{{\em JHEP} {\bfseries 11}
+  (2018) 032}, \href{https://arxiv.org/abs/1805.08567}{{\ttfamily
+  arXiv:1805.08567 [hep-ph]}}.
+
+\bibitem{Dobrich:2019dxc}
+B.~D\"obrich, J.~Jaeckel, and T.~Spadaro, ``{Light in the beam dump - ALP
+  production from decay photons in proton beam-dumps},''
+  \href{https://dx.doi.org/10.1007/JHEP05(2019)213}{{\em JHEP} {\bfseries 05}
+  (2019) 213}, \href{https://arxiv.org/abs/1904.02091}{{\ttfamily
+  arXiv:1904.02091 [hep-ph]}}. [Erratum: JHEP 10, 046 (2020)].
+
+\bibitem{DallaValleGarcia:2023xhh}
+G.~Dalla Valle~Garcia, F.~Kahlhoefer, M.~Ovchynnikov, and A.~Zaporozhchenko,
+  ``{Phenomenology of axion-like particles with universal fermion couplings --
+  revisited},'' \href{https://arxiv.org/abs/2310.03524}{{\ttfamily
+  arXiv:2310.03524 [hep-ph]}}.
+
+\bibitem{Aloni:2018vki}
+D.~Aloni, Y.~Soreq, and M.~Williams, ``{Coupling QCD-Scale Axionlike Particles
+  to Gluons},'' \href{https://dx.doi.org/10.1103/PhysRevLett.123.031803}{{\em
+  Phys. Rev. Lett.} {\bfseries 123} no.~3, (2019) 031803},
+  \href{https://arxiv.org/abs/1811.03474}{{\ttfamily arXiv:1811.03474
+  [hep-ph]}}.
+
+\bibitem{Chakraborty:2021wda}
+S.~Chakraborty, M.~Kraus, V.~Loladze, T.~Okui, and K.~Tobioka, ``{Heavy QCD
+  axion in b\textrightarrow{}s transition: Enhanced limits and projections},''
+  \href{https://dx.doi.org/10.1103/PhysRevD.104.055036}{{\em Phys. Rev. D}
+  {\bfseries 104} no.~5, (2021) 055036},
+  \href{https://arxiv.org/abs/2102.04474}{{\ttfamily arXiv:2102.04474
+  [hep-ph]}}.
+
+\bibitem{Tulin:2014tya}
+S.~Tulin, ``{New weakly-coupled forces hidden in low-energy QCD},''
+  \href{https://dx.doi.org/10.1103/PhysRevD.89.114008}{{\em Phys. Rev. D}
+  {\bfseries 89} no.~11, (2014) 114008},
+  \href{https://arxiv.org/abs/1404.4370}{{\ttfamily arXiv:1404.4370 [hep-ph]}}.
+
+\bibitem{Alwall:2014hca}
+J.~Alwall, R.~Frederix, S.~Frixione, V.~Hirschi, F.~Maltoni, O.~Mattelaer,
+  H.~S. Shao, T.~Stelzer, P.~Torrielli, and M.~Zaro, ``{The automated
+  computation of tree-level and next-to-leading order differential cross
+  sections, and their matching to parton shower simulations},''
+  \href{https://dx.doi.org/10.1007/JHEP07(2014)079}{{\em JHEP} {\bfseries 07}
+  (2014) 079}, \href{https://arxiv.org/abs/1405.0301}{{\ttfamily
+  arXiv:1405.0301 [hep-ph]}}.
+
+\bibitem{Alloul:2013bka}
+A.~Alloul, N.~D. Christensen, C.~Degrande, C.~Duhr, and B.~Fuks, ``{FeynRules
+  2.0 - A complete toolbox for tree-level phenomenology},''
+  \href{https://dx.doi.org/10.1016/j.cpc.2014.04.012}{{\em Comput. Phys.
+  Commun.} {\bfseries 185} (2014) 2250--2300},
+  \href{https://arxiv.org/abs/1310.1921}{{\ttfamily arXiv:1310.1921 [hep-ph]}}.
+
+\bibitem{Degrande:2011ua}
+C.~Degrande, C.~Duhr, B.~Fuks, D.~Grellscheid, O.~Mattelaer, and T.~Reiter,
+  ``{UFO - The Universal FeynRules Output},''
+  \href{https://dx.doi.org/10.1016/j.cpc.2012.01.022}{{\em Comput. Phys.
+  Commun.} {\bfseries 183} (2012) 1201--1214},
+  \href{https://arxiv.org/abs/1108.2040}{{\ttfamily arXiv:1108.2040 [hep-ph]}}.
+
+\bibitem{Sjostrand:2014zea}
+T.~Sj\"ostrand, S.~Ask, J.~R. Christiansen, R.~Corke, N.~Desai, P.~Ilten,
+  S.~Mrenna, S.~Prestel, C.~O. Rasmussen, and P.~Z. Skands, ``{An introduction
+  to PYTHIA 8.2}'' \href{https://dx.doi.org/10.1016/j.cpc.2015.01.024}{{\em
+  Comput. Phys. Commun.} {\bfseries 191} (2015) 159--177},
+  \href{https://arxiv.org/abs/1410.3012}{{\ttfamily arXiv:1410.3012 [hep-ph]}}.
+
+\bibitem{Winkler:2018qyg}
+M.~W. Winkler, ``{Decay and detection of a light scalar boson mixing with the
+  Higgs boson},'' \href{https://dx.doi.org/10.1103/PhysRevD.99.015018}{{\em
+  Phys. Rev. D} {\bfseries 99} no.~1, (2019) 015018},
+  \href{https://arxiv.org/abs/1809.01876}{{\ttfamily arXiv:1809.01876
+  [hep-ph]}}.
+
+\bibitem{Spira:1995rr}
+M.~Spira, A.~Djouadi, D.~Graudenz, and P.~M. Zerwas, ``{Higgs boson production
+  at the LHC},'' \href{https://dx.doi.org/10.1016/0550-3213(95)00379-7}{{\em
+  Nucl. Phys. B} {\bfseries 453} (1995) 17--82},
+  \href{https://arxiv.org/abs/hep-ph/9504378}{{\ttfamily
+  arXiv:hep-ph/9504378}}.
+
+\bibitem{Carvalho:2003pza}
+J.~Carvalho, ``{Compilation of cross sections for proton nucleus interactions
+  at the HERA energy},''
+  \href{https://dx.doi.org/10.1016/S0375-9474(03)01597-5}{{\em Nucl. Phys. A}
+  {\bfseries 725} (2003) 269--275}.
+
+\bibitem{Shtabovenko:2020gxv}
+V.~Shtabovenko, R.~Mertig, and F.~Orellana, ``{FeynCalc 9.3: New features and
+  improvements},'' \href{https://dx.doi.org/10.1016/j.cpc.2020.107478}{{\em
+  Comput. Phys. Commun.} {\bfseries 256} (2020) 107478},
+  \href{https://arxiv.org/abs/2001.04407}{{\ttfamily arXiv:2001.04407
+  [hep-ph]}}.
+
+\bibitem{Tastet:2021vwp}
+J.-L. Tastet, O.~Ruchayskiy, and I.~Timiryasov, ``{Reinterpreting the ATLAS
+  bounds on heavy neutral leptons in a realistic neutrino oscillation model},''
+  \href{https://dx.doi.org/10.1007/JHEP12(2021)182}{{\em JHEP} {\bfseries 12}
+  (2021) 182}, \href{https://arxiv.org/abs/2107.12980}{{\ttfamily
+  arXiv:2107.12980 [hep-ph]}}.
+
+\bibitem{Abada:2022wvh}
+A.~Abada, P.~Escribano, X.~Marcano, and G.~Piazza, ``{Collider searches for
+  heavy neutral leptons: beyond simplified scenarios},''
+  \href{https://dx.doi.org/10.1140/epjc/s10052-022-11011-7}{{\em Eur. Phys. J.
+  C} {\bfseries 82} no.~11, (2022) 1030},
+  \href{https://arxiv.org/abs/2208.13882}{{\ttfamily arXiv:2208.13882
+  [hep-ph]}}.
+
+\bibitem{Beltran:2023nli}
+R.~Beltr\'an, G.~Cottin, M.~Hirsch, A.~Titov, and Z.~S. Wang,
+  ``{Reinterpretation of searches for long-lived particles from meson
+  decays},'' \href{https://dx.doi.org/10.1007/JHEP05(2023)031}{{\em JHEP}
+  {\bfseries 05} (2023) 031},
+  \href{https://arxiv.org/abs/2302.03216}{{\ttfamily arXiv:2302.03216
+  [hep-ph]}}.
+
+\bibitem{Antel:2023hkf}
+C.~Antel {\em et~al.}, ``{Feebly Interacting Particles: FIPs 2022 workshop
+  report},'' \href{https://arxiv.org/abs/2305.01715}{{\ttfamily
+  arXiv:2305.01715 [hep-ph]}}.
+
+\bibitem{Boiarska:2019jcw}
+I.~Boiarska, K.~Bondarenko, A.~Boyarsky, S.~Eijima, M.~Ovchynnikov,
+  O.~Ruchayskiy, and I.~Timiryasov, ``{Probing baryon asymmetry of the Universe
+  at LHC and SHiP},'' \href{https://arxiv.org/abs/1902.04535}{{\ttfamily
+  arXiv:1902.04535 [hep-ph]}}.
+
+\bibitem{Monin:2018lee}
+A.~Monin, A.~Boyarsky, and O.~Ruchayskiy, ``{Hadronic decays of a light
+  Higgs-like scalar},''
+  \href{https://dx.doi.org/10.1103/PhysRevD.99.015019}{{\em Phys. Rev. D}
+  {\bfseries 99} no.~1, (2019) 015019},
+  \href{https://arxiv.org/abs/1806.07759}{{\ttfamily arXiv:1806.07759
+  [hep-ph]}}.
+
+\bibitem{Gorbunov:2023lga}
+D.~Gorbunov, E.~Kriukova, and O.~Teryaev, ``{Scalar decay into pions via Higgs
+  portal},'' \href{https://arxiv.org/abs/2303.12847}{{\ttfamily
+  arXiv:2303.12847 [hep-ph]}}.
+
+\bibitem{Feng:2017vli}
+J.~L. Feng, I.~Galon, F.~Kling, and S.~Trojanowski, ``{Dark Higgs bosons at the
+  ForwArd Search ExpeRiment},''
+  \href{https://dx.doi.org/10.1103/PhysRevD.97.055034}{{\em Phys. Rev. D}
+  {\bfseries 97} no.~5, (2018) 055034},
+  \href{https://arxiv.org/abs/1710.09387}{{\ttfamily arXiv:1710.09387
+  [hep-ph]}}.
+
+\bibitem{Bezrukov:2009yw}
+F.~Bezrukov and D.~Gorbunov, ``{Light inflaton Hunter's Guide},''
+  \href{https://dx.doi.org/10.1007/JHEP05(2010)010}{{\em JHEP} {\bfseries 05}
+  (2010) 010}, \href{https://arxiv.org/abs/0912.0390}{{\ttfamily
+  arXiv:0912.0390 [hep-ph]}}.
+
+\bibitem{Pierog:2013ria}
+T.~Pierog, I.~Karpenko, J.~M. Katzy, E.~Yatsenko, and K.~Werner, ``{EPOS LHC:
+  Test of collective hadronization with data measured at the CERN Large Hadron
+  Collider},'' \href{https://dx.doi.org/10.1103/PhysRevC.92.034906}{{\em Phys.
+  Rev. C} {\bfseries 92} no.~3, (2015) 034906},
+  \href{https://arxiv.org/abs/1306.0121}{{\ttfamily arXiv:1306.0121 [hep-ph]}}.
+
+\bibitem{Berlin:2018jbm}
+A.~Berlin and F.~Kling, ``{Inelastic Dark Matter at the LHC Lifetime Frontier:
+  ATLAS, CMS, LHCb, CODEX-b, FASER, and MATHUSLA},''
+  \href{https://dx.doi.org/10.1103/PhysRevD.99.015021}{{\em Phys. Rev. D}
+  {\bfseries 99} no.~1, (2019) 015021},
+  \href{https://arxiv.org/abs/1810.01879}{{\ttfamily arXiv:1810.01879
+  [hep-ph]}}.
+
+\bibitem{julialang}
+J.~Bezanson, A.~Edelman, S.~Karpinski, and V.~B. Shah, ``Julia: A fresh
+  approach to numerical computing,''
+  \href{https://dx.doi.org/10.1137/141000671}{{\em SIAM Review} {\bfseries 59}
+  no.~1, (2017) 65--98}. \url{https://doi.org/10.1137/141000671}.
+
+\bibitem{MDBM}
+D.~Bachrathy and G.~Stépán, ``Bisection method in higher dimensions and the
+  efficiency number,'' \href{https://dx.doi.org/10.3311/pp.me.2012-2.01}{{\em
+  Periodica Polytechnica Mechanical Engineering} {\bfseries 56} no.~2, (2012)
+  81–86}. \url{https://pp.bme.hu/me/article/view/1236}.
+
+\end{thebibliography}\endgroup
