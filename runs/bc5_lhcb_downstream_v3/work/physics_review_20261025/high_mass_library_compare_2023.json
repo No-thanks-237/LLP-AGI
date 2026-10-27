@@ -1,0 +1,21 @@
+{
+  "mass": 62.49,
+  "samples": 2200,
+  "decays": 5,
+  "reference_attempts": 2157,
+  "reference_version": "2023-10-25",
+  "results": {
+    "current": {
+      "coefficient_conditional_eta": 0.3178755076460949,
+      "relerr": 0.012786602812208737,
+      "seconds": 27.631571292877197
+    },
+    "SensCalc_conditional_bb": {
+      "coefficient_conditional_eta": 0.32463006971876146,
+      "relerr": 0.013628899575213654,
+      "seconds": 25.344834566116333
+    }
+  },
+  "current_over_reference_bb_response": 0.9791930486337317,
+  "reference_bb_mean_Nch": 12.050069541029208
+}

@@ -1,0 +1,50 @@
+{
+  "comment": "independent implementation vs the two published references",
+  "vs_winkler_figure": {
+    "muons": {
+      "n": 288,
+      "median_ratio_fig_over_mine": 1.0095267304974755,
+      "scatter": 0.00012420841160520237,
+      "note": "Winkler figure value / this implementation; includes a +0.95% digitisation scale offset",
+      "median_ratio_corrected": 1.0
+    },
+    "taus": {
+      "n": 203,
+      "median_ratio_fig_over_mine": 0.9440314452049015,
+      "scatter": 0.22081040868401694,
+      "note": "Winkler figure value / this implementation; includes a +0.95% digitisation scale offset",
+      "median_ratio_corrected": 0.9351227824742201
+    },
+    "gluons_gg": {
+      "n": 209,
+      "median_ratio_fig_over_mine": 0.9520480992064286,
+      "scatter": 0.0771358274331965,
+      "note": "Winkler figure value / this implementation; includes a +0.95% digitisation scale offset",
+      "median_ratio_corrected": 0.9430637846877788
+    },
+    "strange_quarks_ss": {
+      "n": 208,
+      "median_ratio_fig_over_mine": 1.2602838486993564,
+      "scatter": 0.1389895344630026,
+      "note": "Winkler figure value / this implementation; includes a +0.95% digitisation scale offset",
+      "median_ratio_corrected": 1.248390766313154
+    },
+    "charm_quarks_cc": {
+      "n": 155,
+      "median_ratio_fig_over_mine": 1.5308302705363848,
+      "scatter": 74.15671481665535,
+      "note": "Winkler figure value / this implementation; includes a +0.95% digitisation scale offset",
+      "median_ratio_corrected": 1.5163840879993546
+    }
+  },
+  "digitisation_scale_offset": 1.0095267304974755,
+  "vs_senscalc_total_width": {
+    "n_points": 8115,
+    "median_ratio_mine_over_ref": NaN,
+    "ratio_at_1GeV": 0.6725996018792956,
+    "ratio_at_3GeV": 0.5452716317283027,
+    "ratio_at_10GeV": 0.9587406689642123,
+    "ratio_at_30GeV": 0.928315068948008,
+    "note": "SensCalc is a cross-reference only; the leptonic channels agree to <0.1% while its gluon channel is ~2x our LO value and its hadronic channels differ by ~1.5x"
+  }
+}

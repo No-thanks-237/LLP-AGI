@@ -1,0 +1,33 @@
+{
+ "started_utc": "2026-10-25T13:40:51Z",
+ "jobs": [
+  {
+   "tag": "pik",
+   "job_id": "c588d44d0bd8ac7a",
+   "job_name": "2hdm_pik",
+   "bundle": "pik.tar.gz",
+   "bundle_sha256": "bfaf8806619f18fbdff3d73f84a3e4f9ffb8939c5def972b03130807216bddd6",
+   "bundle_secret": "magnus-secret:43997-tape-wall-ship",
+   "expire_minutes": 1440,
+   "max_downloads": 3,
+   "launched_utc": "2026-10-25T13:40:51Z",
+   "final_status": "Success",
+   "observed_seconds": 971.1,
+   "finished_utc": "2026-10-25T13:57:03Z"
+  },
+  {
+   "tag": "hadronlib",
+   "job_id": "5b3b8b76029ea0af",
+   "job_name": "2hdm_hadronlib",
+   "bundle": "hadronlib.tar.gz",
+   "bundle_sha256": "ff7cbd921a476ae1ee9fce3fa03ab94a56f6e9b07013c428a9bb8a5135d848fd",
+   "bundle_secret": "magnus-secret:7333-flag-used-enter",
+   "expire_minutes": 600,
+   "max_downloads": 3,
+   "launched_utc": "2026-10-25T13:40:51Z",
+   "final_status": "Success",
+   "observed_seconds": 66.0,
+   "finished_utc": "2026-10-25T13:58:09Z"
+  }
+ ]
+}

@@ -1,0 +1,565 @@
+### FILE: codes/generic.nb
+
+----- cell 1  label=Own/DownValues -----
+(*Shortland notations for RuleOwn@ and RuleDown@*)
+SetAttributes[ruleDown,HoldAll];
+ruleDown[list_]:=Flatten[DownValues/@(Unevaluated@list)]
+SetAttributes[ruleOwn,HoldAll];
+ruleOwn[list_]:=Flatten[OwnValues/@(Unevaluated@list)]
+If[ToString[Head[AccCode]]=="Symbol",AccCode=False];
+
+----- cell 2  label= -----
+(*Shortland notations for RuleOwn@ and RuleDown@*)
+SetAttributes[ruleDown,HoldAll];
+ruleDown[list_]:=Flatten[DownValues/@(Unevaluated@list)]
+SetAttributes[ruleOwn,HoldAll];
+ruleOwn[list_]:=Flatten[OwnValues/@(Unevaluated@list)]
+If[ToString[Head[AccCode]]=="Symbol",AccCode=False];
+
+----- cell 3  label=2D to 2D -----
+If[!AccCode,
+nd=2;
+cf2=Module[{xgvars=Unique["xg"]&/@slist@@Range@nd,igvars=Unique["ig"]&/@slist@@Range@nd,tgvars=Unique["tg"]&/@slist@@Range@nd,ivars=Unique["i"]&/@slist@@Range@nd,svars=Unique["s"]&/@slist@@Range@nd,tvars=Unique["t"]&/@slist@@Range@nd,jvars=Unique["j"]&/@slist@@Range@nd},Inactivate[Compile[{seq@{xgvars,_Real,1},{y,_Real,nd}},Module[{seq@igvars,seq@tgvars,seq@ivars,seq@svars,seq@tvars},seq[igvars=Floor[xgvars]-UnitStep[xgvars-indexed@Dimensions@y]];
+seq[tgvars=xgvars-igvars];
+Table[seq[tvars=Compile`GetElement[tgvars,jvars]];
+seq[ivars=Compile`GetElement[igvars,jvars]];
+seq[svars=1.-tvars];
+eval@Total[Times@@#[[All,1]] Compile`GetElement[y,Sequence@@#[[All,2]]]&/@Tuples@Transpose[{{svars,ivars},{tvars,ivars+1}},{2,3,1}]],seq@{jvars,Length@igvars}]],CompilationTarget->"C",RuntimeAttributes->{Listable},Parallelization->True,RuntimeOptions->"Speed"],Except[seq|eval|indexed]]/.seq[expr_]:>RuleCondition@(Sequence@@Table[Inactivate[expr,Except[slist|indexed]]/.{l_slist:>l[[i]],indexed[l_]:>Inactive[Compile`GetElement][l,i]},{i,nd}])/.eval@expr_:>RuleCondition[Activate[expr/.slist->List]]]//Activate;
+]
+
+----- cell 4  label=2D to 2D -----
+If[!AccCode,
+nd=2;
+cf2=Module[{xgvars=Unique["xg"]&/@slist@@Range@nd,igvars=Unique["ig"]&/@slist@@Range@nd,tgvars=Unique["tg"]&/@slist@@Range@nd,ivars=Unique["i"]&/@slist@@Range@nd,svars=Unique["s"]&/@slist@@Range@nd,tvars=Unique["t"]&/@slist@@Range@nd,jvars=Unique["j"]&/@slist@@Range@nd},Inactivate[Compile[{seq@{xgvars,_Real,1},{y,_Real,nd}},Module[{seq@igvars,seq@tgvars,seq@ivars,seq@svars,seq@tvars},seq[igvars=Floor[xgvars]-UnitStep[xgvars-indexed@Dimensions@y]];
+seq[tgvars=xgvars-igvars];
+Table[seq[tvars=Compile`GetElement[tgvars,jvars]];
+seq[ivars=Compile`GetElement[igvars,jvars]];
+seq[svars=1.-tvars];
+eval@Total[Times@@#[[All,1]] Compile`GetElement[y,Sequence@@#[[All,2]]]&/@Tuples@Transpose[{{svars,ivars},{tvars,ivars+1}},{2,3,1}]],seq@{jvars,Length@igvars}]],CompilationTarget->"C",RuntimeAttributes->{Listable},Parallelization->True,RuntimeOptions->"Speed"],Except[seq|eval|indexed]]/.seq[expr_]:>RuleCondition@(Sequence@@Table[Inactivate[expr,Except[slist|indexed]]/.{l_slist:>l[[i]],indexed[l_]:>Inactive[Compile`GetElement][l,i]},{i,nd}])/.eval@expr_:>RuleCondition[Activate[expr/.slist->List]]]//Activate;
+]
+
+----- cell 5  label= -----
+If[!AccCode,
+nd=2;
+cf2=Module[{xgvars=Unique["xg"]&/@slist@@Range@nd,igvars=Unique["ig"]&/@slist@@Range@nd,tgvars=Unique["tg"]&/@slist@@Range@nd,ivars=Unique["i"]&/@slist@@Range@nd,svars=Unique["s"]&/@slist@@Range@nd,tvars=Unique["t"]&/@slist@@Range@nd,jvars=Unique["j"]&/@slist@@Range@nd},Inactivate[Compile[{seq@{xgvars,_Real,1},{y,_Real,nd}},Module[{seq@igvars,seq@tgvars,seq@ivars,seq@svars,seq@tvars},seq[igvars=Floor[xgvars]-UnitStep[xgvars-indexed@Dimensions@y]];
+seq[tgvars=xgvars-igvars];
+Table[seq[tvars=Compile`GetElement[tgvars,jvars]];
+seq[ivars=Compile`GetElement[igvars,jvars]];
+seq[svars=1.-tvars];
+eval@Total[Times@@#[[All,1]] Compile`GetElement[y,Sequence@@#[[All,2]]]&/@Tuples@Transpose[{{svars,ivars},{tvars,ivars+1}},{2,3,1}]],seq@{jvars,Length@igvars}]],CompilationTarget->"C",RuntimeAttributes->{Listable},Parallelization->True,RuntimeOptions->"Speed"],Except[seq|eval|indexed]]/.seq[expr_]:>RuleCondition@(Sequence@@Table[Inactivate[expr,Except[slist|indexed]]/.{l_slist:>l[[i]],indexed[l_]:>Inactive[Compile`GetElement][l,i]},{i,nd}])/.eval@expr_:>RuleCondition[Activate[expr/.slist->List]]]//Activate;
+]
+
+----- cell 6  label=3D to 3D -----
+If[!AccCode,
+nd=3;
+cf3=Module[{xgvars=Unique["xg"]&/@slist@@Range@nd,igvars=Unique["ig"]&/@slist@@Range@nd,tgvars=Unique["tg"]&/@slist@@Range@nd,ivars=Unique["i"]&/@slist@@Range@nd,svars=Unique["s"]&/@slist@@Range@nd,tvars=Unique["t"]&/@slist@@Range@nd,jvars=Unique["j"]&/@slist@@Range@nd},Inactivate[Compile[{seq@{xgvars,_Real,1},{y,_Real,nd}},Module[{seq@igvars,seq@tgvars,seq@ivars,seq@svars,seq@tvars},seq[igvars=Floor[xgvars]-UnitStep[xgvars-indexed@Dimensions@y]];
+seq[tgvars=xgvars-igvars];
+Table[seq[tvars=Compile`GetElement[tgvars,jvars]];
+seq[ivars=Compile`GetElement[igvars,jvars]];
+seq[svars=1.-tvars];
+eval@Total[Times@@#[[All,1]] Compile`GetElement[y,Sequence@@#[[All,2]]]&/@Tuples@Transpose[{{svars,ivars},{tvars,ivars+1}},{2,3,1}]],seq@{jvars,Length@igvars}]],CompilationTarget->"C",RuntimeAttributes->{Listable},Parallelization->True,RuntimeOptions->"Speed"],Except[seq|eval|indexed]]/.seq[expr_]:>RuleCondition@(Sequence@@Table[Inactivate[expr,Except[slist|indexed]]/.{l_slist:>l[[i]],indexed[l_]:>Inactive[Compile`GetElement][l,i]},{i,nd}])/.eval@expr_:>RuleCondition[Activate[expr/.slist->List]]]//Activate;
+]
+
+----- cell 7  label= -----
+If[!AccCode,
+nd=3;
+cf3=Module[{xgvars=Unique["xg"]&/@slist@@Range@nd,igvars=Unique["ig"]&/@slist@@Range@nd,tgvars=Unique["tg"]&/@slist@@Range@nd,ivars=Unique["i"]&/@slist@@Range@nd,svars=Unique["s"]&/@slist@@Range@nd,tvars=Unique["t"]&/@slist@@Range@nd,jvars=Unique["j"]&/@slist@@Range@nd},Inactivate[Compile[{seq@{xgvars,_Real,1},{y,_Real,nd}},Module[{seq@igvars,seq@tgvars,seq@ivars,seq@svars,seq@tvars},seq[igvars=Floor[xgvars]-UnitStep[xgvars-indexed@Dimensions@y]];
+seq[tgvars=xgvars-igvars];
+Table[seq[tvars=Compile`GetElement[tgvars,jvars]];
+seq[ivars=Compile`GetElement[igvars,jvars]];
+seq[svars=1.-tvars];
+eval@Total[Times@@#[[All,1]] Compile`GetElement[y,Sequence@@#[[All,2]]]&/@Tuples@Transpose[{{svars,ivars},{tvars,ivars+1}},{2,3,1}]],seq@{jvars,Length@igvars}]],CompilationTarget->"C",RuntimeAttributes->{Listable},Parallelization->True,RuntimeOptions->"Speed"],Except[seq|eval|indexed]]/.seq[expr_]:>RuleCondition@(Sequence@@Table[Inactivate[expr,Except[slist|indexed]]/.{l_slist:>l[[i]],indexed[l_]:>Inactive[Compile`GetElement][l,i]},{i,nd}])/.eval@expr_:>RuleCondition[Activate[expr/.slist->List]]]//Activate;
+]
+
+----- cell 8  label=4D to 4D -----
+If[!AccCode,
+nd=4;
+cf4=Module[{xgvars=Unique["xg"]&/@slist@@Range@nd,igvars=Unique["ig"]&/@slist@@Range@nd,tgvars=Unique["tg"]&/@slist@@Range@nd,ivars=Unique["i"]&/@slist@@Range@nd,svars=Unique["s"]&/@slist@@Range@nd,tvars=Unique["t"]&/@slist@@Range@nd,jvars=Unique["j"]&/@slist@@Range@nd},Inactivate[Compile[{seq@{xgvars,_Real,1},{y,_Real,nd}},Module[{seq@igvars,seq@tgvars,seq@ivars,seq@svars,seq@tvars},seq[igvars=Floor[xgvars]-UnitStep[xgvars-indexed@Dimensions@y]];
+seq[tgvars=xgvars-igvars];
+Table[seq[tvars=Compile`GetElement[tgvars,jvars]];
+seq[ivars=Compile`GetElement[igvars,jvars]];
+seq[svars=1.-tvars];
+eval@Total[Times@@#[[All,1]] Compile`GetElement[y,Sequence@@#[[All,2]]]&/@Tuples@Transpose[{{svars,ivars},{tvars,ivars+1}},{2,3,1}]],seq@{jvars,Length@igvars}]],CompilationTarget->"C",RuntimeAttributes->{Listable},Parallelization->True,RuntimeOptions->"Speed"],Except[seq|eval|indexed]]/.seq[expr_]:>RuleCondition@(Sequence@@Table[Inactivate[expr,Except[slist|indexed]]/.{l_slist:>l[[i]],indexed[l_]:>Inactive[Compile`GetElement][l,i]},{i,nd}])/.eval@expr_:>RuleCondition[Activate[expr/.slist->List]]]//Activate;
+]
+
+----- cell 9  label= -----
+If[!AccCode,
+nd=4;
+cf4=Module[{xgvars=Unique["xg"]&/@slist@@Range@nd,igvars=Unique["ig"]&/@slist@@Range@nd,tgvars=Unique["tg"]&/@slist@@Range@nd,ivars=Unique["i"]&/@slist@@Range@nd,svars=Unique["s"]&/@slist@@Range@nd,tvars=Unique["t"]&/@slist@@Range@nd,jvars=Unique["j"]&/@slist@@Range@nd},Inactivate[Compile[{seq@{xgvars,_Real,1},{y,_Real,nd}},Module[{seq@igvars,seq@tgvars,seq@ivars,seq@svars,seq@tvars},seq[igvars=Floor[xgvars]-UnitStep[xgvars-indexed@Dimensions@y]];
+seq[tgvars=xgvars-igvars];
+Table[seq[tvars=Compile`GetElement[tgvars,jvars]];
+seq[ivars=Compile`GetElement[igvars,jvars]];
+seq[svars=1.-tvars];
+eval@Total[Times@@#[[All,1]] Compile`GetElement[y,Sequence@@#[[All,2]]]&/@Tuples@Transpose[{{svars,ivars},{tvars,ivars+1}},{2,3,1}]],seq@{jvars,Length@igvars}]],CompilationTarget->"C",RuntimeAttributes->{Listable},Parallelization->True,RuntimeOptions->"Speed"],Except[seq|eval|indexed]]/.seq[expr_]:>RuleCondition@(Sequence@@Table[Inactivate[expr,Except[slist|indexed]]/.{l_slist:>l[[i]],indexed[l_]:>Inactive[Compile`GetElement][l,i]},{i,nd}])/.eval@expr_:>RuleCondition[Activate[expr/.slist->List]]]//Activate;
+]
+
+----- cell 10  label= -----
+{x,y,f}->{f(x_rand,y_rand)}
+
+----- cell 11  label= -----
+{x,y,f}->{f(x_rand,y_rand)}
+
+----- cell 12  label= -----
+If[!AccCode,
+(*For mapping from {x,y,f[x,y]} to {x_random,y_random,f[x_random,y_random]}*)
+linint2=Compile[{{randthetalog,_Real},{randElog,_Real},{gridthetalog,_Real,1},{gridElog,_Real,1},{indextheta,_Integer},{indexE,_Integer},{distrlog,_Real,2}},Module[{thetael,Eel,x1,x2,y1,y2,z11,z21,z12,z22,[CapitalDelta],indexlargertheta,indexlargerE,lenE},
+(*Finding the index of the grids with the elements larged than the given random point*)
+thetael=Compile`GetElement[gridthetalog,indextheta];
+indexlargertheta=indextheta+UnitStep[randthetalog-thetael];
+Eel=Compile`GetElement[gridElog,indexE];
+indexlargerE=indexE+UnitStep[randElog-Eel];
+(*The two points x1, x2 with x1 < x < x2*)
+x1=Compile`GetElement[gridthetalog,indexlargertheta-1];
+x2=Compile`GetElement[gridthetalog,indexlargertheta];
+y1=Compile`GetElement[gridElog,indexlargerE-1];
+y2=Compile`GetElement[gridElog,indexlargerE];
+(*Corresponding values of the function*)
+lenE=Length[gridElog];
+z11=Compile`GetElement[distrlog,(indexlargertheta-2)*lenE+indexlargerE-1,3];
+z21=Compile`GetElement[distrlog,(indexlargertheta-1)*lenE+indexlargerE-1,3];
+z12=Compile`GetElement[distrlog,(indexlargertheta-2)*lenE+indexlargerE,3];
+z22=Compile`GetElement[distrlog,(indexlargertheta-1)*lenE+indexlargerE,3];
+[CapitalDelta]=(x2-x1)(y2-y1);
+Exp[(*{randthetalog,x1,x2,randElog,y1,y2,z11,z21,z12,z22,*)((x2-randthetalog)*(y2-randElog))/([CapitalDelta])*z11+((randthetalog-x1)*(y2-randElog))/([CapitalDelta])z21+((x2-randthetalog)(randElog-y1))/([CapitalDelta])*z12+((randthetalog-x1)(randElog-y1))/((x2-x1)(y2-y1))z22](*}*)
+],CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable},Parallelization->True];
+<<CompiledFunctionTools`;
+CompilePrint@linint2;
+linint1=Compile[{{randthetalog,_Real},{gridthetalog,_Real,1},{indextheta,_Integer},{distrlog,_Real,2}},Module[{thetael,x1,x2,z1,z2,[CapitalDelta],indexlargertheta},
+(*Finding the index of the grids with the elements larged than the given random point*)
+thetael=Compile`GetElement[gridthetalog,indextheta];
+indexlargertheta=indextheta+UnitStep[randthetalog-thetael];
+(*The two points x1, x2 with x1 < x < x2*)
+x1=Compile`GetElement[gridthetalog,indexlargertheta-1];
+x2=Compile`GetElement[gridthetalog,indexlargertheta];
+(*Corresponding values of the function*)
+z1=Compile`GetElement[distrlog,indexlargertheta,2];
+z2=Compile`GetElement[distrlog,indexlargertheta-1,2];
+[CapitalDelta]=(x2-x1);
+(*{randthetalog,x1,x2,z1,z2,*)
+z1+(randthetalog-x1)*(z2-z1)/[CapitalDelta](*}*)
+],CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable},Parallelization->True];
+<<CompiledFunctionTools`;
+CompilePrint@linint1;
+(*Basic linear search function adjusted to return the index of the largest element smaller than or equal to val*)nearestIndexSearch=Compile[{{arr,_Real,1},{val,_Real}},Module[{i=1},While[i<=Length[arr]&&val>=arr[[i]],i++];
+i-1],CompilationTarget->"C",RuntimeOptions->"Speed"];
+linint2WithNearest=With[{nf=nearestIndexSearch},Compile[{{xlogrand,_Real},{ylogrand,_Real},{gridxlog,_Real,1},{gridylog,_Real,1},{distrlog,_Real,1}},Module[{xel,yel,x1,x2,y1,y2,z11,z21,z12,z22,[CapitalDelta],leny,indexlargerx,indexlargery,nearestindexx,nearestindexy},(*Finding the index of the grids with the elements larger than the given random point*)
+nearestindexx=nf[gridxlog,xlogrand];
+nearestindexy=nf[gridylog,ylogrand];
+(*Adjust indices to ensure the correct bounding values*)
+indexlargerx=nearestindexx+1;
+indexlargery=nearestindexy+1;
+(*The two points x1, x2 with x1 < x < x2*)
+x1=Compile`GetElement[gridxlog,indexlargerx-1];
+x2=Compile`GetElement[gridxlog,indexlargerx];
+y1=Compile`GetElement[gridylog,indexlargery-1];
+y2=Compile`GetElement[gridylog,indexlargery];
+(*Corresponding values of the function*)
+leny=Length[gridylog];
+z11=Compile`GetElement[distrlog,(indexlargerx-2)*leny+indexlargery-1];
+z21=Compile`GetElement[distrlog,(indexlargerx-1)*leny+indexlargery-1];
+z12=Compile`GetElement[distrlog,(indexlargerx-2)*leny+indexlargery];
+z22=Compile`GetElement[distrlog,(indexlargerx-1)*leny+indexlargery];
+[CapitalDelta]=(x2-x1)(y2-y1);
+Exp[(*{randthetalog,x1,x2,randElog,y1,y2,z11,z21,z12,z22,*)((x2-xlogrand)*(y2-ylogrand))/([CapitalDelta])*z11+((xlogrand-x1)*(y2-ylogrand))/([CapitalDelta])z21+((x2-xlogrand)(ylogrand-y1))/([CapitalDelta])*z12+((xlogrand-x1)(ylogrand-y1))/((x2-x1)(y2-y1))z22](*}*)]
+,CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable},Parallelization->True,CompilationOptions->{"InlineCompiledFunctions"->True}]];
+]
+
+----- cell 13  label=Various parameters -----
+{EmaxFacility["SPS"]=400.;, 
+, EmaxFacility["FermilabBD"]=120.;, 
+, EmaxFacility["Serpukhov"]=70.;, 
+, EmaxFacility["LHC"]=6500.;, 
+, EmaxFacility["FCC-hh"]=50000.;, 
+, EmaxFacility["ESS"]=2.;, 
+, EmaxFacility["SLAC-E137"]=20.;, 
+, EmaxFacility["SuperKEKB"]=11.006;, 
+, FacilitiesList=Keys[DownValues@EmaxFacility][[All,1,1]]//Sort, 
+, FacilityDescription["SuperKEKB"]="Facility housing Belle II. Asymmetric collisions of electrons and positrons with \!\(\*SubscriptBox[\(m\), \(ee\)]\) close to the mass of the Upsilon resonances";, 
+, FacilityDescription["ESS"]="Neutrino spallation experiment, proton beam dump producing pions decaying at rest into neutrinos. The proton beam has small energy \!\(\*SubscriptBox[\(E\), \(p\)]\) ~ 2 GeV";, 
+, FacilityDescription["SPS"]="Proton beam dump facilities at SPS. May differ in target material and location, but the main feature is intense 400 GeV proton beam";, 
+, FacilityDescription["LHC"] = "LHC, with \!\(\*SqrtBox[\(s\)]\) = 13 TeV";, 
+, FacilityDescription["FermilabBD"] = "Proton beam dump facilities at Fermilab. May differ in target material and location, but the main feature is intense 120 GeV proton beam";, 
+, FacilityDescription["Serpukhov"] = "Proton beam dump facility that housed NuCal experiment. The proton beam had energy 70 GeV";, 
+, FacilityDescription["SLAC-E137"] = "Electron beam dump facility at SLAC that housed E137 experiment. The electron beam energy was 20 GeV";, 
+, Do[
+EcmFacility[Fac]=Sqrt[(EmaxFacility[Fac]+0.938)^2-(EmaxFacility[Fac]^2-0.938^2)]
+,{Fac,{"Serpukhov","SPS","FermilabBD","ESS"}}], 
+, Do[
+EcmFacility[Fac]=Sqrt[(EmaxFacility[Fac]+0.511*10^-3)^2-(EmaxFacility[Fac]^2-(0.511*10^-3)^2)]
+,{Fac,{"SLAC-E137"}}], 
+, Do[
+EcmFacility[Fac]=2EmaxFacility[Fac]
+,{Fac,{"LHC","FCC-hh"}}], 
+, EcmFacility["SuperKEKB"] =Sqrt[(7.004+4.002)^2-(7.004-4.002)^2];, 
+, vCMbeamDump[Eplab_,MP_]=v/.Solve[Sqrt[Eplab^2-MP^2]-Eplab*v==MP*v,v][[1]];, 
+, gammaCMbeamDump[Eplab_,MP_]=(1)/(Sqrt[1-vCMbeamDump[Eplab,MP]^2])//Simplify;}
+
+----- cell 14  label=Facilities properties -----
+{EmaxFacility["SPS"]=400.;, 
+, EmaxFacility["FermilabBD"]=120.;, 
+, EmaxFacility["Serpukhov"]=70.;, 
+, EmaxFacility["LHC"]=6500.;, 
+, EmaxFacility["FCC-hh"]=50000.;, 
+, EmaxFacility["ESS"]=2.;, 
+, EmaxFacility["SLAC-E137"]=20.;, 
+, EmaxFacility["SuperKEKB"]=11.006;, 
+, FacilitiesList=Keys[DownValues@EmaxFacility][[All,1,1]]//Sort, 
+, FacilityDescription["SuperKEKB"]="Facility housing Belle II. Asymmetric collisions of electrons and positrons with \!\(\*SubscriptBox[\(m\), \(ee\)]\) close to the mass of the Upsilon resonances";, 
+, FacilityDescription["ESS"]="Neutrino spallation experiment, proton beam dump producing pions decaying at rest into neutrinos. The proton beam has small energy \!\(\*SubscriptBox[\(E\), \(p\)]\) ~ 2 GeV";, 
+, FacilityDescription["SPS"]="Proton beam dump facilities at SPS. May differ in target material and location, but the main feature is intense 400 GeV proton beam";, 
+, FacilityDescription["LHC"] = "LHC, with \!\(\*SqrtBox[\(s\)]\) = 13 TeV";, 
+, FacilityDescription["FermilabBD"] = "Proton beam dump facilities at Fermilab. May differ in target material and location, but the main feature is intense 120 GeV proton beam";, 
+, FacilityDescription["Serpukhov"] = "Proton beam dump facility that housed NuCal experiment. The proton beam had energy 70 GeV";, 
+, FacilityDescription["SLAC-E137"] = "Electron beam dump facility at SLAC that housed E137 experiment. The electron beam energy was 20 GeV";, 
+, Do[
+EcmFacility[Fac]=Sqrt[(EmaxFacility[Fac]+0.938)^2-(EmaxFacility[Fac]^2-0.938^2)]
+,{Fac,{"Serpukhov","SPS","FermilabBD","ESS"}}], 
+, Do[
+EcmFacility[Fac]=Sqrt[(EmaxFacility[Fac]+0.511*10^-3)^2-(EmaxFacility[Fac]^2-(0.511*10^-3)^2)]
+,{Fac,{"SLAC-E137"}}], 
+, Do[
+EcmFacility[Fac]=2EmaxFacility[Fac]
+,{Fac,{"LHC","FCC-hh"}}], 
+, EcmFacility["SuperKEKB"] =Sqrt[(7.004+4.002)^2-(7.004-4.002)^2];, 
+, vCMbeamDump[Eplab_,MP_]=v/.Solve[Sqrt[Eplab^2-MP^2]-Eplab*v==MP*v,v][[1]];, 
+, gammaCMbeamDump[Eplab_,MP_]=(1)/(Sqrt[1-vCMbeamDump[Eplab,MP]^2])//Simplify;}
+
+----- cell 15  label= -----
+{EmaxFacility["SPS"]=400.;, 
+, EmaxFacility["FermilabBD"]=120.;, 
+, EmaxFacility["Serpukhov"]=70.;, 
+, EmaxFacility["LHC"]=6500.;, 
+, EmaxFacility["FCC-hh"]=50000.;, 
+, EmaxFacility["ESS"]=2.;, 
+, EmaxFacility["SLAC-E137"]=20.;, 
+, EmaxFacility["SuperKEKB"]=11.006;, 
+, FacilitiesList=Keys[DownValues@EmaxFacility][[All,1,1]]//Sort, 
+, FacilityDescription["SuperKEKB"]="Facility housing Belle II. Asymmetric collisions of electrons and positrons with \!\(\*SubscriptBox[\(m\), \(ee\)]\) close to the mass of the Upsilon resonances";, 
+, FacilityDescription["ESS"]="Neutrino spallation experiment, proton beam dump producing pions decaying at rest into neutrinos. The proton beam has small energy \!\(\*SubscriptBox[\(E\), \(p\)]\) ~ 2 GeV";, 
+, FacilityDescription["SPS"]="Proton beam dump facilities at SPS. May differ in target material and location, but the main feature is intense 400 GeV proton beam";, 
+, FacilityDescription["LHC"] = "LHC, with \!\(\*SqrtBox[\(s\)]\) = 13 TeV";, 
+, FacilityDescription["FermilabBD"] = "Proton beam dump facilities at Fermilab. May differ in target material and location, but the main feature is intense 120 GeV proton beam";, 
+, FacilityDescription["Serpukhov"] = "Proton beam dump facility that housed NuCal experiment. The proton beam had energy 70 GeV";, 
+, FacilityDescription["SLAC-E137"] = "Electron beam dump facility at SLAC that housed E137 experiment. The electron beam energy was 20 GeV";, 
+, Do[
+EcmFacility[Fac]=Sqrt[(EmaxFacility[Fac]+0.938)^2-(EmaxFacility[Fac]^2-0.938^2)]
+,{Fac,{"Serpukhov","SPS","FermilabBD","ESS"}}], 
+, Do[
+EcmFacility[Fac]=Sqrt[(EmaxFacility[Fac]+0.511*10^-3)^2-(EmaxFacility[Fac]^2-(0.511*10^-3)^2)]
+,{Fac,{"SLAC-E137"}}], 
+, Do[
+EcmFacility[Fac]=2EmaxFacility[Fac]
+,{Fac,{"LHC","FCC-hh"}}], 
+, EcmFacility["SuperKEKB"] =Sqrt[(7.004+4.002)^2-(7.004-4.002)^2];, 
+, vCMbeamDump[Eplab_,MP_]=v/.Solve[Sqrt[Eplab^2-MP^2]-Eplab*v==MP*v,v][[1]];, 
+, gammaCMbeamDump[Eplab_,MP_]=(1)/(Sqrt[1-vCMbeamDump[Eplab,MP]^2])//Simplify;}
+
+----- cell 16  label= -----
+{EmaxFacility["SPS"]=400.;, 
+, EmaxFacility["FermilabBD"]=120.;, 
+, EmaxFacility["Serpukhov"]=70.;, 
+, EmaxFacility["LHC"]=6500.;, 
+, EmaxFacility["FCC-hh"]=50000.;, 
+, EmaxFacility["ESS"]=2.;, 
+, EmaxFacility["SLAC-E137"]=20.;, 
+, EmaxFacility["SuperKEKB"]=11.006;, 
+, FacilitiesList=Keys[DownValues@EmaxFacility][[All,1,1]]//Sort, 
+, FacilityDescription["SuperKEKB"]="Facility housing Belle II. Asymmetric collisions of electrons and positrons with \!\(\*SubscriptBox[\(m\), \(ee\)]\) close to the mass of the Upsilon resonances";, 
+, FacilityDescription["ESS"]="Neutrino spallation experiment, proton beam dump producing pions decaying at rest into neutrinos. The proton beam has small energy \!\(\*SubscriptBox[\(E\), \(p\)]\) ~ 2 GeV";, 
+, FacilityDescription["SPS"]="Proton beam dump facilities at SPS. May differ in target material and location, but the main feature is intense 400 GeV proton beam";, 
+, FacilityDescription["LHC"] = "LHC, with \!\(\*SqrtBox[\(s\)]\) = 13 TeV";, 
+, FacilityDescription["FermilabBD"] = "Proton beam dump facilities at Fermilab. May differ in target material and location, but the main feature is intense 120 GeV proton beam";, 
+, FacilityDescription["Serpukhov"] = "Proton beam dump facility that housed NuCal experiment. The proton beam had energy 70 GeV";, 
+, FacilityDescription["SLAC-E137"] = "Electron beam dump facility at SLAC that housed E137 experiment. The electron beam energy was 20 GeV";, 
+, Do[
+EcmFacility[Fac]=Sqrt[(EmaxFacility[Fac]+0.938)^2-(EmaxFacility[Fac]^2-0.938^2)]
+,{Fac,{"Serpukhov","SPS","FermilabBD","ESS"}}], 
+, Do[
+EcmFacility[Fac]=Sqrt[(EmaxFacility[Fac]+0.511*10^-3)^2-(EmaxFacility[Fac]^2-(0.511*10^-3)^2)]
+,{Fac,{"SLAC-E137"}}], 
+, Do[
+EcmFacility[Fac]=2EmaxFacility[Fac]
+,{Fac,{"LHC","FCC-hh"}}], 
+, EcmFacility["SuperKEKB"] =Sqrt[(7.004+4.002)^2-(7.004-4.002)^2];, 
+, vCMbeamDump[Eplab_,MP_]=v/.Solve[Sqrt[Eplab^2-MP^2]-Eplab*v==MP*v,v][[1]];, 
+, gammaCMbeamDump[Eplab_,MP_]=(1)/(Sqrt[1-vCMbeamDump[Eplab,MP]^2])//Simplify;}
+
+----- cell 17  label= -----
+{"ESS","FCC-hh","FermilabBD","LHC","Serpukhov","SLAC-E137","SPS","SuperKEKB"}
+
+----- cell 18  label=Angle-energy grids for the tabulated distributions -----
+If[LLPdistr,
+StepEtemp[Efip_]=Piecewise[{{0.05,0<=Efip<0.5},{0.2,0.5<=Efip<=2.5},{0.3,2.5<Efip<=7},{0.5,7<Efip<=10},{1,10<Efip<35},{2,35<=Efip<=50},{5,50<Efip<200},{10,200<=Efip<400},{20,400<=Efip<700},{50,700<=Efip<2000},{200,2000<=Efip<4000},{400,4000<=Efip<7000},{500,7000<=Efip<=50000}}];
+ENlist["SuperKEKB"]=Join[With[{start=0.005,end=EmaxFacility["SuperKEKB"]},
+NestWhileList[#+StepEtemp[#]&,start,#<=end&,1,[Infinity],-1]],{EmaxFacility["SuperKEKB"]}]//N;
+thetaNlist["SuperKEKB"]=thetaNlistLight["SuperKEKB"]=Join[{10^-5.,10^-4.,10^-3.,3*10^-3.,6*10^-3.,10^-2.},Table[2*k*10^-2.,{k,1,5,1}],Table[k*10^-1.,{k,1,15,1}]];
+thetaNlist["SuperKEKB"]=Join[thetaNlist["SuperKEKB"],Pi-thetaNlist["SuperKEKB"]]//Sort;
+ENlist["SLAC-E137"]=Join[With[{start=0.005,end=EmaxFacility["SLAC-E137"]},
+NestWhileList[#+StepEtemp[#]&,start,#<=end&,1,[Infinity],-1]],{EmaxFacility["SLAC-E137"]}]//N;
+thetaNlist["SLAC-E137"]=thetaNlistLight["SLAC-E137"]=Join[{10^-5.,5*10^-5.,10^-4.,3*10^-4.,6*10^-4.,10^-3.,2*10^-3.,3*10^-3.,4*10^-3.,5*10^-3.,6*10^-3.,7*10^-3.,8*10^-3.,9*10^-3.,0.01}(*,Table[10^thetaN,{thetaN,Log10[10^-2.],Log10[0.8],0.05}],{0.85,0.95,1.05,1.2,1.4,1.6,1.9,2.2,2.4,2.7,3.,Pi}*)]//N;
+ENlist["SPS"]=Join[With[{start=0.005,end=EmaxFacility["SPS"]},
+NestWhileList[#+StepEtemp[#]&,start,#<=end&,1,[Infinity],-1]],{EmaxFacility["SPS"]}]//N;
+thetaNlist["SPS"]=thetaNlistLight["SPS"]=Join[{10^-5.,5*10^-5.,10^-4.,3*10^-4.,6*10^-4.,10^-3.,2*10^-3.,4*10^-3.,6*10^-3.,8*10^-3.},Table[10^thetaN,{thetaN,Log10[10^-2],Log10[0.8],0.05}],{0.85,0.95,1.05,1.2,1.4,1.6,1.9,2.2,2.4,2.7,3.,Pi}]//N;
+thetaNlistB["SPS"]=Join[{10^-5.,5*10^-5.,10^-4.,3*10^-4.,6*10^-4.,10^-3.,2*10^-3.,4*10^-3.,6*10^-3.,8*10^-3.},Table[10^thetaN,{thetaN,Log10[10^-2],Log10[0.8],0.03}],{0.85,0.95,1.05,1.2,1.4,1.6,1.9,2.2,2.4,2.7,3.,Pi}]//N;
+ENlist["LHC"]=Join[With[{start=0.005,end=EmaxFacility["LHC"]},
+NestWhileList[#+StepEtemp[#]&,start,#<=end&,1,[Infinity],-1]],{EmaxFacility["LHC"]}]//N;
+ENlist["FCC-hh"]=Join[With[{start=0.005,end=EmaxFacility["FCC-hh"]},
+NestWhileList[#+StepEtemp[#]&,start,#<=end&,1,[Infinity],-1]],{EmaxFacility["FCC-hh"]}]//N;
+thetaNlistTemp=Join[{10^-5.,3*10^-5.,(*6*10^-5.,*)6*10^-5.,10^-4.,2*10^-4.,4*10^-4.,6*10^-4.,10^-3.,2*10^-3.,3*10^-3.,4*10^-3.,5*10^-3.,6*10^-3.,8*10^-3.,9*10^-3.},Table[10^thetaN,{thetaN,Log10[10^-2],Log10[0.5],0.025}],Table[10^thetaN,{thetaN,Log10[0.52],Log10[1.55],0.015}],{1.57}];
+thetaNlist["LHC"]=SortBy[Partition[Join[thetaNlistTemp,Pi-thetaNlistTemp],1],1]//Flatten;
+thetaNlistLightTemp=Join[{10^-5.,3*10^-5.,(*6*10^-5.,*)6*10^-5.,8*10^-5.,10^-4.,2*10^-4.,3*10^-4.,4*10^-4.,5*10^-4.,6*10^-4.,7*10^-4.,8*10^-4.,9*10^-4.,10^-3.,1.5*10^-3.,2*10^-3.,3*10^-3.,4*10^-3.,5*10^-3.,6*10^-3.,7*10^-3.,8*10^-3.,9*10^-3.},Table[10^thetaN,{thetaN,Log10[10^-2],Log10[0.5],0.025}],Table[10^thetaN,{thetaN,Log10[0.52],Log10[1.55],0.015}],{1.57}]//Sort//N//DeleteDuplicates;
+thetaNlistLight["LHC"]=SortBy[Partition[Join[thetaNlistLightTemp,Pi-thetaNlistLightTemp],1],1]//Flatten;
+thetaNlistFCChhTemp=thetaNlistTemp;
+thetaNlist["FCC-hh"]=SortBy[Partition[Join[thetaNlistTemp,Pi-thetaNlistFCChhTemp],1],1]//Flatten;
+thetaNlistLight["FCC-hh"]=SortBy[Partition[Join[thetaNlistLightTemp,Pi-thetaNlistLightTemp],1],1]//Flatten;
+ENlist["FermilabBD"]=Join[With[{start=0.005,end=EmaxFacility["FermilabBD"]},
+NestWhileList[#+StepEtemp[#]&,start,#<=end&,1,[Infinity],-1]],{EmaxFacility["FermilabBD"]}]//N;
+thetaNlist["FermilabBD"]=thetaNlistLight["FermilabBD"]=thetaNlist["SPS"];
+ENlist["Serpukhov"]=Join[Table[10^EN,{EN,Log10[0.005],Log10[EmaxFacility["Serpukhov"]],0.05}],{EmaxFacility["Serpukhov"]}]//N;
+thetaNlist["Serpukhov"]=thetaNlistLight["Serpukhov"]=thetaNlist["SPS"];
+thetaNlist["ESS"]=thetaNlistLight["ESS"]=Join[{10^-6.,10^-5.,(*3*10^-5.,6*10^-5.,*)10^-4.,10^-3.,10^-2.},Table[10^thetaN,{thetaN,Log10[3*10^-2.],Log10[0.5],0.25}],Table[10^thetaN,{thetaN,Log10[0.52],Log10[Pi],0.01}],{Pi}]//N//DeleteDuplicates//Developer`ToPackedArray;
+ENlist["ESS"]=Join[Table[e,{e,0.0051,0.1401,0.001}],Table[10^EN,{EN,Log10[0.145],Log10[2.],0.02}],{EmaxFacility["ESS"]}]//N;
+ELLPfromKlistSPS={0.02,0.05,0.1,0.25,0.5,1.,1.5,2.,2.5,3.,3.5,4.,5.,6.,7.,8.};
+]
+
+----- cell 19  label= -----
+If[LLPdistr,
+StepEtemp[Efip_]=Piecewise[{{0.05,0<=Efip<0.5},{0.2,0.5<=Efip<=2.5},{0.3,2.5<Efip<=7},{0.5,7<Efip<=10},{1,10<Efip<35},{2,35<=Efip<=50},{5,50<Efip<200},{10,200<=Efip<400},{20,400<=Efip<700},{50,700<=Efip<2000},{200,2000<=Efip<4000},{400,4000<=Efip<7000},{500,7000<=Efip<=50000}}];
+ENlist["SuperKEKB"]=Join[With[{start=0.005,end=EmaxFacility["SuperKEKB"]},
+NestWhileList[#+StepEtemp[#]&,start,#<=end&,1,[Infinity],-1]],{EmaxFacility["SuperKEKB"]}]//N;
+thetaNlist["SuperKEKB"]=thetaNlistLight["SuperKEKB"]=Join[{10^-5.,10^-4.,10^-3.,3*10^-3.,6*10^-3.,10^-2.},Table[2*k*10^-2.,{k,1,5,1}],Table[k*10^-1.,{k,1,15,1}]];
+thetaNlist["SuperKEKB"]=Join[thetaNlist["SuperKEKB"],Pi-thetaNlist["SuperKEKB"]]//Sort;
+ENlist["SLAC-E137"]=Join[With[{start=0.005,end=EmaxFacility["SLAC-E137"]},
+NestWhileList[#+StepEtemp[#]&,start,#<=end&,1,[Infinity],-1]],{EmaxFacility["SLAC-E137"]}]//N;
+thetaNlist["SLAC-E137"]=thetaNlistLight["SLAC-E137"]=Join[{10^-5.,5*10^-5.,10^-4.,3*10^-4.,6*10^-4.,10^-3.,2*10^-3.,3*10^-3.,4*10^-3.,5*10^-3.,6*10^-3.,7*10^-3.,8*10^-3.,9*10^-3.,0.01}(*,Table[10^thetaN,{thetaN,Log10[10^-2.],Log10[0.8],0.05}],{0.85,0.95,1.05,1.2,1.4,1.6,1.9,2.2,2.4,2.7,3.,Pi}*)]//N;
+ENlist["SPS"]=Join[With[{start=0.005,end=EmaxFacility["SPS"]},
+NestWhileList[#+StepEtemp[#]&,start,#<=end&,1,[Infinity],-1]],{EmaxFacility["SPS"]}]//N;
+thetaNlist["SPS"]=thetaNlistLight["SPS"]=Join[{10^-5.,5*10^-5.,10^-4.,3*10^-4.,6*10^-4.,10^-3.,2*10^-3.,4*10^-3.,6*10^-3.,8*10^-3.},Table[10^thetaN,{thetaN,Log10[10^-2],Log10[0.8],0.05}],{0.85,0.95,1.05,1.2,1.4,1.6,1.9,2.2,2.4,2.7,3.,Pi}]//N;
+thetaNlistB["SPS"]=Join[{10^-5.,5*10^-5.,10^-4.,3*10^-4.,6*10^-4.,10^-3.,2*10^-3.,4*10^-3.,6*10^-3.,8*10^-3.},Table[10^thetaN,{thetaN,Log10[10^-2],Log10[0.8],0.03}],{0.85,0.95,1.05,1.2,1.4,1.6,1.9,2.2,2.4,2.7,3.,Pi}]//N;
+ENlist["LHC"]=Join[With[{start=0.005,end=EmaxFacility["LHC"]},
+NestWhileList[#+StepEtemp[#]&,start,#<=end&,1,[Infinity],-1]],{EmaxFacility["LHC"]}]//N;
+ENlist["FCC-hh"]=Join[With[{start=0.005,end=EmaxFacility["FCC-hh"]},
+NestWhileList[#+StepEtemp[#]&,start,#<=end&,1,[Infinity],-1]],{EmaxFacility["FCC-hh"]}]//N;
+thetaNlistTemp=Join[{10^-5.,3*10^-5.,(*6*10^-5.,*)6*10^-5.,10^-4.,2*10^-4.,4*10^-4.,6*10^-4.,10^-3.,2*10^-3.,3*10^-3.,4*10^-3.,5*10^-3.,6*10^-3.,8*10^-3.,9*10^-3.},Table[10^thetaN,{thetaN,Log10[10^-2],Log10[0.5],0.025}],Table[10^thetaN,{thetaN,Log10[0.52],Log10[1.55],0.015}],{1.57}];
+thetaNlist["LHC"]=SortBy[Partition[Join[thetaNlistTemp,Pi-thetaNlistTemp],1],1]//Flatten;
+thetaNlistLightTemp=Join[{10^-5.,3*10^-5.,(*6*10^-5.,*)6*10^-5.,8*10^-5.,10^-4.,2*10^-4.,3*10^-4.,4*10^-4.,5*10^-4.,6*10^-4.,7*10^-4.,8*10^-4.,9*10^-4.,10^-3.,1.5*10^-3.,2*10^-3.,3*10^-3.,4*10^-3.,5*10^-3.,6*10^-3.,7*10^-3.,8*10^-3.,9*10^-3.},Table[10^thetaN,{thetaN,Log10[10^-2],Log10[0.5],0.025}],Table[10^thetaN,{thetaN,Log10[0.52],Log10[1.55],0.015}],{1.57}]//Sort//N//DeleteDuplicates;
+thetaNlistLight["LHC"]=SortBy[Partition[Join[thetaNlistLightTemp,Pi-thetaNlistLightTemp],1],1]//Flatten;
+thetaNlistFCChhTemp=thetaNlistTemp;
+thetaNlist["FCC-hh"]=SortBy[Partition[Join[thetaNlistTemp,Pi-thetaNlistFCChhTemp],1],1]//Flatten;
+thetaNlistLight["FCC-hh"]=SortBy[Partition[Join[thetaNlistLightTemp,Pi-thetaNlistLightTemp],1],1]//Flatten;
+ENlist["FermilabBD"]=Join[With[{start=0.005,end=EmaxFacility["FermilabBD"]},
+NestWhileList[#+StepEtemp[#]&,start,#<=end&,1,[Infinity],-1]],{EmaxFacility["FermilabBD"]}]//N;
+thetaNlist["FermilabBD"]=thetaNlistLight["FermilabBD"]=thetaNlist["SPS"];
+ENlist["Serpukhov"]=Join[Table[10^EN,{EN,Log10[0.005],Log10[EmaxFacility["Serpukhov"]],0.05}],{EmaxFacility["Serpukhov"]}]//N;
+thetaNlist["Serpukhov"]=thetaNlistLight["Serpukhov"]=thetaNlist["SPS"];
+thetaNlist["ESS"]=thetaNlistLight["ESS"]=Join[{10^-6.,10^-5.,(*3*10^-5.,6*10^-5.,*)10^-4.,10^-3.,10^-2.},Table[10^thetaN,{thetaN,Log10[3*10^-2.],Log10[0.5],0.25}],Table[10^thetaN,{thetaN,Log10[0.52],Log10[Pi],0.01}],{Pi}]//N//DeleteDuplicates//Developer`ToPackedArray;
+ENlist["ESS"]=Join[Table[e,{e,0.0051,0.1401,0.001}],Table[10^EN,{EN,Log10[0.145],Log10[2.],0.02}],{EmaxFacility["ESS"]}]//N;
+ELLPfromKlistSPS={0.02,0.05,0.1,0.25,0.5,1.,1.5,2.,2.5,3.,3.5,4.,5.,6.,7.,8.};
+]
+
+----- cell 20  label=Binning -----
+If[LLPdistr,
+(*________________________________*)
+(*Converting theta,E data into binned distribution*)
+(*________________________________*)
+thetalistBinning["SLAC-E137"]=Join[{10^-6.,10^-5.,(*3*10^-5.,6*10^-5.,*),10^-4.,5*10^-4.,10^-3.,2*10^-3.,3*10^-3.,4*10^-3.,5*10^-3.,6*10^-3.,7*10^-3.,8*10^-3.,9*10^-3.},Table[10^thetaN,{thetaN,Log10[10^-2],Log10[0.5],0.025}],Table[10^thetaN,{thetaN,Log10[0.52],Log10[Pi],0.015}],{Pi}]//N//DeleteDuplicates//Developer`ToPackedArray;
+thetalistBinning["SPS"]=thetalistBinning["Serpukhov"]=thetalistBinning["FermilabBD"]=Join[{10^-6.,10^-5.,(*3*10^-5.,6*10^-5.,*)10^-4.,5*10^-4.,10^-3.,2*10^-3.,4*10^-3.,6*10^-3.,8*10^-3.},Table[10^thetaN,{thetaN,Log10[10^-2],Log10[0.5],0.025}],Table[10^thetaN,{thetaN,Log10[0.52],Log10[Pi],0.015}],{Pi}]//N//DeleteDuplicates//Developer`ToPackedArray;
+thetalistBinning["LHC"]=Join[{10^-6.,10^-5.,(*3*10^-5.,6*10^-5.,*)5*10^-5.,10^-4.,3*10^-4.,6*10^-4.,10^-3.,2*10^-3.,4*10^-3.,6*10^-3.,8*10^-3.},Table[10^thetaN,{thetaN,Log10[10^-2.],Log10[0.5],0.025}],Table[10^thetaN,{thetaN,Log10[0.52],Log10[1.],0.015}],Table[10^thetaN,{thetaN,Log10[1.02],Log10[(Pi)/(2)],0.01}],{(Pi)/(2)}]//N//DeleteDuplicates//Developer`ToPackedArray;
+thetalistBinning["FCC-hh"]=Join[{10^-6.,10^-5.,(*3*10^-5.,6*10^-5.,*)7*10^-5.,10^-4.,3*10^-4.,6*10^-4.,10^-3.,2*10^-3.,4*10^-3.,6*10^-3.,8*10^-3.},Table[10^thetaN,{thetaN,Log10[10^-2],Log10[0.5],0.025}],Table[10^thetaN,{thetaN,Log10[0.52],Log10[(Pi)/(2)],0.02}],{(Pi)/(2)}]//N//DeleteDuplicates//Developer`ToPackedArray;
+thetalistBinning["ESS"]=Join[{10^-6.,10^-5.,(*3*10^-5.,6*10^-5.,*)10^-4.,10^-3.,10^-2.},Table[10^thetaN,{thetaN,Log10[3*10^-2.],Log10[0.5],0.25}],Table[10^thetaN,{thetaN,Log10[0.52],Log10[Pi],0.1}],{Pi}]//N//DeleteDuplicates//Developer`ToPackedArray;
+]
+
+----- cell 21  label= -----
+If[LLPdistr,
+(*________________________________*)
+(*Converting theta,E data into binned distribution*)
+(*________________________________*)
+thetalistBinning["SLAC-E137"]=Join[{10^-6.,10^-5.,(*3*10^-5.,6*10^-5.,*),10^-4.,5*10^-4.,10^-3.,2*10^-3.,3*10^-3.,4*10^-3.,5*10^-3.,6*10^-3.,7*10^-3.,8*10^-3.,9*10^-3.},Table[10^thetaN,{thetaN,Log10[10^-2],Log10[0.5],0.025}],Table[10^thetaN,{thetaN,Log10[0.52],Log10[Pi],0.015}],{Pi}]//N//DeleteDuplicates//Developer`ToPackedArray;
+thetalistBinning["SPS"]=thetalistBinning["Serpukhov"]=thetalistBinning["FermilabBD"]=Join[{10^-6.,10^-5.,(*3*10^-5.,6*10^-5.,*)10^-4.,5*10^-4.,10^-3.,2*10^-3.,4*10^-3.,6*10^-3.,8*10^-3.},Table[10^thetaN,{thetaN,Log10[10^-2],Log10[0.5],0.025}],Table[10^thetaN,{thetaN,Log10[0.52],Log10[Pi],0.015}],{Pi}]//N//DeleteDuplicates//Developer`ToPackedArray;
+thetalistBinning["LHC"]=Join[{10^-6.,10^-5.,(*3*10^-5.,6*10^-5.,*)5*10^-5.,10^-4.,3*10^-4.,6*10^-4.,10^-3.,2*10^-3.,4*10^-3.,6*10^-3.,8*10^-3.},Table[10^thetaN,{thetaN,Log10[10^-2.],Log10[0.5],0.025}],Table[10^thetaN,{thetaN,Log10[0.52],Log10[1.],0.015}],Table[10^thetaN,{thetaN,Log10[1.02],Log10[(Pi)/(2)],0.01}],{(Pi)/(2)}]//N//DeleteDuplicates//Developer`ToPackedArray;
+thetalistBinning["FCC-hh"]=Join[{10^-6.,10^-5.,(*3*10^-5.,6*10^-5.,*)7*10^-5.,10^-4.,3*10^-4.,6*10^-4.,10^-3.,2*10^-3.,4*10^-3.,6*10^-3.,8*10^-3.},Table[10^thetaN,{thetaN,Log10[10^-2],Log10[0.5],0.025}],Table[10^thetaN,{thetaN,Log10[0.52],Log10[(Pi)/(2)],0.02}],{(Pi)/(2)}]//N//DeleteDuplicates//Developer`ToPackedArray;
+thetalistBinning["ESS"]=Join[{10^-6.,10^-5.,(*3*10^-5.,6*10^-5.,*)10^-4.,10^-3.,10^-2.},Table[10^thetaN,{thetaN,Log10[3*10^-2.],Log10[0.5],0.25}],Table[10^thetaN,{thetaN,Log10[0.52],Log10[Pi],0.1}],{Pi}]//N//DeleteDuplicates//Developer`ToPackedArray;
+]
+
+----- cell 22  label=Constants, conversion units -----
+{GeVm2Topb=(2*10^-16)^2*10^28*10^12.;, 
+, GeVm2Tob=(2*10^-16)^2*10^28;, 
+, alphaEMval=1/137.;, 
+, chbar=3*10^8*6.58*10^-25;, 
+, vh=246.;, 
+, FPi=0.093;}
+
+----- cell 23  label= -----
+{GeVm2Topb=(2*10^-16)^2*10^28*10^12.;, 
+, GeVm2Tob=(2*10^-16)^2*10^28;, 
+, alphaEMval=1/137.;, 
+, chbar=3*10^8*6.58*10^-25;, 
+, vh=246.;, 
+, FPi=0.093;}
+
+----- cell 24  label=Parameters of nuclei -----
+(*Parameters of nuclei*)
+{mnucleus["Mo"],anucleus["Mo"],znucleus["Mo"]}={89.38,96,42};
+{mnucleus["Fe"],anucleus["Fe"],znucleus["Fe"]}={54.43,56,28};
+{mnucleus["C"],anucleus["C"],znucleus["C"]}={11.188,12,6};
+
+----- cell 25  label= -----
+(*Parameters of nuclei*)
+{mnucleus["Mo"],anucleus["Mo"],znucleus["Mo"]}={89.38,96,42};
+{mnucleus["Fe"],anucleus["Fe"],znucleus["Fe"]}={54.43,56,28};
+{mnucleus["C"],anucleus["C"],znucleus["C"]}={11.188,12,6};
+
+----- cell 26  label=Fragmentation fractions of mesons -----
+(*Fragmentation fractions*)
+fdstau = 0.0543;
+fctod0["LHC"]=fctod0["FCC-hh"]=0.553;
+fctodplus["LHC"]=fctodplus["FCC-hh"] = 0.225;
+(*D_s mesons - including D_s^* contribution*)
+fctods["LHC"]=fctods["FCC-hh"]=0.105;
+fbtobc["LHC"]=fbtobc["FCC-hh"]= 2.6*10^-3;
+fbtob0["LHC"]=fbtobplus["LHC"]=fbtob0["FCC-hh"]=fbtobplus["FCC-hh"]=0.324;
+fbtobs["LHC"]=fbtobs["FCC-hh"]=0.09;
+
+----- cell 27  label=LHC and FCC-hh -----
+(*Fragmentation fractions*)
+fdstau = 0.0543;
+fctod0["LHC"]=fctod0["FCC-hh"]=0.553;
+fctodplus["LHC"]=fctodplus["FCC-hh"] = 0.225;
+(*D_s mesons - including D_s^* contribution*)
+fctods["LHC"]=fctods["FCC-hh"]=0.105;
+fbtobc["LHC"]=fbtobc["FCC-hh"]= 2.6*10^-3;
+fbtob0["LHC"]=fbtobplus["LHC"]=fbtob0["FCC-hh"]=fbtobplus["FCC-hh"]=0.324;
+fbtobs["LHC"]=fbtobs["FCC-hh"]=0.09;
+
+----- cell 28  label= -----
+(*Fragmentation fractions*)
+fdstau = 0.0543;
+fctod0["LHC"]=fctod0["FCC-hh"]=0.553;
+fctodplus["LHC"]=fctodplus["FCC-hh"] = 0.225;
+(*D_s mesons - including D_s^* contribution*)
+fctods["LHC"]=fctods["FCC-hh"]=0.105;
+fbtobc["LHC"]=fbtobc["FCC-hh"]= 2.6*10^-3;
+fbtob0["LHC"]=fbtobplus["LHC"]=fbtob0["FCC-hh"]=fbtobplus["FCC-hh"]=0.324;
+fbtobs["LHC"]=fbtobs["FCC-hh"]=0.09;
+
+----- cell 29  label=SPS -----
+{fctod0["SPS"]= 0.632;, 
+, fctodplus["SPS"]=0.207;, 
+, fctods["SPS"]=0.088;, 
+, fbtobplus["SPS"]=0.411;, 
+, fbtob0["SPS"]=0.411;, 
+, fbtobc["SPS"]=0;, 
+, fbtobs["SPS"]=0.11;, 
+, NccbarSHiP = 2.3*3.4*10^17;, 
+, NbbbarSHiP = 1.7*3.2*10^13;, 
+, NpotSHiP=2*10^20;, 
+, [Chi]bbbarSPS=(NbbbarSHiP)/(NpotSHiP);, 
+, [Chi]ccbarSPS=(NccbarSHiP)/(NpotSHiP);, 
+, [Chi]ssbarSPS=(1)/(7);, 
+, fstokplus["SPS"]=0.5;, 
+, fstok0l["SPS"]=0.25;}
+
+----- cell 30  label= -----
+{fctod0["SPS"]= 0.632;, 
+, fctodplus["SPS"]=0.207;, 
+, fctods["SPS"]=0.088;, 
+, fbtobplus["SPS"]=0.411;, 
+, fbtob0["SPS"]=0.411;, 
+, fbtobc["SPS"]=0;, 
+, fbtobs["SPS"]=0.11;, 
+, NccbarSHiP = 2.3*3.4*10^17;, 
+, NbbbarSHiP = 1.7*3.2*10^13;, 
+, NpotSHiP=2*10^20;, 
+, [Chi]bbbarSPS=(NbbbarSHiP)/(NpotSHiP);, 
+, [Chi]ccbarSPS=(NccbarSHiP)/(NpotSHiP);, 
+, [Chi]ssbarSPS=(1)/(7);, 
+, fstokplus["SPS"]=0.5;, 
+, fstok0l["SPS"]=0.25;}
+
+----- cell 31  label=FermilabBD (assumed to be the same as at SPS; to be fixed) -----
+{fctod0["FermilabBD"]= 0.632;, 
+, fctodplus["FermilabBD"]=0.207;, 
+, fctods["FermilabBD"]=0.088;, 
+, fbtobplus["FermilabBD"]=0.4;, 
+, fbtob0["FermilabBD"]=0.4;, 
+, fbtobc["FermilabBD"]=0;, 
+, fbtobs["FermilabBD"]=0.11;}
+
+----- cell 32  label= -----
+{fctod0["FermilabBD"]= 0.632;, 
+, fctodplus["FermilabBD"]=0.207;, 
+, fctods["FermilabBD"]=0.088;, 
+, fbtobplus["FermilabBD"]=0.4;, 
+, fbtob0["FermilabBD"]=0.4;, 
+, fbtobc["FermilabBD"]=0;, 
+, fbtobs["FermilabBD"]=0.11;}
+
+----- cell 33  label=Serpukhov -----
+{fbtobs["Serpukhov"]=0.;, 
+, fbtob0["Serpukhov"]=fbtobplus["Serpukhov"]=fbtobc["Serpukhov"]=0.;, 
+, fctod0["Serpukhov"]=fctods["Serpukhov"]=fctodplus["Serpukhov"]=0.;}
+
+----- cell 34  label= -----
+{fbtobs["Serpukhov"]=0.;, 
+, fbtob0["Serpukhov"]=fbtobplus["Serpukhov"]=fbtobc["Serpukhov"]=0.;, 
+, fctod0["Serpukhov"]=fctods["Serpukhov"]=fctodplus["Serpukhov"]=0.;}
+
+----- cell 35  label=SuperKEKB -----
+{fbtob0["SuperKEKB"]=fbtobplus["SuperKEKB"]=0.5;
+(*Assuming that Belle II will collect 10% of data in Upsilon(5S) resonance mode. 0.19 is the Br ratio of the decay Upsilon(5S)->2B_s*), 
+, fbtobs["SuperKEKB"] = 0.1*0.19;, 
+, fbtobc["SuperKEKB"]=0.;, 
+, fctod0["SuperKEKB"]=fctods["SuperKEKB"]=fctodplus["SuperKEKB"]=0.;}
+
+----- cell 36  label= -----
+{fbtob0["SuperKEKB"]=fbtobplus["SuperKEKB"]=0.5;
+(*Assuming that Belle II will collect 10% of data in Upsilon(5S) resonance mode. 0.19 is the Br ratio of the decay Upsilon(5S)->2B_s*), 
+, fbtobs["SuperKEKB"] = 0.1*0.19;, 
+, fbtobc["SuperKEKB"]=0.;, 
+, fctod0["SuperKEKB"]=fctods["SuperKEKB"]=fctodplus["SuperKEKB"]=0.;}
+
+----- cell 37  label=ESS -----
+fbtob0["ESS"]=fbtobplus["ESS"]=fbtobs["ESS"]=fbtobc["ESS"]=fctod0["ESS"]=fctods["ESS"]=fctodplus["ESS"]=0.;
+
+----- cell 38  label= -----
+fbtob0["ESS"]=fbtobplus["ESS"]=fbtobs["ESS"]=fbtobc["ESS"]=fctod0["ESS"]=fctods["ESS"]=fctodplus["ESS"]=0.;
+
+----- cell 39  label=SLAC-E137 -----
+fbtob0["SLAC-E137"]=fbtobplus["SLAC-E137"]=fbtobs["SLAC-E137"]=fbtobc["SLAC-E137"]=fctod0["SLAC-E137"]=fctods["SLAC-E137"]=fctodplus["SLAC-E137"]=0.;
+
+----- cell 40  label= -----
+fbtob0["SLAC-E137"]=fbtobplus["SLAC-E137"]=fbtobs["SLAC-E137"]=fbtobc["SLAC-E137"]=fctod0["SLAC-E137"]=fctods["SLAC-E137"]=fctodplus["SLAC-E137"]=0.;
+
+----- cell 41  label=Cross-sections and branching ratios -----
+(*Br ratios of EM decays of light mesons*)
+BrPiTogammagamma=0.98799;
+Br[Eta]Togammagamma=0.3931181;
+Br[Omega]ToPi0gamma=0.0834941;
+Br[Eta]prTogammagamma=0.0219297;
+(*pN cross-section in pb*)
+[Sigma]pNucleonInpb[Atarget_]=51*Atarget^-0.29*10^9;
+[Sigma]ppLHC=72*10^9;
+(*Photon absorption cross-sections*)
+{[Sigma]gammaAbs["Mo"],[Sigma]gammaAbs["Fe"]}={12.7,5.1}*GeVm2Tob^-1;
+[Sigma]gammaAbs["C"]=[Sigma]gammaAbs["Fe"]*(znucleus["C"]*(znucleus["C"]+1)Log[(183)/(znucleus["C"]^(1)/(3.))])/(znucleus["Fe"]*(znucleus["Fe"]+1)Log[(183)/(znucleus["Fe"]^(1)/(3.))]);
+(*Nucleus-proton cross-section in pb*)
+Do[[Sigma]pNucleus[Z]=53*10^9*anucleus[Z]^0.77,{Z,{"Mo","Fe","C"}}];
+(*proton-proton cross-section in pb*)
+{[Sigma]pp["Serpukhov"],[Sigma]pp["FermilabBD"],[Sigma]pp["SPS"],[Sigma]pp["LHC"],[Sigma]pp["FCC-hh"],[Sigma]pp["ESS"]}={40.,40.,40.,78.,104.,44.}*10^9;
+
+----- cell 42  label= -----
+(*Br ratios of EM decays of light mesons*)
+BrPiTogammagamma=0.98799;
+Br[Eta]Togammagamma=0.3931181;
+Br[Omega]ToPi0gamma=0.0834941;
+Br[Eta]prTogammagamma=0.0219297;
+(*pN cross-section in pb*)
+[Sigma]pNucleonInpb[Atarget_]=51*Atarget^-0.29*10^9;
+[Sigma]ppLHC=72*10^9;
+(*Photon absorption cross-sections*)
+{[Sigma]gammaAbs["Mo"],[Sigma]gammaAbs["Fe"]}={12.7,5.1}*GeVm2Tob^-1;
+[Sigma]gammaAbs["C"]=[Sigma]gammaAbs["Fe"]*(znucleus["C"]*(znucleus["C"]+1)Log[(183)/(znucleus["C"]^(1)/(3.))])/(znucleus["Fe"]*(znucleus["Fe"]+1)Log[(183)/(znucleus["Fe"]^(1)/(3.))]);
+(*Nucleus-proton cross-section in pb*)
+Do[[Sigma]pNucleus[Z]=53*10^9*anucleus[Z]^0.77,{Z,{"Mo","Fe","C"}}];
+(*proton-proton cross-section in pb*)
+{[Sigma]pp["Serpukhov"],[Sigma]pp["FermilabBD"],[Sigma]pp["SPS"],[Sigma]pp["LHC"],[Sigma]pp["FCC-hh"],[Sigma]pp["ESS"]}={40.,40.,40.,78.,104.,44.}*10^9;

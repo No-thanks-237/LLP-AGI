@@ -1,0 +1,13 @@
+{
+  "scope": "user-authorized MX-to-CSV conversion only",
+  "originals": [
+    "E:/AAAwork/LLP/code/SensCalc-main/phenomenology/Scalar/decay widths/BrRatioScalar.mx",
+    "E:/AAAwork/LLP/code/SensCalc-main/phenomenology/Scalar/decay widths/ctauS.mx"
+  ],
+  "interpretation_code": "E:/AAAwork/LLP/code/SensCalc-main/codes/llp-decays.nb",
+  "interpretation_code_sha256": "af2a8b98ca022c271cffd2a5bd0e08135775793b28265411621879181da64200",
+  "interpretation_evidence": "ctauLLP=10^Interpolation[Log10[table],InterpolationOrder->1][Log10[mLLP]]/theta2; plot label ctau [m]",
+  "image": "git.pku.edu.cn/het-agi/mma-het@sha256:0c396d087c394c1771d747fd00e895422ab585c1fda16642235e49caaf3a1e60",
+  "magnus_jobs_submitted": 0,
+  "events_generated": 0
+}

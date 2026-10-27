@@ -1,0 +1,154 @@
+{
+  "B_precision": {
+    "n": 1356544,
+    "non_timelike_float64_count": 0,
+    "non_timelike_beta_float32_count": 0,
+    "mass_GeV": {
+      "min": 4.9782513057809945,
+      "p01": 5.275002714502586,
+      "median": 5.2794203655013465,
+      "p99": 5.283873220866463,
+      "max": 5.483620628074212
+    },
+    "mass_GeV_pz_gt_1500": {
+      "min": 4.9782513057809945,
+      "p01": 5.182910392482299,
+      "median": 5.279889559908945,
+      "p99": 5.373064732106222,
+      "max": 5.483620628074212
+    }
+  },
+  "scalar_boost": {
+    "0.021": {
+      "n_candidate": 17293,
+      "n_eta_accepted": 3266,
+      "scalar_m2_ratio_to_nominal": {
+        "min": -785.9716173937193,
+        "p01": -60.62768118015423,
+        "median": 1.01499878930333,
+        "p99": 62.96544931817094,
+        "max": 522.2170903028544
+      },
+      "non_timelike_eta_count": 853,
+      "ee_energy_sum_over_H_energy": {
+        "min": 0.043759712464476894,
+        "p01": 0.12602284842640357,
+        "median": 0.9925839259597589,
+        "p99": 21100.16908484277,
+        "max": 132504.6238232114
+      },
+      "ee_one_daughter_old_over_known_mass_boost": {
+        "min": 0.04375971678898917,
+        "p01": 0.12602286206621194,
+        "median": 0.992583973687009,
+        "p99": 21100.155639525354,
+        "max": 132503.529200342
+      },
+      "ee_energy_nonconservation_gt_1pct_count": 3075,
+      "ee_acceptance_ratio_new_over_old_tb_5": 1.1025622387268663,
+      "ee_acceptance_ratio_new_over_old_tb_25": 1.1025612832026483,
+      "ee_acceptance_ratio_new_over_old_tb_100": 1.102561246126059,
+      "ee_acceptance_ratio_new_over_old_tb_350": 1.102561243853771
+    },
+    "0.10137": {
+      "n_candidate": 17293,
+      "n_eta_accepted": 3315,
+      "scalar_m2_ratio_to_nominal": {
+        "min": -11.008606261978588,
+        "p01": -1.4216312798194253,
+        "median": 0.9980694155869398,
+        "p99": 3.6463227339906665,
+        "max": 19.58040557176175
+      },
+      "non_timelike_eta_count": 114,
+      "ee_energy_sum_over_H_energy": {
+        "min": 0.22598996681491043,
+        "p01": 0.5236966064691999,
+        "median": 1.000966692142376,
+        "p99": 13080.057933822283,
+        "max": 32663.187776637533
+      },
+      "ee_one_daughter_old_over_known_mass_boost": {
+        "min": 0.2259899970436028,
+        "p01": 0.5236966477437476,
+        "median": 1.000966546544014,
+        "p99": 13080.056554844015,
+        "max": 32663.165076396792
+      },
+      "ee_energy_nonconservation_gt_1pct_count": 2216,
+      "ee_acceptance_ratio_new_over_old_tb_5": 1.0009005056923062,
+      "ee_acceptance_ratio_new_over_old_tb_25": 1.000898475124801,
+      "ee_acceptance_ratio_new_over_old_tb_100": 1.0008983945741667,
+      "ee_acceptance_ratio_new_over_old_tb_350": 1.0008983896393335
+    },
+    "1.0": {
+      "n_candidate": 17293,
+      "n_eta_accepted": 2972,
+      "scalar_m2_ratio_to_nominal": {
+        "min": 0.8488032941240817,
+        "p01": 0.9780851719401835,
+        "median": 0.9999958163519764,
+        "p99": 1.0260821448756905,
+        "max": 1.2047909875400364
+      },
+      "non_timelike_eta_count": 0,
+      "ee_energy_sum_over_H_energy": {
+        "min": 0.9110540539327981,
+        "p01": 0.9872086144467105,
+        "median": 1.0000020918305765,
+        "p99": 1.0111408710022176,
+        "max": 1.0854166314230471
+      },
+      "ee_one_daughter_old_over_known_mass_boost": {
+        "min": 0.9110541010117443,
+        "p01": 0.987208682703486,
+        "median": 1.0000020668044831,
+        "p99": 1.0111407829274408,
+        "max": 1.0854165277717178
+      },
+      "ee_energy_nonconservation_gt_1pct_count": 86,
+      "ee_acceptance_ratio_new_over_old_tb_5": 1.0001976421633412,
+      "ee_acceptance_ratio_new_over_old_tb_25": 1.000132991123929,
+      "ee_acceptance_ratio_new_over_old_tb_100": 1.0000430445949409,
+      "ee_acceptance_ratio_new_over_old_tb_350": 1.000038356422206
+    },
+    "4.784": {
+      "n_candidate": 17293,
+      "n_eta_accepted": 2490,
+      "scalar_m2_ratio_to_nominal": {
+        "min": 0.9916043550991193,
+        "p01": 0.9977667202217044,
+        "median": 1.000001577437044,
+        "p99": 1.0032480310407277,
+        "max": 1.0311671622402405
+      },
+      "non_timelike_eta_count": 0,
+      "ee_energy_sum_over_H_energy": {
+        "min": 0.9847714807587731,
+        "p01": 0.9983799301313732,
+        "median": 0.9999992112824112,
+        "p99": 1.0011185137262906,
+        "max": 1.0042244413226247
+      },
+      "ee_one_daughter_old_over_known_mass_boost": {
+        "min": 0.9847716539927908,
+        "p01": 0.9983800133508773,
+        "median": 0.9999992569383027,
+        "p99": 1.0011184736982675,
+        "max": 1.0042243860250633
+      },
+      "ee_energy_nonconservation_gt_1pct_count": 2,
+      "ee_acceptance_ratio_new_over_old_tb_5": 1.0006513222114137,
+      "ee_acceptance_ratio_new_over_old_tb_25": 1.0006713457758174,
+      "ee_acceptance_ratio_new_over_old_tb_100": 1.0000656037902091,
+      "ee_acceptance_ratio_new_over_old_tb_350": 1.0000073482473244
+    }
+  },
+  "inel_precision": {
+    "file": "sample_minbias_pik_525049850_evsub100000_seed20261025.npz",
+    "rows": 4568065,
+    "n_non_timelike": 44619,
+    "n_pz_gt100_non_timelike": 44619,
+    "max_momentum_GeV": 5579.147959307846
+  }
+}

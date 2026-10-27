@@ -1,0 +1,5 @@
+{
+  "state": "rejected_before_job_creation",
+  "job_id": null,
+  "reason": "HTTP 400: unescaped dictionary braces in deployment probe f-string; no job created"
+}

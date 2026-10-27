@@ -1,0 +1,4185 @@
+{
+  "sha": "6664a923869c6b21a3aba3d4e8429ec3ae9d4edd",
+  "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/6664a923869c6b21a3aba3d4e8429ec3ae9d4edd",
+  "tree": [
+    {
+      "path": ".gitattributes",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dfe0770424b2a19faf507a501ebfc23be8f54e7b",
+      "size": 66,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/dfe0770424b2a19faf507a501ebfc23be8f54e7b"
+    },
+    {
+      "path": "0. Check for the needed soft.nb",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d97308c33bdb5ff0287b66c1f04a70235a269559",
+      "size": 9275,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/d97308c33bdb5ff0287b66c1f04a70235a269559"
+    },
+    {
+      "path": "1. Acceptances. ANUBIS-ceiling.nb",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c1107215ed88f7d34dc8b4163ac4e863fba36f78",
+      "size": 2087115,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/c1107215ed88f7d34dc8b4163ac4e863fba36f78"
+    },
+    {
+      "path": "1. Acceptances.nb",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "11aba8c91fdc1d8d6ea8ac965bd5583dba4edb5a",
+      "size": 1786288,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/11aba8c91fdc1d8d6ea8ac965bd5583dba4edb5a"
+    },
+    {
+      "path": "2. FIP distribution.nb",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "39ad61cd9330c0b200df3c7fa3bca2d26f812929",
+      "size": 2930048,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/39ad61cd9330c0b200df3c7fa3bca2d26f812929"
+    },
+    {
+      "path": "3. ALPs with fermion coupling sensitivity.nb",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fe399347550b942da879a9c1d217f96225302148",
+      "size": 332586,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/fe399347550b942da879a9c1d217f96225302148"
+    },
+    {
+      "path": "3. ALPs with gluon coupling sensitivity.nb",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ba80fde2e16a06f243f8f8dbcc946c6656c591f1",
+      "size": 324477,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/ba80fde2e16a06f243f8f8dbcc946c6656c591f1"
+    },
+    {
+      "path": "3. ALPs with photon coupling sensitivity.nb",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "742727e67b1313ca44fa819361e61c7242d486ff",
+      "size": 350517,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/742727e67b1313ca44fa819361e61c7242d486ff"
+    },
+    {
+      "path": "3. B-3Le-Lmu+Ltau portal sensitivity.nb",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4d2efe5940f27297a4b76decccef3aa0d33f312d",
+      "size": 344741,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/4d2efe5940f27297a4b76decccef3aa0d33f312d"
+    },
+    {
+      "path": "3. B-3Lmu portal sensitivity.nb",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6ada68574296aca0274eeb6525712691915f9536",
+      "size": 344460,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/6ada68574296aca0274eeb6525712691915f9536"
+    },
+    {
+      "path": "3. B-L portal sensitivity.nb",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1ccdc76c140e254a92dc0273ab196431128fced4",
+      "size": 343783,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/1ccdc76c140e254a92dc0273ab196431128fced4"
+    },
+    {
+      "path": "3. B-Le-3Lmu+Ltau portal sensitivity.nb",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dbc921a4464458f4aed9ec01866bf09a46d5bef1",
+      "size": 345044,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/dbc921a4464458f4aed9ec01866bf09a46d5bef1"
+    },
+    {
+      "path": "3. Dark photons sensitivity.nb",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6f59018c3da6c88130ba77bcccf5c7000997489e",
+      "size": 350139,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/6f59018c3da6c88130ba77bcccf5c7000997489e"
+    },
+    {
+      "path": "3. HNLs with arbitrary mixing pattern sensitivity.nb",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fa0fbdddad6c0413a1ddd61722838d6ab18b5c64",
+      "size": 421176,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/fa0fbdddad6c0413a1ddd61722838d6ab18b5c64"
+    },
+    {
+      "path": "3. Scalars sensitivity.nb",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a903f2bf25b59ac624d872b664f08cb1a343b213",
+      "size": 376284,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/a903f2bf25b59ac624d872b664f08cb1a343b213"
+    },
+    {
+      "path": "4. Plots.nb",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f15fc881e6a5d755ab0188972be612c5db567d97",
+      "size": 274784,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/f15fc881e6a5d755ab0188972be612c5db567d97"
+    },
+    {
+      "path": "LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "07bbe4dc4dae371c8a4df5ecad71bd7b7f50b3fe",
+      "size": 1525,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/07bbe4dc4dae371c8a4df5ecad71bd7b7f50b3fe"
+    },
+    {
+      "path": "Manual.pdf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "33efa3575888ba580b8a82c536568834e7def498",
+      "size": 512264,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/33efa3575888ba580b8a82c536568834e7def498"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9341465b327f044368e6c0c07214e7317ff86cd9",
+      "size": 5099,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/9341465b327f044368e6c0c07214e7317ff86cd9"
+    },
+    {
+      "path": "SensMC-1.0.0.zip",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e1ce843a8b32a9e52208dc7613a93b58e51b8d89",
+      "size": 2025502,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/e1ce843a8b32a9e52208dc7613a93b58e51b8d89"
+    },
+    {
+      "path": "UFO files",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "29700d1f50ce731ce1faa5b26cbaa166ab6e4245",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/29700d1f50ce731ce1faa5b26cbaa166ab6e4245"
+    },
+    {
+      "path": "UFO files/fips-jets",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1d724936d84f0568702d14eb9aa36148bdc9f6bd",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/1d724936d84f0568702d14eb9aa36148bdc9f6bd"
+    },
+    {
+      "path": "UFO files/fips-jets/CT_couplings.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "431cd05ef66ed8638b69ab10f72b5d0bf173b2bb",
+      "size": 307,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/431cd05ef66ed8638b69ab10f72b5d0bf173b2bb"
+    },
+    {
+      "path": "UFO files/fips-jets/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e437214f9c93fb8b6a2abdb85b37bcc872884d24",
+      "size": 932,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/e437214f9c93fb8b6a2abdb85b37bcc872884d24"
+    },
+    {
+      "path": "UFO files/fips-jets/coupling_orders.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "68f14e81ef766233507dab366428a21e0a52b3b4",
+      "size": 558,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/68f14e81ef766233507dab366428a21e0a52b3b4"
+    },
+    {
+      "path": "UFO files/fips-jets/couplings.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "369826aaa54545b39d92457f83d6b492870d1869",
+      "size": 11418,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/369826aaa54545b39d92457f83d6b492870d1869"
+    },
+    {
+      "path": "UFO files/fips-jets/decays.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b669bb54b8d72c702191aa14ea115884be758083",
+      "size": 12713,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/b669bb54b8d72c702191aa14ea115884be758083"
+    },
+    {
+      "path": "UFO files/fips-jets/fips-jets_UFO.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e3d9de45188c68d1d1c29b22b1d9320179153ea6",
+      "size": 2282,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/e3d9de45188c68d1d1c29b22b1d9320179153ea6"
+    },
+    {
+      "path": "UFO files/fips-jets/function_library.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c96d23f8b63c877440b8768f50a0b5bf040a20f8",
+      "size": 1949,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/c96d23f8b63c877440b8768f50a0b5bf040a20f8"
+    },
+    {
+      "path": "UFO files/fips-jets/lorentz.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "af3bdcb910603b33652fcaeecb53c9893ae507d8",
+      "size": 4576,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/af3bdcb910603b33652fcaeecb53c9893ae507d8"
+    },
+    {
+      "path": "UFO files/fips-jets/object_library.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c196c695c603a7b32e22a8b0b27c219e194b474e",
+      "size": 10877,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/c196c695c603a7b32e22a8b0b27c219e194b474e"
+    },
+    {
+      "path": "UFO files/fips-jets/parameters.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "72fd1aea697975889085351543a689f4fd358e23",
+      "size": 13305,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/72fd1aea697975889085351543a689f4fd358e23"
+    },
+    {
+      "path": "UFO files/fips-jets/particles.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0ec139abb278643cb07cf1862f88d72126403593",
+      "size": 12496,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/0ec139abb278643cb07cf1862f88d72126403593"
+    },
+    {
+      "path": "UFO files/fips-jets/propagators.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "afd2520e65ffb7507d1fbb0bde1a36488b18621a",
+      "size": 1351,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/afd2520e65ffb7507d1fbb0bde1a36488b18621a"
+    },
+    {
+      "path": "UFO files/fips-jets/vertices.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "44c1377b367ce5b797d1b2b4ec0295b8203026dc",
+      "size": 32543,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/44c1377b367ce5b797d1b2b4ec0295b8203026dc"
+    },
+    {
+      "path": "UFO files/fips-jets/write_param_card.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "72781aa14cd26b8db189f2913ec86fb6c364332f",
+      "size": 6784,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/72781aa14cd26b8db189f2913ec86fb6c364332f"
+    },
+    {
+      "path": "contours",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8147cf4c6d18da303d73b40342502330d6a417b9",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/8147cf4c6d18da303d73b40342502330d6a417b9"
+    },
+    {
+      "path": "contours/B-L",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6744740b2ab6227d6220a6893d0466da1cb0105f",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/6744740b2ab6227d6220a6893d0466da1cb0105f"
+    },
+    {
+      "path": "contours/B-L/B-L-excluded.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cb4c9f858c269ec74f50aa304acada33d554d8d4",
+      "size": 117037,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/cb4c9f858c269ec74f50aa304acada33d554d8d4"
+    },
+    {
+      "path": "contours/BC1",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ba541b9daa0b310ed4b79d59772302017b3882c0",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/ba541b9daa0b310ed4b79d59772302017b3882c0"
+    },
+    {
+      "path": "contours/BC1/BC1-excluded-1.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d05ee4930f5a32d761fe0d85c189356701608555",
+      "size": 148953,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/d05ee4930f5a32d761fe0d85c189356701608555"
+    },
+    {
+      "path": "contours/BC1/BC1-excluded-2.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1361368ff1bbca5d0d69a788cd437a1ed3cb57e7",
+      "size": 2339,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/1361368ff1bbca5d0d69a788cd437a1ed3cb57e7"
+    },
+    {
+      "path": "contours/BC1/BC1-excluded-3.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2d8fe0fba98135da09ca8357e498ed3055580c21",
+      "size": 520,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/2d8fe0fba98135da09ca8357e498ed3055580c21"
+    },
+    {
+      "path": "contours/BC1/BC1-excluded-cosmo.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cd18f00d2ed82603e6d9423fe7097e4c9c8cb189",
+      "size": 3127,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/cd18f00d2ed82603e6d9423fe7097e4c9c8cb189"
+    },
+    {
+      "path": "contours/BC1/BC1-excluded.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3ca5bfb61db153f82319d58fd6ab8069c9723173",
+      "size": 7659,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/3ca5bfb61db153f82319d58fd6ab8069c9723173"
+    },
+    {
+      "path": "contours/BC10",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c5e6d72003d0f2eafb3035401932203396bcaf42",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/c5e6d72003d0f2eafb3035401932203396bcaf42"
+    },
+    {
+      "path": "contours/BC10/BC10-excluded.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f4bd5038053714cfe267b5ea8e47bbb13a2441e",
+      "size": 10724,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/9f4bd5038053714cfe267b5ea8e47bbb13a2441e"
+    },
+    {
+      "path": "contours/BC10/bounds-LHCb-Fermion universal.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6a3f346c50e9d6b8eeb6f0b6ab69c7fe69c36d25",
+      "size": 6187,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/6a3f346c50e9d6b8eeb6f0b6ab69c7fe69c36d25"
+    },
+    {
+      "path": "contours/BC11",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a4cc8fa411f859f0ca60e6cda4b79ec71cb4f9f5",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/a4cc8fa411f859f0ca60e6cda4b79ec71cb4f9f5"
+    },
+    {
+      "path": "contours/BC11/BC11-bounds.xls",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5b05cd7352f71d33ede853b30fe842c3a771d414",
+      "size": 577536,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/5b05cd7352f71d33ede853b30fe842c3a771d414"
+    },
+    {
+      "path": "contours/BC6-8",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c9909c97b685f4c21d297e9face0d34b472f7a17",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/c9909c97b685f4c21d297e9face0d34b472f7a17"
+    },
+    {
+      "path": "contours/BC6-8/BBN-seesaw-HNLe.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "28a7e9ff42eb461272e0124dfb0eb3906c2d99d1",
+      "size": 288977,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/28a7e9ff42eb461272e0124dfb0eb3906c2d99d1"
+    },
+    {
+      "path": "contours/BC6-8/current-experiments_e.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "886c9fb67edf7e97850b7b89e94989443453e63c",
+      "size": 17123,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/886c9fb67edf7e97850b7b89e94989443453e63c"
+    },
+    {
+      "path": "contours/BC6-8/current-experiments_mu.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f35225b78c0607324ca23dc86f0b0afee271b1a6",
+      "size": 14391,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/f35225b78c0607324ca23dc86f0b0afee271b1a6"
+    },
+    {
+      "path": "contours/BC6-8/current-experiments_tau.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c9dd1cc748cff6764a80b6feb73ae1146a70a836",
+      "size": 7660,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/c9dd1cc748cff6764a80b6feb73ae1146a70a836"
+    },
+    {
+      "path": "contours/BC9",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "99098824d572b9e8f7b49b79c498b6557fe181dc",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/99098824d572b9e8f7b49b79c498b6557fe181dc"
+    },
+    {
+      "path": "contours/BC9/BC9-excluded.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b3d58ee83bd5b23b7163a5ac6e92dfc4f471296c",
+      "size": 27403,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/b3d58ee83bd5b23b7163a5ac6e92dfc4f471296c"
+    },
+    {
+      "path": "contours/HNL dipole portal",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "635e71affa004af15bb06e554eb08dd4ac3510ad",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/635e71affa004af15bb06e554eb08dd4ac3510ad"
+    },
+    {
+      "path": "contours/HNL dipole portal/Bounds-Dipole-portal-tau-Only-dgamma.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "42d15d7d07b0efbc1b29d7d9a997675cef3de33b",
+      "size": 34259,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/42d15d7d07b0efbc1b29d7d9a997675cef3de33b"
+    },
+    {
+      "path": "contours/LDM B",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b97afb6fc11ce44e5f1c019e503159cd78fd06ef",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/b97afb6fc11ce44e5f1c019e503159cd78fd06ef"
+    },
+    {
+      "path": "contours/LDM B/Bounds-Leptophobic-alphaD-0.1-mchiTomV-0.33.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aeb6cfa7a5b9bb571d1644df9511432d2276d005",
+      "size": 665329,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/aeb6cfa7a5b9bb571d1644df9511432d2276d005"
+    },
+    {
+      "path": "contours/LDM dark photons",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ddbf656e446d34994a4ba4a781f6d8fd07548e21",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/ddbf656e446d34994a4ba4a781f6d8fd07548e21"
+    },
+    {
+      "path": "contours/LDM dark photons/BC2-excluded-region.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7004317b9a4b7b20a063013d962f206b1b12bebd",
+      "size": 12241,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/7004317b9a4b7b20a063013d962f206b1b12bebd"
+    },
+    {
+      "path": "contours/LDM dark photons/BC2-relic-density.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0d9a32cfa91fedc9c907c7457a8434848563f78a",
+      "size": 6103,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/0d9a32cfa91fedc9c907c7457a8434848563f78a"
+    },
+    {
+      "path": "contours/MCP",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7c6eeb647248864dbc15f1937c37d3f633bae06a",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/7c6eeb647248864dbc15f1937c37d3f633bae06a"
+    },
+    {
+      "path": "contours/MCP/BC3-MilliQan-Run3.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d049bd72b008660036f1a90a28e7fb3647f1160e",
+      "size": 5416,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/d049bd72b008660036f1a90a28e7fb3647f1160e"
+    },
+    {
+      "path": "contours/MCP/BC3-excluded-region.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "adeb0dcf67b1ef5ec4baea74b41d52178bf153ed",
+      "size": 15037,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/adeb0dcf67b1ef5ec4baea74b41d52178bf153ed"
+    },
+    {
+      "path": "contours/Scalar",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "509b71f48d0b520fd4f682dcf380badfac7a4a87",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/509b71f48d0b520fd4f682dcf380badfac7a4a87"
+    },
+    {
+      "path": "contours/Scalar/scalar-all-experiments.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b70c25723691f2c8496acb792c6c8e4ecb9b32d9",
+      "size": 34236,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/b70c25723691f2c8496acb792c6c8e4ecb9b32d9"
+    },
+    {
+      "path": "phenomenology",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8be429964d737a5ffb5e78a88f61aac667e2196f",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/8be429964d737a5ffb5e78a88f61aac667e2196f"
+    },
+    {
+      "path": "phenomenology/ALPs with fermion coupling",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "4393676ce1a547b2161899a7d6b256ce8ac78f37",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/4393676ce1a547b2161899a7d6b256ce8ac78f37"
+    },
+    {
+      "path": "phenomenology/ALPs with fermion coupling/branching ratios",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8406d1debad035d00a537637f73534a178eededc",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/8406d1debad035d00a537637f73534a178eededc"
+    },
+    {
+      "path": "phenomenology/ALPs with fermion coupling/branching ratios/Coefs-production-Fermion universal-scale-1000.-GeV.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4cb0b2e38fe5146bbd014ad54c63674d0c478925",
+      "size": 90962,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/4cb0b2e38fe5146bbd014ad54c63674d0c478925"
+    },
+    {
+      "path": "phenomenology/ALPs with fermion coupling/decay widths",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7f205b3706127c7cbabee4ef033354653828546d",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/7f205b3706127c7cbabee4ef033354653828546d"
+    },
+    {
+      "path": "phenomenology/ALPs with fermion coupling/decay widths/Br-ratios-SensCalc-model-Fermion universal-scale-1000.-GeV.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f81a43acf6bee51e8d9fc65d776fe68a451b109d",
+      "size": 3401272,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/f81a43acf6bee51e8d9fc65d776fe68a451b109d"
+    },
+    {
+      "path": "phenomenology/ALPs with fermion coupling/decay widths/Fma.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b7c13bf8aeae0e501f3dd731f1792396060b0c05",
+      "size": 4998,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/b7c13bf8aeae0e501f3dd731f1792396060b0c05"
+    },
+    {
+      "path": "phenomenology/ALPs with fermion coupling/decay widths/Matrix-elements-squared-model-Fermion universal-scale-1000.-GeV.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "13ee33480f7f10257159a056233f36918f02dc90",
+      "size": 25237,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/13ee33480f7f10257159a056233f36918f02dc90"
+    },
+    {
+      "path": "phenomenology/ALPs with fermion coupling/decay widths/Widths-model-Fermion universal-scale-1000.-GeV.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d5ba6f10724fe0eeccd75883454bab4f816a25c9",
+      "size": 749533,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/d5ba6f10724fe0eeccd75883454bab4f816a25c9"
+    },
+    {
+      "path": "phenomenology/ALPs with gluon coupling",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3e6ff8af1a71d34f50f42bdafed96bdc221254b9",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/3e6ff8af1a71d34f50f42bdafed96bdc221254b9"
+    },
+    {
+      "path": "phenomenology/ALPs with gluon coupling/branching ratios",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0208569b83968fc0598e49a01e1748d2dcef7f26",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/0208569b83968fc0598e49a01e1748d2dcef7f26"
+    },
+    {
+      "path": "phenomenology/ALPs with gluon coupling/branching ratios/Coefs-production-Gluon-scale-1000.-GeV.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f97da59986e7f1abc1a1513dcb5cec62e92b8b3b",
+      "size": 91293,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/f97da59986e7f1abc1a1513dcb5cec62e92b8b3b"
+    },
+    {
+      "path": "phenomenology/ALPs with gluon coupling/branching ratios/sigmaDrellYan-ALPgluon-FermilabBD.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3f856fa49da7bcc1539afbd6245bdf9a1dc69a61",
+      "size": 543,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/3f856fa49da7bcc1539afbd6245bdf9a1dc69a61"
+    },
+    {
+      "path": "phenomenology/ALPs with gluon coupling/branching ratios/sigmaDrellYan-ALPgluon-LHC.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "939ec929c13f2664816f7f8031243eeee9d5e647",
+      "size": 645,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/939ec929c13f2664816f7f8031243eeee9d5e647"
+    },
+    {
+      "path": "phenomenology/ALPs with gluon coupling/branching ratios/sigmaDrellYan-ALPgluon-SPS.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "195bbefe5c291eb41831b4c9f05991307e2432f8",
+      "size": 595,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/195bbefe5c291eb41831b4c9f05991307e2432f8"
+    },
+    {
+      "path": "phenomenology/ALPs with gluon coupling/decay widths",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c5d795610f9936c2649e0d12184ef9284fe07c3e",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/c5d795610f9936c2649e0d12184ef9284fe07c3e"
+    },
+    {
+      "path": "phenomenology/ALPs with gluon coupling/decay widths/Br-ratios-SensCalc-model-Gluon-scale-1000.-GeV.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2344b41ae7ce745dbd4e40f372953638cbb2b56f",
+      "size": 3401257,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/2344b41ae7ce745dbd4e40f372953638cbb2b56f"
+    },
+    {
+      "path": "phenomenology/ALPs with gluon coupling/decay widths/Matrix-elements-squared-model-Gluon-scale-1000.-GeV.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d4460a96fff8e49e43d9022ea99de8de45f82f5f",
+      "size": 26091,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/d4460a96fff8e49e43d9022ea99de8de45f82f5f"
+    },
+    {
+      "path": "phenomenology/ALPs with gluon coupling/decay widths/Widths-model-Gluon-scale-1000.-GeV.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0987d3a9bd1627e2d3886a563a5640670ee508be",
+      "size": 665169,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/0987d3a9bd1627e2d3886a563a5640670ee508be"
+    },
+    {
+      "path": "phenomenology/ALPs with photon coupling",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f4e14c816c46b2e2a3f0be7e445b535a151b9387",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/f4e14c816c46b2e2a3f0be7e445b535a151b9387"
+    },
+    {
+      "path": "phenomenology/ALPs with photon coupling/branching ratios",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7ba0555701df72d065e0b60068fdb51e77babf47",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/7ba0555701df72d065e0b60068fdb51e77babf47"
+    },
+    {
+      "path": "phenomenology/ALPs with photon coupling/branching ratios/BrEtaToALP.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "50ac7a4100b97f80f73ea8f289572988ab60335f",
+      "size": 4082,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/50ac7a4100b97f80f73ea8f289572988ab60335f"
+    },
+    {
+      "path": "phenomenology/ALPs with photon coupling/branching ratios/BrPi0ToALP.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8a19500cc7bcfcf8ed4c707a4382ab076e5503f3",
+      "size": 2513,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/8a19500cc7bcfcf8ed4c707a4382ab076e5503f3"
+    },
+    {
+      "path": "phenomenology/ALPs with photon coupling/branching ratios/Pprod-ALPs-from-Primakov-FermilabBD-target-C.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0fbc9b57b5b6749d57bd40c46f044a43ed756440",
+      "size": 340,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/0fbc9b57b5b6749d57bd40c46f044a43ed756440"
+    },
+    {
+      "path": "phenomenology/ALPs with photon coupling/branching ratios/Pprod-ALPs-from-Primakov-FermilabBD-target-Fe.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "be90e8e858502ae848a9612d8d8a75e1572b145c",
+      "size": 343,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/be90e8e858502ae848a9612d8d8a75e1572b145c"
+    },
+    {
+      "path": "phenomenology/ALPs with photon coupling/branching ratios/Pprod-ALPs-from-Primakov-LHC-target-Fe.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5302be84b1c5bd7cf1d90b77d4eb33d84c0b6af7",
+      "size": 329,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/5302be84b1c5bd7cf1d90b77d4eb33d84c0b6af7"
+    },
+    {
+      "path": "phenomenology/ALPs with photon coupling/branching ratios/Pprod-ALPs-from-Primakov-SPS-target-C.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3eb9853c171b63ca844a394d278c17aa5418a206",
+      "size": 508,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/3eb9853c171b63ca844a394d278c17aa5418a206"
+    },
+    {
+      "path": "phenomenology/ALPs with photon coupling/branching ratios/Pprod-ALPs-from-Primakov-SPS-target-Fe.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e283624ab5889ebfd86717d5959da6f9ec2fb328",
+      "size": 506,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/e283624ab5889ebfd86717d5959da6f9ec2fb328"
+    },
+    {
+      "path": "phenomenology/ALPs with photon coupling/branching ratios/Pprod-ALPs-from-Primakov-SPS-target-Mo.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e8114bbed8a9eca5b522de6c167bec606e1e2752",
+      "size": 501,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/e8114bbed8a9eca5b522de6c167bec606e1e2752"
+    },
+    {
+      "path": "phenomenology/ALPs with photon coupling/branching ratios/Pprod-ALPs-from-pCoherent-FermilabBD-target-C.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d609be99e35ee3f7dfaa46424711fa8fccd5a61d",
+      "size": 261,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/d609be99e35ee3f7dfaa46424711fa8fccd5a61d"
+    },
+    {
+      "path": "phenomenology/ALPs with photon coupling/branching ratios/Pprod-ALPs-from-pCoherent-FermilabBD-target-Fe.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ece17a96075839d4f9ec20f033f2dab44c84d69e",
+      "size": 261,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/ece17a96075839d4f9ec20f033f2dab44c84d69e"
+    },
+    {
+      "path": "phenomenology/ALPs with photon coupling/branching ratios/Pprod-ALPs-from-pCoherent-LHC-target-p.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a6f25cf21d09445328e8894b7efc7834f857279a",
+      "size": 272,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/a6f25cf21d09445328e8894b7efc7834f857279a"
+    },
+    {
+      "path": "phenomenology/ALPs with photon coupling/branching ratios/Pprod-ALPs-from-pCoherent-SPS-target-C.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c3f5ac6e9b16895c787a860a08d420a23ea2a2c0",
+      "size": 261,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/c3f5ac6e9b16895c787a860a08d420a23ea2a2c0"
+    },
+    {
+      "path": "phenomenology/ALPs with photon coupling/branching ratios/Pprod-ALPs-from-pCoherent-SPS-target-Fe.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1bfcc2e7b2a3045cac6271983dff3767fb1ec6f1",
+      "size": 265,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/1bfcc2e7b2a3045cac6271983dff3767fb1ec6f1"
+    },
+    {
+      "path": "phenomenology/ALPs with photon coupling/branching ratios/Pprod-ALPs-from-pCoherent-SPS-target-Mo.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "59af9c30201c8fbde836d55854bb261fe5ff42e6",
+      "size": 264,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/59af9c30201c8fbde836d55854bb261fe5ff42e6"
+    },
+    {
+      "path": "phenomenology/AlphaS.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "860ac8bbee6ec8359b84209c50c98431ffede9c7",
+      "size": 17831,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/860ac8bbee6ec8359b84209c50c98431ffede9c7"
+    },
+    {
+      "path": "phenomenology/AlphaSU2L.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5d3f78e990dad96856cb2a5895eb382cf72fbaed",
+      "size": 5062,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/5d3f78e990dad96856cb2a5895eb382cf72fbaed"
+    },
+    {
+      "path": "phenomenology/AlphaUY.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ff4275f483c14e198c49bec70ad78993c6bbf36c",
+      "size": 5049,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/ff4275f483c14e198c49bec70ad78993c6bbf36c"
+    },
+    {
+      "path": "phenomenology/B-3Le-Lmu+Ltau",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0d3f15f29b0dc4af3df7d34f94f25b08cb0ea560",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/0d3f15f29b0dc4af3df7d34f94f25b08cb0ea560"
+    },
+    {
+      "path": "phenomenology/B-3Le-Lmu+Ltau/decay widths",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "dc4d1104de20fcf8cb9a6aac0b62c66d5963f4b3",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/dc4d1104de20fcf8cb9a6aac0b62c66d5963f4b3"
+    },
+    {
+      "path": "phenomenology/B-3Le-Lmu+Ltau/decay widths/BrRatiosBL.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1e30b423cb8689e54ce664e4cd4b1ced13aace29",
+      "size": 113221,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/1e30b423cb8689e54ce664e4cd4b1ced13aace29"
+    },
+    {
+      "path": "phenomenology/B-3Le-Lmu+Ltau/decay widths/GammaTotBL.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7addda39422af5c2603cbcfd07abd9801026cbfb",
+      "size": 12595,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/7addda39422af5c2603cbcfd07abd9801026cbfb"
+    },
+    {
+      "path": "phenomenology/B-3Lmu",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "fe696d0fa3a29fbc6ed6381fdea112f29b02cce5",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/fe696d0fa3a29fbc6ed6381fdea112f29b02cce5"
+    },
+    {
+      "path": "phenomenology/B-3Lmu/decay widths",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f21ecf60503a11116b44223444b3d8dcd9277a0b",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/f21ecf60503a11116b44223444b3d8dcd9277a0b"
+    },
+    {
+      "path": "phenomenology/B-3Lmu/decay widths/BrRatiosBL.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0048592adb94be2981205ec4f12cbdb1a3f53ebe",
+      "size": 90702,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/0048592adb94be2981205ec4f12cbdb1a3f53ebe"
+    },
+    {
+      "path": "phenomenology/B-3Lmu/decay widths/GammaTotBL.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4510ce996dbd26875deb0f9fbd6582032e9744da",
+      "size": 12389,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/4510ce996dbd26875deb0f9fbd6582032e9744da"
+    },
+    {
+      "path": "phenomenology/B-L",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "700f05fca53c2a22bb0bbbf8b67c0477bcf15445",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/700f05fca53c2a22bb0bbbf8b67c0477bcf15445"
+    },
+    {
+      "path": "phenomenology/B-L/branching ratios",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e4c26722f8df97e0a20c95ef403fb54b4aacc603",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/e4c26722f8df97e0a20c95ef403fb54b4aacc603"
+    },
+    {
+      "path": "phenomenology/B-L/branching ratios/sigma-Drell-Yan-B-L-FermilabBD.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "716438b8c390ea3be8bae7b2152b914874edcbcb",
+      "size": 143,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/716438b8c390ea3be8bae7b2152b914874edcbcb"
+    },
+    {
+      "path": "phenomenology/B-L/branching ratios/sigma-Drell-Yan-B-L-LHC.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "53ebcb951cbca98167b44b2f776aef0b5767732c",
+      "size": 142,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/53ebcb951cbca98167b44b2f776aef0b5767732c"
+    },
+    {
+      "path": "phenomenology/B-L/branching ratios/sigma-Drell-Yan-B-L-SPS.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8fa475de89b1e12a0e8992646b27530549d2dfe6",
+      "size": 144,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/8fa475de89b1e12a0e8992646b27530549d2dfe6"
+    },
+    {
+      "path": "phenomenology/B-L/decay widths",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "468e3982c87e67dabdb3faa05d911e36745a0e60",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/468e3982c87e67dabdb3faa05d911e36745a0e60"
+    },
+    {
+      "path": "phenomenology/B-L/decay widths/BrRatiosBL.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d74442f209a390a176f85a1ea1019293132ed84c",
+      "size": 113221,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/d74442f209a390a176f85a1ea1019293132ed84c"
+    },
+    {
+      "path": "phenomenology/B-L/decay widths/GammaTotBL.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ae9cb0b465cc1fb601400165f22778d2f1b9192f",
+      "size": 12735,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/ae9cb0b465cc1fb601400165f22778d2f1b9192f"
+    },
+    {
+      "path": "phenomenology/B-Le-3Lmu+Ltau",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a320a0a40088a0a23d151016ea4f999aa9405f19",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/a320a0a40088a0a23d151016ea4f999aa9405f19"
+    },
+    {
+      "path": "phenomenology/B-Le-3Lmu+Ltau/decay widths",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9794e9f4f9c0272ee2d5d2f1bd288873b88d0bf5",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/9794e9f4f9c0272ee2d5d2f1bd288873b88d0bf5"
+    },
+    {
+      "path": "phenomenology/B-Le-3Lmu+Ltau/decay widths/BrRatiosBL.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0db5d428001a7b0a56cdeba7faf96f0b171c1823",
+      "size": 113221,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/0db5d428001a7b0a56cdeba7faf96f0b171c1823"
+    },
+    {
+      "path": "phenomenology/B-Le-3Lmu+Ltau/decay widths/GammaTotBL.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6f0de50759abf5c3da429ea6166798bac7589bba",
+      "size": 12634,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/6f0de50759abf5c3da429ea6166798bac7589bba"
+    },
+    {
+      "path": "phenomenology/B",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8933962a1daa6e877d498c9ef5a4c032c0e5bc1c",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/8933962a1daa6e877d498c9ef5a4c032c0e5bc1c"
+    },
+    {
+      "path": "phenomenology/B/decay widths",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b0dd5f7f78ffd9b25ddea619c6c72fcac5315624",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/b0dd5f7f78ffd9b25ddea619c6c72fcac5315624"
+    },
+    {
+      "path": "phenomenology/B/decay widths/BrRatiosBL.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6536ea11f3ba47bcead26171b9aa0780e1d59833",
+      "size": 46136,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/6536ea11f3ba47bcead26171b9aa0780e1d59833"
+    },
+    {
+      "path": "phenomenology/B/decay widths/GammaTotBL.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "be6de992072643b0af52811f0b1e542b3f16334f",
+      "size": 12771,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/be6de992072643b0af52811f0b1e542b3f16334f"
+    },
+    {
+      "path": "phenomenology/B/decay widths/Gammachi2Tochi1pi0gamma.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fab9245b7fef860be13c0ee872fc70c546403575",
+      "size": 284873,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/fab9245b7fef860be13c0ee872fc70c546403575"
+    },
+    {
+      "path": "phenomenology/Dark photon",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "46abc3ec4127faa2cdf2740da858b557622c494d",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/46abc3ec4127faa2cdf2740da858b557622c494d"
+    },
+    {
+      "path": "phenomenology/Dark photon/branching ratios",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "fb898f21b46311e23aab7768156e49099c0dcf4c",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/fb898f21b46311e23aab7768156e49099c0dcf4c"
+    },
+    {
+      "path": "phenomenology/Dark photon/branching ratios/sigma-Drell-Yan-DP-FermilabBD.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "10bfe77b85c42f918cb0411b8b5398ea407e33dd",
+      "size": 135,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/10bfe77b85c42f918cb0411b8b5398ea407e33dd"
+    },
+    {
+      "path": "phenomenology/Dark photon/branching ratios/sigma-Drell-Yan-DP-LHC.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1aec9cc7ee90e9774eeabb4b472c8ecdd58eb33b",
+      "size": 164,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/1aec9cc7ee90e9774eeabb4b472c8ecdd58eb33b"
+    },
+    {
+      "path": "phenomenology/Dark photon/branching ratios/sigma-Drell-Yan-DP-SPS.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3ad39ef0af3dba428d382ee70dd7de4e7850fa9b",
+      "size": 134,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/3ad39ef0af3dba428d382ee70dd7de4e7850fa9b"
+    },
+    {
+      "path": "phenomenology/Dark photon/decay widths",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "daef54b8a711bdfd904f87f1ed9b30b1ac5d6492",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/daef54b8a711bdfd904f87f1ed9b30b1ac5d6492"
+    },
+    {
+      "path": "phenomenology/Dark photon/decay widths/BrRatios.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "89ac73e1fb0d000e711009fce9dfbb0f78aecd18",
+      "size": 625325,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/89ac73e1fb0d000e711009fce9dfbb0f78aecd18"
+    },
+    {
+      "path": "phenomenology/Dark photon/decay widths/GammaDarkPhoton.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "70f0cf633eda77ec60c17fb60a00d259a7bd79db",
+      "size": 64322,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/70f0cf633eda77ec60c17fb60a00d259a7bd79db"
+    },
+    {
+      "path": "phenomenology/HNL",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "107d9d0a296f24b4b60ad96b54c9404bace1ca97",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/107d9d0a296f24b4b60ad96b54c9404bace1ca97"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "62b61b766d21c9c5c827bf6ec304dbf6c7d952ba",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/62b61b766d21c9c5c827bf6ec304dbf6c7d952ba"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/Kplus-eN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "60793e90313e2da4dbbaa90e4fa752e2edec183c",
+      "size": 113412,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/60793e90313e2da4dbbaa90e4fa752e2edec183c"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/Kplus-lN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a9d1d4132309e245f142bc688ae14cbebf4d689b",
+      "size": 389781,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/a9d1d4132309e245f142bc688ae14cbebf4d689b"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/Kplus-muN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "06c68aeaa049e100187046d7512e95aa415e0032",
+      "size": 113204,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/06c68aeaa049e100187046d7512e95aa415e0032"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/b0-DeN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "32decf127fb01c0dc9300ca1fc4880f563694200",
+      "size": 131966,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/32decf127fb01c0dc9300ca1fc4880f563694200"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/b0-DminusstareN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4df0598249b05bcd2050b48e1e925065315254c2",
+      "size": 139683,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/4df0598249b05bcd2050b48e1e925065315254c2"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/b0-DminusstarmuN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4f19d25774f2273d2d32281a2ebe8bc17de0f069",
+      "size": 126788,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/4f19d25774f2273d2d32281a2ebe8bc17de0f069"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/b0-DminusstartauN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aa70b36b1cd85919aba6fd602b54dee2b3f7ff5e",
+      "size": 123738,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/aa70b36b1cd85919aba6fd602b54dee2b3f7ff5e"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/b0-DmuN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3ebd667f659695b818efe1f2a688e1fe75c62b65",
+      "size": 119106,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/3ebd667f659695b818efe1f2a688e1fe75c62b65"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/b0-DtauN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ac64993d2cf07685cd2965690258e279557d76f2",
+      "size": 115836,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/ac64993d2cf07685cd2965690258e279557d76f2"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/b_quark_noBc_to_N_mixing_e_FermilabBD.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "366d20ae3948d32f7d49ef895f75f55a0537458d",
+      "size": 3505,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/366d20ae3948d32f7d49ef895f75f55a0537458d"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/b_quark_noBc_to_N_mixing_e_SPS.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "366d20ae3948d32f7d49ef895f75f55a0537458d",
+      "size": 3505,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/366d20ae3948d32f7d49ef895f75f55a0537458d"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/b_quark_noBc_to_N_mixing_mu_FermilabBD.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "317617704f756125fbda35d705af3faf82814c3e",
+      "size": 3458,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/317617704f756125fbda35d705af3faf82814c3e"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/b_quark_noBc_to_N_mixing_mu_LHC.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4bb390ae94cc4d1caef004635aacc1f30a2fa40f",
+      "size": 3478,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/4bb390ae94cc4d1caef004635aacc1f30a2fa40f"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/b_quark_noBc_to_N_mixing_mu_SPS.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "317617704f756125fbda35d705af3faf82814c3e",
+      "size": 3458,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/317617704f756125fbda35d705af3faf82814c3e"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/b_quark_noBc_to_N_mixing_tau_FermilabBD.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "349d0ffd76ef664793e3d78f464b6814e9ba00bf",
+      "size": 2877,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/349d0ffd76ef664793e3d78f464b6814e9ba00bf"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/b_quark_noBc_to_N_mixing_tau_SPS.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "349d0ffd76ef664793e3d78f464b6814e9ba00bf",
+      "size": 2877,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/349d0ffd76ef664793e3d78f464b6814e9ba00bf"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/b_quark_to_N_mixing_e_FermilabBD.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1676b14732bf032f2acda43d408b141b37bdb749",
+      "size": 3885,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/1676b14732bf032f2acda43d408b141b37bdb749"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/b_quark_to_N_mixing_e_LHC.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8c496aab21cccffb899822a92bd145463fa00eb9",
+      "size": 3886,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/8c496aab21cccffb899822a92bd145463fa00eb9"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/b_quark_to_N_mixing_e_SPS.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1676b14732bf032f2acda43d408b141b37bdb749",
+      "size": 3885,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/1676b14732bf032f2acda43d408b141b37bdb749"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/b_quark_to_N_mixing_mu_FermilabBD.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d4b5a5f625c26b067f45fb480ec1eab5ee7aaeb1",
+      "size": 3844,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/d4b5a5f625c26b067f45fb480ec1eab5ee7aaeb1"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/b_quark_to_N_mixing_mu_LHC.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3e32e875d05985f88a1da80e2cc014112a868ab7",
+      "size": 1892,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/3e32e875d05985f88a1da80e2cc014112a868ab7"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/b_quark_to_N_mixing_mu_SPS.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d4b5a5f625c26b067f45fb480ec1eab5ee7aaeb1",
+      "size": 3844,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/d4b5a5f625c26b067f45fb480ec1eab5ee7aaeb1"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/b_quark_to_N_mixing_tau_FermilabBD.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4694b681f3cf517f447084c5364982450f9627b5",
+      "size": 3275,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/4694b681f3cf517f447084c5364982450f9627b5"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/b_quark_to_N_mixing_tau_LHC.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dd095487f72cdd568a1712bf99a2ee0c4666167e",
+      "size": 3271,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/dd095487f72cdd568a1712bf99a2ee0c4666167e"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/b_quark_to_N_mixing_tau_SPS.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4694b681f3cf517f447084c5364982450f9627b5",
+      "size": 3275,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/4694b681f3cf517f447084c5364982450f9627b5"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/bc-eN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "598390bdba7bf9c995a91fdf77ebf29e8d23b4a1",
+      "size": 124679,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/598390bdba7bf9c995a91fdf77ebf29e8d23b4a1"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/bc-muN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "59731115d2c84fc3a5f84458bde949fc1f4ba7ae",
+      "size": 124467,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/59731115d2c84fc3a5f84458bde949fc1f4ba7ae"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/bc-tauN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "31c624159b4759e2c84857d7c2fa4e317a81a663",
+      "size": 121039,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/31c624159b4759e2c84857d7c2fa4e317a81a663"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/bplus-D0bareN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7162cb8f5f24df0790d0637f98e23cc70605362b",
+      "size": 131946,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/7162cb8f5f24df0790d0637f98e23cc70605362b"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/bplus-D0barmuN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "64aa46553f78170dca4fe6d660c6a76724f25d69",
+      "size": 119113,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/64aa46553f78170dca4fe6d660c6a76724f25d69"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/bplus-D0bartauN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e7d80359c982815e31644f38de33466746a69e45",
+      "size": 115815,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/e7d80359c982815e31644f38de33466746a69e45"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/bplus-D0starbareN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0764fb9c843edb4a1324219e21088a07967a48ed",
+      "size": 139675,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/0764fb9c843edb4a1324219e21088a07967a48ed"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/bplus-D0starbarmuN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "35ced0f68101c7f2a53916221735b9d497d858b9",
+      "size": 126779,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/35ced0f68101c7f2a53916221735b9d497d858b9"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/bplus-D0starbartauN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e1e50f2807b529f0f97263adb5e1b04d74cd4a40",
+      "size": 123736,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/e1e50f2807b529f0f97263adb5e1b04d74cd4a40"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/bplus-eN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bf23ccb8bdb7f2c3077d0d736213a71dbec73947",
+      "size": 136585,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/bf23ccb8bdb7f2c3077d0d736213a71dbec73947"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/bplus-muN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0f76542b07ac87224417e775f508e50b7c8cca9a",
+      "size": 123705,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/0f76542b07ac87224417e775f508e50b7c8cca9a"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/bplus-tauN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4171357128ba04544f9c6879fadf9f2ff1540fcd",
+      "size": 120062,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/4171357128ba04544f9c6879fadf9f2ff1540fcd"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/c_quark_to_N_mixing_e_FermilabBD.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7cee4acb1ab38e37665f517a1223b9e6af2b5a4a",
+      "size": 4957,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/7cee4acb1ab38e37665f517a1223b9e6af2b5a4a"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/c_quark_to_N_mixing_e_LHC.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fa0f8ce99980b1da3964e4af728e50c839cedda4",
+      "size": 5216,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/fa0f8ce99980b1da3964e4af728e50c839cedda4"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/c_quark_to_N_mixing_e_SPS.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fff6b3b5f7d49081c8f3c285220df88aa019d94e",
+      "size": 5226,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/fff6b3b5f7d49081c8f3c285220df88aa019d94e"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/c_quark_to_N_mixing_mu_FermilabBD.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "82d8b4ccf4a3b0fae5db100d5aacd49ae45d4aa2",
+      "size": 4857,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/82d8b4ccf4a3b0fae5db100d5aacd49ae45d4aa2"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/c_quark_to_N_mixing_mu_LHC.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0107cb2120693907a1f7338b391360571542804d",
+      "size": 5124,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/0107cb2120693907a1f7338b391360571542804d"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/c_quark_to_N_mixing_mu_SPS.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f1c4237c8816605b4c49435089d9f9078bf6a6a",
+      "size": 5131,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/9f1c4237c8816605b4c49435089d9f9078bf6a6a"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/c_quark_to_N_mixing_tau_FermilabBD.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "48beb7c666f2cc4843d0144efa06cb11f4a15f37",
+      "size": 4759,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/48beb7c666f2cc4843d0144efa06cb11f4a15f37"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/c_quark_to_N_mixing_tau_LHC.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ab384d2c03f861cb6c4899ca15211eb18aa7e376",
+      "size": 5162,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/ab384d2c03f861cb6c4899ca15211eb18aa7e376"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/c_quark_to_N_mixing_tau_SPS.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fc026349fc0d9616a03289b0bf59aec1c303f555",
+      "size": 5179,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/fc026349fc0d9616a03289b0bf59aec1c303f555"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/d0-KpluseN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b0f452226cf8a717cdf95e7737f14f025885fa93",
+      "size": 115262,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/b0f452226cf8a717cdf95e7737f14f025885fa93"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/d0-KplusmuN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "41dc5de80e5972f76377d5eef04dea00f261a1b3",
+      "size": 115029,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/41dc5de80e5972f76377d5eef04dea00f261a1b3"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/d0-KplusstareN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c7c1cacb0cfb271881b54ed2fcedd5942db8a3ab",
+      "size": 114483,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/c7c1cacb0cfb271881b54ed2fcedd5942db8a3ab"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/d0-KplusstarmuN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "437fe71de93942e6372384150ccdd3614d49f2d3",
+      "size": 114253,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/437fe71de93942e6372384150ccdd3614d49f2d3"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/dplus-K0eN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e9a09461e384ddc0bc8bcf4ce88f048ffe88a65a",
+      "size": 115196,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/e9a09461e384ddc0bc8bcf4ce88f048ffe88a65a"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/dplus-K0muN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d17bacb466e51c9bda425d39b50b3ac1a70a4450",
+      "size": 114974,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/d17bacb466e51c9bda425d39b50b3ac1a70a4450"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/dplus-K0stareN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "314d10faeeb744eae7cbadccc8d495e0b0350c06",
+      "size": 114453,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/314d10faeeb744eae7cbadccc8d495e0b0350c06"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/dplus-K0starmuN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "34e6551fe797d6874ad677bcb4f1275d8e0c2569",
+      "size": 114241,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/34e6551fe797d6874ad677bcb4f1275d8e0c2569"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/dplus-eN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0eda600cefb0c31a08c700604a5a2f42814403df",
+      "size": 116214,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/0eda600cefb0c31a08c700604a5a2f42814403df"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/dplus-muN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d9674d2c2d7e492aa2ddf6c7b80a0fb7fceceb85",
+      "size": 116016,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/d9674d2c2d7e492aa2ddf6c7b80a0fb7fceceb85"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/dplus-tauN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "df6842163aefc86dd89768d622d433c6f2bf5db3",
+      "size": 112730,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/df6842163aefc86dd89768d622d433c6f2bf5db3"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/ds-eN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "acd0ade45d6994fcf1ef447488759d35af4bdfb7",
+      "size": 240269,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/acd0ade45d6994fcf1ef447488759d35af4bdfb7"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/ds-muN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "577c7e25ab875b50b94bec50c6e8e28ae4598a65",
+      "size": 239821,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/577c7e25ab875b50b94bec50c6e8e28ae4598a65"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/ds-tauN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "43a08fa813012124bda62ff3b7eb176b60e34132",
+      "size": 233655,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/43a08fa813012124bda62ff3b7eb176b60e34132"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/tau-KN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0236ecaecc95eb5b618d956e0a18d4ec0f52a21d",
+      "size": 115122,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/0236ecaecc95eb5b618d956e0a18d4ec0f52a21d"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/tau-lbarnuN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b64358502d57afbcd496160cb94779a4767bae45",
+      "size": 115955,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/b64358502d57afbcd496160cb94779a4767bae45"
+    },
+    {
+      "path": "phenomenology/HNL/branching ratios/tau-piN.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8729bf7b8951c18ed5172f3cb5df25ab1601c755",
+      "size": 115654,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/8729bf7b8951c18ed5172f3cb5df25ab1601c755"
+    },
+    {
+      "path": "phenomenology/HNL/decay widths",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5e0e147bb6490ee58f7eba68c7efcf8e72dfd753",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/5e0e147bb6490ee58f7eba68c7efcf8e72dfd753"
+    },
+    {
+      "path": "phenomenology/HNL/decay widths/BrExclusiveMixinge.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6b71ad2c654e2a07516bf784478d6fbad65ad4b8",
+      "size": 144200,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/6b71ad2c654e2a07516bf784478d6fbad65ad4b8"
+    },
+    {
+      "path": "phenomenology/HNL/decay widths/BrExclusiveMixing\u03bc.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a61ea4d027028e9a55353d11438f198eebacab99",
+      "size": 144330,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/a61ea4d027028e9a55353d11438f198eebacab99"
+    },
+    {
+      "path": "phenomenology/HNL/decay widths/BrExclusiveMixing\u03c4.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6c49537e21246549bfab801485e3eafacf280101",
+      "size": 105105,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/6c49537e21246549bfab801485e3eafacf280101"
+    },
+    {
+      "path": "phenomenology/HNL/decay widths/HNLdecayWidth.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9cf974f66fadfad92db55e81029c5583a84b8b95",
+      "size": 152784,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/9cf974f66fadfad92db55e81029c5583a84b8b95"
+    },
+    {
+      "path": "phenomenology/MCP",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5bba49d481b10a09385f2217dad26aa999b40ac0",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/5bba49d481b10a09385f2217dad26aa999b40ac0"
+    },
+    {
+      "path": "phenomenology/MCP/branching ratios",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c642437b714e9a89f3878c0034a406fc89486f40",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/c642437b714e9a89f3878c0034a406fc89486f40"
+    },
+    {
+      "path": "phenomenology/MCP/branching ratios/BrProd.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b617366ab457f84a0c692b6d2d1301191cdaef39",
+      "size": 274582,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/b617366ab457f84a0c692b6d2d1301191cdaef39"
+    },
+    {
+      "path": "phenomenology/MCP/branching ratios/sigma-Drell-Yan-MCP-FermilabBD.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c6ff31ae1653b55fa9169c7213f62d6458591ae0",
+      "size": 119,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/c6ff31ae1653b55fa9169c7213f62d6458591ae0"
+    },
+    {
+      "path": "phenomenology/MCP/branching ratios/sigma-Drell-Yan-MCP-LHC.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b5a603f0be3ecdc8d542b70cff428bf99f8f2259",
+      "size": 254,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/b5a603f0be3ecdc8d542b70cff428bf99f8f2259"
+    },
+    {
+      "path": "phenomenology/MCP/branching ratios/sigma-Drell-Yan-MCP-SPS.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c9d706a77b41017fbd25a2c2b0af9988b49e4b28",
+      "size": 136,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/c9d706a77b41017fbd25a2c2b0af9988b49e4b28"
+    },
+    {
+      "path": "phenomenology/Scalar",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8e2d12b210a96aee2fb6c2ab45f935d63dfd6a70",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/8e2d12b210a96aee2fb6c2ab45f935d63dfd6a70"
+    },
+    {
+      "path": "phenomenology/Scalar/branching ratios",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "06ccbff7c64647d2a15e578491e12b592de47bf3",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/06ccbff7c64647d2a15e578491e12b592de47bf3"
+    },
+    {
+      "path": "phenomenology/Scalar/branching ratios/BplustoXsSStotal.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "44edd88a94580d434ba75a011b25439fbf76dd8f",
+      "size": 5374,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/44edd88a94580d434ba75a011b25439fbf76dd8f"
+    },
+    {
+      "path": "phenomenology/Scalar/branching ratios/BstoSS.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "61b1f2dbcbc179f0ce6a7fffdb30493b5d4152db",
+      "size": 5016,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/61b1f2dbcbc179f0ce6a7fffdb30493b5d4152db"
+    },
+    {
+      "path": "phenomenology/Scalar/branching ratios/BtoXsSinclusive.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9fc7590a50633b0b46e3cab1075d2ca6d05fac5d",
+      "size": 11547,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/9fc7590a50633b0b46e3cab1075d2ca6d05fac5d"
+    },
+    {
+      "path": "phenomenology/Scalar/branching ratios/BtoXsStotal.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4ccb2e9f776ca88c9f25248581d296733e1359f0",
+      "size": 13380,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/4ccb2e9f776ca88c9f25248581d296733e1359f0"
+    },
+    {
+      "path": "phenomenology/Scalar/branching ratios/K0LtoPiS.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "12b2683541f73d688cd6e7a7d03f54f991042501",
+      "size": 95501,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/12b2683541f73d688cd6e7a7d03f54f991042501"
+    },
+    {
+      "path": "phenomenology/Scalar/branching ratios/KplustoPiS.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "06bceca5b180cd0c232ff006c8832e7b767a6121",
+      "size": 95552,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/06bceca5b180cd0c232ff006c8832e7b767a6121"
+    },
+    {
+      "path": "phenomenology/Scalar/branching ratios/proton-timelike-form-factor-scalar.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eb563bf926f47443d48b696bab655139741d65ce",
+      "size": 6655,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/eb563bf926f47443d48b696bab655139741d65ce"
+    },
+    {
+      "path": "phenomenology/Scalar/decay widths",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "bb0a0a000aaee59e1170635ab0eb4aa4d75c3959",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/bb0a0a000aaee59e1170635ab0eb4aa4d75c3959"
+    },
+    {
+      "path": "phenomenology/Scalar/decay widths/BrRatios.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f9d658b61384f71e4b5c9a80e61036e8bf0da91a",
+      "size": 183844,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/f9d658b61384f71e4b5c9a80e61036e8bf0da91a"
+    },
+    {
+      "path": "phenomenology/Scalar/decay widths/ctauS.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8f247610d76273f2180d668c184f6ddc78e93659",
+      "size": 176859,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/8f247610d76273f2180d668c184f6ddc78e93659"
+    },
+    {
+      "path": "simulated phase space",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9f3455fe00b19e8e51f9060c1cda7d26875878b9",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/9f3455fe00b19e8e51f9060c1cda7d26875878b9"
+    },
+    {
+      "path": "simulated phase space/ALP-gluon_Jets-GG_1.8.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "94ecb16ef4104716d002983e6e5ca71b93ca66a9",
+      "size": 4828074,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/94ecb16ef4104716d002983e6e5ca71b93ca66a9"
+    },
+    {
+      "path": "simulated phase space/ALP-gluon_Jets-GG_2.3.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "783a8863d74ceb7c5d1f16e69afdeb0508c711c4",
+      "size": 4002352,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/783a8863d74ceb7c5d1f16e69afdeb0508c711c4"
+    },
+    {
+      "path": "simulated phase space/ALP-gluon_Jets-GG_2.6.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5bc789096b04162c8d3c53f9b37707b2083a92ad",
+      "size": 1574377,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/5bc789096b04162c8d3c53f9b37707b2083a92ad"
+    },
+    {
+      "path": "simulated phase space/ALP-gluon_Jets-GG_3.6.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5b4e48591048f9133d0bc20fc626fefb1622f50a",
+      "size": 5606859,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/5b4e48591048f9133d0bc20fc626fefb1622f50a"
+    },
+    {
+      "path": "simulated phase space/ALP-gluon_Jets-GG_3.8.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "094c49c531cf6817000e6a8d869b8a99f90c8486",
+      "size": 5578238,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/094c49c531cf6817000e6a8d869b8a99f90c8486"
+    },
+    {
+      "path": "simulated phase space/ALP-gluon_Jets-GG_3.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3e283d2ff82b55e25ea4285795578966e4926a6b",
+      "size": 3967066,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/3e283d2ff82b55e25ea4285795578966e4926a6b"
+    },
+    {
+      "path": "simulated phase space/ALP-gluon_Jets-GG_4.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "525d55c6ec1e8d14cddbb2afca8b50aa3ba91236",
+      "size": 5257501,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/525d55c6ec1e8d14cddbb2afca8b50aa3ba91236"
+    },
+    {
+      "path": "simulated phase space/ALP-gluon_Jets-GG_4.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0798dd45857e79376e8e6f278d3f1e7f6f80d025",
+      "size": 2402442,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/0798dd45857e79376e8e6f278d3f1e7f6f80d025"
+    },
+    {
+      "path": "simulated phase space/ALP-gluon_Jets-GG_5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6fbe73572d537231bb939788c481abab4ebca500",
+      "size": 1070312,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/6fbe73572d537231bb939788c481abab4ebca500"
+    },
+    {
+      "path": "simulated phase space/ALP-gluon_Jets-cc_3.8.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "00279d4a688d20100a68dcc0da38cd535b9a6529",
+      "size": 1993615,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/00279d4a688d20100a68dcc0da38cd535b9a6529"
+    },
+    {
+      "path": "simulated phase space/ALP-gluon_Jets-cc_4.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1dcfdb8d8dc891d14896eb34ea28433eefdf275d",
+      "size": 1552508,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/1dcfdb8d8dc891d14896eb34ea28433eefdf275d"
+    },
+    {
+      "path": "simulated phase space/ALP-gluon_Jets-cc_5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "42fdb3a70fefef300a19516d526daf0c7c099d4d",
+      "size": 1352845,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/42fdb3a70fefef300a19516d526daf0c7c099d4d"
+    },
+    {
+      "path": "simulated phase space/ALP-gluon_Jets-ss_1.8.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f20a6761f83dab2713ed6cef7ddc7bd4ec417990",
+      "size": 1300867,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/f20a6761f83dab2713ed6cef7ddc7bd4ec417990"
+    },
+    {
+      "path": "simulated phase space/ALP-gluon_Jets-ss_2.3.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9afbd0be90b78a59bd2ed058d6a1d9d47fddb3a3",
+      "size": 1117616,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/9afbd0be90b78a59bd2ed058d6a1d9d47fddb3a3"
+    },
+    {
+      "path": "simulated phase space/ALP-gluon_Jets-ss_2.6.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2f43f4df6e0abbf3690cd7dcb76fd7fb3269a149",
+      "size": 1764316,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/2f43f4df6e0abbf3690cd7dcb76fd7fb3269a149"
+    },
+    {
+      "path": "simulated phase space/ALP-gluon_Jets-ss_3.6.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aa9c68ebbc0e1290d435baa710514f9e9121bed5",
+      "size": 2778611,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/aa9c68ebbc0e1290d435baa710514f9e9121bed5"
+    },
+    {
+      "path": "simulated phase space/ALP-gluon_Jets-ss_3.8.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "03963d2538b2e9a11e7744ca62ad213d30ee30f7",
+      "size": 2569809,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/03963d2538b2e9a11e7744ca62ad213d30ee30f7"
+    },
+    {
+      "path": "simulated phase space/ALP-gluon_Jets-ss_3.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "78083e98ee01f1fbef40baa56662e4a410bd8e19",
+      "size": 1710730,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/78083e98ee01f1fbef40baa56662e4a410bd8e19"
+    },
+    {
+      "path": "simulated phase space/B-L_Jets-cc_3.75.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "05584a9fbde77c57afe54b7f7a4f941a608d636e",
+      "size": 1141666,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/05584a9fbde77c57afe54b7f7a4f941a608d636e"
+    },
+    {
+      "path": "simulated phase space/B-L_Jets-cc_4.25.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "46b0b7563c178847c3c561494b211eb6786e7497",
+      "size": 2755233,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/46b0b7563c178847c3c561494b211eb6786e7497"
+    },
+    {
+      "path": "simulated phase space/B-L_Jets-cc_5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "97c4aac65d2f2a0707da81cfea6a559b595e28c0",
+      "size": 1905910,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/97c4aac65d2f2a0707da81cfea6a559b595e28c0"
+    },
+    {
+      "path": "simulated phase space/B-L_Jets-light_1.75.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dbaa91cf48ee996bd457a0ed2fc72f21a1fdb38c",
+      "size": 1319618,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/dbaa91cf48ee996bd457a0ed2fc72f21a1fdb38c"
+    },
+    {
+      "path": "simulated phase space/B-L_Jets-light_2.25.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "259a360b4487e4f560278fafcd0aa2a8e27fc510",
+      "size": 1357402,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/259a360b4487e4f560278fafcd0aa2a8e27fc510"
+    },
+    {
+      "path": "simulated phase space/B-L_Jets-light_2.75.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5377b2310b3b0d28744729d386672b616898eba7",
+      "size": 1733915,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/5377b2310b3b0d28744729d386672b616898eba7"
+    },
+    {
+      "path": "simulated phase space/B-L_Jets-light_3.25.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8f2ac26e58d457456fc2c8d9aeac36ab1ea30c17",
+      "size": 1740492,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/8f2ac26e58d457456fc2c8d9aeac36ab1ea30c17"
+    },
+    {
+      "path": "simulated phase space/B-L_Jets-light_3.75.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "69023178595027c3ad59fa5dab10da62ab477bc1",
+      "size": 3113380,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/69023178595027c3ad59fa5dab10da62ab477bc1"
+    },
+    {
+      "path": "simulated phase space/B-L_Jets-light_4.25.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "65a8c89b71a9777a467dea806291d5500bdf3c29",
+      "size": 2936051,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/65a8c89b71a9777a467dea806291d5500bdf3c29"
+    },
+    {
+      "path": "simulated phase space/B-L_Jets-light_5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dcee25c7cc5b512d68a5989c33dfaef9430a7481",
+      "size": 2864404,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/dcee25c7cc5b512d68a5989c33dfaef9430a7481"
+    },
+    {
+      "path": "simulated phase space/DP_Jets-cc_3.75.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6f007e5641434e0b382b0cd9bc56ae92fc850809",
+      "size": 1141666,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/6f007e5641434e0b382b0cd9bc56ae92fc850809"
+    },
+    {
+      "path": "simulated phase space/DP_Jets-cc_4.25.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "82dd64a91841e27088f68894d5793ff2c8a39c4c",
+      "size": 2108710,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/82dd64a91841e27088f68894d5793ff2c8a39c4c"
+    },
+    {
+      "path": "simulated phase space/DP_Jets-cc_5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0cd474e470de81387ab3950d96793a2aa961e5e3",
+      "size": 2136296,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/0cd474e470de81387ab3950d96793a2aa961e5e3"
+    },
+    {
+      "path": "simulated phase space/DP_Jets-light_1.75.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "217ba7f25d23a54c51f59db481b809327da5ba70",
+      "size": 2926774,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/217ba7f25d23a54c51f59db481b809327da5ba70"
+    },
+    {
+      "path": "simulated phase space/DP_Jets-light_2.25.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "80179586157cf03feeb38eff7d0efbb8b040fbfd",
+      "size": 2568857,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/80179586157cf03feeb38eff7d0efbb8b040fbfd"
+    },
+    {
+      "path": "simulated phase space/DP_Jets-light_2.75.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3e702bfb8570b081ca89c173d0e6f15bb67faf85",
+      "size": 3799725,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/3e702bfb8570b081ca89c173d0e6f15bb67faf85"
+    },
+    {
+      "path": "simulated phase space/DP_Jets-light_3.25.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f2b990fbf9ec6534be09765c1873110f107a2ac1",
+      "size": 3869320,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/f2b990fbf9ec6534be09765c1873110f107a2ac1"
+    },
+    {
+      "path": "simulated phase space/DP_Jets-light_3.75.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3424da6ddbfd5533294031b5dd2abd7eca6b275c",
+      "size": 2808763,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/3424da6ddbfd5533294031b5dd2abd7eca6b275c"
+    },
+    {
+      "path": "simulated phase space/DP_Jets-light_4.25.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d240c3627bedb5b7cb8aa96acd5c56332b39d6ea",
+      "size": 3000646,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/d240c3627bedb5b7cb8aa96acd5c56332b39d6ea"
+    },
+    {
+      "path": "simulated phase space/DP_Jets-light_5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "49cf9cdf338411f793208dda85f3ddf369057259",
+      "size": 2985991,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/49cf9cdf338411f793208dda85f3ddf369057259"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-e_Jets-qql_1.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0e030a4110e956061f2b48833b13b7c8c6170674",
+      "size": 7013164,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/0e030a4110e956061f2b48833b13b7c8c6170674"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-e_Jets-qql_11.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b34c903e3b109e5c02e149f3983d773b21052d36",
+      "size": 4133805,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/b34c903e3b109e5c02e149f3983d773b21052d36"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-e_Jets-qql_15.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "de720a308bffa5beb6360bc041fc45cf72ab9bca",
+      "size": 3223111,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/de720a308bffa5beb6360bc041fc45cf72ab9bca"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-e_Jets-qql_2.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4789b2dac15e48a145d9dd10113fd989b71e6339",
+      "size": 5379960,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/4789b2dac15e48a145d9dd10113fd989b71e6339"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-e_Jets-qql_2.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "63a352dee6d64045b6f1dd5355c4e7584d27d56f",
+      "size": 5988554,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/63a352dee6d64045b6f1dd5355c4e7584d27d56f"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-e_Jets-qql_3.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "408f343f69466122ade431740826984adf0b0874",
+      "size": 4173079,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/408f343f69466122ade431740826984adf0b0874"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-e_Jets-qql_3.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "73c01352bd52fa2b9e1eb3b33267f2cec09d75b9",
+      "size": 4761856,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/73c01352bd52fa2b9e1eb3b33267f2cec09d75b9"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-e_Jets-qql_4.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "df72ab5211f670c05f9978b52b6d2f70336ae55c",
+      "size": 3220385,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/df72ab5211f670c05f9978b52b6d2f70336ae55c"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-e_Jets-qql_4.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bd21eaad3ce3b5cf46379e8757976850de830c9a",
+      "size": 3254750,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/bd21eaad3ce3b5cf46379e8757976850de830c9a"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-e_Jets-qql_5.3.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "47b3d2b2697466c50f4b247c207d4aae7e5354c1",
+      "size": 2929256,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/47b3d2b2697466c50f4b247c207d4aae7e5354c1"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-e_Jets-qql_6.3.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ebaddfbee0066443306413d8ae49830df7bda5bb",
+      "size": 2430453,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/ebaddfbee0066443306413d8ae49830df7bda5bb"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-e_Jets-qql_8.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a07a59a0700f914658458a420dc6c12e5c016a7b",
+      "size": 1700895,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/a07a59a0700f914658458a420dc6c12e5c016a7b"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-e_Jets-qqv_1.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "db2a9c762838be7fa696601450a5fee6302d798b",
+      "size": 1919554,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/db2a9c762838be7fa696601450a5fee6302d798b"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-e_Jets-qqv_11.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c2047742a97992e157f2b2828330417f29793f8b",
+      "size": 3928305,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/c2047742a97992e157f2b2828330417f29793f8b"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-e_Jets-qqv_15.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b324a2a01b48d2d2d9e1cf4415be55c142231d78",
+      "size": 3042789,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/b324a2a01b48d2d2d9e1cf4415be55c142231d78"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-e_Jets-qqv_2.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c241f09cd3781c3901b81eaf2640cb86f00b2d59",
+      "size": 1685109,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/c241f09cd3781c3901b81eaf2640cb86f00b2d59"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-e_Jets-qqv_2.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f3b9903478074d847c4b369cab988d15a9a93a77",
+      "size": 2075091,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/f3b9903478074d847c4b369cab988d15a9a93a77"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-e_Jets-qqv_3.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a6b212e6f25cd52fc7847b81ae04db2677c87ff7",
+      "size": 1700203,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/a6b212e6f25cd52fc7847b81ae04db2677c87ff7"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-e_Jets-qqv_3.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5822408b62095202f8508499e87077c034993b78",
+      "size": 1877025,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/5822408b62095202f8508499e87077c034993b78"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-e_Jets-qqv_4.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a63b602c6976e5f4d6b32a10b4344d3d0f4b351d",
+      "size": 2213394,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/a63b602c6976e5f4d6b32a10b4344d3d0f4b351d"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-e_Jets-qqv_4.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7beab60c33acc2b0d750824cbffa1f097f3f6cb9",
+      "size": 1504446,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/7beab60c33acc2b0d750824cbffa1f097f3f6cb9"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-e_Jets-qqv_5.3.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2120e9abfa12ef7f7956135c85d14086e1df9c70",
+      "size": 2013146,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/2120e9abfa12ef7f7956135c85d14086e1df9c70"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-e_Jets-qqv_6.3.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fd87eee239d56caf949e56d82a915e64263dbc66",
+      "size": 2635837,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/fd87eee239d56caf949e56d82a915e64263dbc66"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-e_Jets-qqv_8.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fd8035d5e7e767e894f39edf0c2a1085c9ff50ac",
+      "size": 3082851,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/fd8035d5e7e767e894f39edf0c2a1085c9ff50ac"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-mu_Jets-qql_1.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ae47b8a9549ce97d36f0c30b2ef2ffabfce1d3b8",
+      "size": 7013164,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/ae47b8a9549ce97d36f0c30b2ef2ffabfce1d3b8"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-mu_Jets-qql_11.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0a961969f3ef2d659dd91543fb48e5ea2229565f",
+      "size": 4133805,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/0a961969f3ef2d659dd91543fb48e5ea2229565f"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-mu_Jets-qql_15.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9b236fcfa5ffae9d340afd5607a1c18b6e0774a4",
+      "size": 3223111,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/9b236fcfa5ffae9d340afd5607a1c18b6e0774a4"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-mu_Jets-qql_2.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0206f7b8b7a4d776ea9eb6b7bee91cf5a7fae515",
+      "size": 5379960,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/0206f7b8b7a4d776ea9eb6b7bee91cf5a7fae515"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-mu_Jets-qql_2.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "92f859af32b31db3a6a2c2794c6c4b62ed8be256",
+      "size": 6190736,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/92f859af32b31db3a6a2c2794c6c4b62ed8be256"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-mu_Jets-qql_3.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1af9bcbc1886df6cd21c2dff88188468e9100f22",
+      "size": 4173079,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/1af9bcbc1886df6cd21c2dff88188468e9100f22"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-mu_Jets-qql_3.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2ba2d25ffff42f7f9b6497c0748a700b7406f46b",
+      "size": 4761856,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/2ba2d25ffff42f7f9b6497c0748a700b7406f46b"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-mu_Jets-qql_4.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c0ad8489ff79f2b28a882d83f41b47bded630344",
+      "size": 3220385,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/c0ad8489ff79f2b28a882d83f41b47bded630344"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-mu_Jets-qql_4.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aac02f3cfbc86184d5d0f2d26efb40f3cf0cf919",
+      "size": 3563347,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/aac02f3cfbc86184d5d0f2d26efb40f3cf0cf919"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-mu_Jets-qql_5.3.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3cf97c9302e9b0e07d943ad0ebce68f44a6584e8",
+      "size": 2523852,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/3cf97c9302e9b0e07d943ad0ebce68f44a6584e8"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-mu_Jets-qql_6.3.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4884900444f0f348940c6b7f61dc0783f50e5be0",
+      "size": 2430453,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/4884900444f0f348940c6b7f61dc0783f50e5be0"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-mu_Jets-qql_8.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "805b5353309f56f6973c54284e73613e1b0f32fe",
+      "size": 1666286,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/805b5353309f56f6973c54284e73613e1b0f32fe"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-tau_Jets-qql_1.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "955f06189a521e09132d64a8da55359adcf02c7c",
+      "size": 7070417,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/955f06189a521e09132d64a8da55359adcf02c7c"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-tau_Jets-qql_11.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "12511cc328f02b87c4612cd63710697c26e4a2b0",
+      "size": 4286021,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/12511cc328f02b87c4612cd63710697c26e4a2b0"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-tau_Jets-qql_15.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "38f1cd7b7b1db5d741e6cd475f4870a9bcf1fe18",
+      "size": 3176945,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/38f1cd7b7b1db5d741e6cd475f4870a9bcf1fe18"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-tau_Jets-qql_2.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7a12e2fc092a6cd0bcf21887f5f8dbb6f0d8459b",
+      "size": 2419483,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/7a12e2fc092a6cd0bcf21887f5f8dbb6f0d8459b"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-tau_Jets-qql_3.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6d5e5093a054ae0e14b4368752790b17b97206cb",
+      "size": 1918640,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/6d5e5093a054ae0e14b4368752790b17b97206cb"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-tau_Jets-qql_3.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cd61293b8e9aeee2798c1a5dea0245d05627a408",
+      "size": 2437397,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/cd61293b8e9aeee2798c1a5dea0245d05627a408"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-tau_Jets-qql_4.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fd62d3f32e041208e61e013247652fea0cecee0d",
+      "size": 3476360,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/fd62d3f32e041208e61e013247652fea0cecee0d"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-tau_Jets-qql_4.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f9f80179f3814ab2bbf4dbe7c471b2afaf426d7f",
+      "size": 3307853,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/f9f80179f3814ab2bbf4dbe7c471b2afaf426d7f"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-tau_Jets-qql_5.3.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "17c34323d746351bb4057621b73af9305177972a",
+      "size": 3035224,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/17c34323d746351bb4057621b73af9305177972a"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-tau_Jets-qql_6.3.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2bb3bc9c54b7f9f96dcb9fba7366bb2b0f367d8c",
+      "size": 2298338,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/2bb3bc9c54b7f9f96dcb9fba7366bb2b0f367d8c"
+    },
+    {
+      "path": "simulated phase space/HNL-mixing-tau_Jets-qql_8.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bc7ae0e331c203c38ab4e3b6fc053c28effb0439",
+      "size": 1624765,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/bc7ae0e331c203c38ab4e3b6fc053c28effb0439"
+    },
+    {
+      "path": "simulated phase space/Scalar_Jets-GG_2.2.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2406dd7672bf1a33e79815afba2a51a9279eff2d",
+      "size": 1344190,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/2406dd7672bf1a33e79815afba2a51a9279eff2d"
+    },
+    {
+      "path": "simulated phase space/Scalar_Jets-GG_2.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fb7e639d100df83d90f2dbf1d5328a52cfd551ac",
+      "size": 3885124,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/fb7e639d100df83d90f2dbf1d5328a52cfd551ac"
+    },
+    {
+      "path": "simulated phase space/Scalar_Jets-GG_3.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "35b1c039458dd58f6d75e3d95a8870478b93c172",
+      "size": 2832661,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/35b1c039458dd58f6d75e3d95a8870478b93c172"
+    },
+    {
+      "path": "simulated phase space/Scalar_Jets-GG_3.6.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f07801545af557b39d4308afc669780cc119bb84",
+      "size": 2784621,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/f07801545af557b39d4308afc669780cc119bb84"
+    },
+    {
+      "path": "simulated phase space/Scalar_Jets-GG_3.8.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "18c4f413a2cb33256de9cbb660e4be27adc8d58b",
+      "size": 1822867,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/18c4f413a2cb33256de9cbb660e4be27adc8d58b"
+    },
+    {
+      "path": "simulated phase space/Scalar_Jets-GG_3.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "86990e490bae37dec26945976d87c8fcf1d8f6a2",
+      "size": 3967073,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/86990e490bae37dec26945976d87c8fcf1d8f6a2"
+    },
+    {
+      "path": "simulated phase space/Scalar_Jets-GG_4.7.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "768dbd64dbafdce0c2b1885bfdbe695a2aa1d8e2",
+      "size": 2851255,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/768dbd64dbafdce0c2b1885bfdbe695a2aa1d8e2"
+    },
+    {
+      "path": "simulated phase space/Scalar_Jets-GG_4.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f68d17451f836b18472b14c77d6668e948cc7c8b",
+      "size": 2402443,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/f68d17451f836b18472b14c77d6668e948cc7c8b"
+    },
+    {
+      "path": "simulated phase space/Scalar_Jets-GG_5.1.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d783cb89c209fc5089e8128ba02b624265d74644",
+      "size": 2055746,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/d783cb89c209fc5089e8128ba02b624265d74644"
+    },
+    {
+      "path": "simulated phase space/Scalar_Jets-bb_10.9.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dd830f748ae05745a5b43235778ae6a06930d30f",
+      "size": 19537009,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/dd830f748ae05745a5b43235778ae6a06930d30f"
+    },
+    {
+      "path": "simulated phase space/Scalar_Jets-bb_14.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "42e2972a75570cf3e418f0e0632540189d4de42c",
+      "size": 11106522,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/42e2972a75570cf3e418f0e0632540189d4de42c"
+    },
+    {
+      "path": "simulated phase space/Scalar_Jets-bb_20.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8e059ebdb42bc87408bdf4b4f0b0dc16d22a55ed",
+      "size": 11273908,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/8e059ebdb42bc87408bdf4b4f0b0dc16d22a55ed"
+    },
+    {
+      "path": "simulated phase space/Scalar_Jets-bb_30.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "89459cbb235a502dae2f6349dc38f1ede0855fe2",
+      "size": 5930611,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/89459cbb235a502dae2f6349dc38f1ede0855fe2"
+    },
+    {
+      "path": "simulated phase space/Scalar_Jets-bb_45.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "08e861176704d881793d9ba16772fe4bd7334d34",
+      "size": 2911174,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/08e861176704d881793d9ba16772fe4bd7334d34"
+    },
+    {
+      "path": "simulated phase space/Scalar_Jets-bb_62.49.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ae27f7efaef1ef87b526a85ff9a7868d592a1754",
+      "size": 3773432,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/ae27f7efaef1ef87b526a85ff9a7868d592a1754"
+    },
+    {
+      "path": "simulated phase space/Scalar_Jets-cc_10.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d3402925edb2dae2ce997b6f18b9ad85e0d8bef3",
+      "size": 1963454,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/d3402925edb2dae2ce997b6f18b9ad85e0d8bef3"
+    },
+    {
+      "path": "simulated phase space/Scalar_Jets-cc_10.9.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c847efaa4a3606174644327fb0af0e2334fdc30e",
+      "size": 1531731,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/c847efaa4a3606174644327fb0af0e2334fdc30e"
+    },
+    {
+      "path": "simulated phase space/Scalar_Jets-cc_14.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1cb4c321c594d5da758047c1cfff5f917d463da5",
+      "size": 2624458,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/1cb4c321c594d5da758047c1cfff5f917d463da5"
+    },
+    {
+      "path": "simulated phase space/Scalar_Jets-cc_3.8.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "710d3247a795bc60e8a2401f8d612f2cb743d706",
+      "size": 4590867,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/710d3247a795bc60e8a2401f8d612f2cb743d706"
+    },
+    {
+      "path": "simulated phase space/Scalar_Jets-cc_4.7.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "65331a18baa5e184b69de76fb451ebf53b33cb18",
+      "size": 2881044,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/65331a18baa5e184b69de76fb451ebf53b33cb18"
+    },
+    {
+      "path": "simulated phase space/Scalar_Jets-cc_4.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "769fec493916577cf194d0ed6a481dfdd24fb548",
+      "size": 4433092,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/769fec493916577cf194d0ed6a481dfdd24fb548"
+    },
+    {
+      "path": "simulated phase space/Scalar_Jets-cc_5.1.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "11efc2aa2b1da4cc8a32b20cacff5cd9f2c65c47",
+      "size": 2392435,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/11efc2aa2b1da4cc8a32b20cacff5cd9f2c65c47"
+    },
+    {
+      "path": "simulated phase space/Scalar_Jets-cc_7.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f147c52eb0700e46af73b7d262f7e9a5968d9e5",
+      "size": 3435962,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/9f147c52eb0700e46af73b7d262f7e9a5968d9e5"
+    },
+    {
+      "path": "simulated phase space/Scalar_Jets-ss_2.2.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e6d91105a57e078a54d7aca5c05ee47178e030d2",
+      "size": 937885,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/e6d91105a57e078a54d7aca5c05ee47178e030d2"
+    },
+    {
+      "path": "simulated phase space/Scalar_Jets-ss_2.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b6dfb7bfc0f60e14097ab626a3fc234461a5a2ca",
+      "size": 967618,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/b6dfb7bfc0f60e14097ab626a3fc234461a5a2ca"
+    },
+    {
+      "path": "simulated phase space/Scalar_Jets-ss_3.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "24ea5c11c644b4a02205173566470f5e56a493d0",
+      "size": 910144,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/24ea5c11c644b4a02205173566470f5e56a493d0"
+    },
+    {
+      "path": "simulated phase space/Scalar_Jets-ss_3.6.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6d61c171ed01cab2fb463c7864898ffe8fa1e586",
+      "size": 908624,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/6d61c171ed01cab2fb463c7864898ffe8fa1e586"
+    },
+    {
+      "path": "simulated phase space/Scalar_Jets-ss_3.8.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e6d234df3b8bc7919a2e9cde4bd8b86e6e4a79f7",
+      "size": 872031,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/e6d234df3b8bc7919a2e9cde4bd8b86e6e4a79f7"
+    },
+    {
+      "path": "simulated phase space/Scalar_Jets-ss_3.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0c81a9dc739e8c4160d855bbd73207d0da2b64fd",
+      "size": 867995,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/0c81a9dc739e8c4160d855bbd73207d0da2b64fd"
+    },
+    {
+      "path": "simulated phase space/alp-gg-1.8.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "565a9d3476b42031ef7489f7a9acc7e7dc3d4a05",
+      "size": 378413,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/565a9d3476b42031ef7489f7a9acc7e7dc3d4a05"
+    },
+    {
+      "path": "simulated phase space/alp-gg-1.8.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "94ecb16ef4104716d002983e6e5ca71b93ca66a9",
+      "size": 4828074,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/94ecb16ef4104716d002983e6e5ca71b93ca66a9"
+    },
+    {
+      "path": "simulated phase space/alp-gg-2.3.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "34b04fd81d7e8341c945fd448d30b089aabf19d5",
+      "size": 376803,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/34b04fd81d7e8341c945fd448d30b089aabf19d5"
+    },
+    {
+      "path": "simulated phase space/alp-gg-2.3.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "783a8863d74ceb7c5d1f16e69afdeb0508c711c4",
+      "size": 4002352,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/783a8863d74ceb7c5d1f16e69afdeb0508c711c4"
+    },
+    {
+      "path": "simulated phase space/alp-gg-3.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3d789f3f070a320d1b33cdc6e64b4fe3d4905a0e",
+      "size": 571969,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/3d789f3f070a320d1b33cdc6e64b4fe3d4905a0e"
+    },
+    {
+      "path": "simulated phase space/alp-gg-3.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3e283d2ff82b55e25ea4285795578966e4926a6b",
+      "size": 3967066,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/3e283d2ff82b55e25ea4285795578966e4926a6b"
+    },
+    {
+      "path": "simulated phase space/alp-gg-4.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "574d7131c82e5319b78e527a7c34b27ef75f452f",
+      "size": 954444,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/574d7131c82e5319b78e527a7c34b27ef75f452f"
+    },
+    {
+      "path": "simulated phase space/alp-gg-4.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0798dd45857e79376e8e6f278d3f1e7f6f80d025",
+      "size": 2402442,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/0798dd45857e79376e8e6f278d3f1e7f6f80d025"
+    },
+    {
+      "path": "simulated phase space/alp-gg-5.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "902b6fa71f3ffa8a978ad14d9c9a2903f1e4d209",
+      "size": 950149,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/902b6fa71f3ffa8a978ad14d9c9a2903f1e4d209"
+    },
+    {
+      "path": "simulated phase space/alp-gg-5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6fbe73572d537231bb939788c481abab4ebca500",
+      "size": 1070312,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/6fbe73572d537231bb939788c481abab4ebca500"
+    },
+    {
+      "path": "simulated phase space/dp-uu-1.75.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "04e789d59562a07c5567a59204968690f79ccf63",
+      "size": 378651,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/04e789d59562a07c5567a59204968690f79ccf63"
+    },
+    {
+      "path": "simulated phase space/dp-uu-1.75.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "71c5359c08fd4e9f85bc5b240d7d13a162012049",
+      "size": 5081747,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/71c5359c08fd4e9f85bc5b240d7d13a162012049"
+    },
+    {
+      "path": "simulated phase space/dp-uu-2.25.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "723c95967f438cd312eb6e50e74b8cc7a2b1336b",
+      "size": 376897,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/723c95967f438cd312eb6e50e74b8cc7a2b1336b"
+    },
+    {
+      "path": "simulated phase space/dp-uu-2.25.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f5fab265ac14b067da21444551c43b7a8f46f397",
+      "size": 4525976,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/f5fab265ac14b067da21444551c43b7a8f46f397"
+    },
+    {
+      "path": "simulated phase space/dp-uu-2.75.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fabc27ac27105ebe69b5ae7171738ce31a0bb75d",
+      "size": 563305,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/fabc27ac27105ebe69b5ae7171738ce31a0bb75d"
+    },
+    {
+      "path": "simulated phase space/dp-uu-2.75.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "066cb57c098d21a1694bab7ffabb3a84f6f9bf70",
+      "size": 4097051,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/066cb57c098d21a1694bab7ffabb3a84f6f9bf70"
+    },
+    {
+      "path": "simulated phase space/dp-uu-3.25.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "701b08a616c5322fd2312df2411a6f7a15831796",
+      "size": 571324,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/701b08a616c5322fd2312df2411a6f7a15831796"
+    },
+    {
+      "path": "simulated phase space/dp-uu-3.25.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "91935b5bf6af5c8a334918c0f780f932d5f7718b",
+      "size": 4498211,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/91935b5bf6af5c8a334918c0f780f932d5f7718b"
+    },
+    {
+      "path": "simulated phase space/dp-uu-3.75.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ca48cb573683d8423071fbb96a3bc58e25ceea4d",
+      "size": 757562,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/ca48cb573683d8423071fbb96a3bc58e25ceea4d"
+    },
+    {
+      "path": "simulated phase space/dp-uu-3.75.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c8e5e54cd456798bc1359a08c72368237a0f40c5",
+      "size": 3544502,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/c8e5e54cd456798bc1359a08c72368237a0f40c5"
+    },
+    {
+      "path": "simulated phase space/dp-uu-4.25.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b597f733517a009fa5cd1ad1c55b3216ac823264",
+      "size": 755713,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/b597f733517a009fa5cd1ad1c55b3216ac823264"
+    },
+    {
+      "path": "simulated phase space/dp-uu-4.25.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b326c85d44f5b7fdf69cc5cb6aeb871e18d3ac6e",
+      "size": 2709792,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/b326c85d44f5b7fdf69cc5cb6aeb871e18d3ac6e"
+    },
+    {
+      "path": "simulated phase space/dp-uu-5.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f0ac1d76906f284a62f60222fc0dfc30fdd682e0",
+      "size": 753682,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/f0ac1d76906f284a62f60222fc0dfc30fdd682e0"
+    },
+    {
+      "path": "simulated phase space/dp-uu-5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9d159aff8549d90f6a49df5c0d04dad24a0f60a6",
+      "size": 1962030,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/9d159aff8549d90f6a49df5c0d04dad24a0f60a6"
+    },
+    {
+      "path": "simulated phase space/hnl_e-qql-1.5.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e5e9ec1111e6e13b8c46b6a0517070460f2f91ff",
+      "size": 363210,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/e5e9ec1111e6e13b8c46b6a0517070460f2f91ff"
+    },
+    {
+      "path": "simulated phase space/hnl_e-qql-1.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0e030a4110e956061f2b48833b13b7c8c6170674",
+      "size": 7013164,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/0e030a4110e956061f2b48833b13b7c8c6170674"
+    },
+    {
+      "path": "simulated phase space/hnl_e-qql-2.5.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e3bd0a8cf26880eb458217f7db5fa82b69b7026d",
+      "size": 360175,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/e3bd0a8cf26880eb458217f7db5fa82b69b7026d"
+    },
+    {
+      "path": "simulated phase space/hnl_e-qql-2.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4789b2dac15e48a145d9dd10113fd989b71e6339",
+      "size": 5379960,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/4789b2dac15e48a145d9dd10113fd989b71e6339"
+    },
+    {
+      "path": "simulated phase space/hnl_e-qql-2.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f9f6394e92509617b79b38d7dab39694e751cb57",
+      "size": 361724,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/f9f6394e92509617b79b38d7dab39694e751cb57"
+    },
+    {
+      "path": "simulated phase space/hnl_e-qql-2.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "63a352dee6d64045b6f1dd5355c4e7584d27d56f",
+      "size": 5988554,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/63a352dee6d64045b6f1dd5355c4e7584d27d56f"
+    },
+    {
+      "path": "simulated phase space/hnl_e-qql-3.5.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2850bde29862c3ad1de311b8596f6925752ae1f6",
+      "size": 357736,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/2850bde29862c3ad1de311b8596f6925752ae1f6"
+    },
+    {
+      "path": "simulated phase space/hnl_e-qql-3.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "408f343f69466122ade431740826984adf0b0874",
+      "size": 4173079,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/408f343f69466122ade431740826984adf0b0874"
+    },
+    {
+      "path": "simulated phase space/hnl_e-qql-3.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3341f966e8ea44a433965e412ff87bc86de0f2c9",
+      "size": 358788,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/3341f966e8ea44a433965e412ff87bc86de0f2c9"
+    },
+    {
+      "path": "simulated phase space/hnl_e-qql-3.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "73c01352bd52fa2b9e1eb3b33267f2cec09d75b9",
+      "size": 4761856,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/73c01352bd52fa2b9e1eb3b33267f2cec09d75b9"
+    },
+    {
+      "path": "simulated phase space/hnl_e-qql-4.5.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c71446c163973ee9764ffce2b662835c26b54113",
+      "size": 553610,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/c71446c163973ee9764ffce2b662835c26b54113"
+    },
+    {
+      "path": "simulated phase space/hnl_e-qql-4.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "df72ab5211f670c05f9978b52b6d2f70336ae55c",
+      "size": 3220385,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/df72ab5211f670c05f9978b52b6d2f70336ae55c"
+    },
+    {
+      "path": "simulated phase space/hnl_e-qql-4.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4e84fdca664d2deea5709542af6ca8ed2f5d4e02",
+      "size": 356704,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/4e84fdca664d2deea5709542af6ca8ed2f5d4e02"
+    },
+    {
+      "path": "simulated phase space/hnl_e-qql-4.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bd21eaad3ce3b5cf46379e8757976850de830c9a",
+      "size": 3254750,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/bd21eaad3ce3b5cf46379e8757976850de830c9a"
+    },
+    {
+      "path": "simulated phase space/hnl_e-qql-5.3.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1f92a3412a8558aec3d85b6eee4413ca3d7cddb5",
+      "size": 551904,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/1f92a3412a8558aec3d85b6eee4413ca3d7cddb5"
+    },
+    {
+      "path": "simulated phase space/hnl_e-qql-5.3.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "47b3d2b2697466c50f4b247c207d4aae7e5354c1",
+      "size": 2929256,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/47b3d2b2697466c50f4b247c207d4aae7e5354c1"
+    },
+    {
+      "path": "simulated phase space/hnl_e-qql-6.3.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b327849598dec27ea3f106e2bb2a0b517b9ae02a",
+      "size": 550499,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/b327849598dec27ea3f106e2bb2a0b517b9ae02a"
+    },
+    {
+      "path": "simulated phase space/hnl_e-qql-6.3.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ebaddfbee0066443306413d8ae49830df7bda5bb",
+      "size": 2430453,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/ebaddfbee0066443306413d8ae49830df7bda5bb"
+    },
+    {
+      "path": "simulated phase space/hnl_e-qql-8.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "31c6cc6fe70d43bc1b824b8734d61cc1bc117846",
+      "size": 736369,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/31c6cc6fe70d43bc1b824b8734d61cc1bc117846"
+    },
+    {
+      "path": "simulated phase space/hnl_e-qql-8.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a07a59a0700f914658458a420dc6c12e5c016a7b",
+      "size": 1700895,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/a07a59a0700f914658458a420dc6c12e5c016a7b"
+    },
+    {
+      "path": "simulated phase space/hnl_mu-qql-1.5.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a1d3cd5743dac90f43e74d7d15c25160979f3b2e",
+      "size": 362232,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/a1d3cd5743dac90f43e74d7d15c25160979f3b2e"
+    },
+    {
+      "path": "simulated phase space/hnl_mu-qql-1.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ae47b8a9549ce97d36f0c30b2ef2ffabfce1d3b8",
+      "size": 7013164,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/ae47b8a9549ce97d36f0c30b2ef2ffabfce1d3b8"
+    },
+    {
+      "path": "simulated phase space/hnl_mu-qql-2.5.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8e2ec48ca47f11fd19d2aeef542317aa4944735f",
+      "size": 359172,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/8e2ec48ca47f11fd19d2aeef542317aa4944735f"
+    },
+    {
+      "path": "simulated phase space/hnl_mu-qql-2.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0206f7b8b7a4d776ea9eb6b7bee91cf5a7fae515",
+      "size": 5379960,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/0206f7b8b7a4d776ea9eb6b7bee91cf5a7fae515"
+    },
+    {
+      "path": "simulated phase space/hnl_mu-qql-2.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea8e05b21f9d597523dc2492a3f687b1fd3fe509",
+      "size": 360730,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/ea8e05b21f9d597523dc2492a3f687b1fd3fe509"
+    },
+    {
+      "path": "simulated phase space/hnl_mu-qql-2.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "92f859af32b31db3a6a2c2794c6c4b62ed8be256",
+      "size": 6190736,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/92f859af32b31db3a6a2c2794c6c4b62ed8be256"
+    },
+    {
+      "path": "simulated phase space/hnl_mu-qql-3.5.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b2f43c66cc3db2745fea828833808b8bfbd561d",
+      "size": 356730,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/8b2f43c66cc3db2745fea828833808b8bfbd561d"
+    },
+    {
+      "path": "simulated phase space/hnl_mu-qql-3.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1af9bcbc1886df6cd21c2dff88188468e9100f22",
+      "size": 4173079,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/1af9bcbc1886df6cd21c2dff88188468e9100f22"
+    },
+    {
+      "path": "simulated phase space/hnl_mu-qql-3.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "afaf3b490b0c68edb3ec383cade6f0ec9c562a5b",
+      "size": 357792,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/afaf3b490b0c68edb3ec383cade6f0ec9c562a5b"
+    },
+    {
+      "path": "simulated phase space/hnl_mu-qql-3.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2ba2d25ffff42f7f9b6497c0748a700b7406f46b",
+      "size": 4761856,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/2ba2d25ffff42f7f9b6497c0748a700b7406f46b"
+    },
+    {
+      "path": "simulated phase space/hnl_mu-qql-4.5.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dd80cd16a272fe0e79fe67da97357755195f730b",
+      "size": 552621,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/dd80cd16a272fe0e79fe67da97357755195f730b"
+    },
+    {
+      "path": "simulated phase space/hnl_mu-qql-4.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c0ad8489ff79f2b28a882d83f41b47bded630344",
+      "size": 3220385,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/c0ad8489ff79f2b28a882d83f41b47bded630344"
+    },
+    {
+      "path": "simulated phase space/hnl_mu-qql-4.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "512d1969d729b242c260dc06050a4bb4211c5683",
+      "size": 554167,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/512d1969d729b242c260dc06050a4bb4211c5683"
+    },
+    {
+      "path": "simulated phase space/hnl_mu-qql-4.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aac02f3cfbc86184d5d0f2d26efb40f3cf0cf919",
+      "size": 3563347,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/aac02f3cfbc86184d5d0f2d26efb40f3cf0cf919"
+    },
+    {
+      "path": "simulated phase space/hnl_mu-qql-5.3.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "631e3e2f69c44943d3252be284d9653fcc975c4d",
+      "size": 550893,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/631e3e2f69c44943d3252be284d9653fcc975c4d"
+    },
+    {
+      "path": "simulated phase space/hnl_mu-qql-5.3.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3cf97c9302e9b0e07d943ad0ebce68f44a6584e8",
+      "size": 2523852,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/3cf97c9302e9b0e07d943ad0ebce68f44a6584e8"
+    },
+    {
+      "path": "simulated phase space/hnl_mu-qql-6.3.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "de95ac7666a08784f64bc3b3475edf4060114ddf",
+      "size": 549464,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/de95ac7666a08784f64bc3b3475edf4060114ddf"
+    },
+    {
+      "path": "simulated phase space/hnl_mu-qql-6.3.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4884900444f0f348940c6b7f61dc0783f50e5be0",
+      "size": 2430453,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/4884900444f0f348940c6b7f61dc0783f50e5be0"
+    },
+    {
+      "path": "simulated phase space/hnl_mu-qql-8.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e2aa37de896b2085ca90feac742388c22a06c872",
+      "size": 547628,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/e2aa37de896b2085ca90feac742388c22a06c872"
+    },
+    {
+      "path": "simulated phase space/hnl_mu-qql-8.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "805b5353309f56f6973c54284e73613e1b0f32fe",
+      "size": 1666286,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/805b5353309f56f6973c54284e73613e1b0f32fe"
+    },
+    {
+      "path": "simulated phase space/hnl_tau-qql-1.5.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b434363ef7c922e8265d846eb5c48b3946d002eb",
+      "size": 268488,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/b434363ef7c922e8265d846eb5c48b3946d002eb"
+    },
+    {
+      "path": "simulated phase space/hnl_tau-qql-1.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "955f06189a521e09132d64a8da55359adcf02c7c",
+      "size": 7070417,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/955f06189a521e09132d64a8da55359adcf02c7c"
+    },
+    {
+      "path": "simulated phase space/hnl_tau-qql-2.5.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b45b46c92e1ab4083b8b6616ea9159ac561e0482",
+      "size": 265804,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/b45b46c92e1ab4083b8b6616ea9159ac561e0482"
+    },
+    {
+      "path": "simulated phase space/hnl_tau-qql-2.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b4fce82571f0232ca95893efaec04dfabf63efa9",
+      "size": 6553177,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/b4fce82571f0232ca95893efaec04dfabf63efa9"
+    },
+    {
+      "path": "simulated phase space/hnl_tau-qql-2.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f240462256a14fa2a7a296de27f275121b4410ad",
+      "size": 267134,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/f240462256a14fa2a7a296de27f275121b4410ad"
+    },
+    {
+      "path": "simulated phase space/hnl_tau-qql-2.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "91a618e984c30b4ace36a601906a9d39ef2f23dc",
+      "size": 6915348,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/91a618e984c30b4ace36a601906a9d39ef2f23dc"
+    },
+    {
+      "path": "simulated phase space/hnl_tau-qql-3.5.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f8f69ea20d28859bb3a2b25e68bdddc7c33b14a8",
+      "size": 559564,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/f8f69ea20d28859bb3a2b25e68bdddc7c33b14a8"
+    },
+    {
+      "path": "simulated phase space/hnl_tau-qql-3.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ffdbbebbde1ea13093583d7c3f7ae1d87b5329f8",
+      "size": 4594663,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/ffdbbebbde1ea13093583d7c3f7ae1d87b5329f8"
+    },
+    {
+      "path": "simulated phase space/hnl_tau-qql-3.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6a84ba9860a2499c06db905f52d188442f8e2079",
+      "size": 451993,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/6a84ba9860a2499c06db905f52d188442f8e2079"
+    },
+    {
+      "path": "simulated phase space/hnl_tau-qql-3.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "98dad08707638bee8d1c8c05ec42ce1e3def1244",
+      "size": 5909873,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/98dad08707638bee8d1c8c05ec42ce1e3def1244"
+    },
+    {
+      "path": "simulated phase space/hnl_tau-qql-4.5.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "baba494c9ae88a23fec5c70f7427e5c6b1e0c575",
+      "size": 848596,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/baba494c9ae88a23fec5c70f7427e5c6b1e0c575"
+    },
+    {
+      "path": "simulated phase space/hnl_tau-qql-4.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1498ef666741eea3ced0f49871b998af4ce3a013",
+      "size": 4000022,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/1498ef666741eea3ced0f49871b998af4ce3a013"
+    },
+    {
+      "path": "simulated phase space/hnl_tau-qql-4.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a718e74d749d776b399e0653c51013d9ca6f842f",
+      "size": 661912,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/a718e74d749d776b399e0653c51013d9ca6f842f"
+    },
+    {
+      "path": "simulated phase space/hnl_tau-qql-4.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c6a5ebae3b98a0d058a532c1ec9bf3df19771165",
+      "size": 3938028,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/c6a5ebae3b98a0d058a532c1ec9bf3df19771165"
+    },
+    {
+      "path": "simulated phase space/hnl_tau-qql-5.3.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "87259b06374e610b0fc276c7147cb817b553ab3a",
+      "size": 846436,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/87259b06374e610b0fc276c7147cb817b553ab3a"
+    },
+    {
+      "path": "simulated phase space/hnl_tau-qql-5.3.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "17c34323d746351bb4057621b73af9305177972a",
+      "size": 3035224,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/17c34323d746351bb4057621b73af9305177972a"
+    },
+    {
+      "path": "simulated phase space/hnl_tau-qql-6.3.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2a7c6af48fb336af894f243147a420369597eb4b",
+      "size": 844145,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/2a7c6af48fb336af894f243147a420369597eb4b"
+    },
+    {
+      "path": "simulated phase space/hnl_tau-qql-6.3.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2bb3bc9c54b7f9f96dcb9fba7366bb2b0f367d8c",
+      "size": 2298338,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/2bb3bc9c54b7f9f96dcb9fba7366bb2b0f367d8c"
+    },
+    {
+      "path": "simulated phase space/hnl_tau-qql-8.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b67e9ce31efb863f6a72c9a8884f75e46a980b9b",
+      "size": 841020,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/b67e9ce31efb863f6a72c9a8884f75e46a980b9b"
+    },
+    {
+      "path": "simulated phase space/hnl_tau-qql-8.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bc7ae0e331c203c38ab4e3b6fc053c28effb0439",
+      "size": 1624765,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/bc7ae0e331c203c38ab4e3b6fc053c28effb0439"
+    },
+    {
+      "path": "simulated phase space/scalar-GG-2.5.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e270ad66f97ff2e4c631d6334b2ba2ceabf6fff2",
+      "size": 376100,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/e270ad66f97ff2e4c631d6334b2ba2ceabf6fff2"
+    },
+    {
+      "path": "simulated phase space/scalar-GG-2.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fb7e639d100df83d90f2dbf1d5328a52cfd551ac",
+      "size": 3885124,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/fb7e639d100df83d90f2dbf1d5328a52cfd551ac"
+    },
+    {
+      "path": "simulated phase space/scalar-GG-3.5.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b28e5cf41d74c9bdb654c72274b38dd52432414",
+      "size": 758244,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/8b28e5cf41d74c9bdb654c72274b38dd52432414"
+    },
+    {
+      "path": "simulated phase space/scalar-GG-3.5.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "35b1c039458dd58f6d75e3d95a8870478b93c172",
+      "size": 2832661,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/35b1c039458dd58f6d75e3d95a8870478b93c172"
+    },
+    {
+      "path": "simulated phase space/scalar-GG-3.6.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eef5f6e6c31c7d349a392df5a07439553b6042cb",
+      "size": 757775,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/eef5f6e6c31c7d349a392df5a07439553b6042cb"
+    },
+    {
+      "path": "simulated phase space/scalar-GG-3.6.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f07801545af557b39d4308afc669780cc119bb84",
+      "size": 2784621,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/f07801545af557b39d4308afc669780cc119bb84"
+    },
+    {
+      "path": "simulated phase space/scalar-GG-3.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9927379a4fb4545eb69933c544f56ead2edbfea4",
+      "size": 760474,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/9927379a4fb4545eb69933c544f56ead2edbfea4"
+    },
+    {
+      "path": "simulated phase space/scalar-GG-3.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "86990e490bae37dec26945976d87c8fcf1d8f6a2",
+      "size": 3967073,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/86990e490bae37dec26945976d87c8fcf1d8f6a2"
+    },
+    {
+      "path": "simulated phase space/scalar-GG-4.7.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "341632f7a9a4a44905ddf82638d02e03cc89aae1",
+      "size": 753994,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/341632f7a9a4a44905ddf82638d02e03cc89aae1"
+    },
+    {
+      "path": "simulated phase space/scalar-GG-4.7.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "768dbd64dbafdce0c2b1885bfdbe695a2aa1d8e2",
+      "size": 2851255,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/768dbd64dbafdce0c2b1885bfdbe695a2aa1d8e2"
+    },
+    {
+      "path": "simulated phase space/scalar-GG-4.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9e2c929e833865a6a07537ed6a33dd987ec4d844",
+      "size": 756163,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/9e2c929e833865a6a07537ed6a33dd987ec4d844"
+    },
+    {
+      "path": "simulated phase space/scalar-GG-4.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f68d17451f836b18472b14c77d6668e948cc7c8b",
+      "size": 2402443,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/f68d17451f836b18472b14c77d6668e948cc7c8b"
+    },
+    {
+      "path": "simulated phase space/scalar-GG-5.1.m",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d783cb89c209fc5089e8128ba02b624265d74644",
+      "size": 2055746,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/d783cb89c209fc5089e8128ba02b624265d74644"
+    },
+    {
+      "path": "spectra",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "bf26df4e68b03e9dd8164a249c05005fd32eb330",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/bf26df4e68b03e9dd8164a249c05005fd32eb330"
+    },
+    {
+      "path": "spectra/New physics particles spectra",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a8122fcb7a55620d06d02e2ede7fb60c3e305c6b",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/a8122fcb7a55620d06d02e2ede7fb60c3e305c6b"
+    },
+    {
+      "path": "spectra/New physics particles spectra/ALPs with gluon coupling",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "582fcd2451e8716e085cf86d3dff6cb8023316ae",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/582fcd2451e8716e085cf86d3dff6cb8023316ae"
+    },
+    {
+      "path": "spectra/New physics particles spectra/ALPs with gluon coupling/Pregenerated",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c0d496c1db64a956a6471847d2bd515aea24850d",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/c0d496c1db64a956a6471847d2bd515aea24850d"
+    },
+    {
+      "path": "spectra/New physics particles spectra/ALPs with gluon coupling/Pregenerated/DoubleDistrALPsGluonDrellYan-FermilabBD.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "20e775638d9cd6e272f5555db4e4c75c138f355a",
+      "size": 462203,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/20e775638d9cd6e272f5555db4e4c75c138f355a"
+    },
+    {
+      "path": "spectra/New physics particles spectra/ALPs with gluon coupling/Pregenerated/DoubleDistrALPsGluonDrellYan-LHC.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "df04016c79d1a11a0addb523963a84f1aaddb01d",
+      "size": 2293414,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/df04016c79d1a11a0addb523963a84f1aaddb01d"
+    },
+    {
+      "path": "spectra/New physics particles spectra/ALPs with gluon coupling/Pregenerated/DoubleDistrALPsGluonDrellYan-SPS.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bc263065bd3a6cfcdf4d1b4301dcb12f5bac9cb1",
+      "size": 574188,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/bc263065bd3a6cfcdf4d1b4301dcb12f5bac9cb1"
+    },
+    {
+      "path": "spectra/New physics particles spectra/ALPs with photon coupling",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ee8e319b36458478a7782226be5f32f8bb4c952c",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/ee8e319b36458478a7782226be5f32f8bb4c952c"
+    },
+    {
+      "path": "spectra/New physics particles spectra/ALPs with photon coupling/DoubleDistr-ALPs-From-Eta-FermilabBD.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "95f088ed114c0b311e8f52f10ba2e89d3106ba9a",
+      "size": 471377,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/95f088ed114c0b311e8f52f10ba2e89d3106ba9a"
+    },
+    {
+      "path": "spectra/New physics particles spectra/ALPs with photon coupling/DoubleDistr-ALPs-From-Eta-LHC.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fbae621b64786d4d897a5f8258c8f9a9b4e5a041",
+      "size": 11799093,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/fbae621b64786d4d897a5f8258c8f9a9b4e5a041"
+    },
+    {
+      "path": "spectra/New physics particles spectra/ALPs with photon coupling/DoubleDistr-ALPs-From-Eta-SPS.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "83a8cd0bc4dbed96369563ee567921e11cbc85f0",
+      "size": 822594,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/83a8cd0bc4dbed96369563ee567921e11cbc85f0"
+    },
+    {
+      "path": "spectra/New physics particles spectra/ALPs with photon coupling/DoubleDistr-ALPs-From-pi0-FermilabBD.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d57e8c143580c8c39fb4663df42a487dbc25a61c",
+      "size": 341119,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/d57e8c143580c8c39fb4663df42a487dbc25a61c"
+    },
+    {
+      "path": "spectra/New physics particles spectra/ALPs with photon coupling/DoubleDistr-ALPs-From-pi0-LHC.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bfa0194bd47df6e87921ea23fec494e75ff8b238",
+      "size": 8641843,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/bfa0194bd47df6e87921ea23fec494e75ff8b238"
+    },
+    {
+      "path": "spectra/New physics particles spectra/ALPs with photon coupling/DoubleDistr-ALPs-From-pi0-SPS.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "10d5d162256257fe76679b433b0a4a5f85a99940",
+      "size": 598709,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/10d5d162256257fe76679b433b0a4a5f85a99940"
+    },
+    {
+      "path": "spectra/New physics particles spectra/ALPs with photon coupling/DoubleDistr-ALPs-from-Primakov-FermilabBD-target-C.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cae6fb6f0eb2fd57d8f297b9a02c278dd37a9fdb",
+      "size": 2117919,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/cae6fb6f0eb2fd57d8f297b9a02c278dd37a9fdb"
+    },
+    {
+      "path": "spectra/New physics particles spectra/ALPs with photon coupling/DoubleDistr-ALPs-from-Primakov-FermilabBD-target-Fe.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1d782bd090bbf66ec39f82033ead177d29e712a8",
+      "size": 2118175,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/1d782bd090bbf66ec39f82033ead177d29e712a8"
+    },
+    {
+      "path": "spectra/New physics particles spectra/ALPs with photon coupling/DoubleDistr-ALPs-from-Primakov-LHC-target-Fe.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "25893ae61d11cfb557f63532606f540cdee77d4f",
+      "size": 26661599,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/25893ae61d11cfb557f63532606f540cdee77d4f"
+    },
+    {
+      "path": "spectra/New physics particles spectra/ALPs with photon coupling/DoubleDistr-ALPs-from-Primakov-SPS-target-C.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a82d9b0637b35723b3186e11fa5b1f03fca9fa0f",
+      "size": 4480736,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/a82d9b0637b35723b3186e11fa5b1f03fca9fa0f"
+    },
+    {
+      "path": "spectra/New physics particles spectra/ALPs with photon coupling/DoubleDistr-ALPs-from-Primakov-SPS-target-Fe.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "96a2bd03ec85ab45b64519e03f204696c8285bd5",
+      "size": 4482364,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/96a2bd03ec85ab45b64519e03f204696c8285bd5"
+    },
+    {
+      "path": "spectra/New physics particles spectra/ALPs with photon coupling/DoubleDistr-ALPs-from-Primakov-SPS-target-Mo.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a079696d4b3cb220f204c785cc83613065bd2972",
+      "size": 4482978,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/a079696d4b3cb220f204c785cc83613065bd2972"
+    },
+    {
+      "path": "spectra/New physics particles spectra/ALPs with photon coupling/DoubleDistr-ALPs-from-pCoherent-FermilabBD-target-C.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eab0dc6360fa71e8bf379495f2b2836fea3185e4",
+      "size": 391797,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/eab0dc6360fa71e8bf379495f2b2836fea3185e4"
+    },
+    {
+      "path": "spectra/New physics particles spectra/ALPs with photon coupling/DoubleDistr-ALPs-from-pCoherent-FermilabBD-target-Fe.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "51a5b0a4c0f0e3b76d6102fe12a611820781c52f",
+      "size": 387495,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/51a5b0a4c0f0e3b76d6102fe12a611820781c52f"
+    },
+    {
+      "path": "spectra/New physics particles spectra/ALPs with photon coupling/DoubleDistr-ALPs-from-pCoherent-LHC-target-p.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "438fc32e80193900f868659eba6ea9ee75f27d01",
+      "size": 1452213,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/438fc32e80193900f868659eba6ea9ee75f27d01"
+    },
+    {
+      "path": "spectra/New physics particles spectra/ALPs with photon coupling/DoubleDistr-ALPs-from-pCoherent-SPS-target-C.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d0899342cea834de771682ec258c50e8dbd5ab97",
+      "size": 432134,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/d0899342cea834de771682ec258c50e8dbd5ab97"
+    },
+    {
+      "path": "spectra/New physics particles spectra/ALPs with photon coupling/DoubleDistr-ALPs-from-pCoherent-SPS-target-Fe.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c97db1c3157c07505389e2748a5b77dbc61ad8f0",
+      "size": 426650,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/c97db1c3157c07505389e2748a5b77dbc61ad8f0"
+    },
+    {
+      "path": "spectra/New physics particles spectra/ALPs with photon coupling/DoubleDistr-ALPs-from-pCoherent-SPS-target-Mo.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a363a076c241c436d0d1a9402e918eddbdaabb4a",
+      "size": 424498,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/a363a076c241c436d0d1a9402e918eddbdaabb4a"
+    },
+    {
+      "path": "spectra/New physics particles spectra/ALPs with photon coupling/DoubleDistr-ALPs-from-protoproduction-LBNE.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5cd22d182ba0223c05da3bce71ea8edc472968ae",
+      "size": 348419,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/5cd22d182ba0223c05da3bce71ea8edc472968ae"
+    },
+    {
+      "path": "spectra/New physics particles spectra/ALPs with photon coupling/DoubleDistr-ALPs-from-protoproduction-SPS.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "094787be496abecbf272724e44ba76a282cc2d40",
+      "size": 424249,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/094787be496abecbf272724e44ba76a282cc2d40"
+    },
+    {
+      "path": "spectra/New physics particles spectra/B-L",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ff5707b79a4c1a910a57dcad5e5bb2c20db36888",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/ff5707b79a4c1a910a57dcad5e5bb2c20db36888"
+    },
+    {
+      "path": "spectra/New physics particles spectra/B-L/Pregenerated",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a4de47e6f8b6e00dded2badd13e342c6bec1fb9e",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/a4de47e6f8b6e00dded2badd13e342c6bec1fb9e"
+    },
+    {
+      "path": "spectra/New physics particles spectra/B-L/Pregenerated/DoubleDistrB-LDrellYan-FermilabBD.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a10e93a702f254540da415c59a35ed70b4e40b3a",
+      "size": 371877,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/a10e93a702f254540da415c59a35ed70b4e40b3a"
+    },
+    {
+      "path": "spectra/New physics particles spectra/B-L/Pregenerated/DoubleDistrB-LDrellYan-LHC.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0752e34d02d19bf8e74d447adb65a04846ba6cca",
+      "size": 1946786,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/0752e34d02d19bf8e74d447adb65a04846ba6cca"
+    },
+    {
+      "path": "spectra/New physics particles spectra/B-L/Pregenerated/DoubleDistrB-LDrellYan-SPS.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52046317e17660ddbb5eb61af7e4d2ab9a61cf24",
+      "size": 465675,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/52046317e17660ddbb5eb61af7e4d2ab9a61cf24"
+    },
+    {
+      "path": "spectra/New physics particles spectra/Dark photons",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e1dc02726134d5d44e352f17c5e99fffcabd48be",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/e1dc02726134d5d44e352f17c5e99fffcabd48be"
+    },
+    {
+      "path": "spectra/New physics particles spectra/Dark photons/Pregenerated",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f9a6db533c2abf21683a00b91e5a02eb0261f5e9",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/f9a6db533c2abf21683a00b91e5a02eb0261f5e9"
+    },
+    {
+      "path": "spectra/New physics particles spectra/Dark photons/Pregenerated/DoubleDistrDarkPhotonsDrellYan-FermilabBD.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "855e8a12d6a47117cc411de7cc8e2f46a8ae108f",
+      "size": 322985,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/855e8a12d6a47117cc411de7cc8e2f46a8ae108f"
+    },
+    {
+      "path": "spectra/New physics particles spectra/Dark photons/Pregenerated/DoubleDistrDarkPhotonsDrellYan-LHC.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c91f296d846ae2a77f333df872d883c7168125a4",
+      "size": 1104188,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/c91f296d846ae2a77f333df872d883c7168125a4"
+    },
+    {
+      "path": "spectra/New physics particles spectra/Dark photons/Pregenerated/DoubleDistrDarkPhotonsDrellYan-SPS.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "675fbab27c1b1e854c02a65cf43739d93c3c27f8",
+      "size": 414380,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/675fbab27c1b1e854c02a65cf43739d93c3c27f8"
+    },
+    {
+      "path": "spectra/New physics particles spectra/MCPs",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a1936abf7d5010dde769524f59e70791c7edecb7",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/a1936abf7d5010dde769524f59e70791c7edecb7"
+    },
+    {
+      "path": "spectra/New physics particles spectra/MCPs/Pregenerated",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "675bc505b8cc69903ad44b05157a3566a662cbf2",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/675bc505b8cc69903ad44b05157a3566a662cbf2"
+    },
+    {
+      "path": "spectra/New physics particles spectra/MCPs/Pregenerated/DoubleDistrMCPsDrellYan-FermilabBD.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "63ca72d34c23acd7e9fa50f9ef6f6480daf68e3d",
+      "size": 850560,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/63ca72d34c23acd7e9fa50f9ef6f6480daf68e3d"
+    },
+    {
+      "path": "spectra/New physics particles spectra/MCPs/Pregenerated/DoubleDistrMCPsDrellYan-LHC.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4b2e130d2d3e4dc4d7bae201b6466dd23401b0b1",
+      "size": 6295989,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/4b2e130d2d3e4dc4d7bae201b6466dd23401b0b1"
+    },
+    {
+      "path": "spectra/New physics particles spectra/MCPs/Pregenerated/DoubleDistrMCPsDrellYan-SPS.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1a62663beb187ea6a9e2d680eb3fbc0aa2fc3ec4",
+      "size": 1154965,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/1a62663beb187ea6a9e2d680eb3fbc0aa2fc3ec4"
+    },
+    {
+      "path": "spectra/SM particles",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "10b427606d3703416151450b5b13a5912e22dd62",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/10b427606d3703416151450b5b13a5912e22dd62"
+    },
+    {
+      "path": "spectra/SM particles/FCC-hh",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "215ee04146e2c03b978bd48b6bdd3d9d5f596819",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/215ee04146e2c03b978bd48b6bdd3d9d5f596819"
+    },
+    {
+      "path": "spectra/SM particles/FCC-hh/DoubleDistrB-FCC-hh.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8bf976cfe8e070cbf986e9e7d5562f1e4132c6a3",
+      "size": 441520,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/8bf976cfe8e070cbf986e9e7d5562f1e4132c6a3"
+    },
+    {
+      "path": "spectra/SM particles/FCC-hh/DoubleDistrD-FCC-hh.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0924dc69daf214366efa65ed2e67d68b0ecfdcec",
+      "size": 464770,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/0924dc69daf214366efa65ed2e67d68b0ecfdcec"
+    },
+    {
+      "path": "spectra/SM particles/FCC-hh/DoubleDistrEta-FCC-hh.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eaf1ef9dc589fb00963158444a9fce3695e64c88",
+      "size": 563202,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/eaf1ef9dc589fb00963158444a9fce3695e64c88"
+    },
+    {
+      "path": "spectra/SM particles/FCC-hh/DoubleDistrEtapr-FCC-hh.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b445101bd9d01d4458ea27fb94bf5eae08f361bf",
+      "size": 563485,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/b445101bd9d01d4458ea27fb94bf5eae08f361bf"
+    },
+    {
+      "path": "spectra/SM particles/FCC-hh/DoubleDistrOmega-FCC-hh.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "925f8e5651bbfa57ceb3ddcd2023b70b6341d7f3",
+      "size": 387708,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/925f8e5651bbfa57ceb3ddcd2023b70b6341d7f3"
+    },
+    {
+      "path": "spectra/SM particles/FCC-hh/DoubleDistrPhi-FCC-hh.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ab74a0504d59c769c8ad3c68a01d5e9b6cd43428",
+      "size": 471080,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/ab74a0504d59c769c8ad3c68a01d5e9b6cd43428"
+    },
+    {
+      "path": "spectra/SM particles/FCC-hh/DoubleDistrPi0-FCC-hh.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bb1da39752609450b2067cdf14f4be95eb3013fa",
+      "size": 561441,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/bb1da39752609450b2067cdf14f4be95eb3013fa"
+    },
+    {
+      "path": "spectra/SM particles/FCC-hh/DoubleDistrRho0-FCC-hh.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8a0baa15907a0bb0fad3b26d5eaf95d3a7c3b64d",
+      "size": 485422,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/8a0baa15907a0bb0fad3b26d5eaf95d3a7c3b64d"
+    },
+    {
+      "path": "spectra/SM particles/FCC-hh/DoubleDistrW-FCC-hh.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e88eb5bc180b4bbcb86761994328163a941eaa32",
+      "size": 316520,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/e88eb5bc180b4bbcb86761994328163a941eaa32"
+    },
+    {
+      "path": "spectra/SM particles/FCC-hh/DoubleDistrh-FCC-hh.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "be1afad524aa85915f3429cf0b73ea902b74efa9",
+      "size": 332770,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/be1afad524aa85915f3429cf0b73ea902b74efa9"
+    },
+    {
+      "path": "spectra/SM particles/FermilabBD",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "624d28222f944bca4a0768c07eb859730f7726aa",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/624d28222f944bca4a0768c07eb859730f7726aa"
+    },
+    {
+      "path": "spectra/SM particles/FermilabBD/DoubleDistrBmesons-FermilabBD.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d594f445c1021ce407974c6e42854ff553eadea6",
+      "size": 20140,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/d594f445c1021ce407974c6e42854ff553eadea6"
+    },
+    {
+      "path": "spectra/SM particles/FermilabBD/DoubleDistrDmesons-FermilabBD.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "95ca5d566d73cf5c5d25cdfe33300298ac774f40",
+      "size": 51975,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/95ca5d566d73cf5c5d25cdfe33300298ac774f40"
+    },
+    {
+      "path": "spectra/SM particles/FermilabBD/DoubleDistrEtaMesons-FermilabBD.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "202a22ba993ee4597a384ea65071234516d361c2",
+      "size": 63290,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/202a22ba993ee4597a384ea65071234516d361c2"
+    },
+    {
+      "path": "spectra/SM particles/FermilabBD/DoubleDistrEtaPrMesons-FermilabBD.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aafc044efce781e9a708f30dfe7bed90b372ac55",
+      "size": 77043,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/aafc044efce781e9a708f30dfe7bed90b372ac55"
+    },
+    {
+      "path": "spectra/SM particles/FermilabBD/DoubleDistrJpsimesons-FermilabBD.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8717660a45738961e15fef6bdb1fa6ce5bdac77d",
+      "size": 36844,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/8717660a45738961e15fef6bdb1fa6ce5bdac77d"
+    },
+    {
+      "path": "spectra/SM particles/FermilabBD/DoubleDistrOmegamesons-FermilabBD.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "53773038490cb613305f257059f0f01b8a875f0b",
+      "size": 90358,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/53773038490cb613305f257059f0f01b8a875f0b"
+    },
+    {
+      "path": "spectra/SM particles/FermilabBD/DoubleDistrPhimesons-FermilabBD.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a6040f4047b75a2c626635f3c25ad309f8d49d5c",
+      "size": 74089,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/a6040f4047b75a2c626635f3c25ad309f8d49d5c"
+    },
+    {
+      "path": "spectra/SM particles/FermilabBD/DoubleDistrPi0mesons-FermilabBD.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bfd1a403db7f98762f7c909cac6108895a8b2c41",
+      "size": 77839,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/bfd1a403db7f98762f7c909cac6108895a8b2c41"
+    },
+    {
+      "path": "spectra/SM particles/FermilabBD/DoubleDistrRho0mesons-FermilabBD.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cf0fca9f6d76a5cc0f3c8b16684e15ccf1394381",
+      "size": 91150,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/cf0fca9f6d76a5cc0f3c8b16684e15ccf1394381"
+    },
+    {
+      "path": "spectra/SM particles/LHC",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "2540562da924c092a03cc0aad9b32750721c59b1",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/2540562da924c092a03cc0aad9b32750721c59b1"
+    },
+    {
+      "path": "spectra/SM particles/LHC/DoubleDistrBmesons-LHC.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8f1a08fc86fac6d8c3c5e74296e4f3f849e58b07",
+      "size": 245300,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/8f1a08fc86fac6d8c3c5e74296e4f3f849e58b07"
+    },
+    {
+      "path": "spectra/SM particles/LHC/DoubleDistrDmesons-LHC.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0f51e58f2ae7bace750c83715f3bc75d55871ed2",
+      "size": 2396232,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/0f51e58f2ae7bace750c83715f3bc75d55871ed2"
+    },
+    {
+      "path": "spectra/SM particles/LHC/DoubleDistrEtaMesons-LHC.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "90c2b00f432d9fb5b08fadaa3f07359227cb14b2",
+      "size": 309390,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/90c2b00f432d9fb5b08fadaa3f07359227cb14b2"
+    },
+    {
+      "path": "spectra/SM particles/LHC/DoubleDistrEtaprMesons-LHC.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "726ab44d6c36b9dd6514491fec90b119261d1cdd",
+      "size": 282700,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/726ab44d6c36b9dd6514491fec90b119261d1cdd"
+    },
+    {
+      "path": "spectra/SM particles/LHC/DoubleDistrHiggsBosons-LHC.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b2ed84fd75caed84b5e0ddfefb7e9d99462151c4",
+      "size": 162514,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/b2ed84fd75caed84b5e0ddfefb7e9d99462151c4"
+    },
+    {
+      "path": "spectra/SM particles/LHC/DoubleDistrJpsi-LHC.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "46caf901d6ed000f8459f242d46a67692d654211",
+      "size": 457917,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/46caf901d6ed000f8459f242d46a67692d654211"
+    },
+    {
+      "path": "spectra/SM particles/LHC/DoubleDistrOmegamesons-LHC.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a0a7a82712fd07fd45609870ac6c98e0f1c8ff3c",
+      "size": 313767,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/a0a7a82712fd07fd45609870ac6c98e0f1c8ff3c"
+    },
+    {
+      "path": "spectra/SM particles/LHC/DoubleDistrPhi-LHC.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4ecce052e93c7ff2924e48f475bc39c3592153e2",
+      "size": 470362,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/4ecce052e93c7ff2924e48f475bc39c3592153e2"
+    },
+    {
+      "path": "spectra/SM particles/LHC/DoubleDistrPi0Mesons-LHC.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e6c1f05efbdf1bd1835799e1935e053bc18b6534",
+      "size": 341617,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/e6c1f05efbdf1bd1835799e1935e053bc18b6534"
+    },
+    {
+      "path": "spectra/SM particles/LHC/DoubleDistrRho0mesons-LHC.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "608d2788d41a44f70e771cc1a6055575f8b02bb0",
+      "size": 301746,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/608d2788d41a44f70e771cc1a6055575f8b02bb0"
+    },
+    {
+      "path": "spectra/SM particles/LHC/DoubleDistrUpsilon-LHC.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6c9357a98a5f16a39d72fbbece6f055714dedfdc",
+      "size": 301777,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/6c9357a98a5f16a39d72fbbece6f055714dedfdc"
+    },
+    {
+      "path": "spectra/SM particles/LHC/DoubleDistrW-LHC.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fb6dec4f000a06adabbce4ca10f45c15fa6d03f4",
+      "size": 167168,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/fb6dec4f000a06adabbce4ca10f45c15fa6d03f4"
+    },
+    {
+      "path": "spectra/SM particles/LHC/DoubleDistrZ-LHC.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e1ef9d48da3b8cf65c394e7064d8a5d89066dbb9",
+      "size": 161798,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/e1ef9d48da3b8cf65c394e7064d8a5d89066dbb9"
+    },
+    {
+      "path": "spectra/SM particles/SPS",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3be19ec55641ada98f9369e7a46d1a0f1711650a",
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/trees/3be19ec55641ada98f9369e7a46d1a0f1711650a"
+    },
+    {
+      "path": "spectra/SM particles/SPS/DoubleDistrBmesons-SPS.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "564d7eb84a70d5b6f71564f9d178e0b2531a7c43",
+      "size": 338065,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/564d7eb84a70d5b6f71564f9d178e0b2531a7c43"
+    },
+    {
+      "path": "spectra/SM particles/SPS/DoubleDistrDmesons-SPS.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8a94933d798a199cc07ac882b534eab6d57f1780",
+      "size": 64577,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/8a94933d798a199cc07ac882b534eab6d57f1780"
+    },
+    {
+      "path": "spectra/SM particles/SPS/DoubleDistrEtaMesons-SPS.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "db746723df72215370bd06405632b31532c1d3d9",
+      "size": 114889,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/db746723df72215370bd06405632b31532c1d3d9"
+    },
+    {
+      "path": "spectra/SM particles/SPS/DoubleDistrEtaPrMesons-SPS.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea5d680ed91a61e3fb0d746a76703e503a4ab585",
+      "size": 92496,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/ea5d680ed91a61e3fb0d746a76703e503a4ab585"
+    },
+    {
+      "path": "spectra/SM particles/SPS/DoubleDistrJpsimesons-SPS.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "17d8b7546e1b235c33f6f29ea541747db72586f8",
+      "size": 49885,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/17d8b7546e1b235c33f6f29ea541747db72586f8"
+    },
+    {
+      "path": "spectra/SM particles/SPS/DoubleDistrK-SPS.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "65fb15439ab3131c8b04fafcd0064de94569a286",
+      "size": 76682,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/65fb15439ab3131c8b04fafcd0064de94569a286"
+    },
+    {
+      "path": "spectra/SM particles/SPS/DoubleDistrOmegamesons-SPS.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0017dfa6c0ba18ac4ba08b1cf32ab1268aafd629",
+      "size": 113656,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/0017dfa6c0ba18ac4ba08b1cf32ab1268aafd629"
+    },
+    {
+      "path": "spectra/SM particles/SPS/DoubleDistrPhimesons-SPS.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1b9f034d70233965c5f2448a8bb8e8e54f7e6c4d",
+      "size": 96983,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/1b9f034d70233965c5f2448a8bb8e8e54f7e6c4d"
+    },
+    {
+      "path": "spectra/SM particles/SPS/DoubleDistrPi0mesons-SPS.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "30625a4c2f4fc1e89c2535de341a5106b9f06c86",
+      "size": 138947,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/30625a4c2f4fc1e89c2535de341a5106b9f06c86"
+    },
+    {
+      "path": "spectra/SM particles/SPS/DoubleDistrRho0mesons-SPS.dat",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ff0c5ffaccb087f8bf32c1559508b2df65ec13cc",
+      "size": 108424,
+      "url": "https://api.github.com/repos/maksymovchynnikov/SensCalc/git/blobs/ff0c5ffaccb087f8bf32c1559508b2df65ec13cc"
+    }
+  ],
+  "truncated": false
+}

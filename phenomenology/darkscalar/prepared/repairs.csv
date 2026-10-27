@@ -1,0 +1,10 @@
+mass_GeV,channel,original,prepared,reason
+0.99,K_plus_K_minus,-0.003558976102126423,0.001986074276434921,linear_bridge_between_nonnegative_kaon_nodes
+0.992,K_plus_K_minus,-0.0023121182610300025,0.004243811277149243,linear_bridge_between_nonnegative_kaon_nodes
+0.993,K_plus_K_minus,-0.0030794322903411626,0.004515474001428643,linear_bridge_between_nonnegative_kaon_nodes
+0.99,K_L_K_S,-0.003558976102126423,0.0,closed_exclusive_channel
+0.991,K_L_K_S,0.003972148552869842,0.0,closed_exclusive_channel
+0.992,K_L_K_S,-0.0023121182610300025,0.0,closed_exclusive_channel
+0.993,K_L_K_S,-0.0030794322903411626,0.0,closed_exclusive_channel
+0.994,K_L_K_S,0.004787136725708044,0.0,closed_exclusive_channel
+0.995,K_L_K_S,0.004454553135005389,0.0,closed_exclusive_channel

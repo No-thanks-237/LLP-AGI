@@ -1,0 +1,9 @@
+  hadronisation library loaded from E:\AAAwork\LLP-AGI\runs\bc5_lhcb_downstream_v3\work\magnus\hadron_lib
+  m_S=0.1300  N_S=15006  (B=777 K=13935 H=294)  16.4 s
+  m_S=0.4500  N_S=1244  (B=878 K=0 H=366)  4.3 s
+  m_S=0.6500  N_S=1191  (B=879 K=0 H=312)  4.3 s
+  m_S=1.8000  N_S=1187  (B=884 K=0 H=303)  5.0 s
+  m_S=5.5000  N_S=322  (B=0 K=0 H=322)  1.6 s
+  m_S=25.0000  N_S=326  (B=0 K=0 H=326)  2.4 s
+  m_S=45.0000  N_S=451  (B=0 K=0 H=451)  3.3 s
+wrote signal_scan_kink3.json

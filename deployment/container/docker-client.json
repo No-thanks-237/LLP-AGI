@@ -1,0 +1,9 @@
+{
+  "proxies": {
+    "default": {
+      "httpProxy": "http://http.docker.internal:3128",
+      "httpsProxy": "http://http.docker.internal:3128",
+      "noProxy": "localhost,127.0.0.1,172.30.11.2,host.docker.internal"
+    }
+  }
+}

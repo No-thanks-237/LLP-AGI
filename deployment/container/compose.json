@@ -1,0 +1,46 @@
+{
+  "services": {
+    "magnus": {
+      "image": "sha256:100453c2fd32364e4e47779d41106c9779752f83120f9f76aad7aa166e3717e6",
+      "pull_policy": "never",
+      "container_name": "llp-magnus",
+      "restart": "unless-stopped",
+      "mem_limit": "4g",
+      "cpus": 2,
+      "environment": {
+        "PATH": "/opt/llp/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      },
+      "ports": [
+        "127.0.0.1:8017:8017",
+        "127.0.0.1:3011:3011"
+      ],
+      "networks": {
+        "services": {
+          "ipv4_address": "172.30.11.2"
+        }
+      },
+      "volumes": [
+        "/var/run/docker.sock:/var/run/docker.sock",
+        "llp-data:/var/lib/docker/volumes/llp-agi-magnus-20261016/_data",
+        "E:/AAAwork/LLP-AGI:/workspace",
+        "../../configs/magnus_container.private.json:/opt/magnus/configs/magnus_config.yaml:ro",
+        "./blueprint-pins.json:/opt/llp/blueprint-pins.json:ro",
+        "./register.py:/opt/llp/register.py:ro",
+        "./docker-guard:/opt/llp/bin/docker:ro",
+        "./docker-client.json:/root/.docker/config.json:ro"
+      ]
+    }
+  },
+  "networks": {
+    "services": {
+      "external": true,
+      "name": "llp-agi-services"
+    }
+  },
+  "volumes": {
+    "llp-data": {
+      "external": true,
+      "name": "llp-agi-magnus-20261016"
+    }
+  }
+}

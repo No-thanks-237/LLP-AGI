@@ -1,0 +1,19 @@
+{
+  "source_figure": "references/model/arXiv-1809.01876v1/decayrates.pdf (digitised)",
+  "digitisation_file": "reference_figures/decayrates_curves.csv",
+  "muon_calibration_factor_median_fig_over_exact": 1.009456836930368,
+  "muon_calibration_scatter": 0.000803141306213746,
+  "mass_grid_GeV": [
+    0.27920000000000006,
+    2.0
+  ],
+  "clipped_points_replaced_by_chpt": 9,
+  "chpt_formula": "Winkler Eq. (formfactors) lowest order: Gamma_pi^0=m_pi^2, Delta_pi^0=0, Theta_pi^0=s+2m_pi^2 (and kaon analogues)",
+  "units": "GeV at theta^2 = 1",
+  "cross_check_vs_senscalc_example": {
+    "m_S_GeV": 1.0,
+    "winkler_figure_pipi_GeV": 3.406841196313758e-07,
+    "winkler_figure_KK_GeV": 1.4962022024007557e-07
+  },
+  "note": "SensCalc tabulated widths differ from the Winkler figure for the hadronic and gluon channels (see work/widths/reference_comparison.json); the Winkler figure is used as the production input because prompt.md fixes Winkler/Boarska as the reference."
+}

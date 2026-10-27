@@ -1,0 +1,32 @@
+{
+  "5.082255": {
+    "current_over_reference_acceptance_same_native_spectrum": 1.0409375143988049,
+    "native_over_reference_spectrum_same_current_acceptance": 0.8295264178196541,
+    "paper_magnet_over_current": 1.0013876924523921
+  },
+  "13.023095": {
+    "current_over_reference_acceptance_same_native_spectrum": 1.0132538013269061,
+    "native_over_reference_spectrum_same_current_acceptance": 0.8098631182471506,
+    "paper_magnet_over_current": 1.0018150957600929
+  },
+  "33.371213": {
+    "current_over_reference_acceptance_same_native_spectrum": 0.9897997761268718,
+    "native_over_reference_spectrum_same_current_acceptance": 0.7961391150876624,
+    "paper_magnet_over_current": 1.0030118984434893
+  },
+  "53.419632": {
+    "current_over_reference_acceptance_same_native_spectrum": 0.9554871442702997,
+    "native_over_reference_spectrum_same_current_acceptance": 0.7610733595373018,
+    "paper_magnet_over_current": 1.0046674884748847
+  },
+  "62.49": {
+    "current_over_reference_acceptance_same_native_spectrum": 0.9510345802287854,
+    "native_over_reference_spectrum_same_current_acceptance": 0.7961654946512292,
+    "paper_magnet_over_current": 1.0064817103438526
+  },
+  "production_hashes_unchanged": {
+    "outputs\\data\\signal_scan_refbr.json": true,
+    "outputs\\data\\exclusion_boundary_refbr.csv": true,
+    "work\\widths\\reference_br_model.py": true
+  }
+}

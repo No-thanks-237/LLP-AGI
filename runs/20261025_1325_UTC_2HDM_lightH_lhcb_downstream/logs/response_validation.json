@@ -1,0 +1,197 @@
+{
+ "stage": "T4 detector response and event engine",
+ "owner": "response",
+ "design": "DESIGN.md section 4",
+ "generated_at": "2026-10-25T14:16:26.771977+00:00",
+ "provenance": {
+  "code_sha256": "779e8530189137387f436d84d6be800ee570c1d60257d26a0d0a8cf1613b5cc2",
+  "dll_sha256": "5bb46a1df5e0af72c2ddfd85cf9810d8d5e7760dc2da40e443ccf0f9b6569a08",
+  "files": {
+   "work/response/twohdm_lib.py": "c27c3b8062daa2562a25962dd1cebeea6f9c9f95c2e439dd5d3b9f223d50bb59",
+   "work/analysis/models.py": "3f930c960e1ef13141d0976cf112ed152c7372ca73e30789312c3763bc0fc5cf",
+   "work/analysis/response_table.py": "e230cfb77af3c5c1fac5392c98580a0ec72644b9dfbd3139c8a9333be5e11067",
+   "work/analysis/event_engine.py": "509d42edb809d2301ff393e82002dfe95343495fd3aff845368eefe344bd71d2",
+   "work/analysis/test_engine.py": "1ea1a13e77c43d5a9e6eb075917dcff7149339d10351f5479fdb993b30571279",
+   "work/analysis/bc5_regression.py": "62ea87efd985123f8badceff0a1720a1018452b70453893eb114caa443abe512"
+  }
+ },
+ "kernel_test": {
+  "summary": "SUMMARY: 32/33 checks passed",
+  "failed": [
+   "a2 charge-0 track at x=y=0 is accepted"
+  ]
+ },
+ "unit_tests": {
+  "summary": "SUMMARY: 14/14 checks passed",
+  "exit_code": 0,
+  "checks": [
+   "kernel suite: 32/33 checks pass (a2 = documented spec conflict)",
+   "transport fast path equals the public API  [fast=1.0 expect=1.0 status=(Accepted,Accepted)]",
+   "p_window vs analytic A=1 (z0 before window)  [got 0.126036634964555 expect 0.126036634964555]",
+   "p_window vs analytic A=1 (z0 inside window)  [got 0.0768836536133642 expect 0.0768836536133642]",
+   "p_window is zero for a birth point after the window  [got np.float64(0.0)]",
+   "p_window exact for a short lifetime (alpha*h >> 1)  [got 7.12457640674e-218 expect 7.12457640674e-218]",
+   "p_window piecewise-linear A vs numerical quadrature  [worst rel diff 3.68e-09]",
+   "decay kinematics identical to bc5_lib (analytic fallback, mH=1.00)",
+   "decay kinematics identical to bc5_lib (analytic fallback, mH=3.50)",
+   "decay kinematics identical to bc5_lib (with library, mH=3.5567)",
+   "event OR algebra vs brute force  [mine {10: 0.22, 20: 0.449725} brute {10: np.float64(0.22), 20: np.float64(0.449725)}]",
+   "eps normalisation (0.4 once, n_tot/n_smp, 1/N_gen)  [got 0.133945 expect 0.133945]",
+   "events with equal parent indices are not merged  [got {10: 0.22, 20: 0.449725}]",
+   "table invariants: sorted scalars/histories/events, unique sorted samp_events  [scal_hist=[0, 1, 2, 2] hist_event=[3, 5, 5] parents=[1, 0, 0] samp=[3, 5]]"
+  ]
+ },
+ "bc5_regression": {
+  "file": "work/analysis/bc5_regression.json",
+  "summary": {
+   "n_masses": 16,
+   "boundary_ratio_median": 1.0167353128914645,
+   "boundary_ratio_min": 0.9437204581354387,
+   "boundary_ratio_max": 1.0904216183994637,
+   "max_abs_relative_deviation": 0.09042161839946372,
+   "median_abs_relative_deviation": 0.024621326514487896,
+   "fraction_within_5pct": 0.8125,
+   "curve_ratio_median": 0.9840836193264969
+  },
+  "nsamp": {
+   "B": 2500,
+   "inel": 1500,
+   "h": 2500
+  },
+  "stride": 2,
+  "n_masses": 16,
+  "per_mass": {
+   "0.483517": {
+    "ratio": 0.9437204581354387,
+    "ratio_short": 1.0335399632804523,
+    "rel_s_mc_err_at_edge": 0.044317382864823805,
+    "curve_ratio_median": 1.076278774705642
+   },
+   "0.661654": {
+    "ratio": 1.0022486606926693,
+    "ratio_short": 1.1895788809444368,
+    "rel_s_mc_err_at_edge": 0.045067466249346225,
+    "curve_ratio_median": 0.9956409264005788
+   },
+   "0.905421": {
+    "ratio": 0.9723819634327902,
+    "ratio_short": 1.1200350538716113,
+    "rel_s_mc_err_at_edge": 0.037142360375211216,
+    "curve_ratio_median": 1.034077784841125
+   },
+   "0.9884": {
+    "ratio": 1.0221929511900494,
+    "ratio_short": 1.3579449471986405,
+    "rel_s_mc_err_at_edge": 0.03515402651192918,
+    "curve_ratio_median": 0.9763356106449597
+   },
+   "1.0": {
+    "ratio": 1.0268821464283477,
+    "ratio_short": 1.2687495799786812,
+    "rel_s_mc_err_at_edge": 0.03351853954055558,
+    "curve_ratio_median": 0.9709382530423144
+   },
+   "1.2": {
+    "ratio": 0.9887111354927839,
+    "ratio_short": 0.6314766611594796,
+    "rel_s_mc_err_at_edge": 0.03893896833811773,
+    "curve_ratio_median": 0.9521912768121444
+   },
+   "1.44937": {
+    "ratio": 1.0461234245203013,
+    "ratio_short": 1.0504091164833715,
+    "rel_s_mc_err_at_edge": 0.03805487444571928,
+    "curve_ratio_median": 0.922945538866569
+   },
+   "1.983347": {
+    "ratio": 1.0112776745928793,
+    "ratio_short": 1.1854243381213339,
+    "rel_s_mc_err_at_edge": 0.035755881798814476,
+    "curve_ratio_median": 0.9948392700356864
+   },
+   "2.2": {
+    "ratio": 1.02318548096525,
+    "ratio_short": 1.0498486571537975,
+    "rel_s_mc_err_at_edge": 0.03498401292120569,
+    "curve_ratio_median": 1.0160748635913597
+   },
+   "2.6834": {
+    "ratio": 1.0085037449580054,
+    "ratio_short": 1.0888892561833132,
+    "rel_s_mc_err_at_edge": 0.036388179202860624,
+    "curve_ratio_median": 0.9988340111161498
+   },
+   "3.174881": {
+    "ratio": 1.0443515990097283,
+    "ratio_short": 0.650495477799968,
+    "rel_s_mc_err_at_edge": 0.038723073470970114,
+    "curve_ratio_median": 0.9389644504115717
+   },
+   "3.7579": {
+    "ratio": 1.0067596474666414,
+    "ratio_short": 0.9664881485644958,
+    "rel_s_mc_err_at_edge": 0.043429693062469986,
+    "curve_ratio_median": 0.9918316280080341
+   },
+   "4.34457": {
+    "ratio": 0.9956149217422247,
+    "ratio_short": 1.1533655497472257,
+    "rel_s_mc_err_at_edge": 0.046167151157399194,
+    "curve_ratio_median": 1.0059821521435621
+   },
+   "5.082255": {
+    "ratio": 1.075689259812111,
+    "ratio_short": 1.0233271044689214,
+    "rel_s_mc_err_at_edge": 0.047983177939679524,
+    "curve_ratio_median": 0.9310364407278936
+   },
+   "6.954656": {
+    "ratio": 1.0260571720637257,
+    "ratio_short": 1.0762502749956457,
+    "rel_s_mc_err_at_edge": 0.04537273749900301,
+    "curve_ratio_median": 0.9757589452260618
+   },
+   "10.5834": {
+    "ratio": 1.0904216183994637,
+    "ratio_short": 1.0877969729589878,
+    "rel_s_mc_err_at_edge": 0.04680297336413785,
+    "curve_ratio_median": 0.9186518982732546
+   }
+  }
+ },
+ "timing": {
+  "response_table_2hdm_nsamp1500": {
+   "mH_0.3": {
+    "table_s": 9.4,
+    "response_s": 5.1,
+    "n_scalar": 13458
+   },
+   "mH_1.0": {
+    "table_s": 14.0,
+    "response_s": 9.8,
+    "n_scalar": 4500
+   },
+   "mH_3.07067_nsamp500": {
+    "table_s": 6.4,
+    "response_s": 2.6,
+    "n_scalar": 1500
+   }
+  },
+  "cached_40tanb_2lumi_s": 5.8,
+  "per_process_memory_MB": 250
+ },
+ "mc": {
+  "mH_1.0_boundary_25fb": {
+   "tanb": 357.86,
+   "rel_s_mc_err": 0.065,
+   "dlns_dlntanb": -8.0,
+   "rel_boundary_mc_err": 0.008
+  },
+  "recommendation": "nsamp B=2500-3000, h=2500 gives delta_s/s ~4.5% at the boundary"
+ },
+ "limitations": [
+  "minbias_pik read as a 100k/500k event subsample (N_gen_sub=100000)",
+  "T4 review fixes applied (sorted histories/scalars, unique parent ids, sorted sampled events, model-aware edge labels, n_tot/n_smp factor)",
+  "A_ch sampled with ndecay=10 (analytic) / 6 (hadron library) decays per channel"
+ ]
+}

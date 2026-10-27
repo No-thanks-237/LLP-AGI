@@ -1,0 +1,176 @@
+{
+ "created": "validate_samples.py",
+ "pik": {
+  "present": true,
+  "file": "samples/minbias_pik.txt.gz",
+  "rows": 22820428,
+  "n_gen_maxev_plus1": 500000,
+  "columns_bad": [],
+  "pdg": {
+   "K-": 730920,
+   "K0bar": 657006,
+   "pi-": 9905875,
+   "pi+": 10106630,
+   "K0": 676210,
+   "K+": 743787
+  },
+  "charge_sum_piK": 213622,
+  "mass_on_shell_fraction": {
+   "pi+": 0.9218700001879954,
+   "pi-": 0.9324982396809974,
+   "K+": 0.9859233893574371,
+   "K0": 0.983335058635631,
+   "K-": 0.990646035133804,
+   "K0bar": 0.9900716279607796
+  },
+  "rows_per_event_mean": 45.640856,
+  "events_with_piK": 490476,
+  "events_with_piK_fraction": 0.980952,
+  "rows_abs_eta_lt6": 19376263,
+  "events_with_piK_eta6": 471041,
+  "events_with_piK_eta6_fraction": 0.942082,
+  "abs_eta_max": 15.688020177706155,
+  "multiplicity_per_event": {
+   "min": 1,
+   "max": 260,
+   "mean": 46.527104282370594
+  },
+  "n_gen_normalisation": 500000,
+  "n_gen_matches": true,
+  "sigma_pb_normalisation": 79500000000.0
+ },
+ "reused": {
+  "B": {
+   "present": true,
+   "file": "bbar_heavy.txt.gz",
+   "rows": 1509528,
+   "n_gen": 800000,
+   "n_gen_matches_normalisation": true,
+   "sigma_pb": 560000000.0,
+   "columns": {
+    "10": 1509528
+   },
+   "rows_per_event": 1.88691,
+   "pdg_top": {
+    "521": 342516,
+    "511": 342461,
+    "-511": 336891,
+    "-521": 334676,
+    "531": 76647,
+    "-531": 75243,
+    "541": 548,
+    "-541": 546
+   }
+  },
+  "H": {
+   "present": true,
+   "file": "higgs.txt.gz",
+   "rows": 1411171,
+   "n_gen": 200000,
+   "n_gen_matches_normalisation": true,
+   "sigma_pb": 55.4527,
+   "columns": {
+    "11": 1411171
+   },
+   "rows_per_event": 7.055855,
+   "pdg_top": {
+    "902": 1153221,
+    "907": 98979,
+    "905": 41287,
+    "901": 41203,
+    "906": 37837,
+    "904": 23450,
+    "908": 11506,
+    "909": 3655
+   },
+   "status62_rows": 200000,
+   "one_status62_per_event": true
+  }
+ },
+ "hadron_lib": {
+  "gg": {
+   "present": true,
+   "file": "hadron_lib/hadron_lib_gg.txt.gz",
+   "header": "# channel=gg mMin=0.021 mMax=62.49 nMass=22 nSample=1500 seed=911",
+   "rows": 153492,
+   "n_mass_nodes": 22,
+   "mass_nodes_expected": 22,
+   "mass_nodes_exact_match": true,
+   "mass_nodes_missing": [],
+   "mass_nodes_extra": [],
+   "sample_index_max": 1499,
+   "n_attempt_expected": 1500,
+   "rows_per_node_min": 2990,
+   "rows_per_node_max": 12740,
+   "rows_per_node_mean": 6976.909090909091,
+   "nonzero_charge_groups": 0,
+   "groups": 31851,
+   "empty_attempt_fraction": 0.03481818181818186,
+   "mass_on_shell_fraction": 1.0,
+   "unknown_pids": {}
+  },
+  "ss": {
+   "present": true,
+   "file": "hadron_lib/hadron_lib_ss.txt.gz",
+   "header": "# channel=ss mMin=0.021 mMax=62.49 nMass=22 nSample=1500 seed=912",
+   "rows": 131018,
+   "n_mass_nodes": 22,
+   "mass_nodes_expected": 22,
+   "mass_nodes_exact_match": true,
+   "mass_nodes_missing": [],
+   "mass_nodes_extra": [],
+   "sample_index_max": 1499,
+   "n_attempt_expected": 1500,
+   "rows_per_node_min": 3284,
+   "rows_per_node_max": 8944,
+   "rows_per_node_mean": 5955.363636363636,
+   "nonzero_charge_groups": 0,
+   "groups": 31821,
+   "empty_attempt_fraction": 0.03572727272727272,
+   "mass_on_shell_fraction": 1.0,
+   "unknown_pids": {}
+  },
+  "cc": {
+   "present": true,
+   "file": "hadron_lib/hadron_lib_cc.txt.gz",
+   "header": "# channel=cc mMin=0.021 mMax=62.49 nMass=13 nSample=1500 seed=913",
+   "rows": 119864,
+   "n_mass_nodes": 13,
+   "mass_nodes_expected": 13,
+   "mass_nodes_exact_match": true,
+   "mass_nodes_missing": [],
+   "mass_nodes_extra": [],
+   "sample_index_max": 1499,
+   "n_attempt_expected": 1500,
+   "rows_per_node_min": 7638,
+   "rows_per_node_max": 11180,
+   "rows_per_node_mean": 9220.307692307691,
+   "nonzero_charge_groups": 0,
+   "groups": 19491,
+   "empty_attempt_fraction": 0.0004615384615385132,
+   "mass_on_shell_fraction": 1.0,
+   "unknown_pids": {}
+  },
+  "tautau": {
+   "present": true,
+   "file": "hadron_lib/hadron_lib_tautau.txt.gz",
+   "header": "# channel=tautau mMin=0.021 mMax=62.49 nMass=14 nSample=1500 seed=914",
+   "rows": 55932,
+   "n_mass_nodes": 14,
+   "mass_nodes_expected": 14,
+   "mass_nodes_exact_match": true,
+   "mass_nodes_missing": [],
+   "mass_nodes_extra": [],
+   "sample_index_max": 1499,
+   "n_attempt_expected": 1500,
+   "rows_per_node_min": 3922,
+   "rows_per_node_max": 4100,
+   "rows_per_node_mean": 3995.1428571428573,
+   "nonzero_charge_groups": 0,
+   "groups": 21000,
+   "empty_attempt_fraction": 0.0,
+   "mass_on_shell_fraction": 1.0,
+   "unknown_pids": {}
+  }
+ }
+}

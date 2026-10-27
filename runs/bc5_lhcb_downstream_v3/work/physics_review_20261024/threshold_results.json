@@ -1,0 +1,37 @@
+{
+  "gg@2.2": {
+    "node": 2.3201083,
+    "impossible_fraction_nonempty": 0.6182795698924731,
+    "max_min_parent_mass": 2.320108330392305
+  },
+  "ss@2.2": {
+    "node": 2.3201083,
+    "impossible_fraction_nonempty": 0.5732531930879038,
+    "max_min_parent_mass": 2.320108343831938
+  },
+  "tautau@3.5567": {
+    "node": 3.7139594,
+    "impossible_fraction_nonempty": 0.013333333333333334,
+    "max_min_parent_mass": 3.700776884159449
+  },
+  "bb@10.5834": {
+    "node": 11.132804,
+    "impossible_fraction_nonempty": 0.018666666666666668,
+    "max_min_parent_mass": 11.083243609908845
+  },
+  "Bs_cut": {
+    "4.3474": {
+      "Bs_incl": 0.5443796489684473
+    },
+    "4.3475": {},
+    "4.4": {},
+    "4.8": {}
+  },
+  "K_outside_window_counterexample": {
+    "parent_eta": 1.4,
+    "parent_pt_GeV": 0.2,
+    "scalar_mass_GeV": 0.1,
+    "scalar_eta_2_5_fraction": 0.0607,
+    "note": "direction counterexample; no daughter cuts applied"
+  }
+}

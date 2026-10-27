@@ -1,0 +1,685 @@
+### FILE: codes/kinematics.nb
+
+----- cell 1  label=Lorentz boosts -----
+(*Position of the point in coordinate space in terms of spherical coordinates*)
+[Phi]Val[px_,py_]=If[py>0,ArcCos[(px)/(Sqrt[px^2+py^2])],-ArcCos[(px)/(Sqrt[px^2+py^2])]];
+thetaVal[px_,py_,pz_]=ArcCos[pz/([Sqrt](px^2+py^2+pz^2))];
+(*Decaying particle momentum and velocity at its lab frame. Since the experiment geometry is convenient to characterize in terms of spherical coordinates, it is given here in both spherical and cartesian coordinates*)
+pMotherVecCart[px_,py_,pz_]={px,py,pz};
+vMotherVecCart[Ev_,px_,py_,pz_]=+(pMotherVecCart[px,py,pz])/(Ev);
+(*gamma,[CapitalGamma] factors*)
+gammaFactor[ELLP_,mLLP_]=(ELLP)/(mLLP);
+[CapitalGamma]factor[ELLP_,mLLP_]=Simplify[(gammaFactor[ELLP,mLLP]-1)/((v/.Solve[gammaFactor[ELLP,mLLP]==(1)/(Sqrt[1-v^2]),v])^2[[1]])];
+pprod={pxd,pyd,pzd};
+vmotherlab=vMotherVecCart[Em,pxm,pym,pzm];
+pproductLabVecCart[pxm_,pym_,pzm_,Em_,mm_,pxd_,pyd_,pzd_,Ed_]=Simplify[pprod+gammaFactor[Em,mm]*vmotherlab*Ed+[CapitalGamma]factor[Em,mm]*vmotherlab(vmotherlab.pprod)];
+EproductLabCart[pxm_,pym_,pzm_,Em_,mm_,pxd_,pyd_,pzd_,Ed_]=Simplify[gammaFactor[Em,mm](Ed+vmotherlab.pprod)];
+{pproductLab1Cart[pxm_,pym_,pzm_,Em_,mm_,pxd_,pyd_,pzd_,Ed_],pproductLab2Cart[pxm_,pym_,pzm_,Em_,mm_,pxd_,pyd_,pzd_,Ed_],pproductLab3Cart[pxm_,pym_,pzm_,Em_,mm_,pxd_,pyd_,pzd_,Ed_]}=Simplify[pproductLabVecCart[pxm,pym,pzm,Em,mm,pxd,pyd,pzd,Ed][[#]]]&/@{1,2,3};
+Print["Check that \!\(\*SubscriptBox[SuperscriptBox[\(E\), \(2\)], \(boosted\)]\) - \!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(p\), \(_\)], \(2\)], \(boosted\)]\) = \!\(\*SuperscriptBox[\(m\), \(2\)]\):"]
+testExpr[pxm_,pym_,pzm_,Em_,mm_,pxd_,pyd_,pzd_,Ed_]=((EproductLabCart[pxm,pym,pzm,Em,mm,pxd,pyd,pzd,Ed]^2-pproductLab1Cart[pxm,pym,pzm,Em,mm,pxd,pyd,pzd,Ed]^2-pproductLab2Cart[pxm,pym,pzm,Em,mm,pxd,pyd,pzd,Ed]^2-pproductLab3Cart[pxm,pym,pzm,Em,mm,pxd,pyd,pzd,Ed]^2//Expand//Simplify)/.{pxm^2->Em^2-pym^2-pzm^2-mm^2}//Expand//Simplify)/.{Em^2->pxm^2+pym^2+pzm^2+mm^2};
+testExpr[pxm,pym,pzm,Sqrt[pxm^2+pym^2+pzm^2+mm^2],mm,Sqrt[Ed^2-pyd^2-pzd^2-m^2],pyd,pzd,Ed]//Simplify
+(*The same but assuming that the mother 3-momentum is given in terms of spherical coordinates*)
+pMotherVecSpher[ELLP_,mLLP_,thetaLLP_,[Phi]LLP_]=Sqrt[ELLP^2-mLLP^2]{Sin[thetaLLP]*Cos[[Phi]LLP],Sin[thetaLLP]*Sin[[Phi]LLP],Cos[thetaLLP]};
+vMotherVecSpher[ELLP_,mLLP_,thetaLLP_,[Phi]LLP_]=+(pMotherVecSpher[ELLP,mLLP,thetaLLP,[Phi]LLP]/ELLP);
+pproductLabVecSpher[ELLP_,mLLP_,thetaLLP_,[Phi]LLP_,pxd_,pyd_,pzd_,Ed_]=Simplify[pprod+gammaFactor[ELLP,mLLP]*vMotherVecSpher[ELLP,mLLP,thetaLLP,[Phi]LLP]*Ed+[CapitalGamma]factor[ELLP,mLLP]*vMotherVecSpher[ELLP,mLLP,thetaLLP,[Phi]LLP](vMotherVecSpher[ELLP,mLLP,thetaLLP,[Phi]LLP].pprod)];
+EproductLabSpher[ELLP_,mLLP_,thetaLLP_,[Phi]LLP_,pxd_,pyd_,pzd_,Ed_]=Simplify[gammaFactor[ELLP,mLLP](Ed+vMotherVecSpher[ELLP,mLLP,thetaLLP,[Phi]LLP].pprod)];
+{pproductLab1Spher[ELLP_,mLLP_,thetaLLP_,[Phi]LLP_,pxd_,pyd_,pzd_,Ed_],pproductLab2Spher[ELLP_,mLLP_,thetaLLP_,[Phi]LLP_,pxd_,pyd_,pzd_,Ed_],pproductLab3Spher[ELLP_,mLLP_,thetaLLP_,[Phi]LLP_,pxd_,pyd_,pzd_,Ed_]}=Simplify[pproductLabVecSpher[ELLP,mLLP,thetaLLP,[Phi]LLP,pxd,pyd,pzd,Ed][[#]]&/@{1,2,3}];
+Print["Check that \!\(\*SubscriptBox[SuperscriptBox[\(E\), \(2\)], \(boosted\)]\) - \!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(p\), \(_\)], \(2\)], \(boosted\)]\) = \!\(\*SuperscriptBox[\(m\), \(2\)]\) - for the formulas expressed in spherical LLP coordinates:"]
+testExpr2[ELLP_,mLLP_,thetaLLP_,[Phi]LLP_,pxd_,pyd_,pzd_,Ed_]=EproductLabSpher[ELLP,mLLP,thetaLLP,[Phi]LLP,pxd,pyd,pzd,Ed]^2-pproductLab1Spher[ELLP,mLLP,thetaLLP,[Phi]LLP,pxd,pyd,pzd,Ed]^2-pproductLab2Spher[ELLP,mLLP,thetaLLP,[Phi]LLP,pxd,pyd,pzd,Ed]^2-pproductLab3Spher[ELLP,mLLP,thetaLLP,[Phi]LLP,pxd,pyd,pzd,Ed]^2//Expand//Simplify
+
+----- cell 2  label= -----
+(*Position of the point in coordinate space in terms of spherical coordinates*)
+[Phi]Val[px_,py_]=If[py>0,ArcCos[(px)/(Sqrt[px^2+py^2])],-ArcCos[(px)/(Sqrt[px^2+py^2])]];
+thetaVal[px_,py_,pz_]=ArcCos[pz/([Sqrt](px^2+py^2+pz^2))];
+(*Decaying particle momentum and velocity at its lab frame. Since the experiment geometry is convenient to characterize in terms of spherical coordinates, it is given here in both spherical and cartesian coordinates*)
+pMotherVecCart[px_,py_,pz_]={px,py,pz};
+vMotherVecCart[Ev_,px_,py_,pz_]=+(pMotherVecCart[px,py,pz])/(Ev);
+(*gamma,[CapitalGamma] factors*)
+gammaFactor[ELLP_,mLLP_]=(ELLP)/(mLLP);
+[CapitalGamma]factor[ELLP_,mLLP_]=Simplify[(gammaFactor[ELLP,mLLP]-1)/((v/.Solve[gammaFactor[ELLP,mLLP]==(1)/(Sqrt[1-v^2]),v])^2[[1]])];
+pprod={pxd,pyd,pzd};
+vmotherlab=vMotherVecCart[Em,pxm,pym,pzm];
+pproductLabVecCart[pxm_,pym_,pzm_,Em_,mm_,pxd_,pyd_,pzd_,Ed_]=Simplify[pprod+gammaFactor[Em,mm]*vmotherlab*Ed+[CapitalGamma]factor[Em,mm]*vmotherlab(vmotherlab.pprod)];
+EproductLabCart[pxm_,pym_,pzm_,Em_,mm_,pxd_,pyd_,pzd_,Ed_]=Simplify[gammaFactor[Em,mm](Ed+vmotherlab.pprod)];
+{pproductLab1Cart[pxm_,pym_,pzm_,Em_,mm_,pxd_,pyd_,pzd_,Ed_],pproductLab2Cart[pxm_,pym_,pzm_,Em_,mm_,pxd_,pyd_,pzd_,Ed_],pproductLab3Cart[pxm_,pym_,pzm_,Em_,mm_,pxd_,pyd_,pzd_,Ed_]}=Simplify[pproductLabVecCart[pxm,pym,pzm,Em,mm,pxd,pyd,pzd,Ed][[#]]]&/@{1,2,3};
+Print["Check that \!\(\*SubscriptBox[SuperscriptBox[\(E\), \(2\)], \(boosted\)]\) - \!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(p\), \(_\)], \(2\)], \(boosted\)]\) = \!\(\*SuperscriptBox[\(m\), \(2\)]\):"]
+testExpr[pxm_,pym_,pzm_,Em_,mm_,pxd_,pyd_,pzd_,Ed_]=((EproductLabCart[pxm,pym,pzm,Em,mm,pxd,pyd,pzd,Ed]^2-pproductLab1Cart[pxm,pym,pzm,Em,mm,pxd,pyd,pzd,Ed]^2-pproductLab2Cart[pxm,pym,pzm,Em,mm,pxd,pyd,pzd,Ed]^2-pproductLab3Cart[pxm,pym,pzm,Em,mm,pxd,pyd,pzd,Ed]^2//Expand//Simplify)/.{pxm^2->Em^2-pym^2-pzm^2-mm^2}//Expand//Simplify)/.{Em^2->pxm^2+pym^2+pzm^2+mm^2};
+testExpr[pxm,pym,pzm,Sqrt[pxm^2+pym^2+pzm^2+mm^2],mm,Sqrt[Ed^2-pyd^2-pzd^2-m^2],pyd,pzd,Ed]//Simplify
+(*The same but assuming that the mother 3-momentum is given in terms of spherical coordinates*)
+pMotherVecSpher[ELLP_,mLLP_,thetaLLP_,[Phi]LLP_]=Sqrt[ELLP^2-mLLP^2]{Sin[thetaLLP]*Cos[[Phi]LLP],Sin[thetaLLP]*Sin[[Phi]LLP],Cos[thetaLLP]};
+vMotherVecSpher[ELLP_,mLLP_,thetaLLP_,[Phi]LLP_]=+(pMotherVecSpher[ELLP,mLLP,thetaLLP,[Phi]LLP]/ELLP);
+pproductLabVecSpher[ELLP_,mLLP_,thetaLLP_,[Phi]LLP_,pxd_,pyd_,pzd_,Ed_]=Simplify[pprod+gammaFactor[ELLP,mLLP]*vMotherVecSpher[ELLP,mLLP,thetaLLP,[Phi]LLP]*Ed+[CapitalGamma]factor[ELLP,mLLP]*vMotherVecSpher[ELLP,mLLP,thetaLLP,[Phi]LLP](vMotherVecSpher[ELLP,mLLP,thetaLLP,[Phi]LLP].pprod)];
+EproductLabSpher[ELLP_,mLLP_,thetaLLP_,[Phi]LLP_,pxd_,pyd_,pzd_,Ed_]=Simplify[gammaFactor[ELLP,mLLP](Ed+vMotherVecSpher[ELLP,mLLP,thetaLLP,[Phi]LLP].pprod)];
+{pproductLab1Spher[ELLP_,mLLP_,thetaLLP_,[Phi]LLP_,pxd_,pyd_,pzd_,Ed_],pproductLab2Spher[ELLP_,mLLP_,thetaLLP_,[Phi]LLP_,pxd_,pyd_,pzd_,Ed_],pproductLab3Spher[ELLP_,mLLP_,thetaLLP_,[Phi]LLP_,pxd_,pyd_,pzd_,Ed_]}=Simplify[pproductLabVecSpher[ELLP,mLLP,thetaLLP,[Phi]LLP,pxd,pyd,pzd,Ed][[#]]&/@{1,2,3}];
+Print["Check that \!\(\*SubscriptBox[SuperscriptBox[\(E\), \(2\)], \(boosted\)]\) - \!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(p\), \(_\)], \(2\)], \(boosted\)]\) = \!\(\*SuperscriptBox[\(m\), \(2\)]\) - for the formulas expressed in spherical LLP coordinates:"]
+testExpr2[ELLP_,mLLP_,thetaLLP_,[Phi]LLP_,pxd_,pyd_,pzd_,Ed_]=EproductLabSpher[ELLP,mLLP,thetaLLP,[Phi]LLP,pxd,pyd,pzd,Ed]^2-pproductLab1Spher[ELLP,mLLP,thetaLLP,[Phi]LLP,pxd,pyd,pzd,Ed]^2-pproductLab2Spher[ELLP,mLLP,thetaLLP,[Phi]LLP,pxd,pyd,pzd,Ed]^2-pproductLab3Spher[ELLP,mLLP,thetaLLP,[Phi]LLP,pxd,pyd,pzd,Ed]^2//Expand//Simplify
+
+----- cell 3  label= -----
+(*Position of the point in coordinate space in terms of spherical coordinates*)
+[Phi]Val[px_,py_]=If[py>0,ArcCos[(px)/(Sqrt[px^2+py^2])],-ArcCos[(px)/(Sqrt[px^2+py^2])]];
+thetaVal[px_,py_,pz_]=ArcCos[pz/([Sqrt](px^2+py^2+pz^2))];
+(*Decaying particle momentum and velocity at its lab frame. Since the experiment geometry is convenient to characterize in terms of spherical coordinates, it is given here in both spherical and cartesian coordinates*)
+pMotherVecCart[px_,py_,pz_]={px,py,pz};
+vMotherVecCart[Ev_,px_,py_,pz_]=+(pMotherVecCart[px,py,pz])/(Ev);
+(*gamma,[CapitalGamma] factors*)
+gammaFactor[ELLP_,mLLP_]=(ELLP)/(mLLP);
+[CapitalGamma]factor[ELLP_,mLLP_]=Simplify[(gammaFactor[ELLP,mLLP]-1)/((v/.Solve[gammaFactor[ELLP,mLLP]==(1)/(Sqrt[1-v^2]),v])^2[[1]])];
+pprod={pxd,pyd,pzd};
+vmotherlab=vMotherVecCart[Em,pxm,pym,pzm];
+pproductLabVecCart[pxm_,pym_,pzm_,Em_,mm_,pxd_,pyd_,pzd_,Ed_]=Simplify[pprod+gammaFactor[Em,mm]*vmotherlab*Ed+[CapitalGamma]factor[Em,mm]*vmotherlab(vmotherlab.pprod)];
+EproductLabCart[pxm_,pym_,pzm_,Em_,mm_,pxd_,pyd_,pzd_,Ed_]=Simplify[gammaFactor[Em,mm](Ed+vmotherlab.pprod)];
+{pproductLab1Cart[pxm_,pym_,pzm_,Em_,mm_,pxd_,pyd_,pzd_,Ed_],pproductLab2Cart[pxm_,pym_,pzm_,Em_,mm_,pxd_,pyd_,pzd_,Ed_],pproductLab3Cart[pxm_,pym_,pzm_,Em_,mm_,pxd_,pyd_,pzd_,Ed_]}=Simplify[pproductLabVecCart[pxm,pym,pzm,Em,mm,pxd,pyd,pzd,Ed][[#]]]&/@{1,2,3};
+Print["Check that \!\(\*SubscriptBox[SuperscriptBox[\(E\), \(2\)], \(boosted\)]\) - \!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(p\), \(_\)], \(2\)], \(boosted\)]\) = \!\(\*SuperscriptBox[\(m\), \(2\)]\):"]
+testExpr[pxm_,pym_,pzm_,Em_,mm_,pxd_,pyd_,pzd_,Ed_]=((EproductLabCart[pxm,pym,pzm,Em,mm,pxd,pyd,pzd,Ed]^2-pproductLab1Cart[pxm,pym,pzm,Em,mm,pxd,pyd,pzd,Ed]^2-pproductLab2Cart[pxm,pym,pzm,Em,mm,pxd,pyd,pzd,Ed]^2-pproductLab3Cart[pxm,pym,pzm,Em,mm,pxd,pyd,pzd,Ed]^2//Expand//Simplify)/.{pxm^2->Em^2-pym^2-pzm^2-mm^2}//Expand//Simplify)/.{Em^2->pxm^2+pym^2+pzm^2+mm^2};
+testExpr[pxm,pym,pzm,Sqrt[pxm^2+pym^2+pzm^2+mm^2],mm,Sqrt[Ed^2-pyd^2-pzd^2-m^2],pyd,pzd,Ed]//Simplify
+(*The same but assuming that the mother 3-momentum is given in terms of spherical coordinates*)
+pMotherVecSpher[ELLP_,mLLP_,thetaLLP_,[Phi]LLP_]=Sqrt[ELLP^2-mLLP^2]{Sin[thetaLLP]*Cos[[Phi]LLP],Sin[thetaLLP]*Sin[[Phi]LLP],Cos[thetaLLP]};
+vMotherVecSpher[ELLP_,mLLP_,thetaLLP_,[Phi]LLP_]=+(pMotherVecSpher[ELLP,mLLP,thetaLLP,[Phi]LLP]/ELLP);
+pproductLabVecSpher[ELLP_,mLLP_,thetaLLP_,[Phi]LLP_,pxd_,pyd_,pzd_,Ed_]=Simplify[pprod+gammaFactor[ELLP,mLLP]*vMotherVecSpher[ELLP,mLLP,thetaLLP,[Phi]LLP]*Ed+[CapitalGamma]factor[ELLP,mLLP]*vMotherVecSpher[ELLP,mLLP,thetaLLP,[Phi]LLP](vMotherVecSpher[ELLP,mLLP,thetaLLP,[Phi]LLP].pprod)];
+EproductLabSpher[ELLP_,mLLP_,thetaLLP_,[Phi]LLP_,pxd_,pyd_,pzd_,Ed_]=Simplify[gammaFactor[ELLP,mLLP](Ed+vMotherVecSpher[ELLP,mLLP,thetaLLP,[Phi]LLP].pprod)];
+{pproductLab1Spher[ELLP_,mLLP_,thetaLLP_,[Phi]LLP_,pxd_,pyd_,pzd_,Ed_],pproductLab2Spher[ELLP_,mLLP_,thetaLLP_,[Phi]LLP_,pxd_,pyd_,pzd_,Ed_],pproductLab3Spher[ELLP_,mLLP_,thetaLLP_,[Phi]LLP_,pxd_,pyd_,pzd_,Ed_]}=Simplify[pproductLabVecSpher[ELLP,mLLP,thetaLLP,[Phi]LLP,pxd,pyd,pzd,Ed][[#]]&/@{1,2,3}];
+Print["Check that \!\(\*SubscriptBox[SuperscriptBox[\(E\), \(2\)], \(boosted\)]\) - \!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(p\), \(_\)], \(2\)], \(boosted\)]\) = \!\(\*SuperscriptBox[\(m\), \(2\)]\) - for the formulas expressed in spherical LLP coordinates:"]
+testExpr2[ELLP_,mLLP_,thetaLLP_,[Phi]LLP_,pxd_,pyd_,pzd_,Ed_]=EproductLabSpher[ELLP,mLLP,thetaLLP,[Phi]LLP,pxd,pyd,pzd,Ed]^2-pproductLab1Spher[ELLP,mLLP,thetaLLP,[Phi]LLP,pxd,pyd,pzd,Ed]^2-pproductLab2Spher[ELLP,mLLP,thetaLLP,[Phi]LLP,pxd,pyd,pzd,Ed]^2-pproductLab3Spher[ELLP,mLLP,thetaLLP,[Phi]LLP,pxd,pyd,pzd,Ed]^2//Expand//Simplify
+
+----- cell 4  label= -----
+<PARSE ERROR list index out of range: 
+ FormBox[
+  TemplateBox[{
+   "Solve", "nongen", 
+    "\"There may be values of the parameters for which some or all solutions \
+are not valid.\"", 2, 232, 12, 23773143175991299767, "Local"},
+   "MessageTemplate",
+   BaseStyle->"MSG"], TraditionalForm]>
+
+----- cell 5  label= -----
+"Check that \!\(\*SubscriptBox[SuperscriptBox[\(E\), \(2\)], \(boosted\)]\) - \!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(p\), \(_\)], \(2\)], \(boosted\)]\) = \!\(\*SuperscriptBox[\(m\), \(2\)]\):"
+
+----- cell 6  label= -----
+m^2
+
+----- cell 7  label= -----
+"Check that \!\(\*SubscriptBox[SuperscriptBox[\(E\), \(2\)], \(boosted\)]\) - \!\(\*SubscriptBox[SuperscriptBox[OverscriptBox[\(p\), \(_\)], \(2\)], \(boosted\)]\) = \!\(\*SuperscriptBox[\(m\), \(2\)]\) - for the formulas expressed in spherical LLP coordinates:"
+
+----- cell 8  label= -----
+Ed^2-pxd^2-pyd^2-pzd^2
+
+----- cell 9  label=Kinematics -----
+(*Table p_product,x, p_product,y, p_product,z, E_product*)
+If[!AccCode,
+(*Indices of the table with the corresponding boosted LLPs*)
+indexpx=1;
+indexpy=2;
+indexpz=3;
+indexE=4;
+indexm=5;
+If[LLPdistr&&!EventCalc,
+BoostedLLPsFromDecaysTable=Hold@Compile[{{tablemother,_Real,1},{tabledaughter,_Real,1}},Module[{motherE,motherpx,motherpy,motherpz,daughterErest,daughterpxrest,daughterpyrest,daughterpzrest,daughterElab,daughterpxlab,daughterpylab,daughterpzlab,mmother},
+mmother=Compile`GetElement[tablemother,indexm];
+motherE=Compile`GetElement[tablemother,indexE];
+motherpx=Compile`GetElement[tablemother,indexpx];
+motherpy=Compile`GetElement[tablemother,indexpy];
+motherpz=Compile`GetElement[tablemother,indexpz];
+daughterErest=Compile`GetElement[tabledaughter,indexE];
+daughterpxrest=Compile`GetElement[tabledaughter,indexpx];
+daughterpyrest=Compile`GetElement[tabledaughter,indexpy];
+daughterpzrest=Compile`GetElement[tabledaughter,indexpz];
+daughterElab=EproductLabCart[motherpx,motherpy,motherpz,motherE,mmother,daughterpxrest,daughterpyrest,daughterpzrest,daughterErest];
+daughterpxlab=pproductLab1Cart[motherpx,motherpy,motherpz,motherE,mmother,daughterpxrest,daughterpyrest,daughterpzrest,daughterErest];
+daughterpylab=pproductLab2Cart[motherpx,motherpy,motherpz,motherE,mmother,daughterpxrest,daughterpyrest,daughterpzrest,daughterErest];
+daughterpzlab=pproductLab3Cart[motherpx,motherpy,motherpz,motherE,mmother,daughterpxrest,daughterpyrest,daughterpzrest,daughterErest];
+{daughterpxlab,daughterpylab,daughterpzlab,daughterElab}
+],CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable}]/.ruleDown[{pproductLab1Cart,pproductLab2Cart,pproductLab3Cart,EproductLabCart}]/.ruleOwn[{indexpx,indexpy,indexpz,indexE,indexm}]//ReleaseHold;
+(*This code converts the data in the form {p_x,p_y,p_z,E,m} into {theta,E}. If the facility is based on symmetric pp collisions, it also converts everything to the forward hemisphere to increase the statistics*)
+BoostedLLPsAngleEnergyData=Hold@Compile[{{BoostedLLPs,_Real,1},{mLLP,_Real},{abs,_Integer}},Module[{pzvals,Evals},
+pzvals=If[abs==1,Abs[Compile`GetElement[BoostedLLPs,indexpz]],Compile`GetElement[BoostedLLPs,indexpz]];
+Evals=Compile`GetElement[BoostedLLPs,indexE];
+{ArcCos[(pzvals)/(Sqrt[Evals^2-mLLP^2])],Evals}],CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable}]/.ruleOwn[{indexpz,indexE}]//ReleaseHold;
+BoostedLLPsFromDecays[motherdata_,daughterdata_]:=Block[{numllps=(Length[daughterdata[[1]]])/(indexm)},
+masses=Table[daughterdata[[1]][[(i-1)*indexm+indexm]],{i,1,numllps,1}];
+Join[##,2]&@@Table[If[masses[[i]]!=-999.,BoostedLLPsFromDecaysTable[motherdata,daughterdata[[All,(i-1)*indexm+Range[indexpx,indexm]]]],daughterdata[[All,(i-1)*indexm+Range[indexpx,indexm]]]],{i,1,numllps,1}]//Developer`ToPackedArray
+];
+,
+BoostedLLPsFromDecaysTable=Hold@Compile[{{tablemother,_Real,1},{tabledaughter,_Real,1}},Module[{motherE,motherpx,motherpy,motherpz,daughterErest,daughterpxrest,daughterpyrest,daughterpzrest,daughterElab,daughterpxlab,daughterpylab,daughterpzlab,mmother,daughterm},
+mmother=Compile`GetElement[tablemother,indexm];
+motherE=Compile`GetElement[tablemother,indexE];
+motherpx=Compile`GetElement[tablemother,indexpx];
+motherpy=Compile`GetElement[tablemother,indexpy];
+motherpz=Compile`GetElement[tablemother,indexpz];
+daughterErest=Compile`GetElement[tabledaughter,indexE];
+daughterpxrest=Compile`GetElement[tabledaughter,indexpx];
+daughterpyrest=Compile`GetElement[tabledaughter,indexpy];
+daughterpzrest=Compile`GetElement[tabledaughter,indexpz];
+daughterm=Compile`GetElement[tabledaughter,indexm];
+daughterElab=EproductLabCart[motherpx,motherpy,motherpz,motherE,mmother,daughterpxrest,daughterpyrest,daughterpzrest,daughterErest];
+daughterpxlab=pproductLab1Cart[motherpx,motherpy,motherpz,motherE,mmother,daughterpxrest,daughterpyrest,daughterpzrest,daughterErest];
+daughterpylab=pproductLab2Cart[motherpx,motherpy,motherpz,motherE,mmother,daughterpxrest,daughterpyrest,daughterpzrest,daughterErest];
+daughterpzlab=pproductLab3Cart[motherpx,motherpy,motherpz,motherE,mmother,daughterpxrest,daughterpyrest,daughterpzrest,daughterErest];
+{daughterpxlab,daughterpylab,daughterpzlab,daughterElab,daughterm}
+],CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable}]/.ruleDown[{pproductLab1Cart,pproductLab2Cart,pproductLab3Cart,EproductLabCart}]/.ruleOwn[{indexpx,indexpy,indexpz,indexE,indexm}]//ReleaseHold;
+BoostedLLPsFromDecaysDi[motherdata_,daughterdata_]:=Block[{numllps=(Length[daughterdata[[1]]])/(indexm)},
+masses=Table[daughterdata[[1]][[(i-1)*indexm+indexm]],{i,1,numllps,1}];
+Join[##,2]&@@Table[If[masses[[i]]!=-999.,BoostedLLPsFromDecaysTable[motherdata,daughterdata[[All,(i-1)*indexm+Range[indexpx,indexm]]]],daughterdata[[All,(i-1)*indexm+Range[indexpx,indexm]]]],{i,1,numllps,1}]//Developer`ToPackedArray
+]
+]
+]
+
+----- cell 10  label=Table with 4-momentum of boosted LLPs -----
+(*Table p_product,x, p_product,y, p_product,z, E_product*)
+If[!AccCode,
+(*Indices of the table with the corresponding boosted LLPs*)
+indexpx=1;
+indexpy=2;
+indexpz=3;
+indexE=4;
+indexm=5;
+If[LLPdistr&&!EventCalc,
+BoostedLLPsFromDecaysTable=Hold@Compile[{{tablemother,_Real,1},{tabledaughter,_Real,1}},Module[{motherE,motherpx,motherpy,motherpz,daughterErest,daughterpxrest,daughterpyrest,daughterpzrest,daughterElab,daughterpxlab,daughterpylab,daughterpzlab,mmother},
+mmother=Compile`GetElement[tablemother,indexm];
+motherE=Compile`GetElement[tablemother,indexE];
+motherpx=Compile`GetElement[tablemother,indexpx];
+motherpy=Compile`GetElement[tablemother,indexpy];
+motherpz=Compile`GetElement[tablemother,indexpz];
+daughterErest=Compile`GetElement[tabledaughter,indexE];
+daughterpxrest=Compile`GetElement[tabledaughter,indexpx];
+daughterpyrest=Compile`GetElement[tabledaughter,indexpy];
+daughterpzrest=Compile`GetElement[tabledaughter,indexpz];
+daughterElab=EproductLabCart[motherpx,motherpy,motherpz,motherE,mmother,daughterpxrest,daughterpyrest,daughterpzrest,daughterErest];
+daughterpxlab=pproductLab1Cart[motherpx,motherpy,motherpz,motherE,mmother,daughterpxrest,daughterpyrest,daughterpzrest,daughterErest];
+daughterpylab=pproductLab2Cart[motherpx,motherpy,motherpz,motherE,mmother,daughterpxrest,daughterpyrest,daughterpzrest,daughterErest];
+daughterpzlab=pproductLab3Cart[motherpx,motherpy,motherpz,motherE,mmother,daughterpxrest,daughterpyrest,daughterpzrest,daughterErest];
+{daughterpxlab,daughterpylab,daughterpzlab,daughterElab}
+],CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable}]/.ruleDown[{pproductLab1Cart,pproductLab2Cart,pproductLab3Cart,EproductLabCart}]/.ruleOwn[{indexpx,indexpy,indexpz,indexE,indexm}]//ReleaseHold;
+(*This code converts the data in the form {p_x,p_y,p_z,E,m} into {theta,E}. If the facility is based on symmetric pp collisions, it also converts everything to the forward hemisphere to increase the statistics*)
+BoostedLLPsAngleEnergyData=Hold@Compile[{{BoostedLLPs,_Real,1},{mLLP,_Real},{abs,_Integer}},Module[{pzvals,Evals},
+pzvals=If[abs==1,Abs[Compile`GetElement[BoostedLLPs,indexpz]],Compile`GetElement[BoostedLLPs,indexpz]];
+Evals=Compile`GetElement[BoostedLLPs,indexE];
+{ArcCos[(pzvals)/(Sqrt[Evals^2-mLLP^2])],Evals}],CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable}]/.ruleOwn[{indexpz,indexE}]//ReleaseHold;
+BoostedLLPsFromDecays[motherdata_,daughterdata_]:=Block[{numllps=(Length[daughterdata[[1]]])/(indexm)},
+masses=Table[daughterdata[[1]][[(i-1)*indexm+indexm]],{i,1,numllps,1}];
+Join[##,2]&@@Table[If[masses[[i]]!=-999.,BoostedLLPsFromDecaysTable[motherdata,daughterdata[[All,(i-1)*indexm+Range[indexpx,indexm]]]],daughterdata[[All,(i-1)*indexm+Range[indexpx,indexm]]]],{i,1,numllps,1}]//Developer`ToPackedArray
+];
+,
+BoostedLLPsFromDecaysTable=Hold@Compile[{{tablemother,_Real,1},{tabledaughter,_Real,1}},Module[{motherE,motherpx,motherpy,motherpz,daughterErest,daughterpxrest,daughterpyrest,daughterpzrest,daughterElab,daughterpxlab,daughterpylab,daughterpzlab,mmother,daughterm},
+mmother=Compile`GetElement[tablemother,indexm];
+motherE=Compile`GetElement[tablemother,indexE];
+motherpx=Compile`GetElement[tablemother,indexpx];
+motherpy=Compile`GetElement[tablemother,indexpy];
+motherpz=Compile`GetElement[tablemother,indexpz];
+daughterErest=Compile`GetElement[tabledaughter,indexE];
+daughterpxrest=Compile`GetElement[tabledaughter,indexpx];
+daughterpyrest=Compile`GetElement[tabledaughter,indexpy];
+daughterpzrest=Compile`GetElement[tabledaughter,indexpz];
+daughterm=Compile`GetElement[tabledaughter,indexm];
+daughterElab=EproductLabCart[motherpx,motherpy,motherpz,motherE,mmother,daughterpxrest,daughterpyrest,daughterpzrest,daughterErest];
+daughterpxlab=pproductLab1Cart[motherpx,motherpy,motherpz,motherE,mmother,daughterpxrest,daughterpyrest,daughterpzrest,daughterErest];
+daughterpylab=pproductLab2Cart[motherpx,motherpy,motherpz,motherE,mmother,daughterpxrest,daughterpyrest,daughterpzrest,daughterErest];
+daughterpzlab=pproductLab3Cart[motherpx,motherpy,motherpz,motherE,mmother,daughterpxrest,daughterpyrest,daughterpzrest,daughterErest];
+{daughterpxlab,daughterpylab,daughterpzlab,daughterElab,daughterm}
+],CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable}]/.ruleDown[{pproductLab1Cart,pproductLab2Cart,pproductLab3Cart,EproductLabCart}]/.ruleOwn[{indexpx,indexpy,indexpz,indexE,indexm}]//ReleaseHold;
+BoostedLLPsFromDecaysDi[motherdata_,daughterdata_]:=Block[{numllps=(Length[daughterdata[[1]]])/(indexm)},
+masses=Table[daughterdata[[1]][[(i-1)*indexm+indexm]],{i,1,numllps,1}];
+Join[##,2]&@@Table[If[masses[[i]]!=-999.,BoostedLLPsFromDecaysTable[motherdata,daughterdata[[All,(i-1)*indexm+Range[indexpx,indexm]]]],daughterdata[[All,(i-1)*indexm+Range[indexpx,indexm]]]],{i,1,numllps,1}]//Developer`ToPackedArray
+]
+]
+]
+
+----- cell 11  label= -----
+(*Table p_product,x, p_product,y, p_product,z, E_product*)
+If[!AccCode,
+(*Indices of the table with the corresponding boosted LLPs*)
+indexpx=1;
+indexpy=2;
+indexpz=3;
+indexE=4;
+indexm=5;
+If[LLPdistr&&!EventCalc,
+BoostedLLPsFromDecaysTable=Hold@Compile[{{tablemother,_Real,1},{tabledaughter,_Real,1}},Module[{motherE,motherpx,motherpy,motherpz,daughterErest,daughterpxrest,daughterpyrest,daughterpzrest,daughterElab,daughterpxlab,daughterpylab,daughterpzlab,mmother},
+mmother=Compile`GetElement[tablemother,indexm];
+motherE=Compile`GetElement[tablemother,indexE];
+motherpx=Compile`GetElement[tablemother,indexpx];
+motherpy=Compile`GetElement[tablemother,indexpy];
+motherpz=Compile`GetElement[tablemother,indexpz];
+daughterErest=Compile`GetElement[tabledaughter,indexE];
+daughterpxrest=Compile`GetElement[tabledaughter,indexpx];
+daughterpyrest=Compile`GetElement[tabledaughter,indexpy];
+daughterpzrest=Compile`GetElement[tabledaughter,indexpz];
+daughterElab=EproductLabCart[motherpx,motherpy,motherpz,motherE,mmother,daughterpxrest,daughterpyrest,daughterpzrest,daughterErest];
+daughterpxlab=pproductLab1Cart[motherpx,motherpy,motherpz,motherE,mmother,daughterpxrest,daughterpyrest,daughterpzrest,daughterErest];
+daughterpylab=pproductLab2Cart[motherpx,motherpy,motherpz,motherE,mmother,daughterpxrest,daughterpyrest,daughterpzrest,daughterErest];
+daughterpzlab=pproductLab3Cart[motherpx,motherpy,motherpz,motherE,mmother,daughterpxrest,daughterpyrest,daughterpzrest,daughterErest];
+{daughterpxlab,daughterpylab,daughterpzlab,daughterElab}
+],CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable}]/.ruleDown[{pproductLab1Cart,pproductLab2Cart,pproductLab3Cart,EproductLabCart}]/.ruleOwn[{indexpx,indexpy,indexpz,indexE,indexm}]//ReleaseHold;
+(*This code converts the data in the form {p_x,p_y,p_z,E,m} into {theta,E}. If the facility is based on symmetric pp collisions, it also converts everything to the forward hemisphere to increase the statistics*)
+BoostedLLPsAngleEnergyData=Hold@Compile[{{BoostedLLPs,_Real,1},{mLLP,_Real},{abs,_Integer}},Module[{pzvals,Evals},
+pzvals=If[abs==1,Abs[Compile`GetElement[BoostedLLPs,indexpz]],Compile`GetElement[BoostedLLPs,indexpz]];
+Evals=Compile`GetElement[BoostedLLPs,indexE];
+{ArcCos[(pzvals)/(Sqrt[Evals^2-mLLP^2])],Evals}],CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable}]/.ruleOwn[{indexpz,indexE}]//ReleaseHold;
+BoostedLLPsFromDecays[motherdata_,daughterdata_]:=Block[{numllps=(Length[daughterdata[[1]]])/(indexm)},
+masses=Table[daughterdata[[1]][[(i-1)*indexm+indexm]],{i,1,numllps,1}];
+Join[##,2]&@@Table[If[masses[[i]]!=-999.,BoostedLLPsFromDecaysTable[motherdata,daughterdata[[All,(i-1)*indexm+Range[indexpx,indexm]]]],daughterdata[[All,(i-1)*indexm+Range[indexpx,indexm]]]],{i,1,numllps,1}]//Developer`ToPackedArray
+];
+,
+BoostedLLPsFromDecaysTable=Hold@Compile[{{tablemother,_Real,1},{tabledaughter,_Real,1}},Module[{motherE,motherpx,motherpy,motherpz,daughterErest,daughterpxrest,daughterpyrest,daughterpzrest,daughterElab,daughterpxlab,daughterpylab,daughterpzlab,mmother,daughterm},
+mmother=Compile`GetElement[tablemother,indexm];
+motherE=Compile`GetElement[tablemother,indexE];
+motherpx=Compile`GetElement[tablemother,indexpx];
+motherpy=Compile`GetElement[tablemother,indexpy];
+motherpz=Compile`GetElement[tablemother,indexpz];
+daughterErest=Compile`GetElement[tabledaughter,indexE];
+daughterpxrest=Compile`GetElement[tabledaughter,indexpx];
+daughterpyrest=Compile`GetElement[tabledaughter,indexpy];
+daughterpzrest=Compile`GetElement[tabledaughter,indexpz];
+daughterm=Compile`GetElement[tabledaughter,indexm];
+daughterElab=EproductLabCart[motherpx,motherpy,motherpz,motherE,mmother,daughterpxrest,daughterpyrest,daughterpzrest,daughterErest];
+daughterpxlab=pproductLab1Cart[motherpx,motherpy,motherpz,motherE,mmother,daughterpxrest,daughterpyrest,daughterpzrest,daughterErest];
+daughterpylab=pproductLab2Cart[motherpx,motherpy,motherpz,motherE,mmother,daughterpxrest,daughterpyrest,daughterpzrest,daughterErest];
+daughterpzlab=pproductLab3Cart[motherpx,motherpy,motherpz,motherE,mmother,daughterpxrest,daughterpyrest,daughterpzrest,daughterErest];
+{daughterpxlab,daughterpylab,daughterpzlab,daughterElab,daughterm}
+],CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable}]/.ruleDown[{pproductLab1Cart,pproductLab2Cart,pproductLab3Cart,EproductLabCart}]/.ruleOwn[{indexpx,indexpy,indexpz,indexE,indexm}]//ReleaseHold;
+BoostedLLPsFromDecaysDi[motherdata_,daughterdata_]:=Block[{numllps=(Length[daughterdata[[1]]])/(indexm)},
+masses=Table[daughterdata[[1]][[(i-1)*indexm+indexm]],{i,1,numllps,1}];
+Join[##,2]&@@Table[If[masses[[i]]!=-999.,BoostedLLPsFromDecaysTable[motherdata,daughterdata[[All,(i-1)*indexm+Range[indexpx,indexm]]]],daughterdata[[All,(i-1)*indexm+Range[indexpx,indexm]]]],{i,1,numllps,1}]//Developer`ToPackedArray
+]
+]
+]
+
+----- cell 12  label=LLP decays -----
+{If[!AccCode,
+tabPS2bodyLLPprodCompiled=Hold@Compile[{{MASSM,_Real},{m2,_Real},{m1,_Real},{thetarand,_Real},{[Phi]rand,_Real}},Module[{pval,px1,py1,pz1,E12body,E22body},
+(*Energies of particles 1 (E12body) and 2 (E22body) at the rest frame of decaying particle*)
+E12body=(MASSM^2-m2^2+m1^2)/(2*MASSM);
+E22body=(MASSM^2-m1^2+m2^2)/(2*MASSM);
+pval=Sqrt[E22body^2-m2^2];
+px1=pval*Cos[[Phi]rand]*Sin[thetarand];
+py1=pval*Sin[[Phi]rand]*Sin[thetarand];
+pz1=pval*Cos[thetarand];
+{-px1,-py1,-pz1,E12body,m1,px1,py1,pz1,E22body,m2}
+],CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable},Parallelization->True]//ReleaseHold;
+<<CompiledFunctionTools`;
+CompilePrint@tabPS2bodyLLPprodCompiled;
+TwoBodyDecaysEventsAtRestArbitrary[m_,m1_,m2_,Nevents_]:=Block[{},
+[Phi]Rand=RandomReal[{-Pi,Pi},Nevents];
+thetaRand=ArcCos[RandomReal[{-1,1},Nevents]];
+tabPS2bodyLLPprodCompiled[m,m2,m1,thetaRand,[Phi]Rand]
+];
+TwoBodyDecaysEventsAtRestLLPprod[LLP_,Process_, mLLP_,Nevents_]:=Block[{(*partcontent,MASSM,MASS1,[Phi]Rand,thetaRand*)},
+partcontent=ReactionProductsList[LLP,Process];
+{MASSM,MASS1}={mSM[partcontent[[1]]],If[partcontent[[2]]==LLP,mLLP,mSM[partcontent[[2]]]]};
+If[partcontent[[2]]=="X",MASS1=mXval[LLP,mLLP]];
+(*Array of random values of [Phi] and theta defined via p_2 = (-p*Cos[[Phi]]*Sin[theta],-p*Sin[[Phi]]*Sin[theta],-p*Cos[theta])*)
+(*Distribution in [Phi] is isotropic. Distribution in cos(theta) is isotropic. Hence, one should generate random values of [Phi] in (-Pi,Pi) and random values of cos(theta) from -1 to 1, then takin arccos()*)
+[Phi]Rand=RandomReal[{-Pi,Pi},Nevents];
+thetaRand=ArcCos[RandomReal[{-1,1},Nevents]];
+(*The final phase space*)
+TabPS2bodyTemp=tabPS2bodyLLPprodCompiled[MASSM,mLLP,MASS1,thetaRand,[Phi]Rand];
+If[partcontent[[2]]==LLP,If[LLPdistr,Riffle[TabPS2bodyTemp[[All,Range[1,5]]],TabPS2bodyTemp[[All,Range[6,10]]]],TabPS2bodyTemp[[All,Range[1,10]]]],TabPS2bodyTemp[[All,Range[6,10]]]]
+];
+TwoBodyDecaysEventsAtRestNonLLP[partM_,part1_,part2_,Nevents_]:=Block[{partcontent,MASSM,MASS1,MASS2,[Phi]Rand,thetaRand},
+{MASSM,MASS1,MASS2}={mSM[partM],mSM[part1],mSM[part2]};
+(*Array of random values of [Phi] and theta defined via p_2 = (-p*Cos[[Phi]]*Sin[theta],-p*Sin[[Phi]]*Sin[theta],-p*Cos[theta])*)
+(*Distribution in [Phi] is isotropic. Distribution in cos(theta) is isotropic. Hence, one should generate random values of [Phi] in (-Pi,Pi) and random values of cos(theta) from -1 to 1, then takin arccos()*)
+[Phi]Rand=RandomReal[{-Pi,Pi},Nevents];
+thetaRand=ArcCos[RandomReal[{-1,1},Nevents]];
+(*The final phase space*)
+TabPS2bodyTemp=tabPS2bodyLLPprodCompiled[MASSM,MASS2,MASS1,thetaRand,[Phi]Rand]
+]
+], 
+, (*tabtest=TwoBodyDecaysEventsAtRest["HNL-mixing-e","B-2-body",1,5*10^6];//AbsoluteTiming
+Print["Distribution in cos(theta) (must be isotropic):"]
+Histogram[(tabtest[[All,3]])/(Sqrt[tabtest[[1]][[4]]^2-tabtest[[1]][[5]]^2]),100,"ProbabilityDensity"]*)}
+
+----- cell 13  label=A sampler for 2-body decays at rest -----
+{If[!AccCode,
+tabPS2bodyLLPprodCompiled=Hold@Compile[{{MASSM,_Real},{m2,_Real},{m1,_Real},{thetarand,_Real},{[Phi]rand,_Real}},Module[{pval,px1,py1,pz1,E12body,E22body},
+(*Energies of particles 1 (E12body) and 2 (E22body) at the rest frame of decaying particle*)
+E12body=(MASSM^2-m2^2+m1^2)/(2*MASSM);
+E22body=(MASSM^2-m1^2+m2^2)/(2*MASSM);
+pval=Sqrt[E22body^2-m2^2];
+px1=pval*Cos[[Phi]rand]*Sin[thetarand];
+py1=pval*Sin[[Phi]rand]*Sin[thetarand];
+pz1=pval*Cos[thetarand];
+{-px1,-py1,-pz1,E12body,m1,px1,py1,pz1,E22body,m2}
+],CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable},Parallelization->True]//ReleaseHold;
+<<CompiledFunctionTools`;
+CompilePrint@tabPS2bodyLLPprodCompiled;
+TwoBodyDecaysEventsAtRestArbitrary[m_,m1_,m2_,Nevents_]:=Block[{},
+[Phi]Rand=RandomReal[{-Pi,Pi},Nevents];
+thetaRand=ArcCos[RandomReal[{-1,1},Nevents]];
+tabPS2bodyLLPprodCompiled[m,m2,m1,thetaRand,[Phi]Rand]
+];
+TwoBodyDecaysEventsAtRestLLPprod[LLP_,Process_, mLLP_,Nevents_]:=Block[{(*partcontent,MASSM,MASS1,[Phi]Rand,thetaRand*)},
+partcontent=ReactionProductsList[LLP,Process];
+{MASSM,MASS1}={mSM[partcontent[[1]]],If[partcontent[[2]]==LLP,mLLP,mSM[partcontent[[2]]]]};
+If[partcontent[[2]]=="X",MASS1=mXval[LLP,mLLP]];
+(*Array of random values of [Phi] and theta defined via p_2 = (-p*Cos[[Phi]]*Sin[theta],-p*Sin[[Phi]]*Sin[theta],-p*Cos[theta])*)
+(*Distribution in [Phi] is isotropic. Distribution in cos(theta) is isotropic. Hence, one should generate random values of [Phi] in (-Pi,Pi) and random values of cos(theta) from -1 to 1, then takin arccos()*)
+[Phi]Rand=RandomReal[{-Pi,Pi},Nevents];
+thetaRand=ArcCos[RandomReal[{-1,1},Nevents]];
+(*The final phase space*)
+TabPS2bodyTemp=tabPS2bodyLLPprodCompiled[MASSM,mLLP,MASS1,thetaRand,[Phi]Rand];
+If[partcontent[[2]]==LLP,If[LLPdistr,Riffle[TabPS2bodyTemp[[All,Range[1,5]]],TabPS2bodyTemp[[All,Range[6,10]]]],TabPS2bodyTemp[[All,Range[1,10]]]],TabPS2bodyTemp[[All,Range[6,10]]]]
+];
+TwoBodyDecaysEventsAtRestNonLLP[partM_,part1_,part2_,Nevents_]:=Block[{partcontent,MASSM,MASS1,MASS2,[Phi]Rand,thetaRand},
+{MASSM,MASS1,MASS2}={mSM[partM],mSM[part1],mSM[part2]};
+(*Array of random values of [Phi] and theta defined via p_2 = (-p*Cos[[Phi]]*Sin[theta],-p*Sin[[Phi]]*Sin[theta],-p*Cos[theta])*)
+(*Distribution in [Phi] is isotropic. Distribution in cos(theta) is isotropic. Hence, one should generate random values of [Phi] in (-Pi,Pi) and random values of cos(theta) from -1 to 1, then takin arccos()*)
+[Phi]Rand=RandomReal[{-Pi,Pi},Nevents];
+thetaRand=ArcCos[RandomReal[{-1,1},Nevents]];
+(*The final phase space*)
+TabPS2bodyTemp=tabPS2bodyLLPprodCompiled[MASSM,MASS2,MASS1,thetaRand,[Phi]Rand]
+]
+], 
+, (*tabtest=TwoBodyDecaysEventsAtRest["HNL-mixing-e","B-2-body",1,5*10^6];//AbsoluteTiming
+Print["Distribution in cos(theta) (must be isotropic):"]
+Histogram[(tabtest[[All,3]])/(Sqrt[tabtest[[1]][[4]]^2-tabtest[[1]][[5]]^2]),100,"ProbabilityDensity"]*)}
+
+----- cell 14  label=2-body -----
+{If[!AccCode,
+tabPS2bodyLLPprodCompiled=Hold@Compile[{{MASSM,_Real},{m2,_Real},{m1,_Real},{thetarand,_Real},{[Phi]rand,_Real}},Module[{pval,px1,py1,pz1,E12body,E22body},
+(*Energies of particles 1 (E12body) and 2 (E22body) at the rest frame of decaying particle*)
+E12body=(MASSM^2-m2^2+m1^2)/(2*MASSM);
+E22body=(MASSM^2-m1^2+m2^2)/(2*MASSM);
+pval=Sqrt[E22body^2-m2^2];
+px1=pval*Cos[[Phi]rand]*Sin[thetarand];
+py1=pval*Sin[[Phi]rand]*Sin[thetarand];
+pz1=pval*Cos[thetarand];
+{-px1,-py1,-pz1,E12body,m1,px1,py1,pz1,E22body,m2}
+],CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable},Parallelization->True]//ReleaseHold;
+<<CompiledFunctionTools`;
+CompilePrint@tabPS2bodyLLPprodCompiled;
+TwoBodyDecaysEventsAtRestArbitrary[m_,m1_,m2_,Nevents_]:=Block[{},
+[Phi]Rand=RandomReal[{-Pi,Pi},Nevents];
+thetaRand=ArcCos[RandomReal[{-1,1},Nevents]];
+tabPS2bodyLLPprodCompiled[m,m2,m1,thetaRand,[Phi]Rand]
+];
+TwoBodyDecaysEventsAtRestLLPprod[LLP_,Process_, mLLP_,Nevents_]:=Block[{(*partcontent,MASSM,MASS1,[Phi]Rand,thetaRand*)},
+partcontent=ReactionProductsList[LLP,Process];
+{MASSM,MASS1}={mSM[partcontent[[1]]],If[partcontent[[2]]==LLP,mLLP,mSM[partcontent[[2]]]]};
+If[partcontent[[2]]=="X",MASS1=mXval[LLP,mLLP]];
+(*Array of random values of [Phi] and theta defined via p_2 = (-p*Cos[[Phi]]*Sin[theta],-p*Sin[[Phi]]*Sin[theta],-p*Cos[theta])*)
+(*Distribution in [Phi] is isotropic. Distribution in cos(theta) is isotropic. Hence, one should generate random values of [Phi] in (-Pi,Pi) and random values of cos(theta) from -1 to 1, then takin arccos()*)
+[Phi]Rand=RandomReal[{-Pi,Pi},Nevents];
+thetaRand=ArcCos[RandomReal[{-1,1},Nevents]];
+(*The final phase space*)
+TabPS2bodyTemp=tabPS2bodyLLPprodCompiled[MASSM,mLLP,MASS1,thetaRand,[Phi]Rand];
+If[partcontent[[2]]==LLP,If[LLPdistr,Riffle[TabPS2bodyTemp[[All,Range[1,5]]],TabPS2bodyTemp[[All,Range[6,10]]]],TabPS2bodyTemp[[All,Range[1,10]]]],TabPS2bodyTemp[[All,Range[6,10]]]]
+];
+TwoBodyDecaysEventsAtRestNonLLP[partM_,part1_,part2_,Nevents_]:=Block[{partcontent,MASSM,MASS1,MASS2,[Phi]Rand,thetaRand},
+{MASSM,MASS1,MASS2}={mSM[partM],mSM[part1],mSM[part2]};
+(*Array of random values of [Phi] and theta defined via p_2 = (-p*Cos[[Phi]]*Sin[theta],-p*Sin[[Phi]]*Sin[theta],-p*Cos[theta])*)
+(*Distribution in [Phi] is isotropic. Distribution in cos(theta) is isotropic. Hence, one should generate random values of [Phi] in (-Pi,Pi) and random values of cos(theta) from -1 to 1, then takin arccos()*)
+[Phi]Rand=RandomReal[{-Pi,Pi},Nevents];
+thetaRand=ArcCos[RandomReal[{-1,1},Nevents]];
+(*The final phase space*)
+TabPS2bodyTemp=tabPS2bodyLLPprodCompiled[MASSM,MASS2,MASS1,thetaRand,[Phi]Rand]
+]
+], 
+, (*tabtest=TwoBodyDecaysEventsAtRest["HNL-mixing-e","B-2-body",1,5*10^6];//AbsoluteTiming
+Print["Distribution in cos(theta) (must be isotropic):"]
+Histogram[(tabtest[[All,3]])/(Sqrt[tabtest[[1]][[4]]^2-tabtest[[1]][[5]]^2]),100,"ProbabilityDensity"]*)}
+
+----- cell 15  label= -----
+{If[!AccCode,
+tabPS2bodyLLPprodCompiled=Hold@Compile[{{MASSM,_Real},{m2,_Real},{m1,_Real},{thetarand,_Real},{[Phi]rand,_Real}},Module[{pval,px1,py1,pz1,E12body,E22body},
+(*Energies of particles 1 (E12body) and 2 (E22body) at the rest frame of decaying particle*)
+E12body=(MASSM^2-m2^2+m1^2)/(2*MASSM);
+E22body=(MASSM^2-m1^2+m2^2)/(2*MASSM);
+pval=Sqrt[E22body^2-m2^2];
+px1=pval*Cos[[Phi]rand]*Sin[thetarand];
+py1=pval*Sin[[Phi]rand]*Sin[thetarand];
+pz1=pval*Cos[thetarand];
+{-px1,-py1,-pz1,E12body,m1,px1,py1,pz1,E22body,m2}
+],CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable},Parallelization->True]//ReleaseHold;
+<<CompiledFunctionTools`;
+CompilePrint@tabPS2bodyLLPprodCompiled;
+TwoBodyDecaysEventsAtRestArbitrary[m_,m1_,m2_,Nevents_]:=Block[{},
+[Phi]Rand=RandomReal[{-Pi,Pi},Nevents];
+thetaRand=ArcCos[RandomReal[{-1,1},Nevents]];
+tabPS2bodyLLPprodCompiled[m,m2,m1,thetaRand,[Phi]Rand]
+];
+TwoBodyDecaysEventsAtRestLLPprod[LLP_,Process_, mLLP_,Nevents_]:=Block[{(*partcontent,MASSM,MASS1,[Phi]Rand,thetaRand*)},
+partcontent=ReactionProductsList[LLP,Process];
+{MASSM,MASS1}={mSM[partcontent[[1]]],If[partcontent[[2]]==LLP,mLLP,mSM[partcontent[[2]]]]};
+If[partcontent[[2]]=="X",MASS1=mXval[LLP,mLLP]];
+(*Array of random values of [Phi] and theta defined via p_2 = (-p*Cos[[Phi]]*Sin[theta],-p*Sin[[Phi]]*Sin[theta],-p*Cos[theta])*)
+(*Distribution in [Phi] is isotropic. Distribution in cos(theta) is isotropic. Hence, one should generate random values of [Phi] in (-Pi,Pi) and random values of cos(theta) from -1 to 1, then takin arccos()*)
+[Phi]Rand=RandomReal[{-Pi,Pi},Nevents];
+thetaRand=ArcCos[RandomReal[{-1,1},Nevents]];
+(*The final phase space*)
+TabPS2bodyTemp=tabPS2bodyLLPprodCompiled[MASSM,mLLP,MASS1,thetaRand,[Phi]Rand];
+If[partcontent[[2]]==LLP,If[LLPdistr,Riffle[TabPS2bodyTemp[[All,Range[1,5]]],TabPS2bodyTemp[[All,Range[6,10]]]],TabPS2bodyTemp[[All,Range[1,10]]]],TabPS2bodyTemp[[All,Range[6,10]]]]
+];
+TwoBodyDecaysEventsAtRestNonLLP[partM_,part1_,part2_,Nevents_]:=Block[{partcontent,MASSM,MASS1,MASS2,[Phi]Rand,thetaRand},
+{MASSM,MASS1,MASS2}={mSM[partM],mSM[part1],mSM[part2]};
+(*Array of random values of [Phi] and theta defined via p_2 = (-p*Cos[[Phi]]*Sin[theta],-p*Sin[[Phi]]*Sin[theta],-p*Cos[theta])*)
+(*Distribution in [Phi] is isotropic. Distribution in cos(theta) is isotropic. Hence, one should generate random values of [Phi] in (-Pi,Pi) and random values of cos(theta) from -1 to 1, then takin arccos()*)
+[Phi]Rand=RandomReal[{-Pi,Pi},Nevents];
+thetaRand=ArcCos[RandomReal[{-1,1},Nevents]];
+(*The final phase space*)
+TabPS2bodyTemp=tabPS2bodyLLPprodCompiled[MASSM,MASS2,MASS1,thetaRand,[Phi]Rand]
+]
+], 
+, (*tabtest=TwoBodyDecaysEventsAtRest["HNL-mixing-e","B-2-body",1,5*10^6];//AbsoluteTiming
+Print["Distribution in cos(theta) (must be isotropic):"]
+Histogram[(tabtest[[All,3]])/(Sqrt[tabtest[[1]][[4]]^2-tabtest[[1]][[5]]^2]),100,"ProbabilityDensity"]*)}
+
+----- cell 16  label=Kinematics of 3-body decays -----
+E_1,E_3
+
+----- cell 17  label=Scalar products in terms of energies 1,3 -----
+E_1,E_3
+
+----- cell 18  label= -----
+E_1,E_3
+
+----- cell 19  label= -----
+(*Kinematics of 3-body decays*)
+pPar[En_,mn_]=Sqrt[En^2-mn^2];
+E2valEnergies[m_,E1_,E3_]=m-E1-E3;
+(*cos between particles 1,2 and 1,3 at rest frame of decaying particle 0 -> 1+2+3 parametrized in terms of E_1,E_3*)
+
+costheta12[E1_,E3_,m_,m1_,m2_,m3_]=(pPar[E3,m3]^2-pPar[E1,m1]^2-pPar[E2valEnergies[m,E1,E3],m2]^2)/(2pPar[E1,m1]*pPar[E2valEnergies[m,E1,E3],m2]);
+costheta13[E1_,E3_,m_,m1_,m2_,m3_]=(pPar[E2valEnergies[m,E1,E3],m2]^2-pPar[E1,m1]^2-pPar[E3,m3]^2)/(2pPar[E1,m1]*pPar[E3,m3]);
+theta12[E1_,E3_,m_,m1_,m2_,m3_]=ArcCos[costheta12[E1,E3,m,m1,m2,m3]];
+theta13[E1_,E3_,m_,m1_,m2_,m3_]=ArcCos[costheta13[E1,E3,m,m1,m2,m3]];
+(*Domain of definition of E_1 and E_3 in decay 0->1+2+3 at rest frame of 0, E_3,min/max = f(E_1)*)
+E3domain[E1_,m_,m1_,m2_,m3_]=E3/.(*Assuming[m>0&&E1>m1>0,*)Simplify[Solve[costheta12[E1,E3,m,m1,m2,m3]==1,E3]](*]*)
+E3domainMin[E1_,m_,m1_,m2_,m3_]=E3domain[E1,m,m1,m2,m3][[1]];
+E3domainMax[E1_,m_,m1_,m2_,m3_]=E3domain[E1,m,m1,m2,m3][[2]];
+[CapitalDelta]E3[E1_,m_,m1_,m2_,m3_]=E3domainMax[E1,m,m1,m2,m3]-E3domainMin[E1,m,m1,m2,m3]//Simplify
+{E1domainMin[m_,m1_,m2_,m3_],E1domainMax[m_,m1_,m2_,m3_]}=E1domain[m_,m1_,m2_,m3_]={E1/.Solve[[CapitalDelta]E3[E1,m,m1,m2,m3][[2]]==0,E1][[2]],E1/.Solve[[CapitalDelta]E3[E1,m,m1,m2,m3][[2]]==0,E1][[3]]}//Simplify
+(*Domain of definition of E_1 and E_3 in decay 0->1+2+3 at rest frame of 0, now E_1,min/max = f(E_3)*)
+E1domain1[E1_,m_,m1_,m2_,m3_]=E1/.(*Assuming[m>0&&E1>m1>0,*)Simplify[Solve[costheta12[E1,E3,m,m1,m2,m3]==1,E1]](*]*);
+E1domain1Min[E1_,m_,m1_,m2_,m3_]=E1domain1[E3,m,m1,m2,m3][[1]];
+E1domain1Max[E1_,m_,m1_,m2_,m3_]=E1domain1[E3,m,m1,m2,m3][[2]];
+[CapitalDelta]E1[E3_,m_,m1_,m2_,m3_]=E1domain1Max[E3,m,m1,m2,m3]-E1domain1Min[E3,m,m1,m2,m3]//Simplify;
+{E3domain1Min[m_,m1_,m2_,m3_],E3domain1Max[m_,m1_,m2_,m3_]}=E3domain1[m_,m1_,m2_,m3_]={E3/.Solve[[CapitalDelta]E1[E3,m,m1,m2,m3][[2]]==0,E3][[2]],E3/.Solve[[CapitalDelta]E1[E3,m,m1,m2,m3][[2]]==0,E3][[3]]}//Simplify;
+(*Mandelstam invariants in terms of energies*)
+M13[E1_,E3_]=(E1+E3)^2-(pPar[E1,m1]^2+pPar[E3,m3]^2+2*pPar[E1,m1]*pPar[E3,m3]*costheta13[E1,E3,m,m1,m2,m3])//Expand//Simplify
+M12[E1_,E3_]=(E1+E2valEnergies[m,E1,E3])^2-(pPar[E1,m1]^2+pPar[E2valEnergies[m,E1,E3],m2]^2+2*pPar[E1,m1]*pPar[E2valEnergies[m,E1,E3],m2]*costheta12[E1,E3,m,m1,m2,m3])//Expand//Simplify
+Q2[E1_,E3_,m_,m2_]=(m^2+m2^2-2*m*E2valEnergies[m,E1,E3]);
+(*Domain of the parameter space E1,E3 for E_1 ranging between E_min,E_max*)
+E12E23domain[m_,m1_,m2_,m3_,Emin_,Emax_]:=NIntegrate[UnitStep[E3v-Emin]*UnitStep[Emax-E3v],{E1v,E1domain[m,m1,m2,m3][[1]],E1domain[m,m1,m2,m3][[2]]},{E3v,Max[E3domain[E1v,m,m1,m2,m3][[1]],Emin],Min[Emax,E3domain[E1v,m,m1,m2,m3][[2]]]},Method->"AdaptiveMonteCarlo"]
+
+----- cell 20  label= -----
+(*Kinematics of 3-body decays*)
+pPar[En_,mn_]=Sqrt[En^2-mn^2];
+E2valEnergies[m_,E1_,E3_]=m-E1-E3;
+(*cos between particles 1,2 and 1,3 at rest frame of decaying particle 0 -> 1+2+3 parametrized in terms of E_1,E_3*)
+
+costheta12[E1_,E3_,m_,m1_,m2_,m3_]=(pPar[E3,m3]^2-pPar[E1,m1]^2-pPar[E2valEnergies[m,E1,E3],m2]^2)/(2pPar[E1,m1]*pPar[E2valEnergies[m,E1,E3],m2]);
+costheta13[E1_,E3_,m_,m1_,m2_,m3_]=(pPar[E2valEnergies[m,E1,E3],m2]^2-pPar[E1,m1]^2-pPar[E3,m3]^2)/(2pPar[E1,m1]*pPar[E3,m3]);
+theta12[E1_,E3_,m_,m1_,m2_,m3_]=ArcCos[costheta12[E1,E3,m,m1,m2,m3]];
+theta13[E1_,E3_,m_,m1_,m2_,m3_]=ArcCos[costheta13[E1,E3,m,m1,m2,m3]];
+(*Domain of definition of E_1 and E_3 in decay 0->1+2+3 at rest frame of 0, E_3,min/max = f(E_1)*)
+E3domain[E1_,m_,m1_,m2_,m3_]=E3/.(*Assuming[m>0&&E1>m1>0,*)Simplify[Solve[costheta12[E1,E3,m,m1,m2,m3]==1,E3]](*]*)
+E3domainMin[E1_,m_,m1_,m2_,m3_]=E3domain[E1,m,m1,m2,m3][[1]];
+E3domainMax[E1_,m_,m1_,m2_,m3_]=E3domain[E1,m,m1,m2,m3][[2]];
+[CapitalDelta]E3[E1_,m_,m1_,m2_,m3_]=E3domainMax[E1,m,m1,m2,m3]-E3domainMin[E1,m,m1,m2,m3]//Simplify
+{E1domainMin[m_,m1_,m2_,m3_],E1domainMax[m_,m1_,m2_,m3_]}=E1domain[m_,m1_,m2_,m3_]={E1/.Solve[[CapitalDelta]E3[E1,m,m1,m2,m3][[2]]==0,E1][[2]],E1/.Solve[[CapitalDelta]E3[E1,m,m1,m2,m3][[2]]==0,E1][[3]]}//Simplify
+(*Domain of definition of E_1 and E_3 in decay 0->1+2+3 at rest frame of 0, now E_1,min/max = f(E_3)*)
+E1domain1[E1_,m_,m1_,m2_,m3_]=E1/.(*Assuming[m>0&&E1>m1>0,*)Simplify[Solve[costheta12[E1,E3,m,m1,m2,m3]==1,E1]](*]*);
+E1domain1Min[E1_,m_,m1_,m2_,m3_]=E1domain1[E3,m,m1,m2,m3][[1]];
+E1domain1Max[E1_,m_,m1_,m2_,m3_]=E1domain1[E3,m,m1,m2,m3][[2]];
+[CapitalDelta]E1[E3_,m_,m1_,m2_,m3_]=E1domain1Max[E3,m,m1,m2,m3]-E1domain1Min[E3,m,m1,m2,m3]//Simplify;
+{E3domain1Min[m_,m1_,m2_,m3_],E3domain1Max[m_,m1_,m2_,m3_]}=E3domain1[m_,m1_,m2_,m3_]={E3/.Solve[[CapitalDelta]E1[E3,m,m1,m2,m3][[2]]==0,E3][[2]],E3/.Solve[[CapitalDelta]E1[E3,m,m1,m2,m3][[2]]==0,E3][[3]]}//Simplify;
+(*Mandelstam invariants in terms of energies*)
+M13[E1_,E3_]=(E1+E3)^2-(pPar[E1,m1]^2+pPar[E3,m3]^2+2*pPar[E1,m1]*pPar[E3,m3]*costheta13[E1,E3,m,m1,m2,m3])//Expand//Simplify
+M12[E1_,E3_]=(E1+E2valEnergies[m,E1,E3])^2-(pPar[E1,m1]^2+pPar[E2valEnergies[m,E1,E3],m2]^2+2*pPar[E1,m1]*pPar[E2valEnergies[m,E1,E3],m2]*costheta12[E1,E3,m,m1,m2,m3])//Expand//Simplify
+Q2[E1_,E3_,m_,m2_]=(m^2+m2^2-2*m*E2valEnergies[m,E1,E3]);
+(*Domain of the parameter space E1,E3 for E_1 ranging between E_min,E_max*)
+E12E23domain[m_,m1_,m2_,m3_,Emin_,Emax_]:=NIntegrate[UnitStep[E3v-Emin]*UnitStep[Emax-E3v],{E1v,E1domain[m,m1,m2,m3][[1]],E1domain[m,m1,m2,m3][[2]]},{E3v,Max[E3domain[E1v,m,m1,m2,m3][[1]],Emin],Min[Emax,E3domain[E1v,m,m1,m2,m3][[2]]]},Method->"AdaptiveMonteCarlo"]
+
+----- cell 21  label= -----
+<PARSE ERROR list index out of range: 
+ FormBox[
+  TemplateBox[{
+   "Solve", "nongen", 
+    "\"There may be values of the parameters for which some or all solutions \
+are not valid.\"", 2, 98, 22, 23766920109013692699, "Local"},
+   "MessageTemplate",
+   BaseStyle->"MSG"], TraditionalForm]>
+
+----- cell 22  label= -----
+{(Sqrt[(E1^2-m1^2) (4 E1^2 m^2-4 E1 m (m^2+m1^2-m2^2-m3^2)+m^4+2 m^2 (m1^2-m2^2-m3^2)+m1^4-2 m1^2 m2^2-2 m1^2 m3^2+m2^4-2 m2^2 m3^2+m3^4)]-2 E1^2 m+3 E1 m^2+E1 m1^2-E1 m2^2+E1 m3^2-m^3-m m1^2+m m2^2-m m3^2)/(4 E1 m-2 (m^2+m1^2)),-(Sqrt[(E1^2-m1^2) (4 E1^2 m^2-4 E1 m (m^2+m1^2-m2^2-m3^2)+m^4+2 m^2 (m1^2-m2^2-m3^2)+m1^4-2 m1^2 m2^2-2 m1^2 m3^2+m2^4-2 m2^2 m3^2+m3^4)]+2 E1^2 m-3 E1 m^2-E1 m1^2+E1 m2^2-E1 m3^2+m^3+m m1^2-m m2^2+m m3^2)/(4 E1 m-2 (m^2+m1^2))}
+
+----- cell 23  label= -----
+(Sqrt[(E1^2-m1^2) (4 E1^2 m^2-4 E1 m (m^2+m1^2-m2^2-m3^2)+m^4+2 m^2 (m1^2-m2^2-m3^2)+m1^4-2 m1^2 m2^2-2 m1^2 m3^2+m2^4-2 m2^2 m3^2+m3^4)])/(-2 E1 m+m^2+m1^2)
+
+----- cell 24  label= -----
+{m1,(m^2+m1^2-(m2+m3)^2)/(2 m)}
+
+----- cell 25  label= -----
+<PARSE ERROR list index out of range: 
+ FormBox[
+  TemplateBox[{
+   "Solve", "nongen", 
+    "\"There may be values of the parameters for which some or all solutions \
+are not valid.\"", 2, 103, 23, 23766920109013692699, "Local"},
+   "MessageTemplate",
+   BaseStyle->"MSG"], TraditionalForm]>
+
+----- cell 26  label= -----
+2 E1 m+2 E3 m-m^2+m2^2
+
+----- cell 27  label= -----
+-2 E3 m+m^2+m3^2
+
+----- cell 28  label=Scalar products in terms of energies 1,3 -----
+{ProductKK=m^2;, 
+, ProductK2K2=m2^2;, 
+, ProductK3K3=m3^2;, 
+, ProductK1K1=m1^2;, 
+, ProductKK2energy=m*E2valEnergies[m,E1,E3];, 
+, ProductKK1energy=m*E1;, 
+, ProductKK3energy=m*E3;, 
+, ProductK1K3energy=(M13[E1,E3]-m1^2-m3^2)/(2);, 
+, ProductK1K2energy=(M12[E1,E3]-m1^2-m2^2)/(2);, 
+, ProductK2K3energy=((m^2+m1^2-2*m*E1-m2^2-m3^2))/(2);}
+
+----- cell 29  label= -----
+{ProductKK=m^2;, 
+, ProductK2K2=m2^2;, 
+, ProductK3K3=m3^2;, 
+, ProductK1K1=m1^2;, 
+, ProductKK2energy=m*E2valEnergies[m,E1,E3];, 
+, ProductKK1energy=m*E1;, 
+, ProductKK3energy=m*E3;, 
+, ProductK1K3energy=(M13[E1,E3]-m1^2-m3^2)/(2);, 
+, ProductK1K2energy=(M12[E1,E3]-m1^2-m2^2)/(2);, 
+, ProductK2K3energy=((m^2+m1^2-2*m*E1-m2^2-m3^2))/(2);}
+
+----- cell 30  label=In terms of Mandelstam variables -----
+{E2valMandelstam[m12_,m1_,m2_]=((m12-m1^2+m2^2))/(2*Sqrt[m12]);, 
+, E3valMandelstam[m12_,MIn_,m3_]=(MIn^2-m12-m3^2)/(2*Sqrt[m12]);, 
+, m23lower[m12_,MIn_,m1_,m2_,m3_]:=FullSimplify[(E2valMandelstam[m12,m1,m2]+E3valMandelstam[m12,MIn,m3])^2 - (Sqrt[E2valMandelstam[m12,m1,m2]^2-m2^2]+Sqrt[E3valMandelstam[m12,MIn,m3]^2-m3^2])^2];, 
+, m23upper[m12_,MIn_,m1_,m2_,m3_]:=FullSimplify[(E2valMandelstam[m12,m1,m2]+E3valMandelstam[m12,MIn,m3])^2 - (Sqrt[E2valMandelstam[m12,m1,m2]^2-m2^2]-Sqrt[E3valMandelstam[m12,MIn,m3]^2-m3^2])^2];, 
+, m12lower[m1_,m2_]=(m1+m2)^2;, 
+, m12upper[MIn_,m3_]=(MIn-m3)^2;}
+
+----- cell 31  label= -----
+{E2valMandelstam[m12_,m1_,m2_]=((m12-m1^2+m2^2))/(2*Sqrt[m12]);, 
+, E3valMandelstam[m12_,MIn_,m3_]=(MIn^2-m12-m3^2)/(2*Sqrt[m12]);, 
+, m23lower[m12_,MIn_,m1_,m2_,m3_]:=FullSimplify[(E2valMandelstam[m12,m1,m2]+E3valMandelstam[m12,MIn,m3])^2 - (Sqrt[E2valMandelstam[m12,m1,m2]^2-m2^2]+Sqrt[E3valMandelstam[m12,MIn,m3]^2-m3^2])^2];, 
+, m23upper[m12_,MIn_,m1_,m2_,m3_]:=FullSimplify[(E2valMandelstam[m12,m1,m2]+E3valMandelstam[m12,MIn,m3])^2 - (Sqrt[E2valMandelstam[m12,m1,m2]^2-m2^2]-Sqrt[E3valMandelstam[m12,MIn,m3]^2-m3^2])^2];, 
+, m12lower[m1_,m2_]=(m1+m2)^2;, 
+, m12upper[MIn_,m3_]=(MIn-m3)^2;}
+
+----- cell 32  label=Scalar products in terms of Mandelstam variables -----
+{ProductKK1mandelstam=((m^2+m1^2-m23))/(2);, 
+, ProductKK3mandelstam=((m^2+m3^2-m12))/(2);, 
+, ProductKK2mandelstam=(m^2-ProductKK1mandelstam-ProductKK3mandelstam)//Simplify;, 
+, ProductK1K2mandelstam=((m12-m1^2-m2^2))/(2);, 
+, ProductK2K3mandelstam=((m23-m2^2-m3^2))/(2);, 
+, ProductK1K3mandelstam=((m^2-2ProductKK2mandelstam+m2^2-m1^2-m3^2))/(2)//Simplify;, 
+, ScalarProduct3body[1,2]=ProductK1K2mandelstam;, 
+, ScalarProduct3body[2,3]=ProductK2K3mandelstam;, 
+, ScalarProduct3body[1,3]=ProductK1K3mandelstam;, 
+, ScalarProduct3body[1,1]=m1^2;, 
+, ScalarProduct3body[2,2]=m2^2;, 
+, ScalarProduct3body[3,3]=m3^2;, 
+, ProductKK-ProductK1K1-ProductK2K2-ProductK3K3-2*(ProductK1K2mandelstam+ProductK2K3mandelstam+ProductK1K3mandelstam)//Simplify}
+
+----- cell 33  label= -----
+{ProductKK1mandelstam=((m^2+m1^2-m23))/(2);, 
+, ProductKK3mandelstam=((m^2+m3^2-m12))/(2);, 
+, ProductKK2mandelstam=(m^2-ProductKK1mandelstam-ProductKK3mandelstam)//Simplify;, 
+, ProductK1K2mandelstam=((m12-m1^2-m2^2))/(2);, 
+, ProductK2K3mandelstam=((m23-m2^2-m3^2))/(2);, 
+, ProductK1K3mandelstam=((m^2-2ProductKK2mandelstam+m2^2-m1^2-m3^2))/(2)//Simplify;, 
+, ScalarProduct3body[1,2]=ProductK1K2mandelstam;, 
+, ScalarProduct3body[2,3]=ProductK2K3mandelstam;, 
+, ScalarProduct3body[1,3]=ProductK1K3mandelstam;, 
+, ScalarProduct3body[1,1]=m1^2;, 
+, ScalarProduct3body[2,2]=m2^2;, 
+, ScalarProduct3body[3,3]=m3^2;, 
+, ProductKK-ProductK1K1-ProductK2K2-ProductK3K3-2*(ProductK1K2mandelstam+ProductK2K3mandelstam+ProductK1K3mandelstam)//Simplify}
+
+----- cell 34  label= -----
+{ProductKK1mandelstam=((m^2+m1^2-m23))/(2);, 
+, ProductKK3mandelstam=((m^2+m3^2-m12))/(2);, 
+, ProductKK2mandelstam=(m^2-ProductKK1mandelstam-ProductKK3mandelstam)//Simplify;, 
+, ProductK1K2mandelstam=((m12-m1^2-m2^2))/(2);, 
+, ProductK2K3mandelstam=((m23-m2^2-m3^2))/(2);, 
+, ProductK1K3mandelstam=((m^2-2ProductKK2mandelstam+m2^2-m1^2-m3^2))/(2)//Simplify;, 
+, ScalarProduct3body[1,2]=ProductK1K2mandelstam;, 
+, ScalarProduct3body[2,3]=ProductK2K3mandelstam;, 
+, ScalarProduct3body[1,3]=ProductK1K3mandelstam;, 
+, ScalarProduct3body[1,1]=m1^2;, 
+, ScalarProduct3body[2,2]=m2^2;, 
+, ScalarProduct3body[3,3]=m3^2;, 
+, ProductKK-ProductK1K1-ProductK2K2-ProductK3K3-2*(ProductK1K2mandelstam+ProductK2K3mandelstam+ProductK1K3mandelstam)//Simplify}
+
+----- cell 35  label= -----
+0
+
+----- cell 36  label= -----
+E_1,E_3
+
+----- cell 37  label= -----
+E_1,E_3
+
+----- cell 38  label= -----
+(*Rotation matrices with around z axis ([Phi] angle) and x axis (theta angle)*)
+[Phi]RotMatrix[[Phi]_]=(*{{Cos[[Phi]],Sin[[Phi]],0},{-Sin[[Phi]],Cos[[Phi]],0},{0,0,1}}*){{Sin[[Phi]],Cos[[Phi]],0},{-Cos[[Phi]],Sin[[Phi]],0},{0,0,1}};
+thetaRotMatrix[theta_]={{1,0,0},{0,Cos[theta],Sin[theta]},{0,-Sin[theta],Cos[theta]}};
+pvecUnrotated[px_,py_,pz_]={px,py,pz};
+pvecRotated[px_,py_,pz_,thetaV_,[Phi]V_]=[Phi]RotMatrix[[Phi]V].thetaRotMatrix[thetaV].pvecUnrotated[px,py,pz];
+(*Momenta at frame where p_1 is aligned along z axis*)
+p1unrotated={0,0,pPar[E1,m1]};
+p2unrotated={pPar[E2valEnergies[m,E1,E3],m2]*Sin[theta12[E1,E3,m,m1,m2,m3]]*Sin[[Kappa]],pPar[E2valEnergies[m,E1,E3],m2]*Sin[theta12[E1,E3,m,m1,m2,m3]]*Cos[[Kappa]],pPar[E2valEnergies[m,E1,E3],m2]*Cos[theta12[E1,E3,m,m1,m2,m3]]};
+p3unrotated={-pPar[E3,m3]*Sin[theta13[E1,E3,m,m1,m2,m3]]*Sin[[Kappa]],-pPar[E3,m3]*Sin[theta13[E1,E3,m,m1,m2,m3]]*Cos[[Kappa]],pPar[E3,m3]*Cos[theta13[E1,E3,m,m1,m2,m3]]};
+(*thetarand=RandomReal[{0,Pi}];
+[Phi]rand=RandomReal[{-Pi,Pi}];*)
+p1rotated[E1_,m1_,thetaV_,[Phi]V_]=(*[Phi]RotMatrix[[Phi]V].thetaRotMatrix[thetaV].p1Unrotated*)pvecRotated[p1unrotated[[1]],p1unrotated[[2]],p1unrotated[[3]],thetaV,[Phi]V];
+p1rotatedX[E1_,m1_,thetaV_,[Phi]V_]=p1rotated[E1,m1,thetaV,[Phi]V][[1]];
+p1rotatedY[E1_,m1_,thetaV_,[Phi]V_]=p1rotated[E1,m1,thetaV,[Phi]V][[2]];
+p1rotatedZ[E1_,m1_,thetaV_,[Phi]V_]=p1rotated[E1,m1,thetaV,[Phi]V][[3]];
+p2rotated[E1_,E3_,m_,m1_,m2_,m3_,thetaV_,[Phi]V_,[Kappa]_]=pvecRotated[p2unrotated[[1]],p2unrotated[[2]],p2unrotated[[3]],thetaV,[Phi]V]//Simplify;
+p2rotatedX[E1_,E3_,m_,m1_,m2_,m3_,thetaV_,[Phi]V_,[Kappa]_]=p2rotated[E1,E3,m,m1,m2,m3,thetaV,[Phi]V,[Kappa]][[1]];
+p2rotatedY[E1_,E3_,m_,m1_,m2_,m3_,thetaV_,[Phi]V_,[Kappa]_]=p2rotated[E1,E3,m,m1,m2,m3,thetaV,[Phi]V,[Kappa]][[2]];
+p2rotatedZ[E1_,E3_,m_,m1_,m2_,m3_,thetaV_,[Phi]V_,[Kappa]_]=p2rotated[E1,E3,m,m1,m2,m3,thetaV,[Phi]V,[Kappa]][[3]];
+p3rotated[E1_,E3_,m_,m1_,m2_,m3_,thetaV_,[Phi]V_,[Kappa]_]=pvecRotated[p3unrotated[[1]],p3unrotated[[2]],p3unrotated[[3]],thetaV,[Phi]V]//Simplify;
+p3rotatedX[E1_,E3_,m_,m1_,m2_,m3_,thetaV_,[Phi]V_,[Kappa]_]=p3rotated[E1,E3,m,m1,m2,m3,thetaV,[Phi]V,[Kappa]][[1]];
+p3rotatedY[E1_,E3_,m_,m1_,m2_,m3_,thetaV_,[Phi]V_,[Kappa]_]=p3rotated[E1,E3,m,m1,m2,m3,thetaV,[Phi]V,[Kappa]][[2]];
+p3rotatedZ[E1_,E3_,m_,m1_,m2_,m3_,thetaV_,[Phi]V_,[Kappa]_]=p3rotated[E1,E3,m,m1,m2,m3,thetaV,[Phi]V,[Kappa]][[3]];

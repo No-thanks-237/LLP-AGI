@@ -1,0 +1,74 @@
+
+== downstream_kernel build ==
+timestamp : 2026-10-16T22:52:47.3273586+08:00
+compiler  : D:/software/msys2/ucrt64/bin/g++.exe
+source    : E:\AAAwork\LLP-AGI\runs\20261016_144605_UTC_bc5_lhcb_downstream\work\response\downstream_kernel.cpp
+output    : E:\AAAwork\LLP-AGI\runs\20261016_144605_UTC_bc5_lhcb_downstream\work\response\downstream_kernel.dll
+include   : E:/AAAwork/LLP-AGI/detector/downstream/modules
+command   : & 'D:/software/msys2/ucrt64/bin/g++.exe' -std=c++17 -O2 -Wall -Wextra -shared -static -static-libgcc -static-libstdc++ -I E:/AAAwork/LLP-AGI/detector/downstream/modules E:\AAAwork\LLP-AGI\runs\20261016_144605_UTC_bc5_lhcb_downstream\work\response\downstream_kernel.cpp -o E:\AAAwork\LLP-AGI\runs\20261016_144605_UTC_bc5_lhcb_downstream\work\response\downstream_kernel.dll
+
+-- compiler stdout+stderr --
+
+-- compiler exit code: 0 --
+
+BUILD OK: E:\AAAwork\LLP-AGI\runs\20261016_144605_UTC_bc5_lhcb_downstream\work\response\downstream_kernel.dll (697938 bytes)
+
+python    : D:/py/python.exe
+test      : E:\AAAwork\LLP-AGI\runs\20261016_144605_UTC_bc5_lhcb_downstream\work\response\test_kernel.py
+
+== test_kernel.py ==
+-- (a) straight neutral track --
+PASS: a1 charge-0 track along +z reaches the SciFi front plane  [front.z=7.7 status=BeamHole]
+FAIL: a2 charge-0 track at x=y=0 is accepted  [status=BeamHole: the axis lies inside the beam hole, so the kernel returns BeamHole]
+PASS: a3 charge-0 track offset 0.15 m is accepted (clears the hole)  [status=Accepted front.x=0.15]
+PASS: a4 the same axis track is accepted once the hole is disabled (holeRadius=0)  [status=Accepted: isolates the beam hole as the sole cause of the a2 rejection]
+-- (b) zero-field limit --
+PASS: b1 charged track in zero field is accepted  [status=Accepted]
+PASS: b2 zero-field front equals the analytic straight line  [x=0.8850000000000001 vs 0.885, y=0.3925 vs 0.3925]
+PASS: b3 zero-field momentum is untouched  [p=(1.0, 0.5, 20.0)]
+PASS: b4 zero-field end equals the straight line at backZ  [end=(0.9700000000000001, 9.4)]
+-- (c) born inside the SciFi --
+PASS: c track born at z=8.0 m is BornAfterFront  [status=BornAfterFront]
+-- (d) forward requirement --
+PASS: d1 pz=0 is NotForward  [status=NotForward]
+PASS: d2 pz<0 is NotForward  [status=NotForward]
+-- (e) SciFi rectangle --
+PASS: e1 x=3.30 m is OutsideSciFi  [status=OutsideSciFi]
+PASS: e2 x=3.20 m is accepted  [status=Accepted]
+-- (f) beam hole --
+PASS: f1 x=0.05 m with a tiny angle is BeamHole  [status=BeamHole]
+PASS: f2 x=0.15 m with a tiny angle is accepted  [status=Accepted front.x=0.1577]
+-- (g) bend sign and independent arc integration --
+PASS: g1 down-quark-like track (K*charge*by > 0) bends towards -x  [w=0.04996540966666666 a=0.20121670838057648 x=-0.546580690011023 px=-0.39972327733333324]
+PASS: g2 kernel front momentum matches px*cos(a)-pz*sin(a)  [px=-0.39972327733333324 predicted=-0.39972327733333324]
+PASS: g3 kernel front matches the independent reference (down-quark-like)  [dx=0.0]
+PASS: g4 flipping the charge mirrors the bend in x  [x(+)=0.546580690011023 x(-)=-0.546580690011023]
+PASS: g5 positive charge in positive field also bends towards -x  [x=-1.8566134793676266 px=-1.199169832]
+PASS: g6 fine-step arc composition agrees with the exact arc  [worst|chain-exact|=6.637179694735096e-11]
+PASS: g7 random SciFi-front crossing agrees with the reference to < 1e-6 m  [worst|diff|=0.0]
+-- (h) strict birth thresholds --
+PASS: h1 BIRTH_CUTS matches the production card  [{'minE': 5.0, 'minPT': 0.5}]
+PASS: h2 energy exactly 5.0 is rejected
+PASS: h3 energy 5.0000001 is accepted
+PASS: h4 pT exactly 0.5 is rejected
+PASS: h5 pT 0.5000001 is accepted
+PASS: h6 invalid thresholds raise instead of crossing the C boundary
+-- (i) determinism --
+PASS: i1 repeated calls return byte-identical buffers  [status=Accepted len=96]
+PASS: i2 determinism survives argument reconstruction  [status=Accepted]
+-- (j) error handling --
+PASS: j1 invalid geometry returns a negative status without crashing  [status=KernelErrorInvalidArgument]
+PASS: j2 NaN state is InvalidState  [status=InvalidState]
+PASS: j3 energy below momentum is InvalidState  [status=InvalidState]
+
+========================================================================
+SUMMARY: 32/33 checks passed
+  FAILED: a2 charge-0 track at x=y=0 is accepted
+
+NOTE: a2 is a specification conflict, not a kernel defect.  A straight
+      track at x=y=0 lies exactly on the beam axis, so the front->back
+      segment passes within holeRadius=0.09 m of the origin and
+      DownstreamTransport.h correctly reports BeamHole (requirement f).
+EXIT: 1
+
+== test_kernel.py exit code: 1 ==

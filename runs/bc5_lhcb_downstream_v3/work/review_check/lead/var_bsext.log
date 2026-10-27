@@ -1,0 +1,16 @@
+  B_YIELD_CORR = 1.0172
+bsext      m=0.50000   lo=5.057e-10 hi=1.334e-04 (17s)
+bsext      m=1.00000   lo=4.488e-11 hi=2.269e-06 (25s)
+bsext      m=1.50000   lo=1.168e-10 hi=8.121e-06 (33s)
+bsext      m=2.00000   lo=1.335e-10 hi=7.434e-06 (41s)
+bsext      m=2.20000   lo=1.295e-10 hi=4.730e-06 (47s)
+bsext      m=3.00000   lo=5.859e-11 hi=1.705e-06 (52s)
+bsext      m=4.34457   lo=3.704e-12 hi=6.464e-08 (58s)
+bsext      m=5.08225   lo=1.433e-12 hi=2.334e-08 (64s)
+bsext      m=7.50000   lo=3.751e-13 hi=5.424e-09 (69s)
+bsext      m=10.58340  lo=1.624e-13 hi=2.282e-09 (75s)
+bsext      m=15.23435  lo=1.672e-14 hi=2.609e-10 (83s)
+bsext      m=28.52741  lo=1.938e-15 hi=4.282e-11 (92s)
+bsext      m=45.66582  lo=5.150e-16 hi=1.297e-11 (101s)
+bsext      m=62.49000  lo=1.344e-16 hi=4.434e-12 (111s)
+wrote impact_bsext.json

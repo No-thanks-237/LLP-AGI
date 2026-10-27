@@ -1,0 +1,46 @@
+{
+  "B": {
+    "matches": true,
+    "bytes": 36234474
+  },
+  "inel": {
+    "matches": true,
+    "bytes": 525049850
+  },
+  "H": {
+    "matches": true,
+    "bytes": 30545156
+  },
+  "gg": {
+    "matches": true
+  },
+  "ss": {
+    "matches": true
+  },
+  "cc": {
+    "matches": true
+  },
+  "tautau": {
+    "matches": true
+  },
+  "DLL": {
+    "matches": true
+  },
+  "production_sha256": {
+    "present": true,
+    "matches": true
+  },
+  "decay_sha256": {
+    "present": true,
+    "matches": true
+  },
+  "decay_binary_sha256": {
+    "present": true,
+    "matches": true
+  },
+  "inputs_manifest_mismatches": [
+    "inputs/detector/tests/__pycache__/generate_boundary_events.cpython-314.pyc",
+    "inputs/detector/tests/__pycache__/run_boundary_job.cpython-314.pyc",
+    "inputs/source.sha256"
+  ]
+}

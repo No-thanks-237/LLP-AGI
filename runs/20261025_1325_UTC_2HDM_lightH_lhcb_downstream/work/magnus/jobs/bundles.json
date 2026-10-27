@@ -1,0 +1,41 @@
+{
+ "smoke.tar.gz": {
+  "path": "E:\\AAAwork\\LLP-AGI\\runs\\20261025_1325_UTC_2HDM_lightH_lhcb_downstream\\work\\magnus\\bundles\\smoke.tar.gz",
+  "sha256": "b227b23234c6ddedbfb8a2e37ca594093e2de189a3c6757d524cf05a3b415c81",
+  "bytes": 3965,
+  "stage": "bundles_stage_smoke",
+  "members": [
+   ".",
+   "./mass_list_gg.txt",
+   "./parents_pik.cc",
+   "./script.sh",
+   "./shadlib.cc"
+  ]
+ },
+ "pik.tar.gz": {
+  "path": "E:\\AAAwork\\LLP-AGI\\runs\\20261025_1325_UTC_2HDM_lightH_lhcb_downstream\\work\\magnus\\bundles\\pik.tar.gz",
+  "sha256": "bfaf8806619f18fbdff3d73f84a3e4f9ffb8939c5def972b03130807216bddd6",
+  "bytes": 2269,
+  "members": [
+   ".",
+   "./config.env",
+   "./parents_pik.cc",
+   "./script.sh"
+  ]
+ },
+ "hadronlib.tar.gz": {
+  "path": "E:\\AAAwork\\LLP-AGI\\runs\\20261025_1325_UTC_2HDM_lightH_lhcb_downstream\\work\\magnus\\bundles\\hadronlib.tar.gz",
+  "sha256": "ff7cbd921a476ae1ee9fce3fa03ab94a56f6e9b07013c428a9bb8a5135d848fd",
+  "bytes": 2842,
+  "members": [
+   ".",
+   "./config.env",
+   "./mass_list_cc.txt",
+   "./mass_list_gg.txt",
+   "./mass_list_ss.txt",
+   "./mass_list_tau.txt",
+   "./script.sh",
+   "./shadlib.cc"
+  ]
+ }
+}

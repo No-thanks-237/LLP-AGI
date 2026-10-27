@@ -1,0 +1,193 @@
+checking foresee
+checking paper_mb
+checking exclusive
+{
+  "manifest": {
+    "entries": 75,
+    "mismatches": [
+      {
+        "file": "outputs/sha256_manifest.txt",
+        "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "actual": "c6bd5e3f4723c909df3526f95de655dcfa2207c4c10d052c7a4e65af26655f38"
+      }
+    ],
+    "missing": []
+  },
+  "resume_ignores_nparam_and_ndecay": {
+    "done_ok": true,
+    "existing_nparam": 40,
+    "existing_ndecay": {
+      "*": 10,
+      "cc": 6,
+      "ss": 6,
+      "gg": 6,
+      "tautau": 6
+    }
+  },
+  "cache_validation": {
+    "dll_sha256": null,
+    "samples": null,
+    "detector_config": null,
+    "birth_cuts": null
+  },
+  "scans": {
+    "foresee": {
+      "n_mass_files": 66,
+      "n_points": 2640,
+      "expected_grid_equal": true,
+      "table_versions": {
+        "3": 66
+      },
+      "nsamp": {
+        "{\"B\": 16000, \"h\": 10000, \"inel\": 2500}": 66
+      },
+      "table_code_shas": {
+        "29dcbb5125ca0eb5492fd4992a1b2d14a80b4052d20b7cbfd58b973e70b4a45d": 66
+      },
+      "current_response_sha": "29dcbb5125ca0eb5492fd4992a1b2d14a80b4052d20b7cbfd58b973e70b4a45d",
+      "aggregate_mismatches": [],
+      "missing_tables": [],
+      "crossings_count": {
+        "1": 114,
+        "0": 18
+      },
+      "max_crossing_relative_residual": 0.00047847667749079115,
+      "exact_crossing_mc_median_max": [
+        0.03598874809919543,
+        0.038923890502863455
+      ],
+      "nearest_grid_mc_median_max": [
+        0.03598873338036281,
+        0.03892389046422766
+      ],
+      "max_signal_recomposition_error": 6.163958232718869e-13,
+      "max_lumi_scaling_error": 8.881784197001252e-16,
+      "max_br_sum_error": 8.610523405394588e-11,
+      "grid_signal_relative_mc_median_max": [
+        0.03641487421704351,
+        1.0000019513399714
+      ],
+      "largest_signal_fraction": {
+        "B": 1.0,
+        "inel": 0.00011555641743682392,
+        "h": 1.0
+      },
+      "long_edge_range": {
+        "25": [
+          22.011742571604433,
+          358.042501209161
+        ],
+        "300": [
+          30.025649091092642,
+          488.88121973311485
+        ]
+      }
+    },
+    "paper_mb": {
+      "n_mass_files": 66,
+      "n_points": 2640,
+      "expected_grid_equal": true,
+      "table_versions": {
+        "3": 66
+      },
+      "nsamp": {
+        "{\"B\": 16000, \"h\": 10000, \"inel\": 2500}": 66
+      },
+      "table_code_shas": {
+        "29dcbb5125ca0eb5492fd4992a1b2d14a80b4052d20b7cbfd58b973e70b4a45d": 66
+      },
+      "current_response_sha": "29dcbb5125ca0eb5492fd4992a1b2d14a80b4052d20b7cbfd58b973e70b4a45d",
+      "aggregate_mismatches": [],
+      "missing_tables": [],
+      "crossings_count": {
+        "1": 107,
+        "0": 24,
+        "3": 1
+      },
+      "max_crossing_relative_residual": 0.0004875166915907503,
+      "exact_crossing_mc_median_max": [
+        0.03606731200722563,
+        0.29061102449955234
+      ],
+      "nearest_grid_mc_median_max": [
+        0.03606972069765043,
+        0.29019048386542234
+      ],
+      "max_signal_recomposition_error": 6.163958232718869e-13,
+      "max_lumi_scaling_error": 8.881784197001252e-16,
+      "max_br_sum_error": 8.610523405394588e-11,
+      "grid_signal_relative_mc_median_max": [
+        0.03648847496269597,
+        1.0000019513399714
+      ],
+      "largest_signal_fraction": {
+        "B": 1.0,
+        "inel": 0.00011556009579232328,
+        "h": 1.0
+      },
+      "long_edge_range": {
+        "25": [
+          22.011742571604433,
+          356.05031624960975
+        ],
+        "300": [
+          30.025649091092642,
+          486.16103481185473
+        ]
+      }
+    },
+    "exclusive": {
+      "n_mass_files": 66,
+      "n_points": 2640,
+      "expected_grid_equal": true,
+      "table_versions": {
+        "3": 66
+      },
+      "nsamp": {
+        "{\"B\": 16000, \"h\": 10000, \"inel\": 2500}": 66
+      },
+      "table_code_shas": {
+        "29dcbb5125ca0eb5492fd4992a1b2d14a80b4052d20b7cbfd58b973e70b4a45d": 66
+      },
+      "current_response_sha": "29dcbb5125ca0eb5492fd4992a1b2d14a80b4052d20b7cbfd58b973e70b4a45d",
+      "aggregate_mismatches": [],
+      "missing_tables": [],
+      "crossings_count": {
+        "1": 113,
+        "0": 18,
+        "3": 1
+      },
+      "max_crossing_relative_residual": 0.0004952006764769035,
+      "exact_crossing_mc_median_max": [
+        0.036016836855552355,
+        0.2969292207094028
+      ],
+      "nearest_grid_mc_median_max": [
+        0.03600096354444547,
+        0.29707877826353896
+      ],
+      "max_signal_recomposition_error": 6.163958232718869e-13,
+      "max_lumi_scaling_error": 8.881784197001252e-16,
+      "max_br_sum_error": 8.610523405394588e-11,
+      "grid_signal_relative_mc_median_max": [
+        0.03641487559362591,
+        1.0000019513399714
+      ],
+      "largest_signal_fraction": {
+        "B": 1.0,
+        "inel": 0.00022638028806334448,
+        "h": 1.0
+      },
+      "long_edge_range": {
+        "25": [
+          20.236937035072174,
+          331.5904626440711
+        ],
+        "300": [
+          27.608105704700918,
+          452.8190107696017
+        ]
+      }
+    }
+  }
+}

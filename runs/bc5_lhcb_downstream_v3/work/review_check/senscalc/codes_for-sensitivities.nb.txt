@@ -1,0 +1,441 @@
+### FILE: codes/for-sensitivities.nb
+
+----- cell 1  label=Working with tabulated acceptances -----
+{lan="C";, 
+, datachange1=Compile[{{data,_Real,1},{zminExp,_Real}},Module[{dataacc},
+dataacc=Compile`GetElement[data,6];
+{Log10[Compile`GetElement[data,1]],Log10[Compile`GetElement[data,2]],Log10[Compile`GetElement[data,3]],If[zminExp>0,Log10[Compile`GetElement[data,4]],Compile`GetElement[data,4]],If[dataacc==0.,-90.,Log10[dataacc]]}
+],CompilationTarget->lan,RuntimeOptions->"Speed",Parallelization->True,RuntimeAttributes->{Listable}];, 
+, datachange2=Compile[{{data,_Real,1},{zminExp,_Real}},Module[{dataacc},
+dataacc=Compile`GetElement[data,5]*Compile`GetElement[data,6];
+{Log10[Compile`GetElement[data,1]],Log10[Compile`GetElement[data,2]],Log10[Compile`GetElement[data,3]],If[zminExp>0,Log10[Compile`GetElement[data,4]],Compile`GetElement[data,4]],If[dataacc==0.,-90.,Log10[dataacc]]}
+],CompilationTarget->lan,RuntimeOptions->"Speed",Parallelization->True,RuntimeAttributes->{Listable}];, 
+, distrlogComp=Compile[{{data,_Real,1}},{Log10[Compile`GetElement[data,1]],Log10[Compile`GetElement[data,2]],Log10[Compile`GetElement[data,3]],If[Compile`GetElement[data,4]==0.,-90.,Log10[Compile`GetElement[data,4]]]},CompilationTarget->"MVM",RuntimeOptions->"Speed",RuntimeAttributes->{Listable}];, 
+, DataLogarithmiedComp=Compile[{{data,_Real,1}},{Log[Compile`GetElement[data,1]],Log[Compile`GetElement[data,2]],If[Compile`GetElement[data,3]==0,Log[10^-90.],Log[Compile`GetElement[data,3]]]},CompilationTarget->"MVM",RuntimeOptions->"Speed",RuntimeAttributes->{Listable}];, 
+, valsComp=Compile[{{data,_Real,1},{i,_Integer}},If[Compile`GetElement[data,i]==0,-90.,Log10[Compile`GetElement[data,i]]],CompilationTarget->"MVM",RuntimeOptions->"Speed",RuntimeAttributes->{Listable}];}
+
+----- cell 2  label=Compiled codes -----
+{lan="C";, 
+, datachange1=Compile[{{data,_Real,1},{zminExp,_Real}},Module[{dataacc},
+dataacc=Compile`GetElement[data,6];
+{Log10[Compile`GetElement[data,1]],Log10[Compile`GetElement[data,2]],Log10[Compile`GetElement[data,3]],If[zminExp>0,Log10[Compile`GetElement[data,4]],Compile`GetElement[data,4]],If[dataacc==0.,-90.,Log10[dataacc]]}
+],CompilationTarget->lan,RuntimeOptions->"Speed",Parallelization->True,RuntimeAttributes->{Listable}];, 
+, datachange2=Compile[{{data,_Real,1},{zminExp,_Real}},Module[{dataacc},
+dataacc=Compile`GetElement[data,5]*Compile`GetElement[data,6];
+{Log10[Compile`GetElement[data,1]],Log10[Compile`GetElement[data,2]],Log10[Compile`GetElement[data,3]],If[zminExp>0,Log10[Compile`GetElement[data,4]],Compile`GetElement[data,4]],If[dataacc==0.,-90.,Log10[dataacc]]}
+],CompilationTarget->lan,RuntimeOptions->"Speed",Parallelization->True,RuntimeAttributes->{Listable}];, 
+, distrlogComp=Compile[{{data,_Real,1}},{Log10[Compile`GetElement[data,1]],Log10[Compile`GetElement[data,2]],Log10[Compile`GetElement[data,3]],If[Compile`GetElement[data,4]==0.,-90.,Log10[Compile`GetElement[data,4]]]},CompilationTarget->"MVM",RuntimeOptions->"Speed",RuntimeAttributes->{Listable}];, 
+, DataLogarithmiedComp=Compile[{{data,_Real,1}},{Log[Compile`GetElement[data,1]],Log[Compile`GetElement[data,2]],If[Compile`GetElement[data,3]==0,Log[10^-90.],Log[Compile`GetElement[data,3]]]},CompilationTarget->"MVM",RuntimeOptions->"Speed",RuntimeAttributes->{Listable}];, 
+, valsComp=Compile[{{data,_Real,1},{i,_Integer}},If[Compile`GetElement[data,i]==0,-90.,Log10[Compile`GetElement[data,i]]],CompilationTarget->"MVM",RuntimeOptions->"Speed",RuntimeAttributes->{Listable}];}
+
+----- cell 3  label= -----
+{lan="C";, 
+, datachange1=Compile[{{data,_Real,1},{zminExp,_Real}},Module[{dataacc},
+dataacc=Compile`GetElement[data,6];
+{Log10[Compile`GetElement[data,1]],Log10[Compile`GetElement[data,2]],Log10[Compile`GetElement[data,3]],If[zminExp>0,Log10[Compile`GetElement[data,4]],Compile`GetElement[data,4]],If[dataacc==0.,-90.,Log10[dataacc]]}
+],CompilationTarget->lan,RuntimeOptions->"Speed",Parallelization->True,RuntimeAttributes->{Listable}];, 
+, datachange2=Compile[{{data,_Real,1},{zminExp,_Real}},Module[{dataacc},
+dataacc=Compile`GetElement[data,5]*Compile`GetElement[data,6];
+{Log10[Compile`GetElement[data,1]],Log10[Compile`GetElement[data,2]],Log10[Compile`GetElement[data,3]],If[zminExp>0,Log10[Compile`GetElement[data,4]],Compile`GetElement[data,4]],If[dataacc==0.,-90.,Log10[dataacc]]}
+],CompilationTarget->lan,RuntimeOptions->"Speed",Parallelization->True,RuntimeAttributes->{Listable}];, 
+, distrlogComp=Compile[{{data,_Real,1}},{Log10[Compile`GetElement[data,1]],Log10[Compile`GetElement[data,2]],Log10[Compile`GetElement[data,3]],If[Compile`GetElement[data,4]==0.,-90.,Log10[Compile`GetElement[data,4]]]},CompilationTarget->"MVM",RuntimeOptions->"Speed",RuntimeAttributes->{Listable}];, 
+, DataLogarithmiedComp=Compile[{{data,_Real,1}},{Log[Compile`GetElement[data,1]],Log[Compile`GetElement[data,2]],If[Compile`GetElement[data,3]==0,Log[10^-90.],Log[Compile`GetElement[data,3]]]},CompilationTarget->"MVM",RuntimeOptions->"Speed",RuntimeAttributes->{Listable}];, 
+, valsComp=Compile[{{data,_Real,1},{i,_Integer}},If[Compile`GetElement[data,i]==0,-90.,Log10[Compile`GetElement[data,i]]],CompilationTarget->"MVM",RuntimeOptions->"Speed",RuntimeAttributes->{Listable}];}
+
+----- cell 4  label=Acceptances interpolation and manipulation -----
+{BlockepsilonAzimuthal[FullAcceptanceData0_]:=Module[{(*AzimuthalAcceptanceData,AzimuthalAcceptanceInt,thetaminExpAll,thetamaxExpAll,thetaminExp,thetamaxExp,zminExp,zmaxExp,thetaGrid,zminmaxthetadata,zmintheta,zmaxtheta*)},
+AzimuthalAcceptanceData=DeleteDuplicatesBy[FullAcceptanceData0[[All,{2,4,5}]],{#[[1]],#[[2]]}&];
+AzimuthalAcceptanceInt[thetaLLP_,zLLP_]=Interpolation[{#[[1]],#[[2]],#[[3]]}&/@AzimuthalAcceptanceData,InterpolationOrder->1][thetaLLP,zLLP];
+{thetaminExpAll,thetamaxExpAll}=MinMax[FullAcceptanceData0[[All,2]]];
+{thetaminExp,thetamaxExp}=MinMax[Select[FullAcceptanceData0,#[[6]]!=0&][[All,2]]];
+{zminExp,zmaxExp}=MinMax[FullAcceptanceData0[[All,4]]];
+(*The dependence z_min/max(theta) for which the azimuthal acceptance is not zero*)
+thetaGrid=DeleteDuplicates[AzimuthalAcceptanceData[[All,1]]];
+zminmaxthetadata=Table[MinMax[Select[AzimuthalAcceptanceData,#[[1]]==thetaGrid[[i]]&&#[[3]]!=0&][[All,2]]],{i,1,Length[thetaGrid],1}];
+{zmintheta[thetaLLP_],zmaxtheta[thetaLLP_]}=Interpolation[Transpose[{thetaGrid,zminmaxthetadata[[All,#]]}],InterpolationOrder->1][thetaLLP]&/@{1,2};
+{AzimuthalAcceptanceInt[thetaLLP,zLLP],thetaminExpAll,thetamaxExpAll,thetaminExp,thetamaxExp,zminExp,zmaxExp,zmintheta[thetaLLP],zmaxtheta[thetaLLP]}
+], 
+, BlockepsilonDecay[FullAcceptanceData0_,zminExp_,BrVis_]:=Module[{FullAcceptanceData,DecayAcceptanceInt,FullAcceptanceInt,InGridmepsilon,InGridthetaepsilon,InGridEepsilon,InGridzepsilon,epsilonvals,epsilonazvals,mminepsilon,mmaxepsilon},
+(*Logarithmized acceptance data: Log[m, theta, E, z, epsilon_az*epsilon_dec]*)
+FullAcceptanceData=datachange2[FullAcceptanceData0,zminExp];
+(*Grid m, theta, E, z for the initial acceptance data, logarithmized*)
+{InGridmepsilon,InGridthetaepsilon,InGridEepsilon,InGridzepsilon}=DeleteDuplicates[FullAcceptanceData[[All,#]]]&/@Range[1,4];
+(*Array of values of the initial acceptance data, reshaped*)
+epsilonvals=ArrayReshape[FullAcceptanceData[[All,5]],{Length[InGridmepsilon],Length[InGridthetaepsilon],Length[InGridEepsilon],Length[InGridzepsilon]}];
+epsilonazvals=ArrayReshape[valsComp[FullAcceptanceData0,5],{Length[InGridmepsilon],Length[InGridthetaepsilon],Length[InGridEepsilon],Length[InGridzepsilon]}];
+{mminepsilon,mmaxepsilon}=10^MinMax[InGridmepsilon];
+{FullAcceptanceData,BrVis[mLLP]*10^(Interpolation[datachange1[FullAcceptanceData0,zminExp],InterpolationOrder->1][Log10[mLLP],Log10[thetaLLP],Log10[ELLP],If[zminExp>0.,Log10[zLLP],zLLP]]),BrVis[mLLP]*10^(Interpolation[FullAcceptanceData,InterpolationOrder->1][Log10[mLLP],Log10[thetaLLP],Log10[ELLP],If[zminExp>0.,Log10[zLLP],zLLP]]),InGridmepsilon,InGridthetaepsilon,InGridEepsilon,InGridzepsilon,epsilonvals,epsilonazvals,mminepsilon,mmaxepsilon}
+]}
+
+----- cell 5  label= -----
+{BlockepsilonAzimuthal[FullAcceptanceData0_]:=Module[{(*AzimuthalAcceptanceData,AzimuthalAcceptanceInt,thetaminExpAll,thetamaxExpAll,thetaminExp,thetamaxExp,zminExp,zmaxExp,thetaGrid,zminmaxthetadata,zmintheta,zmaxtheta*)},
+AzimuthalAcceptanceData=DeleteDuplicatesBy[FullAcceptanceData0[[All,{2,4,5}]],{#[[1]],#[[2]]}&];
+AzimuthalAcceptanceInt[thetaLLP_,zLLP_]=Interpolation[{#[[1]],#[[2]],#[[3]]}&/@AzimuthalAcceptanceData,InterpolationOrder->1][thetaLLP,zLLP];
+{thetaminExpAll,thetamaxExpAll}=MinMax[FullAcceptanceData0[[All,2]]];
+{thetaminExp,thetamaxExp}=MinMax[Select[FullAcceptanceData0,#[[6]]!=0&][[All,2]]];
+{zminExp,zmaxExp}=MinMax[FullAcceptanceData0[[All,4]]];
+(*The dependence z_min/max(theta) for which the azimuthal acceptance is not zero*)
+thetaGrid=DeleteDuplicates[AzimuthalAcceptanceData[[All,1]]];
+zminmaxthetadata=Table[MinMax[Select[AzimuthalAcceptanceData,#[[1]]==thetaGrid[[i]]&&#[[3]]!=0&][[All,2]]],{i,1,Length[thetaGrid],1}];
+{zmintheta[thetaLLP_],zmaxtheta[thetaLLP_]}=Interpolation[Transpose[{thetaGrid,zminmaxthetadata[[All,#]]}],InterpolationOrder->1][thetaLLP]&/@{1,2};
+{AzimuthalAcceptanceInt[thetaLLP,zLLP],thetaminExpAll,thetamaxExpAll,thetaminExp,thetamaxExp,zminExp,zmaxExp,zmintheta[thetaLLP],zmaxtheta[thetaLLP]}
+], 
+, BlockepsilonDecay[FullAcceptanceData0_,zminExp_,BrVis_]:=Module[{FullAcceptanceData,DecayAcceptanceInt,FullAcceptanceInt,InGridmepsilon,InGridthetaepsilon,InGridEepsilon,InGridzepsilon,epsilonvals,epsilonazvals,mminepsilon,mmaxepsilon},
+(*Logarithmized acceptance data: Log[m, theta, E, z, epsilon_az*epsilon_dec]*)
+FullAcceptanceData=datachange2[FullAcceptanceData0,zminExp];
+(*Grid m, theta, E, z for the initial acceptance data, logarithmized*)
+{InGridmepsilon,InGridthetaepsilon,InGridEepsilon,InGridzepsilon}=DeleteDuplicates[FullAcceptanceData[[All,#]]]&/@Range[1,4];
+(*Array of values of the initial acceptance data, reshaped*)
+epsilonvals=ArrayReshape[FullAcceptanceData[[All,5]],{Length[InGridmepsilon],Length[InGridthetaepsilon],Length[InGridEepsilon],Length[InGridzepsilon]}];
+epsilonazvals=ArrayReshape[valsComp[FullAcceptanceData0,5],{Length[InGridmepsilon],Length[InGridthetaepsilon],Length[InGridEepsilon],Length[InGridzepsilon]}];
+{mminepsilon,mmaxepsilon}=10^MinMax[InGridmepsilon];
+{FullAcceptanceData,BrVis[mLLP]*10^(Interpolation[datachange1[FullAcceptanceData0,zminExp],InterpolationOrder->1][Log10[mLLP],Log10[thetaLLP],Log10[ELLP],If[zminExp>0.,Log10[zLLP],zLLP]]),BrVis[mLLP]*10^(Interpolation[FullAcceptanceData,InterpolationOrder->1][Log10[mLLP],Log10[thetaLLP],Log10[ELLP],If[zminExp>0.,Log10[zLLP],zLLP]]),InGridmepsilon,InGridthetaepsilon,InGridEepsilon,InGridzepsilon,epsilonvals,epsilonazvals,mminepsilon,mmaxepsilon}
+]}
+
+----- cell 6  label=Working with LLP distributions -----
+E_min/max
+
+----- cell 7  label= -----
+E_min/max
+
+----- cell 8  label= -----
+E_min/max
+
+----- cell 9  label= -----
+(*Function to process the table*)
+FindingMaxEnergy[tab_,order_]:=Module[{Egrouped,tot,thetasummed,accum,sel,emaxpos,emaxval},
+(*Group by y values*)
+Egrouped=GatherBy[tab,#[[2]]&];
+(*Sum z values for each y and create new table*)
+thetasummed=Table[{Egrouped[[i,1,2]],Total[Egrouped[[i,All,3]]]},{i,1,Length[Egrouped]}];
+If[Max[thetasummed[[All,2]]]>10^-30.,
+tot=thetasummed[[All,2]]//Total;
+accum=(tot-Accumulate[thetasummed[[All,2]]])/(tot);
+sel=Select[accum,#>=10^-order&];
+If[Length[sel]!=0.,
+emaxpos=Min[Position[accum,sel[[-1]]][[1]][[1]]+1,Length[accum]];
+emaxval=thetasummed[[emaxpos]][[1]],
+emaxval=thetasummed[[1]][[1]]];
+,
+emaxval=thetasummed[[1]][[1]];
+];
+emaxval
+]
+FindingEmaxtheta[mass_,data0_,Facility_,order_]:=Module[{thetaminmax,eminmax,GridIn,distrv,GridOut,xigDistr,distrvals,mappeddistr,thetaemax,emax,thetaranges,distrdatalog,ColliderOption,data},
+data=Select[data0,#[[1]]==mass&&#[[3]]>mass&][[All,{2,3,4}]];
+distrdatalog=DataLogarithmiedComp[data];
+GridIn=(DeleteDuplicates[distrdatalog[[All,#]]]&/@{1,2})//N;
+distrv=ArrayReshape[distrdatalog[[All,3]],{Length[GridIn[[1]]],Length[GridIn[[2]]]}];
+thetaminmax=MinMax[data[[All,1]]];
+eminmax=MinMax[data[[All,2]]];
+ColliderOption=MemberQ[{"LHC","FCC-hh"},Facility];
+thetaranges=If[ColliderOption,Select[{thetaminmax[[1]],10^-4.,10^-3.,5.*10^-3,10^-2.,3*10^-2.,6*10^-2.,10^-1.,2*10^-1.,5*10^-1,6*10^-1,1.,1.3,(Pi)/(2)},thetaminmax[[1]]<=#&],Select[Flatten[Join[{#,Pi-#}&/@{thetaminmax[[1]],10^-4.,10^-3.,5.*10^-3,10^-2.,3*10^-2.,6*10^-2.,10^-1.,2*10^-1.,5*10^-1,6*10^-1,1.,1.3,(Pi)/(2.),thetaminmax[[2]]}]]//N//Sort//DeleteDuplicates,thetaminmax[[1]]<=#<=thetaminmax[[2]]&]]//N;
+thetaemax={{}};
+Do[
+GridOut={Table[th,{th,thetaranges[[i]],thetaranges[[i+1]],(thetaranges[[i+1]]-thetaranges[[i]])/(20)}],Join[Table[Exp[e],{e,Log[eminmax[[1]]],Log[eminmax[[2]]],Max[0.1,(Log[eminmax[[2]]]-Log[eminmax[[1]]])/(100)]}],{eminmax[[2]]}]//DeleteDuplicates}//Log;
+xigDistr=MapThread[Interpolation[Transpose@{#,Range@Length@#},InterpolationOrder->1][#2]&,{GridIn,GridOut}];
+distrvals=Flatten@cf2[Sequence@@xigDistr,distrv];
+mappeddistr=Exp[Join[Tuples[GridOut],Partition[distrvals,1],2]];
+emax=FindingMaxEnergy[mappeddistr,order];
+thetaemax=Join[thetaemax,{{(thetaranges[[i]]+thetaranges[[i+1]])/(2),emax}}];
+,{i,1,Length[thetaranges]-1,1}];
+thetaemax=Drop[thetaemax,1];
+thetaemax={mass,#[[1]],Max[mass,#[[2]]]}&/@(If[ColliderOption,Flatten[Join[{#,{Pi-#[[1]],#[[2]]}&/@#}&/@{Join[{{thetaminmax[[1]],thetaemax[[1]][[2]]}},thetaemax]}][[1]],1],Join[{{thetaminmax[[1]],thetaemax[[1]][[2]]}},thetaemax,{{thetaminmax[[2]],thetaemax[[-1]][[2]]}}]]//Sort//DeleteDuplicates//N)
+]
+EmaxBlock[prod_,logmin_,DistrDataImport_,FacilityGivenExperiment_]:=Module[{mlist,mvals,mmin,mmax,mmid,dataprod,tabbb},
+dataprod=DistrDataImport[prod];
+mvals=dataprod[[All,1]]//DeleteDuplicates;
+{mmin,mmid}=mvals[[#]]&/@{1,(Length[mvals])/(2)//IntegerPart};
+valmax=dataprod[[All,-1]]//Max;
+mmax=Select[dataprod,#[[-1]]>10^-20.valmax&][[All,1]]//Max;
+tabbb=Join[##]&@@Table[FindingEmaxtheta[mass,dataprod,FacilityGivenExperiment,logmin],{mass,{mmin,mmid,mmax}}];
+Max[mfip,Evaluate[10^(Interpolation[{#[[1]],Log10[#[[2]]],Log10[#[[3]]]}&/@tabbb,InterpolationOrder->1][mfip,Log10[thetafip]])]]
+]
+
+----- cell 10  label=Reshaped grids -----
+BlockGridsValsDistr[ProdChannel_,DistrDataImport_]:=Module[{GridIn,vals},
+GridIn=Log10[DeleteDuplicates[DistrDataImport[ProdChannel][[All,#]]]&/@{1,2,3}];
+vals=ArrayReshape[valsComp[DistrDataImport[ProdChannel],4],{Length[GridIn[[1]]],Length[GridIn[[2]]],Length[GridIn[[3]]]}];
+{GridIn,vals}
+]
+
+----- cell 11  label= -----
+BlockGridsValsDistr[ProdChannel_,DistrDataImport_]:=Module[{GridIn,vals},
+GridIn=Log10[DeleteDuplicates[DistrDataImport[ProdChannel][[All,#]]]&/@{1,2,3}];
+vals=ArrayReshape[valsComp[DistrDataImport[ProdChannel],4],{Length[GridIn[[1]]],Length[GridIn[[2]]],Length[GridIn[[3]]]}];
+{GridIn,vals}
+]
+
+----- cell 12  label=Quick computation of the number of events -----
+{OutGridthetaTemp[InGridthetaepsilon_,ntheta_,Prod_,thetamaxBrem_]:=Module[{thetaminExp,thetamaxExp,\[CapitalDelta]th,OutGridthetafinalTemp,OutGridthetafinal,\[CapitalDelta]thetavals,thetamax},
+{thetaminExp,thetamaxExp}={10^Min[InGridthetaepsilon],10^Max[InGridthetaepsilon]};
+thetamax=If[StringContainsQ[Prod,"Bremsstrahlung"],Min[thetamaxExp,thetamaxBrem],thetamaxExp];
+(*Grid theta_S, z_S for the final acceptance data, logarithmized*)
+\[CapitalDelta]th=((thetamax-thetaminExp))/(ntheta);
+OutGridthetafinalTemp=(*InGridthetaepsilon*)Log10[Table[x,{x,thetaminExp,thetamax,\[CapitalDelta]th}]//Sort//DeleteDuplicates];
+If[thetaminExp==10^-5.&&\[CapitalDelta]th>10^-3.,OutGridthetafinalTemp=Join[Log10[{5*10^-5.,10^-4.,5*10^-4.,10^-3.}],OutGridthetafinalTemp]//Sort//DeleteDuplicates
+,
+OutGridthetafinalTemp=Join[Log10[{thetaminExp+(\[CapitalDelta]th)/(6),thetaminExp+(\[CapitalDelta]th)/(3),thetaminExp+(2)/(3)\[CapitalDelta]th}],OutGridthetafinalTemp]//Sort//DeleteDuplicates;
+];
+(*OutGridthetafinalTemp=InGridthetaepsilon;*)
+OutGridthetafinal=(1)/(2)(Rest[OutGridthetafinalTemp]+Most[OutGridthetafinalTemp]);
+\[CapitalDelta]thetavals=Rest[10^OutGridthetafinalTemp]-Most[10^OutGridthetafinalTemp];
+{OutGridthetafinal,\[CapitalDelta]thetavals}
+], 
+, OutGridszTemp[InGridzepsilon_,nz_,zminExp_]:=Module[{zneighbor,OutGridzfinalTemp,zmaxExp,OutGridzfinal,\[CapitalDelta]zvals,zgridTemp},
+zgridTemp=If[zminExp>0,10^InGridzepsilon,InGridzepsilon];
+zmaxExp=zgridTemp[[-1]];
+zneighbor[epsilon_]=zminExp+epsilon*(zgridTemp[[2]]-zminExp);
+OutGridzfinalTemp=Join[{zneighbor[0.1],zneighbor[0.25],zneighbor[0.5],zneighbor[0.7],zmaxExp-0.01},Table[x,{x,zminExp,zmaxExp,Min[(zmaxExp-zminExp)/(5),Max[0.5,((zmaxExp-zminExp))/(nz)]]}]]//Sort//DeleteDuplicates(*InGridzepsilon*);
+{OutGridzfinal}=(1)/(2)(Rest[#]+Most[#])&/@{If[zminExp>0,Log10[OutGridzfinalTemp],OutGridzfinalTemp]};
+\[CapitalDelta]zvals=Rest[OutGridzfinalTemp]-Most[OutGridzfinalTemp];
+(*zgridTemp=If[zminExp>0,10^InGridzepsilon,InGridzepsilon];
+{OutGridzfinal}=(1)/(2)(Rest[#]+Most[#])&/@{If[zminExp>0,Log10[zgridTemp],zgridTemp]};
+\[CapitalDelta]zvals=Rest[zgridTemp]-Most[zgridTemp];*)
+{OutGridzfinal,\[CapitalDelta]zvals}
+], 
+, OutGridsthetaz[InGridthetaepsilon_,InGridzepsilon_,ntheta_,nz_,zminExp_]:=Module[{thetaminExp,thetamaxExp,\[CapitalDelta]th,OutGridthetafinalTemp,zneighbor,OutGridzfinalTemp,zmaxExp,OutGridthetafinal,OutGridzfinal,\[CapitalDelta]thetavals,\[CapitalDelta]zvals,zgridTemp},
+{thetaminExp,thetamaxExp}={10^Min[InGridthetaepsilon],10^Max[InGridthetaepsilon]};
+(*Grid theta_S, z_S for the final acceptance data, logarithmized*)
+\[CapitalDelta]th=((thetamaxExp-thetaminExp))/(ntheta);
+OutGridthetafinalTemp=(*InGridthetaepsilon*)Log10[Join[(*{thetaminExp+(\[CapitalDelta]th)/(6),thetaminExp+(\[CapitalDelta]th)/(3),thetaminExp+(2)/(3)\[CapitalDelta]th}*)Table[thetaminExp+x*\[CapitalDelta]th,{x,0.02,0.98,0.04}],Table[x,{x,thetaminExp,thetamaxExp,\[CapitalDelta]th}]]//Sort//DeleteDuplicates];
+If[thetaminExp==10^-5.&&\[CapitalDelta]th>10^-3.,OutGridthetafinalTemp=Join[Log10[{5*10^-5.,10^-4.,5*10^-4.,10^-3.}],OutGridthetafinalTemp]//Sort//DeleteDuplicates];
+zgridTemp=If[zminExp>0,10^InGridzepsilon,InGridzepsilon];
+zmaxExp=zgridTemp[[-1]];
+zneighbor[epsilon_]=zminExp+epsilon*(zgridTemp[[2]]-zminExp);
+OutGridzfinalTemp=Join[{zneighbor[0.1],zneighbor[0.25],zneighbor[0.5],zneighbor[0.7],zmaxExp-0.01},Table[x,{x,zminExp,zmaxExp,Min[(zmaxExp-zminExp)/(5),Max[0.5,((zmaxExp-zminExp))/(nz)]]}]]//Sort//DeleteDuplicates(*InGridzepsilon*);
+{OutGridthetafinal,OutGridzfinal}=(1)/(2)(Rest[#]+Most[#])&/@{OutGridthetafinalTemp,If[zminExp>0,Log10[OutGridzfinalTemp],OutGridzfinalTemp]};
+{\[CapitalDelta]thetavals,\[CapitalDelta]zvals}=Rest[#]-Most[#]&/@{10^OutGridthetafinalTemp,OutGridzfinalTemp};
+{OutGridthetafinal,OutGridzfinal,\[CapitalDelta]thetavals,\[CapitalDelta]zvals}
+], 
+, \[CapitalDelta]xValsTotComp=Compile[{{\[CapitalDelta]thetavals,_Real,1},{\[CapitalDelta]Evals,_Real,1},{\[CapitalDelta]zvals,_Real,1}},Partition[Flatten[Outer[Times,\[CapitalDelta]thetavals,\[CapitalDelta]Evals,\[CapitalDelta]zvals],2],1],CompilationTarget->"C",RuntimeOptions->"Speed",Parallelization->True];}
+
+----- cell 13  label=Out grids -----
+{OutGridthetaTemp[InGridthetaepsilon_,ntheta_,Prod_,thetamaxBrem_]:=Module[{thetaminExp,thetamaxExp,\[CapitalDelta]th,OutGridthetafinalTemp,OutGridthetafinal,\[CapitalDelta]thetavals,thetamax},
+{thetaminExp,thetamaxExp}={10^Min[InGridthetaepsilon],10^Max[InGridthetaepsilon]};
+thetamax=If[StringContainsQ[Prod,"Bremsstrahlung"],Min[thetamaxExp,thetamaxBrem],thetamaxExp];
+(*Grid theta_S, z_S for the final acceptance data, logarithmized*)
+\[CapitalDelta]th=((thetamax-thetaminExp))/(ntheta);
+OutGridthetafinalTemp=(*InGridthetaepsilon*)Log10[Table[x,{x,thetaminExp,thetamax,\[CapitalDelta]th}]//Sort//DeleteDuplicates];
+If[thetaminExp==10^-5.&&\[CapitalDelta]th>10^-3.,OutGridthetafinalTemp=Join[Log10[{5*10^-5.,10^-4.,5*10^-4.,10^-3.}],OutGridthetafinalTemp]//Sort//DeleteDuplicates
+,
+OutGridthetafinalTemp=Join[Log10[{thetaminExp+(\[CapitalDelta]th)/(6),thetaminExp+(\[CapitalDelta]th)/(3),thetaminExp+(2)/(3)\[CapitalDelta]th}],OutGridthetafinalTemp]//Sort//DeleteDuplicates;
+];
+(*OutGridthetafinalTemp=InGridthetaepsilon;*)
+OutGridthetafinal=(1)/(2)(Rest[OutGridthetafinalTemp]+Most[OutGridthetafinalTemp]);
+\[CapitalDelta]thetavals=Rest[10^OutGridthetafinalTemp]-Most[10^OutGridthetafinalTemp];
+{OutGridthetafinal,\[CapitalDelta]thetavals}
+], 
+, OutGridszTemp[InGridzepsilon_,nz_,zminExp_]:=Module[{zneighbor,OutGridzfinalTemp,zmaxExp,OutGridzfinal,\[CapitalDelta]zvals,zgridTemp},
+zgridTemp=If[zminExp>0,10^InGridzepsilon,InGridzepsilon];
+zmaxExp=zgridTemp[[-1]];
+zneighbor[epsilon_]=zminExp+epsilon*(zgridTemp[[2]]-zminExp);
+OutGridzfinalTemp=Join[{zneighbor[0.1],zneighbor[0.25],zneighbor[0.5],zneighbor[0.7],zmaxExp-0.01},Table[x,{x,zminExp,zmaxExp,Min[(zmaxExp-zminExp)/(5),Max[0.5,((zmaxExp-zminExp))/(nz)]]}]]//Sort//DeleteDuplicates(*InGridzepsilon*);
+{OutGridzfinal}=(1)/(2)(Rest[#]+Most[#])&/@{If[zminExp>0,Log10[OutGridzfinalTemp],OutGridzfinalTemp]};
+\[CapitalDelta]zvals=Rest[OutGridzfinalTemp]-Most[OutGridzfinalTemp];
+(*zgridTemp=If[zminExp>0,10^InGridzepsilon,InGridzepsilon];
+{OutGridzfinal}=(1)/(2)(Rest[#]+Most[#])&/@{If[zminExp>0,Log10[zgridTemp],zgridTemp]};
+\[CapitalDelta]zvals=Rest[zgridTemp]-Most[zgridTemp];*)
+{OutGridzfinal,\[CapitalDelta]zvals}
+], 
+, OutGridsthetaz[InGridthetaepsilon_,InGridzepsilon_,ntheta_,nz_,zminExp_]:=Module[{thetaminExp,thetamaxExp,\[CapitalDelta]th,OutGridthetafinalTemp,zneighbor,OutGridzfinalTemp,zmaxExp,OutGridthetafinal,OutGridzfinal,\[CapitalDelta]thetavals,\[CapitalDelta]zvals,zgridTemp},
+{thetaminExp,thetamaxExp}={10^Min[InGridthetaepsilon],10^Max[InGridthetaepsilon]};
+(*Grid theta_S, z_S for the final acceptance data, logarithmized*)
+\[CapitalDelta]th=((thetamaxExp-thetaminExp))/(ntheta);
+OutGridthetafinalTemp=(*InGridthetaepsilon*)Log10[Join[(*{thetaminExp+(\[CapitalDelta]th)/(6),thetaminExp+(\[CapitalDelta]th)/(3),thetaminExp+(2)/(3)\[CapitalDelta]th}*)Table[thetaminExp+x*\[CapitalDelta]th,{x,0.02,0.98,0.04}],Table[x,{x,thetaminExp,thetamaxExp,\[CapitalDelta]th}]]//Sort//DeleteDuplicates];
+If[thetaminExp==10^-5.&&\[CapitalDelta]th>10^-3.,OutGridthetafinalTemp=Join[Log10[{5*10^-5.,10^-4.,5*10^-4.,10^-3.}],OutGridthetafinalTemp]//Sort//DeleteDuplicates];
+zgridTemp=If[zminExp>0,10^InGridzepsilon,InGridzepsilon];
+zmaxExp=zgridTemp[[-1]];
+zneighbor[epsilon_]=zminExp+epsilon*(zgridTemp[[2]]-zminExp);
+OutGridzfinalTemp=Join[{zneighbor[0.1],zneighbor[0.25],zneighbor[0.5],zneighbor[0.7],zmaxExp-0.01},Table[x,{x,zminExp,zmaxExp,Min[(zmaxExp-zminExp)/(5),Max[0.5,((zmaxExp-zminExp))/(nz)]]}]]//Sort//DeleteDuplicates(*InGridzepsilon*);
+{OutGridthetafinal,OutGridzfinal}=(1)/(2)(Rest[#]+Most[#])&/@{OutGridthetafinalTemp,If[zminExp>0,Log10[OutGridzfinalTemp],OutGridzfinalTemp]};
+{\[CapitalDelta]thetavals,\[CapitalDelta]zvals}=Rest[#]-Most[#]&/@{10^OutGridthetafinalTemp,OutGridzfinalTemp};
+{OutGridthetafinal,OutGridzfinal,\[CapitalDelta]thetavals,\[CapitalDelta]zvals}
+], 
+, \[CapitalDelta]xValsTotComp=Compile[{{\[CapitalDelta]thetavals,_Real,1},{\[CapitalDelta]Evals,_Real,1},{\[CapitalDelta]zvals,_Real,1}},Partition[Flatten[Outer[Times,\[CapitalDelta]thetavals,\[CapitalDelta]Evals,\[CapitalDelta]zvals],2],1],CompilationTarget->"C",RuntimeOptions->"Speed",Parallelization->True];}
+
+----- cell 14  label= -----
+{OutGridthetaTemp[InGridthetaepsilon_,ntheta_,Prod_,thetamaxBrem_]:=Module[{thetaminExp,thetamaxExp,\[CapitalDelta]th,OutGridthetafinalTemp,OutGridthetafinal,\[CapitalDelta]thetavals,thetamax},
+{thetaminExp,thetamaxExp}={10^Min[InGridthetaepsilon],10^Max[InGridthetaepsilon]};
+thetamax=If[StringContainsQ[Prod,"Bremsstrahlung"],Min[thetamaxExp,thetamaxBrem],thetamaxExp];
+(*Grid theta_S, z_S for the final acceptance data, logarithmized*)
+\[CapitalDelta]th=((thetamax-thetaminExp))/(ntheta);
+OutGridthetafinalTemp=(*InGridthetaepsilon*)Log10[Table[x,{x,thetaminExp,thetamax,\[CapitalDelta]th}]//Sort//DeleteDuplicates];
+If[thetaminExp==10^-5.&&\[CapitalDelta]th>10^-3.,OutGridthetafinalTemp=Join[Log10[{5*10^-5.,10^-4.,5*10^-4.,10^-3.}],OutGridthetafinalTemp]//Sort//DeleteDuplicates
+,
+OutGridthetafinalTemp=Join[Log10[{thetaminExp+(\[CapitalDelta]th)/(6),thetaminExp+(\[CapitalDelta]th)/(3),thetaminExp+(2)/(3)\[CapitalDelta]th}],OutGridthetafinalTemp]//Sort//DeleteDuplicates;
+];
+(*OutGridthetafinalTemp=InGridthetaepsilon;*)
+OutGridthetafinal=(1)/(2)(Rest[OutGridthetafinalTemp]+Most[OutGridthetafinalTemp]);
+\[CapitalDelta]thetavals=Rest[10^OutGridthetafinalTemp]-Most[10^OutGridthetafinalTemp];
+{OutGridthetafinal,\[CapitalDelta]thetavals}
+], 
+, OutGridszTemp[InGridzepsilon_,nz_,zminExp_]:=Module[{zneighbor,OutGridzfinalTemp,zmaxExp,OutGridzfinal,\[CapitalDelta]zvals,zgridTemp},
+zgridTemp=If[zminExp>0,10^InGridzepsilon,InGridzepsilon];
+zmaxExp=zgridTemp[[-1]];
+zneighbor[epsilon_]=zminExp+epsilon*(zgridTemp[[2]]-zminExp);
+OutGridzfinalTemp=Join[{zneighbor[0.1],zneighbor[0.25],zneighbor[0.5],zneighbor[0.7],zmaxExp-0.01},Table[x,{x,zminExp,zmaxExp,Min[(zmaxExp-zminExp)/(5),Max[0.5,((zmaxExp-zminExp))/(nz)]]}]]//Sort//DeleteDuplicates(*InGridzepsilon*);
+{OutGridzfinal}=(1)/(2)(Rest[#]+Most[#])&/@{If[zminExp>0,Log10[OutGridzfinalTemp],OutGridzfinalTemp]};
+\[CapitalDelta]zvals=Rest[OutGridzfinalTemp]-Most[OutGridzfinalTemp];
+(*zgridTemp=If[zminExp>0,10^InGridzepsilon,InGridzepsilon];
+{OutGridzfinal}=(1)/(2)(Rest[#]+Most[#])&/@{If[zminExp>0,Log10[zgridTemp],zgridTemp]};
+\[CapitalDelta]zvals=Rest[zgridTemp]-Most[zgridTemp];*)
+{OutGridzfinal,\[CapitalDelta]zvals}
+], 
+, OutGridsthetaz[InGridthetaepsilon_,InGridzepsilon_,ntheta_,nz_,zminExp_]:=Module[{thetaminExp,thetamaxExp,\[CapitalDelta]th,OutGridthetafinalTemp,zneighbor,OutGridzfinalTemp,zmaxExp,OutGridthetafinal,OutGridzfinal,\[CapitalDelta]thetavals,\[CapitalDelta]zvals,zgridTemp},
+{thetaminExp,thetamaxExp}={10^Min[InGridthetaepsilon],10^Max[InGridthetaepsilon]};
+(*Grid theta_S, z_S for the final acceptance data, logarithmized*)
+\[CapitalDelta]th=((thetamaxExp-thetaminExp))/(ntheta);
+OutGridthetafinalTemp=(*InGridthetaepsilon*)Log10[Join[(*{thetaminExp+(\[CapitalDelta]th)/(6),thetaminExp+(\[CapitalDelta]th)/(3),thetaminExp+(2)/(3)\[CapitalDelta]th}*)Table[thetaminExp+x*\[CapitalDelta]th,{x,0.02,0.98,0.04}],Table[x,{x,thetaminExp,thetamaxExp,\[CapitalDelta]th}]]//Sort//DeleteDuplicates];
+If[thetaminExp==10^-5.&&\[CapitalDelta]th>10^-3.,OutGridthetafinalTemp=Join[Log10[{5*10^-5.,10^-4.,5*10^-4.,10^-3.}],OutGridthetafinalTemp]//Sort//DeleteDuplicates];
+zgridTemp=If[zminExp>0,10^InGridzepsilon,InGridzepsilon];
+zmaxExp=zgridTemp[[-1]];
+zneighbor[epsilon_]=zminExp+epsilon*(zgridTemp[[2]]-zminExp);
+OutGridzfinalTemp=Join[{zneighbor[0.1],zneighbor[0.25],zneighbor[0.5],zneighbor[0.7],zmaxExp-0.01},Table[x,{x,zminExp,zmaxExp,Min[(zmaxExp-zminExp)/(5),Max[0.5,((zmaxExp-zminExp))/(nz)]]}]]//Sort//DeleteDuplicates(*InGridzepsilon*);
+{OutGridthetafinal,OutGridzfinal}=(1)/(2)(Rest[#]+Most[#])&/@{OutGridthetafinalTemp,If[zminExp>0,Log10[OutGridzfinalTemp],OutGridzfinalTemp]};
+{\[CapitalDelta]thetavals,\[CapitalDelta]zvals}=Rest[#]-Most[#]&/@{10^OutGridthetafinalTemp,OutGridzfinalTemp};
+{OutGridthetafinal,OutGridzfinal,\[CapitalDelta]thetavals,\[CapitalDelta]zvals}
+], 
+, \[CapitalDelta]xValsTotComp=Compile[{{\[CapitalDelta]thetavals,_Real,1},{\[CapitalDelta]Evals,_Real,1},{\[CapitalDelta]zvals,_Real,1}},Partition[Flatten[Outer[Times,\[CapitalDelta]thetavals,\[CapitalDelta]Evals,\[CapitalDelta]zvals],2],1],CompilationTarget->"C",RuntimeOptions->"Speed",Parallelization->True];}
+
+----- cell 15  label=Blocks for computing  number of events -----
+(*Block that computes the grid theta_S,E_S,z_S, epsilon_Full*f_theta_S,E_S*)
+TableIntegrandDiscretTemp[m_,ProdChannel_,epsilonDecOp_,epsilonvals_,epsilonazvals_,OutGridthetafinal_,OutGridzfinal_,OutGridEnergy_,InGridmepsilon_,InGridthetaepsilon_,InGridEepsilon_,InGridzepsilon_,\[CapitalDelta]thetavals_,\[CapitalDelta]zvals_,zminExp_,GridInFinal_,DistrVals_,Facility_,ELLPmax_,thetaminExp_]:=Module[{OutGridEfinalTemp,OutGridEfinal,\[CapitalDelta]Evals,\[CapitalDelta]xValsTot,OutGridFinal,OutGridFinal1,gepsilon,xgepsilon,xigepsilon,epsilonResult,gDistr,xgDistr,xigDistr,DistrResult,TabTemp0},
+OutGridEfinalTemp=OutGridEnergy[N[m],ProdChannel];
+If[!(Facility=="ESS"&&ProdChannel=="PiCharged"),
+{OutGridEfinal,\[CapitalDelta]Evals}={(1)/(2)(Rest[OutGridEfinalTemp]+Most[OutGridEfinalTemp]),(Rest[10^OutGridEfinalTemp]-Most[10^OutGridEfinalTemp])};
+,
+\[CapitalDelta]Eapprox=10^-5.;
+\[CapitalDelta]Evals=Table[\[CapitalDelta]Eapprox,Length[OutGridEfinalTemp]];
+OutGridEfinal=OutGridEfinalTemp;
+];
+\[CapitalDelta]xValsTot=\[CapitalDelta]xValsTotComp[\[CapitalDelta]thetavals,\[CapitalDelta]Evals,\[CapitalDelta]zvals];
+OutGridFinal=Tuples[{{Log10[N[m]]},OutGridthetafinal,OutGridEfinal,OutGridzfinal}];
+OutGridFinal1=If[zminExp>0.,10^OutGridFinal[[All,{2,3,4}]],{10^#[[2]],10^#[[3]],#[[4]]}&/@OutGridFinal];
+If[ELLPmax[m,thetaminExp,ProdChannel]>10^OutGridEfinalTemp[[1]],
+gepsilon={InGridmepsilon,InGridthetaepsilon,InGridEepsilon,InGridzepsilon};
+xgepsilon={{Log10[N[m]]},OutGridthetafinal,OutGridEfinal,OutGridzfinal};
+xigepsilon=MapThread[Module[{interp=Interpolation[Transpose@{#,Range@Length@#},InterpolationOrder->1][#2]},If[ListQ[interp],interp,{interp}]]&,{gepsilon,xgepsilon}];
+(*xigepsilon=MapThread[Interpolation[Transpose@{#,Range@Length@#},InterpolationOrder->1][#2]&,{gepsilon,xgepsilon}];*)
+epsilonResult=10^Flatten@cf4[Sequence@@xigepsilon,If[epsilonDecOp=="True",epsilonvals,epsilonazvals]];
+gDistr={GridInFinal[ProdChannel][[1]],GridInFinal[ProdChannel][[2]],GridInFinal[ProdChannel][[3]]};
+xgDistr={{Log10[N[m]]},OutGridthetafinal,OutGridEfinal};
+xigDistr=MapThread[Module[{interp=Interpolation[Transpose@{#,Range@Length@#},InterpolationOrder->1][#2]},If[ListQ[interp],interp,{interp}]]&,{gDistr,xgDistr}];
+(*xigDistr=MapThread[Interpolation[Transpose@{#,Range@Length@#},InterpolationOrder->1][#2]&,{gDistr,xgDistr}];*)
+DistrResult=10^Flatten@cf3[Sequence@@xigDistr,DistrVals[ProdChannel]];
+If[StringContainsQ[ProdChannel,"Bremsstrahlung"],DistrResult=BremCut[OutGridthetafinal,OutGridEfinal,DistrResult,m,ProdChannel]];
+TabTemp0=Join[OutGridFinal1,List/@Flatten[DistrResult Partition[epsilonResult,Length[OutGridzfinal]]],\[CapitalDelta]xValsTot,2]
+,
+TabTemp0=Join[OutGridFinal1,ConstantArray[{10^-90.},Length[OutGridFinal1]],\[CapitalDelta]xValsTot,2]
+]
+]
+(*Values f_LLP*epsilon_LLP*(Exp[-z_LLP/(cos(theta_LLP)ctau_LLPp_LLP/m_LLP)])/(cos(theta_LLP)ctau_LLPp_LLP/m_LLP)*epsilon_decay\[CapitalDelta]z_LLP\[CapitalDelta]E_LLP\[CapitalDelta]theta_LLP for the grid of values theta_LLP, E_LLP, z_LLP fixed values of ctau_LLP and m_LLP*)
+tableprefac=Hold@Compile[{{tabb,_Real,1},{m,_Real},{ctau,_Real},{decProb,_Integer},{zshift,_Real}},Module[{angles,energies,zv,values,\[CapitalDelta]s,prefactor},
+values=Compile`GetElement[tabb,4];
+\[CapitalDelta]s=Compile`GetElement[tabb,5];
+If[decProb==1,
+angles=Compile`GetElement[tabb,1];
+energies=Compile`GetElement[tabb,2];
+zv=Compile`GetElement[tabb,3];
+prefactor=(Exp[-(zv-zshift)/(Cos[angles]*ctau*(Sqrt[energies^2-m^2])/(m))])/(Abs[Cos[angles]]*ctau*(Sqrt[energies^2-m^2])/(m)),prefactor=1.];
+prefactor*\[CapitalDelta]s*values],CompilationTarget->"C",RuntimeOptions->"Speed",Parallelization->"True",RuntimeAttributes->{Listable}]//ReleaseHold;
+(*Summation of the values above*)
+sumcompile=Hold@Compile[{{tabctaum,_Real,1}},Total[tabctaum],CompilationTarget->"C",RuntimeOptions->"Speed",Parallelization->"True"]//ReleaseHold;
+(*Acceptance*)
+AcceptanceDiscretTemp[m_,ProdChannel_,epsilondecOp_,decProb_,mLLPmin_,mminepsilon_,mLLPmax_,mmaxepsilon_,ELLPmax_,thetaminExp_,TableIntegrandDiscret_,BrVis_,zmaxExp_,zminExp_,FactorANUBISceiling_,zshift_]:=Module[{NevDiscret,NpotTimes\[Chi]val,integrandtab,brvis,ctauacc,prefacacc,accdiscret},
+If[Max[mLLPmin[ProdChannel],mminepsilon]<=m<=Min[mLLPmax[ProdChannel],mmaxepsilon,ELLPmax[m,thetaminExp,ProdChannel]],
+integrandtab=TableIntegrandDiscret[m,ProdChannel,epsilondecOp];
+brvis=If[epsilondecOp=="True",BrVis[m],1];
+(*Test lifetime for the acceptance*)
+ctauacc=10^9;
+(*Prefactor for the acceptance. If only azimuthal and *)
+prefacacc=If[decProb==1,ctauacc,(1)/(zmaxExp-zminExp)];
+accdiscret=If[brvis!=0,FactorANUBISceiling*brvis*prefacacc*sumcompile[tableprefac[integrandtab,m,ctauacc,decProb,zshift]],0.]
+,
+accdiscret=0.];
+accdiscret
+]
+
+----- cell 16  label= -----
+(*Block that computes the grid theta_S,E_S,z_S, epsilon_Full*f_theta_S,E_S*)
+TableIntegrandDiscretTemp[m_,ProdChannel_,epsilonDecOp_,epsilonvals_,epsilonazvals_,OutGridthetafinal_,OutGridzfinal_,OutGridEnergy_,InGridmepsilon_,InGridthetaepsilon_,InGridEepsilon_,InGridzepsilon_,\[CapitalDelta]thetavals_,\[CapitalDelta]zvals_,zminExp_,GridInFinal_,DistrVals_,Facility_,ELLPmax_,thetaminExp_]:=Module[{OutGridEfinalTemp,OutGridEfinal,\[CapitalDelta]Evals,\[CapitalDelta]xValsTot,OutGridFinal,OutGridFinal1,gepsilon,xgepsilon,xigepsilon,epsilonResult,gDistr,xgDistr,xigDistr,DistrResult,TabTemp0},
+OutGridEfinalTemp=OutGridEnergy[N[m],ProdChannel];
+If[!(Facility=="ESS"&&ProdChannel=="PiCharged"),
+{OutGridEfinal,\[CapitalDelta]Evals}={(1)/(2)(Rest[OutGridEfinalTemp]+Most[OutGridEfinalTemp]),(Rest[10^OutGridEfinalTemp]-Most[10^OutGridEfinalTemp])};
+,
+\[CapitalDelta]Eapprox=10^-5.;
+\[CapitalDelta]Evals=Table[\[CapitalDelta]Eapprox,Length[OutGridEfinalTemp]];
+OutGridEfinal=OutGridEfinalTemp;
+];
+\[CapitalDelta]xValsTot=\[CapitalDelta]xValsTotComp[\[CapitalDelta]thetavals,\[CapitalDelta]Evals,\[CapitalDelta]zvals];
+OutGridFinal=Tuples[{{Log10[N[m]]},OutGridthetafinal,OutGridEfinal,OutGridzfinal}];
+OutGridFinal1=If[zminExp>0.,10^OutGridFinal[[All,{2,3,4}]],{10^#[[2]],10^#[[3]],#[[4]]}&/@OutGridFinal];
+If[ELLPmax[m,thetaminExp,ProdChannel]>10^OutGridEfinalTemp[[1]],
+gepsilon={InGridmepsilon,InGridthetaepsilon,InGridEepsilon,InGridzepsilon};
+xgepsilon={{Log10[N[m]]},OutGridthetafinal,OutGridEfinal,OutGridzfinal};
+xigepsilon=MapThread[Module[{interp=Interpolation[Transpose@{#,Range@Length@#},InterpolationOrder->1][#2]},If[ListQ[interp],interp,{interp}]]&,{gepsilon,xgepsilon}];
+(*xigepsilon=MapThread[Interpolation[Transpose@{#,Range@Length@#},InterpolationOrder->1][#2]&,{gepsilon,xgepsilon}];*)
+epsilonResult=10^Flatten@cf4[Sequence@@xigepsilon,If[epsilonDecOp=="True",epsilonvals,epsilonazvals]];
+gDistr={GridInFinal[ProdChannel][[1]],GridInFinal[ProdChannel][[2]],GridInFinal[ProdChannel][[3]]};
+xgDistr={{Log10[N[m]]},OutGridthetafinal,OutGridEfinal};
+xigDistr=MapThread[Module[{interp=Interpolation[Transpose@{#,Range@Length@#},InterpolationOrder->1][#2]},If[ListQ[interp],interp,{interp}]]&,{gDistr,xgDistr}];
+(*xigDistr=MapThread[Interpolation[Transpose@{#,Range@Length@#},InterpolationOrder->1][#2]&,{gDistr,xgDistr}];*)
+DistrResult=10^Flatten@cf3[Sequence@@xigDistr,DistrVals[ProdChannel]];
+If[StringContainsQ[ProdChannel,"Bremsstrahlung"],DistrResult=BremCut[OutGridthetafinal,OutGridEfinal,DistrResult,m,ProdChannel]];
+TabTemp0=Join[OutGridFinal1,List/@Flatten[DistrResult Partition[epsilonResult,Length[OutGridzfinal]]],\[CapitalDelta]xValsTot,2]
+,
+TabTemp0=Join[OutGridFinal1,ConstantArray[{10^-90.},Length[OutGridFinal1]],\[CapitalDelta]xValsTot,2]
+]
+]
+(*Values f_LLP*epsilon_LLP*(Exp[-z_LLP/(cos(theta_LLP)ctau_LLPp_LLP/m_LLP)])/(cos(theta_LLP)ctau_LLPp_LLP/m_LLP)*epsilon_decay\[CapitalDelta]z_LLP\[CapitalDelta]E_LLP\[CapitalDelta]theta_LLP for the grid of values theta_LLP, E_LLP, z_LLP fixed values of ctau_LLP and m_LLP*)
+tableprefac=Hold@Compile[{{tabb,_Real,1},{m,_Real},{ctau,_Real},{decProb,_Integer},{zshift,_Real}},Module[{angles,energies,zv,values,\[CapitalDelta]s,prefactor},
+values=Compile`GetElement[tabb,4];
+\[CapitalDelta]s=Compile`GetElement[tabb,5];
+If[decProb==1,
+angles=Compile`GetElement[tabb,1];
+energies=Compile`GetElement[tabb,2];
+zv=Compile`GetElement[tabb,3];
+prefactor=(Exp[-(zv-zshift)/(Cos[angles]*ctau*(Sqrt[energies^2-m^2])/(m))])/(Abs[Cos[angles]]*ctau*(Sqrt[energies^2-m^2])/(m)),prefactor=1.];
+prefactor*\[CapitalDelta]s*values],CompilationTarget->"C",RuntimeOptions->"Speed",Parallelization->"True",RuntimeAttributes->{Listable}]//ReleaseHold;
+(*Summation of the values above*)
+sumcompile=Hold@Compile[{{tabctaum,_Real,1}},Total[tabctaum],CompilationTarget->"C",RuntimeOptions->"Speed",Parallelization->"True"]//ReleaseHold;
+(*Acceptance*)
+AcceptanceDiscretTemp[m_,ProdChannel_,epsilondecOp_,decProb_,mLLPmin_,mminepsilon_,mLLPmax_,mmaxepsilon_,ELLPmax_,thetaminExp_,TableIntegrandDiscret_,BrVis_,zmaxExp_,zminExp_,FactorANUBISceiling_,zshift_]:=Module[{NevDiscret,NpotTimes\[Chi]val,integrandtab,brvis,ctauacc,prefacacc,accdiscret},
+If[Max[mLLPmin[ProdChannel],mminepsilon]<=m<=Min[mLLPmax[ProdChannel],mmaxepsilon,ELLPmax[m,thetaminExp,ProdChannel]],
+integrandtab=TableIntegrandDiscret[m,ProdChannel,epsilondecOp];
+brvis=If[epsilondecOp=="True",BrVis[m],1];
+(*Test lifetime for the acceptance*)
+ctauacc=10^9;
+(*Prefactor for the acceptance. If only azimuthal and *)
+prefacacc=If[decProb==1,ctauacc,(1)/(zmaxExp-zminExp)];
+accdiscret=If[brvis!=0,FactorANUBISceiling*brvis*prefacacc*sumcompile[tableprefac[integrandtab,m,ctauacc,decProb,zshift]],0.]
+,
+accdiscret=0.];
+accdiscret
+]
+
+----- cell 17  label=Differential number of events -----
+(*The same as tableprefac but also including the grid*)
+tableGridPrefac=Hold@Compile[{{tabb,_Real,1},{mS,_Real},{ctau,_Real},{zshift,_Real}},Module[{theta,e,z,acc,\[CapitalDelta]},
+theta=Compile`GetElement[tabb,1];
+e=Compile`GetElement[tabb,2];
+z=Compile`GetElement[tabb,3];
+acc=Compile`GetElement[tabb,4];
+\[CapitalDelta]=Compile`GetElement[tabb,5];
+{theta,e,z,(Exp[-((z-zshift))/(Cos[theta]ctau(Sqrt[e^2-mS^2])/(mS))])/(Abs[Cos[theta]]ctau(Sqrt[e^2-mS^2])/(mS))acc*\[CapitalDelta]}
+],CompilationTarget->"MVM",RuntimeOptions->"Speed",Parallelization->"True",RuntimeAttributes->{Listable}]//ReleaseHold;
+(*Summation returning the differential number of events X, df/dX *)
+NdiffCompiled=Hold@Compile[{{tabNdiff,_Real,2},{GridQuantity,_Real,1},{LengthPerVariable,_Integer},{NPoTtimesPprod,_Real}},Table[{tabNdiff[[LengthPerVariable*(i-1)+1]][[1]],NPoTtimesPprod*Sum[tabNdiff[[LengthPerVariable*(i-1)+j]][[4]],{j,1,LengthPerVariable,1}]},{i,1,Length[GridQuantity],1}],CompilationTarget->"MVM",RuntimeOptions->"Speed",Parallelization->"True"]//ReleaseHold;
+
+----- cell 18  label= -----
+(*The same as tableprefac but also including the grid*)
+tableGridPrefac=Hold@Compile[{{tabb,_Real,1},{mS,_Real},{ctau,_Real},{zshift,_Real}},Module[{theta,e,z,acc,\[CapitalDelta]},
+theta=Compile`GetElement[tabb,1];
+e=Compile`GetElement[tabb,2];
+z=Compile`GetElement[tabb,3];
+acc=Compile`GetElement[tabb,4];
+\[CapitalDelta]=Compile`GetElement[tabb,5];
+{theta,e,z,(Exp[-((z-zshift))/(Cos[theta]ctau(Sqrt[e^2-mS^2])/(mS))])/(Abs[Cos[theta]]ctau(Sqrt[e^2-mS^2])/(mS))acc*\[CapitalDelta]}
+],CompilationTarget->"MVM",RuntimeOptions->"Speed",Parallelization->"True",RuntimeAttributes->{Listable}]//ReleaseHold;
+(*Summation returning the differential number of events X, df/dX *)
+NdiffCompiled=Hold@Compile[{{tabNdiff,_Real,2},{GridQuantity,_Real,1},{LengthPerVariable,_Integer},{NPoTtimesPprod,_Real}},Table[{tabNdiff[[LengthPerVariable*(i-1)+1]][[1]],NPoTtimesPprod*Sum[tabNdiff[[LengthPerVariable*(i-1)+j]][[4]],{j,1,LengthPerVariable,1}]},{i,1,Length[GridQuantity],1}],CompilationTarget->"MVM",RuntimeOptions->"Speed",Parallelization->"True"]//ReleaseHold;

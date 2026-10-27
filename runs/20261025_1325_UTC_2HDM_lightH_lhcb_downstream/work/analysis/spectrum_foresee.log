@@ -1,0 +1,99 @@
+==============================================================================
+our pp-collision spectra vs FORESEE forward spectra
+==============================================================================
+run dir       : E:\AAAwork\LLP-AGI\runs\20261025_1325_UTC_2HDM_lightH_lhcb_downstream
+FORESEE files : E:\AAAwork\LLP-AGI\references\tools\FORESEE\files\hadrons
+
+-- our samples ----------------------------------------------------
+B   : 754967 forward B rows (pz>0), weight 700 pb/row  (sigma(bbbar)=560 ub at 13 TeV, n_gen=800000)
+      total forward: B0/B0bar/B+/B- = 475.0 ub, all 8 B-meson states = 528.5 ub
+inel: 10748161 forward pi/K rows, weight 1.59e+05 pb/row  (sigma_inel=79.5 mb, n_gen=500000)
+
+-- FORESEE B-meson spectra ---------------------------------------
+Pythia8 13.6: B0/B0bar/B+/B-  318.90 ub, all 8 states  354.11 ub
+Pythia8 14  : B0/B0bar/B+/B-  328.63 ub
+NLO-P8 13.6 : B0/B0bar/B+/B-  403.78 ub
+NLO-Max 13.6: B0/B0bar/B+/B-  602.09 ub
+NLO-Min 13.6: B0/B0bar/B+/B-  300.27 ub
+
+-- known energy scaling of the bbbar cross section, 13 -> 13.6 TeV --
+Pythia8 : sigma(14)/sigma(13.6) = 1.0305 -> sigma(13.6)/sigma(13) = 1.0479
+NLO-P8  : sigma(14)/sigma(13.6) = 1.0278 -> sigma(13.6)/sigma(13) = 1.0435
+adopted : 1.0457  (+4.6 % from 13 to 13.6 TeV)
+
+-- total forward B-meson cross sections (B0/B0bar/B+/B-) ----------
+ours              13 TeV   :   475.0 ub   (all 8 states   528.5 ub)
+FORESEE Pythia8  13.6 TeV :   318.9 ub   (all 8 states   354.1 ub)   ratio ours/FOR = 1.4895
+
+common FORESEE region (theta<1 rad, 1 GeV<p<1e4 GeV):
+  ours               426.5 ub
+  FORESEE Pythia8    287.7 ub  ratio 1.4824
+  FORESEE NLO-P8     403.8 ub  ratio 1.0562
+  FORESEE NLO-Max    602.1 ub  ratio 0.7084
+  FORESEE NLO-Min    300.3 ub  ratio 1.4204
+  Pythia8 -> NLO-P8 normalisation factor: 1.4035
+
+normalisation decomposition (common region):
+  observed ratios              : ours/Pythia8 1.4824, ours/NLO-P8 1.0562
+  energy 13->13.6 TeV would give: 1.0457 for identical sigma(bbbar)
+  same-energy normalisation     : Pythia8 1.5502, NLO-P8 1.1045
+  implied sigma(bbbar) of the FORESEE variants at 13.6 TeV:
+    Pythia8:  377.8 ub   (ours: 560 ub at 13 TeV = 586 ub at 13.6 TeV)
+    NLO-P8 :  530.2 ub   (ours: 560 ub at 13 TeV = 586 ub at 13.6 TeV)
+    NLO-Max:  790.6 ub   (ours: 560 ub at 13 TeV = 586 ub at 13.6 TeV)
+    NLO-Min:  394.3 ub   (ours: 560 ub at 13 TeV = 586 ub at 13.6 TeV)
+
+-- shape comparison, B mesons ------------------------------------
+vs Pythia8 13.6, full forward hemisphere: 1215 bins with our counts>=100
+  total ratio 1.4895; bin ratio median 1.4530, 68% [1.289, 1.710]
+  shape-only (bin ratio / global): median 0.9755, 68% [0.866, 1.148], RMS 13.1%
+  |shape|<10%/20%: 47% / 89%
+vs NLO-P8 13.6, full forward hemisphere: 1122 bins with our counts>=100
+  total ratio 1.0562; bin ratio median 1.1269, 68% [0.851, 1.281]
+  shape-only (bin ratio / global): median 1.0669, 68% [0.806, 1.213], RMS 24.9%
+  |shape|<10%/20%: 34% / 66%
+vs Pythia8 13.6, analysis core (eta 1.5-5.5, 5<p<500 GeV): 763 bins with our counts>=100
+  total ratio 1.4895; bin ratio median 1.4448, 68% [1.283, 1.708]
+  shape-only (bin ratio / global): median 0.9700, 68% [0.862, 1.146], RMS 13.0%
+  |shape|<10%/20%: 48% / 89%
+  eta bands [fraction of the forward cross section] and shape ratio:
+    eta<1.5     : ours  27.2%  Pythia8  26.2%  ratio 1.039
+    1.5<eta<5.5 : ours  66.3%  Pythia8  66.6%  ratio 0.996
+    eta>5.5     : ours   6.4%  Pythia8   7.2%  ratio 0.898
+  same eta-band fractions at 14 vs 13.6 TeV (FORESEE energy check):
+    Pythia8: eta<1.5: 0.996, 1.5<eta<5.5: 0.999, eta>5.5: 1.021
+    NLO-P8 : eta<1.5: 0.995, 1.5<eta<5.5: 1.000, eta>5.5: 1.022
+  shape ratio (ours/FOR after global normalisation) vs p:
+    log10p -1..+0: 0.919
+    log10p +0..+1: 0.976
+    log10p +1..+2: 1.019
+    log10p +2..+3: 0.997
+    log10p +3..+4: 0.863
+  shape ratio vs log10 theta:
+    log10theta -5..-4: 0.747
+    log10theta -4..-3: 0.761
+    log10theta -3..-2: 0.919
+    log10theta -2..-1: 0.982
+    log10theta -1..+0: 1.025
+  peak: ours (log10theta,log10p)=(+0.10,+0.70) FORESEE=(+0.10,+0.65)
+
+-- pi/K comparison (secondary; ours = prompt fragmentation hadrons) --
+total forward cross sections [mb]:
+  species         ours      Pythia8      EPOSLHC       SIBYLL
+  pi+           803.8       1361.6       1259.1        968.3
+  pi-           787.8       1335.7       1232.1        945.6
+  K+             59.2        152.4        150.6        124.7
+  K-             58.2        147.8        144.3        119.5
+  pi/K total ours/FOR(Pythia8) = 0.5701
+  pi/K total ours/FOR(EPOSLHC) = 0.6134
+  pi/K total ours/FOR(SIBYLL) = 0.7919
+  pi/K bins with our counts>=100: 3395
+  full forward: total ratio 0.5701; bin ratio median 0.514, 68% [0.405, 0.580]; shape RMS 36.7%
+  core (eta 2-5, 10<p<500 GeV): bin ratio median 0.414, 68% [0.327, 0.519], shape RMS 30.6%
+  FORESEE light-hadron generator spread (pi+ total, mb): Pythia8 1362, EPOSLHC 1259, SIBYLL 968
+  K/pi: ours 0.074; FORESEE Pythia8 0.111, EPOSLHC 0.118, SIBYLL 0.128
+
+[figure] E:\AAAwork\LLP-AGI\runs\20261025_1325_UTC_2HDM_lightH_lhcb_downstream\outputs\figures\production\spectrum_vs_foresee_overview.png
+[figure] E:\AAAwork\LLP-AGI\runs\20261025_1325_UTC_2HDM_lightH_lhcb_downstream\outputs\figures\production\spectrum_vs_foresee_overview.pdf
+
+done in 49.2 s

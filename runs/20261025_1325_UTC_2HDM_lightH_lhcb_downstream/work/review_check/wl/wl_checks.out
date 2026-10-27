@@ -1,0 +1,54 @@
+=== C1: App.D g0,g1,g2 ===
+g0(x->xH) = -1/12*cb^2/xH
+g1(x->xH) = (-9 - 5*cb^2)/12
+g2(x->xH) = (cb*(-1/2 - (5*cb^2)/3 + 6/(-1 + xH)^2 - (3*(1 + xH)*Log[xH])/(-1 + xH)^3))/4
+g0(x->0)  = (-3*cb^2)/(16*xH)
+g1(x->0)  = -3/4
+g2(x->0)  = (cb*(2 + 3*Log[xH]))/4
+series g0 in 1/xH (xH->inf): (-3*cb^2*ee)/16
+series g1 in 1/xH (xH->inf): -3/4 - (cb^2*ee*x*(-5 + 4*Log[1/(ee*x)]))/4
+
+=== C2: xi_H(bs) scaling with tanb ===
+xi_bs(tanb=100,mH=1)   = 9.041783663816038*^-6
+xi_bs*tanb at tanb=1e2,1e3,1e4 : {{100., 0.0009041783663816038}, {1000., 0.0009041741674603422}, {10000., 0.0009041741254680716}}
+Ratio xi(1e3)/xi(1e2)*10 = 0.9999953560918755  (should be ~1)
+xi_bs(tanb=100,mH=1) numeric = 9.041783663816038*^-6
+xi_bs(tanb=5,mH=1)   numeric = 0.0001811639527729113
+ratio xi(5)/xi(100)*100/5 = 400.7261387991492 (should be ~1)
+g0,g1,g2 at tanb->inf, x_t: {0., -0.75, 0.}
+
+=== C3: g_C exact vs approximation ===
+g_C(1,100)  = -0.00044457412943434593
+-mh^2 c^2/(4v) at tanb=100 = -0.0015879065040650406
+ratio = 0.27997500375257367
+g_C(c) expansion = (15625*c^2)/984 + (15625*c^4)/3936 - mH^2/492
+i.e. g_C = s/(2v)[ mh^2 c^2/2 - mH^2(1+c^2/2) ] + O(c^4):  (62500*c^2 + 15625*c^4 - 8*mH^2 + 4*Sqrt[1 - c^2]*(2*mH^2 + c^2*(-15625 + mH^2)))/3936
+vanishing c vs mH (tanb=100): c_van = 1/(6*Sqrt[217]) -> tanb = 6*Sqrt[217]
+mH where paper c=1/tanb gives vanishing: mH = 5/(4*Sqrt[2])
+
+=== C4: Br(h->HH) vs 4700 (g/v)^2 ===
+Br(h->HH)(mH=0.021,tanb=100) = 1.969866284817094*^-7
+4700 (g_C/v)^2                = 1.9561798579272424*^-7
+ratio (exact/approx)          = 1.0069965074194935
+Br(h->HH)(mH=1,tanb=100) = 1.5455693190037434*^-8  (DESIGN: ~1e-8)
+
+=== C5: App.A form factors vs Djouadi (factor 1/2) ===
+A12^paper/A12^Djouadi at tau=0.01,0.1,0.5 : {0.49999999999999994, 0.5, 0.5}
+A1^paper/A1^Djouadi  at tau=0.01,0.1,0.5 : {0.5, 0.5, 0.5}
+A0^paper/A0^Djouadi  at tau=0.01,0.1,0.5 : {0.5, 0.5, 0.5}
+tau->0 limits: A12p=0.6666666666666666 A1p=-3.5 (paper) ; A12D=1.3333333333333333 A1D=-7.
+
+=== C6: SM ground-truth test of the width normalisations ===
+Gamma(gaga) paper formula, xi=1 : 0.0006944675967724461 MeV   (PDG SM 9.28 keV)
+   -> ratio to PDG 9.28 keV      : 0.07483487034185841
+Gamma(gaga) standard formula, xi=1 : 0.0006944675967724461 MeV  -> ratio 0.07483487034185841
+xi_gamma(paper)/xi_gamma(std) = 0.5000000000000001  (should be 1/2)
+ratio of the two Gamma(gaga)   = 1.  (should be 1)
+
+Gamma(gg): code form (32 Pi^3 v^2)        = 0.17476684799985276 MeV
+Gamma(gg): paper form (3/2, 36 Sqrt2 Pi^3)= 0.1744551705675933 MeV
+Gamma(gg): paper form with 2 instead of 3/2 = 0.3101425254534993 MeV
+PDG SM Gamma(h->gg) = 0.3358 MeV ; ratios: code 0.5204492197732363  paper 0.5195210558891998  paper*16/9 0.9235929882474663
+Xi_g values: sum_paper(A12) = 0.6447233456784928 + 0.05360754790897723*I  (3/2 sum) = 0.9670850185177391 + 0.08041132186346585*I  (2 sum) = 1.2894466913569855 + 0.10721509581795446*I  (4/3 limit for tau->0) = 4/3
+
+=== DONE ===

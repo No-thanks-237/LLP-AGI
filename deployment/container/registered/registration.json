@@ -1,0 +1,22 @@
+{
+  "blueprints": [
+    "generate-calchep",
+    "generate-ufo",
+    "madanalysis-process",
+    "madgraph-compile",
+    "madgraph-launch",
+    "micromegas-calc",
+    "micromegas-compile",
+    "validate-feynrules"
+  ],
+  "sha256": {
+    "generate-calchep": "f77a9d05947947b74be62e2fccb8b3dedd962a1c272d849a934ae608b4c2eb9b",
+    "generate-ufo": "4329f9d227f9a09c349848b40a23270f2da6d4326f4f28c5e2f7319bf6c174bd",
+    "madanalysis-process": "406b239005f6fb60c5e2674bb9a20051ee5df8dd4eb5cd07f2fc375b0fc6d597",
+    "madgraph-compile": "bcd398252fe9d0e7118cb8e4753e2f9e633bcd26819eb5aeaf0af0635d936fac",
+    "madgraph-launch": "c752e345bcb59db70ec469a3d9b521755e49f40720fa9c89a88995511442e71d",
+    "micromegas-calc": "9fca26f165d97e70cbd6b42d5aa4c57a3803378fe53206b494042e84616d1e86",
+    "micromegas-compile": "7946aa20ea6f090c472a6fb07c8ccc23e7d82747afec3884f8a9fa1a1d11fe68",
+    "validate-feynrules": "249f714ae3b11640293b73577315bb01ecd82515e420ec2ec1c468ce63c5576c"
+  }
+}

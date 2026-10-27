@@ -1,0 +1,67 @@
+{
+ "tag": "hadronlib",
+ "result": {
+  "success": true,
+  "exit_code": 0,
+  "output": "magnus-secret:21871-learn-gale-digit"
+ },
+ "tarball": {
+  "path": "/workspace/runs/20261025_1325_UTC_2HDM_lightH_lhcb_downstream/work/magnus/jobs/hadronlib_out.tar.gz",
+  "bytes": 10737366,
+  "members": [
+   "hadron_lib_cc.txt.gz",
+   "hadron_lib_gg.txt.gz",
+   "hadron_lib_ss.txt.gz",
+   "hadron_lib_tautau.txt.gz",
+   "job.log",
+   "job_status.json",
+   "summary.jsonl"
+  ]
+ },
+ "outputs": {
+  "hadron_lib_cc.txt.gz": {
+   "sha256": "7974eab72d85b027f35c2950a26aa39eb63fd8561a5f7126b751deebcb50fb88",
+   "bytes": 2796903,
+   "lines": 119866
+  },
+  "hadron_lib_gg.txt.gz": {
+   "sha256": "e4887686a8139c9a5ed361744d8b09e45315408f0ebc1e61ff8e892fce32be01",
+   "bytes": 3553441,
+   "lines": 153494
+  },
+  "hadron_lib_ss.txt.gz": {
+   "sha256": "41b09bed59d44b1aeeea1e93ad658bf180127c3e717975d1481770b0de5e3a19",
+   "bytes": 3056590,
+   "lines": 131020
+  },
+  "hadron_lib_tautau.txt.gz": {
+   "sha256": "14b1279ba30c1384132463760c39eed76ae0e6ff680a94f8d6d9a6154c40a600",
+   "bytes": 1323877,
+   "lines": 55934
+  }
+ },
+ "installed": [
+  "hadron_lib_cc.txt.gz",
+  "hadron_lib_gg.txt.gz",
+  "hadron_lib_ss.txt.gz",
+  "hadron_lib_tautau.txt.gz"
+ ],
+ "summary": [
+  {
+   "channel": "gg",
+   "rows": 153492
+  },
+  {
+   "channel": "ss",
+   "rows": 131018
+  },
+  {
+   "channel": "cc",
+   "rows": 119864
+  },
+  {
+   "channel": "tautau",
+   "rows": 55932
+  }
+ ]
+}

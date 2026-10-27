@@ -1,0 +1,80 @@
+{
+  "bottom_charge": {
+    "0.021": {
+      "old_gamma": 3.745020948851082e-18,
+      "corrected_gamma": 1.750856830455487e-18,
+      "new_over_old": 0.4675158976060266,
+      "old_BR_gamma": 0.001043209788389864,
+      "corrected_total_over_actual": 0.9994445073722208
+    },
+    "0.1": {
+      "old_gamma": 2.3812400301171384e-16,
+      "corrected_gamma": 3.3941346371352246e-18,
+      "new_over_old": 0.014253643455541355,
+      "old_BR_gamma": 0.013706378192381286,
+      "corrected_total_over_actual": 0.9864889876354397
+    },
+    "0.188692": {
+      "old_gamma": 3.166323683821759e-15,
+      "corrected_gamma": 3.9796075901173456e-16,
+      "new_over_old": 0.12568543167115345,
+      "old_BR_gamma": 0.08918585220725307,
+      "corrected_total_over_actual": 0.9220235101263752
+    },
+    "0.21": {
+      "old_gamma": 5.849560741228421e-15,
+      "corrected_gamma": 1.170115048513833e-15,
+      "new_over_old": 0.20003468641101868,
+      "old_BR_gamma": 0.13981576255400197,
+      "corrected_total_over_actual": 0.8881522396638053
+    },
+    "0.3": {
+      "old_gamma": 2.2548196627284492e-14,
+      "corrected_gamma": 1.2328478202450436e-14,
+      "new_over_old": 0.5467611625992447,
+      "old_BR_gamma": 5.996469730166528e-06,
+      "corrected_total_over_actual": 0.999997282167031
+    },
+    "1": {
+      "old_gamma": 8.299179577399058e-14,
+      "corrected_gamma": 4.010422015347643e-13,
+      "new_over_old": 4.832311408550698,
+      "old_BR_gamma": 1.6552756674417735e-07,
+      "corrected_total_over_actual": 1.0000006343531824
+    },
+    "5": {
+      "old_gamma": 1.7075749454460018e-10,
+      "corrected_gamma": 2.1994144376738205e-10,
+      "new_over_old": 1.2880339123852365,
+      "old_BR_gamma": 1.9100427575190457e-05,
+      "corrected_total_over_actual": 1.0000055015708826
+    },
+    "10": {
+      "old_gamma": 1.7040910750898579e-09,
+      "corrected_gamma": 2.8551749585874774e-09,
+      "new_over_old": 1.6754826078981266,
+      "old_BR_gamma": 3.732102375390676e-05,
+      "corrected_total_over_actual": 1.0000252097024547
+    },
+    "62.49": {
+      "old_gamma": 8.959380691545966e-07,
+      "corrected_gamma": 8.489831095785733e-07,
+      "new_over_old": 0.9475912887368099,
+      "old_BR_gamma": 0.00037020417449907275,
+      "corrected_total_over_actual": 0.9999805980763101
+    },
+    "125.25": {
+      "old_gamma": 9.578443665222628e-06,
+      "corrected_gamma": 9.3679786587419e-06,
+      "new_over_old": 0.9780272230190292,
+      "old_BR_gamma": 0.0018690983696677346,
+      "corrected_total_over_actual": 0.9999589307183679
+    }
+  },
+  "lifetime_last_cell": {
+    "alpha": 8.64388262059828e-08,
+    "actual": 1.0275223257283852e-08,
+    "exact": 5.40242548988298e-09,
+    "ratio": 1.901964826081557
+  }
+}

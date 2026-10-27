@@ -1,0 +1,6 @@
+  B_YIELD_CORR = 1.0172
+rot        m=2.20000   lo=1.089e-10 hi=8.166e-06 (39s)
+rot        m=10.58340  lo=1.307e-13 hi=2.013e-09 (65s)
+rot        m=28.52741  lo=2.146e-15 hi=3.957e-11 (108s)
+rot        m=62.49000  lo=1.952e-16 hi=5.078e-12 (178s)
+wrote impact_rot_hi.json

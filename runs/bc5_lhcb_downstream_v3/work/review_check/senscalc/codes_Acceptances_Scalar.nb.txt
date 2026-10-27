@@ -1,0 +1,109 @@
+### FILE: codes/Acceptances/Scalar.nb
+
+----- cell 2 -----
+ScalarSection6cf928d6-1137-4932-971d-999a3f21d318
+
+----- cell 4 -----
+Model descriptionSubsection042a0633-ac12-db4a-864a-f6aec26319d3
+
+----- cell 5 -----
+LLPsel="\<Scalar\>";\[IndentingNewLine]ModelDescription[LLPsel]=Row[{"\<Higgs-like scalar S with the phenomenological Lagrangian L = \!\(\*SubscriptBox[SuperscriptBox[\(\[Theta]m\), \(2\)], \(h\)]\) hS + \!\(\*FractionBox[\(\[Alpha]\), \(2\)]\)\!\(\*SuperscriptBox[\(hS\), \(2\)]\), where \[Theta] is called the mixing angle and h is the Higgs boson. The coupling \[Alpha] is often expressed in terms of the fixed \!\(\*SubscriptBox[\(Br\), \(h \[Rule] SS\)]\). The model with \[Alpha] = 0 is called BC4 within PBC benchmarking, while the model with \!\(\*SubscriptBox[\(Br\), \(h \[Rule] SS\)]\) = 0.01 is called BC5 (1901.09966). See 1904.10447, 2407.13587, and 2503.01760 for details on the phenomenology\>"}];\[IndentingNewLine]filepheno=FileNameJoin[{NotebookDirectory[]//ParentDirectory//ParentDirectory,"\<phenomenology\>","\<ModelDescriptors.mx\>"}];\[IndentingNewLine]rowtoadd={LLPsel,ModelDescription[LLPsel]};\[IndentingNewLine]If[!FileExistsQ[filepheno],\[IndentingNewLine]file={rowtoadd};\[IndentingNewLine],\[IndentingNewLine]file=Import[filepheno,"\<MX\>"];\[IndentingNewLine]file=Join[Select[file,#[[1]]!=LLPsel&],{rowtoadd}];\[IndentingNewLine]]\[IndentingNewLine]Export[filepheno,SortBy[file,#[[1]]&],"\<MX\>"];InputIn[1]:=9b55dbb7-60f6-2942-a2e5-00b745402406
+
+----- cell 7 -----
+Importing lifetimeSubsection8208e0fb-e39d-5b45-900a-ab4e745ee692
+
+----- cell 9 -----
+c\[Tau]ListXX=Import[FileNameJoin[{NotebookDirectory[]//ParentDirectory//ParentDirectory,"\<phenomenology\>",LLPsel,"\<decay widths/ctauS.mx\>"}],"\<MX\>"];\[IndentingNewLine]decayDescriptionsScalar=c\[Tau]ListXX[[All,1]]\[IndentingNewLine]descrDefault=decayDescriptionsScalar[[1]];\[IndentingNewLine]Do[\[IndentingNewLine]Module[{descr=c\[Tau]ListXX[[i]][[1]]},\[IndentingNewLine]If[descr==descrDefault,descr="\<Default\>"];\[IndentingNewLine]c\[Tau]LLP[LLPsel,descr,mLLP_,\[Theta]2_]=1\[Theta]2*10^Interpolation[Log10[c\[Tau]ListXX[[i]][[2]]],InterpolationOrder->1][Log10[mLLP]];\[IndentingNewLine]couplingSymbol[LLPsel]=\[Theta]2;\[IndentingNewLine]]\[IndentingNewLine],{i,1,Length[c\[Tau]ListXX],1}];\[IndentingNewLine]DecayDescriptionExplanation[LLPsel,"\<Default\>"]=DecayDescriptionExplanation[LLPsel,decayDescriptionsScalar[[1]]]="\<Description following 1809.01876\>";\[IndentingNewLine]DecayDescriptionExplanation[LLPsel,decayDescriptionsScalar[[2]]]="\<Description of decays into \[Pi]\[Pi] and KK following 2407.13587 (central value), plus added fake 4\[Pi] decay as in 1809.01876 to match \[Pi]\[Pi]+KK+4\[Pi] with perturbative QCD width\>";\[IndentingNewLine]DecayDescriptionExplanation[LLPsel,decayDescriptionsScalar[[3]]]="\<Description of decays into \[Pi]\[Pi] and KK following 2407.13587 (lower value), plus added fake 4\[Pi] decay as in 1809.01876 to match \[Pi]\[Pi]+KK+4\[Pi] with perturbative QCD width\>";\[IndentingNewLine]DecayDescriptionExplanation[LLPsel,decayDescriptionsScalar[[4]]]="\<Description of decays into \[Pi]\[Pi] and KK following 2407.13587 (upper value), plus added fake 4\[Pi] decay as in 1809.01876 to match \[Pi]\[Pi]+KK+4\[Pi] with perturbative QCD width\>";\[IndentingNewLine]\[Theta]2val=10-12.;\[IndentingNewLine]plotc\[Tau]=LogLogPlot[Evaluate[c\[Tau]LLP[LLPsel,#,mLLP,\[Theta]2val]&/@Join[{"\<Default\>"},Drop[decayDescriptionsScalar,1]]],{mLLP,0.5,4},PlotRange->{{0.5,4},All},ImageSize->Large,Frame->True,FrameStyle->Directive[Thick,Black,22],FrameLabel->{"\<\!\(\*SubscriptBox[\(m\), \(S\)]\) [GeV]\>",Row[{"\<\!\(\*SubscriptBox[\(c\[Tau]\), \(S\)]\) [m]\>"}]},PlotLegends->Placed[Style[Row[{#}],18,Black]&/@Join[{"\<1809.01876\>","\<2407.13587\>"}],{0.75,0.8}],PlotStyle->{{Thick,Blue},{Thick,Darker@Green},{Thick,Darker@Green,Opacity[0.05]},{Thick,Darker@Green,Opacity[0.05]}},Filling->{3->{{4},Directive[Darker@Green,Opacity[0.1]]}},PlotLabel->Style[Row[{"\<\!\(\*SuperscriptBox[\(\[Theta]\), \(2\)]\) = \>",N[\[Theta]2val]}],18,Black]];\[IndentingNewLine]Export[FileNameJoin[{NotebookDirectory[]//ParentDirectory//ParentDirectory,"\<plots\>","\<phenomenology\>","\<ctauS-uncertainty.pdf\>"}],plotc\[Tau]]InputIn[7]:=4541e287-6c5c-2048-b200-9c694210fd4d
+
+----- cell 10 -----
+{\<"1809.01876"\>,\<"2407.13587-Central"\>,\<"2407.13587-Lower"\>,\<"2407.13587-Upper"\>}OutputOut[138]=97b0c235-1b78-2247-ba60-95e365ba2d82
+
+----- cell 11 -----
+\<"C:\\Users\\miksi\\Dropbox\\Science 2\\HNL and scalar phenomenology\\_SensCalc\\plots\\phenomenology\\ctauS-uncertainty.pdf"\>OutputOut[147]=e295cf96-440c-dd4f-b015-4150c2cc094f
+
+----- cell 13 -----
+\<List of decay processes and sets of decay products for them, branching ratios\>Subsection6663d81f-057a-4b8f-b762-3937ad316ab4
+
+----- cell 15 -----
+LLPsel="\<Scalar\>";\[IndentingNewLine]BrRatiosDataTemp[mLLP_,E1_,E3_]=Import[FileNameJoin[{NotebookDirectory[]//ParentDirectory//ParentDirectory,"\<phenomenology\>",LLPsel,"\<decay widths/BrRatioScalar.mx\>"}],"\<MX\>"];\[IndentingNewLine]decayDescriptionsScalar=BrRatiosDataTemp[mLLP,E1,E3][[All,1]]\[IndentingNewLine]DecayDescriptionExplanation[LLPsel,"\<Default\>"]=DecayDescriptionExplanation[LLPsel,decayDescriptionsScalar[[1]]]="\<Description following 1809.01876\>";\[IndentingNewLine]DecayDescriptionExplanation[LLPsel,decayDescriptionsScalar[[2]]]="\<Description of decays into \[Pi]\[Pi] and KK following 2407.13587 (central value), plus added fake 4\[Pi] decay as in 1809.01876 to match \[Pi]\[Pi]+KK+4\[Pi] with perturbative QCD width\>";\[IndentingNewLine]DecayDescriptionExplanation[LLPsel,decayDescriptionsScalar[[3]]]="\<Description of decays into \[Pi]\[Pi] and KK following 2407.13587 (lower value), plus added fake 4\[Pi] decay as in 1809.01876 to match \[Pi]\[Pi]+KK+4\[Pi] with perturbative QCD width\>";\[IndentingNewLine]DecayDescriptionExplanation[LLPsel,decayDescriptionsScalar[[4]]]="\<Description of decays into \[Pi]\[Pi] and KK following 2407.13587 (upper value), plus added fake 4\[Pi] decay as in 1809.01876 to match \[Pi]\[Pi]+KK+4\[Pi] with perturbative QCD width\>";\[IndentingNewLine]Print["\<Default description:\>"]\[IndentingNewLine]descrDefault=BrRatiosDataTemp[mLLP,E1,E3][[1]][[1]]\[IndentingNewLine]Do[\[IndentingNewLine]Module[{descr=BrRatiosDataTemp[mLLP,E1,E3][[i]][[1]]},\[IndentingNewLine]If[descr==descrDefault,descr="\<Default\>"];\[IndentingNewLine]BrRatiosLLPdata[mLLP_,E1_,E3_]=BrRatiosDataTemp[mLLP,E1,E3][[i]][[2]];\[IndentingNewLine](*List of all representative processes*)\[IndentingNewLine]ProcessesList[LLPsel,"\<True\>"]=BrRatiosLLPdata[mLLP,E1,E3][[All,1]];\[IndentingNewLine]Do[\[IndentingNewLine]Module[{proc},\[IndentingNewLine]proc=BrRatiosLLPdata[mLLP,E1,E3][[i]][[1]];\[IndentingNewLine]ListDecayProducts[LLPsel,proc]=BrRatiosLLPdata[mLLP,E1,E3][[i]][[2]];\[IndentingNewLine]JetsPresence[LLPsel,proc]=If[StringContainsQ[proc,"\<Jets\>"],"\<Yes\>","\<No\>"];\[IndentingNewLine]ListBrRatios[LLPsel,mLLP_,proc,descr]=ListBrRatiosTemp[LLPsel,mLLP_,proc,descr]=BrRatiosLLPdata[mLLP,E1,E3][[i]][[3]];\[IndentingNewLine]If[Length[Select[ListDecayProducts[LLPsel,proc],#!="\<Null\>"&]]==3,\[IndentingNewLine]Msquared3BodyLLP[LLPsel,proc,E1_,E3_,mLLP_,descr]=BrRatiosLLPdata[mLLP,E1,E3][[i]][[4]];\[IndentingNewLine]];\[IndentingNewLine]]\[IndentingNewLine],{i,1,Length[BrRatiosLLPdata[mLLP,E1,E3]],1}];\[IndentingNewLine](*Artificially setting the br ratios into jets to zero in the mass range where they are anyway negligible*)\[IndentingNewLine]ListBrRatios[LLPsel,mLLP_,"\<Jets-GG\>",descr]=If[mLLP<=20.,Evaluate[ListBrRatios[LLPsel,mLLP,"\<Jets-GG\>",descr]],0.];\[IndentingNewLine]ListBrRatios[LLPsel,mLLP_,"\<Jets-ss\>",descr]=If[mLLP<=3.8,Evaluate[ListBrRatios[LLPsel,mLLP,"\<Jets-ss\>",descr]],0.];\[IndentingNewLine]ListBrRatios[LLPsel,mLLP_,"\<Jets-cc\>",descr]=If[mLLP<=20.,Evaluate[ListBrRatios[LLPsel,mLLP,"\<Jets-cc\>",descr]],0.];\[IndentingNewLine](*Redefinition to ensure exact unit br ratio. In principle, it is not necessary*)\[IndentingNewLine]sum[mLLP_]=Sum[ListBrRatios[LLPsel,mLLP,pr,descr],{pr,ProcessesList[LLPsel,"\<True\>"]}];\[IndentingNewLine]Do[\[IndentingNewLine]ListBrRatios[LLPsel,mLLP_,proc,descr]=ListBrRatios[LLPsel,mLLP,proc,descr]sum[mLLP],\[IndentingNewLine]{proc,ProcessesList[LLPsel,"\<True\>"]}];\[IndentingNewLine]]\[IndentingNewLine],{i,1,Length[BrRatiosDataTemp[mLLP,E1,E3]],1}]\[IndentingNewLine]Print["\<All processes with at least two charged particles:\>"];\[IndentingNewLine]ProcessesList[LLPsel,"\<False\>"]=procListnoecal[LLPsel]\[IndentingNewLine]Print["\<Processes with jets:\>"];\[IndentingNewLine]Select[ProcessesList[LLPsel,"\<True\>"],JetsPresence[LLPsel,#]=="\<Yes\>"&]\[IndentingNewLine]listDecayDescriptions[LLPsel]=Select[Transpose[Keys[DownValues@ListBrRatios][[All,1,#]]&/@{1,-1}],#[[1]]==LLPsel&][[All,2]]//DeleteDuplicatesInputIn[18]:=3dad9647-790e-0f45-a27c-c70f0dc920a3
+
+----- cell 16 -----
+{\<"1809.01876"\>,\<"2407.13587-Central"\>,\<"2407.13587-Lower"\>,\<"2407.13587-Upper"\>}OutputOut[150]=b841e120-0073-134e-8e6f-7ab500b2721c
+
+----- cell 17 -----
+\<"Default description:"\>PrintDuring evaluation of In[148]:=0f97a92f-f300-3842-870d-63d2ca7573bd
+
+----- cell 18 -----
+\<"1809.01876"\>OutputOut[156]=1b970d7e-5c28-c146-b057-33a87038d994
+
+----- cell 19 -----
+\<"All processes with at least two charged particles:"\>PrintDuring evaluation of In[148]:=e4084691-2729-2e44-94d7-88e6a97ae940
+
+----- cell 20 -----
+procListnoecal[\<"Scalar"\>]OutputOut[159]=97c85ff7-2292-1f47-840f-6f1b2918d057
+
+----- cell 21 -----
+\<"Processes with jets:"\>PrintDuring evaluation of In[148]:=7460a178-b54a-ee4a-ae3a-6fbd785fc3b0
+
+----- cell 22 -----
+{\<"Jets-cc"\>,\<"Jets-GG"\>,\<"Jets-bb"\>,\<"Jets-ss"\>}OutputOut[161]=b6867b52-9061-4540-94cd-7807c01b3633
+
+----- cell 24 -----
+PlotSubsectionb299cbdb-98fa-db49-82ed-f1ab10a3cc09
+
+----- cell 25 -----
+(*LogLogPlot[Evaluate[ListBrRatios[LLPsel,mLLP,#,"\<2407.13587-Central\>"]&/@ProcessesList[LLPsel,"\<True\>"]],{mLLP,0.05,50},Frame->True,ImageSize->Large,PlotLegends\[Rule]Placed[LineLegend[Style[#,14]&/@(ProcessesList[LLPsel,"\<True\>"]),LegendLayout->{"\<Column\>",1}],{0.15,0.5}], FrameStyle\[Rule]Directive[Black, 22,Thick],PlotRange\[Rule]{{0.1,10},{10-2,2}},PlotStyle\[Rule]{{Thick,Blue},{Thick,Red},{Thick,Black,Dashing[0.02]},{Thick,Cyan},{Thick,Magenta},{Thick,Lighter@Brown},{Thick,Lighter@Lighter@Blue,Dashing[0.02]},{Thick,Red,Dashing[0.02]},{Thick,Darker@Darker@Green},{Thick,Darker@Cyan,Dashing[0.02]},{Thick,Magenta,Dashing[0.015]},{Thick,Lighter@Brown,Dashing[0.02]},{Thick,Lighter@Blue,Dashing[0.02]}},AspectRatio\[Rule]0.66,ImageSize\[Rule]Large,FrameLabel\[Rule]{"\<\!\(\*SubscriptBox[\(m\), \(S\)]\) [GeV]\>","\<\!\(\*SubscriptBox[\(Br\), \(S \[Rule] Y\)]\)\>"}(*,PlotLabel\[Rule]Style[Row[{"\<Decay branching ratios of dark photons\>"}],18,Black]*),PlotPoints->100,Epilog->{{Thick,Lighter@Gray,Dashed,Line[{{Log[2],Log[10^-3]},{Log[2],Log[2]}}]}}]*)InputIn[34]:=92c444f8-a650-7645-b5fb-847c7b2e43f814.2 for Microsoft Windows (64-bit) (December 26, 2024)Default.nb6e099fec-1ed8-f447-bb3f-c2d612c82679
+
+----- cell 27 -----
+Section6cf928d6-1137-4932-971d-999a3f21d318
+
+----- cell 29 -----
+Subsection042a0633-ac12-db4a-864a-f6aec26319d3
+
+----- cell 30 -----
+Input9b55dbb7-60f6-2942-a2e5-00b745402406
+
+----- cell 32 -----
+Subsection8208e0fb-e39d-5b45-900a-ab4e745ee692
+
+----- cell 34 -----
+Input4541e287-6c5c-2048-b200-9c694210fd4d
+
+----- cell 35 -----
+Output97b0c235-1b78-2247-ba60-95e365ba2d82
+
+----- cell 36 -----
+Outpute295cf96-440c-dd4f-b015-4150c2cc094f
+
+----- cell 38 -----
+Subsection6663d81f-057a-4b8f-b762-3937ad316ab4
+
+----- cell 40 -----
+Input3dad9647-790e-0f45-a27c-c70f0dc920a3
+
+----- cell 41 -----
+Outputb841e120-0073-134e-8e6f-7ab500b2721c
+
+----- cell 42 -----
+Print0f97a92f-f300-3842-870d-63d2ca7573bd
+
+----- cell 43 -----
+Output1b970d7e-5c28-c146-b057-33a87038d994
+
+----- cell 44 -----
+Printe4084691-2729-2e44-94d7-88e6a97ae940
+
+----- cell 45 -----
+Output97c85ff7-2292-1f47-840f-6f1b2918d057
+
+----- cell 46 -----
+Print7460a178-b54a-ee4a-ae3a-6fbd785fc3b0
+
+----- cell 47 -----
+Outputb6867b52-9061-4540-94cd-7807c01b3633
+
+----- cell 49 -----
+Subsectionb299cbdb-98fa-db49-82ed-f1ab10a3cc09
+
+----- cell 50 -----
+Input92c444f8-a650-7645-b5fb-847c7b2e43f8

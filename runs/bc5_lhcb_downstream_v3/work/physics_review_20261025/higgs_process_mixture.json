@@ -1,0 +1,173 @@
+{
+  "method": "current Higgs sample, common tabulated conditional response; linear long-lifetime coefficient",
+  "normalization_note": "relative group frequencies estimated among retained status-62 Higgs; residual process-dependent generation/filter losses not separately measured",
+  "bb_note": "901 is fermion annihilation, mainly bbar; its shape is not the requested 4FS bbH shape",
+  "missing_target_processes": {
+    "tHj": 0.074,
+    "tHW": 0.0152,
+    "tHb": 0.0046
+  },
+  "groups": {
+    "ggF": {
+      "codes": [
+        902
+      ],
+      "count": 158003,
+      "sample_fraction": 0.7980795943004056,
+      "target_fraction": 0.8760619410777113,
+      "weight": 1.097712493007248,
+      "mean_E": 395.35884995879826,
+      "mean_pT": 54.08961025788521
+    },
+    "VBF": {
+      "codes": [
+        906,
+        907
+      ],
+      "count": 21950,
+      "sample_fraction": 0.11087034483455316,
+      "target_fraction": 0.06820226968208942,
+      "weight": 0.6151534008833887,
+      "mean_E": 395.09344357266514,
+      "mean_pT": 93.17342493747736
+    },
+    "WH": {
+      "codes": [
+        905
+      ],
+      "count": 6735,
+      "sample_fraction": 0.03401875956540845,
+      "target_fraction": 0.0246877068204073,
+      "weight": 0.7257086130062981,
+      "mean_E": 493.51808749962885,
+      "mean_pT": 88.2124013785374
+    },
+    "ZH": {
+      "codes": [
+        904
+      ],
+      "count": 3725,
+      "sample_fraction": 0.018815126856888863,
+      "target_fraction": 0.015923480732227647,
+      "weight": 0.8463126958082409,
+      "mean_E": 466.308574504698,
+      "mean_pT": 88.4412549144449
+    },
+    "bb_proxy": {
+      "codes": [
+        901
+      ],
+      "count": 5419,
+      "sample_fraction": 0.027371589916102213,
+      "target_fraction": 0.004299159463831337,
+      "weight": 0.15706648671154536,
+      "mean_E": 348.12682518176786,
+      "mean_pT": 27.798543127292685
+    },
+    "ttH": {
+      "codes": [
+        908,
+        909
+      ],
+      "count": 2139,
+      "sample_fraction": 0.010804176200506114,
+      "target_fraction": 0.00913391052194032,
+      "weight": 0.8454055498939796,
+      "mean_E": 349.10871908835907,
+      "mean_pT": 124.82480911434075
+    },
+    "gamma_gamma": {
+      "codes": [
+        903
+      ],
+      "count": 8,
+      "sample_fraction": 4.040832613560024e-05,
+      "target_fraction": 0.0,
+      "weight": 0.0,
+      "mean_E": 563.795885,
+      "mean_pT": 81.5582478660787
+    }
+  },
+  "masses": {
+    "5.082255": {
+      "weighted_over_current_signal": 1.002021796971902,
+      "paired_MC_standard_error": 0.001216555270986713,
+      "long_edge_weighted_over_current": 0.9979822824433441,
+      "per_scalar_K_current": 0.0028690512592009997,
+      "per_scalar_K_weighted": 0.002874851898349084,
+      "current_signal_fractions": {
+        "ggF": 0.8090490159471527,
+        "VBF": 0.09856609340508653,
+        "WH": 0.03551845845831159,
+        "ZH": 0.019004483411929986,
+        "bb_proxy": 0.02979820058777416,
+        "ttH": 0.007978693365645889,
+        "gamma_gamma": 8.505482409895705e-05
+      }
+    },
+    "13.023095": {
+      "weighted_over_current_signal": 1.0024496755393266,
+      "paired_MC_standard_error": 0.0011804304737782427,
+      "long_edge_weighted_over_current": 0.9975563107065613,
+      "per_scalar_K_current": 0.007554319111143757,
+      "per_scalar_K_weighted": 0.007572824741886593,
+      "current_signal_fractions": {
+        "ggF": 0.8099287552288045,
+        "VBF": 0.09778973528305863,
+        "WH": 0.036000682974209504,
+        "ZH": 0.01897206743373005,
+        "bb_proxy": 0.02972219205382863,
+        "ttH": 0.007540057812665848,
+        "gamma_gamma": 4.6509213702976584e-05
+      }
+    },
+    "33.371213": {
+      "weighted_over_current_signal": 1.0032607343326712,
+      "paired_MC_standard_error": 0.001087431189819348,
+      "long_edge_weighted_over_current": 0.9967498634990035,
+      "per_scalar_K_current": 0.024088114926299132,
+      "per_scalar_K_weighted": 0.02416665986964864,
+      "current_signal_fractions": {
+        "ggF": 0.8105051217975939,
+        "VBF": 0.09746065706970145,
+        "WH": 0.03670693660277243,
+        "ZH": 0.019919009966071894,
+        "bb_proxy": 0.028764566890175553,
+        "ttH": 0.006614199901918283,
+        "gamma_gamma": 2.9507771766211326e-05
+      }
+    },
+    "53.419632": {
+      "weighted_over_current_signal": 1.0072693409463946,
+      "paired_MC_standard_error": 0.001005281576292259,
+      "long_edge_weighted_over_current": 0.9927831210075702,
+      "per_scalar_K_current": 0.05581941047394708,
+      "per_scalar_K_weighted": 0.05622518080010896,
+      "current_signal_fractions": {
+        "ggF": 0.8232535554881445,
+        "VBF": 0.08824220646011441,
+        "WH": 0.033460674157332816,
+        "ZH": 0.018156819926684123,
+        "bb_proxy": 0.03125735773361934,
+        "ttH": 0.005598028962652031,
+        "gamma_gamma": 3.1357271452852206e-05
+      }
+    },
+    "62.49": {
+      "weighted_over_current_signal": 1.0126718184852141,
+      "paired_MC_standard_error": 0.0009880962474136722,
+      "long_edge_weighted_over_current": 0.9874867471831407,
+      "per_scalar_K_current": 0.08410020867530534,
+      "per_scalar_K_weighted": 0.08516591125420744,
+      "current_signal_fractions": {
+        "ggF": 0.8392689204759254,
+        "VBF": 0.07809214257381944,
+        "WH": 0.028506593056447777,
+        "ZH": 0.015814547623515775,
+        "bb_proxy": 0.03354142829643495,
+        "ttH": 0.004752069060168122,
+        "gamma_gamma": 2.4298913688387797e-05
+      }
+    }
+  }
+}

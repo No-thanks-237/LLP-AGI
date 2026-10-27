@@ -1,0 +1,14 @@
+PASS test_K_pi
+PASS test_b_channels
+PASS test_br_B_exclusive_variant
+PASS test_br_B_nominal
+PASS test_ckm
+PASS test_couplings
+PASS test_g_functions_vs_wolfram
+PASS test_grid_sanity
+PASS test_higgs_sector
+PASS test_lambda_HH
+PASS test_semileptonic
+PASS test_xi_limits
+
+12/12 tests passed

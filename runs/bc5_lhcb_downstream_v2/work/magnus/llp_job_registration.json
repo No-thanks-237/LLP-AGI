@@ -1,0 +1,49 @@
+{
+  "blueprint_id": "llp-job",
+  "title": "LLP generic job (pinned collider image)",
+  "description": "Run a shell bundle in the pinned collider image; returns an output tarball file secret.",
+  "source_file": "runs/20261016_144605_UTC_bc5_lhcb_downstream/work/magnus/llp_job_blueprint.py",
+  "sha256": "ca4d8ebd85bf396bcb98fabf49895f0c61b42583f108beebeaadd3d7ca2e086f",
+  "parameters": [
+    {
+      "key": "bundle",
+      "label": "Bundle",
+      "type": "file_secret",
+      "default": null,
+      "description": "tar.gz containing script.sh and any input files for the job",
+      "scope": null,
+      "allow_empty": false,
+      "is_optional": false,
+      "is_list": false,
+      "is_item_optional": false,
+      "min": null,
+      "max": null,
+      "placeholder": null,
+      "multi_line": false,
+      "min_lines": null,
+      "color": null,
+      "border_color": null,
+      "options": null
+    },
+    {
+      "key": "job_name",
+      "label": "Job Name",
+      "type": "text",
+      "default": null,
+      "description": "short label; also the output tarball name",
+      "scope": null,
+      "allow_empty": true,
+      "is_optional": false,
+      "is_list": false,
+      "is_item_optional": false,
+      "min": null,
+      "max": null,
+      "placeholder": "bc5-pythia-minbias",
+      "multi_line": false,
+      "min_lines": null,
+      "color": null,
+      "border_color": null,
+      "options": null
+    }
+  ]
+}

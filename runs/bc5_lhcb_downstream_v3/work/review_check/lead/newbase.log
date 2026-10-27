@@ -1,0 +1,29 @@
+  B_YIELD_CORR = 1.0172
+base       m=0.50000   lo=4.166e-10 hi=1.213e-04 (12s)
+base       m=1.00000   lo=4.120e-11 hi=2.494e-06 (19s)
+base       m=1.50000   lo=1.050e-10 hi=6.252e-06 (27s)
+base       m=2.00000   lo=1.195e-10 hi=7.599e-06 (36s)
+WARNING hadron library: gg node 2.320108 used for m_S = 2.200000 (-5.2%), four-momenta dilated; regenerate the library on the scan grid
+WARNING hadron library: ss node 2.320108 used for m_S = 2.200000 (-5.2%), four-momenta dilated; regenerate the library on the scan grid
+base       m=2.20000   lo=1.012e-10 hi=4.619e-06 (43s)
+WARNING hadron library: gg node 3.174882 used for m_S = 3.000000 (-5.5%), four-momenta dilated; regenerate the library on the scan grid
+WARNING hadron library: ss node 3.174882 used for m_S = 3.000000 (-5.5%), four-momenta dilated; regenerate the library on the scan grid
+base       m=3.00000   lo=5.757e-11 hi=1.682e-06 (49s)
+base       m=4.34457   lo=4.170e-12 hi=6.674e-08 (54s)
+base       m=5.08225   lo=1.417e-12 hi=1.945e-08 (59s)
+WARNING hadron library: cc node 6.954656 used for m_S = 7.500000 (+7.8%), four-momenta dilated; regenerate the library on the scan grid
+WARNING hadron library: gg node 6.954656 used for m_S = 7.500000 (+7.8%), four-momenta dilated; regenerate the library on the scan grid
+WARNING hadron library: tautau node 6.954656 used for m_S = 7.500000 (+7.8%), four-momenta dilated; regenerate the library on the scan grid
+WARNING hadron library: ss node 6.954656 used for m_S = 7.500000 (+7.8%), four-momenta dilated; regenerate the library on the scan grid
+base       m=7.50000   lo=3.201e-13 hi=5.337e-09 (64s)
+WARNING hadron library: cc node 11.132804 used for m_S = 10.583400 (-4.9%), four-momenta dilated; regenerate the library on the scan grid
+WARNING hadron library: tautau node 11.132804 used for m_S = 10.583400 (-4.9%), four-momenta dilated; regenerate the library on the scan grid
+WARNING hadron library: gg node 11.132804 used for m_S = 10.583400 (-4.9%), four-momenta dilated; regenerate the library on the scan grid
+WARNING hadron library: ss node 11.132804 used for m_S = 10.583400 (-4.9%), four-momenta dilated; regenerate the library on the scan grid
+WARNING hadron library: bb node 11.132804 used for m_S = 10.583400 (-4.9%), four-momenta dilated; regenerate the library on the scan grid
+base       m=10.58340  lo=1.379e-13 hi=2.106e-09 (69s)
+base       m=15.23435  lo=1.416e-14 hi=2.732e-10 (77s)
+base       m=28.52741  lo=1.919e-15 hi=4.600e-11 (89s)
+base       m=45.66582  lo=6.011e-16 hi=1.313e-11 (102s)
+base       m=62.49000  lo=2.184e-16 hi=4.925e-12 (117s)
+wrote impact_newbase.json

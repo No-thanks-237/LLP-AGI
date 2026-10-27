@@ -1,0 +1,22 @@
+-- 1. kernel suite
+PASS: kernel suite: 32/33 checks pass (a2 = documented spec conflict)
+-- 2. transport fast path
+PASS: transport fast path equals the public API  [fast=1.0 expect=1.0 status=(Accepted,Accepted)]
+-- 3. lifetime integral
+PASS: p_window vs analytic A=1 (z0 before window)  [got 0.126036634964555 expect 0.126036634964555]
+PASS: p_window vs analytic A=1 (z0 inside window)  [got 0.0768836536133642 expect 0.0768836536133642]
+PASS: p_window is zero for a birth point after the window  [got np.float64(0.0)]
+PASS: p_window exact for a short lifetime (alpha*h >> 1)  [got 7.12457640674e-218 expect 7.12457640674e-218]
+PASS: p_window piecewise-linear A vs numerical quadrature  [worst rel diff 3.68e-09]
+-- 4. decay kinematics identity with bc5_lib
+PASS: decay kinematics identical to bc5_lib (analytic fallback, mH=1.00)
+PASS: decay kinematics identical to bc5_lib (analytic fallback, mH=3.50)
+PASS: decay kinematics identical to bc5_lib (with library, mH=3.5567)
+-- 5. event OR algebra
+PASS: event OR algebra vs brute force  [mine {10: 0.22, 20: 0.449725} brute {10: np.float64(0.22), 20: np.float64(0.449725)}]
+PASS: eps normalisation (0.4 once, n_tot/n_smp, 1/N_gen)  [got 0.133945 expect 0.133945]
+PASS: events with equal parent indices are not merged  [got {10: 0.22, 20: 0.449725}]
+-- 6. table invariants
+PASS: table invariants: sorted scalars/histories/events, unique sorted samp_events  [scal_hist=[0, 1, 2, 2] hist_event=[3, 5, 5] parents=[1, 0, 0] samp=[3, 5]]
+
+SUMMARY: 14/14 checks passed

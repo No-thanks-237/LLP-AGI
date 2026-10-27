@@ -1,0 +1,33 @@
+#!/usr/local/bin/python
+"""Local deployment adapter: cap Magnus job containers, leave upstream intact."""
+import os
+import sys
+import json
+import pathlib
+import subprocess
+args = sys.argv[1:]
+if args and args[0] == 'run':
+    if '--name' not in args:
+        raise SystemExit('Managed docker run requires an explicit Magnus container name')
+    name = args[args.index('--name') + 1]
+    if not name.startswith('magnus-'):
+        raise SystemExit('Service Docker adapter only permits Magnus job containers')
+    forbidden = ('--memory', '--memory-swap', '--cpus', '--privileged', '--pid')
+    if any(a.split('=')[0] in forbidden for a in args):
+        raise SystemExit('Job cannot override deployment resource caps')
+    args[1:1] = ['--memory=8g', '--memory-swap=8g', '--cpus=4', '--pids-limit=1024']
+    result=subprocess.run(['/usr/local/bin/docker',*args],capture_output=True,text=True)
+    if result.returncode==0:
+        try:
+            info=json.loads(subprocess.check_output(['/usr/local/bin/docker','inspect',name]))[0]
+            directory=pathlib.Path('/var/lib/docker/volumes/llp-agi-magnus-20261016/_data/runtime/resource-audit')
+            directory.mkdir(exist_ok=True)
+            fields=['Memory','MemorySwap','NanoCpus','PidsLimit']
+            (directory/(name+'.json')).write_text(json.dumps({k:info['HostConfig'][k] for k in fields},indent=2))
+        except Exception as error:
+            # A diagnostic failure must not turn an already-started job into Failed.
+            sys.stderr.write('Resource audit unavailable for '+name+': '+type(error).__name__+'\n')
+    sys.stdout.write(result.stdout)
+    sys.stderr.write(result.stderr)
+    raise SystemExit(result.returncode)
+os.execv('/usr/local/bin/docker', ['docker', *args])

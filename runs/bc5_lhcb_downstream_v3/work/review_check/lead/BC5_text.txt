@@ -1,0 +1,20 @@
+=== page 1 ===
+Excluded
+Downstream25 fb-1
+Downstream300 fb-1
+FASER
+FASER2
+LHCbKμμ,Run3
+LHCbKμμ,300 fb-1
+0.5
+1
+5
+10
+50
+10-16
+10-13
+10-10
+10-7
+mS [GeV]
+θ2
+Dark scalars (BC5)

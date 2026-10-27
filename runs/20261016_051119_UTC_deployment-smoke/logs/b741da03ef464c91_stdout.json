@@ -1,0 +1,5 @@
+{
+  "logs": "==============================================\n  Wolfram Engine - License Required\n==============================================\n\n  Get a free license: https://wolfram.com/developer-license\n\n  Then run with:\n    docker run -it --env-file .env -v mma-license:/root/.WolframEngine/Licensing mma-het\n\nTraceback (most recent call last):\n  File \"<stdin>\", line 9, in <module>\nAssertionError: (255, '', '\\nYour Wolfram Engine installation is not activated or is experiencing a license-related problem.\\n\\nPlease run wolframscript with the -activate option, and then try\\n your original wolframscript command again.\\n\\n')\n",
+  "page": 0,
+  "total_pages": 1
+}

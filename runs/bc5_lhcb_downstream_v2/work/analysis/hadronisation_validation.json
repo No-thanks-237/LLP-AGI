@@ -1,0 +1,203 @@
+{
+  "source": "Pythia 8.316 forceHadronLevel on an isolated colour-singlet S decay",
+  "library": "work/magnus/hadron_lib/hadron_lib_<channel>.txt.gz",
+  "comparison": {
+    "gg": {
+      "1.0": {
+        "pythia_ncharged": 2.1293333333333333,
+        "pythia_sumE": 1.1301633439198044
+      },
+      "2.0": {
+        "pythia_ncharged": 2.6226666666666665,
+        "pythia_sumE": 1.6230468434986667
+      },
+      "5.0": {
+        "pythia_ncharged": 5.568,
+        "pythia_sumE": 3.435276683481467
+      },
+      "10.0": {
+        "pythia_ncharged": 8.089333333333334,
+        "pythia_sumE": 5.789622816900005
+      },
+      "30.0": {
+        "pythia_ncharged": 13.934666666666667,
+        "pythia_sumE": 17.568141305232462
+      },
+      "60.0": {
+        "pythia_ncharged": 17.745333333333335,
+        "pythia_sumE": 38.72173378460566
+      }
+    },
+    "ss": {
+      "1.0": {
+        "pythia_ncharged": 2.336,
+        "pythia_sumE": 1.2051948508066692
+      },
+      "2.0": {
+        "pythia_ncharged": 2.688,
+        "pythia_sumE": 1.707831365509534
+      },
+      "5.0": {
+        "pythia_ncharged": 4.601333333333334,
+        "pythia_sumE": 3.597633579663332
+      },
+      "10.0": {
+        "pythia_ncharged": 5.873333333333333,
+        "pythia_sumE": 6.121644408190873
+      },
+      "30.0": {
+        "pythia_ncharged": 8.494666666666667,
+        "pythia_sumE": 18.614095974402534
+      },
+      "60.0": {
+        "pythia_ncharged": 10.409333333333333,
+        "pythia_sumE": 40.10757903716232
+      }
+    },
+    "cc": {
+      "1.0": {
+        "pythia_ncharged": 0.0,
+        "pythia_sumE": 0.0
+      },
+      "2.0": {
+        "pythia_ncharged": 0.7946666666666666,
+        "pythia_sumE": 0.4278787506938699
+      },
+      "5.0": {
+        "pythia_ncharged": 5.897333333333333,
+        "pythia_sumE": 3.3572560068447412
+      },
+      "10.0": {
+        "pythia_ncharged": 7.222666666666667,
+        "pythia_sumE": 5.790522718640931
+      },
+      "30.0": {
+        "pythia_ncharged": 10.150666666666666,
+        "pythia_sumE": 17.60125591019736
+      },
+      "60.0": {
+        "pythia_ncharged": 12.101333333333333,
+        "pythia_sumE": 38.353319377506516
+      }
+    },
+    "bb": {
+      "1.0": {
+        "pythia_ncharged": 0.0,
+        "pythia_sumE": 0.0
+      },
+      "2.0": {
+        "pythia_ncharged": 0.7946666666666666,
+        "pythia_sumE": 0.4278787506938699
+      },
+      "5.0": {
+        "pythia_ncharged": 1.958,
+        "pythia_sumE": 1.9496805347486645
+      },
+      "10.0": {
+        "pythia_ncharged": 10.862666666666666,
+        "pythia_sumE": 6.64054732588501
+      },
+      "30.0": {
+        "pythia_ncharged": 12.618666666666666,
+        "pythia_sumE": 17.241143842281925
+      },
+      "60.0": {
+        "pythia_ncharged": 14.822666666666667,
+        "pythia_sumE": 37.21502026472245
+      }
+    },
+    "tau": {
+      "1.0": {
+        "pythia_ncharged": 0.0,
+        "pythia_sumE": 0.0
+      },
+      "2.0": {
+        "pythia_ncharged": 0.0,
+        "pythia_sumE": 0.0
+      },
+      "5.0": {
+        "pythia_ncharged": 2.6853333333333333,
+        "pythia_sumE": 2.22049133217113
+      },
+      "10.0": {
+        "pythia_ncharged": 2.66,
+        "pythia_sumE": 3.806313691730929
+      },
+      "30.0": {
+        "pythia_ncharged": 2.644,
+        "pythia_sumE": 11.095735134360403
+      },
+      "60.0": {
+        "pythia_ncharged": 2.6653333333333333,
+        "pythia_sumE": 25.043333278842674
+      }
+    }
+  },
+  "energy_conservation": {
+    "gg": {
+      "n": 1200,
+      "median_charged_energy_fraction": 0.7037653007,
+      "note": "fraction of m_S carried by stable charged particles; sum over ALL final particles was verified to equal m_S in the generator"
+    },
+    "ss": {
+      "n": 1200,
+      "median_charged_energy_fraction": 0.7736538254,
+      "note": "fraction of m_S carried by stable charged particles; sum over ALL final particles was verified to equal m_S in the generator"
+    },
+    "cc": {
+      "n": 900,
+      "median_charged_energy_fraction": 0.6576601253000001,
+      "note": "fraction of m_S carried by stable charged particles; sum over ALL final particles was verified to equal m_S in the generator"
+    },
+    "bb": {
+      "n": 862,
+      "median_charged_energy_fraction": 0.58575981535,
+      "note": "fraction of m_S carried by stable charged particles; sum over ALL final particles was verified to equal m_S in the generator"
+    }
+  },
+  "library_loaded": true,
+  "analytic_fallback": {
+    "gg": {
+      "2.0": {
+        "ncharged": 1.1666666666666667,
+        "sumE": 0.6006791474329897
+      },
+      "10.0": {
+        "ncharged": 3.69,
+        "sumE": 5.750434905676021
+      },
+      "30.0": {
+        "ncharged": 7.6273333333333335,
+        "sumE": 25.385826174511248
+      }
+    },
+    "bb": {
+      "2.0": {
+        "ncharged": 0.7946666666666666,
+        "sumE": 0.4278787506938699
+      },
+      "10.0": {
+        "ncharged": 3.0766666666666667,
+        "sumE": 5.038615710143414
+      },
+      "30.0": {
+        "ncharged": 6.342,
+        "sumE": 22.66275485520742
+      }
+    },
+    "tau": {
+      "2.0": {
+        "ncharged": 0.0,
+        "sumE": 0.0
+      },
+      "10.0": {
+        "ncharged": 2.8026666666666666,
+        "sumE": 4.909755110002677
+      },
+      "30.0": {
+        "ncharged": 2.8026666666666666,
+        "sumE": 14.72396458307293
+      }
+    }
+  }
+}

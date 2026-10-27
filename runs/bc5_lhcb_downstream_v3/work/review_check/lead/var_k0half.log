@@ -1,0 +1,8 @@
+  B_YIELD_CORR = 1.0172
+k0half     m=0.10000   lo=1.455e-06 hi=None (33s)
+k0half     m=0.20000   lo=6.499e-07 hi=None (49s)
+k0half     m=0.30000   lo=1.485e-09 hi=None (60s)
+k0half     m=0.50000   lo=4.984e-10 hi=9.190e-05 (65s)
+k0half     m=1.00000   lo=4.533e-11 hi=2.026e-06 (70s)
+k0half     m=2.00000   lo=1.224e-10 hi=5.892e-06 (77s)
+wrote impact_k0half.json

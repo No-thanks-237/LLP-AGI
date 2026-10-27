@@ -1,0 +1,16 @@
+  B_YIELD_CORR = 1.0172
+gamma      m=0.50000   lo=5.156e-10 hi=1.333e-04 (17s)
+gamma      m=1.00000   lo=4.488e-11 hi=2.269e-06 (25s)
+gamma      m=1.50000   lo=1.168e-10 hi=8.121e-06 (33s)
+gamma      m=2.00000   lo=1.335e-10 hi=7.434e-06 (41s)
+gamma      m=2.20000   lo=1.295e-10 hi=4.730e-06 (48s)
+gamma      m=3.00000   lo=5.859e-11 hi=1.705e-06 (53s)
+gamma      m=4.34457   lo=3.704e-12 hi=6.464e-08 (59s)
+gamma      m=5.08225   lo=1.433e-12 hi=2.334e-08 (65s)
+gamma      m=7.50000   lo=3.751e-13 hi=5.424e-09 (70s)
+gamma      m=10.58340  lo=1.624e-13 hi=2.282e-09 (75s)
+gamma      m=15.23435  lo=1.672e-14 hi=2.609e-10 (83s)
+gamma      m=28.52741  lo=1.938e-15 hi=4.282e-11 (93s)
+gamma      m=45.66582  lo=5.150e-16 hi=1.297e-11 (102s)
+gamma      m=62.49000  lo=1.332e-16 hi=4.480e-12 (112s)
+wrote impact_gamma.json

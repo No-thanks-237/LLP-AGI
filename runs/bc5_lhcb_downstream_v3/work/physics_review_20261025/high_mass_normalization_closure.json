@@ -1,0 +1,53 @@
+{
+  "5.082255": {
+    "stored_scan_C": 0.0029986976557626224,
+    "coefficient_native_spectrum_reference_acceptance": 0.0028475747678856278,
+    "coefficient_native_spectrum_linear_epsilon": 0.002850833012929298,
+    "coefficient_reference_spectrum_and_acceptance_linear_spectrum": 0.0034302090875365852,
+    "coefficient_reference_spectrum_and_acceptance_log_spectrum": 0.0033910243140178207,
+    "fresh_native_C": 0.002964147400947619,
+    "fresh_over_stored": 0.9884782466319645,
+    "paper_edge_signal_using_reference_tables_linear_spectrum": 3.3502957101964075,
+    "paper_edge_signal_using_reference_tables_log_spectrum": 3.3120238220185314
+  },
+  "13.023095": {
+    "stored_scan_C": 0.00822870054789762,
+    "coefficient_native_spectrum_reference_acceptance": 0.007522997327537679,
+    "coefficient_native_spectrum_linear_epsilon": 0.007535630981528232,
+    "coefficient_reference_spectrum_and_acceptance_linear_spectrum": 0.009224027389606839,
+    "coefficient_reference_spectrum_and_acceptance_log_spectrum": 0.009128696318317635,
+    "fresh_native_C": 0.00762270563949971,
+    "fresh_over_stored": 0.9263559410297488,
+    "paper_edge_signal_using_reference_tables_linear_spectrum": 3.729205589860085,
+    "paper_edge_signal_using_reference_tables_log_spectrum": 3.6906639475900698
+  },
+  "33.371213": {
+    "stored_scan_C": 0.025199031665291725,
+    "coefficient_native_spectrum_reference_acceptance": 0.02396118340608967,
+    "coefficient_native_spectrum_linear_epsilon": 0.024006388473611286,
+    "coefficient_reference_spectrum_and_acceptance_linear_spectrum": 0.030060273799779977,
+    "coefficient_reference_spectrum_and_acceptance_log_spectrum": 0.02975198892673811,
+    "fresh_native_C": 0.023716773971082468,
+    "fresh_over_stored": 0.9411779899363805,
+    "paper_edge_signal_using_reference_tables_linear_spectrum": 3.3617476634801484,
+    "paper_edge_signal_using_reference_tables_log_spectrum": 3.3272710662762215
+  },
+  "53.419632": {
+    "stored_scan_C": 0.05435584052371308,
+    "coefficient_native_spectrum_reference_acceptance": 0.055886800023766364,
+    "coefficient_native_spectrum_linear_epsilon": 0.05607750097435074,
+    "coefficient_reference_spectrum_and_acceptance_linear_spectrum": 0.07152397453360121,
+    "coefficient_reference_spectrum_and_acceptance_log_spectrum": 0.07010693354387197,
+    "fresh_native_C": 0.05339911895711384,
+    "fresh_over_stored": 0.9823989187292235,
+    "paper_edge_signal_using_reference_tables_linear_spectrum": 3.801499201640603,
+    "paper_edge_signal_using_reference_tables_log_spectrum": 3.726183473924479
+  },
+  "62.49": {
+    "stored_scan_C": 0.07837994126385951,
+    "coefficient_native_spectrum_reference_acceptance": 0.08405459379577242,
+    "coefficient_native_spectrum_linear_epsilon": 0.08489061902042293,
+    "coefficient_reference_spectrum_and_acceptance_linear_spectrum": 0.10417764873815255,
+    "coefficient_reference_spectrum_and_acceptance_log_spectrum": 0.10354009290588398
+  }
+}

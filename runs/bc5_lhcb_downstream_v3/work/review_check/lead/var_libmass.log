@@ -1,0 +1,16 @@
+  B_YIELD_CORR = 1.0172
+libmass    m=0.50000   lo=5.057e-10 hi=1.334e-04 (17s)
+libmass    m=1.00000   lo=4.488e-11 hi=2.269e-06 (25s)
+libmass    m=1.50000   lo=1.168e-10 hi=8.121e-06 (33s)
+libmass    m=2.00000   lo=1.335e-10 hi=7.434e-06 (41s)
+libmass    m=2.20000   lo=1.326e-10 hi=4.729e-06 (48s)
+libmass    m=3.00000   lo=6.047e-11 hi=1.703e-06 (52s)
+libmass    m=4.34457   lo=3.704e-12 hi=6.464e-08 (59s)
+libmass    m=5.08225   lo=1.433e-12 hi=2.334e-08 (65s)
+libmass    m=7.50000   lo=3.673e-13 hi=5.426e-09 (70s)
+libmass    m=10.58340  lo=1.633e-13 hi=2.280e-09 (76s)
+libmass    m=15.23435  lo=1.672e-14 hi=2.609e-10 (84s)
+libmass    m=28.52741  lo=1.938e-15 hi=4.282e-11 (93s)
+libmass    m=45.66582  lo=5.150e-16 hi=1.297e-11 (102s)
+libmass    m=62.49000  lo=1.344e-16 hi=4.434e-12 (112s)
+wrote impact_libmass.json

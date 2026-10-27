@@ -1,0 +1,49 @@
+### FILE: codes/EventCalc/decay pheno/Scalar.nb
+
+----- cell 1 -----
+Inputff4f42da-8190-4c1b-ab4a-9deb87cc7496
+
+----- cell 3 -----
+ScalarSection2965288e-bb21-44c5-8248-f7be0a8eefe7
+
+----- cell 5 -----
+Decay widthSubsection4eda875d-f107-4328-ac1f-ecae63a29d98
+
+----- cell 6 -----
+If[LLPdirName=="\<Scalar\>",\[IndentingNewLine](*Decay length of the scalar - following Winkler*)\[IndentingNewLine]c\[Tau]LLP[mLLP_,\[Theta]2_]=1\[Theta]2Interpolation[Select[Import[FileNameJoin[{dirpheno,LLPdirName,"\<decay widths\>","\<ctaus.dat\>"}],"\<Table\>"],#[[1]]\[NotEqual]2.&],InterpolationOrder\[Rule]1][mLLP];\[IndentingNewLine]]InputIn[266]:=93eba5ee-16b4-4b06-a020-1e8f71c0e18d
+
+----- cell 8 -----
+Br ratiosSubsection3fa29425-0616-4f6d-b9ce-67d10904dfbf
+
+----- cell 10 -----
+If[LLPdirName=="\<Scalar\>",\[IndentingNewLine]LLPsel="\<Scalar\>";\[IndentingNewLine]BrRatiosDPdata[mLLP_,E1_,E3_]=Import[FileNameJoin[{dirpheno,LLPdirName,"\<decay widths\>","\<BrRatioScalar.mx\>"}],"\<MX\>"];\[IndentingNewLine](*List of all representative processes*)\[IndentingNewLine]ProcessesList[LLPsel,"\<True\>"]=BrRatiosDPdata[mLLP,E1,E3][[All,1]];\[IndentingNewLine]Do[\[IndentingNewLine]Module[{proc},\[IndentingNewLine]proc=BrRatiosDPdata[mLLP,E1,E3][[i]][[1]];\[IndentingNewLine]ListDecayProducts[LLPsel,proc]=BrRatiosDPdata[mLLP,E1,E3][[i]][[2]];\[IndentingNewLine]JetsPresence[LLPsel,proc]=If[StringContainsQ[proc,"\<Jets\>"],"\<Yes\>","\<No\>"];\[IndentingNewLine]ListBrRatios[LLPsel,mLLP_,proc]=ListBrRatiosTemp[LLPsel,mLLP_,proc]=BrRatiosDPdata[mLLP,E1,E3][[i]][[3]];\[IndentingNewLine]If[Length[Select[ListDecayProducts[LLPsel,proc],#!="\<Null\>"&]]==3,\[IndentingNewLine]Msquared3BodyLLP[LLPsel,proc,E1_,E3_,mLLP_]=BrRatiosDPdata[mLLP,E1,E3][[i]][[4]];\[IndentingNewLine]];\[IndentingNewLine]];\[IndentingNewLine],{i,1,Length[BrRatiosDPdata[mLLP,E1,E3]],1}];\[IndentingNewLine](*Artificially setting the br ratios into jets to zero in the mass range where they are anyway negligible*)\[IndentingNewLine]ListBrRatios[LLPsel,mLLP_,"\<Jets-GG\>"]=If[mLLP<5,Evaluate[ListBrRatios[LLPsel,mLLP,"\<Jets-GG\>"]],0.];\[IndentingNewLine]ListBrRatios[LLPsel,mLLP_,"\<Jets-ss\>"]=If[mLLP<=3.8,Evaluate[ListBrRatios[LLPsel,mLLP,"\<Jets-ss\>"]],0.];\[IndentingNewLine]ListBrRatios[LLPsel,mLLP_,"\<Jets-cc\>"]=If[mLLP<17,Evaluate[ListBrRatios[LLPsel,mLLP,"\<Jets-cc\>"]],0.];\[IndentingNewLine](*Redefinition to ensure exact unit br ratio. In principle, it is not necessary*)\[IndentingNewLine]Do[ListBrRatios[LLPsel,mLLP_,proc]=ListBrRatiosTemp[LLPsel,mLLP,proc]/Sum[ListBrRatiosTemp[LLPsel,mLLP,pr],{pr,ProcessesList[LLPsel,"\<True\>"]}];\[IndentingNewLine],{proc,ProcessesList[LLPsel,"\<True\>"]}];\[IndentingNewLine]Print["\<All processes with at least two charged particles:\>"];\[IndentingNewLine]ProcessesList[LLPsel,"\<False\>"]=procListnoecal[LLPsel];\[IndentingNewLine]Print["\<Processes with jets:\>"];\[IndentingNewLine]Select[ProcessesList[LLPsel,"\<True\>"],JetsPresence[LLPsel,#]=="\<Yes\>"&];\[IndentingNewLine]]InputIn[267]:=0ce3aade-cdec-4977-b8f8-6167774a4484
+
+----- cell 12 -----
+\<"All processes with at least two charged particles:"\>PrintDuring evaluation of In[267]:=eac760dd-da88-9948-8bd7-501a25f599ae
+
+----- cell 13 -----
+\<"Processes with jets:"\>PrintDuring evaluation of In[267]:=54fbe2c4-e501-3a49-8478-af2a44cff44914.1 for Microsoft Windows (64-bit) (July 16, 2024)Default.nbd6e4bb9e-d4f9-4695-b6f9-c08982a64e09
+
+----- cell 14 -----
+Inputff4f42da-8190-4c1b-ab4a-9deb87cc7496
+
+----- cell 16 -----
+Section2965288e-bb21-44c5-8248-f7be0a8eefe7
+
+----- cell 18 -----
+Subsection4eda875d-f107-4328-ac1f-ecae63a29d98
+
+----- cell 19 -----
+Input93eba5ee-16b4-4b06-a020-1e8f71c0e18d
+
+----- cell 21 -----
+Subsection3fa29425-0616-4f6d-b9ce-67d10904dfbf
+
+----- cell 23 -----
+Input0ce3aade-cdec-4977-b8f8-6167774a4484
+
+----- cell 25 -----
+Printeac760dd-da88-9948-8bd7-501a25f599ae
+
+----- cell 26 -----
+Print54fbe2c4-e501-3a49-8478-af2a44cff449

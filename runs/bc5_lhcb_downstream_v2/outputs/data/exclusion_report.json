@@ -1,0 +1,11 @@
+{
+  "s_cut": 2.3,
+  "cl": 0.8997411562771962,
+  "luminosities_fb": [
+    25.0,
+    300.0
+  ],
+  "n_mass_points": 52,
+  "points_with_two_edges_25fb": 34,
+  "points_with_two_edges_300fb": 34
+}

@@ -1,0 +1,7 @@
+{
+  "success": true,
+  "tool": "mma",
+  "sdk": "0.8.2",
+  "physics_events": 0,
+  "wolfram": " - FeynRules - \nVersion: 2.3.49 (*29 September 2021).\nAuthors: A. Alloul, N. Christensen, C. Degrande, C. Duhr, B. Fuks\n \nPlease cite:\n    - Comput.Phys.Commun.185:2250-2300,2014 (arXiv:1310.1921);\n    - Comput.Phys.Commun.180:1614-1641,2009 (arXiv:0806.4194).\n \nhttp://feynrules.phys.ucl.ac.be\n \nThe FeynRules palette can be opened using the command FRPalette[].\nLLP_DEPLOY_OK:4:13.3.0 for Linux x86 (64-bit) (June 12, 2023):$FeynRulesVersion\nNull\n"
+}

@@ -1,0 +1,9 @@
+{
+  "collideragent_commit": "1140f39e8730889422a64a141fbd3ca10529e13b",
+  "images": {
+    "docker://git.pku.edu.cn/het-agi/collider:latest": "docker://git.pku.edu.cn/het-agi/collider@sha256:1bf6d8db2cb9348f965c3c6650f1c6af8234c1d8be0b49040ddd55e79a33c1a5",
+    "docker://git.pku.edu.cn/het-agi/mma-het:latest": "docker://git.pku.edu.cn/het-agi/mma-het@sha256:0c396d087c394c1771d747fd00e895422ab585c1fda16642235e49caaf3a1e60",
+    "docker://git.pku.edu.cn/rise-agi/micromegas:latest": "docker://git.pku.edu.cn/rise-agi/micromegas@sha256:070498baf78f4efc29a48ba67d0eaec2730af006b386a2d7c9047f65a123e62a"
+  },
+  "license_bind": "/var/lib/docker/volumes/llp-agi-wolfram-license-20261016/_data:/root/.WolframEngine/Licensing"
+}

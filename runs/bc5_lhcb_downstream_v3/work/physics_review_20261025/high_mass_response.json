@@ -1,0 +1,123 @@
+{
+  "samples": 3500,
+  "ndecay": 6,
+  "comparison": "long-lifetime common decay response, per scalar",
+  "reference_interpolation": "linear density in mass/theta/E; normalized to one scalar over full grid",
+  "masses": {
+    "5.082255": {
+      "native": {
+        "fraction_in_eta": 0.12658,
+        "geometric_lifetime_coefficient": 0.0036996630855903137,
+        "coefficient_current_kernel": 0.002964147400947619,
+        "coefficient_paper_magnet_position": 0.0029682607259236917,
+        "relative_sampling_error": 0.01168864523123346,
+        "mean_E_conditional": 459.4069918077339,
+        "mean_inv_pz_conditional": 0.0038339758601544753
+      },
+      "reference_spectrum": {
+        "fraction_in_eta": 0.16684023326237168,
+        "geometric_lifetime_coefficient": 0.004105941585773401,
+        "coefficient_current_kernel": 0.00357330078617466,
+        "coefficient_paper_magnet_position": 0.0035794428054969976,
+        "relative_sampling_error": 0.010294283305852381,
+        "mean_E_conditional": 494.91458434310516,
+        "mean_inv_pz_conditional": 0.0032282284995688074
+      },
+      "reference_mesh_norm": 0.9921485072215515,
+      "native_over_reference_common_response": 0.8295264178196541,
+      "paper_magnet_over_current_native": 1.0013876924523921
+    },
+    "13.023095": {
+      "native": {
+        "fraction_in_eta": 0.1287,
+        "geometric_lifetime_coefficient": 0.009761191773005157,
+        "coefficient_current_kernel": 0.00762270563949971,
+        "coefficient_paper_magnet_position": 0.007636541580186402,
+        "relative_sampling_error": 0.010559436340612346,
+        "mean_E_conditional": 455.6828350625269,
+        "mean_inv_pz_conditional": 0.0038825658529858423
+      },
+      "reference_spectrum": {
+        "fraction_in_eta": 0.17002649501375672,
+        "geometric_lifetime_coefficient": 0.011023737146020283,
+        "coefficient_current_kernel": 0.009412338292424183,
+        "coefficient_paper_magnet_position": 0.009429197473904461,
+        "relative_sampling_error": 0.010102498639427231,
+        "mean_E_conditional": 495.47559051386355,
+        "mean_inv_pz_conditional": 0.0033189963844692597
+      },
+      "reference_mesh_norm": 0.9925816256605294,
+      "native_over_reference_common_response": 0.8098631182471506,
+      "paper_magnet_over_current_native": 1.0018150957600929
+    },
+    "33.371213": {
+      "native": {
+        "fraction_in_eta": 0.149065,
+        "geometric_lifetime_coefficient": 0.03235559503792383,
+        "coefficient_current_kernel": 0.023716773971082468,
+        "coefficient_paper_magnet_position": 0.023788206485690556,
+        "relative_sampling_error": 0.00909969640983107,
+        "mean_E_conditional": 400.0630332273827,
+        "mean_inv_pz_conditional": 0.004336211478119055
+      },
+      "reference_spectrum": {
+        "fraction_in_eta": 0.19635294448477747,
+        "geometric_lifetime_coefficient": 0.03890632094797979,
+        "coefficient_current_kernel": 0.029789735891158957,
+        "coefficient_paper_magnet_position": 0.029855558257683032,
+        "relative_sampling_error": 0.009385071001295604,
+        "mean_E_conditional": 442.03657357752604,
+        "mean_inv_pz_conditional": 0.0039583983302915425
+      },
+      "reference_mesh_norm": 0.9937997590393162,
+      "native_over_reference_common_response": 0.7961391150876624,
+      "paper_magnet_over_current_native": 1.0030118984434893
+    },
+    "53.419632": {
+      "native": {
+        "fraction_in_eta": 0.2047225,
+        "geometric_lifetime_coefficient": 0.09317906159758196,
+        "coefficient_current_kernel": 0.05339911895711384,
+        "coefficient_paper_magnet_position": 0.05364835872941517,
+        "relative_sampling_error": 0.0083914682182701,
+        "mean_E_conditional": 320.94536632988985,
+        "mean_inv_pz_conditional": 0.005680160469033865
+      },
+      "reference_spectrum": {
+        "fraction_in_eta": 0.2671425665737472,
+        "geometric_lifetime_coefficient": 0.10983938772539849,
+        "coefficient_current_kernel": 0.07016290648982654,
+        "coefficient_paper_magnet_position": 0.07048726949327233,
+        "relative_sampling_error": 0.008536980295721046,
+        "mean_E_conditional": 345.9032894007778,
+        "mean_inv_pz_conditional": 0.005131246263966741
+      },
+      "reference_mesh_norm": 0.9940428549584795,
+      "native_over_reference_common_response": 0.7610733595373018,
+      "paper_magnet_over_current_native": 1.0046674884748847
+    },
+    "62.49": {
+      "native": {
+        "fraction_in_eta": 0.2634675,
+        "geometric_lifetime_coefficient": 0.22256932505418742,
+        "coefficient_current_kernel": 0.07993882532686349,
+        "coefficient_paper_magnet_position": 0.08045696563786003,
+        "relative_sampling_error": 0.010102029957438812,
+        "mean_E_conditional": 256.97876617524946,
+        "mean_inv_pz_conditional": 0.00901231731812114
+      },
+      "reference_spectrum": {
+        "fraction_in_eta": 0.31699003314030183,
+        "geometric_lifetime_coefficient": 0.22341923601736755,
+        "coefficient_current_kernel": 0.10040478501505738,
+        "coefficient_paper_magnet_position": 0.10108849715713239,
+        "relative_sampling_error": 0.009064511526739672,
+        "mean_E_conditional": 266.08615231945214,
+        "mean_inv_pz_conditional": 0.007519226573425222
+      },
+      "reference_mesh_norm": 0.995612395433397,
+      "native_over_reference_common_response": 0.7961654946512292,
+      "paper_magnet_over_current_native": 1.0064817103438526
+    }
+  }
+}

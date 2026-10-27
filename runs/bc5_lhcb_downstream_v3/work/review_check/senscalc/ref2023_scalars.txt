@@ -1,0 +1,1684 @@
+### FILE: E:/AAAwork/LLP-AGI/runs/bc5_lhcb_downstream_v3/work/physics_review_20261025/reference_2023_scalars.nb
+
+----- cell 1  label=Just launch the code below to run the notebook (shift+enter) -----
+{ClearAll["Global`*"], 
+, BlockEvaluation[tag_]:=Block[{},
+nb=EvaluationNotebook[];
+NotebookFind[nb,tag,All,CellTags];
+SelectionEvaluate[nb]
+], 
+, dropdownDialog[list_,phrase_]:=DialogInput[{choice=""},Column[{TextCell[phrase],PopupMenu[Dynamic[choice],list],Button["OK",DialogReturn[choice]]}]], 
+, infoDialog[phrase_]:=DialogInput[{choice=""},Column[{TextCell[phrase],Button["Proceed",DialogReturn[choice]]}]], 
+, If[(DirectoryQ[FileNameJoin[{NotebookDirectory[],"Auxiliary data"}]]//ToString)=="False",CreateDirectory[FileNameJoin[{NotebookDirectory[],"Auxiliary data"}]]];, 
+, If[(DirectoryQ[FileNameJoin[{NotebookDirectory[],"Auxiliary data/Scalars"}]]//ToString)=="False",CreateDirectory[FileNameJoin[{NotebookDirectory[],"Auxiliary data/Scalars"}]]];, 
+, choiceslist={"Acceptance","Tabulated number of events","Sensitivity"};, 
+, taglist["Acceptance"]="Acceptance";, 
+, taglist["Tabulated number of events"]="Number-of-events";, 
+, taglist["Sensitivity"]="Sensitivity";, 
+, computationchoice=dropdownDialog[choiceslist,"Do you want to compute acceptance, tabulated number of events, or sensitivity (if the tabulated number of events has been already produced)?"];, 
+, tagselected=taglist[computationchoice], 
+, BlockEvaluation[tagselected]}
+
+----- cell 2  label= -----
+{ClearAll["Global`*"], 
+, BlockEvaluation[tag_]:=Block[{},
+nb=EvaluationNotebook[];
+NotebookFind[nb,tag,All,CellTags];
+SelectionEvaluate[nb]
+], 
+, dropdownDialog[list_,phrase_]:=DialogInput[{choice=""},Column[{TextCell[phrase],PopupMenu[Dynamic[choice],list],Button["OK",DialogReturn[choice]]}]], 
+, infoDialog[phrase_]:=DialogInput[{choice=""},Column[{TextCell[phrase],Button["Proceed",DialogReturn[choice]]}]], 
+, If[(DirectoryQ[FileNameJoin[{NotebookDirectory[],"Auxiliary data"}]]//ToString)=="False",CreateDirectory[FileNameJoin[{NotebookDirectory[],"Auxiliary data"}]]];, 
+, If[(DirectoryQ[FileNameJoin[{NotebookDirectory[],"Auxiliary data/Scalars"}]]//ToString)=="False",CreateDirectory[FileNameJoin[{NotebookDirectory[],"Auxiliary data/Scalars"}]]];, 
+, choiceslist={"Acceptance","Tabulated number of events","Sensitivity"};, 
+, taglist["Acceptance"]="Acceptance";, 
+, taglist["Tabulated number of events"]="Number-of-events";, 
+, taglist["Sensitivity"]="Sensitivity";, 
+, computationchoice=dropdownDialog[choiceslist,"Do you want to compute acceptance, tabulated number of events, or sensitivity (if the tabulated number of events has been already produced)?"];, 
+, tagselected=taglist[computationchoice], 
+, BlockEvaluation[tagselected]}
+
+----- cell 3  label=Preliminary definitions -----
+{dropdownDialog[list_,phrase_]:=DialogInput[{choice=""},Column[{TextCell[phrase],PopupMenu[Dynamic[choice],list],Button["OK",DialogReturn[choice]]}]], 
+, infoDialog[phrase_]:=DialogInput[{choice=""},Column[{TextCell[phrase],Button["Proceed",DialogReturn[choice]]}]]
+(*chbar*), 
+, chbar= 6.6*10^-25*3*10^8;
+(*Masses of various SM particles*), 
+, mB=5.3;, 
+, mK=0.495;, 
+, mPi=0.14;, 
+, mh=125;, 
+, mBs=5.366;
+(*Fragmentation fractions at the LHC*), 
+, fbtob0LHC=fbtobplusLHC=0.324;, 
+, fbtobsLHC=0.09;, 
+, fstoK0L=(1)/(4);, 
+, fstoKcharged=(1)/(2);
+(*Fragmentation fractions at SPS*), 
+, fbtobsSPS=0.11;, 
+, fbtob0SPS=fbtobplusSPS=0.411;, 
+, fstokplusSPS=0.5;
+(*Fraction of K^+/- decaying in-flight, from https://arxiv.org/pdf/2004.07974.pdf*), 
+, fractionDecayInFlightKplusKminus=(0.29+0.07);
+(*Fragmentation fractions at FermilabBD. Assumed to be the same as at SPS*), 
+, fbtobsFermilabBD=0.11;, 
+, fbtob0FermilabBD=fbtobplusFermilabBD=0.411;}
+
+----- cell 4  label=Parameters and various functions -----
+{dropdownDialog[list_,phrase_]:=DialogInput[{choice=""},Column[{TextCell[phrase],PopupMenu[Dynamic[choice],list],Button["OK",DialogReturn[choice]]}]], 
+, infoDialog[phrase_]:=DialogInput[{choice=""},Column[{TextCell[phrase],Button["Proceed",DialogReturn[choice]]}]]
+(*chbar*), 
+, chbar= 6.6*10^-25*3*10^8;
+(*Masses of various SM particles*), 
+, mB=5.3;, 
+, mK=0.495;, 
+, mPi=0.14;, 
+, mh=125;, 
+, mBs=5.366;
+(*Fragmentation fractions at the LHC*), 
+, fbtob0LHC=fbtobplusLHC=0.324;, 
+, fbtobsLHC=0.09;, 
+, fstoK0L=(1)/(4);, 
+, fstoKcharged=(1)/(2);
+(*Fragmentation fractions at SPS*), 
+, fbtobsSPS=0.11;, 
+, fbtob0SPS=fbtobplusSPS=0.411;, 
+, fstokplusSPS=0.5;
+(*Fraction of K^+/- decaying in-flight, from https://arxiv.org/pdf/2004.07974.pdf*), 
+, fractionDecayInFlightKplusKminus=(0.29+0.07);
+(*Fragmentation fractions at FermilabBD. Assumed to be the same as at SPS*), 
+, fbtobsFermilabBD=0.11;, 
+, fbtob0FermilabBD=fbtobplusFermilabBD=0.411;}
+
+----- cell 5  label= -----
+{dropdownDialog[list_,phrase_]:=DialogInput[{choice=""},Column[{TextCell[phrase],PopupMenu[Dynamic[choice],list],Button["OK",DialogReturn[choice]]}]], 
+, infoDialog[phrase_]:=DialogInput[{choice=""},Column[{TextCell[phrase],Button["Proceed",DialogReturn[choice]]}]]
+(*chbar*), 
+, chbar= 6.6*10^-25*3*10^8;
+(*Masses of various SM particles*), 
+, mB=5.3;, 
+, mK=0.495;, 
+, mPi=0.14;, 
+, mh=125;, 
+, mBs=5.366;
+(*Fragmentation fractions at the LHC*), 
+, fbtob0LHC=fbtobplusLHC=0.324;, 
+, fbtobsLHC=0.09;, 
+, fstoK0L=(1)/(4);, 
+, fstoKcharged=(1)/(2);
+(*Fragmentation fractions at SPS*), 
+, fbtobsSPS=0.11;, 
+, fbtob0SPS=fbtobplusSPS=0.411;, 
+, fstokplusSPS=0.5;
+(*Fraction of K^+/- decaying in-flight, from https://arxiv.org/pdf/2004.07974.pdf*), 
+, fractionDecayInFlightKplusKminus=(0.29+0.07);
+(*Fragmentation fractions at FermilabBD. Assumed to be the same as at SPS*), 
+, fbtobsFermilabBD=0.11;, 
+, fbtob0FermilabBD=fbtobplusFermilabBD=0.411;}
+
+----- cell 6  label=Scalar phenomenology -----
+{MP=0.938;
+(*Scalar-nucleon low-energy coupling*), 
+, GSNN=1.2*10^-3;
+(*Fit for the pp total cross-section in mb in terms of invariant mass s*), 
+, Zfit=35.45;, 
+, Bfit=0.308;, 
+, Y1fit=42.53;, 
+, Y2fit=33.34;, 
+, s0fit=5.38^2;, 
+, s1fit=1;, 
+, \[Eta]1fit=0.458;, 
+, \[Eta]2fit=0.545;, 
+, S[Pp_,mp_]=2*Pp*mp;, 
+, Sprime[Pp_,mp_,z_]=2*mp*Pp(1-z)+2*mp^2;, 
+, sigmapp[s_]=Zfit+Bfit*Log[s/s0fit]^2+Y1fit*(s1fit/s)^\[Eta]1fit-Y2fit(s1fit/s)^\[Eta]2fit;
+(*Kinematics of the 1 -> 2 process p -> p + S within the WW approximation*), 
+, EPbrem=Pp+(mp^2)/(2*Pp);, 
+, EpprimeBrem=Pp*(1-z)+((mp^2+pT^2))/(2*Pp(1-z));, 
+, ppprimeBrem=(1-z)*Pp;, 
+, ESbrem=Pp*z+((pT^2+mS^2))/(2*Pp*z);, 
+, pSbrem=pp-ppprimeBrem;, 
+, Print["Applicability parameter (must be << 1):"], 
+, ApplicabilityParameter[Pp_,z_,pT_,mX_,mp_]=Simplify[((EpprimeBrem+ESbrem-EPbrem))/(((EpprimeBrem-ESbrem+EPbrem)/.{pT->0,mp->0,mX->0}))]/.{mS->mX}/.{mX^2+4 Pp^2 (z-1) z->4Pp^2z(z-1)}
+(*Momenta of the protons at various facilities*), 
+, {Ppfacility["SPS"],Ppfacility["LHC"],Ppfacility["FCC-hh"],Ppfacility["FermilabBD"]}={400.,7000.,50000.,120.};
+(*The minimal allowed fraction of energy E_S/E_p*), 
+, {zMinBrem["FermilabBD"],zMinBrem["SPS"],zMinBrem["LHC"],zMinBrem["FCC-hh"]}={0.1,0.1,0.005,0.0001};
+(*The maximal allowed fraction of energy*), 
+, zMaxBrem=0.9;
+(*Elastic SNN form-factor*), 
+, BremFormFactorSquared[mS_]=Interpolation[Import[FileNameJoin[{NotebookDirectory[],"phenomenology/Scalar/branching ratios/proton-timelike-form-factor-scalar.txt"}],"Table"],InterpolationOrder->1][mS];}
+
+----- cell 7  label=Proton bremsstrahlung probability -----
+{MP=0.938;
+(*Scalar-nucleon low-energy coupling*), 
+, GSNN=1.2*10^-3;
+(*Fit for the pp total cross-section in mb in terms of invariant mass s*), 
+, Zfit=35.45;, 
+, Bfit=0.308;, 
+, Y1fit=42.53;, 
+, Y2fit=33.34;, 
+, s0fit=5.38^2;, 
+, s1fit=1;, 
+, \[Eta]1fit=0.458;, 
+, \[Eta]2fit=0.545;, 
+, S[Pp_,mp_]=2*Pp*mp;, 
+, Sprime[Pp_,mp_,z_]=2*mp*Pp(1-z)+2*mp^2;, 
+, sigmapp[s_]=Zfit+Bfit*Log[s/s0fit]^2+Y1fit*(s1fit/s)^\[Eta]1fit-Y2fit(s1fit/s)^\[Eta]2fit;
+(*Kinematics of the 1 -> 2 process p -> p + S within the WW approximation*), 
+, EPbrem=Pp+(mp^2)/(2*Pp);, 
+, EpprimeBrem=Pp*(1-z)+((mp^2+pT^2))/(2*Pp(1-z));, 
+, ppprimeBrem=(1-z)*Pp;, 
+, ESbrem=Pp*z+((pT^2+mS^2))/(2*Pp*z);, 
+, pSbrem=pp-ppprimeBrem;, 
+, Print["Applicability parameter (must be << 1):"], 
+, ApplicabilityParameter[Pp_,z_,pT_,mX_,mp_]=Simplify[((EpprimeBrem+ESbrem-EPbrem))/(((EpprimeBrem-ESbrem+EPbrem)/.{pT->0,mp->0,mX->0}))]/.{mS->mX}/.{mX^2+4 Pp^2 (z-1) z->4Pp^2z(z-1)}
+(*Momenta of the protons at various facilities*), 
+, {Ppfacility["SPS"],Ppfacility["LHC"],Ppfacility["FCC-hh"],Ppfacility["FermilabBD"]}={400.,7000.,50000.,120.};
+(*The minimal allowed fraction of energy E_S/E_p*), 
+, {zMinBrem["FermilabBD"],zMinBrem["SPS"],zMinBrem["LHC"],zMinBrem["FCC-hh"]}={0.1,0.1,0.005,0.0001};
+(*The maximal allowed fraction of energy*), 
+, zMaxBrem=0.9;
+(*Elastic SNN form-factor*), 
+, BremFormFactorSquared[mS_]=Interpolation[Import[FileNameJoin[{NotebookDirectory[],"phenomenology/Scalar/branching ratios/proton-timelike-form-factor-scalar.txt"}],"Table"],InterpolationOrder->1][mS];}
+
+----- cell 8  label=Various parameters -----
+{MP=0.938;
+(*Scalar-nucleon low-energy coupling*), 
+, GSNN=1.2*10^-3;
+(*Fit for the pp total cross-section in mb in terms of invariant mass s*), 
+, Zfit=35.45;, 
+, Bfit=0.308;, 
+, Y1fit=42.53;, 
+, Y2fit=33.34;, 
+, s0fit=5.38^2;, 
+, s1fit=1;, 
+, \[Eta]1fit=0.458;, 
+, \[Eta]2fit=0.545;, 
+, S[Pp_,mp_]=2*Pp*mp;, 
+, Sprime[Pp_,mp_,z_]=2*mp*Pp(1-z)+2*mp^2;, 
+, sigmapp[s_]=Zfit+Bfit*Log[s/s0fit]^2+Y1fit*(s1fit/s)^\[Eta]1fit-Y2fit(s1fit/s)^\[Eta]2fit;
+(*Kinematics of the 1 -> 2 process p -> p + S within the WW approximation*), 
+, EPbrem=Pp+(mp^2)/(2*Pp);, 
+, EpprimeBrem=Pp*(1-z)+((mp^2+pT^2))/(2*Pp(1-z));, 
+, ppprimeBrem=(1-z)*Pp;, 
+, ESbrem=Pp*z+((pT^2+mS^2))/(2*Pp*z);, 
+, pSbrem=pp-ppprimeBrem;, 
+, Print["Applicability parameter (must be << 1):"], 
+, ApplicabilityParameter[Pp_,z_,pT_,mX_,mp_]=Simplify[((EpprimeBrem+ESbrem-EPbrem))/(((EpprimeBrem-ESbrem+EPbrem)/.{pT->0,mp->0,mX->0}))]/.{mS->mX}/.{mX^2+4 Pp^2 (z-1) z->4Pp^2z(z-1)}
+(*Momenta of the protons at various facilities*), 
+, {Ppfacility["SPS"],Ppfacility["LHC"],Ppfacility["FCC-hh"],Ppfacility["FermilabBD"]}={400.,7000.,50000.,120.};
+(*The minimal allowed fraction of energy E_S/E_p*), 
+, {zMinBrem["FermilabBD"],zMinBrem["SPS"],zMinBrem["LHC"],zMinBrem["FCC-hh"]}={0.1,0.1,0.005,0.0001};
+(*The maximal allowed fraction of energy*), 
+, zMaxBrem=0.9;
+(*Elastic SNN form-factor*), 
+, BremFormFactorSquared[mS_]=Interpolation[Import[FileNameJoin[{NotebookDirectory[],"phenomenology/Scalar/branching ratios/proton-timelike-form-factor-scalar.txt"}],"Table"],InterpolationOrder->1][mS];}
+
+----- cell 9  label= -----
+{MP=0.938;
+(*Scalar-nucleon low-energy coupling*), 
+, GSNN=1.2*10^-3;
+(*Fit for the pp total cross-section in mb in terms of invariant mass s*), 
+, Zfit=35.45;, 
+, Bfit=0.308;, 
+, Y1fit=42.53;, 
+, Y2fit=33.34;, 
+, s0fit=5.38^2;, 
+, s1fit=1;, 
+, \[Eta]1fit=0.458;, 
+, \[Eta]2fit=0.545;, 
+, S[Pp_,mp_]=2*Pp*mp;, 
+, Sprime[Pp_,mp_,z_]=2*mp*Pp(1-z)+2*mp^2;, 
+, sigmapp[s_]=Zfit+Bfit*Log[s/s0fit]^2+Y1fit*(s1fit/s)^\[Eta]1fit-Y2fit(s1fit/s)^\[Eta]2fit;
+(*Kinematics of the 1 -> 2 process p -> p + S within the WW approximation*), 
+, EPbrem=Pp+(mp^2)/(2*Pp);, 
+, EpprimeBrem=Pp*(1-z)+((mp^2+pT^2))/(2*Pp(1-z));, 
+, ppprimeBrem=(1-z)*Pp;, 
+, ESbrem=Pp*z+((pT^2+mS^2))/(2*Pp*z);, 
+, pSbrem=pp-ppprimeBrem;, 
+, Print["Applicability parameter (must be << 1):"], 
+, ApplicabilityParameter[Pp_,z_,pT_,mX_,mp_]=Simplify[((EpprimeBrem+ESbrem-EPbrem))/(((EpprimeBrem-ESbrem+EPbrem)/.{pT->0,mp->0,mX->0}))]/.{mS->mX}/.{mX^2+4 Pp^2 (z-1) z->4Pp^2z(z-1)}
+(*Momenta of the protons at various facilities*), 
+, {Ppfacility["SPS"],Ppfacility["LHC"],Ppfacility["FCC-hh"],Ppfacility["FermilabBD"]}={400.,7000.,50000.,120.};
+(*The minimal allowed fraction of energy E_S/E_p*), 
+, {zMinBrem["FermilabBD"],zMinBrem["SPS"],zMinBrem["LHC"],zMinBrem["FCC-hh"]}={0.1,0.1,0.005,0.0001};
+(*The maximal allowed fraction of energy*), 
+, zMaxBrem=0.9;
+(*Elastic SNN form-factor*), 
+, BremFormFactorSquared[mS_]=Interpolation[Import[FileNameJoin[{NotebookDirectory[],"phenomenology/Scalar/branching ratios/proton-timelike-form-factor-scalar.txt"}],"Table"],InterpolationOrder->1][mS];}
+
+----- cell 10  label=Distribution -----
+{<<FeynCalc`
+(*Matrix element corresponding to the sub-process p -> p + S*), 
+, MscalarBrem=gSNN SpinorUBar[p1,mp].SpinorU[k1,mp];, 
+, MscalarBremStar=ComplexConjugate[MscalarBrem];
+(*Squared matrix element*), 
+, MScalarBremSquared=((1)/(2)FermionSpinSum[MscalarBrem MscalarBremStar]/.DiracTrace->TR//Contract//Simplify)/.{ScalarProduct[k1,p1]-> Pp*EpprimeBrem-Pp*ppprimeBrem};
+(*Differential splitting probability*), 
+, DifferentialSplittingProbability[mp_,mS_,pT_,z_,gSNN_,Pp_]=Simplify[((1)/(16*Pi^2*z)(1)/(4*Pp*EpprimeBrem)*(MScalarBremSquared)/((EpprimeBrem+ESbrem-Pp)^2))]/.{ (mp^2+2 Pp^2) ->2*Pp^2}/.{mp^2+2 Pp^2 (z-1)^2+pT^2->2*Pp^2(z-1)^2};, 
+, pTmaxBrem=DialogInput[{br=""},Column[{"Enter the maximal \!\(\*SubscriptBox[\(p\), \(T\)]\) (in GeV) for the bremsstrahlung channel (typical value is 1 GeV):",InputField[Dynamic[br],Number],Button["Proceed",DialogReturn[br],ImageSize->Automatic]}]]//N;
+(*Double distribution in theta and E*), 
+, DistrBremInpTz[mS_,pT_,z_,Pp_,zmin_]=DifferentialSplittingProbability[MP,mS,pT,z,GSNN,Pp]*2*pT*(sigmapp[Sprime[Pp,MP,z]])/(sigmapp[S[Pp,MP]])UnitStep[pTmaxBrem-pT]*UnitStep[z-zmin]UnitStep[zMaxBrem-z];, 
+, pTinthetaE[thetaS_,ES_,mS_]=Sqrt[ES^2-mS^2]Sin[thetaS];, 
+, zInthetaE[ES_,Pp_]=(ES)/(Pp);, 
+, JacobianpTzToESthetaS[thetaS_,ES_]=D[pTinthetaE[thetaS,ES,mS],thetaS]*D[zInthetaE[ES,Pp],ES];, 
+, DistrBremthetaEscalarNoFormFactorTemp[mS_,thetaS_,ES_,Pp_,zmin_]=DistrBremInpTz[mS,pTinthetaE[thetaS,ES,mS],zInthetaE[ES,Pp],Pp,zmin]*JacobianpTzToESthetaS[thetaS,ES];, 
+, {mSminFromBrem,mSmaxFromBrem}={0.02,2.5};, 
+, ESmaxBremBeam[Facility_,thetaS_]:=Min[zMaxBrem*Ppfacility[Facility],(pTmaxBrem)/(Sin[thetaS]+10^-7)];, 
+, thetamaxBremTemp[Facility_]:=(thetaS/.Solve[zMinBrem[Facility]*Ppfacility[Facility]==(pTmaxBrem)/(Sin[thetaS]),thetaS][[1]]/.{TemplateBox[{1}, C]->0});, 
+, {thetamaxBremFacility["FermilabBD"],thetamaxBremFacility["SPS"],thetamaxBremFacility["LHC"],thetamaxBremFacility["FCC-hh"]}=thetamaxBremTemp[#]&/@{"FermilabBD","SPS","LHC","FCC-hh"};, 
+, NormalizationBremNoFormFactorTemp[Facility_]:=Module[{zmin,ESmaxfrombrem,pbeam,thetamaxbrem},
+pbeam=Ppfacility[Facility];
+zmin=zMinBrem[Facility];
+ESmaxfrombrem[thetaS_]=ESmaxBremBeam[Facility,thetaS];
+thetamaxbrem=thetamaxBremFacility[Facility];
+Interpolation[Table[{mS,NIntegrate[DistrBremthetaEscalarNoFormFactorTemp[mS,thetaS,ES,pbeam,zmin],{thetaS,0,thetamaxbrem},{ES,zmin*pbeam,Max[zmin*pbeam,ESmaxfrombrem[thetaS]]},Method->"AdaptiveMonteCarlo"]},{mS,mSminFromBrem,mSmaxFromBrem,((mSmaxFromBrem-mSminFromBrem))/(20)}],InterpolationOrder->1][mS]
+], 
+, Do[NormalizationBremNoFormFactor[mS_,Facility]=NormalizationBremNoFormFactorTemp[Facility];
+DoubleDistrScalarfromBremFacility[mS_,thetaS_,ES_,Facility]=If[mSminFromBrem<=mS<=mSmaxFromBrem,Evaluate[(1)/(NormalizationBremNoFormFactor[mS,Facility])*DistrBremthetaEscalarNoFormFactorTemp[mS,thetaS,ES,Ppfacility[Facility],zMinBrem[Facility]]],0];
+PbremFacility[mS_,theta2_,Facility]=theta2*BremFormFactorSquared[mS]*NormalizationBremNoFormFactor[mS,Facility];
+ESmaxFromBrem[mS_,thetaS_,Facility]=ESmaxBremBeam[Facility,thetaS],{Facility,{"FermilabBD","SPS","LHC","FCC-hh"}}];
+(*Tabulated distribution to be used in next sections*), 
+, TableBremDistr[thetaminExp_,thetamaxExp_,Facility_]:=Module[{eminbrem,thetaSlistbrem,EslistBremTemp,EslistBrem},
+eminbrem=Ppfacility[Facility]*zMinBrem[Facility];
+thetaSlistbrem=Table[thetaV,{thetaV,0.99thetaminExp,1.01thetamaxExp,(1.01thetamaxExp-0.99thetaminExp)/50}];
+EslistBremTemp=Join[Table[x,{x,0.02,eminbrem,1}],Table[10^x,{x,Log10[1.02*eminbrem],Log10[Ppfacility[Facility]],((Log10[Ppfacility[Facility]]-Log10[1.02*eminbrem]))/(50)}]];
+EslistBrem=Join[EslistBremTemp,ESmaxBremBeam[Facility,#]&/@thetaSlistbrem]//Sort//DeleteDuplicates;
+Flatten[Table[{mS,thetaS,ES,DoubleDistrScalarfromBremFacility[mS,thetaS,ES,Facility]+10^-90},{mS,mSminFromBrem,mSmaxFromBrem//N,((mSmaxFromBrem//N)-mSminFromBrem)/10},{thetaS,thetaSlistbrem},{ES,EslistBrem}],{1,2,3}]
+]}
+
+----- cell 11  label= -----
+{<<FeynCalc`
+(*Matrix element corresponding to the sub-process p -> p + S*), 
+, MscalarBrem=gSNN SpinorUBar[p1,mp].SpinorU[k1,mp];, 
+, MscalarBremStar=ComplexConjugate[MscalarBrem];
+(*Squared matrix element*), 
+, MScalarBremSquared=((1)/(2)FermionSpinSum[MscalarBrem MscalarBremStar]/.DiracTrace->TR//Contract//Simplify)/.{ScalarProduct[k1,p1]-> Pp*EpprimeBrem-Pp*ppprimeBrem};
+(*Differential splitting probability*), 
+, DifferentialSplittingProbability[mp_,mS_,pT_,z_,gSNN_,Pp_]=Simplify[((1)/(16*Pi^2*z)(1)/(4*Pp*EpprimeBrem)*(MScalarBremSquared)/((EpprimeBrem+ESbrem-Pp)^2))]/.{ (mp^2+2 Pp^2) ->2*Pp^2}/.{mp^2+2 Pp^2 (z-1)^2+pT^2->2*Pp^2(z-1)^2};, 
+, pTmaxBrem=DialogInput[{br=""},Column[{"Enter the maximal \!\(\*SubscriptBox[\(p\), \(T\)]\) (in GeV) for the bremsstrahlung channel (typical value is 1 GeV):",InputField[Dynamic[br],Number],Button["Proceed",DialogReturn[br],ImageSize->Automatic]}]]//N;
+(*Double distribution in theta and E*), 
+, DistrBremInpTz[mS_,pT_,z_,Pp_,zmin_]=DifferentialSplittingProbability[MP,mS,pT,z,GSNN,Pp]*2*pT*(sigmapp[Sprime[Pp,MP,z]])/(sigmapp[S[Pp,MP]])UnitStep[pTmaxBrem-pT]*UnitStep[z-zmin]UnitStep[zMaxBrem-z];, 
+, pTinthetaE[thetaS_,ES_,mS_]=Sqrt[ES^2-mS^2]Sin[thetaS];, 
+, zInthetaE[ES_,Pp_]=(ES)/(Pp);, 
+, JacobianpTzToESthetaS[thetaS_,ES_]=D[pTinthetaE[thetaS,ES,mS],thetaS]*D[zInthetaE[ES,Pp],ES];, 
+, DistrBremthetaEscalarNoFormFactorTemp[mS_,thetaS_,ES_,Pp_,zmin_]=DistrBremInpTz[mS,pTinthetaE[thetaS,ES,mS],zInthetaE[ES,Pp],Pp,zmin]*JacobianpTzToESthetaS[thetaS,ES];, 
+, {mSminFromBrem,mSmaxFromBrem}={0.02,2.5};, 
+, ESmaxBremBeam[Facility_,thetaS_]:=Min[zMaxBrem*Ppfacility[Facility],(pTmaxBrem)/(Sin[thetaS]+10^-7)];, 
+, thetamaxBremTemp[Facility_]:=(thetaS/.Solve[zMinBrem[Facility]*Ppfacility[Facility]==(pTmaxBrem)/(Sin[thetaS]),thetaS][[1]]/.{TemplateBox[{1}, C]->0});, 
+, {thetamaxBremFacility["FermilabBD"],thetamaxBremFacility["SPS"],thetamaxBremFacility["LHC"],thetamaxBremFacility["FCC-hh"]}=thetamaxBremTemp[#]&/@{"FermilabBD","SPS","LHC","FCC-hh"};, 
+, NormalizationBremNoFormFactorTemp[Facility_]:=Module[{zmin,ESmaxfrombrem,pbeam,thetamaxbrem},
+pbeam=Ppfacility[Facility];
+zmin=zMinBrem[Facility];
+ESmaxfrombrem[thetaS_]=ESmaxBremBeam[Facility,thetaS];
+thetamaxbrem=thetamaxBremFacility[Facility];
+Interpolation[Table[{mS,NIntegrate[DistrBremthetaEscalarNoFormFactorTemp[mS,thetaS,ES,pbeam,zmin],{thetaS,0,thetamaxbrem},{ES,zmin*pbeam,Max[zmin*pbeam,ESmaxfrombrem[thetaS]]},Method->"AdaptiveMonteCarlo"]},{mS,mSminFromBrem,mSmaxFromBrem,((mSmaxFromBrem-mSminFromBrem))/(20)}],InterpolationOrder->1][mS]
+], 
+, Do[NormalizationBremNoFormFactor[mS_,Facility]=NormalizationBremNoFormFactorTemp[Facility];
+DoubleDistrScalarfromBremFacility[mS_,thetaS_,ES_,Facility]=If[mSminFromBrem<=mS<=mSmaxFromBrem,Evaluate[(1)/(NormalizationBremNoFormFactor[mS,Facility])*DistrBremthetaEscalarNoFormFactorTemp[mS,thetaS,ES,Ppfacility[Facility],zMinBrem[Facility]]],0];
+PbremFacility[mS_,theta2_,Facility]=theta2*BremFormFactorSquared[mS]*NormalizationBremNoFormFactor[mS,Facility];
+ESmaxFromBrem[mS_,thetaS_,Facility]=ESmaxBremBeam[Facility,thetaS],{Facility,{"FermilabBD","SPS","LHC","FCC-hh"}}];
+(*Tabulated distribution to be used in next sections*), 
+, TableBremDistr[thetaminExp_,thetamaxExp_,Facility_]:=Module[{eminbrem,thetaSlistbrem,EslistBremTemp,EslistBrem},
+eminbrem=Ppfacility[Facility]*zMinBrem[Facility];
+thetaSlistbrem=Table[thetaV,{thetaV,0.99thetaminExp,1.01thetamaxExp,(1.01thetamaxExp-0.99thetaminExp)/50}];
+EslistBremTemp=Join[Table[x,{x,0.02,eminbrem,1}],Table[10^x,{x,Log10[1.02*eminbrem],Log10[Ppfacility[Facility]],((Log10[Ppfacility[Facility]]-Log10[1.02*eminbrem]))/(50)}]];
+EslistBrem=Join[EslistBremTemp,ESmaxBremBeam[Facility,#]&/@thetaSlistbrem]//Sort//DeleteDuplicates;
+Flatten[Table[{mS,thetaS,ES,DoubleDistrScalarfromBremFacility[mS,thetaS,ES,Facility]+10^-90},{mS,mSminFromBrem,mSmaxFromBrem//N,((mSmaxFromBrem//N)-mSminFromBrem)/10},{thetaS,thetaSlistbrem},{ES,EslistBrem}],{1,2,3}]
+]}
+
+----- cell 12  label=Production probabilities from decays -----
+{SetDirectory[NotebookDirectory[]];
+(*Branching ratios of the scalar production from B and K mesons through the mixing theta at theta = 1*), 
+, BrBplusToXsS[mS_]=If[mS<mB-mPi,Evaluate[Interpolation[Import[FileNameJoin[{NotebookDirectory[],"phenomenology/Scalar/branching ratios/BtoXsStotal.dat"}],"Table"],InterpolationOrder->1][mS]],0];, 
+, BrBplusToXsSinclusive[mS_]=If[mS<mB-mPi,Evaluate[Interpolation[Import[FileNameJoin[{NotebookDirectory[],"phenomenology/Scalar/branching ratios/BtoXsSinclusive.dat"}],"Table"],InterpolationOrder->1][mS]],0];, 
+, BrK0LToS[mS_]=If[mS<mK-mPi,Evaluate[Interpolation[Import[FileNameJoin[{NotebookDirectory[],"phenomenology/Scalar/branching ratios/K0LtoPiS.dat"}],"Table"],InterpolationOrder->1][mS]],0];, 
+, BrKplusToS[mS_]=If[mS<mK-mPi,Evaluate[Interpolation[Import[FileNameJoin[{NotebookDirectory[],"phenomenology/Scalar/branching ratios/KplustoPiS.dat"}],"Table"],InterpolationOrder->1][mS]],0];
+(*Branching ratios of the scalar production from B mesons and Higgses through quartic coupling (alpha)/(2v)SSHH at alpha = 1 GeV*), 
+, BrBplustoXsSS[mS_]=If[mS<(mB-mPi)/(2),Evaluate[Interpolation[Import[FileNameJoin[{NotebookDirectory[],"phenomenology/Scalar/branching ratios/BplustoXsSStotal.dat"}],"Table"],InterpolationOrder->1][mS]],0];, 
+, BrBstoSS[mS_]=If[mS<(mBs)/(2),Evaluate[Interpolation[Import[FileNameJoin[{NotebookDirectory[],"phenomenology/Scalar/branching ratios/BstoSS.dat"}],"Table"],InterpolationOrder->1][mS]],0];, 
+, BrhtoSS[mS_,alpha_]=2*10^-2*alpha^2Sqrt[1-4*(mS^2)/(125^2)];
+(*Value of alpha corresponding to Br(h->SS)=0.01*), 
+, alphavalBrhToSS[BrhToSS_]=alpha/.Solve[BrhtoSS[0,alpha]==BrhToSS,alpha][[2]];, 
+, alphaval001=alpha/.Solve[BrhtoSS[0,alpha]==0.01,alpha][[2]];, 
+, Print["Values of the Br ratios at \!\(\*SubscriptBox[\(m\), \(S\)]\) = 0 (alpha = 1 GeV, theta = 1):"], 
+, {{"Process","\!\(\*SuperscriptBox[\(K\), \(+\)]\)->Pi+S","\!\(\*SuperscriptBox[\(K\), \(0\)]\)->Pi+S","\!\(\*SuperscriptBox[\(B\), \(+\)]\)->\!\(\*SubscriptBox[\(X\), \(s\)]\)+S","\!\(\*SuperscriptBox[\(B\), \(+\)]\)->\!\(\*SubscriptBox[\(X\), \(s\)]\) + S + S","\!\(\*SubscriptBox[\(B\), \(s\)]\) -> S + S","h -> S + S"},{"Value",BrKplusToS[0],BrK0LToS[0], BrBplusToXsS[0],BrBplustoXsSS[0],BrBstoSS[0],BrhtoSS[0,1]}}//TableForm, 
+, dropdownDialog[list_,phrase_]:=DialogInput[{choice=""},Column[{TextCell[phrase],PopupMenu[Dynamic[choice],list],Button["OK",DialogReturn[choice]]}]], 
+, SelectedBrChoice=dropdownDialog[{"Exclusive","Inclusive"},"Select the description of the scalar's production by decays of B via mixing (see 1904.10447):"], 
+, BrBtoSX[mS_]=If[SelectedBrChoice=="Exclusive",BrBplusToXsS[mS],BrBplusToXsSinclusive[mS](*Max[BrBplusToXsSinclusive[(4.7)/(5.3)mS],BrBplusToXsS[mS]]*)];}
+
+----- cell 13  label=From decays -----
+{SetDirectory[NotebookDirectory[]];
+(*Branching ratios of the scalar production from B and K mesons through the mixing theta at theta = 1*), 
+, BrBplusToXsS[mS_]=If[mS<mB-mPi,Evaluate[Interpolation[Import[FileNameJoin[{NotebookDirectory[],"phenomenology/Scalar/branching ratios/BtoXsStotal.dat"}],"Table"],InterpolationOrder->1][mS]],0];, 
+, BrBplusToXsSinclusive[mS_]=If[mS<mB-mPi,Evaluate[Interpolation[Import[FileNameJoin[{NotebookDirectory[],"phenomenology/Scalar/branching ratios/BtoXsSinclusive.dat"}],"Table"],InterpolationOrder->1][mS]],0];, 
+, BrK0LToS[mS_]=If[mS<mK-mPi,Evaluate[Interpolation[Import[FileNameJoin[{NotebookDirectory[],"phenomenology/Scalar/branching ratios/K0LtoPiS.dat"}],"Table"],InterpolationOrder->1][mS]],0];, 
+, BrKplusToS[mS_]=If[mS<mK-mPi,Evaluate[Interpolation[Import[FileNameJoin[{NotebookDirectory[],"phenomenology/Scalar/branching ratios/KplustoPiS.dat"}],"Table"],InterpolationOrder->1][mS]],0];
+(*Branching ratios of the scalar production from B mesons and Higgses through quartic coupling (alpha)/(2v)SSHH at alpha = 1 GeV*), 
+, BrBplustoXsSS[mS_]=If[mS<(mB-mPi)/(2),Evaluate[Interpolation[Import[FileNameJoin[{NotebookDirectory[],"phenomenology/Scalar/branching ratios/BplustoXsSStotal.dat"}],"Table"],InterpolationOrder->1][mS]],0];, 
+, BrBstoSS[mS_]=If[mS<(mBs)/(2),Evaluate[Interpolation[Import[FileNameJoin[{NotebookDirectory[],"phenomenology/Scalar/branching ratios/BstoSS.dat"}],"Table"],InterpolationOrder->1][mS]],0];, 
+, BrhtoSS[mS_,alpha_]=2*10^-2*alpha^2Sqrt[1-4*(mS^2)/(125^2)];
+(*Value of alpha corresponding to Br(h->SS)=0.01*), 
+, alphavalBrhToSS[BrhToSS_]=alpha/.Solve[BrhtoSS[0,alpha]==BrhToSS,alpha][[2]];, 
+, alphaval001=alpha/.Solve[BrhtoSS[0,alpha]==0.01,alpha][[2]];, 
+, Print["Values of the Br ratios at \!\(\*SubscriptBox[\(m\), \(S\)]\) = 0 (alpha = 1 GeV, theta = 1):"], 
+, {{"Process","\!\(\*SuperscriptBox[\(K\), \(+\)]\)->Pi+S","\!\(\*SuperscriptBox[\(K\), \(0\)]\)->Pi+S","\!\(\*SuperscriptBox[\(B\), \(+\)]\)->\!\(\*SubscriptBox[\(X\), \(s\)]\)+S","\!\(\*SuperscriptBox[\(B\), \(+\)]\)->\!\(\*SubscriptBox[\(X\), \(s\)]\) + S + S","\!\(\*SubscriptBox[\(B\), \(s\)]\) -> S + S","h -> S + S"},{"Value",BrKplusToS[0],BrK0LToS[0], BrBplusToXsS[0],BrBplustoXsSS[0],BrBstoSS[0],BrhtoSS[0,1]}}//TableForm, 
+, dropdownDialog[list_,phrase_]:=DialogInput[{choice=""},Column[{TextCell[phrase],PopupMenu[Dynamic[choice],list],Button["OK",DialogReturn[choice]]}]], 
+, SelectedBrChoice=dropdownDialog[{"Exclusive","Inclusive"},"Select the description of the scalar's production by decays of B via mixing (see 1904.10447):"], 
+, BrBtoSX[mS_]=If[SelectedBrChoice=="Exclusive",BrBplusToXsS[mS],BrBplusToXsSinclusive[mS](*Max[BrBplusToXsSinclusive[(4.7)/(5.3)mS],BrBplusToXsS[mS]]*)];}
+
+----- cell 14  label=Br ratios -----
+{SetDirectory[NotebookDirectory[]];
+(*Branching ratios of the scalar production from B and K mesons through the mixing theta at theta = 1*), 
+, BrBplusToXsS[mS_]=If[mS<mB-mPi,Evaluate[Interpolation[Import[FileNameJoin[{NotebookDirectory[],"phenomenology/Scalar/branching ratios/BtoXsStotal.dat"}],"Table"],InterpolationOrder->1][mS]],0];, 
+, BrBplusToXsSinclusive[mS_]=If[mS<mB-mPi,Evaluate[Interpolation[Import[FileNameJoin[{NotebookDirectory[],"phenomenology/Scalar/branching ratios/BtoXsSinclusive.dat"}],"Table"],InterpolationOrder->1][mS]],0];, 
+, BrK0LToS[mS_]=If[mS<mK-mPi,Evaluate[Interpolation[Import[FileNameJoin[{NotebookDirectory[],"phenomenology/Scalar/branching ratios/K0LtoPiS.dat"}],"Table"],InterpolationOrder->1][mS]],0];, 
+, BrKplusToS[mS_]=If[mS<mK-mPi,Evaluate[Interpolation[Import[FileNameJoin[{NotebookDirectory[],"phenomenology/Scalar/branching ratios/KplustoPiS.dat"}],"Table"],InterpolationOrder->1][mS]],0];
+(*Branching ratios of the scalar production from B mesons and Higgses through quartic coupling (alpha)/(2v)SSHH at alpha = 1 GeV*), 
+, BrBplustoXsSS[mS_]=If[mS<(mB-mPi)/(2),Evaluate[Interpolation[Import[FileNameJoin[{NotebookDirectory[],"phenomenology/Scalar/branching ratios/BplustoXsSStotal.dat"}],"Table"],InterpolationOrder->1][mS]],0];, 
+, BrBstoSS[mS_]=If[mS<(mBs)/(2),Evaluate[Interpolation[Import[FileNameJoin[{NotebookDirectory[],"phenomenology/Scalar/branching ratios/BstoSS.dat"}],"Table"],InterpolationOrder->1][mS]],0];, 
+, BrhtoSS[mS_,alpha_]=2*10^-2*alpha^2Sqrt[1-4*(mS^2)/(125^2)];
+(*Value of alpha corresponding to Br(h->SS)=0.01*), 
+, alphavalBrhToSS[BrhToSS_]=alpha/.Solve[BrhtoSS[0,alpha]==BrhToSS,alpha][[2]];, 
+, alphaval001=alpha/.Solve[BrhtoSS[0,alpha]==0.01,alpha][[2]];, 
+, Print["Values of the Br ratios at \!\(\*SubscriptBox[\(m\), \(S\)]\) = 0 (alpha = 1 GeV, theta = 1):"], 
+, {{"Process","\!\(\*SuperscriptBox[\(K\), \(+\)]\)->Pi+S","\!\(\*SuperscriptBox[\(K\), \(0\)]\)->Pi+S","\!\(\*SuperscriptBox[\(B\), \(+\)]\)->\!\(\*SubscriptBox[\(X\), \(s\)]\)+S","\!\(\*SuperscriptBox[\(B\), \(+\)]\)->\!\(\*SubscriptBox[\(X\), \(s\)]\) + S + S","\!\(\*SubscriptBox[\(B\), \(s\)]\) -> S + S","h -> S + S"},{"Value",BrKplusToS[0],BrK0LToS[0], BrBplusToXsS[0],BrBplustoXsSS[0],BrBstoSS[0],BrhtoSS[0,1]}}//TableForm, 
+, dropdownDialog[list_,phrase_]:=DialogInput[{choice=""},Column[{TextCell[phrase],PopupMenu[Dynamic[choice],list],Button["OK",DialogReturn[choice]]}]], 
+, SelectedBrChoice=dropdownDialog[{"Exclusive","Inclusive"},"Select the description of the scalar's production by decays of B via mixing (see 1904.10447):"], 
+, BrBtoSX[mS_]=If[SelectedBrChoice=="Exclusive",BrBplusToXsS[mS],BrBplusToXsSinclusive[mS](*Max[BrBplusToXsSinclusive[(4.7)/(5.3)mS],BrBplusToXsS[mS]]*)];}
+
+----- cell 15  label= -----
+{SetDirectory[NotebookDirectory[]];
+(*Branching ratios of the scalar production from B and K mesons through the mixing theta at theta = 1*), 
+, BrBplusToXsS[mS_]=If[mS<mB-mPi,Evaluate[Interpolation[Import[FileNameJoin[{NotebookDirectory[],"phenomenology/Scalar/branching ratios/BtoXsStotal.dat"}],"Table"],InterpolationOrder->1][mS]],0];, 
+, BrBplusToXsSinclusive[mS_]=If[mS<mB-mPi,Evaluate[Interpolation[Import[FileNameJoin[{NotebookDirectory[],"phenomenology/Scalar/branching ratios/BtoXsSinclusive.dat"}],"Table"],InterpolationOrder->1][mS]],0];, 
+, BrK0LToS[mS_]=If[mS<mK-mPi,Evaluate[Interpolation[Import[FileNameJoin[{NotebookDirectory[],"phenomenology/Scalar/branching ratios/K0LtoPiS.dat"}],"Table"],InterpolationOrder->1][mS]],0];, 
+, BrKplusToS[mS_]=If[mS<mK-mPi,Evaluate[Interpolation[Import[FileNameJoin[{NotebookDirectory[],"phenomenology/Scalar/branching ratios/KplustoPiS.dat"}],"Table"],InterpolationOrder->1][mS]],0];
+(*Branching ratios of the scalar production from B mesons and Higgses through quartic coupling (alpha)/(2v)SSHH at alpha = 1 GeV*), 
+, BrBplustoXsSS[mS_]=If[mS<(mB-mPi)/(2),Evaluate[Interpolation[Import[FileNameJoin[{NotebookDirectory[],"phenomenology/Scalar/branching ratios/BplustoXsSStotal.dat"}],"Table"],InterpolationOrder->1][mS]],0];, 
+, BrBstoSS[mS_]=If[mS<(mBs)/(2),Evaluate[Interpolation[Import[FileNameJoin[{NotebookDirectory[],"phenomenology/Scalar/branching ratios/BstoSS.dat"}],"Table"],InterpolationOrder->1][mS]],0];, 
+, BrhtoSS[mS_,alpha_]=2*10^-2*alpha^2Sqrt[1-4*(mS^2)/(125^2)];
+(*Value of alpha corresponding to Br(h->SS)=0.01*), 
+, alphavalBrhToSS[BrhToSS_]=alpha/.Solve[BrhtoSS[0,alpha]==BrhToSS,alpha][[2]];, 
+, alphaval001=alpha/.Solve[BrhtoSS[0,alpha]==0.01,alpha][[2]];, 
+, Print["Values of the Br ratios at \!\(\*SubscriptBox[\(m\), \(S\)]\) = 0 (alpha = 1 GeV, theta = 1):"], 
+, {{"Process","\!\(\*SuperscriptBox[\(K\), \(+\)]\)->Pi+S","\!\(\*SuperscriptBox[\(K\), \(0\)]\)->Pi+S","\!\(\*SuperscriptBox[\(B\), \(+\)]\)->\!\(\*SubscriptBox[\(X\), \(s\)]\)+S","\!\(\*SuperscriptBox[\(B\), \(+\)]\)->\!\(\*SubscriptBox[\(X\), \(s\)]\) + S + S","\!\(\*SubscriptBox[\(B\), \(s\)]\) -> S + S","h -> S + S"},{"Value",BrKplusToS[0],BrK0LToS[0], BrBplusToXsS[0],BrBplustoXsSS[0],BrBstoSS[0],BrhtoSS[0,1]}}//TableForm, 
+, dropdownDialog[list_,phrase_]:=DialogInput[{choice=""},Column[{TextCell[phrase],PopupMenu[Dynamic[choice],list],Button["OK",DialogReturn[choice]]}]], 
+, SelectedBrChoice=dropdownDialog[{"Exclusive","Inclusive"},"Select the description of the scalar's production by decays of B via mixing (see 1904.10447):"], 
+, BrBtoSX[mS_]=If[SelectedBrChoice=="Exclusive",BrBplusToXsS[mS],BrBplusToXsSinclusive[mS](*Max[BrBplusToXsSinclusive[(4.7)/(5.3)mS],BrBplusToXsS[mS]]*)];}
+
+----- cell 16  label=SPS -----
+\[Sum]_Bf_b->BBr_B->X+S
+
+----- cell 17  label= -----
+\[Sum]_Bf_b->BBr_B->X+S
+
+----- cell 18  label=SPS -----
+{PbbbarToSthetaSPS[mS_,theta2_]=(fbtobplusSPS+fbtob0SPS)*BrBtoSX[mS]*theta2;, 
+, PssbarToSthetaSPS[mS_,theta2_]=(fstoKcharged*BrKplusToS[mS]+fstoK0L*BrK0LToS[mS])*theta2;, 
+, PssbarToSSPS[mS_,theta2_]=fstokplusSPS*BrKplusToS[mS]theta2;
+(*A factor of 2 - a pair of scalars*), 
+, PbbbarToSSXsSPS[mS_,alpha_] =2*alpha^2*(fbtobplusSPS+fbtob0SPS)*BrBplustoXsSS[mS];, 
+, PbbbarToSSSPS[mS_,alpha_] =2*alpha^2*fbtobsSPS*BrBstoSS[mS];}
+
+----- cell 19  label= -----
+{PbbbarToSthetaSPS[mS_,theta2_]=(fbtobplusSPS+fbtob0SPS)*BrBtoSX[mS]*theta2;, 
+, PssbarToSthetaSPS[mS_,theta2_]=(fstoKcharged*BrKplusToS[mS]+fstoK0L*BrK0LToS[mS])*theta2;, 
+, PssbarToSSPS[mS_,theta2_]=fstokplusSPS*BrKplusToS[mS]theta2;
+(*A factor of 2 - a pair of scalars*), 
+, PbbbarToSSXsSPS[mS_,alpha_] =2*alpha^2*(fbtobplusSPS+fbtob0SPS)*BrBplustoXsSS[mS];, 
+, PbbbarToSSSPS[mS_,alpha_] =2*alpha^2*fbtobsSPS*BrBstoSS[mS];}
+
+----- cell 20  label=LHC -----
+{PbbbarToSthetaLHC[mS_,theta2_]=(fbtobplusLHC+fbtob0LHC)*BrBtoSX[mS]*theta2;, 
+, PbbbarToSSXsLHC[mS_,alpha_] =2*alpha^2*(fbtobplusLHC+fbtob0LHC)*BrBplustoXsSS[mS];, 
+, PbbbarToSSLHC[mS_,alpha_] =2*alpha^2*fbtobsLHC*BrBstoSS[mS];, 
+, PhtoSLHC[mS_,alpha_]=BrhtoSS[mS,alpha];}
+
+----- cell 21  label= -----
+{PbbbarToSthetaLHC[mS_,theta2_]=(fbtobplusLHC+fbtob0LHC)*BrBtoSX[mS]*theta2;, 
+, PbbbarToSSXsLHC[mS_,alpha_] =2*alpha^2*(fbtobplusLHC+fbtob0LHC)*BrBplustoXsSS[mS];, 
+, PbbbarToSSLHC[mS_,alpha_] =2*alpha^2*fbtobsLHC*BrBstoSS[mS];, 
+, PhtoSLHC[mS_,alpha_]=BrhtoSS[mS,alpha];}
+
+----- cell 22  label=FCC-hh -----
+{PbbbarToSthetaFCChh[mS_,theta2_]=(fbtobplusLHC+fbtob0LHC)*BrBtoSX[mS]*theta2;, 
+, PbbbarToSSXsFCChh[mS_,alpha_] =2*alpha^2*(fbtobplusLHC+fbtob0LHC)*BrBplustoXsSS[mS];, 
+, PbbbarToSSFCChh[mS_,alpha_] =2*alpha^2*fbtobsLHC*BrBstoSS[mS];, 
+, PhtoSFCChh[mS_,alpha_]=BrhtoSS[mS,alpha];}
+
+----- cell 23  label= -----
+{PbbbarToSthetaFCChh[mS_,theta2_]=(fbtobplusLHC+fbtob0LHC)*BrBtoSX[mS]*theta2;, 
+, PbbbarToSSXsFCChh[mS_,alpha_] =2*alpha^2*(fbtobplusLHC+fbtob0LHC)*BrBplustoXsSS[mS];, 
+, PbbbarToSSFCChh[mS_,alpha_] =2*alpha^2*fbtobsLHC*BrBstoSS[mS];, 
+, PhtoSFCChh[mS_,alpha_]=BrhtoSS[mS,alpha];}
+
+----- cell 24  label=FermilabBD -----
+{PbbbarToSthetaFermilabBD[mS_,theta2_]=PbbbarToSthetaSPS[mS,theta2];, 
+, PssbarToSthetaFermilabBD[mS_,theta2_]=PssbarToSthetaSPS[mS,theta2];, 
+, PbbbarToSSXsFermilabBD[mS_,alpha_] =2*alpha^2*(fbtobplusFermilabBD+fbtob0FermilabBD)*BrBplustoXsSS[mS];, 
+, PbbbarToSSFermilabBD[mS_,alpha_] =2*alpha^2*fbtobsFermilabBD*BrBstoSS[mS];}
+
+----- cell 25  label= -----
+{PbbbarToSthetaFermilabBD[mS_,theta2_]=PbbbarToSthetaSPS[mS,theta2];, 
+, PssbarToSthetaFermilabBD[mS_,theta2_]=PssbarToSthetaSPS[mS,theta2];, 
+, PbbbarToSSXsFermilabBD[mS_,alpha_] =2*alpha^2*(fbtobplusFermilabBD+fbtob0FermilabBD)*BrBplustoXsSS[mS];, 
+, PbbbarToSSFermilabBD[mS_,alpha_] =2*alpha^2*fbtobsFermilabBD*BrBstoSS[mS];}
+
+----- cell 26  label=Common function -----
+
+{\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"Bmixing","SPS"],\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"Bmixing","FermilabBD"],\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"Bmixing","LHC"],\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"Bmixing","FCC-hh"]}={PbbbarToSthetaSPS[mS,theta2],PbbbarToSthetaFermilabBD[mS,theta2],PbbbarToSthetaLHC[mS,theta2],PbbbarToSthetaFCChh[mS,theta2]};
+{\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"Bquartic","SPS"],\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"Bquartic","FermilabBD"],\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"Bquartic","LHC"],\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"Bquartic","FCC-hh"]}={PbbbarToSSXsSPS[mS,alphavalBrhToSS[BrhToSS]],PbbbarToSSXsFermilabBD[mS,alphavalBrhToSS[BrhToSS]],PbbbarToSSXsLHC[mS,alphavalBrhToSS[BrhToSS]],PbbbarToSSXsFCChh[mS,alphavalBrhToSS[BrhToSS]]};
+{\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"BsQuartic","SPS"],\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"BsQuartic","FermilabBD"],\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"BsQuartic","LHC"],\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"BsQuartic","FCC-hh"]}={PbbbarToSSSPS[mS,alphavalBrhToSS[BrhToSS]],PbbbarToSSFermilabBD[mS,alphavalBrhToSS[BrhToSS]],PbbbarToSSLHC[mS,alphavalBrhToSS[BrhToSS]],PbbbarToSSFCChh[mS,alphavalBrhToSS[BrhToSS]]};
+{\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"hQuartic","SPS"],\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"hQuartic","FermilabBD"],\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"hQuartic","LHC"],\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"hQuartic","FCC-hh"]}={0,0,BrhToSS,BrhToSS};
+
+----- cell 27  label= -----
+
+{\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"Bmixing","SPS"],\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"Bmixing","FermilabBD"],\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"Bmixing","LHC"],\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"Bmixing","FCC-hh"]}={PbbbarToSthetaSPS[mS,theta2],PbbbarToSthetaFermilabBD[mS,theta2],PbbbarToSthetaLHC[mS,theta2],PbbbarToSthetaFCChh[mS,theta2]};
+{\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"Bquartic","SPS"],\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"Bquartic","FermilabBD"],\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"Bquartic","LHC"],\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"Bquartic","FCC-hh"]}={PbbbarToSSXsSPS[mS,alphavalBrhToSS[BrhToSS]],PbbbarToSSXsFermilabBD[mS,alphavalBrhToSS[BrhToSS]],PbbbarToSSXsLHC[mS,alphavalBrhToSS[BrhToSS]],PbbbarToSSXsFCChh[mS,alphavalBrhToSS[BrhToSS]]};
+{\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"BsQuartic","SPS"],\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"BsQuartic","FermilabBD"],\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"BsQuartic","LHC"],\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"BsQuartic","FCC-hh"]}={PbbbarToSSSPS[mS,alphavalBrhToSS[BrhToSS]],PbbbarToSSFermilabBD[mS,alphavalBrhToSS[BrhToSS]],PbbbarToSSLHC[mS,alphavalBrhToSS[BrhToSS]],PbbbarToSSFCChh[mS,alphavalBrhToSS[BrhToSS]]};
+{\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"hQuartic","SPS"],\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"hQuartic","FermilabBD"],\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"hQuartic","LHC"],\[Chi]MotherToS[mS_,theta2_,BrhToSS_,"hQuartic","FCC-hh"]}={0,0,BrhToSS,BrhToSS};
+
+----- cell 28  label=Scalar lifetime and branching ratios -----
+(*Decay length of the scalar - following Winkler*)
+ctauScalar[mS_,theta2_]=(1)/(theta2)Interpolation[Select[Import[FileNameJoin[{NotebookDirectory[],"phenomenology/Scalar/decay widths/ctaus.dat"}],"Table"],#[[1]]!=2.&],InterpolationOrder->1][mS];
+ldecayScalar[mS_,theta2_,ES_]=ctauScalar[mS,theta2]*(Sqrt[ES^2-mS^2])/(mS);
+
+----- cell 29  label=Lifetimes -----
+(*Decay length of the scalar - following Winkler*)
+ctauScalar[mS_,theta2_]=(1)/(theta2)Interpolation[Select[Import[FileNameJoin[{NotebookDirectory[],"phenomenology/Scalar/decay widths/ctaus.dat"}],"Table"],#[[1]]!=2.&],InterpolationOrder->1][mS];
+ldecayScalar[mS_,theta2_,ES_]=ctauScalar[mS,theta2]*(Sqrt[ES^2-mS^2])/(mS);
+
+----- cell 30  label= -----
+(*Decay length of the scalar - following Winkler*)
+ctauScalar[mS_,theta2_]=(1)/(theta2)Interpolation[Select[Import[FileNameJoin[{NotebookDirectory[],"phenomenology/Scalar/decay widths/ctaus.dat"}],"Table"],#[[1]]!=2.&],InterpolationOrder->1][mS];
+ldecayScalar[mS_,theta2_,ES_]=ctauScalar[mS,theta2]*(Sqrt[ES^2-mS^2])/(mS);
+
+----- cell 31  label=3D to 3D -----
+{nd=3;, 
+, cf3=Module[{xgvars=Unique["xg"]&/@slist@@Range@nd,igvars=Unique["ig"]&/@slist@@Range@nd,tgvars=Unique["tg"]&/@slist@@Range@nd,ivars=Unique["i"]&/@slist@@Range@nd,svars=Unique["s"]&/@slist@@Range@nd,tvars=Unique["t"]&/@slist@@Range@nd,jvars=Unique["j"]&/@slist@@Range@nd},Inactivate[Compile[{seq@{xgvars,_Real,1},{y,_Real,nd}},Module[{seq@igvars,seq@tgvars,seq@ivars,seq@svars,seq@tvars},seq[igvars=Floor[xgvars]-UnitStep[xgvars-indexed@Dimensions@y]];
+seq[tgvars=xgvars-igvars];
+Table[seq[tvars=Compile`GetElement[tgvars,jvars]];
+seq[ivars=Compile`GetElement[igvars,jvars]];
+seq[svars=1.-tvars];
+eval@Total[Times@@#[[All,1]] Compile`GetElement[y,Sequence@@#[[All,2]]]&/@Tuples@Transpose[{{svars,ivars},{tvars,ivars+1}},{2,3,1}]],seq@{jvars,Length@igvars}]],CompilationTarget->"C",RuntimeAttributes->{Listable},Parallelization->True,RuntimeOptions->"Speed"],Except[seq|eval|indexed]]/.seq[expr_]:>RuleCondition@(Sequence@@Table[Inactivate[expr,Except[slist|indexed]]/.{l_slist:>l[[i]],indexed[l_]:>Inactive[Compile`GetElement][l,i]},{i,nd}])/.eval@expr_:>RuleCondition[Activate[expr/.slist->List]]]//Activate;}
+
+----- cell 32  label=3D to 3D -----
+{nd=3;, 
+, cf3=Module[{xgvars=Unique["xg"]&/@slist@@Range@nd,igvars=Unique["ig"]&/@slist@@Range@nd,tgvars=Unique["tg"]&/@slist@@Range@nd,ivars=Unique["i"]&/@slist@@Range@nd,svars=Unique["s"]&/@slist@@Range@nd,tvars=Unique["t"]&/@slist@@Range@nd,jvars=Unique["j"]&/@slist@@Range@nd},Inactivate[Compile[{seq@{xgvars,_Real,1},{y,_Real,nd}},Module[{seq@igvars,seq@tgvars,seq@ivars,seq@svars,seq@tvars},seq[igvars=Floor[xgvars]-UnitStep[xgvars-indexed@Dimensions@y]];
+seq[tgvars=xgvars-igvars];
+Table[seq[tvars=Compile`GetElement[tgvars,jvars]];
+seq[ivars=Compile`GetElement[igvars,jvars]];
+seq[svars=1.-tvars];
+eval@Total[Times@@#[[All,1]] Compile`GetElement[y,Sequence@@#[[All,2]]]&/@Tuples@Transpose[{{svars,ivars},{tvars,ivars+1}},{2,3,1}]],seq@{jvars,Length@igvars}]],CompilationTarget->"C",RuntimeAttributes->{Listable},Parallelization->True,RuntimeOptions->"Speed"],Except[seq|eval|indexed]]/.seq[expr_]:>RuleCondition@(Sequence@@Table[Inactivate[expr,Except[slist|indexed]]/.{l_slist:>l[[i]],indexed[l_]:>Inactive[Compile`GetElement][l,i]},{i,nd}])/.eval@expr_:>RuleCondition[Activate[expr/.slist->List]]]//Activate;}
+
+----- cell 33  label= -----
+{nd=3;, 
+, cf3=Module[{xgvars=Unique["xg"]&/@slist@@Range@nd,igvars=Unique["ig"]&/@slist@@Range@nd,tgvars=Unique["tg"]&/@slist@@Range@nd,ivars=Unique["i"]&/@slist@@Range@nd,svars=Unique["s"]&/@slist@@Range@nd,tvars=Unique["t"]&/@slist@@Range@nd,jvars=Unique["j"]&/@slist@@Range@nd},Inactivate[Compile[{seq@{xgvars,_Real,1},{y,_Real,nd}},Module[{seq@igvars,seq@tgvars,seq@ivars,seq@svars,seq@tvars},seq[igvars=Floor[xgvars]-UnitStep[xgvars-indexed@Dimensions@y]];
+seq[tgvars=xgvars-igvars];
+Table[seq[tvars=Compile`GetElement[tgvars,jvars]];
+seq[ivars=Compile`GetElement[igvars,jvars]];
+seq[svars=1.-tvars];
+eval@Total[Times@@#[[All,1]] Compile`GetElement[y,Sequence@@#[[All,2]]]&/@Tuples@Transpose[{{svars,ivars},{tvars,ivars+1}},{2,3,1}]],seq@{jvars,Length@igvars}]],CompilationTarget->"C",RuntimeAttributes->{Listable},Parallelization->True,RuntimeOptions->"Speed"],Except[seq|eval|indexed]]/.seq[expr_]:>RuleCondition@(Sequence@@Table[Inactivate[expr,Except[slist|indexed]]/.{l_slist:>l[[i]],indexed[l_]:>Inactive[Compile`GetElement][l,i]},{i,nd}])/.eval@expr_:>RuleCondition[Activate[expr/.slist->List]]]//Activate;}
+
+----- cell 34  label=4D to 4D -----
+{nd=4;, 
+, cf4=Module[{xgvars=Unique["xg"]&/@slist@@Range@nd,igvars=Unique["ig"]&/@slist@@Range@nd,tgvars=Unique["tg"]&/@slist@@Range@nd,ivars=Unique["i"]&/@slist@@Range@nd,svars=Unique["s"]&/@slist@@Range@nd,tvars=Unique["t"]&/@slist@@Range@nd,jvars=Unique["j"]&/@slist@@Range@nd},Inactivate[Compile[{seq@{xgvars,_Real,1},{y,_Real,nd}},Module[{seq@igvars,seq@tgvars,seq@ivars,seq@svars,seq@tvars},seq[igvars=Floor[xgvars]-UnitStep[xgvars-indexed@Dimensions@y]];
+seq[tgvars=xgvars-igvars];
+Table[seq[tvars=Compile`GetElement[tgvars,jvars]];
+seq[ivars=Compile`GetElement[igvars,jvars]];
+seq[svars=1.-tvars];
+eval@Total[Times@@#[[All,1]] Compile`GetElement[y,Sequence@@#[[All,2]]]&/@Tuples@Transpose[{{svars,ivars},{tvars,ivars+1}},{2,3,1}]],seq@{jvars,Length@igvars}]],CompilationTarget->"C",RuntimeAttributes->{Listable},Parallelization->True,RuntimeOptions->"Speed"],Except[seq|eval|indexed]]/.seq[expr_]:>RuleCondition@(Sequence@@Table[Inactivate[expr,Except[slist|indexed]]/.{l_slist:>l[[i]],indexed[l_]:>Inactive[Compile`GetElement][l,i]},{i,nd}])/.eval@expr_:>RuleCondition[Activate[expr/.slist->List]]]//Activate;}
+
+----- cell 35  label= -----
+{nd=4;, 
+, cf4=Module[{xgvars=Unique["xg"]&/@slist@@Range@nd,igvars=Unique["ig"]&/@slist@@Range@nd,tgvars=Unique["tg"]&/@slist@@Range@nd,ivars=Unique["i"]&/@slist@@Range@nd,svars=Unique["s"]&/@slist@@Range@nd,tvars=Unique["t"]&/@slist@@Range@nd,jvars=Unique["j"]&/@slist@@Range@nd},Inactivate[Compile[{seq@{xgvars,_Real,1},{y,_Real,nd}},Module[{seq@igvars,seq@tgvars,seq@ivars,seq@svars,seq@tvars},seq[igvars=Floor[xgvars]-UnitStep[xgvars-indexed@Dimensions@y]];
+seq[tgvars=xgvars-igvars];
+Table[seq[tvars=Compile`GetElement[tgvars,jvars]];
+seq[ivars=Compile`GetElement[igvars,jvars]];
+seq[svars=1.-tvars];
+eval@Total[Times@@#[[All,1]] Compile`GetElement[y,Sequence@@#[[All,2]]]&/@Tuples@Transpose[{{svars,ivars},{tvars,ivars+1}},{2,3,1}]],seq@{jvars,Length@igvars}]],CompilationTarget->"C",RuntimeAttributes->{Listable},Parallelization->True,RuntimeOptions->"Speed"],Except[seq|eval|indexed]]/.seq[expr_]:>RuleCondition@(Sequence@@Table[Inactivate[expr,Except[slist|indexed]]/.{l_slist:>l[[i]],indexed[l_]:>Inactive[Compile`GetElement][l,i]},{i,nd}])/.eval@expr_:>RuleCondition[Activate[expr/.slist->List]]]//Activate;}
+
+----- cell 36  label=Specifying the experiment -----
+{SetDirectory[NotebookDirectory[]];
+(*Parent directory*), 
+, NotebookDirectory[]//ParentDirectory;, 
+, AcceptanceDirectory=FileNameJoin[{NotebookDirectory[],"Acceptances"}];, 
+, ExperimentDirectoriesList=Select[FileNames["*",AcceptanceDirectory,1],DirectoryQ];
+(*List of available experiments (for which the geometry has been implemented)*), 
+, ExperimentsListTemp=Table[FileNameTake[ExperimentDirectoriesList[[i]],-1],{i,1,Length[ExperimentDirectoriesList],1}];, 
+, ExperimentsListTemp2=Join[Partition[ExperimentsListTemp,1],Table[{TrueQ@FileExistsQ@FileNameJoin[{NotebookDirectory[],"Acceptances",ExperimentsListTemp[[i]],ToString@StringForm["Acceptance_``_for_Scalar.m",ExperimentsListTemp[[i]]]}]},{i,1,Length[ExperimentsListTemp]}],2];, 
+, Print["List of available experiments:"], 
+, ExperimentsList=Select[ExperimentsListTemp2,#[[2]]==True&][[All,1]]//Sort, 
+, If[Length[ExperimentsList]==0,Print["No experiment is available, generate first the acceptance for the given experiment using module 1"]], 
+, Print["Selected experiments:"], 
+, dropdownDialog[list_,phrase_]:=DialogInput[{choice=""},Column[{TextCell[phrase],PopupMenu[Dynamic[choice],list],Button["OK",DialogReturn[choice]]}]], 
+, selectionDialog[list_,phrase_]:=DialogInput[{choice={}},Column[{Row[{"Select the experiments for which the number of events will be computed:"}],Pane[TogglerBar[Dynamic[choice],list,Appearance->"Vertical"->{Automatic,5}],ImageSize->{Automatic,Automatic},Scrollbars->{False,True}],Button["OK",DialogReturn[choice]]}]], 
+, SelectedExperimentList=If[Length[ExperimentsList]!=0,selectionDialog[ExperimentsList,"Select the experiments:"]], 
+, icounter=1;}
+
+----- cell 37  label= -----
+{SetDirectory[NotebookDirectory[]];
+(*Parent directory*), 
+, NotebookDirectory[]//ParentDirectory;, 
+, AcceptanceDirectory=FileNameJoin[{NotebookDirectory[],"Acceptances"}];, 
+, ExperimentDirectoriesList=Select[FileNames["*",AcceptanceDirectory,1],DirectoryQ];
+(*List of available experiments (for which the geometry has been implemented)*), 
+, ExperimentsListTemp=Table[FileNameTake[ExperimentDirectoriesList[[i]],-1],{i,1,Length[ExperimentDirectoriesList],1}];, 
+, ExperimentsListTemp2=Join[Partition[ExperimentsListTemp,1],Table[{TrueQ@FileExistsQ@FileNameJoin[{NotebookDirectory[],"Acceptances",ExperimentsListTemp[[i]],ToString@StringForm["Acceptance_``_for_Scalar.m",ExperimentsListTemp[[i]]]}]},{i,1,Length[ExperimentsListTemp]}],2];, 
+, Print["List of available experiments:"], 
+, ExperimentsList=Select[ExperimentsListTemp2,#[[2]]==True&][[All,1]]//Sort, 
+, If[Length[ExperimentsList]==0,Print["No experiment is available, generate first the acceptance for the given experiment using module 1"]], 
+, Print["Selected experiments:"], 
+, dropdownDialog[list_,phrase_]:=DialogInput[{choice=""},Column[{TextCell[phrase],PopupMenu[Dynamic[choice],list],Button["OK",DialogReturn[choice]]}]], 
+, selectionDialog[list_,phrase_]:=DialogInput[{choice={}},Column[{Row[{"Select the experiments for which the number of events will be computed:"}],Pane[TogglerBar[Dynamic[choice],list,Appearance->"Vertical"->{Automatic,5}],ImageSize->{Automatic,Automatic},Scrollbars->{False,True}],Button["OK",DialogReturn[choice]]}]], 
+, SelectedExperimentList=If[Length[ExperimentsList]!=0,selectionDialog[ExperimentsList,"Select the experiments:"]], 
+, icounter=1;}
+
+----- cell 38  label=Running block for next sections -----
+{BlockEvaluation[tag_]:=Block[{},
+nb=EvaluationNotebook[];
+NotebookFind[nb,tag,All,CellTags];
+SelectionEvaluate[nb]
+], 
+, If[tagselected=="Number-of-events",
+Do[
+BlockEvaluation["Number-of-events-computation"];
+,{icounter,1,Length[SelectedExperimentList],1}],
+If[tagselected=="Acceptance",
+Do[
+BlockEvaluation["Acceptance-computation"];
+,{icounter,1,Length[SelectedExperimentList],1}]
+]
+]}
+
+----- cell 39  label= -----
+{BlockEvaluation[tag_]:=Block[{},
+nb=EvaluationNotebook[];
+NotebookFind[nb,tag,All,CellTags];
+SelectionEvaluate[nb]
+], 
+, If[tagselected=="Number-of-events",
+Do[
+BlockEvaluation["Number-of-events-computation"];
+,{icounter,1,Length[SelectedExperimentList],1}],
+If[tagselected=="Acceptance",
+Do[
+BlockEvaluation["Acceptance-computation"];
+,{icounter,1,Length[SelectedExperimentList],1}]
+]
+]}
+
+----- cell 40  label=Number of events -----
+{SelectedExperiment=SelectedExperimentList[[icounter++]];, 
+, dataAcceptances=Import[FileNameJoin[{FileNameJoin[{NotebookDirectory[],"Acceptances",SelectedExperiment,ToString@StringForm["Acceptance_``_for_Scalar.m",SelectedExperiment]}]}],"MX"];//AbsoluteTiming, 
+, FacilityGivenExperiment=dataAcceptances[[1]];, 
+, ECALoption=dataAcceptances[[2]];, 
+, FullAcceptanceData0=dataAcceptances[[3]];, 
+, BrVisTemp[mFIP_]=dataAcceptances[[5]];, 
+, mlistBr=Join[Table[m,{m,0.02,5.1,0.001}],Table[m,{m,5.12,13.12,0.01}],Table[m,{m,13.2,62.5,0.1}]];, 
+, BrVis[mFIP_]=Interpolation[Table[{mFIP,BrVisTemp[mFIP]},{mFIP,mlistBr}],InterpolationOrder->1][mFIP];//AbsoluteTiming, 
+, LogLogPlot[BrVis[mFIP],{mFIP,0.02,62.5},Frame->True,ImageSize->Large,FrameStyle->Directive[Black, 22],PlotStyle->{{Thickness[0.003],Blue},{Thickness[0.003],Darker@Red},{Thickness[0.003],Darker@Darker@Green},{Thickness[0.003],Black}},GridLines->Automatic,PlotRange->{MinMax[mlistBr],{0.01,1.2}},Frame->True,ImageSize->Large,FrameLabel->{"m [GeV]","\!\(\*SubscriptBox[\(Br\), \(vis\)]\)"},PlotLabel-> Style[Row[{"For ",SelectedExperiment}], 20, Black]], 
+, {thetaminExpAll,thetamaxExpAll}=MinMax[FullAcceptanceData0[[All,2]]];, 
+, {thetaminExp,thetamaxExp}=MinMax[Select[FullAcceptanceData0,#[[6]]!=0&][[All,2]]];, 
+, {zminExp,zmaxExp}=MinMax[FullAcceptanceData0[[All,4]]];, 
+, AzimuthalAcceptanceData=DeleteDuplicatesBy[FullAcceptanceData0,{#[[2]],#[[4]]}&][[All,{2,4,5}]];//AbsoluteTiming, 
+, thetaGrid=DeleteDuplicates[AzimuthalAcceptanceData[[All,1]]];, 
+, zminmaxthetadata=Table[MinMax[Select[AzimuthalAcceptanceData,#[[1]]==thetaGrid[[i]]&&#[[3]]!=0&][[All,2]]],{i,1,Length[thetaGrid],1}];, 
+, zmintheta[thetaS_]=Interpolation[Join[Partition[thetaGrid,1],zminmaxthetadata[[All,{1}]],2],InterpolationOrder->1][thetaS];, 
+, zmaxtheta[thetaS_]=Interpolation[Join[Partition[thetaGrid,1],zminmaxthetadata[[All,{2}]],2],InterpolationOrder->1][thetaS];, 
+, AzimuthalAcceptanceScalar[thetaS_,zS_]=Interpolation[AzimuthalAcceptanceData,InterpolationOrder->1][thetaS,zS];, 
+, DecAccDataLogarithmizedComp=Hold@Compile[{{FullAcceptanceData,_Real,2}},{Log10[#[[1]]],#[[2]],Log10[#[[3]]],#[[4]],If[#[[6]]!=0,Log10[#[[6]]],-90.]}&/@FullAcceptanceData]//ReleaseHold;, 
+, DecayAcceptanceScalar[mS_,thetaS_,ES_,zS_]=BrVis[mS]*10^(Interpolation[DecAccDataLogarithmizedComp[FullAcceptanceData0],InterpolationOrder->1][Log10[mS],thetaS,Log10[ES],zS]);//AbsoluteTiming
+(*Interpolation for the full acceptance*), 
+, acccomp=Hold@Compile[{{data,_Real,2}},{Log10[#[[1]]],Log10[#[[2]]],Log10[#[[3]]],Log10[#[[4]]],If[#[[5]]*#[[6]]==0,-90,Log10[#[[5]]*#[[6]]]]}&/@SortBy[data,{#[[1]],#[[2]],#[[3]],#[[4]]}&]]//ReleaseHold;
+(*Interpolation for the full acceptance*), 
+, FullAcceptanceData=acccomp[FullAcceptanceData0];//AbsoluteTiming, 
+, FullAcceptanceScalar[mS_,thetaS_,ES_,zS_]=10^(Interpolation[FullAcceptanceData,InterpolationOrder->1][Log10[mS],Log10[thetaS],Log10[ES],Log10[zS]]);//AbsoluteTiming, 
+, dataCrossSections=dataAcceptances[[4]]//Transpose;, 
+, NpotGivenExperiment=Select[dataCrossSections,#[[1]]=="Npot"&][[1]][[2]]//N;
+(*infoDialog[Row[{"The number of proton collisions is ", NpotGivenExperiment,". You may change it at the stage of computing the sensitivities"}]]*)
+(*Total number of b b_(_) and h*), 
+, \[Chi]Prod["Bmixing"]=\[Chi]Prod["Bquartic"]=\[Chi]Prod["BsQuartic"]=Select[dataCrossSections,#[[1]]=="Pb"&][[1]][[2]];, 
+, \[Chi]Prod["hQuartic"]=Select[dataCrossSections,#[[1]]=="Ph"&][[1]][[2]];, 
+, {{"\!\(\*SubscriptBox[\(\[Chi]\), \(b\\ or\\ \*OverscriptBox[\(b\), \(_\)]\)]\)","\!\(\*SubscriptBox[\(\[Chi]\), \(h\)]\)"},{\[Chi]Prod["Bmixing"],\[Chi]Prod["hQuartic"]}}//TableForm, 
+, Row[{"Search for scalars at ", SelectedExperiment, " located at ",FacilityGivenExperiment,". \!\(\*SubscriptBox[\(N\), \(collisions\)]\) = ",NpotGivenExperiment}], 
+, {{"Quantity","\!\(\*SubscriptBox[\(theta\), \(min\)]\), rad","\!\(\*SubscriptBox[\(theta\), \(max\)]\), rad","\!\(\*SubscriptBox[\(theta\), \(min\)]\)(\!\(\*SubscriptBox[\(epsilon\), \(dec\)]\)), rad","\!\(\*SubscriptBox[\(theta\), \(max\)]\)(\!\(\*SubscriptBox[\(epsilon\), \(dec\)]\)), rad","\!\(\*SubscriptBox[\(z\), \(min\)]\), m","\!\(\*SubscriptBox[\(z\), \(max\)]\), m"},{"Description","Min angle covered by experiment","Max angle covered by experiment","Min angle where \!\(\*SubscriptBox[\(epsilon\), \(decay\)]\)!=0","Max angle where \!\(\*SubscriptBox[\(epsilon\), \(decay\)]\)!=0","Min long. displacement of the decay volume","Max long. displacement of the decay volume"},{"Value",thetaminExpAll,thetamaxExpAll,thetaminExp,thetamaxExp,zminExp,zmaxExp}}//TableForm}
+
+----- cell 41  label=Cross-sections, acceptances -----
+{SelectedExperiment=SelectedExperimentList[[icounter++]];, 
+, dataAcceptances=Import[FileNameJoin[{FileNameJoin[{NotebookDirectory[],"Acceptances",SelectedExperiment,ToString@StringForm["Acceptance_``_for_Scalar.m",SelectedExperiment]}]}],"MX"];//AbsoluteTiming, 
+, FacilityGivenExperiment=dataAcceptances[[1]];, 
+, ECALoption=dataAcceptances[[2]];, 
+, FullAcceptanceData0=dataAcceptances[[3]];, 
+, BrVisTemp[mFIP_]=dataAcceptances[[5]];, 
+, mlistBr=Join[Table[m,{m,0.02,5.1,0.001}],Table[m,{m,5.12,13.12,0.01}],Table[m,{m,13.2,62.5,0.1}]];, 
+, BrVis[mFIP_]=Interpolation[Table[{mFIP,BrVisTemp[mFIP]},{mFIP,mlistBr}],InterpolationOrder->1][mFIP];//AbsoluteTiming, 
+, LogLogPlot[BrVis[mFIP],{mFIP,0.02,62.5},Frame->True,ImageSize->Large,FrameStyle->Directive[Black, 22],PlotStyle->{{Thickness[0.003],Blue},{Thickness[0.003],Darker@Red},{Thickness[0.003],Darker@Darker@Green},{Thickness[0.003],Black}},GridLines->Automatic,PlotRange->{MinMax[mlistBr],{0.01,1.2}},Frame->True,ImageSize->Large,FrameLabel->{"m [GeV]","\!\(\*SubscriptBox[\(Br\), \(vis\)]\)"},PlotLabel-> Style[Row[{"For ",SelectedExperiment}], 20, Black]], 
+, {thetaminExpAll,thetamaxExpAll}=MinMax[FullAcceptanceData0[[All,2]]];, 
+, {thetaminExp,thetamaxExp}=MinMax[Select[FullAcceptanceData0,#[[6]]!=0&][[All,2]]];, 
+, {zminExp,zmaxExp}=MinMax[FullAcceptanceData0[[All,4]]];, 
+, AzimuthalAcceptanceData=DeleteDuplicatesBy[FullAcceptanceData0,{#[[2]],#[[4]]}&][[All,{2,4,5}]];//AbsoluteTiming, 
+, thetaGrid=DeleteDuplicates[AzimuthalAcceptanceData[[All,1]]];, 
+, zminmaxthetadata=Table[MinMax[Select[AzimuthalAcceptanceData,#[[1]]==thetaGrid[[i]]&&#[[3]]!=0&][[All,2]]],{i,1,Length[thetaGrid],1}];, 
+, zmintheta[thetaS_]=Interpolation[Join[Partition[thetaGrid,1],zminmaxthetadata[[All,{1}]],2],InterpolationOrder->1][thetaS];, 
+, zmaxtheta[thetaS_]=Interpolation[Join[Partition[thetaGrid,1],zminmaxthetadata[[All,{2}]],2],InterpolationOrder->1][thetaS];, 
+, AzimuthalAcceptanceScalar[thetaS_,zS_]=Interpolation[AzimuthalAcceptanceData,InterpolationOrder->1][thetaS,zS];, 
+, DecAccDataLogarithmizedComp=Hold@Compile[{{FullAcceptanceData,_Real,2}},{Log10[#[[1]]],#[[2]],Log10[#[[3]]],#[[4]],If[#[[6]]!=0,Log10[#[[6]]],-90.]}&/@FullAcceptanceData]//ReleaseHold;, 
+, DecayAcceptanceScalar[mS_,thetaS_,ES_,zS_]=BrVis[mS]*10^(Interpolation[DecAccDataLogarithmizedComp[FullAcceptanceData0],InterpolationOrder->1][Log10[mS],thetaS,Log10[ES],zS]);//AbsoluteTiming
+(*Interpolation for the full acceptance*), 
+, acccomp=Hold@Compile[{{data,_Real,2}},{Log10[#[[1]]],Log10[#[[2]]],Log10[#[[3]]],Log10[#[[4]]],If[#[[5]]*#[[6]]==0,-90,Log10[#[[5]]*#[[6]]]]}&/@SortBy[data,{#[[1]],#[[2]],#[[3]],#[[4]]}&]]//ReleaseHold;
+(*Interpolation for the full acceptance*), 
+, FullAcceptanceData=acccomp[FullAcceptanceData0];//AbsoluteTiming, 
+, FullAcceptanceScalar[mS_,thetaS_,ES_,zS_]=10^(Interpolation[FullAcceptanceData,InterpolationOrder->1][Log10[mS],Log10[thetaS],Log10[ES],Log10[zS]]);//AbsoluteTiming, 
+, dataCrossSections=dataAcceptances[[4]]//Transpose;, 
+, NpotGivenExperiment=Select[dataCrossSections,#[[1]]=="Npot"&][[1]][[2]]//N;
+(*infoDialog[Row[{"The number of proton collisions is ", NpotGivenExperiment,". You may change it at the stage of computing the sensitivities"}]]*)
+(*Total number of b b_(_) and h*), 
+, \[Chi]Prod["Bmixing"]=\[Chi]Prod["Bquartic"]=\[Chi]Prod["BsQuartic"]=Select[dataCrossSections,#[[1]]=="Pb"&][[1]][[2]];, 
+, \[Chi]Prod["hQuartic"]=Select[dataCrossSections,#[[1]]=="Ph"&][[1]][[2]];, 
+, {{"\!\(\*SubscriptBox[\(\[Chi]\), \(b\\ or\\ \*OverscriptBox[\(b\), \(_\)]\)]\)","\!\(\*SubscriptBox[\(\[Chi]\), \(h\)]\)"},{\[Chi]Prod["Bmixing"],\[Chi]Prod["hQuartic"]}}//TableForm, 
+, Row[{"Search for scalars at ", SelectedExperiment, " located at ",FacilityGivenExperiment,". \!\(\*SubscriptBox[\(N\), \(collisions\)]\) = ",NpotGivenExperiment}], 
+, {{"Quantity","\!\(\*SubscriptBox[\(theta\), \(min\)]\), rad","\!\(\*SubscriptBox[\(theta\), \(max\)]\), rad","\!\(\*SubscriptBox[\(theta\), \(min\)]\)(\!\(\*SubscriptBox[\(epsilon\), \(dec\)]\)), rad","\!\(\*SubscriptBox[\(theta\), \(max\)]\)(\!\(\*SubscriptBox[\(epsilon\), \(dec\)]\)), rad","\!\(\*SubscriptBox[\(z\), \(min\)]\), m","\!\(\*SubscriptBox[\(z\), \(max\)]\), m"},{"Description","Min angle covered by experiment","Max angle covered by experiment","Min angle where \!\(\*SubscriptBox[\(epsilon\), \(decay\)]\)!=0","Max angle where \!\(\*SubscriptBox[\(epsilon\), \(decay\)]\)!=0","Min long. displacement of the decay volume","Max long. displacement of the decay volume"},{"Value",thetaminExpAll,thetamaxExpAll,thetaminExp,thetamaxExp,zminExp,zmaxExp}}//TableForm}
+
+----- cell 42  label=Cross-sections, acceptances -----
+{SelectedExperiment=SelectedExperimentList[[icounter++]];, 
+, dataAcceptances=Import[FileNameJoin[{FileNameJoin[{NotebookDirectory[],"Acceptances",SelectedExperiment,ToString@StringForm["Acceptance_``_for_Scalar.m",SelectedExperiment]}]}],"MX"];//AbsoluteTiming, 
+, FacilityGivenExperiment=dataAcceptances[[1]];, 
+, ECALoption=dataAcceptances[[2]];, 
+, FullAcceptanceData0=dataAcceptances[[3]];, 
+, BrVisTemp[mFIP_]=dataAcceptances[[5]];, 
+, mlistBr=Join[Table[m,{m,0.02,5.1,0.001}],Table[m,{m,5.12,13.12,0.01}],Table[m,{m,13.2,62.5,0.1}]];, 
+, BrVis[mFIP_]=Interpolation[Table[{mFIP,BrVisTemp[mFIP]},{mFIP,mlistBr}],InterpolationOrder->1][mFIP];//AbsoluteTiming, 
+, LogLogPlot[BrVis[mFIP],{mFIP,0.02,62.5},Frame->True,ImageSize->Large,FrameStyle->Directive[Black, 22],PlotStyle->{{Thickness[0.003],Blue},{Thickness[0.003],Darker@Red},{Thickness[0.003],Darker@Darker@Green},{Thickness[0.003],Black}},GridLines->Automatic,PlotRange->{MinMax[mlistBr],{0.01,1.2}},Frame->True,ImageSize->Large,FrameLabel->{"m [GeV]","\!\(\*SubscriptBox[\(Br\), \(vis\)]\)"},PlotLabel-> Style[Row[{"For ",SelectedExperiment}], 20, Black]], 
+, {thetaminExpAll,thetamaxExpAll}=MinMax[FullAcceptanceData0[[All,2]]];, 
+, {thetaminExp,thetamaxExp}=MinMax[Select[FullAcceptanceData0,#[[6]]!=0&][[All,2]]];, 
+, {zminExp,zmaxExp}=MinMax[FullAcceptanceData0[[All,4]]];, 
+, AzimuthalAcceptanceData=DeleteDuplicatesBy[FullAcceptanceData0,{#[[2]],#[[4]]}&][[All,{2,4,5}]];//AbsoluteTiming, 
+, thetaGrid=DeleteDuplicates[AzimuthalAcceptanceData[[All,1]]];, 
+, zminmaxthetadata=Table[MinMax[Select[AzimuthalAcceptanceData,#[[1]]==thetaGrid[[i]]&&#[[3]]!=0&][[All,2]]],{i,1,Length[thetaGrid],1}];, 
+, zmintheta[thetaS_]=Interpolation[Join[Partition[thetaGrid,1],zminmaxthetadata[[All,{1}]],2],InterpolationOrder->1][thetaS];, 
+, zmaxtheta[thetaS_]=Interpolation[Join[Partition[thetaGrid,1],zminmaxthetadata[[All,{2}]],2],InterpolationOrder->1][thetaS];, 
+, AzimuthalAcceptanceScalar[thetaS_,zS_]=Interpolation[AzimuthalAcceptanceData,InterpolationOrder->1][thetaS,zS];, 
+, DecAccDataLogarithmizedComp=Hold@Compile[{{FullAcceptanceData,_Real,2}},{Log10[#[[1]]],#[[2]],Log10[#[[3]]],#[[4]],If[#[[6]]!=0,Log10[#[[6]]],-90.]}&/@FullAcceptanceData]//ReleaseHold;, 
+, DecayAcceptanceScalar[mS_,thetaS_,ES_,zS_]=BrVis[mS]*10^(Interpolation[DecAccDataLogarithmizedComp[FullAcceptanceData0],InterpolationOrder->1][Log10[mS],thetaS,Log10[ES],zS]);//AbsoluteTiming
+(*Interpolation for the full acceptance*), 
+, acccomp=Hold@Compile[{{data,_Real,2}},{Log10[#[[1]]],Log10[#[[2]]],Log10[#[[3]]],Log10[#[[4]]],If[#[[5]]*#[[6]]==0,-90,Log10[#[[5]]*#[[6]]]]}&/@SortBy[data,{#[[1]],#[[2]],#[[3]],#[[4]]}&]]//ReleaseHold;
+(*Interpolation for the full acceptance*), 
+, FullAcceptanceData=acccomp[FullAcceptanceData0];//AbsoluteTiming, 
+, FullAcceptanceScalar[mS_,thetaS_,ES_,zS_]=10^(Interpolation[FullAcceptanceData,InterpolationOrder->1][Log10[mS],Log10[thetaS],Log10[ES],Log10[zS]]);//AbsoluteTiming, 
+, dataCrossSections=dataAcceptances[[4]]//Transpose;, 
+, NpotGivenExperiment=Select[dataCrossSections,#[[1]]=="Npot"&][[1]][[2]]//N;
+(*infoDialog[Row[{"The number of proton collisions is ", NpotGivenExperiment,". You may change it at the stage of computing the sensitivities"}]]*)
+(*Total number of b b_(_) and h*), 
+, \[Chi]Prod["Bmixing"]=\[Chi]Prod["Bquartic"]=\[Chi]Prod["BsQuartic"]=Select[dataCrossSections,#[[1]]=="Pb"&][[1]][[2]];, 
+, \[Chi]Prod["hQuartic"]=Select[dataCrossSections,#[[1]]=="Ph"&][[1]][[2]];, 
+, {{"\!\(\*SubscriptBox[\(\[Chi]\), \(b\\ or\\ \*OverscriptBox[\(b\), \(_\)]\)]\)","\!\(\*SubscriptBox[\(\[Chi]\), \(h\)]\)"},{\[Chi]Prod["Bmixing"],\[Chi]Prod["hQuartic"]}}//TableForm, 
+, Row[{"Search for scalars at ", SelectedExperiment, " located at ",FacilityGivenExperiment,". \!\(\*SubscriptBox[\(N\), \(collisions\)]\) = ",NpotGivenExperiment}], 
+, {{"Quantity","\!\(\*SubscriptBox[\(theta\), \(min\)]\), rad","\!\(\*SubscriptBox[\(theta\), \(max\)]\), rad","\!\(\*SubscriptBox[\(theta\), \(min\)]\)(\!\(\*SubscriptBox[\(epsilon\), \(dec\)]\)), rad","\!\(\*SubscriptBox[\(theta\), \(max\)]\)(\!\(\*SubscriptBox[\(epsilon\), \(dec\)]\)), rad","\!\(\*SubscriptBox[\(z\), \(min\)]\), m","\!\(\*SubscriptBox[\(z\), \(max\)]\), m"},{"Description","Min angle covered by experiment","Max angle covered by experiment","Min angle where \!\(\*SubscriptBox[\(epsilon\), \(decay\)]\)!=0","Max angle where \!\(\*SubscriptBox[\(epsilon\), \(decay\)]\)!=0","Min long. displacement of the decay volume","Max long. displacement of the decay volume"},{"Value",thetaminExpAll,thetamaxExpAll,thetaminExp,thetamaxExp,zminExp,zmaxExp}}//TableForm}
+
+----- cell 43  label= -----
+{SelectedExperiment=SelectedExperimentList[[icounter++]];, 
+, dataAcceptances=Import[FileNameJoin[{FileNameJoin[{NotebookDirectory[],"Acceptances",SelectedExperiment,ToString@StringForm["Acceptance_``_for_Scalar.m",SelectedExperiment]}]}],"MX"];//AbsoluteTiming, 
+, FacilityGivenExperiment=dataAcceptances[[1]];, 
+, ECALoption=dataAcceptances[[2]];, 
+, FullAcceptanceData0=dataAcceptances[[3]];, 
+, BrVisTemp[mFIP_]=dataAcceptances[[5]];, 
+, mlistBr=Join[Table[m,{m,0.02,5.1,0.001}],Table[m,{m,5.12,13.12,0.01}],Table[m,{m,13.2,62.5,0.1}]];, 
+, BrVis[mFIP_]=Interpolation[Table[{mFIP,BrVisTemp[mFIP]},{mFIP,mlistBr}],InterpolationOrder->1][mFIP];//AbsoluteTiming, 
+, LogLogPlot[BrVis[mFIP],{mFIP,0.02,62.5},Frame->True,ImageSize->Large,FrameStyle->Directive[Black, 22],PlotStyle->{{Thickness[0.003],Blue},{Thickness[0.003],Darker@Red},{Thickness[0.003],Darker@Darker@Green},{Thickness[0.003],Black}},GridLines->Automatic,PlotRange->{MinMax[mlistBr],{0.01,1.2}},Frame->True,ImageSize->Large,FrameLabel->{"m [GeV]","\!\(\*SubscriptBox[\(Br\), \(vis\)]\)"},PlotLabel-> Style[Row[{"For ",SelectedExperiment}], 20, Black]], 
+, {thetaminExpAll,thetamaxExpAll}=MinMax[FullAcceptanceData0[[All,2]]];, 
+, {thetaminExp,thetamaxExp}=MinMax[Select[FullAcceptanceData0,#[[6]]!=0&][[All,2]]];, 
+, {zminExp,zmaxExp}=MinMax[FullAcceptanceData0[[All,4]]];, 
+, AzimuthalAcceptanceData=DeleteDuplicatesBy[FullAcceptanceData0,{#[[2]],#[[4]]}&][[All,{2,4,5}]];//AbsoluteTiming, 
+, thetaGrid=DeleteDuplicates[AzimuthalAcceptanceData[[All,1]]];, 
+, zminmaxthetadata=Table[MinMax[Select[AzimuthalAcceptanceData,#[[1]]==thetaGrid[[i]]&&#[[3]]!=0&][[All,2]]],{i,1,Length[thetaGrid],1}];, 
+, zmintheta[thetaS_]=Interpolation[Join[Partition[thetaGrid,1],zminmaxthetadata[[All,{1}]],2],InterpolationOrder->1][thetaS];, 
+, zmaxtheta[thetaS_]=Interpolation[Join[Partition[thetaGrid,1],zminmaxthetadata[[All,{2}]],2],InterpolationOrder->1][thetaS];, 
+, AzimuthalAcceptanceScalar[thetaS_,zS_]=Interpolation[AzimuthalAcceptanceData,InterpolationOrder->1][thetaS,zS];, 
+, DecAccDataLogarithmizedComp=Hold@Compile[{{FullAcceptanceData,_Real,2}},{Log10[#[[1]]],#[[2]],Log10[#[[3]]],#[[4]],If[#[[6]]!=0,Log10[#[[6]]],-90.]}&/@FullAcceptanceData]//ReleaseHold;, 
+, DecayAcceptanceScalar[mS_,thetaS_,ES_,zS_]=BrVis[mS]*10^(Interpolation[DecAccDataLogarithmizedComp[FullAcceptanceData0],InterpolationOrder->1][Log10[mS],thetaS,Log10[ES],zS]);//AbsoluteTiming
+(*Interpolation for the full acceptance*), 
+, acccomp=Hold@Compile[{{data,_Real,2}},{Log10[#[[1]]],Log10[#[[2]]],Log10[#[[3]]],Log10[#[[4]]],If[#[[5]]*#[[6]]==0,-90,Log10[#[[5]]*#[[6]]]]}&/@SortBy[data,{#[[1]],#[[2]],#[[3]],#[[4]]}&]]//ReleaseHold;
+(*Interpolation for the full acceptance*), 
+, FullAcceptanceData=acccomp[FullAcceptanceData0];//AbsoluteTiming, 
+, FullAcceptanceScalar[mS_,thetaS_,ES_,zS_]=10^(Interpolation[FullAcceptanceData,InterpolationOrder->1][Log10[mS],Log10[thetaS],Log10[ES],Log10[zS]]);//AbsoluteTiming, 
+, dataCrossSections=dataAcceptances[[4]]//Transpose;, 
+, NpotGivenExperiment=Select[dataCrossSections,#[[1]]=="Npot"&][[1]][[2]]//N;
+(*infoDialog[Row[{"The number of proton collisions is ", NpotGivenExperiment,". You may change it at the stage of computing the sensitivities"}]]*)
+(*Total number of b b_(_) and h*), 
+, \[Chi]Prod["Bmixing"]=\[Chi]Prod["Bquartic"]=\[Chi]Prod["BsQuartic"]=Select[dataCrossSections,#[[1]]=="Pb"&][[1]][[2]];, 
+, \[Chi]Prod["hQuartic"]=Select[dataCrossSections,#[[1]]=="Ph"&][[1]][[2]];, 
+, {{"\!\(\*SubscriptBox[\(\[Chi]\), \(b\\ or\\ \*OverscriptBox[\(b\), \(_\)]\)]\)","\!\(\*SubscriptBox[\(\[Chi]\), \(h\)]\)"},{\[Chi]Prod["Bmixing"],\[Chi]Prod["hQuartic"]}}//TableForm, 
+, Row[{"Search for scalars at ", SelectedExperiment, " located at ",FacilityGivenExperiment,". \!\(\*SubscriptBox[\(N\), \(collisions\)]\) = ",NpotGivenExperiment}], 
+, {{"Quantity","\!\(\*SubscriptBox[\(theta\), \(min\)]\), rad","\!\(\*SubscriptBox[\(theta\), \(max\)]\), rad","\!\(\*SubscriptBox[\(theta\), \(min\)]\)(\!\(\*SubscriptBox[\(epsilon\), \(dec\)]\)), rad","\!\(\*SubscriptBox[\(theta\), \(max\)]\)(\!\(\*SubscriptBox[\(epsilon\), \(dec\)]\)), rad","\!\(\*SubscriptBox[\(z\), \(min\)]\), m","\!\(\*SubscriptBox[\(z\), \(max\)]\), m"},{"Description","Min angle covered by experiment","Max angle covered by experiment","Min angle where \!\(\*SubscriptBox[\(epsilon\), \(decay\)]\)!=0","Max angle where \!\(\*SubscriptBox[\(epsilon\), \(decay\)]\)!=0","Min long. displacement of the decay volume","Max long. displacement of the decay volume"},{"Value",thetaminExpAll,thetamaxExpAll,thetaminExp,thetamaxExp,zminExp,zmaxExp}}//TableForm}
+
+----- cell 44  label=FIP angle-energy distributions for the given experiment -----
+{ScalarDistributionFileNames=Join[{ToString@StringForm["DoubleDistr-Scalars-From-B-mixing-``.dat",Sequence@@{FacilityGivenExperiment}],ToString@StringForm["DoubleDistr-Scalars-From-B-quartic-``.dat",Sequence@@{FacilityGivenExperiment}],ToString@StringForm["DoubleDistr-Scalars-From-Bs-quartic-``.dat",Sequence@@{FacilityGivenExperiment}]},If[FacilityGivenExperiment=="LHC"||FacilityGivenExperiment=="FCC-hh",{ToString@StringForm["DoubleDistr-Scalars-From-h-quartic-``.dat",Sequence@@{FacilityGivenExperiment}]},{}]];, 
+, Do[If[!TrueQ@FileExistsQ@FileNameJoin[{NotebookDirectory[],"spectra/New physics particles spectra/Scalars/",ScalarDistributionFileNames[[j]]}],Print[ScalarDistributionFileNames[[j]]," does not exist. Generate it using module 2!"]
+],{j,1,Length[ScalarDistributionFileNames],1}], 
+, Print["Production channels list:"]
+(*Production from Higgses only*), 
+, ProductionListNoBrem=Join[{"Bmixing","Bquartic","BsQuartic"},If[FacilityGivenExperiment=="LHC"||FacilityGivenExperiment=="FCC-hh",{"hQuartic"},{}]];, 
+, ProductionList=Join[ProductionListNoBrem,If[FacilityGivenExperiment=="FermilabBD"&&thetaminExp<thetamaxBremFacility[FacilityGivenExperiment],{"Brem"},{}]]}
+
+----- cell 45  label=Checking whether all distributions are present -----
+{ScalarDistributionFileNames=Join[{ToString@StringForm["DoubleDistr-Scalars-From-B-mixing-``.dat",Sequence@@{FacilityGivenExperiment}],ToString@StringForm["DoubleDistr-Scalars-From-B-quartic-``.dat",Sequence@@{FacilityGivenExperiment}],ToString@StringForm["DoubleDistr-Scalars-From-Bs-quartic-``.dat",Sequence@@{FacilityGivenExperiment}]},If[FacilityGivenExperiment=="LHC"||FacilityGivenExperiment=="FCC-hh",{ToString@StringForm["DoubleDistr-Scalars-From-h-quartic-``.dat",Sequence@@{FacilityGivenExperiment}]},{}]];, 
+, Do[If[!TrueQ@FileExistsQ@FileNameJoin[{NotebookDirectory[],"spectra/New physics particles spectra/Scalars/",ScalarDistributionFileNames[[j]]}],Print[ScalarDistributionFileNames[[j]]," does not exist. Generate it using module 2!"]
+],{j,1,Length[ScalarDistributionFileNames],1}], 
+, Print["Production channels list:"]
+(*Production from Higgses only*), 
+, ProductionListNoBrem=Join[{"Bmixing","Bquartic","BsQuartic"},If[FacilityGivenExperiment=="LHC"||FacilityGivenExperiment=="FCC-hh",{"hQuartic"},{}]];, 
+, ProductionList=Join[ProductionListNoBrem,If[FacilityGivenExperiment=="FermilabBD"&&thetaminExp<thetamaxBremFacility[FacilityGivenExperiment],{"Brem"},{}]]}
+
+----- cell 46  label= -----
+{ScalarDistributionFileNames=Join[{ToString@StringForm["DoubleDistr-Scalars-From-B-mixing-``.dat",Sequence@@{FacilityGivenExperiment}],ToString@StringForm["DoubleDistr-Scalars-From-B-quartic-``.dat",Sequence@@{FacilityGivenExperiment}],ToString@StringForm["DoubleDistr-Scalars-From-Bs-quartic-``.dat",Sequence@@{FacilityGivenExperiment}]},If[FacilityGivenExperiment=="LHC"||FacilityGivenExperiment=="FCC-hh",{ToString@StringForm["DoubleDistr-Scalars-From-h-quartic-``.dat",Sequence@@{FacilityGivenExperiment}]},{}]];, 
+, Do[If[!TrueQ@FileExistsQ@FileNameJoin[{NotebookDirectory[],"spectra/New physics particles spectra/Scalars/",ScalarDistributionFileNames[[j]]}],Print[ScalarDistributionFileNames[[j]]," does not exist. Generate it using module 2!"]
+],{j,1,Length[ScalarDistributionFileNames],1}], 
+, Print["Production channels list:"]
+(*Production from Higgses only*), 
+, ProductionListNoBrem=Join[{"Bmixing","Bquartic","BsQuartic"},If[FacilityGivenExperiment=="LHC"||FacilityGivenExperiment=="FCC-hh",{"hQuartic"},{}]];, 
+, ProductionList=Join[ProductionListNoBrem,If[FacilityGivenExperiment=="FermilabBD"&&thetaminExp<thetamaxBremFacility[FacilityGivenExperiment],{"Brem"},{}]]}
+
+----- cell 47  label=Importing and interpolating -----
+{dataDistr[filename_]:=Import[FileNameJoin[{NotebookDirectory[],"spectra/New physics particles spectra/Scalars/",filename}],"Table"], 
+, Do[(*Data with the tabulated distribution*)
+DataDistrScalar[ProductionList[[i]]]=dataDistr[ScalarDistributionFileNames[[i]]];
+(*Its interpolation*)
+DoubleDistrScalar[mS_,thetaS_,ES_,ProductionList[[i]]]=10^(Interpolation[{Log10[#[[1]]],Log10[#[[2]]],Log10[#[[3]]],Log10[#[[4]]+10^-90]}&/@DataDistrScalar[ProductionList[[i]]],InterpolationOrder->1][Log10[mS],Log10[thetaS],Log10[ES]]);
+(*Min/mass mass of the FIP from the data*)
+mlistScalar[ProductionList[[i]]]=DeleteDuplicates[DataDistrScalar[ProductionList[[i]]][[All,1]]];
+{mSmin[ProductionList[[i]]],mSmax[ProductionList[[i]]]}=MinMax[mlistScalar[ProductionList[[i]]]];
+(*Probability to produce the scalar per PoT*)
+\[Chi]Xtimes\[Chi]XtoScalar[mS_,theta2_,BrhToSS_,ProductionList[[i]]]=\[Chi]Prod[ProductionList[[i]]]*\[Chi]MotherToS[mS,theta2,BrhToSS,ProductionList[[i]],FacilityGivenExperiment],{i,1,Length[ProductionListNoBrem],1}
+]
+(*For brem*), 
+, If[FacilityGivenExperiment=="FermilabBD"&&thetaminExp<thetamaxBremFacility[FacilityGivenExperiment],
+DataDistrScalar["Brem"]=TableBremDistr[thetaminExp,thetamaxExp,FacilityGivenExperiment];
+DoubleDistrScalar[mS_,thetaS_,ES_,"Brem"]=10^(Interpolation[{Log10[#[[1]]],Log10[#[[2]]],Log10[#[[3]]],Log10[#[[4]]+10^-90]}&/@DataDistrScalar["Brem"],InterpolationOrder->1][Log10[mS],Log10[thetaS],Log10[ES]]);
+mlistScalar["Brem"]=DeleteDuplicates[DataDistrScalar["Brem"][[All,1]]];
+{mSmin["Brem"],mSmax["Brem"]}=MinMax[mlistScalar["Brem"]];
+\[Chi]Xtimes\[Chi]XtoScalar[mS_,theta2_,BrhToSS_,"Brem"]=PbremFacility[mS,theta2,FacilityGivenExperiment];
+], 
+, If[(DirectoryQ[FileNameJoin[{NotebookDirectory[],"Auxiliary data/Scalars",SelectedExperiment}]]//ToString)=="False",CreateDirectory[FileNameJoin[{NotebookDirectory[],"Auxiliary data/Scalars",SelectedExperiment}]]];, 
+, Export[FileNameJoin[{NotebookDirectory[],"Auxiliary data/Scalars",SelectedExperiment,"Double-Distr-Averaged-Scalars.m"}],{Sum[If[mSmin[prod]<mS<mSmax[prod],Evaluate[\[Chi]Xtimes\[Chi]XtoScalar[mS,theta2,BrhToSS,prod]],0],{prod,ProductionList}],(1)/(Sum[If[mSmin[prod]<mS<mSmax[prod],Evaluate[\[Chi]Xtimes\[Chi]XtoScalar[mS,theta2,BrhToSS,prod]],0],{prod,ProductionList}])Sum[If[mSmin[prod]<mS<mSmax[prod],Evaluate[\[Chi]Xtimes\[Chi]XtoScalar[mS,theta2,BrhToSS,prod]*DoubleDistrScalar[mS,thetaS,ES,prod]],0],{prod,ProductionList}]},"MX"]}
+
+----- cell 48  label=Importing distributions -----
+{dataDistr[filename_]:=Import[FileNameJoin[{NotebookDirectory[],"spectra/New physics particles spectra/Scalars/",filename}],"Table"], 
+, Do[(*Data with the tabulated distribution*)
+DataDistrScalar[ProductionList[[i]]]=dataDistr[ScalarDistributionFileNames[[i]]];
+(*Its interpolation*)
+DoubleDistrScalar[mS_,thetaS_,ES_,ProductionList[[i]]]=10^(Interpolation[{Log10[#[[1]]],Log10[#[[2]]],Log10[#[[3]]],Log10[#[[4]]+10^-90]}&/@DataDistrScalar[ProductionList[[i]]],InterpolationOrder->1][Log10[mS],Log10[thetaS],Log10[ES]]);
+(*Min/mass mass of the FIP from the data*)
+mlistScalar[ProductionList[[i]]]=DeleteDuplicates[DataDistrScalar[ProductionList[[i]]][[All,1]]];
+{mSmin[ProductionList[[i]]],mSmax[ProductionList[[i]]]}=MinMax[mlistScalar[ProductionList[[i]]]];
+(*Probability to produce the scalar per PoT*)
+\[Chi]Xtimes\[Chi]XtoScalar[mS_,theta2_,BrhToSS_,ProductionList[[i]]]=\[Chi]Prod[ProductionList[[i]]]*\[Chi]MotherToS[mS,theta2,BrhToSS,ProductionList[[i]],FacilityGivenExperiment],{i,1,Length[ProductionListNoBrem],1}
+]
+(*For brem*), 
+, If[FacilityGivenExperiment=="FermilabBD"&&thetaminExp<thetamaxBremFacility[FacilityGivenExperiment],
+DataDistrScalar["Brem"]=TableBremDistr[thetaminExp,thetamaxExp,FacilityGivenExperiment];
+DoubleDistrScalar[mS_,thetaS_,ES_,"Brem"]=10^(Interpolation[{Log10[#[[1]]],Log10[#[[2]]],Log10[#[[3]]],Log10[#[[4]]+10^-90]}&/@DataDistrScalar["Brem"],InterpolationOrder->1][Log10[mS],Log10[thetaS],Log10[ES]]);
+mlistScalar["Brem"]=DeleteDuplicates[DataDistrScalar["Brem"][[All,1]]];
+{mSmin["Brem"],mSmax["Brem"]}=MinMax[mlistScalar["Brem"]];
+\[Chi]Xtimes\[Chi]XtoScalar[mS_,theta2_,BrhToSS_,"Brem"]=PbremFacility[mS,theta2,FacilityGivenExperiment];
+], 
+, If[(DirectoryQ[FileNameJoin[{NotebookDirectory[],"Auxiliary data/Scalars",SelectedExperiment}]]//ToString)=="False",CreateDirectory[FileNameJoin[{NotebookDirectory[],"Auxiliary data/Scalars",SelectedExperiment}]]];, 
+, Export[FileNameJoin[{NotebookDirectory[],"Auxiliary data/Scalars",SelectedExperiment,"Double-Distr-Averaged-Scalars.m"}],{Sum[If[mSmin[prod]<mS<mSmax[prod],Evaluate[\[Chi]Xtimes\[Chi]XtoScalar[mS,theta2,BrhToSS,prod]],0],{prod,ProductionList}],(1)/(Sum[If[mSmin[prod]<mS<mSmax[prod],Evaluate[\[Chi]Xtimes\[Chi]XtoScalar[mS,theta2,BrhToSS,prod]],0],{prod,ProductionList}])Sum[If[mSmin[prod]<mS<mSmax[prod],Evaluate[\[Chi]Xtimes\[Chi]XtoScalar[mS,theta2,BrhToSS,prod]*DoubleDistrScalar[mS,thetaS,ES,prod]],0],{prod,ProductionList}]},"MX"]}
+
+----- cell 49  label= -----
+{dataDistr[filename_]:=Import[FileNameJoin[{NotebookDirectory[],"spectra/New physics particles spectra/Scalars/",filename}],"Table"], 
+, Do[(*Data with the tabulated distribution*)
+DataDistrScalar[ProductionList[[i]]]=dataDistr[ScalarDistributionFileNames[[i]]];
+(*Its interpolation*)
+DoubleDistrScalar[mS_,thetaS_,ES_,ProductionList[[i]]]=10^(Interpolation[{Log10[#[[1]]],Log10[#[[2]]],Log10[#[[3]]],Log10[#[[4]]+10^-90]}&/@DataDistrScalar[ProductionList[[i]]],InterpolationOrder->1][Log10[mS],Log10[thetaS],Log10[ES]]);
+(*Min/mass mass of the FIP from the data*)
+mlistScalar[ProductionList[[i]]]=DeleteDuplicates[DataDistrScalar[ProductionList[[i]]][[All,1]]];
+{mSmin[ProductionList[[i]]],mSmax[ProductionList[[i]]]}=MinMax[mlistScalar[ProductionList[[i]]]];
+(*Probability to produce the scalar per PoT*)
+\[Chi]Xtimes\[Chi]XtoScalar[mS_,theta2_,BrhToSS_,ProductionList[[i]]]=\[Chi]Prod[ProductionList[[i]]]*\[Chi]MotherToS[mS,theta2,BrhToSS,ProductionList[[i]],FacilityGivenExperiment],{i,1,Length[ProductionListNoBrem],1}
+]
+(*For brem*), 
+, If[FacilityGivenExperiment=="FermilabBD"&&thetaminExp<thetamaxBremFacility[FacilityGivenExperiment],
+DataDistrScalar["Brem"]=TableBremDistr[thetaminExp,thetamaxExp,FacilityGivenExperiment];
+DoubleDistrScalar[mS_,thetaS_,ES_,"Brem"]=10^(Interpolation[{Log10[#[[1]]],Log10[#[[2]]],Log10[#[[3]]],Log10[#[[4]]+10^-90]}&/@DataDistrScalar["Brem"],InterpolationOrder->1][Log10[mS],Log10[thetaS],Log10[ES]]);
+mlistScalar["Brem"]=DeleteDuplicates[DataDistrScalar["Brem"][[All,1]]];
+{mSmin["Brem"],mSmax["Brem"]}=MinMax[mlistScalar["Brem"]];
+\[Chi]Xtimes\[Chi]XtoScalar[mS_,theta2_,BrhToSS_,"Brem"]=PbremFacility[mS,theta2,FacilityGivenExperiment];
+], 
+, If[(DirectoryQ[FileNameJoin[{NotebookDirectory[],"Auxiliary data/Scalars",SelectedExperiment}]]//ToString)=="False",CreateDirectory[FileNameJoin[{NotebookDirectory[],"Auxiliary data/Scalars",SelectedExperiment}]]];, 
+, Export[FileNameJoin[{NotebookDirectory[],"Auxiliary data/Scalars",SelectedExperiment,"Double-Distr-Averaged-Scalars.m"}],{Sum[If[mSmin[prod]<mS<mSmax[prod],Evaluate[\[Chi]Xtimes\[Chi]XtoScalar[mS,theta2,BrhToSS,prod]],0],{prod,ProductionList}],(1)/(Sum[If[mSmin[prod]<mS<mSmax[prod],Evaluate[\[Chi]Xtimes\[Chi]XtoScalar[mS,theta2,BrhToSS,prod]],0],{prod,ProductionList}])Sum[If[mSmin[prod]<mS<mSmax[prod],Evaluate[\[Chi]Xtimes\[Chi]XtoScalar[mS,theta2,BrhToSS,prod]*DoubleDistrScalar[mS,thetaS,ES,prod]],0],{prod,ProductionList}]},"MX"]}
+
+----- cell 50  label=Common definition -----
+EfromXmax[mass_,data_,LogMin_]:=Module[{distr},
+datt=Select[data,#[[1]]==mass&];
+EmaxVal=datt[[All,3]]//Max;
+thetalist=Table[x,{x,thetaminExp,thetamaxExp,((thetamaxExp-thetaminExp))/(5)}];
+distr[thetafip_,Efip_]=Abs[Evaluate[Interpolation[{#[[2]],#[[3]],#[[4]]+10^-90}&/@datt,InterpolationOrder->1][thetafip,Efip]]];
+DoubleDistrIntList[i_]:=Interpolation[ParallelTable[{Efip,Quiet[NIntegrate[distr[thetafip,Efip],{thetafip,thetalist[[i]],thetalist[[i+1]]},Method->"AdaptiveMonteCarlo"]]},{Efip,Table[10^x,{x,Log10[1.1*mass],Log10[EmaxVal],(Log10[EmaxVal]-Log10[1.1*mass])/(50.)}]}],InterpolationOrder->1][Efip];
+thetafipdistrlist[Efip_]=Table[{(thetalist[[i]]+thetalist[[i+1]])/(2),DoubleDistrIntList[i]},{i,1,Length[thetalist]-1,1}];
+thetaEmaxList=Table[{thetafipdistrlist[Efip][[i]][[1]],SortBy[Table[{Efip,thetafipdistrlist[Efip][[i]][[2]]},{Efip,mass,EmaxVal,1}],-#[[2]]&][[1]][[1]]},{i,1,Length[thetafipdistrlist[Efip]],1}];
+thetaEmaxListInt[thetafip_]=Interpolation[thetaEmaxList,InterpolationOrder->1][thetafip];
+NormVals=Table[NIntegrate[thetafipdistrlist[Efip][[i]][[2]]+10^-90.,{Efip,mass,EmaxVal},Method->"InterpolationPointsSubdivision"],{i,1,Length[thetafipdistrlist[Efip]],1}];
+cdf[es_,i_]:=1-(1)/(NormVals[[i]])NIntegrate[thetafipdistrlist[Efip][[i]][[2]],{Efip,mass,es},Method->"InterpolationPointsSubdivision"];
+cdftab[Efip_]=Table[{thetafipdistrlist[Efip][[i]][[1]],Interpolation[ParallelTable[{10^es,Quiet[cdf[10^es,i]]},{es,Log10[mass],Log10[EmaxVal],(Log10[EmaxVal]-Log10[mass])/(50)}],InterpolationOrder->1][Efip]},{i,1,Length[thetafipdistrlist[Efip]],1}];
+logmin[thetafip_]=LogMin;
+Estart[thetafip_]=Min[2*thetaEmaxListInt[thetafip],0.9*EmaxVal];
+Emaxv[i_]:=If[NormVals[[i]]<10^-15,mass,10^(Efip/.FindRoot[Log10[cdftab[10^Efip][[i]][[2]]]==logmin[thetaEmaxList[[i]][[1]]],{Efip,Log10[Estart[thetaEmaxList[[i]][[1]]]],Log10[thetaEmaxList[[i]][[2]]],Log10[EmaxVal]}])];
+tabtemp=Table[{thetaEmaxList[[i]][[1]],Emaxv[i]},{i,1,Length[thetaEmaxList],1}];
+tab=Join[{{thetaminExp,tabtemp[[1]][[2]]}},Drop[Drop[tabtemp,1],-1],{{thetamaxExp,tabtemp[[-1]][[2]]}}];
+10^(Interpolation[{Log10[#[[1]]],Log10[#[[2]]]}&/@tab,InterpolationOrder->1][Log10[thetafip]])
+]
+
+----- cell 51  label=Common definition -----
+EfromXmax[mass_,data_,LogMin_]:=Module[{distr},
+datt=Select[data,#[[1]]==mass&];
+EmaxVal=datt[[All,3]]//Max;
+thetalist=Table[x,{x,thetaminExp,thetamaxExp,((thetamaxExp-thetaminExp))/(5)}];
+distr[thetafip_,Efip_]=Abs[Evaluate[Interpolation[{#[[2]],#[[3]],#[[4]]+10^-90}&/@datt,InterpolationOrder->1][thetafip,Efip]]];
+DoubleDistrIntList[i_]:=Interpolation[ParallelTable[{Efip,Quiet[NIntegrate[distr[thetafip,Efip],{thetafip,thetalist[[i]],thetalist[[i+1]]},Method->"AdaptiveMonteCarlo"]]},{Efip,Table[10^x,{x,Log10[1.1*mass],Log10[EmaxVal],(Log10[EmaxVal]-Log10[1.1*mass])/(50.)}]}],InterpolationOrder->1][Efip];
+thetafipdistrlist[Efip_]=Table[{(thetalist[[i]]+thetalist[[i+1]])/(2),DoubleDistrIntList[i]},{i,1,Length[thetalist]-1,1}];
+thetaEmaxList=Table[{thetafipdistrlist[Efip][[i]][[1]],SortBy[Table[{Efip,thetafipdistrlist[Efip][[i]][[2]]},{Efip,mass,EmaxVal,1}],-#[[2]]&][[1]][[1]]},{i,1,Length[thetafipdistrlist[Efip]],1}];
+thetaEmaxListInt[thetafip_]=Interpolation[thetaEmaxList,InterpolationOrder->1][thetafip];
+NormVals=Table[NIntegrate[thetafipdistrlist[Efip][[i]][[2]]+10^-90.,{Efip,mass,EmaxVal},Method->"InterpolationPointsSubdivision"],{i,1,Length[thetafipdistrlist[Efip]],1}];
+cdf[es_,i_]:=1-(1)/(NormVals[[i]])NIntegrate[thetafipdistrlist[Efip][[i]][[2]],{Efip,mass,es},Method->"InterpolationPointsSubdivision"];
+cdftab[Efip_]=Table[{thetafipdistrlist[Efip][[i]][[1]],Interpolation[ParallelTable[{10^es,Quiet[cdf[10^es,i]]},{es,Log10[mass],Log10[EmaxVal],(Log10[EmaxVal]-Log10[mass])/(50)}],InterpolationOrder->1][Efip]},{i,1,Length[thetafipdistrlist[Efip]],1}];
+logmin[thetafip_]=LogMin;
+Estart[thetafip_]=Min[2*thetaEmaxListInt[thetafip],0.9*EmaxVal];
+Emaxv[i_]:=If[NormVals[[i]]<10^-15,mass,10^(Efip/.FindRoot[Log10[cdftab[10^Efip][[i]][[2]]]==logmin[thetaEmaxList[[i]][[1]]],{Efip,Log10[Estart[thetaEmaxList[[i]][[1]]]],Log10[thetaEmaxList[[i]][[2]]],Log10[EmaxVal]}])];
+tabtemp=Table[{thetaEmaxList[[i]][[1]],Emaxv[i]},{i,1,Length[thetaEmaxList],1}];
+tab=Join[{{thetaminExp,tabtemp[[1]][[2]]}},Drop[Drop[tabtemp,1],-1],{{thetamaxExp,tabtemp[[-1]][[2]]}}];
+10^(Interpolation[{Log10[#[[1]]],Log10[#[[2]]]}&/@tab,InterpolationOrder->1][Log10[thetafip]])
+]
+
+----- cell 52  label= -----
+EfromXmax[mass_,data_,LogMin_]:=Module[{distr},
+datt=Select[data,#[[1]]==mass&];
+EmaxVal=datt[[All,3]]//Max;
+thetalist=Table[x,{x,thetaminExp,thetamaxExp,((thetamaxExp-thetaminExp))/(5)}];
+distr[thetafip_,Efip_]=Abs[Evaluate[Interpolation[{#[[2]],#[[3]],#[[4]]+10^-90}&/@datt,InterpolationOrder->1][thetafip,Efip]]];
+DoubleDistrIntList[i_]:=Interpolation[ParallelTable[{Efip,Quiet[NIntegrate[distr[thetafip,Efip],{thetafip,thetalist[[i]],thetalist[[i+1]]},Method->"AdaptiveMonteCarlo"]]},{Efip,Table[10^x,{x,Log10[1.1*mass],Log10[EmaxVal],(Log10[EmaxVal]-Log10[1.1*mass])/(50.)}]}],InterpolationOrder->1][Efip];
+thetafipdistrlist[Efip_]=Table[{(thetalist[[i]]+thetalist[[i+1]])/(2),DoubleDistrIntList[i]},{i,1,Length[thetalist]-1,1}];
+thetaEmaxList=Table[{thetafipdistrlist[Efip][[i]][[1]],SortBy[Table[{Efip,thetafipdistrlist[Efip][[i]][[2]]},{Efip,mass,EmaxVal,1}],-#[[2]]&][[1]][[1]]},{i,1,Length[thetafipdistrlist[Efip]],1}];
+thetaEmaxListInt[thetafip_]=Interpolation[thetaEmaxList,InterpolationOrder->1][thetafip];
+NormVals=Table[NIntegrate[thetafipdistrlist[Efip][[i]][[2]]+10^-90.,{Efip,mass,EmaxVal},Method->"InterpolationPointsSubdivision"],{i,1,Length[thetafipdistrlist[Efip]],1}];
+cdf[es_,i_]:=1-(1)/(NormVals[[i]])NIntegrate[thetafipdistrlist[Efip][[i]][[2]],{Efip,mass,es},Method->"InterpolationPointsSubdivision"];
+cdftab[Efip_]=Table[{thetafipdistrlist[Efip][[i]][[1]],Interpolation[ParallelTable[{10^es,Quiet[cdf[10^es,i]]},{es,Log10[mass],Log10[EmaxVal],(Log10[EmaxVal]-Log10[mass])/(50)}],InterpolationOrder->1][Efip]},{i,1,Length[thetafipdistrlist[Efip]],1}];
+logmin[thetafip_]=LogMin;
+Estart[thetafip_]=Min[2*thetaEmaxListInt[thetafip],0.9*EmaxVal];
+Emaxv[i_]:=If[NormVals[[i]]<10^-15,mass,10^(Efip/.FindRoot[Log10[cdftab[10^Efip][[i]][[2]]]==logmin[thetaEmaxList[[i]][[1]]],{Efip,Log10[Estart[thetaEmaxList[[i]][[1]]]],Log10[thetaEmaxList[[i]][[2]]],Log10[EmaxVal]}])];
+tabtemp=Table[{thetaEmaxList[[i]][[1]],Emaxv[i]},{i,1,Length[thetaEmaxList],1}];
+tab=Join[{{thetaminExp,tabtemp[[1]][[2]]}},Drop[Drop[tabtemp,1],-1],{{thetamaxExp,tabtemp[[-1]][[2]]}}];
+10^(Interpolation[{Log10[#[[1]]],Log10[#[[2]]]}&/@tab,InterpolationOrder->1][Log10[thetafip]])
+]
+
+----- cell 53  label=For particular production channels -----
+{EmaxBlock[data_,logmin_]:=Module[{mlist},
+mlist=Drop[data[[All,1]],-1];
+EmaxTemp[m_,theta_]=Max[m,EfromXmax[mlist[[1]],data,logmin],EfromXmax[mlist[[-1]],data,logmin]]/.{thetafip->theta};
+thetalist=Table[x,{x,thetaminExp,thetamaxExp,((thetamaxExp-thetaminExp))/(10)}];
+10^(Interpolation[{#[[1]],Log10[#[[2]]],Log10[#[[3]]]}&/@Flatten[Table[{mfip,thetafip,EmaxTemp[mfip,thetafip]},{mfip,mlist[[1]],mlist[[-1]],(mlist[[-1]]-mlist[[1]])/10},{thetafip,thetalist}],{1,2}],InterpolationOrder->1][mfip,Log10[thetafip]])
+], 
+, Do[ESmax[mfip_,thetafip_,prod]=EmaxBlock[DataDistrScalar[prod],-7],{prod,ProductionListNoBrem}]//AbsoluteTiming, 
+, If[FacilityGivenExperiment=="FermilabBD"&&thetaminExp<thetamaxBremFacility[FacilityGivenExperiment],ESmax[mfip_,thetafip_,"Brem"]=ESmaxFromBrem[mfip,thetafip,FacilityGivenExperiment];], 
+, LogLogPlot[Evaluate[Table[ESmax[0.1,thetaS,prod],{prod,ProductionList}]],{thetaS,thetaminExp,thetamaxExp},Frame->True,ImageSize->Large,PlotLegends->Placed[Style[#,15]&/@ProductionList,Right]]}
+
+----- cell 54  label= -----
+{EmaxBlock[data_,logmin_]:=Module[{mlist},
+mlist=Drop[data[[All,1]],-1];
+EmaxTemp[m_,theta_]=Max[m,EfromXmax[mlist[[1]],data,logmin],EfromXmax[mlist[[-1]],data,logmin]]/.{thetafip->theta};
+thetalist=Table[x,{x,thetaminExp,thetamaxExp,((thetamaxExp-thetaminExp))/(10)}];
+10^(Interpolation[{#[[1]],Log10[#[[2]]],Log10[#[[3]]]}&/@Flatten[Table[{mfip,thetafip,EmaxTemp[mfip,thetafip]},{mfip,mlist[[1]],mlist[[-1]],(mlist[[-1]]-mlist[[1]])/10},{thetafip,thetalist}],{1,2}],InterpolationOrder->1][mfip,Log10[thetafip]])
+], 
+, Do[ESmax[mfip_,thetafip_,prod]=EmaxBlock[DataDistrScalar[prod],-7],{prod,ProductionListNoBrem}]//AbsoluteTiming, 
+, If[FacilityGivenExperiment=="FermilabBD"&&thetaminExp<thetamaxBremFacility[FacilityGivenExperiment],ESmax[mfip_,thetafip_,"Brem"]=ESmaxFromBrem[mfip,thetafip,FacilityGivenExperiment];], 
+, LogLogPlot[Evaluate[Table[ESmax[0.1,thetaS,prod],{prod,ProductionList}]],{thetaS,thetaminExp,thetamaxExp},Frame->True,ImageSize->Large,PlotLegends->Placed[Style[#,15]&/@ProductionList,Right]]}
+
+----- cell 55  label=Number of events -----
+(*Grid m_S, theta_S, E_S, z_S for the initial acceptance data, logarithmized*)
+InGridmepsilon=DeleteDuplicates[FullAcceptanceData[[All,1]]];
+InGridthetaepsilon=DeleteDuplicates[FullAcceptanceData[[All,2]]];
+InGridEepsilon=DeleteDuplicates[FullAcceptanceData[[All,3]]];
+InGridzepsilon=DeleteDuplicates[FullAcceptanceData[[All,4]]];
+(*Array of values of the initial acceptance data, reshaped*)
+epsilonvals=ArrayReshape[FullAcceptanceData[[All,5]],{Length[InGridmepsilon],Length[InGridthetaepsilon],Length[InGridEepsilon],Length[InGridzepsilon]}];
+epsilonazValscomp=Compile[{{data,_Real,2}},Table[If[data[[i]][[5]]==0,-90.,Log10[data[[i]][[5]]]],{i,1,Length[data],1}],CompilationTarget->"C",RuntimeOptions->"Speed"];
+epsilonazvals=ArrayReshape[epsilonazValscomp[FullAcceptanceData0],{Length[InGridmepsilon],Length[InGridthetaepsilon],Length[InGridEepsilon],Length[InGridzepsilon]}];
+(*_________________________________________________________________*)
+(*Grid m_S, theta_S, E_S for the initial FIP distribution data, logarithmized*)
+DataLogarithmiedComp=Hold@Compile[{{data,_Real,2}},Table[If[data[[i]][[4]]==0,-90.,Log10[data[[i]][[4]]]],{i,1,Length[data],1}],CompilationTarget->"C",RuntimeOptions->"Speed"]//ReleaseHold
+BlockGridsValsDistr[ProdChannel_]:=Module[{GridIn,vals},
+GridIn=Log10[DeleteDuplicates[DataDistrScalar[ProdChannel][[All,#]]]&/@{1,2,3}];
+vals=ArrayReshape[DataLogarithmiedComp[DataDistrScalar[ProdChannel]],{Length[GridIn[[1]]],Length[GridIn[[2]]],Length[GridIn[[3]]]}];
+{GridIn,vals}
+]
+Do[{GridInFinal[prod],DistrVals[prod]}=BlockGridsValsDistr[prod],{prod,ProductionList}];//AbsoluteTiming
+
+----- cell 56  label=Definitions -----
+(*Grid m_S, theta_S, E_S, z_S for the initial acceptance data, logarithmized*)
+InGridmepsilon=DeleteDuplicates[FullAcceptanceData[[All,1]]];
+InGridthetaepsilon=DeleteDuplicates[FullAcceptanceData[[All,2]]];
+InGridEepsilon=DeleteDuplicates[FullAcceptanceData[[All,3]]];
+InGridzepsilon=DeleteDuplicates[FullAcceptanceData[[All,4]]];
+(*Array of values of the initial acceptance data, reshaped*)
+epsilonvals=ArrayReshape[FullAcceptanceData[[All,5]],{Length[InGridmepsilon],Length[InGridthetaepsilon],Length[InGridEepsilon],Length[InGridzepsilon]}];
+epsilonazValscomp=Compile[{{data,_Real,2}},Table[If[data[[i]][[5]]==0,-90.,Log10[data[[i]][[5]]]],{i,1,Length[data],1}],CompilationTarget->"C",RuntimeOptions->"Speed"];
+epsilonazvals=ArrayReshape[epsilonazValscomp[FullAcceptanceData0],{Length[InGridmepsilon],Length[InGridthetaepsilon],Length[InGridEepsilon],Length[InGridzepsilon]}];
+(*_________________________________________________________________*)
+(*Grid m_S, theta_S, E_S for the initial FIP distribution data, logarithmized*)
+DataLogarithmiedComp=Hold@Compile[{{data,_Real,2}},Table[If[data[[i]][[4]]==0,-90.,Log10[data[[i]][[4]]]],{i,1,Length[data],1}],CompilationTarget->"C",RuntimeOptions->"Speed"]//ReleaseHold
+BlockGridsValsDistr[ProdChannel_]:=Module[{GridIn,vals},
+GridIn=Log10[DeleteDuplicates[DataDistrScalar[ProdChannel][[All,#]]]&/@{1,2,3}];
+vals=ArrayReshape[DataLogarithmiedComp[DataDistrScalar[ProdChannel]],{Length[GridIn[[1]]],Length[GridIn[[2]]],Length[GridIn[[3]]]}];
+{GridIn,vals}
+]
+Do[{GridInFinal[prod],DistrVals[prod]}=BlockGridsValsDistr[prod],{prod,ProductionList}];//AbsoluteTiming
+
+----- cell 57  label= -----
+(*Grid m_S, theta_S, E_S, z_S for the initial acceptance data, logarithmized*)
+InGridmepsilon=DeleteDuplicates[FullAcceptanceData[[All,1]]];
+InGridthetaepsilon=DeleteDuplicates[FullAcceptanceData[[All,2]]];
+InGridEepsilon=DeleteDuplicates[FullAcceptanceData[[All,3]]];
+InGridzepsilon=DeleteDuplicates[FullAcceptanceData[[All,4]]];
+(*Array of values of the initial acceptance data, reshaped*)
+epsilonvals=ArrayReshape[FullAcceptanceData[[All,5]],{Length[InGridmepsilon],Length[InGridthetaepsilon],Length[InGridEepsilon],Length[InGridzepsilon]}];
+epsilonazValscomp=Compile[{{data,_Real,2}},Table[If[data[[i]][[5]]==0,-90.,Log10[data[[i]][[5]]]],{i,1,Length[data],1}],CompilationTarget->"C",RuntimeOptions->"Speed"];
+epsilonazvals=ArrayReshape[epsilonazValscomp[FullAcceptanceData0],{Length[InGridmepsilon],Length[InGridthetaepsilon],Length[InGridEepsilon],Length[InGridzepsilon]}];
+(*_________________________________________________________________*)
+(*Grid m_S, theta_S, E_S for the initial FIP distribution data, logarithmized*)
+DataLogarithmiedComp=Hold@Compile[{{data,_Real,2}},Table[If[data[[i]][[4]]==0,-90.,Log10[data[[i]][[4]]]],{i,1,Length[data],1}],CompilationTarget->"C",RuntimeOptions->"Speed"]//ReleaseHold
+BlockGridsValsDistr[ProdChannel_]:=Module[{GridIn,vals},
+GridIn=Log10[DeleteDuplicates[DataDistrScalar[ProdChannel][[All,#]]]&/@{1,2,3}];
+vals=ArrayReshape[DataLogarithmiedComp[DataDistrScalar[ProdChannel]],{Length[GridIn[[1]]],Length[GridIn[[2]]],Length[GridIn[[3]]]}];
+{GridIn,vals}
+]
+Do[{GridInFinal[prod],DistrVals[prod]}=BlockGridsValsDistr[prod],{prod,ProductionList}];//AbsoluteTiming
+
+----- cell 58  label= -----
+(*Grid m_S, theta_S, E_S, z_S for the initial acceptance data, logarithmized*)
+InGridmepsilon=DeleteDuplicates[FullAcceptanceData[[All,1]]];
+InGridthetaepsilon=DeleteDuplicates[FullAcceptanceData[[All,2]]];
+InGridEepsilon=DeleteDuplicates[FullAcceptanceData[[All,3]]];
+InGridzepsilon=DeleteDuplicates[FullAcceptanceData[[All,4]]];
+(*Array of values of the initial acceptance data, reshaped*)
+epsilonvals=ArrayReshape[FullAcceptanceData[[All,5]],{Length[InGridmepsilon],Length[InGridthetaepsilon],Length[InGridEepsilon],Length[InGridzepsilon]}];
+epsilonazValscomp=Compile[{{data,_Real,2}},Table[If[data[[i]][[5]]==0,-90.,Log10[data[[i]][[5]]]],{i,1,Length[data],1}],CompilationTarget->"C",RuntimeOptions->"Speed"];
+epsilonazvals=ArrayReshape[epsilonazValscomp[FullAcceptanceData0],{Length[InGridmepsilon],Length[InGridthetaepsilon],Length[InGridEepsilon],Length[InGridzepsilon]}];
+(*_________________________________________________________________*)
+(*Grid m_S, theta_S, E_S for the initial FIP distribution data, logarithmized*)
+DataLogarithmiedComp=Hold@Compile[{{data,_Real,2}},Table[If[data[[i]][[4]]==0,-90.,Log10[data[[i]][[4]]]],{i,1,Length[data],1}],CompilationTarget->"C",RuntimeOptions->"Speed"]//ReleaseHold
+BlockGridsValsDistr[ProdChannel_]:=Module[{GridIn,vals},
+GridIn=Log10[DeleteDuplicates[DataDistrScalar[ProdChannel][[All,#]]]&/@{1,2,3}];
+vals=ArrayReshape[DataLogarithmiedComp[DataDistrScalar[ProdChannel]],{Length[GridIn[[1]]],Length[GridIn[[2]]],Length[GridIn[[3]]]}];
+{GridIn,vals}
+]
+Do[{GridInFinal[prod],DistrVals[prod]}=BlockGridsValsDistr[prod],{prod,ProductionList}];//AbsoluteTiming
+
+----- cell 59  label=Grid to be used to calculate the number of events -----
+(*Grid theta_S, z_S for the final acceptance data, logarithmized*)
+OutGridthetafinalTemp=(*InGridthetaepsilon*)Table[x,{x,10^Min[InGridthetaepsilon],10^Max[InGridthetaepsilon],((10^Max[InGridthetaepsilon]-10^Min[InGridthetaepsilon]))/(30)}];
+If[10^-4<OutGridthetafinalTemp[[1]]<10^-2&&OutGridthetafinalTemp[[-1]]>0.1,OutGridthetafinal=Log10[Join[OutGridthetafinalTemp,{2OutGridthetafinalTemp[[1]],4OutGridthetafinalTemp[[1]],6OutGridthetafinalTemp[[1]]}]]//Sort,OutGridthetafinal=Log10[OutGridthetafinalTemp]];
+OutGridzfinal=Log10[Table[x,{x,10^InGridzepsilon[[1]],10^InGridzepsilon[[-1]],Min[(10^InGridzepsilon[[-1]]-10^InGridzepsilon[[1]])/(5),Max[0.5,((10^InGridzepsilon[[-1]]-10^InGridzepsilon[[1]]))/(30)]]}]](*InGridzepsilon*);
+\[CapitalDelta]xVals[list_]:=Join[{(list[[2]]-list[[1]])/(2)},Table[list[[i]]-list[[i-1]],{i,2,Length[list],1}]];
+\[CapitalDelta]thetavals=\[CapitalDelta]xVals[10^OutGridthetafinal];
+\[CapitalDelta]zvals=\[CapitalDelta]xVals[10^OutGridzfinal];
+(*Final energy grid. Mass- and production channel-dependent*)
+StepEtemp[Efip_]=Piecewise[{{0.3,Efip<=2.5},{0.5,2.5<Efip<35},{2,35<=Efip<=50},{4,50<Efip<160},{5,160<=Efip<300},{40,300<=Efip<700},{50,700<=Efip<2000},{200,2000<=Efip<4000},{400,4000<=Efip<7000},{500,7000<=Efip<=50000}}];
+OutGridEnergy[m_,ProdChannel_]:=Block[{},
+With[{start=1.01m,end=ESmax[m,thetaminExp,ProdChannel]},
+Log10[NestWhileList[#+StepEtemp[#]&,start,#<=end&,1,\[Infinity],-1]]]//N
+]
+\[CapitalDelta]xValsTotComp=Hold@Compile[{{\[CapitalDelta]thetavals,_Real,1},{\[CapitalDelta]Evals,_Real,1},{\[CapitalDelta]zvals,_Real,1}},Table[{\[CapitalDelta]thetavals[[i]]*\[CapitalDelta]Evals[[j]]*\[CapitalDelta]zvals[[k]]},{i,1,Length[\[CapitalDelta]thetavals]},{j,1,Length[\[CapitalDelta]Evals]},{k,1,Length[\[CapitalDelta]zvals]}],CompilationTarget->"C",RuntimeOptions->"Speed"]//ReleaseHold;
+
+----- cell 60  label= -----
+(*Grid theta_S, z_S for the final acceptance data, logarithmized*)
+OutGridthetafinalTemp=(*InGridthetaepsilon*)Table[x,{x,10^Min[InGridthetaepsilon],10^Max[InGridthetaepsilon],((10^Max[InGridthetaepsilon]-10^Min[InGridthetaepsilon]))/(30)}];
+If[10^-4<OutGridthetafinalTemp[[1]]<10^-2&&OutGridthetafinalTemp[[-1]]>0.1,OutGridthetafinal=Log10[Join[OutGridthetafinalTemp,{2OutGridthetafinalTemp[[1]],4OutGridthetafinalTemp[[1]],6OutGridthetafinalTemp[[1]]}]]//Sort,OutGridthetafinal=Log10[OutGridthetafinalTemp]];
+OutGridzfinal=Log10[Table[x,{x,10^InGridzepsilon[[1]],10^InGridzepsilon[[-1]],Min[(10^InGridzepsilon[[-1]]-10^InGridzepsilon[[1]])/(5),Max[0.5,((10^InGridzepsilon[[-1]]-10^InGridzepsilon[[1]]))/(30)]]}]](*InGridzepsilon*);
+\[CapitalDelta]xVals[list_]:=Join[{(list[[2]]-list[[1]])/(2)},Table[list[[i]]-list[[i-1]],{i,2,Length[list],1}]];
+\[CapitalDelta]thetavals=\[CapitalDelta]xVals[10^OutGridthetafinal];
+\[CapitalDelta]zvals=\[CapitalDelta]xVals[10^OutGridzfinal];
+(*Final energy grid. Mass- and production channel-dependent*)
+StepEtemp[Efip_]=Piecewise[{{0.3,Efip<=2.5},{0.5,2.5<Efip<35},{2,35<=Efip<=50},{4,50<Efip<160},{5,160<=Efip<300},{40,300<=Efip<700},{50,700<=Efip<2000},{200,2000<=Efip<4000},{400,4000<=Efip<7000},{500,7000<=Efip<=50000}}];
+OutGridEnergy[m_,ProdChannel_]:=Block[{},
+With[{start=1.01m,end=ESmax[m,thetaminExp,ProdChannel]},
+Log10[NestWhileList[#+StepEtemp[#]&,start,#<=end&,1,\[Infinity],-1]]]//N
+]
+\[CapitalDelta]xValsTotComp=Hold@Compile[{{\[CapitalDelta]thetavals,_Real,1},{\[CapitalDelta]Evals,_Real,1},{\[CapitalDelta]zvals,_Real,1}},Table[{\[CapitalDelta]thetavals[[i]]*\[CapitalDelta]Evals[[j]]*\[CapitalDelta]zvals[[k]]},{i,1,Length[\[CapitalDelta]thetavals]},{j,1,Length[\[CapitalDelta]Evals]},{k,1,Length[\[CapitalDelta]zvals]}],CompilationTarget->"C",RuntimeOptions->"Speed"]//ReleaseHold;
+
+----- cell 61  label=Grid for distribution times acceptance -----
+(*Block that computes the grid theta_S,E_S,z_S, epsilon_Full*f_theta_S,E_S*)
+TableIntegrandDiscret[m_,ProdChannel_,epsilonDecOp_]:=Block[{},
+OutGridEfinal=OutGridEnergy[N[m],ProdChannel];
+\[CapitalDelta]Evals=\[CapitalDelta]xVals[10^OutGridEfinal];
+\[CapitalDelta]xValsTot=Flatten[\[CapitalDelta]xValsTotComp[\[CapitalDelta]thetavals,\[CapitalDelta]Evals,\[CapitalDelta]zvals],{1,2,3}];
+OutGridFinal=Tuples[{{Log10[N[m]]},OutGridthetafinal,OutGridEfinal,OutGridzfinal}];
+OutGridFinal1=10^OutGridFinal[[All,{2,3,4}]];
+gepsilon={InGridmepsilon,InGridthetaepsilon,InGridEepsilon,InGridzepsilon};
+xgepsilon={{Log10[N[m]]},OutGridthetafinal,OutGridEfinal,OutGridzfinal};
+xigepsilon=MapThread[Interpolation[Transpose@{#,Range@Length@#},InterpolationOrder->1][#2]&,{gepsilon,xgepsilon}];
+epsilonResult=10^Flatten@cf4[Sequence@@xigepsilon,If[epsilonDecOp=="True",epsilonvals,epsilonazvals]];
+gDistr={GridInFinal[ProdChannel][[1]],GridInFinal[ProdChannel][[2]],GridInFinal[ProdChannel][[3]]};
+xgDistr={{Log10[N[m]]},OutGridthetafinal,OutGridEfinal};
+xigDistr=MapThread[Interpolation[Transpose@{#,Range@Length@#},InterpolationOrder->1][#2]&,{gDistr,xgDistr}];
+DistrResult=10^Flatten@cf3[Sequence@@xigDistr,DistrVals[ProdChannel]];
+TabTemp0=Join[OutGridFinal1,List/@Flatten[DistrResult Partition[epsilonResult,Length[OutGridzfinal]]],\[CapitalDelta]xValsTot,2]
+]
+
+----- cell 62  label=Grid for distribution times acceptance -----
+(*Block that computes the grid theta_S,E_S,z_S, epsilon_Full*f_theta_S,E_S*)
+TableIntegrandDiscret[m_,ProdChannel_,epsilonDecOp_]:=Block[{},
+OutGridEfinal=OutGridEnergy[N[m],ProdChannel];
+\[CapitalDelta]Evals=\[CapitalDelta]xVals[10^OutGridEfinal];
+\[CapitalDelta]xValsTot=Flatten[\[CapitalDelta]xValsTotComp[\[CapitalDelta]thetavals,\[CapitalDelta]Evals,\[CapitalDelta]zvals],{1,2,3}];
+OutGridFinal=Tuples[{{Log10[N[m]]},OutGridthetafinal,OutGridEfinal,OutGridzfinal}];
+OutGridFinal1=10^OutGridFinal[[All,{2,3,4}]];
+gepsilon={InGridmepsilon,InGridthetaepsilon,InGridEepsilon,InGridzepsilon};
+xgepsilon={{Log10[N[m]]},OutGridthetafinal,OutGridEfinal,OutGridzfinal};
+xigepsilon=MapThread[Interpolation[Transpose@{#,Range@Length@#},InterpolationOrder->1][#2]&,{gepsilon,xgepsilon}];
+epsilonResult=10^Flatten@cf4[Sequence@@xigepsilon,If[epsilonDecOp=="True",epsilonvals,epsilonazvals]];
+gDistr={GridInFinal[ProdChannel][[1]],GridInFinal[ProdChannel][[2]],GridInFinal[ProdChannel][[3]]};
+xgDistr={{Log10[N[m]]},OutGridthetafinal,OutGridEfinal};
+xigDistr=MapThread[Interpolation[Transpose@{#,Range@Length@#},InterpolationOrder->1][#2]&,{gDistr,xgDistr}];
+DistrResult=10^Flatten@cf3[Sequence@@xigDistr,DistrVals[ProdChannel]];
+TabTemp0=Join[OutGridFinal1,List/@Flatten[DistrResult Partition[epsilonResult,Length[OutGridzfinal]]],\[CapitalDelta]xValsTot,2]
+]
+
+----- cell 63  label= -----
+(*Block that computes the grid theta_S,E_S,z_S, epsilon_Full*f_theta_S,E_S*)
+TableIntegrandDiscret[m_,ProdChannel_,epsilonDecOp_]:=Block[{},
+OutGridEfinal=OutGridEnergy[N[m],ProdChannel];
+\[CapitalDelta]Evals=\[CapitalDelta]xVals[10^OutGridEfinal];
+\[CapitalDelta]xValsTot=Flatten[\[CapitalDelta]xValsTotComp[\[CapitalDelta]thetavals,\[CapitalDelta]Evals,\[CapitalDelta]zvals],{1,2,3}];
+OutGridFinal=Tuples[{{Log10[N[m]]},OutGridthetafinal,OutGridEfinal,OutGridzfinal}];
+OutGridFinal1=10^OutGridFinal[[All,{2,3,4}]];
+gepsilon={InGridmepsilon,InGridthetaepsilon,InGridEepsilon,InGridzepsilon};
+xgepsilon={{Log10[N[m]]},OutGridthetafinal,OutGridEfinal,OutGridzfinal};
+xigepsilon=MapThread[Interpolation[Transpose@{#,Range@Length@#},InterpolationOrder->1][#2]&,{gepsilon,xgepsilon}];
+epsilonResult=10^Flatten@cf4[Sequence@@xigepsilon,If[epsilonDecOp=="True",epsilonvals,epsilonazvals]];
+gDistr={GridInFinal[ProdChannel][[1]],GridInFinal[ProdChannel][[2]],GridInFinal[ProdChannel][[3]]};
+xgDistr={{Log10[N[m]]},OutGridthetafinal,OutGridEfinal};
+xigDistr=MapThread[Interpolation[Transpose@{#,Range@Length@#},InterpolationOrder->1][#2]&,{gDistr,xgDistr}];
+DistrResult=10^Flatten@cf3[Sequence@@xigDistr,DistrVals[ProdChannel]];
+TabTemp0=Join[OutGridFinal1,List/@Flatten[DistrResult Partition[epsilonResult,Length[OutGridzfinal]]],\[CapitalDelta]xValsTot,2]
+]
+
+----- cell 64  label=Convoluting acceptances with pre-factor -----
+(*Values f_FIP*epsilon_FIP*(Exp[-z_FIP/(cos(theta_FIP)ctau_FIPp_FIP/m_FIP)])/(cos(theta_FIP)ctau_FIPp_FIP/m_FIP)*epsilon_decay\[CapitalDelta]z_FIP\[CapitalDelta]E_FIP\[CapitalDelta]theta_FIP for the grid of values theta_FIP, E_FIP, z_FIP fixed values of ctau_FIP and m_FIP*)
+tableprefac=Hold@Compile[{{tabb,_Real,1},{m,_Real},{ctau,_Real},{decProb,_Integer}},Module[{angles,energies,zv,values,\[CapitalDelta]s,prefactor},
+values=Compile`GetElement[tabb,4];
+\[CapitalDelta]s=Compile`GetElement[tabb,5];
+If[decProb==1,
+angles=Compile`GetElement[tabb,1];
+energies=Compile`GetElement[tabb,2];
+zv=Compile`GetElement[tabb,3];
+prefactor=(Exp[-zv/(Cos[angles]*ctau*(Sqrt[energies^2-m^2])/(m))])/(Cos[angles]*ctau*(Sqrt[energies^2-m^2])/(m)),prefactor=1.];
+prefactor*\[CapitalDelta]s*values],CompilationTarget->"C",RuntimeOptions->"Speed",Parallelization->"True",RuntimeAttributes->{Listable}]//ReleaseHold;
+(*Summation of the values above*)
+sumcompile=Hold@Compile[{{tabctaum,_Real,1}},Total[tabctaum],CompilationTarget->"C",RuntimeOptions->"Speed",Parallelization->"True"]//ReleaseHold;
+{mminepsilon,mmaxepsilon}=10^MinMax[InGridmepsilon]
+
+----- cell 65  label= -----
+(*Values f_FIP*epsilon_FIP*(Exp[-z_FIP/(cos(theta_FIP)ctau_FIPp_FIP/m_FIP)])/(cos(theta_FIP)ctau_FIPp_FIP/m_FIP)*epsilon_decay\[CapitalDelta]z_FIP\[CapitalDelta]E_FIP\[CapitalDelta]theta_FIP for the grid of values theta_FIP, E_FIP, z_FIP fixed values of ctau_FIP and m_FIP*)
+tableprefac=Hold@Compile[{{tabb,_Real,1},{m,_Real},{ctau,_Real},{decProb,_Integer}},Module[{angles,energies,zv,values,\[CapitalDelta]s,prefactor},
+values=Compile`GetElement[tabb,4];
+\[CapitalDelta]s=Compile`GetElement[tabb,5];
+If[decProb==1,
+angles=Compile`GetElement[tabb,1];
+energies=Compile`GetElement[tabb,2];
+zv=Compile`GetElement[tabb,3];
+prefactor=(Exp[-zv/(Cos[angles]*ctau*(Sqrt[energies^2-m^2])/(m))])/(Cos[angles]*ctau*(Sqrt[energies^2-m^2])/(m)),prefactor=1.];
+prefactor*\[CapitalDelta]s*values],CompilationTarget->"C",RuntimeOptions->"Speed",Parallelization->"True",RuntimeAttributes->{Listable}]//ReleaseHold;
+(*Summation of the values above*)
+sumcompile=Hold@Compile[{{tabctaum,_Real,1}},Total[tabctaum],CompilationTarget->"C",RuntimeOptions->"Speed",Parallelization->"True"]//ReleaseHold;
+{mminepsilon,mmaxepsilon}=10^MinMax[InGridmepsilon]
+
+----- cell 66  label=Acceptances -----
+{FactorANUBISceiling=If[SelectedExperiment=="ANUBIS-ceiling",2,1];, 
+, AcceptanceDiscret[m_,ProdChannel_,epsilondecOp_,decProb_]:=Module[{NevDiscret,NpotTimes\[Chi]val},
+If[Max[mSmin[ProdChannel],mminepsilon]<m<Min[mSmax[ProdChannel],mmaxepsilon],
+integrandtab=TableIntegrandDiscret[m,ProdChannel,epsilondecOp];
+brvis=If[epsilondecOp==1,BrVis[m],1];
+(*Test lifetime for the acceptance*)
+ctauacc=10^9;
+(*Prefactor for the acceptance. If only azimuthal and *)
+prefacacc=If[decProb==1,ctauacc,(1)/(zmaxExp-zminExp)];
+accdiscret=If[brvis!=0,FactorANUBISceiling*brvis*prefacacc*sumcompile[tableprefac[integrandtab,m,ctauacc,decProb]],0],accdiscret=0];
+accdiscret
+]}
+
+----- cell 67  label= -----
+{FactorANUBISceiling=If[SelectedExperiment=="ANUBIS-ceiling",2,1];, 
+, AcceptanceDiscret[m_,ProdChannel_,epsilondecOp_,decProb_]:=Module[{NevDiscret,NpotTimes\[Chi]val},
+If[Max[mSmin[ProdChannel],mminepsilon]<m<Min[mSmax[ProdChannel],mmaxepsilon],
+integrandtab=TableIntegrandDiscret[m,ProdChannel,epsilondecOp];
+brvis=If[epsilondecOp==1,BrVis[m],1];
+(*Test lifetime for the acceptance*)
+ctauacc=10^9;
+(*Prefactor for the acceptance. If only azimuthal and *)
+prefacacc=If[decProb==1,ctauacc,(1)/(zmaxExp-zminExp)];
+accdiscret=If[brvis!=0,FactorANUBISceiling*brvis*prefacacc*sumcompile[tableprefac[integrandtab,m,ctauacc,decProb]],0],accdiscret=0];
+accdiscret
+]}
+
+----- cell 68  label=Acceptances and approximate lower/upper bounds computation -----
+{Do[mlistAcceptance[prod]=Join[Table[m,{m,1.01Max[mSmin[prod],mminepsilon],0.95Min[mSmax[prod],mmaxepsilon],Min[((0.95Min[mSmax[prod],mmaxepsilon]-1.01Max[mSmin[prod],mminepsilon]))/(20),2]}],{0.99Min[mSmax[prod],mmaxepsilon]}],{prod,ProductionList}];, 
+, Do[epsilonGeomTabs[prod]=Table[{m,AcceptanceDiscret[m,prod,"False",0],AcceptanceDiscret[m,prod,"True",0],AcceptanceDiscret[m,prod,"False",1],AcceptanceDiscret[m,prod,"True",1]},{m,mlistAcceptance[prod]}],{prod,ProductionList}];//AbsoluteTiming, 
+, PlotAcc[ProdChannel_]:=ListLogPlot[{epsilonGeomTabs[ProdChannel][[All,{1,2}]],epsilonGeomTabs[ProdChannel][[All,{1,3}]],epsilonGeomTabs[ProdChannel][[All,{1,4}]],epsilonGeomTabs[ProdChannel][[All,{1,5}]]},FrameStyle->Directive[Black, 22],PlotStyle->{{Thickness[0.003],Blue},{Thickness[0.003],Darker@Red},{Thickness[0.003],Darker@Darker@Green},{Thickness[0.003],Black}},GridLines->Automatic,PlotRange->{MinMax[epsilonGeomTabs[ProdChannel][[All,1]]],{0.9Min[Min[epsilonGeomTabs[ProdChannel][[All,4]]],Min[epsilonGeomTabs[ProdChannel][[All,3]]]],1.1Max[Max[epsilonGeomTabs[ProdChannel][[All,2]]],Max[epsilonGeomTabs[ProdChannel][[All,4]]]]}},Joined->True,Frame->True,ImageSize->Large,FrameLabel->{"m [GeV]","Acceptance"},PlotLabel-> Style[Row[{"From ",ProdChannel}], 20, Black],PlotLegends->Placed[{Style[#, 18]&/@{"<\!\(\*SubscriptBox[\(epsilon\), \(FIP\)]\)>","<\!\(\*SubscriptBox[\(epsilon\), \(FIP\)]\)\!\(\*SubscriptBox[\(epsilon\), \(decay\)]\)>","ctau<\!\(\*SubscriptBox[\(epsilon\), \(FIP\)]\)\!\(\*SubscriptBox[\(P\), \(decay\)]\)>","ctau<\!\(\*SubscriptBox[\(epsilon\), \(FIP\)]\)\!\(\*SubscriptBox[\(P\), \(decay\)]\)\!\(\*SubscriptBox[\(epsilon\), \(decay\)]\)>"}},{0.75,0.2}]], 
+, Style[Row[Evaluate[Table[PlotAcc[prod],{prod,ProductionList}]]],ImageSizeMultipliers->{1,1,1,1}]
+(*Do[FilenameAcceptance[prod]=ToString@StringForm["Acceptance_Scalar_at_``_From_``.dat",Sequence@@{SelectedExperiment,prod}];
+Export[FileNameJoin[{NotebookDirectory[],"Auxiliary data/Scalars",SelectedExperiment,FilenameAcceptance[prod]}],{#[[1]],#[[2]],(#[[4]])/(ctauacc),(#[[5]])/(ctauacc)}&/@epsilonGeomTabs[prod],"Table"]
+,{prod,ProductionList}]*), 
+, AccAveraged[mS_,theta2_,BrhToSS_]=NpotGivenExperiment{Sum[If[mSmin[prod]<mS<mSmax[prod],Evaluate[\[Chi]Xtimes\[Chi]XtoScalar[mS,theta2,BrhToSS,prod]],0],{prod,ProductionList}],Sum[If[Max[mSmin[prod],mminepsilon]<mS<Min[mSmax[prod],mmaxepsilon],Evaluate[\[Chi]Xtimes\[Chi]XtoScalar[mS,theta2,BrhToSS,prod]*Interpolation[epsilonGeomTabs[prod][[All,{1,2}]],InterpolationOrder->1][mS]],0],{prod,ProductionList}],Sum[If[Max[mSmin[prod],mminepsilon]<mS<Min[mSmax[prod],mmaxepsilon],Evaluate[(\[Chi]Xtimes\[Chi]XtoScalar[mS,theta2,BrhToSS,prod])/(ctauacc)*Interpolation[epsilonGeomTabs[prod][[All,{1,4}]],InterpolationOrder->1][mS]],0],{prod,ProductionList}],Sum[If[Max[mSmin[prod],mminepsilon]<mS<Min[mSmax[prod],mmaxepsilon],Evaluate[(\[Chi]Xtimes\[Chi]XtoScalar[mS,theta2,BrhToSS,prod])/(ctauacc)*Interpolation[epsilonGeomTabs[prod][[All,{1,5}]],InterpolationOrder->1][mS]],0],{prod,ProductionList}]};, 
+, Export[FileNameJoin[{NotebookDirectory[],"Auxiliary data/Scalars",SelectedExperiment,"AcceptanceAveragedScalar.m"}],AccAveraged[mS,theta2,BrhToSS],"MX"], 
+}
+
+----- cell 69  label= -----
+{Do[mlistAcceptance[prod]=Join[Table[m,{m,1.01Max[mSmin[prod],mminepsilon],0.95Min[mSmax[prod],mmaxepsilon],Min[((0.95Min[mSmax[prod],mmaxepsilon]-1.01Max[mSmin[prod],mminepsilon]))/(20),2]}],{0.99Min[mSmax[prod],mmaxepsilon]}],{prod,ProductionList}];, 
+, Do[epsilonGeomTabs[prod]=Table[{m,AcceptanceDiscret[m,prod,"False",0],AcceptanceDiscret[m,prod,"True",0],AcceptanceDiscret[m,prod,"False",1],AcceptanceDiscret[m,prod,"True",1]},{m,mlistAcceptance[prod]}],{prod,ProductionList}];//AbsoluteTiming, 
+, PlotAcc[ProdChannel_]:=ListLogPlot[{epsilonGeomTabs[ProdChannel][[All,{1,2}]],epsilonGeomTabs[ProdChannel][[All,{1,3}]],epsilonGeomTabs[ProdChannel][[All,{1,4}]],epsilonGeomTabs[ProdChannel][[All,{1,5}]]},FrameStyle->Directive[Black, 22],PlotStyle->{{Thickness[0.003],Blue},{Thickness[0.003],Darker@Red},{Thickness[0.003],Darker@Darker@Green},{Thickness[0.003],Black}},GridLines->Automatic,PlotRange->{MinMax[epsilonGeomTabs[ProdChannel][[All,1]]],{0.9Min[Min[epsilonGeomTabs[ProdChannel][[All,4]]],Min[epsilonGeomTabs[ProdChannel][[All,3]]]],1.1Max[Max[epsilonGeomTabs[ProdChannel][[All,2]]],Max[epsilonGeomTabs[ProdChannel][[All,4]]]]}},Joined->True,Frame->True,ImageSize->Large,FrameLabel->{"m [GeV]","Acceptance"},PlotLabel-> Style[Row[{"From ",ProdChannel}], 20, Black],PlotLegends->Placed[{Style[#, 18]&/@{"<\!\(\*SubscriptBox[\(epsilon\), \(FIP\)]\)>","<\!\(\*SubscriptBox[\(epsilon\), \(FIP\)]\)\!\(\*SubscriptBox[\(epsilon\), \(decay\)]\)>","ctau<\!\(\*SubscriptBox[\(epsilon\), \(FIP\)]\)\!\(\*SubscriptBox[\(P\), \(decay\)]\)>","ctau<\!\(\*SubscriptBox[\(epsilon\), \(FIP\)]\)\!\(\*SubscriptBox[\(P\), \(decay\)]\)\!\(\*SubscriptBox[\(epsilon\), \(decay\)]\)>"}},{0.75,0.2}]], 
+, Style[Row[Evaluate[Table[PlotAcc[prod],{prod,ProductionList}]]],ImageSizeMultipliers->{1,1,1,1}]
+(*Do[FilenameAcceptance[prod]=ToString@StringForm["Acceptance_Scalar_at_``_From_``.dat",Sequence@@{SelectedExperiment,prod}];
+Export[FileNameJoin[{NotebookDirectory[],"Auxiliary data/Scalars",SelectedExperiment,FilenameAcceptance[prod]}],{#[[1]],#[[2]],(#[[4]])/(ctauacc),(#[[5]])/(ctauacc)}&/@epsilonGeomTabs[prod],"Table"]
+,{prod,ProductionList}]*), 
+, AccAveraged[mS_,theta2_,BrhToSS_]=NpotGivenExperiment{Sum[If[mSmin[prod]<mS<mSmax[prod],Evaluate[\[Chi]Xtimes\[Chi]XtoScalar[mS,theta2,BrhToSS,prod]],0],{prod,ProductionList}],Sum[If[Max[mSmin[prod],mminepsilon]<mS<Min[mSmax[prod],mmaxepsilon],Evaluate[\[Chi]Xtimes\[Chi]XtoScalar[mS,theta2,BrhToSS,prod]*Interpolation[epsilonGeomTabs[prod][[All,{1,2}]],InterpolationOrder->1][mS]],0],{prod,ProductionList}],Sum[If[Max[mSmin[prod],mminepsilon]<mS<Min[mSmax[prod],mmaxepsilon],Evaluate[(\[Chi]Xtimes\[Chi]XtoScalar[mS,theta2,BrhToSS,prod])/(ctauacc)*Interpolation[epsilonGeomTabs[prod][[All,{1,4}]],InterpolationOrder->1][mS]],0],{prod,ProductionList}],Sum[If[Max[mSmin[prod],mminepsilon]<mS<Min[mSmax[prod],mmaxepsilon],Evaluate[(\[Chi]Xtimes\[Chi]XtoScalar[mS,theta2,BrhToSS,prod])/(ctauacc)*Interpolation[epsilonGeomTabs[prod][[All,{1,5}]],InterpolationOrder->1][mS]],0],{prod,ProductionList}]};, 
+, Export[FileNameJoin[{NotebookDirectory[],"Auxiliary data/Scalars",SelectedExperiment,"AcceptanceAveragedScalar.m"}],AccAveraged[mS,theta2,BrhToSS],"MX"], 
+}
+
+----- cell 70  label=Rough estimates of the upper and lower bounds -----
+{BrhToSSreference=0.15;, 
+, factorBounds["Bmixing"]=factorBounds["Brem"]=1;, 
+, factorBounds["Bquartic"]=factorBounds["BsQuartic"]=factorBounds["hQuartic"]=2;, 
+, Do[theta2minEstimate[mS_,prod]=((1)/(2.3ctauScalar[mS,1])NpotGivenExperiment*\[Chi]Xtimes\[Chi]XtoScalar[mS,1,BrhToSSreference,prod]*Interpolation[epsilonGeomTabs[prod][[All,{1,5}]],InterpolationOrder->1][mS])^-(1)/(2)factorBounds[prod];
+theta2maxEstimate[mS_,prod]=If[prod=="Bmixing",Re[Evaluate[-(ProductLog[-1,-2.3*(b)/(a)])/(b)/.{a-> NpotGivenExperiment*\[Chi]Xtimes\[Chi]XtoScalar[mS,1,BrhToSSreference,prod]*Interpolation[epsilonGeomTabs[prod][[All,{1,3}]],InterpolationOrder->1][mS],b->(zminExp)/(ldecayScalar[mS,1,ESmax[mlistScalar[prod][[1]],thetaminExp,prod]])}]],(ldecayScalar[mS,1,ESmax[mlistScalar[prod][[1]],thetaminExp,prod]])/(zminExp)Log[(1)/(2.3) NpotGivenExperiment*\[Chi]Xtimes\[Chi]XtoScalar[mS,1,BrhToSSreference,prod]*Interpolation[epsilonGeomTabs[prod][[All,{1,3}]],InterpolationOrder->1][mS]]],{prod,ProductionList}], 
+, epsilonestplot="Bmixing";, 
+, LogLogPlot[{theta2minEstimate[mS,epsilonestplot],theta2maxEstimate[mS,epsilonestplot]},{mS,Min[mlistScalar[epsilonestplot]],Max[mlistScalar[epsilonestplot]]},Frame->True,ImageSize->Large]}
+
+----- cell 71  label=Definitions -----
+{BrhToSSreference=0.15;, 
+, factorBounds["Bmixing"]=factorBounds["Brem"]=1;, 
+, factorBounds["Bquartic"]=factorBounds["BsQuartic"]=factorBounds["hQuartic"]=2;, 
+, Do[theta2minEstimate[mS_,prod]=((1)/(2.3ctauScalar[mS,1])NpotGivenExperiment*\[Chi]Xtimes\[Chi]XtoScalar[mS,1,BrhToSSreference,prod]*Interpolation[epsilonGeomTabs[prod][[All,{1,5}]],InterpolationOrder->1][mS])^-(1)/(2)factorBounds[prod];
+theta2maxEstimate[mS_,prod]=If[prod=="Bmixing",Re[Evaluate[-(ProductLog[-1,-2.3*(b)/(a)])/(b)/.{a-> NpotGivenExperiment*\[Chi]Xtimes\[Chi]XtoScalar[mS,1,BrhToSSreference,prod]*Interpolation[epsilonGeomTabs[prod][[All,{1,3}]],InterpolationOrder->1][mS],b->(zminExp)/(ldecayScalar[mS,1,ESmax[mlistScalar[prod][[1]],thetaminExp,prod]])}]],(ldecayScalar[mS,1,ESmax[mlistScalar[prod][[1]],thetaminExp,prod]])/(zminExp)Log[(1)/(2.3) NpotGivenExperiment*\[Chi]Xtimes\[Chi]XtoScalar[mS,1,BrhToSSreference,prod]*Interpolation[epsilonGeomTabs[prod][[All,{1,3}]],InterpolationOrder->1][mS]]],{prod,ProductionList}], 
+, epsilonestplot="Bmixing";, 
+, LogLogPlot[{theta2minEstimate[mS,epsilonestplot],theta2maxEstimate[mS,epsilonestplot]},{mS,Min[mlistScalar[epsilonestplot]],Max[mlistScalar[epsilonestplot]]},Frame->True,ImageSize->Large]}
+
+----- cell 72  label= -----
+{BrhToSSreference=0.15;, 
+, factorBounds["Bmixing"]=factorBounds["Brem"]=1;, 
+, factorBounds["Bquartic"]=factorBounds["BsQuartic"]=factorBounds["hQuartic"]=2;, 
+, Do[theta2minEstimate[mS_,prod]=((1)/(2.3ctauScalar[mS,1])NpotGivenExperiment*\[Chi]Xtimes\[Chi]XtoScalar[mS,1,BrhToSSreference,prod]*Interpolation[epsilonGeomTabs[prod][[All,{1,5}]],InterpolationOrder->1][mS])^-(1)/(2)factorBounds[prod];
+theta2maxEstimate[mS_,prod]=If[prod=="Bmixing",Re[Evaluate[-(ProductLog[-1,-2.3*(b)/(a)])/(b)/.{a-> NpotGivenExperiment*\[Chi]Xtimes\[Chi]XtoScalar[mS,1,BrhToSSreference,prod]*Interpolation[epsilonGeomTabs[prod][[All,{1,3}]],InterpolationOrder->1][mS],b->(zminExp)/(ldecayScalar[mS,1,ESmax[mlistScalar[prod][[1]],thetaminExp,prod]])}]],(ldecayScalar[mS,1,ESmax[mlistScalar[prod][[1]],thetaminExp,prod]])/(zminExp)Log[(1)/(2.3) NpotGivenExperiment*\[Chi]Xtimes\[Chi]XtoScalar[mS,1,BrhToSSreference,prod]*Interpolation[epsilonGeomTabs[prod][[All,{1,3}]],InterpolationOrder->1][mS]]],{prod,ProductionList}], 
+, epsilonestplot="Bmixing";, 
+, LogLogPlot[{theta2minEstimate[mS,epsilonestplot],theta2maxEstimate[mS,epsilonestplot]},{mS,Min[mlistScalar[epsilonestplot]],Max[mlistScalar[epsilonestplot]]},Frame->True,ImageSize->Large]}
+
+----- cell 73  label=Number of events -----
+{FactorLowerBound=If[MemberQ[{"ANUBIS-shaft-volume-1","ANUBIS-shaft-volume-2","ANUBIS-shaft-volume-3"},SelectedExperiment]==True,0.1,0.3];, 
+, NeventsDiscret[m_,ProdChannel_,BrhToSS_,theta2list_]:=Module[{NevDiscret,NpotTimes\[Chi]val},
+If[Max[mminepsilon,mSmin[ProdChannel]]<m<Min[mSmax[ProdChannel],mmaxepsilon],
+integrandtab=TableIntegrandDiscret[m,ProdChannel,"True"];
+NpotTimes\[Chi]val[theta2_]=FactorANUBISceiling*NpotGivenExperiment*\[Chi]Xtimes\[Chi]XtoScalar[m,theta2,BrhToSS,ProdChannel];
+{lowerbound,upperbound}={theta2minEstimate[m,ProdChannel],theta2maxEstimate[m,ProdChannel]};
+brvis=BrVis[m];
+NevDiscret[theta2_]:=If[brvis!=0,If[FactorLowerBound*lowerbound<theta2<1.5upperbound,NpotTimes\[Chi]val[theta2]*brvis*sumcompile[tableprefac[integrandtab,m,ctauScalar[m,theta2],1]],0],0];
+Table[{m,theta2list[[i]],NevDiscret[theta2list[[i]]]},{i,1,Length[theta2list],1}],Table[{m,theta2list[[i]],0},{i,1,Length[theta2list],1}]]
+]}
+
+----- cell 74  label=Number of events - fast -----
+{FactorLowerBound=If[MemberQ[{"ANUBIS-shaft-volume-1","ANUBIS-shaft-volume-2","ANUBIS-shaft-volume-3"},SelectedExperiment]==True,0.1,0.3];, 
+, NeventsDiscret[m_,ProdChannel_,BrhToSS_,theta2list_]:=Module[{NevDiscret,NpotTimes\[Chi]val},
+If[Max[mminepsilon,mSmin[ProdChannel]]<m<Min[mSmax[ProdChannel],mmaxepsilon],
+integrandtab=TableIntegrandDiscret[m,ProdChannel,"True"];
+NpotTimes\[Chi]val[theta2_]=FactorANUBISceiling*NpotGivenExperiment*\[Chi]Xtimes\[Chi]XtoScalar[m,theta2,BrhToSS,ProdChannel];
+{lowerbound,upperbound}={theta2minEstimate[m,ProdChannel],theta2maxEstimate[m,ProdChannel]};
+brvis=BrVis[m];
+NevDiscret[theta2_]:=If[brvis!=0,If[FactorLowerBound*lowerbound<theta2<1.5upperbound,NpotTimes\[Chi]val[theta2]*brvis*sumcompile[tableprefac[integrandtab,m,ctauScalar[m,theta2],1]],0],0];
+Table[{m,theta2list[[i]],NevDiscret[theta2list[[i]]]},{i,1,Length[theta2list],1}],Table[{m,theta2list[[i]],0},{i,1,Length[theta2list],1}]]
+]}
+
+----- cell 75  label= -----
+{FactorLowerBound=If[MemberQ[{"ANUBIS-shaft-volume-1","ANUBIS-shaft-volume-2","ANUBIS-shaft-volume-3"},SelectedExperiment]==True,0.1,0.3];, 
+, NeventsDiscret[m_,ProdChannel_,BrhToSS_,theta2list_]:=Module[{NevDiscret,NpotTimes\[Chi]val},
+If[Max[mminepsilon,mSmin[ProdChannel]]<m<Min[mSmax[ProdChannel],mmaxepsilon],
+integrandtab=TableIntegrandDiscret[m,ProdChannel,"True"];
+NpotTimes\[Chi]val[theta2_]=FactorANUBISceiling*NpotGivenExperiment*\[Chi]Xtimes\[Chi]XtoScalar[m,theta2,BrhToSS,ProdChannel];
+{lowerbound,upperbound}={theta2minEstimate[m,ProdChannel],theta2maxEstimate[m,ProdChannel]};
+brvis=BrVis[m];
+NevDiscret[theta2_]:=If[brvis!=0,If[FactorLowerBound*lowerbound<theta2<1.5upperbound,NpotTimes\[Chi]val[theta2]*brvis*sumcompile[tableprefac[integrandtab,m,ctauScalar[m,theta2],1]],0],0];
+Table[{m,theta2list[[i]],NevDiscret[theta2list[[i]]]},{i,1,Length[theta2list],1}],Table[{m,theta2list[[i]],0},{i,1,Length[theta2list],1}]]
+]}
+
+----- cell 76  label=Test -----
+(*Differential decay probability (1)/(ldecay)Exp[-l/ldecay], where l is expressed in terms of the longitudinal displacement z and polar angle theta as z/costheta*)
+PdecayDensity[mS_,theta2_,thetaS_,ES_,zS_]=(Exp[-zS/(Cos[thetaS]*ldecayScalar[mS,theta2,ES])])/(Cos[thetaS]*ldecayScalar[mS,theta2,ES]);
+(*The integrand determining the differential rate for events*)
+Do[IntegrandScalar[mS_,theta2_,thetaS_,ES_,zS_,prod]=FactorANUBISceiling*DoubleDistrScalar[mS,thetaS,ES,prod]*PdecayDensity[mS,theta2,thetaS,ES,zS]*AzimuthalAcceptanceScalar[thetaS,zS]*Min[DecayAcceptanceScalar[mS,thetaS,ES,zS],1],{prod,ProductionList}];
+IntegralScalar[mS_,theta2_,ProdChannel_]:=NIntegrate[Abs[IntegrandScalar[mS,theta2,thetaS,ES,z,ProdChannel]],{thetaS,thetaminExp,thetamaxExp},{ES,mS,ESmax[mS,thetaS,ProdChannel]},{z,zmintheta[thetaS],zmaxtheta[thetaS]},Method->"AdaptiveMonteCarlo"]
+theta2vall=10^-10;
+factorlower=If[MemberQ[{"ANUBIS-shaft-volume-1","ANUBIS-shaft-volume-2","ANUBIS-shaft-volume-3"},SelectedExperiment]==True,0.1,0.3];
+Nevents[mS_,theta2_,BrhToSS_,ProdChannel_]:=If[mSmin[ProdChannel]<=mS<=mSmax[ProdChannel]&&BrVis[mS]!=0,If[FactorLowerBound*theta2minEstimate[mS,ProdChannel]<theta2<1.8theta2maxEstimate[mS,ProdChannel],NpotGivenExperiment*\[Chi]Xtimes\[Chi]XtoScalar[mS,theta2,BrhToSS,ProdChannel]*IntegralScalar[mS,theta2,ProdChannel],0],0]
+
+----- cell 77  label= -----
+(*Differential decay probability (1)/(ldecay)Exp[-l/ldecay], where l is expressed in terms of the longitudinal displacement z and polar angle theta as z/costheta*)
+PdecayDensity[mS_,theta2_,thetaS_,ES_,zS_]=(Exp[-zS/(Cos[thetaS]*ldecayScalar[mS,theta2,ES])])/(Cos[thetaS]*ldecayScalar[mS,theta2,ES]);
+(*The integrand determining the differential rate for events*)
+Do[IntegrandScalar[mS_,theta2_,thetaS_,ES_,zS_,prod]=FactorANUBISceiling*DoubleDistrScalar[mS,thetaS,ES,prod]*PdecayDensity[mS,theta2,thetaS,ES,zS]*AzimuthalAcceptanceScalar[thetaS,zS]*Min[DecayAcceptanceScalar[mS,thetaS,ES,zS],1],{prod,ProductionList}];
+IntegralScalar[mS_,theta2_,ProdChannel_]:=NIntegrate[Abs[IntegrandScalar[mS,theta2,thetaS,ES,z,ProdChannel]],{thetaS,thetaminExp,thetamaxExp},{ES,mS,ESmax[mS,thetaS,ProdChannel]},{z,zmintheta[thetaS],zmaxtheta[thetaS]},Method->"AdaptiveMonteCarlo"]
+theta2vall=10^-10;
+factorlower=If[MemberQ[{"ANUBIS-shaft-volume-1","ANUBIS-shaft-volume-2","ANUBIS-shaft-volume-3"},SelectedExperiment]==True,0.1,0.3];
+Nevents[mS_,theta2_,BrhToSS_,ProdChannel_]:=If[mSmin[ProdChannel]<=mS<=mSmax[ProdChannel]&&BrVis[mS]!=0,If[FactorLowerBound*theta2minEstimate[mS,ProdChannel]<theta2<1.8theta2maxEstimate[mS,ProdChannel],NpotGivenExperiment*\[Chi]Xtimes\[Chi]XtoScalar[mS,theta2,BrhToSS,ProdChannel]*IntegralScalar[mS,theta2,ProdChannel],0],0]
+
+----- cell 78  label=Test -----
+(*This is a comparison between the slow and fast integration methods. For the selected mass and production channel, the numbers of events obtained using the methods should agree within 10%*)
+(*If the agreement is worse, there may be a few reasons*)
+(*1) The grid for the fast method is not dense enough. Try to increase the grid density (OutGridthetafinal, OutGridEfinal, OutGridzfinal) to see whether the agreement improves. Sometimes, even a slightly denser grid for e.g. z may lead to a significant improvement in the agrement*)
+(*2) The Monte-Carlo integrator for the slow method fails to evaluate properly; this may happen if the range of the integration over energies is too large compared to the domain where most of the events actually are (off-axis experiments such as MATHUSLA and ANUBIS). Another symptom is that for the given mass and coupling the integral "jumps", i.e., returns values with large error*)
+mtest=If[MemberQ[{"LHC","FCC-hh"},FacilityGivenExperiment]==True,5,0.5];
+ProdTest=If[MemberQ[{"LHC","FCC-hh"},FacilityGivenExperiment]==True,"hQuartic","Bmixing"];
+theta2list=(*{10^-12,3*10^-12,5*10^-12,10^-11,5*10^-11,10^-10,5*10^-10,10^-9,5*10^-9,10^-8,2*10^-8,4*10^-8,10^-7,5*10^-7,6*10^-7,7*10^-7,8*10^-7,9*10^-7,10^-6,2*10^-6}//N*)Table[10^x,{x,-17.,-3.,0.3}];
+dat1=NeventsDiscret[mtest,ProdTest,BrhToSSreference,theta2list];//AbsoluteTiming
+dat2=ParallelTable[{theta2list[[i]],ctauScalar[mtest,theta2list[[i]]],Nevents[mtest,theta2list[[i]],BrhToSSreference,ProdTest]},{i,1,Length[theta2list],1}];//AbsoluteTiming
+Join[dat1,dat2[[All,{3,2}]],2]//TableForm
+
+----- cell 79  label= -----
+(*This is a comparison between the slow and fast integration methods. For the selected mass and production channel, the numbers of events obtained using the methods should agree within 10%*)
+(*If the agreement is worse, there may be a few reasons*)
+(*1) The grid for the fast method is not dense enough. Try to increase the grid density (OutGridthetafinal, OutGridEfinal, OutGridzfinal) to see whether the agreement improves. Sometimes, even a slightly denser grid for e.g. z may lead to a significant improvement in the agrement*)
+(*2) The Monte-Carlo integrator for the slow method fails to evaluate properly; this may happen if the range of the integration over energies is too large compared to the domain where most of the events actually are (off-axis experiments such as MATHUSLA and ANUBIS). Another symptom is that for the given mass and coupling the integral "jumps", i.e., returns values with large error*)
+mtest=If[MemberQ[{"LHC","FCC-hh"},FacilityGivenExperiment]==True,5,0.5];
+ProdTest=If[MemberQ[{"LHC","FCC-hh"},FacilityGivenExperiment]==True,"hQuartic","Bmixing"];
+theta2list=(*{10^-12,3*10^-12,5*10^-12,10^-11,5*10^-11,10^-10,5*10^-10,10^-9,5*10^-9,10^-8,2*10^-8,4*10^-8,10^-7,5*10^-7,6*10^-7,7*10^-7,8*10^-7,9*10^-7,10^-6,2*10^-6}//N*)Table[10^x,{x,-17.,-3.,0.3}];
+dat1=NeventsDiscret[mtest,ProdTest,BrhToSSreference,theta2list];//AbsoluteTiming
+dat2=ParallelTable[{theta2list[[i]],ctauScalar[mtest,theta2list[[i]]],Nevents[mtest,theta2list[[i]],BrhToSSreference,ProdTest]},{i,1,Length[theta2list],1}];//AbsoluteTiming
+Join[dat1,dat2[[All,{3,2}]],2]//TableForm
+
+----- cell 80  label=Differential number of events -----
+(*The same as tableprefac but also including the grid*)
+tableGridPrefac=Hold@Compile[{{tabb,_Real,2},{mS,_Real},{ctau,_Real}},{#[[1]],#[[2]],#[[3]],(Exp[-#[[3]]/(Cos[#[[1]]]*ctau*(Sqrt[#[[2]]^2-mS^2])/(mS))])/(Cos[#[[1]]]*ctau*(Sqrt[#[[2]]^2-mS^2])/(mS))#[[4]]*#[[5]]}&/@tabb,CompilationTarget->"C",RuntimeOptions->"Speed",Parallelization->"True",RuntimeAttributes->{Listable}]//ReleaseHold;
+(*Summation returning the differential number of events X, df/dX *)
+NdiffCompiled=Hold@Compile[{{tabNdiff,_Real,2},{GridQuantity,_Real,1},{LengthPerVariable,_Integer},{NPoTtimesPprod,_Real}},Table[{tabNdiff[[LengthPerVariable*(i-1)+1]][[1]],NPoTtimesPprod*Sum[tabNdiff[[LengthPerVariable*(i-1)+j]][[4]],{j,1,LengthPerVariable,1}]},{i,1,Length[GridQuantity],1}],CompilationTarget->"C",RuntimeOptions->"Speed",Parallelization->"True"]//ReleaseHold
+(*Variable = "\!\(\*SubscriptBox[\(E\), \(X\)]\)","\!\(\*SubscriptBox[\(x\), \(x\)]\)","\!\(\*SubscriptBox[\(theta\), \(X\)]\)". The number belongs to the column in the tabulated data*)
+iVal:=Association[{"\!\(\*SubscriptBox[\(E\), \(X\)]\)" ->2,"\!\(\*SubscriptBox[\(theta\), \(X\)]\)"->1,"\!\(\*SubscriptBox[\(x\), \(x\)]\)"->3}]
+(*Differential number of events*)
+NeventsDifferentialDiscret[m_,ProdChannel_,theta2_,BrhToSS_,Variable_]:=Module[{NpotTimes\[Chi]val},
+ival=iVal[Variable];
+NpotTimes\[Chi]val=NpotGivenExperiment*\[Chi]Xtimes\[Chi]XtoScalar[m,theta2,BrhToSS,ProdChannel];
+tablegrid0=TableIntegrandDiscret[m,ProdChannel,"True"];
+\[CapitalDelta]xvals:=Association[{"\!\(\*SubscriptBox[\(E\), \(X\)]\)"->\[CapitalDelta]Evals,"\!\(\*SubscriptBox[\(theta\), \(X\)]\)"-> \[CapitalDelta]thetavals,"\!\(\*SubscriptBox[\(x\), \(X\)]\)"-> \[CapitalDelta]zvals}];
+\[CapitalDelta]xval=\[CapitalDelta]xvals[Variable];
+ctauVal=ctauScalar[m,theta2];
+brvis=BrVis[m];
+ilist=DeleteDuplicates[{ival,1,2,3}];
+tablegrid1=SortBy[{#[[ilist[[1]]]],#[[ilist[[2]]]],#[[ilist[[3]]]],#[[4]]}&/@tableGridPrefac[tablegrid0,m,ctauVal],{#[[1]],#[[2]],#[[3]]}&];
+GridQuantity=tablegrid1[[All,1]]//DeleteDuplicates;
+LengthPerVariable=Length[tablegrid1]/Length[GridQuantity];
+tab1=NdiffCompiled[tablegrid1,GridQuantity,LengthPerVariable,NpotTimes\[Chi]val*brvis];
+Join[tab1[[All,{1}]],Partition[tab1[[All,2]]*\[CapitalDelta]xval^-1,1],2]
+]
+mvaltest=0.5;
+theta2test=10^-10.;
+BrhToSStest=0.01;
+quantity="\!\(\*SubscriptBox[\(E\), \(X\)]\)";
+LegendX:=Association[{"\!\(\*SubscriptBox[\(E\), \(X\)]\)"->"\!\(\*SubscriptBox[\(E\), \(S\)]\) [GeV]","\!\(\*SubscriptBox[\(theta\), \(X\)]\)"->"\!\(\*SubscriptBox[\(theta\), \(S\)]\) [rad]","\!\(\*SubscriptBox[\(x\), \(X\)]\)"-> "\!\(\*SubscriptBox[\(z\), \(S\)]\) [m]"}]
+LegendY:=Association[{"\!\(\*SubscriptBox[\(E\), \(X\)]\)"->"\!\(\*SubscriptBox[\(dN\), \(ev\)]\)/\!\(\*SubscriptBox[\(dE\), \(S\)]\) [\!\(\*SuperscriptBox[\(GeV\), \(-1\)]\)]","\!\(\*SubscriptBox[\(theta\), \(X\)]\)"->"\!\(\*SubscriptBox[\(dN\), \(ev\)]\)/\!\(\*SubscriptBox[\(dtheta\), \(S\)]\) [\!\(\*SuperscriptBox[\(rad\), \(-1\)]\)]","\!\(\*SubscriptBox[\(x\), \(X\)]\)"-> "\!\(\*SubscriptBox[\(dN\), \(ev\)]\)/\!\(\*SubscriptBox[\(dz\), \(S\)]\) [\!\(\*SuperscriptBox[\(m\), \(-1\)]\)]"}]
+prodlisttemp={};
+Do[If[Max[mminepsilon,mSmin[prod]]<mvaltest<Min[mSmax[prod],mmaxepsilon],
+prodlisttemp=Join[prodlisttemp,{prod}];
+NdiffData[prod]=NeventsDifferentialDiscret[mvaltest,prod,theta2test,BrhToSStest,quantity];
+XvalminmaxNdiff=Select[NdiffData[prod],#[[2]]>10^-40&][[All,1]]//MinMax;
+NdiffInt[X_,prod]=If[XvalminmaxNdiff[[1]]<X<XvalminmaxNdiff[[2]],Evaluate[10^Interpolation[{Log10[#[[1]]],Log10[#[[2]]+10^-90]}&/@NdiffData[prod],InterpolationOrder->1][Log10[X]]],0]],{prod,ProductionList}];
+NdiffInt[X_,"Total"]=Sum[NdiffInt[X,prod],{prod,prodlisttemp}];
+LegendList=Join[{"Total"},prodlisttemp];
+QuantityMinMax=Flatten[Table[MinMax[NdiffData[prod][[All,1]]],{prod,prodlisttemp}],1]//MinMax
+ValueMinMax=Max[Max[NdiffData[#][[All,2]]]&/@prodlisttemp];
+LogLogPlot[Evaluate[Table[NdiffInt[X,prod],{prod,LegendList}]],{X,QuantityMinMax[[1]],QuantityMinMax[[2]]},Frame->True,ImageSize->Large,PlotRange->{All,{10^-5,2ValueMinMax}},PlotStyle->{{Thick,Black},{Thick,Blue},{Thick,Darker@Red},{Thick,Darker@Darker@Green},{Thick,Darker@Cyan},{Thick,Magenta},{Thick,Blue,Dashing[0.02]},{Thick,Darker@Red,Dashing[0.02]},{Thick,Darker@Darker@Green,Dashing[0.02]}},PlotLegends->Placed[Style[#,20]&/@LegendList,{0.85,0.7}],FrameLabel->{LegendX[quantity] ,LegendY[quantity]},FrameStyle->Directive[Black, 23],PlotLabel->Style[Row[{SelectedExperiment,". \!\(\*SubscriptBox[\(m\), \(S\)]\) = ",mvaltest," GeV, \!\(\*SuperscriptBox[\(theta\), \(2\)]\) = ",(theta2test//N)}],20,Black]]
+(*tt=NeventsDifferentialDiscret[0.5,"Bmixing",10^-11,0.15,"\!\(\*SubscriptBox[\(E\), \(X\)]\)"];
+ListLogLogPlot[tt,PlotRange->{All,{10^-9,100}},Joined->True]
+Sum[tt[[i]][[2]]*\[CapitalDelta]xval[[i]],{i,1,Length[tt],1}]*)
+
+----- cell 81  label= -----
+(*The same as tableprefac but also including the grid*)
+tableGridPrefac=Hold@Compile[{{tabb,_Real,2},{mS,_Real},{ctau,_Real}},{#[[1]],#[[2]],#[[3]],(Exp[-#[[3]]/(Cos[#[[1]]]*ctau*(Sqrt[#[[2]]^2-mS^2])/(mS))])/(Cos[#[[1]]]*ctau*(Sqrt[#[[2]]^2-mS^2])/(mS))#[[4]]*#[[5]]}&/@tabb,CompilationTarget->"C",RuntimeOptions->"Speed",Parallelization->"True",RuntimeAttributes->{Listable}]//ReleaseHold;
+(*Summation returning the differential number of events X, df/dX *)
+NdiffCompiled=Hold@Compile[{{tabNdiff,_Real,2},{GridQuantity,_Real,1},{LengthPerVariable,_Integer},{NPoTtimesPprod,_Real}},Table[{tabNdiff[[LengthPerVariable*(i-1)+1]][[1]],NPoTtimesPprod*Sum[tabNdiff[[LengthPerVariable*(i-1)+j]][[4]],{j,1,LengthPerVariable,1}]},{i,1,Length[GridQuantity],1}],CompilationTarget->"C",RuntimeOptions->"Speed",Parallelization->"True"]//ReleaseHold
+(*Variable = "\!\(\*SubscriptBox[\(E\), \(X\)]\)","\!\(\*SubscriptBox[\(x\), \(x\)]\)","\!\(\*SubscriptBox[\(theta\), \(X\)]\)". The number belongs to the column in the tabulated data*)
+iVal:=Association[{"\!\(\*SubscriptBox[\(E\), \(X\)]\)" ->2,"\!\(\*SubscriptBox[\(theta\), \(X\)]\)"->1,"\!\(\*SubscriptBox[\(x\), \(x\)]\)"->3}]
+(*Differential number of events*)
+NeventsDifferentialDiscret[m_,ProdChannel_,theta2_,BrhToSS_,Variable_]:=Module[{NpotTimes\[Chi]val},
+ival=iVal[Variable];
+NpotTimes\[Chi]val=NpotGivenExperiment*\[Chi]Xtimes\[Chi]XtoScalar[m,theta2,BrhToSS,ProdChannel];
+tablegrid0=TableIntegrandDiscret[m,ProdChannel,"True"];
+\[CapitalDelta]xvals:=Association[{"\!\(\*SubscriptBox[\(E\), \(X\)]\)"->\[CapitalDelta]Evals,"\!\(\*SubscriptBox[\(theta\), \(X\)]\)"-> \[CapitalDelta]thetavals,"\!\(\*SubscriptBox[\(x\), \(X\)]\)"-> \[CapitalDelta]zvals}];
+\[CapitalDelta]xval=\[CapitalDelta]xvals[Variable];
+ctauVal=ctauScalar[m,theta2];
+brvis=BrVis[m];
+ilist=DeleteDuplicates[{ival,1,2,3}];
+tablegrid1=SortBy[{#[[ilist[[1]]]],#[[ilist[[2]]]],#[[ilist[[3]]]],#[[4]]}&/@tableGridPrefac[tablegrid0,m,ctauVal],{#[[1]],#[[2]],#[[3]]}&];
+GridQuantity=tablegrid1[[All,1]]//DeleteDuplicates;
+LengthPerVariable=Length[tablegrid1]/Length[GridQuantity];
+tab1=NdiffCompiled[tablegrid1,GridQuantity,LengthPerVariable,NpotTimes\[Chi]val*brvis];
+Join[tab1[[All,{1}]],Partition[tab1[[All,2]]*\[CapitalDelta]xval^-1,1],2]
+]
+mvaltest=0.5;
+theta2test=10^-10.;
+BrhToSStest=0.01;
+quantity="\!\(\*SubscriptBox[\(E\), \(X\)]\)";
+LegendX:=Association[{"\!\(\*SubscriptBox[\(E\), \(X\)]\)"->"\!\(\*SubscriptBox[\(E\), \(S\)]\) [GeV]","\!\(\*SubscriptBox[\(theta\), \(X\)]\)"->"\!\(\*SubscriptBox[\(theta\), \(S\)]\) [rad]","\!\(\*SubscriptBox[\(x\), \(X\)]\)"-> "\!\(\*SubscriptBox[\(z\), \(S\)]\) [m]"}]
+LegendY:=Association[{"\!\(\*SubscriptBox[\(E\), \(X\)]\)"->"\!\(\*SubscriptBox[\(dN\), \(ev\)]\)/\!\(\*SubscriptBox[\(dE\), \(S\)]\) [\!\(\*SuperscriptBox[\(GeV\), \(-1\)]\)]","\!\(\*SubscriptBox[\(theta\), \(X\)]\)"->"\!\(\*SubscriptBox[\(dN\), \(ev\)]\)/\!\(\*SubscriptBox[\(dtheta\), \(S\)]\) [\!\(\*SuperscriptBox[\(rad\), \(-1\)]\)]","\!\(\*SubscriptBox[\(x\), \(X\)]\)"-> "\!\(\*SubscriptBox[\(dN\), \(ev\)]\)/\!\(\*SubscriptBox[\(dz\), \(S\)]\) [\!\(\*SuperscriptBox[\(m\), \(-1\)]\)]"}]
+prodlisttemp={};
+Do[If[Max[mminepsilon,mSmin[prod]]<mvaltest<Min[mSmax[prod],mmaxepsilon],
+prodlisttemp=Join[prodlisttemp,{prod}];
+NdiffData[prod]=NeventsDifferentialDiscret[mvaltest,prod,theta2test,BrhToSStest,quantity];
+XvalminmaxNdiff=Select[NdiffData[prod],#[[2]]>10^-40&][[All,1]]//MinMax;
+NdiffInt[X_,prod]=If[XvalminmaxNdiff[[1]]<X<XvalminmaxNdiff[[2]],Evaluate[10^Interpolation[{Log10[#[[1]]],Log10[#[[2]]+10^-90]}&/@NdiffData[prod],InterpolationOrder->1][Log10[X]]],0]],{prod,ProductionList}];
+NdiffInt[X_,"Total"]=Sum[NdiffInt[X,prod],{prod,prodlisttemp}];
+LegendList=Join[{"Total"},prodlisttemp];
+QuantityMinMax=Flatten[Table[MinMax[NdiffData[prod][[All,1]]],{prod,prodlisttemp}],1]//MinMax
+ValueMinMax=Max[Max[NdiffData[#][[All,2]]]&/@prodlisttemp];
+LogLogPlot[Evaluate[Table[NdiffInt[X,prod],{prod,LegendList}]],{X,QuantityMinMax[[1]],QuantityMinMax[[2]]},Frame->True,ImageSize->Large,PlotRange->{All,{10^-5,2ValueMinMax}},PlotStyle->{{Thick,Black},{Thick,Blue},{Thick,Darker@Red},{Thick,Darker@Darker@Green},{Thick,Darker@Cyan},{Thick,Magenta},{Thick,Blue,Dashing[0.02]},{Thick,Darker@Red,Dashing[0.02]},{Thick,Darker@Darker@Green,Dashing[0.02]}},PlotLegends->Placed[Style[#,20]&/@LegendList,{0.85,0.7}],FrameLabel->{LegendX[quantity] ,LegendY[quantity]},FrameStyle->Directive[Black, 23],PlotLabel->Style[Row[{SelectedExperiment,". \!\(\*SubscriptBox[\(m\), \(S\)]\) = ",mvaltest," GeV, \!\(\*SuperscriptBox[\(theta\), \(2\)]\) = ",(theta2test//N)}],20,Black]]
+(*tt=NeventsDifferentialDiscret[0.5,"Bmixing",10^-11,0.15,"\!\(\*SubscriptBox[\(E\), \(X\)]\)"];
+ListLogLogPlot[tt,PlotRange->{All,{10^-9,100}},Joined->True]
+Sum[tt[[i]][[2]]*\[CapitalDelta]xval[[i]],{i,1,Length[tt],1}]*)
+
+----- cell 82  label=Exporting tabulated number of events -----
+{If[(DirectoryQ[FileNameJoin[{NotebookDirectory[],"Tabulated Nevents"}]]//ToString)=="False",CreateDirectory[FileNameJoin[{NotebookDirectory[],"Tabulated Nevents"}]]];, 
+, If[(DirectoryQ[FileNameJoin[{NotebookDirectory[],"Tabulated Nevents/Scalars"}]]//ToString)=="False",CreateDirectory[FileNameJoin[{NotebookDirectory[],"Tabulated Nevents/Scalars"}]]];, 
+, If[(DirectoryQ[FileNameJoin[{NotebookDirectory[],"Tabulated Nevents/Scalars",SelectedExperiment}]]//ToString)=="False",CreateDirectory[FileNameJoin[{NotebookDirectory[],"Tabulated Nevents/Scalars",SelectedExperiment}]]];, 
+, Print["Filenames with tabulated \!\(\*SubscriptBox[\(N\), \(events\)]\):"], 
+, ListExport1:=Association[{"Bmixing"->"mixing","Bquartic"->"quartic","BsQuartic"->"quartic","hQuartic"->"quartic","Brem"->"mixing"}], 
+, ListExport2:=Association[{"Bmixing"->"B","Bquartic"->"B","BsQuartic"->"Bs","hQuartic"->"h","Brem"->"Brem"}], 
+, Do[FilenameNevents[prod]=ToString@StringForm["Nevents_Scalar_``_at_``_Npot=``_From_``.dat",Sequence@@{ListExport1[prod],SelectedExperiment,NpotGivenExperiment//CForm//ToString,ListExport2[prod]}],{prod,ProductionList}], 
+, Table[FilenameNevents[prod],{prod,ProductionList}]//TableForm, 
+, mlistScalarExport["Brem"]={0.021,0.051,0.1,0.13,0.15,0.2,0.21,0.215,0.22,0.23,0.24,0.25,0.26,0.27,0.28,0.289,0.3,0.35,0.4,0.45,0.5,0.6,0.7,0.8,0.85,0.9,0.95,0.99,1.02,1.05,1.1,1.3,1.5,1.8,1.9,1.99,2.1,2.2,2.3,2.4,2.5};, 
+, mlistScalarExport["Bquartic"]={0.021,0.051,0.1,0.13,0.15,0.2,0.21,0.215,0.22,0.23,0.24,0.25,0.26,0.27,0.28,0.289,0.3,0.35,0.4,0.45,0.5,0.6,0.7,0.8,0.85,0.9,0.95,0.99,1.02,1.05,1.1,1.3,1.5,1.8,1.9,1.99,2.05,2.1,2.2,2.3,2.4,2.5,2.55};, 
+, mlistScalarExport["Bmixing"]={0.021,0.051,0.1,0.13,0.15,0.17,0.2,0.21,0.215,0.22,0.23,0.24,0.25,0.26,0.27,0.28,0.289,0.3,0.35,0.4,0.45,0.5,0.6,0.7,0.8,0.85,0.9,0.95,0.99,1.02,1.05,1.1,1.3,1.5,1.8,1.9,1.99,2.1,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3,3.1,3.2,3.3,3.5,3.6,3.7,3.8,3.9,4,4.1,4.2,4.3,4.4,4.5,4.6,4.65,4.7,4.75,4.77,4.8,4.83,4.85,4.87,4.9,4.93,4.95,4.97,5,5.03,5.05,5.07,5.1};, 
+, mlistScalarExport["BsQuartic"]={0.021,0.051,0.1,0.13,0.15,0.17,0.2,0.21,0.215,0.22,0.23,0.25,0.26,0.28,0.289,0.3,0.35,0.5,0.6,0.7,0.8,0.85,0.9,0.95,0.99,1.02,1.05,1.1,1.3,1.5,1.8,1.9,1.99,2.05,2.1,2.2,2.3,2.4,2.5,2.55,2.6,2.65};, 
+, mlistScalarExport["hQuartic"]={0.021,0.051,0.1,0.13,0.15,0.17,0.2,0.21,0.215,0.22,0.23,0.24,0.25,0.26,0.27,0.28,0.289,0.3,0.35,0.4,0.45,0.5,0.6,0.7,0.8,0.85,0.9,0.95,0.99,1.02,1.05,1.1,1.3,1.5,1.8,1.9,1.99,2.1,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3,3.2,3.3,3.4,3.5,3.6,3.7,3.8,3.9,4,4.1,4.2,4.3,4.4,4.5,4.6,4.7,4.8,4.9,5,5.1,7.,10.,10.6,12.,15.,20.,30.,40.,45.,50.,55.,60.,61.,62.,62.49};, 
+, theta2list=Table[10^x,{x,-20,-3,0.02}]//N;}
+
+----- cell 83  label=Definitions -----
+{If[(DirectoryQ[FileNameJoin[{NotebookDirectory[],"Tabulated Nevents"}]]//ToString)=="False",CreateDirectory[FileNameJoin[{NotebookDirectory[],"Tabulated Nevents"}]]];, 
+, If[(DirectoryQ[FileNameJoin[{NotebookDirectory[],"Tabulated Nevents/Scalars"}]]//ToString)=="False",CreateDirectory[FileNameJoin[{NotebookDirectory[],"Tabulated Nevents/Scalars"}]]];, 
+, If[(DirectoryQ[FileNameJoin[{NotebookDirectory[],"Tabulated Nevents/Scalars",SelectedExperiment}]]//ToString)=="False",CreateDirectory[FileNameJoin[{NotebookDirectory[],"Tabulated Nevents/Scalars",SelectedExperiment}]]];, 
+, Print["Filenames with tabulated \!\(\*SubscriptBox[\(N\), \(events\)]\):"], 
+, ListExport1:=Association[{"Bmixing"->"mixing","Bquartic"->"quartic","BsQuartic"->"quartic","hQuartic"->"quartic","Brem"->"mixing"}], 
+, ListExport2:=Association[{"Bmixing"->"B","Bquartic"->"B","BsQuartic"->"Bs","hQuartic"->"h","Brem"->"Brem"}], 
+, Do[FilenameNevents[prod]=ToString@StringForm["Nevents_Scalar_``_at_``_Npot=``_From_``.dat",Sequence@@{ListExport1[prod],SelectedExperiment,NpotGivenExperiment//CForm//ToString,ListExport2[prod]}],{prod,ProductionList}], 
+, Table[FilenameNevents[prod],{prod,ProductionList}]//TableForm, 
+, mlistScalarExport["Brem"]={0.021,0.051,0.1,0.13,0.15,0.2,0.21,0.215,0.22,0.23,0.24,0.25,0.26,0.27,0.28,0.289,0.3,0.35,0.4,0.45,0.5,0.6,0.7,0.8,0.85,0.9,0.95,0.99,1.02,1.05,1.1,1.3,1.5,1.8,1.9,1.99,2.1,2.2,2.3,2.4,2.5};, 
+, mlistScalarExport["Bquartic"]={0.021,0.051,0.1,0.13,0.15,0.2,0.21,0.215,0.22,0.23,0.24,0.25,0.26,0.27,0.28,0.289,0.3,0.35,0.4,0.45,0.5,0.6,0.7,0.8,0.85,0.9,0.95,0.99,1.02,1.05,1.1,1.3,1.5,1.8,1.9,1.99,2.05,2.1,2.2,2.3,2.4,2.5,2.55};, 
+, mlistScalarExport["Bmixing"]={0.021,0.051,0.1,0.13,0.15,0.17,0.2,0.21,0.215,0.22,0.23,0.24,0.25,0.26,0.27,0.28,0.289,0.3,0.35,0.4,0.45,0.5,0.6,0.7,0.8,0.85,0.9,0.95,0.99,1.02,1.05,1.1,1.3,1.5,1.8,1.9,1.99,2.1,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3,3.1,3.2,3.3,3.5,3.6,3.7,3.8,3.9,4,4.1,4.2,4.3,4.4,4.5,4.6,4.65,4.7,4.75,4.77,4.8,4.83,4.85,4.87,4.9,4.93,4.95,4.97,5,5.03,5.05,5.07,5.1};, 
+, mlistScalarExport["BsQuartic"]={0.021,0.051,0.1,0.13,0.15,0.17,0.2,0.21,0.215,0.22,0.23,0.25,0.26,0.28,0.289,0.3,0.35,0.5,0.6,0.7,0.8,0.85,0.9,0.95,0.99,1.02,1.05,1.1,1.3,1.5,1.8,1.9,1.99,2.05,2.1,2.2,2.3,2.4,2.5,2.55,2.6,2.65};, 
+, mlistScalarExport["hQuartic"]={0.021,0.051,0.1,0.13,0.15,0.17,0.2,0.21,0.215,0.22,0.23,0.24,0.25,0.26,0.27,0.28,0.289,0.3,0.35,0.4,0.45,0.5,0.6,0.7,0.8,0.85,0.9,0.95,0.99,1.02,1.05,1.1,1.3,1.5,1.8,1.9,1.99,2.1,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3,3.2,3.3,3.4,3.5,3.6,3.7,3.8,3.9,4,4.1,4.2,4.3,4.4,4.5,4.6,4.7,4.8,4.9,5,5.1,7.,10.,10.6,12.,15.,20.,30.,40.,45.,50.,55.,60.,61.,62.,62.49};, 
+, theta2list=Table[10^x,{x,-20,-3,0.02}]//N;}
+
+----- cell 84  label= -----
+{If[(DirectoryQ[FileNameJoin[{NotebookDirectory[],"Tabulated Nevents"}]]//ToString)=="False",CreateDirectory[FileNameJoin[{NotebookDirectory[],"Tabulated Nevents"}]]];, 
+, If[(DirectoryQ[FileNameJoin[{NotebookDirectory[],"Tabulated Nevents/Scalars"}]]//ToString)=="False",CreateDirectory[FileNameJoin[{NotebookDirectory[],"Tabulated Nevents/Scalars"}]]];, 
+, If[(DirectoryQ[FileNameJoin[{NotebookDirectory[],"Tabulated Nevents/Scalars",SelectedExperiment}]]//ToString)=="False",CreateDirectory[FileNameJoin[{NotebookDirectory[],"Tabulated Nevents/Scalars",SelectedExperiment}]]];, 
+, Print["Filenames with tabulated \!\(\*SubscriptBox[\(N\), \(events\)]\):"], 
+, ListExport1:=Association[{"Bmixing"->"mixing","Bquartic"->"quartic","BsQuartic"->"quartic","hQuartic"->"quartic","Brem"->"mixing"}], 
+, ListExport2:=Association[{"Bmixing"->"B","Bquartic"->"B","BsQuartic"->"Bs","hQuartic"->"h","Brem"->"Brem"}], 
+, Do[FilenameNevents[prod]=ToString@StringForm["Nevents_Scalar_``_at_``_Npot=``_From_``.dat",Sequence@@{ListExport1[prod],SelectedExperiment,NpotGivenExperiment//CForm//ToString,ListExport2[prod]}],{prod,ProductionList}], 
+, Table[FilenameNevents[prod],{prod,ProductionList}]//TableForm, 
+, mlistScalarExport["Brem"]={0.021,0.051,0.1,0.13,0.15,0.2,0.21,0.215,0.22,0.23,0.24,0.25,0.26,0.27,0.28,0.289,0.3,0.35,0.4,0.45,0.5,0.6,0.7,0.8,0.85,0.9,0.95,0.99,1.02,1.05,1.1,1.3,1.5,1.8,1.9,1.99,2.1,2.2,2.3,2.4,2.5};, 
+, mlistScalarExport["Bquartic"]={0.021,0.051,0.1,0.13,0.15,0.2,0.21,0.215,0.22,0.23,0.24,0.25,0.26,0.27,0.28,0.289,0.3,0.35,0.4,0.45,0.5,0.6,0.7,0.8,0.85,0.9,0.95,0.99,1.02,1.05,1.1,1.3,1.5,1.8,1.9,1.99,2.05,2.1,2.2,2.3,2.4,2.5,2.55};, 
+, mlistScalarExport["Bmixing"]={0.021,0.051,0.1,0.13,0.15,0.17,0.2,0.21,0.215,0.22,0.23,0.24,0.25,0.26,0.27,0.28,0.289,0.3,0.35,0.4,0.45,0.5,0.6,0.7,0.8,0.85,0.9,0.95,0.99,1.02,1.05,1.1,1.3,1.5,1.8,1.9,1.99,2.1,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3,3.1,3.2,3.3,3.5,3.6,3.7,3.8,3.9,4,4.1,4.2,4.3,4.4,4.5,4.6,4.65,4.7,4.75,4.77,4.8,4.83,4.85,4.87,4.9,4.93,4.95,4.97,5,5.03,5.05,5.07,5.1};, 
+, mlistScalarExport["BsQuartic"]={0.021,0.051,0.1,0.13,0.15,0.17,0.2,0.21,0.215,0.22,0.23,0.25,0.26,0.28,0.289,0.3,0.35,0.5,0.6,0.7,0.8,0.85,0.9,0.95,0.99,1.02,1.05,1.1,1.3,1.5,1.8,1.9,1.99,2.05,2.1,2.2,2.3,2.4,2.5,2.55,2.6,2.65};, 
+, mlistScalarExport["hQuartic"]={0.021,0.051,0.1,0.13,0.15,0.17,0.2,0.21,0.215,0.22,0.23,0.24,0.25,0.26,0.27,0.28,0.289,0.3,0.35,0.4,0.45,0.5,0.6,0.7,0.8,0.85,0.9,0.95,0.99,1.02,1.05,1.1,1.3,1.5,1.8,1.9,1.99,2.1,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3,3.2,3.3,3.4,3.5,3.6,3.7,3.8,3.9,4,4.1,4.2,4.3,4.4,4.5,4.6,4.7,4.8,4.9,5,5.1,7.,10.,10.6,12.,15.,20.,30.,40.,45.,50.,55.,60.,61.,62.,62.49};, 
+, theta2list=Table[10^x,{x,-20,-3,0.02}]//N;}
+
+----- cell 85  label=Exporting -----
+BlockExport[ProdChannel_]:=Block[{},
+If[Select[ProductionList,#==ProdChannel&]=={},,
+mlist=mlistScalarExport[ProdChannel];
+TabFrom=Monitor[Table[NeventsDiscret[mlist[[k]],ProdChannel,BrhToSSreference,theta2list],{k,1,Length[mlist],1}],Row[{ProgressIndicator[k,{1,Length[mlist]}],"i = ",k,"/",Length[mlist],", m = ",mlist[[k]]," GeV"}," "]];
+Export[FileNameJoin[{NotebookDirectory[],"Tabulated Nevents/Scalars",SelectedExperiment,FilenameNevents[ProdChannel]}],Flatten[TabFrom,1],"Table"]]
+]
+
+----- cell 86  label=Common definition -----
+BlockExport[ProdChannel_]:=Block[{},
+If[Select[ProductionList,#==ProdChannel&]=={},,
+mlist=mlistScalarExport[ProdChannel];
+TabFrom=Monitor[Table[NeventsDiscret[mlist[[k]],ProdChannel,BrhToSSreference,theta2list],{k,1,Length[mlist],1}],Row[{ProgressIndicator[k,{1,Length[mlist]}],"i = ",k,"/",Length[mlist],", m = ",mlist[[k]]," GeV"}," "]];
+Export[FileNameJoin[{NotebookDirectory[],"Tabulated Nevents/Scalars",SelectedExperiment,FilenameNevents[ProdChannel]}],Flatten[TabFrom,1],"Table"]]
+]
+
+----- cell 87  label= -----
+BlockExport[ProdChannel_]:=Block[{},
+If[Select[ProductionList,#==ProdChannel&]=={},,
+mlist=mlistScalarExport[ProdChannel];
+TabFrom=Monitor[Table[NeventsDiscret[mlist[[k]],ProdChannel,BrhToSSreference,theta2list],{k,1,Length[mlist],1}],Row[{ProgressIndicator[k,{1,Length[mlist]}],"i = ",k,"/",Length[mlist],", m = ",mlist[[k]]," GeV"}," "]];
+Export[FileNameJoin[{NotebookDirectory[],"Tabulated Nevents/Scalars",SelectedExperiment,FilenameNevents[ProdChannel]}],Flatten[TabFrom,1],"Table"]]
+]
+
+----- cell 88  label=From B - mixing -----
+BlockExport["Bmixing"];//AbsoluteTiming
+
+----- cell 89  label= -----
+BlockExport["Bmixing"];//AbsoluteTiming
+
+----- cell 90  label=From B - quartic -----
+BlockExport["Bquartic"];//AbsoluteTiming
+
+----- cell 91  label= -----
+BlockExport["Bquartic"];//AbsoluteTiming
+
+----- cell 92  label= -----
+B_s
+
+----- cell 93  label= -----
+B_s
+
+----- cell 94  label= -----
+BlockExport["BsQuartic"];//AbsoluteTiming
+
+----- cell 95  label=From h - quartic -----
+BlockExport["hQuartic"];//AbsoluteTiming
+
+----- cell 96  label= -----
+BlockExport["hQuartic"];//AbsoluteTiming
+
+----- cell 97  label=From bremsstrahlung -----
+BlockExport["Brem"];//AbsoluteTiming
+
+----- cell 98  label= -----
+BlockExport["Brem"];//AbsoluteTiming
+
+----- cell 99  label=Computing sensitivities -----
+{If[(DirectoryQ[FileNameJoin[{NotebookDirectory[],"Sensitivity domains"}]]//ToString)=="False",CreateDirectory[FileNameJoin[{NotebookDirectory[],"Sensitivity domains"}]]], 
+, If[(DirectoryQ[FileNameJoin[{NotebookDirectory[],"Sensitivity domains","Scalars"}]]//ToString)=="False",CreateDirectory[FileNameJoin[{NotebookDirectory[],"Sensitivity domains","Scalars"}]]], 
+, NeventsDirectory=FileNameJoin[{NotebookDirectory[],"Tabulated Nevents","Scalars"}];, 
+, ExperimentDirectoriesListNevents=Select[FileNames["*",NeventsDirectory,1],DirectoryQ];, 
+, Print["List of available experiments with tabulated \!\(\*SubscriptBox[\(N\), \(events\)]\) for Scalars:"], 
+, ExperimentsListNevents=Table[FileNameTake[ExperimentDirectoriesListNevents[[i]],-1],{i,1,Length[ExperimentDirectoriesListNevents],1}]//Sort;, 
+, ExperimentsListNevents//TableForm, 
+, If[Length[ExperimentsListNevents]==0,Print["No experiment is available, generate first the acceptance for the given experiment using module 1"]], 
+, Print["Selected experiment:"], 
+, dropdownDialog[list_,phrase_]:=DialogInput[{choice=""},Column[{TextCell[phrase],PopupMenu[Dynamic[choice],list],Button["OK",DialogReturn[choice]]}]], 
+, If[Length[ExperimentsListNevents]!=0,GivenExperimentForSensitivityComputation=dropdownDialog[ExperimentsListNevents,"Select the experiment:"]], 
+, CondANUBIS=MemberQ[{"ANUBIS-shaft-volume-1","ANUBIS-shaft-volume-2","ANUBIS-shaft-volume-3"},GivenExperimentForSensitivityComputation];, 
+, If[CondANUBIS==True,infoDialog[Row[{"One of the modules of ANUBIS-shaft is chosen. The full sensitivity includes three modules. The importing will be over all modules, so for all ot the the sensitivity has to be computed"}]]], 
+, If[CondANUBIS==False,GivenExperimentForSensitivityComputationList={GivenExperimentForSensitivityComputation},GivenExperimentForSensitivityComputationList={"ANUBIS-shaft-volume-1","ANUBIS-shaft-volume-2","ANUBIS-shaft-volume-3"}];, 
+, filesNevents={};, 
+, Do[filesNevents=Join[filesNevents,FileNames["*.dat",FileNameJoin[{NotebookDirectory[],"Tabulated Nevents/Scalars",exp}]]],{exp,GivenExperimentForSensitivityComputationList}];
+(*Filenames=Table[{StringReplace[Last@FileNameSplit@files[[i]],{"e+0":>"*^","e-0":>"*^-"}]},{i,1,Length[files],1}];*), 
+, Print["List of production channels:"], 
+, FilenamesNevents=Table[Last@FileNameSplit@filesNevents[[i]],{i,1,Length[filesNevents],1}];, 
+, FilenameParameters[i_]:=StringCases[FilenamesNevents[[i]],"Nevents_Scalar_"~~coupling__~~"_at_"~~experiment__~~"_Npot="~~Npot__~~"_From_"~~mother__~~".dat":>{coupling,experiment,Npot,mother}][[1]], 
+, ProductionChannelsList=Table[FilenameParameters[i],{i,1,Length[FilenamesNevents],1}][[All,{2,1,3,4}]]//DeleteDuplicates;, 
+, Join[{{"coupling type","Experiment","\!\(\*SubscriptBox[\(N\), \(PoT\)]\)","Mother particle"}},ProductionChannelsList]//TableForm, 
+, NpotDefault=Interpreter["Number"][ProductionChannelsList[[1]][[3]]];, 
+, NeventsTabulatedList=Table[Import[filesNevents[[i]],"Table"],{i,1,Length[filesNevents],1}];, 
+, IfzeroList=Table[If[Length[Select[NeventsTabulatedList[[i]],#[[3]]>10^-5&][[All,3]]]==0,0,1],{i,1,Length[NeventsTabulatedList],1}];, 
+, NeventsTabulatedList=Select[Table[If[IfzeroList[[i]]==1,NeventsTabulatedList[[i]]],{i,1,Length[IfzeroList],1}],MemberQ[{Null},#]==False&];, 
+, mSminmaxTabulated[i_]:=If[IfzeroList[[i]]==1,MinMax[Select[NeventsTabulatedList[[i]],#[[3]]>10^-30&][[All,1]]]], 
+, theta2minmaxTabulated[i_]:=If[IfzeroList[[i]]==1,MinMax[Select[NeventsTabulatedList[[i]],#[[3]]>10^-30&][[All,2]]]], 
+, mSminmaxOverall=MinMax[Table[mSminmaxTabulated[i],{i,1,Length[NeventsTabulatedList],1}]//Flatten];, 
+, theta2minmaxOverall=MinMax[Table[theta2minmaxTabulated[i],{i,1,Length[NeventsTabulatedList],1}]//Flatten];, 
+, NevintMixing[i_]:=If[mSminmaxTabulated[i][[1]]<= mS<=mSminmaxTabulated[i][[2]]&&theta2minmaxTabulated[i][[1]]<=theta2<= theta2minmaxTabulated[i][[2]],Evaluate[10^(Interpolation[{Log10[#[[1]]],Log10[#[[2]]],Log10[#[[3]]+10^-90]}&/@NeventsTabulatedList[[i]],InterpolationOrder->1][Log10[mS],Log10[theta2]])],0], 
+, BrhToSSreference=0.15;, 
+, NevintQuartic[i_]:=If[mSminmaxTabulated[i][[1]]<= mS<=mSminmaxTabulated[i][[2]]&&theta2minmaxTabulated[i][[1]]<=theta2<= theta2minmaxTabulated[i][[2]],Evaluate[(BrhToSS)/(BrhToSSreference)10^(Interpolation[{Log10[#[[1]]],Log10[#[[2]]],Log10[#[[3]]+10^-90]}&/@NeventsTabulatedList[[i]],InterpolationOrder->1][Log10[mS],Log10[theta2]])],0], 
+, NevIntList[mS_,theta2_,BrhToSS_]=Table[If[ProductionChannelsList[[i]][[2]]=="mixing",NevintMixing[i],NevintQuartic[i]],{i,1,Length[NeventsTabulatedList],1}];, 
+, NevTot[mS_,theta2_,BrhToSS_]=Sum[NevIntList[mS,theta2,BrhToSS][[i]],{i,1,Length[NevIntList[mS,theta2,BrhToSS]],1}];, 
+, ExperimentFolder=If[CondANUBIS==True,"ANUBIS-shaft",GivenExperimentForSensitivityComputation];, 
+, If[(DirectoryQ[FileNameJoin[{NotebookDirectory[],"Sensitivity domains","Scalars",ExperimentFolder}]]//ToString)=="False",CreateDirectory[FileNameJoin[{NotebookDirectory[],"Sensitivity domains","Scalars",ExperimentFolder}]]]}
+
+----- cell 100  label=Importing data and interpolations -----
+{If[(DirectoryQ[FileNameJoin[{NotebookDirectory[],"Sensitivity domains"}]]//ToString)=="False",CreateDirectory[FileNameJoin[{NotebookDirectory[],"Sensitivity domains"}]]], 
+, If[(DirectoryQ[FileNameJoin[{NotebookDirectory[],"Sensitivity domains","Scalars"}]]//ToString)=="False",CreateDirectory[FileNameJoin[{NotebookDirectory[],"Sensitivity domains","Scalars"}]]], 
+, NeventsDirectory=FileNameJoin[{NotebookDirectory[],"Tabulated Nevents","Scalars"}];, 
+, ExperimentDirectoriesListNevents=Select[FileNames["*",NeventsDirectory,1],DirectoryQ];, 
+, Print["List of available experiments with tabulated \!\(\*SubscriptBox[\(N\), \(events\)]\) for Scalars:"], 
+, ExperimentsListNevents=Table[FileNameTake[ExperimentDirectoriesListNevents[[i]],-1],{i,1,Length[ExperimentDirectoriesListNevents],1}]//Sort;, 
+, ExperimentsListNevents//TableForm, 
+, If[Length[ExperimentsListNevents]==0,Print["No experiment is available, generate first the acceptance for the given experiment using module 1"]], 
+, Print["Selected experiment:"], 
+, dropdownDialog[list_,phrase_]:=DialogInput[{choice=""},Column[{TextCell[phrase],PopupMenu[Dynamic[choice],list],Button["OK",DialogReturn[choice]]}]], 
+, If[Length[ExperimentsListNevents]!=0,GivenExperimentForSensitivityComputation=dropdownDialog[ExperimentsListNevents,"Select the experiment:"]], 
+, CondANUBIS=MemberQ[{"ANUBIS-shaft-volume-1","ANUBIS-shaft-volume-2","ANUBIS-shaft-volume-3"},GivenExperimentForSensitivityComputation];, 
+, If[CondANUBIS==True,infoDialog[Row[{"One of the modules of ANUBIS-shaft is chosen. The full sensitivity includes three modules. The importing will be over all modules, so for all ot the the sensitivity has to be computed"}]]], 
+, If[CondANUBIS==False,GivenExperimentForSensitivityComputationList={GivenExperimentForSensitivityComputation},GivenExperimentForSensitivityComputationList={"ANUBIS-shaft-volume-1","ANUBIS-shaft-volume-2","ANUBIS-shaft-volume-3"}];, 
+, filesNevents={};, 
+, Do[filesNevents=Join[filesNevents,FileNames["*.dat",FileNameJoin[{NotebookDirectory[],"Tabulated Nevents/Scalars",exp}]]],{exp,GivenExperimentForSensitivityComputationList}];
+(*Filenames=Table[{StringReplace[Last@FileNameSplit@files[[i]],{"e+0":>"*^","e-0":>"*^-"}]},{i,1,Length[files],1}];*), 
+, Print["List of production channels:"], 
+, FilenamesNevents=Table[Last@FileNameSplit@filesNevents[[i]],{i,1,Length[filesNevents],1}];, 
+, FilenameParameters[i_]:=StringCases[FilenamesNevents[[i]],"Nevents_Scalar_"~~coupling__~~"_at_"~~experiment__~~"_Npot="~~Npot__~~"_From_"~~mother__~~".dat":>{coupling,experiment,Npot,mother}][[1]], 
+, ProductionChannelsList=Table[FilenameParameters[i],{i,1,Length[FilenamesNevents],1}][[All,{2,1,3,4}]]//DeleteDuplicates;, 
+, Join[{{"coupling type","Experiment","\!\(\*SubscriptBox[\(N\), \(PoT\)]\)","Mother particle"}},ProductionChannelsList]//TableForm, 
+, NpotDefault=Interpreter["Number"][ProductionChannelsList[[1]][[3]]];, 
+, NeventsTabulatedList=Table[Import[filesNevents[[i]],"Table"],{i,1,Length[filesNevents],1}];, 
+, IfzeroList=Table[If[Length[Select[NeventsTabulatedList[[i]],#[[3]]>10^-5&][[All,3]]]==0,0,1],{i,1,Length[NeventsTabulatedList],1}];, 
+, NeventsTabulatedList=Select[Table[If[IfzeroList[[i]]==1,NeventsTabulatedList[[i]]],{i,1,Length[IfzeroList],1}],MemberQ[{Null},#]==False&];, 
+, mSminmaxTabulated[i_]:=If[IfzeroList[[i]]==1,MinMax[Select[NeventsTabulatedList[[i]],#[[3]]>10^-30&][[All,1]]]], 
+, theta2minmaxTabulated[i_]:=If[IfzeroList[[i]]==1,MinMax[Select[NeventsTabulatedList[[i]],#[[3]]>10^-30&][[All,2]]]], 
+, mSminmaxOverall=MinMax[Table[mSminmaxTabulated[i],{i,1,Length[NeventsTabulatedList],1}]//Flatten];, 
+, theta2minmaxOverall=MinMax[Table[theta2minmaxTabulated[i],{i,1,Length[NeventsTabulatedList],1}]//Flatten];, 
+, NevintMixing[i_]:=If[mSminmaxTabulated[i][[1]]<= mS<=mSminmaxTabulated[i][[2]]&&theta2minmaxTabulated[i][[1]]<=theta2<= theta2minmaxTabulated[i][[2]],Evaluate[10^(Interpolation[{Log10[#[[1]]],Log10[#[[2]]],Log10[#[[3]]+10^-90]}&/@NeventsTabulatedList[[i]],InterpolationOrder->1][Log10[mS],Log10[theta2]])],0], 
+, BrhToSSreference=0.15;, 
+, NevintQuartic[i_]:=If[mSminmaxTabulated[i][[1]]<= mS<=mSminmaxTabulated[i][[2]]&&theta2minmaxTabulated[i][[1]]<=theta2<= theta2minmaxTabulated[i][[2]],Evaluate[(BrhToSS)/(BrhToSSreference)10^(Interpolation[{Log10[#[[1]]],Log10[#[[2]]],Log10[#[[3]]+10^-90]}&/@NeventsTabulatedList[[i]],InterpolationOrder->1][Log10[mS],Log10[theta2]])],0], 
+, NevIntList[mS_,theta2_,BrhToSS_]=Table[If[ProductionChannelsList[[i]][[2]]=="mixing",NevintMixing[i],NevintQuartic[i]],{i,1,Length[NeventsTabulatedList],1}];, 
+, NevTot[mS_,theta2_,BrhToSS_]=Sum[NevIntList[mS,theta2,BrhToSS][[i]],{i,1,Length[NevIntList[mS,theta2,BrhToSS]],1}];, 
+, ExperimentFolder=If[CondANUBIS==True,"ANUBIS-shaft",GivenExperimentForSensitivityComputation];, 
+, If[(DirectoryQ[FileNameJoin[{NotebookDirectory[],"Sensitivity domains","Scalars",ExperimentFolder}]]//ToString)=="False",CreateDirectory[FileNameJoin[{NotebookDirectory[],"Sensitivity domains","Scalars",ExperimentFolder}]]]}
+
+----- cell 101  label= -----
+{If[(DirectoryQ[FileNameJoin[{NotebookDirectory[],"Sensitivity domains"}]]//ToString)=="False",CreateDirectory[FileNameJoin[{NotebookDirectory[],"Sensitivity domains"}]]], 
+, If[(DirectoryQ[FileNameJoin[{NotebookDirectory[],"Sensitivity domains","Scalars"}]]//ToString)=="False",CreateDirectory[FileNameJoin[{NotebookDirectory[],"Sensitivity domains","Scalars"}]]], 
+, NeventsDirectory=FileNameJoin[{NotebookDirectory[],"Tabulated Nevents","Scalars"}];, 
+, ExperimentDirectoriesListNevents=Select[FileNames["*",NeventsDirectory,1],DirectoryQ];, 
+, Print["List of available experiments with tabulated \!\(\*SubscriptBox[\(N\), \(events\)]\) for Scalars:"], 
+, ExperimentsListNevents=Table[FileNameTake[ExperimentDirectoriesListNevents[[i]],-1],{i,1,Length[ExperimentDirectoriesListNevents],1}]//Sort;, 
+, ExperimentsListNevents//TableForm, 
+, If[Length[ExperimentsListNevents]==0,Print["No experiment is available, generate first the acceptance for the given experiment using module 1"]], 
+, Print["Selected experiment:"], 
+, dropdownDialog[list_,phrase_]:=DialogInput[{choice=""},Column[{TextCell[phrase],PopupMenu[Dynamic[choice],list],Button["OK",DialogReturn[choice]]}]], 
+, If[Length[ExperimentsListNevents]!=0,GivenExperimentForSensitivityComputation=dropdownDialog[ExperimentsListNevents,"Select the experiment:"]], 
+, CondANUBIS=MemberQ[{"ANUBIS-shaft-volume-1","ANUBIS-shaft-volume-2","ANUBIS-shaft-volume-3"},GivenExperimentForSensitivityComputation];, 
+, If[CondANUBIS==True,infoDialog[Row[{"One of the modules of ANUBIS-shaft is chosen. The full sensitivity includes three modules. The importing will be over all modules, so for all ot the the sensitivity has to be computed"}]]], 
+, If[CondANUBIS==False,GivenExperimentForSensitivityComputationList={GivenExperimentForSensitivityComputation},GivenExperimentForSensitivityComputationList={"ANUBIS-shaft-volume-1","ANUBIS-shaft-volume-2","ANUBIS-shaft-volume-3"}];, 
+, filesNevents={};, 
+, Do[filesNevents=Join[filesNevents,FileNames["*.dat",FileNameJoin[{NotebookDirectory[],"Tabulated Nevents/Scalars",exp}]]],{exp,GivenExperimentForSensitivityComputationList}];
+(*Filenames=Table[{StringReplace[Last@FileNameSplit@files[[i]],{"e+0":>"*^","e-0":>"*^-"}]},{i,1,Length[files],1}];*), 
+, Print["List of production channels:"], 
+, FilenamesNevents=Table[Last@FileNameSplit@filesNevents[[i]],{i,1,Length[filesNevents],1}];, 
+, FilenameParameters[i_]:=StringCases[FilenamesNevents[[i]],"Nevents_Scalar_"~~coupling__~~"_at_"~~experiment__~~"_Npot="~~Npot__~~"_From_"~~mother__~~".dat":>{coupling,experiment,Npot,mother}][[1]], 
+, ProductionChannelsList=Table[FilenameParameters[i],{i,1,Length[FilenamesNevents],1}][[All,{2,1,3,4}]]//DeleteDuplicates;, 
+, Join[{{"coupling type","Experiment","\!\(\*SubscriptBox[\(N\), \(PoT\)]\)","Mother particle"}},ProductionChannelsList]//TableForm, 
+, NpotDefault=Interpreter["Number"][ProductionChannelsList[[1]][[3]]];, 
+, NeventsTabulatedList=Table[Import[filesNevents[[i]],"Table"],{i,1,Length[filesNevents],1}];, 
+, IfzeroList=Table[If[Length[Select[NeventsTabulatedList[[i]],#[[3]]>10^-5&][[All,3]]]==0,0,1],{i,1,Length[NeventsTabulatedList],1}];, 
+, NeventsTabulatedList=Select[Table[If[IfzeroList[[i]]==1,NeventsTabulatedList[[i]]],{i,1,Length[IfzeroList],1}],MemberQ[{Null},#]==False&];, 
+, mSminmaxTabulated[i_]:=If[IfzeroList[[i]]==1,MinMax[Select[NeventsTabulatedList[[i]],#[[3]]>10^-30&][[All,1]]]], 
+, theta2minmaxTabulated[i_]:=If[IfzeroList[[i]]==1,MinMax[Select[NeventsTabulatedList[[i]],#[[3]]>10^-30&][[All,2]]]], 
+, mSminmaxOverall=MinMax[Table[mSminmaxTabulated[i],{i,1,Length[NeventsTabulatedList],1}]//Flatten];, 
+, theta2minmaxOverall=MinMax[Table[theta2minmaxTabulated[i],{i,1,Length[NeventsTabulatedList],1}]//Flatten];, 
+, NevintMixing[i_]:=If[mSminmaxTabulated[i][[1]]<= mS<=mSminmaxTabulated[i][[2]]&&theta2minmaxTabulated[i][[1]]<=theta2<= theta2minmaxTabulated[i][[2]],Evaluate[10^(Interpolation[{Log10[#[[1]]],Log10[#[[2]]],Log10[#[[3]]+10^-90]}&/@NeventsTabulatedList[[i]],InterpolationOrder->1][Log10[mS],Log10[theta2]])],0], 
+, BrhToSSreference=0.15;, 
+, NevintQuartic[i_]:=If[mSminmaxTabulated[i][[1]]<= mS<=mSminmaxTabulated[i][[2]]&&theta2minmaxTabulated[i][[1]]<=theta2<= theta2minmaxTabulated[i][[2]],Evaluate[(BrhToSS)/(BrhToSSreference)10^(Interpolation[{Log10[#[[1]]],Log10[#[[2]]],Log10[#[[3]]+10^-90]}&/@NeventsTabulatedList[[i]],InterpolationOrder->1][Log10[mS],Log10[theta2]])],0], 
+, NevIntList[mS_,theta2_,BrhToSS_]=Table[If[ProductionChannelsList[[i]][[2]]=="mixing",NevintMixing[i],NevintQuartic[i]],{i,1,Length[NeventsTabulatedList],1}];, 
+, NevTot[mS_,theta2_,BrhToSS_]=Sum[NevIntList[mS,theta2,BrhToSS][[i]],{i,1,Length[NevIntList[mS,theta2,BrhToSS]],1}];, 
+, ExperimentFolder=If[CondANUBIS==True,"ANUBIS-shaft",GivenExperimentForSensitivityComputation];, 
+, If[(DirectoryQ[FileNameJoin[{NotebookDirectory[],"Sensitivity domains","Scalars",ExperimentFolder}]]//ToString)=="False",CreateDirectory[FileNameJoin[{NotebookDirectory[],"Sensitivity domains","Scalars",ExperimentFolder}]]]}
+
+----- cell 102  label=Density plot for number of events -----
+{Nevmax=Max[Table[Max[NeventsTabulatedList[[i]][[All,3]]],{i,1,Length[NeventsTabulatedList],1}]];, 
+, BrhToSSval=0.01;
+(*If the plot is not as smooth as it is desired, increase the value of PlotPoints option*), 
+, plot=DensityPlot[Evaluate[Log10[NevTot[mS,theta2,BrhToSSval]]],{mS,mSminmaxOverall[[1]],mSminmaxOverall[[2]]},{theta2,theta2minmaxOverall[[1]],theta2minmaxOverall[[2]]},ScalingFunctions->{"Log","Log"},AspectRatio->0.78,PlotRange->{All,All,{Log10[2.3],Log10[Nevmax]}},ImageSize->Large,FrameLabel->{"\!\(\*SubscriptBox[\(m\), \(S\)]\) [GeV]","\!\(\*SuperscriptBox[\(theta\), \(2\)]\)"}, Frame-> True, FrameStyle->Directive[Black, 25],PlotPoints->100,PlotLegends->Placed[BarLegend[{Automatic,{Log10[2.3],Log10[Nevmax]}},LegendMarkerSize->340,LegendLabel->Placed["\!\(\*SubscriptBox[\(Log\), \(10\)]\)[\!\(\*SubscriptBox[\(N\), \(ev\)]\)]",Bottom],LabelStyle->{FontSize->22},Method->{FrameStyle->Black,AxesStyle->None,TicksStyle->Black}],Right],PlotLabel->Style[Row[{ExperimentFolder,", Br(h->SS) = ",BrhToSSval}],20,Black](*,FrameTicks->{{Automatic,Automatic},{TicksPlotx,None}}*)]
+(*Exporting. "AllowRasterization"->False option reduces the size of the output. Without this option, the file may be very large, depending on the value of PlotPoints*), 
+, (*Export[FileNameJoin[{NotebookDirectory[],"NeventsDensityPlotExample.pdf"}],plot,"AllowRasterization"->False]*)}
+
+----- cell 103  label= -----
+{Nevmax=Max[Table[Max[NeventsTabulatedList[[i]][[All,3]]],{i,1,Length[NeventsTabulatedList],1}]];, 
+, BrhToSSval=0.01;
+(*If the plot is not as smooth as it is desired, increase the value of PlotPoints option*), 
+, plot=DensityPlot[Evaluate[Log10[NevTot[mS,theta2,BrhToSSval]]],{mS,mSminmaxOverall[[1]],mSminmaxOverall[[2]]},{theta2,theta2minmaxOverall[[1]],theta2minmaxOverall[[2]]},ScalingFunctions->{"Log","Log"},AspectRatio->0.78,PlotRange->{All,All,{Log10[2.3],Log10[Nevmax]}},ImageSize->Large,FrameLabel->{"\!\(\*SubscriptBox[\(m\), \(S\)]\) [GeV]","\!\(\*SuperscriptBox[\(theta\), \(2\)]\)"}, Frame-> True, FrameStyle->Directive[Black, 25],PlotPoints->100,PlotLegends->Placed[BarLegend[{Automatic,{Log10[2.3],Log10[Nevmax]}},LegendMarkerSize->340,LegendLabel->Placed["\!\(\*SubscriptBox[\(Log\), \(10\)]\)[\!\(\*SubscriptBox[\(N\), \(ev\)]\)]",Bottom],LabelStyle->{FontSize->22},Method->{FrameStyle->Black,AxesStyle->None,TicksStyle->Black}],Right],PlotLabel->Style[Row[{ExperimentFolder,", Br(h->SS) = ",BrhToSSval}],20,Black](*,FrameTicks->{{Automatic,Automatic},{TicksPlotx,None}}*)]
+(*Exporting. "AllowRasterization"->False option reduces the size of the output. Without this option, the file may be very large, depending on the value of PlotPoints*), 
+, (*Export[FileNameJoin[{NotebookDirectory[],"NeventsDensityPlotExample.pdf"}],plot,"AllowRasterization"->False]*)}
+
+----- cell 104  label=Sensitivity computation -----
+{SensitivityBlock[Nev_,BrhToSSval_,Npot_]:=Block[{},
+RegSens=RegionPlot[(Npot)/(NpotDefault)NevTot[10^mS,10^theta2,BrhToSSval]>=Nev,{mS,Log10[mSminmaxOverall[[1]]],Log10[mSminmaxOverall[[2]]]},{theta2,Log10[theta2minmaxOverall[[1]]],Log10[theta2minmaxOverall[[2]]]},PlotPoints->100];
+(*Sens={10^#[[1]],10^#[[2]]}&/@Partition[Flatten[Cases[Normal@RegSens,Line[x_]:>x,Infinity]],2];*)
+SensTemp=Cases[Normal@RegSens,Line[x_]:>x,Infinity];
+Sens=Table[{10^#[[1]],10^#[[2]]}&/@SensTemp[[i]],{i,1,Length[SensTemp],1}];
+Export[FileNameJoin[{NotebookDirectory[],"Sensitivity domains","Scalars",ExperimentFolder,ToString@StringForm["Sensitivity_Scalar_at_``_BrhToSS=``_Nev=``_Npot=``.xls",Sequence@@{ExperimentFolder,BrhToSSval//ToString,Nev//ToString,Npot//CForm//ToString}]}],Sens];
+Sens
+], 
+, Print["The value of Br(h->SS) for which the sensitivity will be computed:"], 
+, BrhToSSval=DialogInput[{br=""},Column[{"Enter the value of Br(h->SS) for which the sensitivity will be computed (0 corresponds to the BC4 model):",InputField[Dynamic[br],Number],Button["Proceed",DialogReturn[br],ImageSize->Automatic]}]]//N, 
+, Print["The number of proton collisions:"], 
+, NpotVal=DialogInput[{br=NpotDefault},Column[{"Enter the number of proton collisions",InputField[Dynamic[br],Expression],Button["Proceed",DialogReturn[br],ImageSize->Automatic]}]]//N, 
+, Print["The minimal number of events \!\(\*SubscriptBox[\(N\), \(events, min\)]\) for which the sensitivity will be computed:"], 
+, NevMinVal=DialogInput[{nev=2.3},Column[{"Enter the value of \!\(\*SubscriptBox[\(N\), \(events, min\)]\) for which the sensitivity will be computed:",InputField[Dynamic[nev],Expression],Button["Proceed",DialogReturn[nev],ImageSize->Automatic]}]]//N, 
+, BC4excluded=Import[FileNameJoin[{NotebookDirectory[],"contours/Scalar/scalar-all-experiments.txt"}],"Table"];, 
+, sens=SensitivityBlock[NevMinVal,BrhToSSval,NpotVal];, 
+, Show[ListLogLogPlot[Cases[{sens,BC4excluded},_?MatrixQ,All],Joined->{True,True,True,True}, Frame-> True,FrameLabel->{"\!\(\*SubscriptBox[\(m\), \(S\)]\) [GeV]" , "\!\(\*SuperscriptBox[\(theta\), \(2\)]\)"},FrameStyle->Directive[Black, 23],PlotStyle->Flatten[{ConstantArray[{Thick,Blue},If[MatrixQ[sens],1,Length@sens]],ConstantArray[{Thick,Gray},1]},1],Filling->{Length[sens]+1->{Top,Directive[Gray,Opacity[0.3]]}},ImageSize->Large,PlotRange->{{1.01mSminmaxOverall[[1]],1.1mSminmaxOverall[[2]]},{0.3*Min[sens[[1]][[All,2]]],0.99theta2minmaxOverall[[2]]}},PlotLabel->Style[Row[{"\!\(\*SubscriptBox[\(N\), \(events\)]\) >= ",NevMinVal,", Br(h->SS) = ",BrhToSSval}],18,Black],PlotLegends->Placed[Style[#,15]&/@{ExperimentFolder},{0.2,0.15}]],Graphics[{Text[Style["Excluded",24,Black],Scaled[{0.2,0.9}]]}]]}
+
+----- cell 105  label= -----
+{SensitivityBlock[Nev_,BrhToSSval_,Npot_]:=Block[{},
+RegSens=RegionPlot[(Npot)/(NpotDefault)NevTot[10^mS,10^theta2,BrhToSSval]>=Nev,{mS,Log10[mSminmaxOverall[[1]]],Log10[mSminmaxOverall[[2]]]},{theta2,Log10[theta2minmaxOverall[[1]]],Log10[theta2minmaxOverall[[2]]]},PlotPoints->100];
+(*Sens={10^#[[1]],10^#[[2]]}&/@Partition[Flatten[Cases[Normal@RegSens,Line[x_]:>x,Infinity]],2];*)
+SensTemp=Cases[Normal@RegSens,Line[x_]:>x,Infinity];
+Sens=Table[{10^#[[1]],10^#[[2]]}&/@SensTemp[[i]],{i,1,Length[SensTemp],1}];
+Export[FileNameJoin[{NotebookDirectory[],"Sensitivity domains","Scalars",ExperimentFolder,ToString@StringForm["Sensitivity_Scalar_at_``_BrhToSS=``_Nev=``_Npot=``.xls",Sequence@@{ExperimentFolder,BrhToSSval//ToString,Nev//ToString,Npot//CForm//ToString}]}],Sens];
+Sens
+], 
+, Print["The value of Br(h->SS) for which the sensitivity will be computed:"], 
+, BrhToSSval=DialogInput[{br=""},Column[{"Enter the value of Br(h->SS) for which the sensitivity will be computed (0 corresponds to the BC4 model):",InputField[Dynamic[br],Number],Button["Proceed",DialogReturn[br],ImageSize->Automatic]}]]//N, 
+, Print["The number of proton collisions:"], 
+, NpotVal=DialogInput[{br=NpotDefault},Column[{"Enter the number of proton collisions",InputField[Dynamic[br],Expression],Button["Proceed",DialogReturn[br],ImageSize->Automatic]}]]//N, 
+, Print["The minimal number of events \!\(\*SubscriptBox[\(N\), \(events, min\)]\) for which the sensitivity will be computed:"], 
+, NevMinVal=DialogInput[{nev=2.3},Column[{"Enter the value of \!\(\*SubscriptBox[\(N\), \(events, min\)]\) for which the sensitivity will be computed:",InputField[Dynamic[nev],Expression],Button["Proceed",DialogReturn[nev],ImageSize->Automatic]}]]//N, 
+, BC4excluded=Import[FileNameJoin[{NotebookDirectory[],"contours/Scalar/scalar-all-experiments.txt"}],"Table"];, 
+, sens=SensitivityBlock[NevMinVal,BrhToSSval,NpotVal];, 
+, Show[ListLogLogPlot[Cases[{sens,BC4excluded},_?MatrixQ,All],Joined->{True,True,True,True}, Frame-> True,FrameLabel->{"\!\(\*SubscriptBox[\(m\), \(S\)]\) [GeV]" , "\!\(\*SuperscriptBox[\(theta\), \(2\)]\)"},FrameStyle->Directive[Black, 23],PlotStyle->Flatten[{ConstantArray[{Thick,Blue},If[MatrixQ[sens],1,Length@sens]],ConstantArray[{Thick,Gray},1]},1],Filling->{Length[sens]+1->{Top,Directive[Gray,Opacity[0.3]]}},ImageSize->Large,PlotRange->{{1.01mSminmaxOverall[[1]],1.1mSminmaxOverall[[2]]},{0.3*Min[sens[[1]][[All,2]]],0.99theta2minmaxOverall[[2]]}},PlotLabel->Style[Row[{"\!\(\*SubscriptBox[\(N\), \(events\)]\) >= ",NevMinVal,", Br(h->SS) = ",BrhToSSval}],18,Black],PlotLegends->Placed[Style[#,15]&/@{ExperimentFolder},{0.2,0.15}]],Graphics[{Text[Style["Excluded",24,Black],Scaled[{0.2,0.9}]]}]]}
+
+----- cell 106  label=Deleting generated cells -----
+{dropdownDialog[list_,phrase_]:=DialogInput[{choice=""},Column[{TextCell[phrase],PopupMenu[Dynamic[choice],list],Button["OK",DialogReturn[choice]]}]], 
+, relaunch=dropdownDialog[{"Yes","No"},Row[{"Would you like to re-launch the sensitivity calculation for another experiment after the given computation?"}]], 
+, If[relaunch=="Yes",
+nb=EvaluationNotebook[];
+NotebookFind[nb,"Re-evaluation",All,CellTags];
+SelectionEvaluate[nb]
+], 
+, If[relaunch=="No",
+deletecellsopt=dropdownDialog[{"Yes","No"},Row[{"Would you like to remove all the generated output cells?"}]];
+If[deletecellsopt=="Yes",FrontEndTokenExecute["DeleteGeneratedCells"]]
+]}
+
+----- cell 107  label= -----
+{dropdownDialog[list_,phrase_]:=DialogInput[{choice=""},Column[{TextCell[phrase],PopupMenu[Dynamic[choice],list],Button["OK",DialogReturn[choice]]}]], 
+, relaunch=dropdownDialog[{"Yes","No"},Row[{"Would you like to re-launch the sensitivity calculation for another experiment after the given computation?"}]], 
+, If[relaunch=="Yes",
+nb=EvaluationNotebook[];
+NotebookFind[nb,"Re-evaluation",All,CellTags];
+SelectionEvaluate[nb]
+], 
+, If[relaunch=="No",
+deletecellsopt=dropdownDialog[{"Yes","No"},Row[{"Would you like to remove all the generated output cells?"}]];
+If[deletecellsopt=="Yes",FrontEndTokenExecute["DeleteGeneratedCells"]]
+]}

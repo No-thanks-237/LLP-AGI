@@ -1,0 +1,49 @@
+### FILE: codes/LLP distribution/prod-pheno-Scalar.nb
+
+----- cell 2 -----
+ScalarChapterb06bae0d-0042-4908-8c65-fa53403402b2
+
+----- cell 4 -----
+Relevant processesSection87dbf68c-da68-49fd-aa77-8727e25def3f
+
+----- cell 5 -----
+(*List of processes*)\[IndentingNewLine]LLPname="\<Scalar\>";\[IndentingNewLine](*The kinematics of 2-body decays of B via the mixing channel is approximated by B -> \[Pi]+S. This is reasonable since at low scalar masses the accompanying meson mass is irrelevant, while at higher masses, only \[Pi],K may be*)\[IndentingNewLine]ProcessesListAll[LLPname]={"\<B-mixing\>","\<Bs-quartic\>","\<B-quartic\>","\<h-quartic\>","\<K-mixing\>","\<Bremsstrahlung\>","\<Upsilon-mixing\>","\<Upsilon-quartic\>"};\[IndentingNewLine](*Topology of the process*)\[IndentingNewLine]MapThread[(ProductionType[LLPname,#1]=#2)&,{ProcessesListAll[LLPname],{"\<Decay\>","\<Decay\>","\<Decay\>","\<Decay\>","\<Decay\>","\<Scattering\>","\<Decay\>","\<Decay\>"}}];\[IndentingNewLine](*Particle content: mother particle, decay products*)\[IndentingNewLine]MapThread[(ReactionProductsList[LLPname,#1]=#2)&,{ProcessesListAll[LLPname],{{"\<Bcharged\>","\<PiCharged\>",LLPname},{"\<Bs\>",LLPname,LLPname},{"\<Bcharged\>","\<Kcharged\>",LLPname,LLPname},{"\<h\>",LLPname,LLPname},{"\<Kcharged\>","\<PiCharged\>",LLPname},{"\<p\>",LLPname},{"\<Upsilon\>","\<photon\>",LLPname},{"\<Upsilon\>","\<photon\>",LLPname,LLPname}}}];\[IndentingNewLine]If[EventCalc,\[IndentingNewLine]additionalProcesses={"\<Bplus-to-KS-mixing\>","\<B0-to-KstarS-mixing\>","\<Bplus-to-KSS-quartic\>","\<B0-to-KstarSS-quartic\>"};\[IndentingNewLine]ProcessesListAll[LLPname]=Join[ProcessesListAll[LLPname],additionalProcesses];\[IndentingNewLine]MapThread[(ProductionType[LLPname,#1]=#2)&,{additionalProcesses,{"\<Decay\>","\<Decay\>","\<Decay\>","\<Decay\>"}}];\[IndentingNewLine]MapThread[(ReactionProductsList[LLPname,#1]=#2)&,{additionalProcesses,{{"\<Bcharged\>","\<Kcharged\>",LLPname},{"\<B0\>","\<Kstar892\>",LLPname},{"\<Bcharged\>","\<Kcharged\>",LLPname,LLPname},{"\<B0\>","\<Kstar892\>",LLPname,LLPname}}}];\[IndentingNewLine]];InputIn[1]:=e1ed0d49-9570-4820-b744-0bdb07787dba
+
+----- cell 7 -----
+Their descriptionsSubsection32399c11-a602-2544-b508-7b028db67318
+
+----- cell 8 -----
+DescriptionProcess[LLPname,"\<B-mixing\>"]="\<Production of the scalars S via the mixing - from decays \!\(\*SuperscriptBox[\(B\), \(+\(/\(0\)\)\)]\)\[Rule]\!\(\*SubscriptBox[\(X\), \(s/d\)]\)+S, where \!\(\*SubscriptBox[\(X\), \(s/d\)]\) is a hadronic state containing s/d quarks. See 1904.10447\>";\[IndentingNewLine]DescriptionProcess[LLPname,"\<Bs-quartic\>"]="\<Production of the scalars S via the triliear coupling hSS - from decays of \!\(\*SubscriptBox[\(B\), \(s\)]\) mesons \!\(\*SubscriptBox[\(B\), \(s\)]\) \[Rule] SS. See 1904.10447\>";\[IndentingNewLine]DescriptionProcess[LLPname,"\<B-quartic\>"]="\<Production of the scalars S via the triliear coupling hSS - from decays \!\(\*SuperscriptBox[\(B\), \(+\(/\(0\)\)\)]\)\[Rule]\!\(\*SubscriptBox[\(X\), \(s/d\)]\)+2S, where \!\(\*SubscriptBox[\(X\), \(s/d\)]\) is a hadronic state containing s/d quarks. See 1904.10447\>";\[IndentingNewLine]DescriptionProcess[LLPname,"\<h-quartic\>"]="\<Production of the scalars S via the triliear coupling hSS - from decays h\[Rule]SS\>";\[IndentingNewLine]DescriptionProcess[LLPname,"\<K-mixing\>"]="\<Production of the scalars S via the mixing - from decays \!\(\*SuperscriptBox[\(K\), \(+\)]\)\[Rule]\[Pi]+S. See 1904.10447\>";\[IndentingNewLine]DescriptionProcess[LLPname,"\<Bremsstrahlung\>"]="\<Production of the scalars S via the mixing - from proton bremsstrahlung. See 1904.10447 for generic description and 2409.11096 for treating theoretical uncertainties\>";\[IndentingNewLine]DescriptionProcess[LLPname,"\<Bplus-to-KS-mixing\>"]="\<Partial process of the type \!\(\*SuperscriptBox[\(B\), \(+\)]\)\[Rule]\!\(\*SubscriptBox[\(X\), \(s\)]\)+S, with \!\(\*SubscriptBox[\(X\), \(s\)]\) = \!\(\*SuperscriptBox[\(K\), \(+\)]\)\>";\[IndentingNewLine]DescriptionProcess[LLPname,"\<B0-to-KstarS-mixing\>"]="\<Partial process of the type \!\(\*SuperscriptBox[\(B\), \(0\)]\)\[Rule]\!\(\*SubscriptBox[\(X\), \(s\)]\)+S, with \!\(\*SubscriptBox[\(X\), \(s\)]\) = \!\(\*SuperscriptBox[\(K\), \(*\)]\)\>";\[IndentingNewLine]DescriptionProcess[LLPname,"\<Bplus-to-KSS-quartic\>"]="\<Partial process of the type \!\(\*SuperscriptBox[\(B\), \(+\)]\)\[Rule]\!\(\*SubscriptBox[\(X\), \(s\)]\)+SS, with \!\(\*SubscriptBox[\(X\), \(s\)]\) = \!\(\*SuperscriptBox[\(K\), \(+\)]\)\>";\[IndentingNewLine]DescriptionProcess[LLPname,"\<B0-to-KstarSS-quartic\>"]="\<Partial process of the type \!\(\*SuperscriptBox[\(B\), \(0\)]\)\[Rule]\!\(\*SubscriptBox[\(X\), \(s\)]\)+SS, with \!\(\*SubscriptBox[\(X\), \(s\)]\) = \!\(\*SuperscriptBox[\(K\), \(*\)]\)\>";\[IndentingNewLine]DescriptionProcess[LLPname,"\<Upsilon-mixing\>"]="\<Radiative decays \[CapitalUpsilon]\[Rule]S+\[Gamma] via mixing hS\>";\[IndentingNewLine]DescriptionProcess[LLPname,"\<Upsilon-quartic\>"]="\<Radiative decays \[CapitalUpsilon]\[Rule]2S+\[Gamma] via the trilinear coupling hSS\>";\[IndentingNewLine]DescriptionProcess[LLPname,"\<All channels\>"]="\<All processes from the list\>";InputIn[6]:=cc8031d9-1777-c640-976b-51d032b7fdbe
+
+----- cell 11 -----
+Squared matrix elementsd6986f39-86d1-e742-b77e-4cd80e43d39a for 3-body processes (https://arxiv.org/abs/1904.10447)Sectionb97b4e66-c521-4117-8848-be907144e732
+
+----- cell 13 -----
+MBpole=38.;\[IndentingNewLine](*Approximating the matrix element of the 3-body B decays by the matrix element of the process B->KSS*)\[IndentingNewLine]Msquared3Body[LLPname,"\<B-quartic\>",mLLP_,E1_,E3_]=Msquared3Body[LLPname,"\<Bplus-to-KSS-quartic\>",mLLP_,E1_,E3_]=Msquared3Body[LLPname,"\<B0-to-KstarSS-quartic\>",mLLP_,E1_,E3_]=(1(1-ScalarProduct[k-k1,k-k1]/MBpole2)2//ExpandScalarProduct)/.{ScalarProduct[k,k]\[Rule]ProductKK,ScalarProduct[k1,k1]\[Rule]ProductK1K1,ScalarProduct[k,k1]\[Rule] ProductKK1energy}/.{m\[Rule]mSM["\<Bcharged\>"],m1\[Rule]mSM["\<PiCharged\>"]};\[IndentingNewLine]Msquared3Body[LLPname,"\<Upsilon-quartic\>",mLLP_,E1_,E3_]=1.;\[IndentingNewLine]LLPname//ClearInputIn[19]:=e9469ab9-0236-4da8-981e-4f96c1d0f893
+
+----- cell 14 -----
+1(1-0.026315789473684216` (27.887162`\[VeryThinSpace]-10.558` E1))2OutputOut[289]=c7ef1d5a-c6c3-7c49-8aee-6b49f5c38c6d14.2 for Microsoft Windows (64-bit) (December 26, 2024)Default.nb6ca2f3fa-b960-8142-99b9-f0407203c944
+
+----- cell 16 -----
+Chapterb06bae0d-0042-4908-8c65-fa53403402b2
+
+----- cell 18 -----
+Section87dbf68c-da68-49fd-aa77-8727e25def3f
+
+----- cell 19 -----
+Inpute1ed0d49-9570-4820-b744-0bdb07787dba
+
+----- cell 21 -----
+Subsection32399c11-a602-2544-b508-7b028db67318
+
+----- cell 22 -----
+Inputcc8031d9-1777-c640-976b-51d032b7fdbe
+
+----- cell 24 -----
+Sectionb97b4e66-c521-4117-8848-be907144e732
+
+----- cell 26 -----
+Inpute9469ab9-0236-4da8-981e-4f96c1d0f893
+
+----- cell 27 -----
+Outputc7ef1d5a-c6c3-7c49-8aee-6b49f5c38c6d

@@ -1,0 +1,1091 @@
+### FILE: codes/EventCalc/ProductionProbabilities.nb
+
+----- cell 1  label=All -----
+(*Path to the folder where the production probabilities with the given LLP are stored*)
+directory["Production weights"]=FileNameJoin[{NotebookDirectory[]//ParentDirectory//ParentDirectory,"phenomenology",LLPdirName,"Production probabilities"}];
+(*Path to the folder where the tabulated angle-energy distributions with the given LLP are stored*)
+directory["Distribution"]=FileNameJoin[{NotebookDirectory[]//ParentDirectory//ParentDirectory,"spectra/New physics particles spectra",LLPdirName}];
+[CapitalGamma]SM[113.]=0.149;
+Clear[PmotherToLLP,DistrCombinations];
+FacilitiesList={"SPS","FermilabBD","LHC","FCC-hh","Serpukhov"};
+
+----- cell 2  label=Definitions -----
+(*Path to the folder where the production probabilities with the given LLP are stored*)
+directory["Production weights"]=FileNameJoin[{NotebookDirectory[]//ParentDirectory//ParentDirectory,"phenomenology",LLPdirName,"Production probabilities"}];
+(*Path to the folder where the tabulated angle-energy distributions with the given LLP are stored*)
+directory["Distribution"]=FileNameJoin[{NotebookDirectory[]//ParentDirectory//ParentDirectory,"spectra/New physics particles spectra",LLPdirName}];
+[CapitalGamma]SM[113.]=0.149;
+Clear[PmotherToLLP,DistrCombinations];
+FacilitiesList={"SPS","FermilabBD","LHC","FCC-hh","Serpukhov"};
+
+----- cell 3  label=Definitions -----
+(*Path to the folder where the production probabilities with the given LLP are stored*)
+directory["Production weights"]=FileNameJoin[{NotebookDirectory[]//ParentDirectory//ParentDirectory,"phenomenology",LLPdirName,"Production probabilities"}];
+(*Path to the folder where the tabulated angle-energy distributions with the given LLP are stored*)
+directory["Distribution"]=FileNameJoin[{NotebookDirectory[]//ParentDirectory//ParentDirectory,"spectra/New physics particles spectra",LLPdirName}];
+[CapitalGamma]SM[113.]=0.149;
+Clear[PmotherToLLP,DistrCombinations];
+FacilitiesList={"SPS","FermilabBD","LHC","FCC-hh","Serpukhov"};
+
+----- cell 4  label= -----
+(*Path to the folder where the production probabilities with the given LLP are stored*)
+directory["Production weights"]=FileNameJoin[{NotebookDirectory[]//ParentDirectory//ParentDirectory,"phenomenology",LLPdirName,"Production probabilities"}];
+(*Path to the folder where the tabulated angle-energy distributions with the given LLP are stored*)
+directory["Distribution"]=FileNameJoin[{NotebookDirectory[]//ParentDirectory//ParentDirectory,"spectra/New physics particles spectra",LLPdirName}];
+[CapitalGamma]SM[113.]=0.149;
+Clear[PmotherToLLP,DistrCombinations];
+FacilitiesList={"SPS","FermilabBD","LHC","FCC-hh","Serpukhov"};
+
+----- cell 5  label=Production probabilities -----
+Do[
+MotherFraction["Pi0"]=PppToPi0Facility[Facility];
+MotherFraction["Eta"]=PppTo[Eta]Facility[Facility];
+MotherFraction["Eta"]=PppTo[Eta]Facility[Facility];
+MotherFraction["EtaPr"]=PppTo[Eta]prFacility[Facility];
+MotherFraction["Rho0"]=PppTo[Rho]0Facility[Facility];
+MotherFraction["Omega"]=PppTo[Omega]Facility[Facility];
+MotherFraction["Omega"]=PppTo[Omega]Facility[Facility];
+MotherFraction["DrellYan"]=1;
+MotherFraction["Bremsstrahlung"]=1;
+(*Factor of 2: Bs AND anti Bs*)
+MotherFraction["B"]=2PppTobbExperiment[GivenExperiment];
+MotherFraction["D"]=2PppToccExperiment[GivenExperiment];
+MotherFraction["h"]=PppTohExperiment[GivenExperiment];
+MotherFraction["W"]=PppToWExperiment[GivenExperiment];
+(*Fraction of K^+/- decaying in-flight at SPS, from https://arxiv.org/pdf/2004.07974.pdf*)
+fractionDecayInFlightKplusKminus=(0.29+0.07);
+MotherFraction["K"]=MotherFraction["K-mixing"]=If[Facility=="SPS",fractionDecayInFlightKplusKminus,0.];
+MotherFraction["Upsilon"]=PppToUpsilonFacility[Facility];
+MotherFraction["Fragmentation"]=MotherFraction["Old-Mixing"]=1.;
+,{Facility,{FacilitySelected}}]
+
+----- cell 6  label=Fractions of mother particles per pp collision -----
+Do[
+MotherFraction["Pi0"]=PppToPi0Facility[Facility];
+MotherFraction["Eta"]=PppTo[Eta]Facility[Facility];
+MotherFraction["Eta"]=PppTo[Eta]Facility[Facility];
+MotherFraction["EtaPr"]=PppTo[Eta]prFacility[Facility];
+MotherFraction["Rho0"]=PppTo[Rho]0Facility[Facility];
+MotherFraction["Omega"]=PppTo[Omega]Facility[Facility];
+MotherFraction["Omega"]=PppTo[Omega]Facility[Facility];
+MotherFraction["DrellYan"]=1;
+MotherFraction["Bremsstrahlung"]=1;
+(*Factor of 2: Bs AND anti Bs*)
+MotherFraction["B"]=2PppTobbExperiment[GivenExperiment];
+MotherFraction["D"]=2PppToccExperiment[GivenExperiment];
+MotherFraction["h"]=PppTohExperiment[GivenExperiment];
+MotherFraction["W"]=PppToWExperiment[GivenExperiment];
+(*Fraction of K^+/- decaying in-flight at SPS, from https://arxiv.org/pdf/2004.07974.pdf*)
+fractionDecayInFlightKplusKminus=(0.29+0.07);
+MotherFraction["K"]=MotherFraction["K-mixing"]=If[Facility=="SPS",fractionDecayInFlightKplusKminus,0.];
+MotherFraction["Upsilon"]=PppToUpsilonFacility[Facility];
+MotherFraction["Fragmentation"]=MotherFraction["Old-Mixing"]=1.;
+,{Facility,{FacilitySelected}}]
+
+----- cell 7  label= -----
+Do[
+MotherFraction["Pi0"]=PppToPi0Facility[Facility];
+MotherFraction["Eta"]=PppTo[Eta]Facility[Facility];
+MotherFraction["Eta"]=PppTo[Eta]Facility[Facility];
+MotherFraction["EtaPr"]=PppTo[Eta]prFacility[Facility];
+MotherFraction["Rho0"]=PppTo[Rho]0Facility[Facility];
+MotherFraction["Omega"]=PppTo[Omega]Facility[Facility];
+MotherFraction["Omega"]=PppTo[Omega]Facility[Facility];
+MotherFraction["DrellYan"]=1;
+MotherFraction["Bremsstrahlung"]=1;
+(*Factor of 2: Bs AND anti Bs*)
+MotherFraction["B"]=2PppTobbExperiment[GivenExperiment];
+MotherFraction["D"]=2PppToccExperiment[GivenExperiment];
+MotherFraction["h"]=PppTohExperiment[GivenExperiment];
+MotherFraction["W"]=PppToWExperiment[GivenExperiment];
+(*Fraction of K^+/- decaying in-flight at SPS, from https://arxiv.org/pdf/2004.07974.pdf*)
+fractionDecayInFlightKplusKminus=(0.29+0.07);
+MotherFraction["K"]=MotherFraction["K-mixing"]=If[Facility=="SPS",fractionDecayInFlightKplusKminus,0.];
+MotherFraction["Upsilon"]=PppToUpsilonFacility[Facility];
+MotherFraction["Fragmentation"]=MotherFraction["Old-Mixing"]=1.;
+,{Facility,{FacilitySelected}}]
+
+----- cell 8  label=DP -----
+If[LLPdirName=="DP",
+{mSM["Rho0"],mSM["Pi0"],mSM["Eta"],mSM["EtaPr"],mSM["p"]}={0.775,0.135,0.547,0.958,0.939};
+BrPi0ToV[mLLP_]=If[mLLP<mSM["Pi0"],Evaluate[2*(1-mLLP^2/mSM["Pi0"]^2)^3*BrPiTogammagamma],0];
+Br[Eta]ToV[mLLP_]=If[mLLP<mSM["Eta"],Evaluate[2*(1-mLLP^2/mSM["Eta"]^2)^3*Br[Eta]Togammagamma],0];
+(*Br[Omega]ToV[mLLP_]=If[mLLP<m[Omega]-mPi0,Br[Omega]ToPigamma*(m[Omega]^2-mLLP^2-mPi0^2)^2*Sqrt[(m[Omega]^2-mLLP^2+mPi0^2)^2-4*m[Omega]^2*mPi0^2]/(m[Omega]^2-mLLP^2)^3,0];*)
+Br[Eta]prToV[mLLP_]=If[mLLP<mSM["EtaPr"],Evaluate[2*(1-mLLP^2/mSM["EtaPr"]^2)^3*Br[Eta]prTogammagamma],0];
+{BrDecay[mLLP_,epsilon2_,"Pi0"],BrDecay[mLLP_,epsilon2_,"Eta"],BrDecay[mLLP_,epsilon2_,"EtaPr"]}=epsilon2*{BrPi0ToV[mLLP],Br[Eta]ToV[mLLP],Br[Eta]prToV[mLLP]};
+Do[
+PmotherToLLP[mLLP_,epsilon2_,coupling2_,part]=BrDecay[mLLP,epsilon2,part];
+,{part,{"Pi0","Eta","EtaPr"}}]
+]
+
+----- cell 9  label=Via decays of mesons -----
+If[LLPdirName=="DP",
+{mSM["Rho0"],mSM["Pi0"],mSM["Eta"],mSM["EtaPr"],mSM["p"]}={0.775,0.135,0.547,0.958,0.939};
+BrPi0ToV[mLLP_]=If[mLLP<mSM["Pi0"],Evaluate[2*(1-mLLP^2/mSM["Pi0"]^2)^3*BrPiTogammagamma],0];
+Br[Eta]ToV[mLLP_]=If[mLLP<mSM["Eta"],Evaluate[2*(1-mLLP^2/mSM["Eta"]^2)^3*Br[Eta]Togammagamma],0];
+(*Br[Omega]ToV[mLLP_]=If[mLLP<m[Omega]-mPi0,Br[Omega]ToPigamma*(m[Omega]^2-mLLP^2-mPi0^2)^2*Sqrt[(m[Omega]^2-mLLP^2+mPi0^2)^2-4*m[Omega]^2*mPi0^2]/(m[Omega]^2-mLLP^2)^3,0];*)
+Br[Eta]prToV[mLLP_]=If[mLLP<mSM["EtaPr"],Evaluate[2*(1-mLLP^2/mSM["EtaPr"]^2)^3*Br[Eta]prTogammagamma],0];
+{BrDecay[mLLP_,epsilon2_,"Pi0"],BrDecay[mLLP_,epsilon2_,"Eta"],BrDecay[mLLP_,epsilon2_,"EtaPr"]}=epsilon2*{BrPi0ToV[mLLP],Br[Eta]ToV[mLLP],Br[Eta]prToV[mLLP]};
+Do[
+PmotherToLLP[mLLP_,epsilon2_,coupling2_,part]=BrDecay[mLLP,epsilon2,part];
+,{part,{"Pi0","Eta","EtaPr"}}]
+]
+
+----- cell 10  label= -----
+If[LLPdirName=="DP",
+{mSM["Rho0"],mSM["Pi0"],mSM["Eta"],mSM["EtaPr"],mSM["p"]}={0.775,0.135,0.547,0.958,0.939};
+BrPi0ToV[mLLP_]=If[mLLP<mSM["Pi0"],Evaluate[2*(1-mLLP^2/mSM["Pi0"]^2)^3*BrPiTogammagamma],0];
+Br[Eta]ToV[mLLP_]=If[mLLP<mSM["Eta"],Evaluate[2*(1-mLLP^2/mSM["Eta"]^2)^3*Br[Eta]Togammagamma],0];
+(*Br[Omega]ToV[mLLP_]=If[mLLP<m[Omega]-mPi0,Br[Omega]ToPigamma*(m[Omega]^2-mLLP^2-mPi0^2)^2*Sqrt[(m[Omega]^2-mLLP^2+mPi0^2)^2-4*m[Omega]^2*mPi0^2]/(m[Omega]^2-mLLP^2)^3,0];*)
+Br[Eta]prToV[mLLP_]=If[mLLP<mSM["EtaPr"],Evaluate[2*(1-mLLP^2/mSM["EtaPr"]^2)^3*Br[Eta]prTogammagamma],0];
+{BrDecay[mLLP_,epsilon2_,"Pi0"],BrDecay[mLLP_,epsilon2_,"Eta"],BrDecay[mLLP_,epsilon2_,"EtaPr"]}=epsilon2*{BrPi0ToV[mLLP],Br[Eta]ToV[mLLP],Br[Eta]prToV[mLLP]};
+Do[
+PmotherToLLP[mLLP_,epsilon2_,coupling2_,part]=BrDecay[mLLP,epsilon2,part];
+,{part,{"Pi0","Eta","EtaPr"}}]
+]
+
+----- cell 11  label=Via Drell-Yan -----
+If[LLPdirName=="DP",
+(*_____________________________*)
+(*Production from Drell-Yan process*)
+(*_____________________________*)
+(*Average enhancement LO vs LO+NLO obtained for SPS energies in 2011.05115*)
+kfactorNLO=1.7;
+[Sigma]DrellYanData[Facility_]:=Block[{},
+dat=Import[FileNameJoin[{directory["Production weights"],"sigmaDrellYan_DP_"<>Facility<>".txt"}],"Table"];
+MinMaxMassesDrellYan[Facility]={Min[dat[[All,1]]],Max[dat[[All,1]]]};
+{int[ma_,"Central"],int[ma_,"Upper"],int[ma_,"Lower"]}=Table[If[MinMaxMassesDrellYan[Facility][[1]]<= ma<=MinMaxMassesDrellYan[Facility][[2]],Evaluate[10^(Interpolation[{Log10[#[[1]]],Log10[#[[i]]+10^-90]}&/@dat,InterpolationOrder->1][Log10[ma]])],0.],{i,2,4}];
+(*k factor from *)
+{PmotherToLLPTemp[mLLP_,epsilon2_,"DrellYan-Central",Facility],PmotherToLLPTemp[mLLP_,epsilon2_,"DrellYan-Upper",Facility],PmotherToLLPTemp[mLLP_,epsilon2_,"DrellYan-Lower",Facility]}=If[Facility=="SPS",kfactorNLO,1]*epsilon2*(int[mLLP,#]&/@{"Central","Upper","Lower"})/([Sigma]pNucleonInpb[AtargetSelected]);
+];
+If[MemberQ[{"SPS","FermilabBD","LHC"},FacilitySelected],
+[Sigma]DrellYanData[FacilitySelected];
+drellyanunc=dropdownDialog[{"Lower","Central","Upper"},"Select the variation of Drell-Yan flux within uncertainty band:"];
+PmotherToLLP[mLLP_,epsilon2_,coupling2_,"DrellYan"]=PmotherToLLPTemp[mLLP,epsilon2,"DrellYan-"<>drellyanunc,FacilitySelected];
+];
+]
+
+----- cell 12  label= -----
+If[LLPdirName=="DP",
+(*_____________________________*)
+(*Production from Drell-Yan process*)
+(*_____________________________*)
+(*Average enhancement LO vs LO+NLO obtained for SPS energies in 2011.05115*)
+kfactorNLO=1.7;
+[Sigma]DrellYanData[Facility_]:=Block[{},
+dat=Import[FileNameJoin[{directory["Production weights"],"sigmaDrellYan_DP_"<>Facility<>".txt"}],"Table"];
+MinMaxMassesDrellYan[Facility]={Min[dat[[All,1]]],Max[dat[[All,1]]]};
+{int[ma_,"Central"],int[ma_,"Upper"],int[ma_,"Lower"]}=Table[If[MinMaxMassesDrellYan[Facility][[1]]<= ma<=MinMaxMassesDrellYan[Facility][[2]],Evaluate[10^(Interpolation[{Log10[#[[1]]],Log10[#[[i]]+10^-90]}&/@dat,InterpolationOrder->1][Log10[ma]])],0.],{i,2,4}];
+(*k factor from *)
+{PmotherToLLPTemp[mLLP_,epsilon2_,"DrellYan-Central",Facility],PmotherToLLPTemp[mLLP_,epsilon2_,"DrellYan-Upper",Facility],PmotherToLLPTemp[mLLP_,epsilon2_,"DrellYan-Lower",Facility]}=If[Facility=="SPS",kfactorNLO,1]*epsilon2*(int[mLLP,#]&/@{"Central","Upper","Lower"})/([Sigma]pNucleonInpb[AtargetSelected]);
+];
+If[MemberQ[{"SPS","FermilabBD","LHC"},FacilitySelected],
+[Sigma]DrellYanData[FacilitySelected];
+drellyanunc=dropdownDialog[{"Lower","Central","Upper"},"Select the variation of Drell-Yan flux within uncertainty band:"];
+PmotherToLLP[mLLP_,epsilon2_,coupling2_,"DrellYan"]=PmotherToLLPTemp[mLLP,epsilon2,"DrellYan-"<>drellyanunc,FacilitySelected];
+];
+]
+
+----- cell 13  label=Via bremsstrahlung -----
+If[LLPdirName=="DP",
+(*________________*)
+(*Bremsstrahlung*)
+(*________________*)
+BremProd[Facility_]:=Module[{dbr,bremprobfiles,bremprobfilenames},
+bremprobfiles=FileNames["ProdProb*_"<>Facility<>".m",directory["Production weights"]];
+If[bremprobfiles!={},
+(*Scanning over all available files with the bremsstrahlung probability. They describe different descriptions of the bremsstrahlung*)
+(*Extract the bremsstrahlung description from the filename*)
+bremprobfilenames=Last@FileNameSplit[#]&/@bremprobfiles;
+bremdescriptions=(StringSplit[#,{"ProdProb_"<>LLPdirName<>"_","_"}][[1]])&/@bremprobfilenames;
+bremdescription=dropdownDialog[bremdescriptions,"Select the description of the DP production via proton bremsstrahlung:"];
+bremprobfiles=Select[bremprobfiles,StringContainsQ[#,bremdescription]&][[1]];
+bR="Bremsstrahlung";
+datbrem[mLLP_,thetaLLP_]=Import[bremprobfiles,"MX"];
+If[StringContainsQ[bremdescription,"Baseline"],
+PmotherToLLP[mLLP_,epsilon2_,coupling2_,bR]=datbrem[mLLP,thetaLLP][[1]]*epsilon2;
+ELLPmin[bR]=Evaluate[datbrem[mLLP,thetaLLP][[2]]];
+thetamaxbrem[bR]=Evaluate[datbrem[mLLP,thetaLLP][[3]]];
+ELLPmax[mLLP_,thetaLLP_,bR]=Evaluate[datbrem[mLLP,thetaLLP][[4]]];
+,
+bremUncertainties=datbrem[mLLP,thetaLLP][[All,1]];
+bremunc=dropdownDialog[bremUncertainties,"Select the variation of bremsstrahlung within uncertainty band:"];
+dbr[mLLP_,thetaLLP_]=Select[datbrem[mLLP,thetaLLP],#[[1]]==bremunc&][[1]];
+PmotherToLLP[mLLP_,epsilon2_,coupling2_,bR]=dbr[mLLP,thetaLLP][[2]]*epsilon2;
+ELLPmin[bR]=Evaluate[dbr[mLLP,thetaLLP][[3]]];
+thetamaxbrem[bR]=Evaluate[dbr[mLLP,thetaLLP][[4]]];
+ELLPmax[mLLP_,thetaLLP_,bR]=Evaluate[dbr[mLLP,thetaLLP][[5]]];
+];
+];
+];
+BremProd[FacilitySelected]
+]
+
+----- cell 14  label= -----
+If[LLPdirName=="DP",
+(*________________*)
+(*Bremsstrahlung*)
+(*________________*)
+BremProd[Facility_]:=Module[{dbr,bremprobfiles,bremprobfilenames},
+bremprobfiles=FileNames["ProdProb*_"<>Facility<>".m",directory["Production weights"]];
+If[bremprobfiles!={},
+(*Scanning over all available files with the bremsstrahlung probability. They describe different descriptions of the bremsstrahlung*)
+(*Extract the bremsstrahlung description from the filename*)
+bremprobfilenames=Last@FileNameSplit[#]&/@bremprobfiles;
+bremdescriptions=(StringSplit[#,{"ProdProb_"<>LLPdirName<>"_","_"}][[1]])&/@bremprobfilenames;
+bremdescription=dropdownDialog[bremdescriptions,"Select the description of the DP production via proton bremsstrahlung:"];
+bremprobfiles=Select[bremprobfiles,StringContainsQ[#,bremdescription]&][[1]];
+bR="Bremsstrahlung";
+datbrem[mLLP_,thetaLLP_]=Import[bremprobfiles,"MX"];
+If[StringContainsQ[bremdescription,"Baseline"],
+PmotherToLLP[mLLP_,epsilon2_,coupling2_,bR]=datbrem[mLLP,thetaLLP][[1]]*epsilon2;
+ELLPmin[bR]=Evaluate[datbrem[mLLP,thetaLLP][[2]]];
+thetamaxbrem[bR]=Evaluate[datbrem[mLLP,thetaLLP][[3]]];
+ELLPmax[mLLP_,thetaLLP_,bR]=Evaluate[datbrem[mLLP,thetaLLP][[4]]];
+,
+bremUncertainties=datbrem[mLLP,thetaLLP][[All,1]];
+bremunc=dropdownDialog[bremUncertainties,"Select the variation of bremsstrahlung within uncertainty band:"];
+dbr[mLLP_,thetaLLP_]=Select[datbrem[mLLP,thetaLLP],#[[1]]==bremunc&][[1]];
+PmotherToLLP[mLLP_,epsilon2_,coupling2_,bR]=dbr[mLLP,thetaLLP][[2]]*epsilon2;
+ELLPmin[bR]=Evaluate[dbr[mLLP,thetaLLP][[3]]];
+thetamaxbrem[bR]=Evaluate[dbr[mLLP,thetaLLP][[4]]];
+ELLPmax[mLLP_,thetaLLP_,bR]=Evaluate[dbr[mLLP,thetaLLP][[5]]];
+];
+];
+];
+BremProd[FacilitySelected]
+]
+
+----- cell 15  label=Via mixing -----
+If[LLPdirName=="DP",
+Print["Description of the production via mixing/fragmentation"];
+SelectedMixingChoice=selectionDialogExplanationOneOption[{"Revised (2409.11096)","Old (1810.01879)"},{"Production incorporated directly in the fragmentation chain in PYTHIA8 (2409.11096)",LLPdirName<>" flux = meson flux * squared mixing angle (aka 1810.01879 and refs. therein)"},"Select the description of the "<>LLPdirName<>" production via fragmentation:",200];
+condrev=SelectedMixingChoice=="Revised (2409.11096)";
+If[condrev,
+YieldsFragmentation[mLLP_]=Import[FileNameJoin[{directory["Production weights"],"Yield-Fragmentation_DP.mx"}],"MX"];
+(*Old description a-la 2201.05170*)
+Print[SelectedMixingChoice];
+Do[
+If[YieldsFragmentation[mLLP][[i]][[1]]==FacilitySelected,
+{mmixingmin,mmixingmax}=YieldsFragmentation[mLLP][[1]][[2]][[1]][[3]][[0]][[1]][[1]];
+PmotherToLLP[mLLP_,epsilon2_,coupling2_,"Fragmentation"]=epsilon2*If[mmixingmin<=mLLP<=mmixingmax,Evaluate[YieldsFragmentation[mLLP][[i]][[2]]],0.];
+]
+,{i,1,Length[YieldsFragmentation[mLLP]],1}];
+,
+(*Mixing angle [Rho]^0-DP. Following https://arxiv.org/pdf/1810.01879.pdf*)
+g[Rho]0=5;
+thetaDP[Rho]02[mLLP_,epsilon2_]=epsilon2*(4Pi*alphaEM)/(g[Rho]0^2)(mSM["Rho0"]^4)/((mLLP^2-mSM["Rho0"]^2)^2+[CapitalGamma]SM["[Rho]780"]^2*mSM["Rho0"]^2);
+PmotherToLLP[mLLP_,epsilon2_,coupling2_,"Old-Mixing"]=Yield[Rho]0*thetaDP[Rho]02[mLLP,epsilon2]/.{Yield[Rho]0->MotherFraction["Rho0"]};
+];
+]
+
+----- cell 16  label= -----
+If[LLPdirName=="DP",
+Print["Description of the production via mixing/fragmentation"];
+SelectedMixingChoice=selectionDialogExplanationOneOption[{"Revised (2409.11096)","Old (1810.01879)"},{"Production incorporated directly in the fragmentation chain in PYTHIA8 (2409.11096)",LLPdirName<>" flux = meson flux * squared mixing angle (aka 1810.01879 and refs. therein)"},"Select the description of the "<>LLPdirName<>" production via fragmentation:",200];
+condrev=SelectedMixingChoice=="Revised (2409.11096)";
+If[condrev,
+YieldsFragmentation[mLLP_]=Import[FileNameJoin[{directory["Production weights"],"Yield-Fragmentation_DP.mx"}],"MX"];
+(*Old description a-la 2201.05170*)
+Print[SelectedMixingChoice];
+Do[
+If[YieldsFragmentation[mLLP][[i]][[1]]==FacilitySelected,
+{mmixingmin,mmixingmax}=YieldsFragmentation[mLLP][[1]][[2]][[1]][[3]][[0]][[1]][[1]];
+PmotherToLLP[mLLP_,epsilon2_,coupling2_,"Fragmentation"]=epsilon2*If[mmixingmin<=mLLP<=mmixingmax,Evaluate[YieldsFragmentation[mLLP][[i]][[2]]],0.];
+]
+,{i,1,Length[YieldsFragmentation[mLLP]],1}];
+,
+(*Mixing angle [Rho]^0-DP. Following https://arxiv.org/pdf/1810.01879.pdf*)
+g[Rho]0=5;
+thetaDP[Rho]02[mLLP_,epsilon2_]=epsilon2*(4Pi*alphaEM)/(g[Rho]0^2)(mSM["Rho0"]^4)/((mLLP^2-mSM["Rho0"]^2)^2+[CapitalGamma]SM["[Rho]780"]^2*mSM["Rho0"]^2);
+PmotherToLLP[mLLP_,epsilon2_,coupling2_,"Old-Mixing"]=Yield[Rho]0*thetaDP[Rho]02[mLLP,epsilon2]/.{Yield[Rho]0->MotherFraction["Rho0"]};
+];
+]
+
+----- cell 17  label= -----
+If[LLPdirName=="DP",
+Print["Description of the production via mixing/fragmentation"];
+SelectedMixingChoice=selectionDialogExplanationOneOption[{"Revised (2409.11096)","Old (1810.01879)"},{"Production incorporated directly in the fragmentation chain in PYTHIA8 (2409.11096)",LLPdirName<>" flux = meson flux * squared mixing angle (aka 1810.01879 and refs. therein)"},"Select the description of the "<>LLPdirName<>" production via fragmentation:",200];
+condrev=SelectedMixingChoice=="Revised (2409.11096)";
+If[condrev,
+YieldsFragmentation[mLLP_]=Import[FileNameJoin[{directory["Production weights"],"Yield-Fragmentation_DP.mx"}],"MX"];
+(*Old description a-la 2201.05170*)
+Print[SelectedMixingChoice];
+Do[
+If[YieldsFragmentation[mLLP][[i]][[1]]==FacilitySelected,
+{mmixingmin,mmixingmax}=YieldsFragmentation[mLLP][[1]][[2]][[1]][[3]][[0]][[1]][[1]];
+PmotherToLLP[mLLP_,epsilon2_,coupling2_,"Fragmentation"]=epsilon2*If[mmixingmin<=mLLP<=mmixingmax,Evaluate[YieldsFragmentation[mLLP][[i]][[2]]],0.];
+]
+,{i,1,Length[YieldsFragmentation[mLLP]],1}];
+,
+(*Mixing angle [Rho]^0-DP. Following https://arxiv.org/pdf/1810.01879.pdf*)
+g[Rho]0=5;
+thetaDP[Rho]02[mLLP_,epsilon2_]=epsilon2*(4Pi*alphaEM)/(g[Rho]0^2)(mSM["Rho0"]^4)/((mLLP^2-mSM["Rho0"]^2)^2+[CapitalGamma]SM["[Rho]780"]^2*mSM["Rho0"]^2);
+PmotherToLLP[mLLP_,epsilon2_,coupling2_,"Old-Mixing"]=Yield[Rho]0*thetaDP[Rho]02[mLLP,epsilon2]/.{Yield[Rho]0->MotherFraction["Rho0"]};
+];
+]
+
+----- cell 18  label= -----
+"Description of the production via mixing/fragmentation"
+
+----- cell 19  label= -----
+"Description of the production via mixing/fragmentation"
+
+----- cell 20  label= -----
+"Revised (2409.11096)"
+
+----- cell 21  label=Scalar -----
+If[LLPdirName=="Scalar",
+MotherFraction["Bremsstrahlung-mixing"]=MotherFraction["Bremsstrahlung"];
+MotherFraction["B-mixing"]=MotherFraction["B-quartic"]=MotherFraction["Bs-quartic"]=MotherFraction["B"];
+MotherFraction["h-quartic"]=MotherFraction["h"];
+MotherFraction["Upsilon-quartic"]=MotherFraction["Upsilon"];
+MotherFraction["Upsilon-mixing"]=MotherFraction["Upsilon"];
+];
+
+----- cell 22  label=Definitions -----
+If[LLPdirName=="Scalar",
+MotherFraction["Bremsstrahlung-mixing"]=MotherFraction["Bremsstrahlung"];
+MotherFraction["B-mixing"]=MotherFraction["B-quartic"]=MotherFraction["Bs-quartic"]=MotherFraction["B"];
+MotherFraction["h-quartic"]=MotherFraction["h"];
+MotherFraction["Upsilon-quartic"]=MotherFraction["Upsilon"];
+MotherFraction["Upsilon-mixing"]=MotherFraction["Upsilon"];
+];
+
+----- cell 23  label= -----
+If[LLPdirName=="Scalar",
+MotherFraction["Bremsstrahlung-mixing"]=MotherFraction["Bremsstrahlung"];
+MotherFraction["B-mixing"]=MotherFraction["B-quartic"]=MotherFraction["Bs-quartic"]=MotherFraction["B"];
+MotherFraction["h-quartic"]=MotherFraction["h"];
+MotherFraction["Upsilon-quartic"]=MotherFraction["Upsilon"];
+MotherFraction["Upsilon-mixing"]=MotherFraction["Upsilon"];
+];
+
+----- cell 24  label= -----
+Br_h->SS
+
+----- cell 25  label= -----
+Br_h->SS
+
+----- cell 26  label= -----
+If[LLPdirName=="Scalar",
+BrhtoSS[mLLP_,alpha_]=2*10^-2*alpha^2Sqrt[1-4*(mLLP^2)/(125^2)];
+(*Value of alpha corresponding to the given Br(h->SS)=0.01*)
+alphavalBrhToSS[mS_,BrhToSS_]=alpha/.Solve[BrhtoSS[mS,alpha]==BrhToSS,alpha][[2]];
+]
+
+----- cell 27  label=Production probabilities -----
+If[LLPdirName=="Scalar",
+PmotherToLLP//Clear;
+FacilitiesList={"SPS","FermilabBD","LHC","FCC-hh","Serpukhov"};
+intProd[filename_,m1_,m2_]:=If[mLLP<m1-m2,Evaluate[Interpolation[Import[FileNameJoin[{directory["Production weights"],filename}],"Table"],InterpolationOrder->1][mLLP]],0.];
+(*Exclusive/inclusive production of dark scalar in decays B->X_s+S*)
+SelectedBrChoice="Exclusive";
+Do[
+PmotherToLLP[mLLP_,theta2_,BrhToSS_,"B-mixing"]=theta2*(fbtob0[Facility]+fbtobplus[Facility])intProd[If[SelectedBrChoice=="Exclusive","BtoXsStotal.dat","BtoXsSinclusive.dat"],mSM["Bcharged"],mSM["PiCharged"]];
+(*Factors of 2 and (1)/(2) are due to the production of scalars in pairs. alpha is the quartic coupling defined by L_int = (alpha)/(2v)S^2H^+H*)
+PmotherToLLP[mLLP_,theta2_,BrhToSS_,"B-quartic"]=2*alphavalBrhToSS[mLLP,BrhToSS]^2*(fbtob0[Facility]+fbtobplus[Facility])*intProd["BplustoXsSStotal.dat",(mSM["Bcharged"])/(2),(mSM["PiCharged"])/(2)];
+PmotherToLLP[mLLP_,theta2_,BrhToSS_,"Bs-quartic"]=2*alphavalBrhToSS[mLLP,BrhToSS]^2*fbtobs[Facility]*intProd["BstoSS.dat",(mSM["Bs"])/(2),0.];
+If[!MemberQ[{"FermilabBD","ESS","Serpukhov"},Facility],
+PmotherToLLP[mLLP_,theta2_,BrhToSS_,"Upsilon-quartic"]=alphavalBrhToSS[mLLP,BrhToSS]^2intProd["UpsilonToSSgamma.dat",(mSM["Upsilon"])/(2),0.];
+PmotherToLLP[mLLP_,theta2_,BrhToSS_,"Upsilon-mixing"]=theta2*intProd["UpsilonToSgamma.dat",mSM["Upsilon"],0.];
+];
+If[MemberQ[{"LHC","FCC-hh"},Facility],
+PmotherToLLP[mLLP_,theta2_,BrhToSS_,"h-quartic"]=2*2*10^-2*alphavalBrhToSS[mLLP,BrhToSS]^2Sqrt[1-4*(mLLP^2)/(125^2)];
+];
+(*Production from K at beam dump experiments with thick target. Assumed to be the same independently of target's material. Also, the fraction of (K^0)_L decaying at rest is assumed to be the same as the fraction of charged kaons*)
+If[Facility=="SPS",
+PmotherToLLP[mLLP_,theta2_,BrhToSS_,"K-mixing"]=theta2*(fstokplus["SPS"]*intProd["KplustoPiS.dat",mSM["Kcharged"],mSM["PiCharged"]]+fstok0l["SPS"]*intProd["K0LtoPiS.dat",mSM["KL"],mSM["Pi0"]]);
+];
+BremProd[Facility_]:=Module[{dbr,bremprobfiles,bremprobfilenames},
+bremprobfiles=FileNames["ProdProb*_"<>Facility<>".m",directory["Production weights"]];
+If[bremprobfiles!={},
+(*Scanning over all available files with the bremsstrahlung probability. They describe different descriptions of the bremsstrahlung*)
+(*Extract the bremsstrahlung description from the filename*)
+bremprobfilenames=Last@FileNameSplit[#]&/@bremprobfiles;
+bremdescriptions=(StringSplit[#,{"ProdProb_"<>LLPdirName<>"_","_"}][[1]])&/@bremprobfilenames;
+bremdescription=dropdownDialog[bremdescriptions,"Select the description of the "<>LLPdirName<>" production via proton bremsstrahlung:"];
+bremprobfiles=Select[bremprobfiles,StringContainsQ[#,bremdescription]&][[1]];
+bR="Bremsstrahlung-mixing";
+datbrem[mLLP_,thetaLLP_]=Import[bremprobfiles,"MX"];
+If[StringContainsQ[bremdescription,"Baseline"],
+PmotherToLLP[mLLP_,theta2_,BrhToSS_,bR]=datbrem[mLLP,thetaLLP][[1]]*theta2;
+ELLPmin[bR]=Evaluate[datbrem[mLLP,thetaLLP][[2]]];
+thetamaxbrem[bR]=Evaluate[datbrem[mLLP,thetaLLP][[3]]];
+ELLPmax[mLLP_,thetaLLP_,bR]=Evaluate[datbrem[mLLP,thetaLLP][[4]]];
+,
+bremUncertainties=datbrem[mLLP,thetaLLP][[All,1]];
+bremunc=dropdownDialog[bremUncertainties,"Select the variation of bremsstrahlung within uncertainty band:"];
+dbr[mLLP_,thetaLLP_]=Select[datbrem[mLLP,thetaLLP],#[[1]]==bremunc&][[1]];
+PmotherToLLP[mLLP_,theta2_,BrhToSS_,bR]=dbr[mLLP,thetaLLP][[2]]*theta2;
+ELLPmin[bR]=Evaluate[dbr[mLLP,thetaLLP][[3]]];
+thetamaxbrem[bR]=Evaluate[dbr[mLLP,thetaLLP][[4]]];
+ELLPmax[mLLP_,thetaLLP_,bR]=Evaluate[dbr[mLLP,thetaLLP][[5]]];
+];
+bremdescription=bremdescription<>"-mixing"
+];
+];
+BremProd[Facility]
+,{Facility,{FacilitySelected}}];
+
+]
+
+----- cell 28  label= -----
+If[LLPdirName=="Scalar",
+PmotherToLLP//Clear;
+FacilitiesList={"SPS","FermilabBD","LHC","FCC-hh","Serpukhov"};
+intProd[filename_,m1_,m2_]:=If[mLLP<m1-m2,Evaluate[Interpolation[Import[FileNameJoin[{directory["Production weights"],filename}],"Table"],InterpolationOrder->1][mLLP]],0.];
+(*Exclusive/inclusive production of dark scalar in decays B->X_s+S*)
+SelectedBrChoice="Exclusive";
+Do[
+PmotherToLLP[mLLP_,theta2_,BrhToSS_,"B-mixing"]=theta2*(fbtob0[Facility]+fbtobplus[Facility])intProd[If[SelectedBrChoice=="Exclusive","BtoXsStotal.dat","BtoXsSinclusive.dat"],mSM["Bcharged"],mSM["PiCharged"]];
+(*Factors of 2 and (1)/(2) are due to the production of scalars in pairs. alpha is the quartic coupling defined by L_int = (alpha)/(2v)S^2H^+H*)
+PmotherToLLP[mLLP_,theta2_,BrhToSS_,"B-quartic"]=2*alphavalBrhToSS[mLLP,BrhToSS]^2*(fbtob0[Facility]+fbtobplus[Facility])*intProd["BplustoXsSStotal.dat",(mSM["Bcharged"])/(2),(mSM["PiCharged"])/(2)];
+PmotherToLLP[mLLP_,theta2_,BrhToSS_,"Bs-quartic"]=2*alphavalBrhToSS[mLLP,BrhToSS]^2*fbtobs[Facility]*intProd["BstoSS.dat",(mSM["Bs"])/(2),0.];
+If[!MemberQ[{"FermilabBD","ESS","Serpukhov"},Facility],
+PmotherToLLP[mLLP_,theta2_,BrhToSS_,"Upsilon-quartic"]=alphavalBrhToSS[mLLP,BrhToSS]^2intProd["UpsilonToSSgamma.dat",(mSM["Upsilon"])/(2),0.];
+PmotherToLLP[mLLP_,theta2_,BrhToSS_,"Upsilon-mixing"]=theta2*intProd["UpsilonToSgamma.dat",mSM["Upsilon"],0.];
+];
+If[MemberQ[{"LHC","FCC-hh"},Facility],
+PmotherToLLP[mLLP_,theta2_,BrhToSS_,"h-quartic"]=2*2*10^-2*alphavalBrhToSS[mLLP,BrhToSS]^2Sqrt[1-4*(mLLP^2)/(125^2)];
+];
+(*Production from K at beam dump experiments with thick target. Assumed to be the same independently of target's material. Also, the fraction of (K^0)_L decaying at rest is assumed to be the same as the fraction of charged kaons*)
+If[Facility=="SPS",
+PmotherToLLP[mLLP_,theta2_,BrhToSS_,"K-mixing"]=theta2*(fstokplus["SPS"]*intProd["KplustoPiS.dat",mSM["Kcharged"],mSM["PiCharged"]]+fstok0l["SPS"]*intProd["K0LtoPiS.dat",mSM["KL"],mSM["Pi0"]]);
+];
+BremProd[Facility_]:=Module[{dbr,bremprobfiles,bremprobfilenames},
+bremprobfiles=FileNames["ProdProb*_"<>Facility<>".m",directory["Production weights"]];
+If[bremprobfiles!={},
+(*Scanning over all available files with the bremsstrahlung probability. They describe different descriptions of the bremsstrahlung*)
+(*Extract the bremsstrahlung description from the filename*)
+bremprobfilenames=Last@FileNameSplit[#]&/@bremprobfiles;
+bremdescriptions=(StringSplit[#,{"ProdProb_"<>LLPdirName<>"_","_"}][[1]])&/@bremprobfilenames;
+bremdescription=dropdownDialog[bremdescriptions,"Select the description of the "<>LLPdirName<>" production via proton bremsstrahlung:"];
+bremprobfiles=Select[bremprobfiles,StringContainsQ[#,bremdescription]&][[1]];
+bR="Bremsstrahlung-mixing";
+datbrem[mLLP_,thetaLLP_]=Import[bremprobfiles,"MX"];
+If[StringContainsQ[bremdescription,"Baseline"],
+PmotherToLLP[mLLP_,theta2_,BrhToSS_,bR]=datbrem[mLLP,thetaLLP][[1]]*theta2;
+ELLPmin[bR]=Evaluate[datbrem[mLLP,thetaLLP][[2]]];
+thetamaxbrem[bR]=Evaluate[datbrem[mLLP,thetaLLP][[3]]];
+ELLPmax[mLLP_,thetaLLP_,bR]=Evaluate[datbrem[mLLP,thetaLLP][[4]]];
+,
+bremUncertainties=datbrem[mLLP,thetaLLP][[All,1]];
+bremunc=dropdownDialog[bremUncertainties,"Select the variation of bremsstrahlung within uncertainty band:"];
+dbr[mLLP_,thetaLLP_]=Select[datbrem[mLLP,thetaLLP],#[[1]]==bremunc&][[1]];
+PmotherToLLP[mLLP_,theta2_,BrhToSS_,bR]=dbr[mLLP,thetaLLP][[2]]*theta2;
+ELLPmin[bR]=Evaluate[dbr[mLLP,thetaLLP][[3]]];
+thetamaxbrem[bR]=Evaluate[dbr[mLLP,thetaLLP][[4]]];
+ELLPmax[mLLP_,thetaLLP_,bR]=Evaluate[dbr[mLLP,thetaLLP][[5]]];
+];
+bremdescription=bremdescription<>"-mixing"
+];
+];
+BremProd[Facility]
+,{Facility,{FacilitySelected}}];
+
+]
+
+----- cell 29  label=HNL -----
+If[LLPdirName=="HNL",
+PmotherToLLPtemp//Clear;
+(*For mesons: [Sum]_mesonf_q->meson*Br(meson->N) at U^2 = 1*)
+(*For X = W/Z: Br(X->N) at U^2 = 1*)
+ProductionWeightsTemp[mN_]=Import[FileNameJoin[{directory["Production weights"],"ProductionWeightsHNL.m"}],"MX"];
+ListHNLs=ProductionWeightsTemp[mLLP][[All,1]]//DeleteDuplicates;
+numHNLs=Length[ListHNLs];
+{MixingPatternCorr[ListHNLs[[1]]],MixingPatternCorr[ListHNLs[[2]]],MixingPatternCorr[ListHNLs[[3]]]}=MixingPattern;
+Do[
+Module[{hnl,prod,facility},
+{hnl,prod,facility}=ProductionWeightsTemp[mLLP][[i]][[#]]&/@{1,2,3};
+(*Adding the given channel only if the probability to produce an HNL via it is non-zero*)
+If[facility==FacilitySelected&&ProductionWeightsTemp[0.02][[i]][[4]]!=0.,
+(*Adding the Pi^+ production channel only if the facility is ESS*)
+If[!(prod=="PiCharged"&&facility!="ESS"),
+If[prod!="K",
+PmotherToLLPtemp[mLLP_,U2_,fake_,prod,hnl]=U2*MixingPatternCorr[hnl]*ProductionWeightsTemp[mLLP][[i]][[4]];
+,
+If[facility=="SPS",
+(*Adding the kaon production channel only if the given mixing pattern includes e or mu mixings*)
+If[Max[MixingPattern[[1]],MixingPattern[[2]]]!=0,
+PmotherToLLPtemp[mLLP_,U2_,fake_,prod,hnl]=U2*MixingPatternCorr[hnl]*ProductionWeightsTemp[mLLP][[i]][[4]];
+PmotherToLLPtemp[mLLP_,U2_,fake_,prod,"HNL-mixing-tau"]=0.;
+(*If[hnl=="HNL-mixing-tau",
+PmotherToLLPtemp[mLLP_,U2_,fake_,prod,"HNL-mixing-tau"]=0.;
+]*)
+]
+]
+]
+]
+]
+]
+,{i,1,Length[ProductionWeightsTemp[mLLP]],1}];
+]
+
+----- cell 30  label=Importing for separate mixings -----
+If[LLPdirName=="HNL",
+PmotherToLLPtemp//Clear;
+(*For mesons: [Sum]_mesonf_q->meson*Br(meson->N) at U^2 = 1*)
+(*For X = W/Z: Br(X->N) at U^2 = 1*)
+ProductionWeightsTemp[mN_]=Import[FileNameJoin[{directory["Production weights"],"ProductionWeightsHNL.m"}],"MX"];
+ListHNLs=ProductionWeightsTemp[mLLP][[All,1]]//DeleteDuplicates;
+numHNLs=Length[ListHNLs];
+{MixingPatternCorr[ListHNLs[[1]]],MixingPatternCorr[ListHNLs[[2]]],MixingPatternCorr[ListHNLs[[3]]]}=MixingPattern;
+Do[
+Module[{hnl,prod,facility},
+{hnl,prod,facility}=ProductionWeightsTemp[mLLP][[i]][[#]]&/@{1,2,3};
+(*Adding the given channel only if the probability to produce an HNL via it is non-zero*)
+If[facility==FacilitySelected&&ProductionWeightsTemp[0.02][[i]][[4]]!=0.,
+(*Adding the Pi^+ production channel only if the facility is ESS*)
+If[!(prod=="PiCharged"&&facility!="ESS"),
+If[prod!="K",
+PmotherToLLPtemp[mLLP_,U2_,fake_,prod,hnl]=U2*MixingPatternCorr[hnl]*ProductionWeightsTemp[mLLP][[i]][[4]];
+,
+If[facility=="SPS",
+(*Adding the kaon production channel only if the given mixing pattern includes e or mu mixings*)
+If[Max[MixingPattern[[1]],MixingPattern[[2]]]!=0,
+PmotherToLLPtemp[mLLP_,U2_,fake_,prod,hnl]=U2*MixingPatternCorr[hnl]*ProductionWeightsTemp[mLLP][[i]][[4]];
+PmotherToLLPtemp[mLLP_,U2_,fake_,prod,"HNL-mixing-tau"]=0.;
+(*If[hnl=="HNL-mixing-tau",
+PmotherToLLPtemp[mLLP_,U2_,fake_,prod,"HNL-mixing-tau"]=0.;
+]*)
+]
+]
+]
+]
+]
+]
+,{i,1,Length[ProductionWeightsTemp[mLLP]],1}];
+]
+
+----- cell 31  label= -----
+If[LLPdirName=="HNL",
+PmotherToLLPtemp//Clear;
+(*For mesons: [Sum]_mesonf_q->meson*Br(meson->N) at U^2 = 1*)
+(*For X = W/Z: Br(X->N) at U^2 = 1*)
+ProductionWeightsTemp[mN_]=Import[FileNameJoin[{directory["Production weights"],"ProductionWeightsHNL.m"}],"MX"];
+ListHNLs=ProductionWeightsTemp[mLLP][[All,1]]//DeleteDuplicates;
+numHNLs=Length[ListHNLs];
+{MixingPatternCorr[ListHNLs[[1]]],MixingPatternCorr[ListHNLs[[2]]],MixingPatternCorr[ListHNLs[[3]]]}=MixingPattern;
+Do[
+Module[{hnl,prod,facility},
+{hnl,prod,facility}=ProductionWeightsTemp[mLLP][[i]][[#]]&/@{1,2,3};
+(*Adding the given channel only if the probability to produce an HNL via it is non-zero*)
+If[facility==FacilitySelected&&ProductionWeightsTemp[0.02][[i]][[4]]!=0.,
+(*Adding the Pi^+ production channel only if the facility is ESS*)
+If[!(prod=="PiCharged"&&facility!="ESS"),
+If[prod!="K",
+PmotherToLLPtemp[mLLP_,U2_,fake_,prod,hnl]=U2*MixingPatternCorr[hnl]*ProductionWeightsTemp[mLLP][[i]][[4]];
+,
+If[facility=="SPS",
+(*Adding the kaon production channel only if the given mixing pattern includes e or mu mixings*)
+If[Max[MixingPattern[[1]],MixingPattern[[2]]]!=0,
+PmotherToLLPtemp[mLLP_,U2_,fake_,prod,hnl]=U2*MixingPatternCorr[hnl]*ProductionWeightsTemp[mLLP][[i]][[4]];
+PmotherToLLPtemp[mLLP_,U2_,fake_,prod,"HNL-mixing-tau"]=0.;
+(*If[hnl=="HNL-mixing-tau",
+PmotherToLLPtemp[mLLP_,U2_,fake_,prod,"HNL-mixing-tau"]=0.;
+]*)
+]
+]
+]
+]
+]
+]
+,{i,1,Length[ProductionWeightsTemp[mLLP]],1}];
+]
+
+----- cell 32  label=Averaging over the given mixing pattern -----
+If[LLPdirName=="HNL",
+prodchann=DeleteDuplicates[Keys[DownValues@PmotherToLLPtemp][[All,1,-2]]];
+Do[
+PmotherToLLP[mLLP_,U2_,fake_,prod]=Sum[PmotherToLLPtemp[mLLP,U2,fake,prod,ListHNLs[[i]]],{i,1,numHNLs,1}]//Simplify
+,{prod,prodchann}]
+]
+
+----- cell 33  label= -----
+If[LLPdirName=="HNL",
+prodchann=DeleteDuplicates[Keys[DownValues@PmotherToLLPtemp][[All,1,-2]]];
+Do[
+PmotherToLLP[mLLP_,U2_,fake_,prod]=Sum[PmotherToLLPtemp[mLLP,U2,fake,prod,ListHNLs[[i]]],{i,1,numHNLs,1}]//Simplify
+,{prod,prodchann}]
+]
+
+----- cell 34  label=ALP-photon -----
+Pi^0/[Eta]
+
+----- cell 35  label= -----
+Pi^0/[Eta]
+
+----- cell 36  label= -----
+Pi^0/[Eta]
+
+----- cell 37  label= -----
+If[LLPdirName=="ALP-photon",
+BrPi0ToALP[ma_]=If[ma<0.135,Evaluate[Interpolation[Import[FileNameJoin[{directory["Production weights"],"BrPi0ToALP.txt"}],"Table"],InterpolationOrder->1][ma]],0];
+Br[Eta]ToALP[ma_]=If[ma<0.547,Evaluate[Interpolation[Import[FileNameJoin[{directory["Production weights"],"BrEtaToALP.txt"}],"Table"],InterpolationOrder->1][ma]],0];
+PmotherToLLP[mLLP_,ga_,coupling2_,"Pi0"]=BrPi0ToALP[mLLP]*ga^2;
+PmotherToLLP[mLLP_,ga_,coupling2_,"Eta"]=Br[Eta]ToALP[mLLP]*ga^2;
+]
+
+----- cell 38  label=Photon fusion -----
+If[LLPdirName=="ALP-photon",
+TargetsA={{"Mo",96.},{"C",12.},{"Fe",56.},{"p",1.}};
+Target=Select[TargetsA,#[[2]]==AtargetSelected&][[1]][[1]];
+fileFusion=FileNameJoin[{directory["Production weights"],"Pprod_ALP-photon_Photon-fusion-"<>Target<>"_"<>FacilitySelected<>".m"}];
+fusiondescription="Photon-fusion-"<>Target;
+fusionName="Photon-fusion";
+IfFusionExists=FileExistsQ[fileFusion];
+If[IfFusionExists,
+datimp=ga^2*Import[fileFusion,"MX"];
+PmotherToLLP[ma_,ga_,constant2_,fusionName]=datimp;
+MotherFraction[fusionName]=1.;
+]
+]
+
+----- cell 39  label= -----
+If[LLPdirName=="ALP-photon",
+TargetsA={{"Mo",96.},{"C",12.},{"Fe",56.},{"p",1.}};
+Target=Select[TargetsA,#[[2]]==AtargetSelected&][[1]][[1]];
+fileFusion=FileNameJoin[{directory["Production weights"],"Pprod_ALP-photon_Photon-fusion-"<>Target<>"_"<>FacilitySelected<>".m"}];
+fusiondescription="Photon-fusion-"<>Target;
+fusionName="Photon-fusion";
+IfFusionExists=FileExistsQ[fileFusion];
+If[IfFusionExists,
+datimp=ga^2*Import[fileFusion,"MX"];
+PmotherToLLP[ma_,ga_,constant2_,fusionName]=datimp;
+MotherFraction[fusionName]=1.;
+]
+]
+
+----- cell 40  label=Primakov process -----
+If[LLPdirName=="ALP-photon",
+TargetPrimakov=Select[TargetsA,#[[2]]==If[StringContainsQ[GivenExperiment,"FASER"],56,AtargetSelected]&][[1]][[1]];
+filePrimakov=FileNameJoin[{directory["Production weights"],"Pprod_"<>LLPdirName<>"_"<>"Primakov-"<>TargetPrimakov<>"_"<>FacilitySelected<>".m"}];
+primakovdescription="Primakov-"<>TargetPrimakov;
+ifPrimakovExists=FileExistsQ[filePrimakov];
+If[ifPrimakovExists,
+primakovName="Primakov";
+PmotherToLLP[ma_,ga_,coupling2_,primakovName]=ga^2Evaluate[Import[filePrimakov,"MX"]];
+MotherFraction[primakovName]=2*MotherFraction["Pi0"]+0.71*MotherFraction["Eta"];
+]
+]
+
+----- cell 41  label= -----
+If[LLPdirName=="ALP-photon",
+TargetPrimakov=Select[TargetsA,#[[2]]==If[StringContainsQ[GivenExperiment,"FASER"],56,AtargetSelected]&][[1]][[1]];
+filePrimakov=FileNameJoin[{directory["Production weights"],"Pprod_"<>LLPdirName<>"_"<>"Primakov-"<>TargetPrimakov<>"_"<>FacilitySelected<>".m"}];
+primakovdescription="Primakov-"<>TargetPrimakov;
+ifPrimakovExists=FileExistsQ[filePrimakov];
+If[ifPrimakovExists,
+primakovName="Primakov";
+PmotherToLLP[ma_,ga_,coupling2_,primakovName]=ga^2Evaluate[Import[filePrimakov,"MX"]];
+MotherFraction[primakovName]=2*MotherFraction["Pi0"]+0.71*MotherFraction["Eta"];
+]
+]
+
+----- cell 42  label=Importing tabulated distributions -----
+{selectordistr=Compile[{{data,_Real,2},{thmin,_Real},{thmax,_Real}},Module[{data1=Select[data,thmin<=#[[2]]<=thmax&],distrvals},
+distrvals=data1[[All,4]];
+{data1[[All,1]],data1[[All,2]],data1[[All,3]],Table[Max[distrvals[[i]],10^-90.],{i,1,Length[distrvals],1}]}//Transpose
+],CompilationTarget->"MVM",RuntimeOptions->"Speed",RuntimeAttributes->{Listable}];, 
+, BlockGridsValsDistr1[ProdChannel_,DistrDataImport_]:=Module[{GridIn,vals},
+GridIn=Log10[DeleteDuplicates[DistrDataImport[ProdChannel][[All,#]]]&/@{1,2,3}];
+vals=ArrayReshape[valsComp[DistrDataImport[ProdChannel],4],{Length[GridIn[[1]]],Length[GridIn[[2]]],Length[GridIn[[3]]]}];
+{GridIn,vals}
+];, 
+, WeightsCombinations=(Keys[DownValues@PmotherToLLP][[All,1,-1]])//Transpose//Sort;, 
+, IfBrem=AnyTrue[WeightsCombinations,StringContainsQ["Bremsstrahlung"]];}
+
+----- cell 43  label=Definitions -----
+{selectordistr=Compile[{{data,_Real,2},{thmin,_Real},{thmax,_Real}},Module[{data1=Select[data,thmin<=#[[2]]<=thmax&],distrvals},
+distrvals=data1[[All,4]];
+{data1[[All,1]],data1[[All,2]],data1[[All,3]],Table[Max[distrvals[[i]],10^-90.],{i,1,Length[distrvals],1}]}//Transpose
+],CompilationTarget->"MVM",RuntimeOptions->"Speed",RuntimeAttributes->{Listable}];, 
+, BlockGridsValsDistr1[ProdChannel_,DistrDataImport_]:=Module[{GridIn,vals},
+GridIn=Log10[DeleteDuplicates[DistrDataImport[ProdChannel][[All,#]]]&/@{1,2,3}];
+vals=ArrayReshape[valsComp[DistrDataImport[ProdChannel],4],{Length[GridIn[[1]]],Length[GridIn[[2]]],Length[GridIn[[3]]]}];
+{GridIn,vals}
+];, 
+, WeightsCombinations=(Keys[DownValues@PmotherToLLP][[All,1,-1]])//Transpose//Sort;, 
+, IfBrem=AnyTrue[WeightsCombinations,StringContainsQ["Bremsstrahlung"]];}
+
+----- cell 44  label= -----
+{selectordistr=Compile[{{data,_Real,2},{thmin,_Real},{thmax,_Real}},Module[{data1=Select[data,thmin<=#[[2]]<=thmax&],distrvals},
+distrvals=data1[[All,4]];
+{data1[[All,1]],data1[[All,2]],data1[[All,3]],Table[Max[distrvals[[i]],10^-90.],{i,1,Length[distrvals],1}]}//Transpose
+],CompilationTarget->"MVM",RuntimeOptions->"Speed",RuntimeAttributes->{Listable}];, 
+, BlockGridsValsDistr1[ProdChannel_,DistrDataImport_]:=Module[{GridIn,vals},
+GridIn=Log10[DeleteDuplicates[DistrDataImport[ProdChannel][[All,#]]]&/@{1,2,3}];
+vals=ArrayReshape[valsComp[DistrDataImport[ProdChannel],4],{Length[GridIn[[1]]],Length[GridIn[[2]]],Length[GridIn[[3]]]}];
+{GridIn,vals}
+];, 
+, WeightsCombinations=(Keys[DownValues@PmotherToLLP][[All,1,-1]])//Transpose//Sort;, 
+, IfBrem=AnyTrue[WeightsCombinations,StringContainsQ["Bremsstrahlung"]];}
+
+----- cell 45  label=Non-HNL -----
+If[!MemberQ[{"LDM-DP","HNL"},LLPdirName],
+(*Tabulated distribution filename pattern*)
+pattern="DoubleDistr_"<>LLPdirName<>"*_"<>FacilitySelected<>".m";
+(*Search for files matching the pattern in the directory and its subdirectories*)
+matchingFiles=FileNames[pattern,{directory["Distribution"]},Infinity];
+(*List of LLPs, production modes, and facilities for which the tabulated distributions have been computed at the previous stage of using SensCalc*)
+ExtractedProductionParameters=Function[filename,parts=StringSplit[FileNameTake[filename],"_"];
+{parts[[2]],parts[[3]],StringDrop[parts[[4]],-2]} ];
+(*combinations selected LLP, production channel, facility for which the tabulated distributions are present*)
+temp=Join[(ExtractedProductionParameters/@matchingFiles),Partition[matchingFiles,1],2];
+(*DistrCombinations=temp[[All,{1,2,3}]];*)
+matchingFiles=temp[[All,-1]];
+DistrCombinations=(ExtractedProductionParameters/@matchingFiles);
+(*Extracting only the needed bremsstrahlung distributions*)
+If[IfBrem,
+DistrCombinations=Select[DistrCombinations,!StringContainsQ[#[[2]],"Bremsstrahlung"]||StringContainsQ[#[[2]],bremdescription]&];
+DistrCombinations=Select[DistrCombinations,!StringContainsQ[#[[2]],"Mixing"]||#[[2]]==(If[SelectedMixingChoice=="Revised","Mixing","Mixing-Old"])&]
+];
+If[IfFusionExists||ifPrimakovExists,
+DistrCombinations=Select[DistrCombinations,(!StringContainsQ[#[[2]],"Primakov"]&&!StringContainsQ[#[[2]],"fusion"])||StringContainsQ[#[[2]],fusiondescription]||StringContainsQ[#[[2]],primakovdescription]&];
+];
+Print["If each tabulated distribution has its own production probability:"];
+IfCondDistrToWeights=Sort[WeightsCombinations]==Sort[(DistrCombinations[[All,2]]/.{(bremdescription)->bR,primakovdescription->primakovName,fusiondescription->fusionName})]
+]
+
+----- cell 46  label=Finding the relevant distributions -----
+If[!MemberQ[{"LDM-DP","HNL"},LLPdirName],
+(*Tabulated distribution filename pattern*)
+pattern="DoubleDistr_"<>LLPdirName<>"*_"<>FacilitySelected<>".m";
+(*Search for files matching the pattern in the directory and its subdirectories*)
+matchingFiles=FileNames[pattern,{directory["Distribution"]},Infinity];
+(*List of LLPs, production modes, and facilities for which the tabulated distributions have been computed at the previous stage of using SensCalc*)
+ExtractedProductionParameters=Function[filename,parts=StringSplit[FileNameTake[filename],"_"];
+{parts[[2]],parts[[3]],StringDrop[parts[[4]],-2]} ];
+(*combinations selected LLP, production channel, facility for which the tabulated distributions are present*)
+temp=Join[(ExtractedProductionParameters/@matchingFiles),Partition[matchingFiles,1],2];
+(*DistrCombinations=temp[[All,{1,2,3}]];*)
+matchingFiles=temp[[All,-1]];
+DistrCombinations=(ExtractedProductionParameters/@matchingFiles);
+(*Extracting only the needed bremsstrahlung distributions*)
+If[IfBrem,
+DistrCombinations=Select[DistrCombinations,!StringContainsQ[#[[2]],"Bremsstrahlung"]||StringContainsQ[#[[2]],bremdescription]&];
+DistrCombinations=Select[DistrCombinations,!StringContainsQ[#[[2]],"Mixing"]||#[[2]]==(If[SelectedMixingChoice=="Revised","Mixing","Mixing-Old"])&]
+];
+If[IfFusionExists||ifPrimakovExists,
+DistrCombinations=Select[DistrCombinations,(!StringContainsQ[#[[2]],"Primakov"]&&!StringContainsQ[#[[2]],"fusion"])||StringContainsQ[#[[2]],fusiondescription]||StringContainsQ[#[[2]],primakovdescription]&];
+];
+Print["If each tabulated distribution has its own production probability:"];
+IfCondDistrToWeights=Sort[WeightsCombinations]==Sort[(DistrCombinations[[All,2]]/.{(bremdescription)->bR,primakovdescription->primakovName,fusiondescription->fusionName})]
+]
+
+----- cell 47  label= -----
+If[!MemberQ[{"LDM-DP","HNL"},LLPdirName],
+(*Tabulated distribution filename pattern*)
+pattern="DoubleDistr_"<>LLPdirName<>"*_"<>FacilitySelected<>".m";
+(*Search for files matching the pattern in the directory and its subdirectories*)
+matchingFiles=FileNames[pattern,{directory["Distribution"]},Infinity];
+(*List of LLPs, production modes, and facilities for which the tabulated distributions have been computed at the previous stage of using SensCalc*)
+ExtractedProductionParameters=Function[filename,parts=StringSplit[FileNameTake[filename],"_"];
+{parts[[2]],parts[[3]],StringDrop[parts[[4]],-2]} ];
+(*combinations selected LLP, production channel, facility for which the tabulated distributions are present*)
+temp=Join[(ExtractedProductionParameters/@matchingFiles),Partition[matchingFiles,1],2];
+(*DistrCombinations=temp[[All,{1,2,3}]];*)
+matchingFiles=temp[[All,-1]];
+DistrCombinations=(ExtractedProductionParameters/@matchingFiles);
+(*Extracting only the needed bremsstrahlung distributions*)
+If[IfBrem,
+DistrCombinations=Select[DistrCombinations,!StringContainsQ[#[[2]],"Bremsstrahlung"]||StringContainsQ[#[[2]],bremdescription]&];
+DistrCombinations=Select[DistrCombinations,!StringContainsQ[#[[2]],"Mixing"]||#[[2]]==(If[SelectedMixingChoice=="Revised","Mixing","Mixing-Old"])&]
+];
+If[IfFusionExists||ifPrimakovExists,
+DistrCombinations=Select[DistrCombinations,(!StringContainsQ[#[[2]],"Primakov"]&&!StringContainsQ[#[[2]],"fusion"])||StringContainsQ[#[[2]],fusiondescription]||StringContainsQ[#[[2]],primakovdescription]&];
+];
+Print["If each tabulated distribution has its own production probability:"];
+IfCondDistrToWeights=Sort[WeightsCombinations]==Sort[(DistrCombinations[[All,2]]/.{(bremdescription)->bR,primakovdescription->primakovName,fusiondescription->fusionName})]
+]
+
+----- cell 48  label= -----
+If[!MemberQ[{"LDM-DP","HNL"},LLPdirName],
+(*Tabulated distribution filename pattern*)
+pattern="DoubleDistr_"<>LLPdirName<>"*_"<>FacilitySelected<>".m";
+(*Search for files matching the pattern in the directory and its subdirectories*)
+matchingFiles=FileNames[pattern,{directory["Distribution"]},Infinity];
+(*List of LLPs, production modes, and facilities for which the tabulated distributions have been computed at the previous stage of using SensCalc*)
+ExtractedProductionParameters=Function[filename,parts=StringSplit[FileNameTake[filename],"_"];
+{parts[[2]],parts[[3]],StringDrop[parts[[4]],-2]} ];
+(*combinations selected LLP, production channel, facility for which the tabulated distributions are present*)
+temp=Join[(ExtractedProductionParameters/@matchingFiles),Partition[matchingFiles,1],2];
+(*DistrCombinations=temp[[All,{1,2,3}]];*)
+matchingFiles=temp[[All,-1]];
+DistrCombinations=(ExtractedProductionParameters/@matchingFiles);
+(*Extracting only the needed bremsstrahlung distributions*)
+If[IfBrem,
+DistrCombinations=Select[DistrCombinations,!StringContainsQ[#[[2]],"Bremsstrahlung"]||StringContainsQ[#[[2]],bremdescription]&];
+DistrCombinations=Select[DistrCombinations,!StringContainsQ[#[[2]],"Mixing"]||#[[2]]==(If[SelectedMixingChoice=="Revised","Mixing","Mixing-Old"])&]
+];
+If[IfFusionExists||ifPrimakovExists,
+DistrCombinations=Select[DistrCombinations,(!StringContainsQ[#[[2]],"Primakov"]&&!StringContainsQ[#[[2]],"fusion"])||StringContainsQ[#[[2]],fusiondescription]||StringContainsQ[#[[2]],primakovdescription]&];
+];
+Print["If each tabulated distribution has its own production probability:"];
+IfCondDistrToWeights=Sort[WeightsCombinations]==Sort[(DistrCombinations[[All,2]]/.{(bremdescription)->bR,primakovdescription->primakovName,fusiondescription->fusionName})]
+]
+
+----- cell 49  label= -----
+"If each tabulated distribution has its own production probability:"
+
+----- cell 50  label= -----
+True
+
+----- cell 51  label=Importing them -----
+If[!MemberQ[{"HNL","LDM-DP"},LLPdirName],
+ListProcesses=DistrCombinations[[All,2]];
+(*This block selects only the relevant bremsstrahlung distribution*)
+BremSelector[filename_]:=Module[{data},
+data=Import[filename,"MX"];
+If[StringContainsQ[filename,{"FR","AP"}],
+Select[data,#[[1]]==bremunc&][[1]][[2]]
+,
+data
+]
+];
+DistrImporting[i_]:=Block[{},
+descr=(ExtractedProductionParameters/@{matchingFiles[[i]]})[[1]];
+If[Select[DistrCombinations,#==descr&]!={},
+Module[{thetamin,thetamax,prod},
+prod=descr[[2]];
+{condbrem,condfus,condprim}=StringContainsQ[prod,#]&/@{"Bremsstrahlung","fusion","Primakov"};
+If[condbrem,prod=bR;DoubleDistrLLPdata[bR]=BremSelector[matchingFiles[[i]]]];
+If[condfus,prod=fusionName;DoubleDistrLLPdata[fusionName]=Import[matchingFiles[[i]],"MX"]];
+If[condprim,prod=primakovName;DoubleDistrLLPdata[primakovName]=Import[matchingFiles[[i]],"MX"]];
+If[!condbrem&&!condfus&&!condprim,DoubleDistrLLPdata[prod]=Import[matchingFiles[[i]],"MX"]];
+{thetamin,thetamax}=With[{d=DoubleDistrLLPdata[prod][[All,2]]},{Select[d,#<=thetaminDistr&][[-1]],Select[d,#>thetamaxDistr&][[1]]}];
+(*Cutting the angular grid by leaving only angles roughly corresponding to the decay volume*)
+DoubleDistrLLPdata[prod]=selectordistr[DoubleDistrLLPdata[prod],thetamin,thetamax];
+(*Defining grids*)
+mLLPlist[prod]=DoubleDistrLLPdata[prod][[All,1]]//DeleteDuplicates;
+{mLLPmin[prod],mLLPmax[prod]}=mLLPlist[prod]//MinMax;
+{GridInFinal[prod],DistrVals[prod]}=BlockGridsValsDistr1[prod,DoubleDistrLLPdata]
+]
+]
+];
+Do[
+DistrImporting[i]
+,{i,1,Length[matchingFiles],1}];
+]
+
+----- cell 52  label= -----
+If[!MemberQ[{"HNL","LDM-DP"},LLPdirName],
+ListProcesses=DistrCombinations[[All,2]];
+(*This block selects only the relevant bremsstrahlung distribution*)
+BremSelector[filename_]:=Module[{data},
+data=Import[filename,"MX"];
+If[StringContainsQ[filename,{"FR","AP"}],
+Select[data,#[[1]]==bremunc&][[1]][[2]]
+,
+data
+]
+];
+DistrImporting[i_]:=Block[{},
+descr=(ExtractedProductionParameters/@{matchingFiles[[i]]})[[1]];
+If[Select[DistrCombinations,#==descr&]!={},
+Module[{thetamin,thetamax,prod},
+prod=descr[[2]];
+{condbrem,condfus,condprim}=StringContainsQ[prod,#]&/@{"Bremsstrahlung","fusion","Primakov"};
+If[condbrem,prod=bR;DoubleDistrLLPdata[bR]=BremSelector[matchingFiles[[i]]]];
+If[condfus,prod=fusionName;DoubleDistrLLPdata[fusionName]=Import[matchingFiles[[i]],"MX"]];
+If[condprim,prod=primakovName;DoubleDistrLLPdata[primakovName]=Import[matchingFiles[[i]],"MX"]];
+If[!condbrem&&!condfus&&!condprim,DoubleDistrLLPdata[prod]=Import[matchingFiles[[i]],"MX"]];
+{thetamin,thetamax}=With[{d=DoubleDistrLLPdata[prod][[All,2]]},{Select[d,#<=thetaminDistr&][[-1]],Select[d,#>thetamaxDistr&][[1]]}];
+(*Cutting the angular grid by leaving only angles roughly corresponding to the decay volume*)
+DoubleDistrLLPdata[prod]=selectordistr[DoubleDistrLLPdata[prod],thetamin,thetamax];
+(*Defining grids*)
+mLLPlist[prod]=DoubleDistrLLPdata[prod][[All,1]]//DeleteDuplicates;
+{mLLPmin[prod],mLLPmax[prod]}=mLLPlist[prod]//MinMax;
+{GridInFinal[prod],DistrVals[prod]}=BlockGridsValsDistr1[prod,DoubleDistrLLPdata]
+]
+]
+];
+Do[
+DistrImporting[i]
+,{i,1,Length[matchingFiles],1}];
+]
+
+----- cell 53  label=HNL -----
+If[LLPdirName=="HNL",
+DoubleDistrLLPdataTemp//Clear;
+WeightsCombinations=ProductionWeightsTemp[mLLP][[All,{1,2,3}]]//Sort;
+pattern="DoubleDistr_"<>LLPdirName<>"-mixing-*_"<>FacilitySelected<>".m";
+(*Search for files matching the pattern in the directory and its subdirectories*)
+matchingFiles=FileNames[pattern,{directory["Distribution"]},Infinity];
+ExtractedProductionParameters=Function[filename,parts=StringSplit[FileNameTake[filename],"_"];
+{parts[[2]],parts[[3]],StringDrop[parts[[4]],-2]} ];
+temp=Join[(ExtractedProductionParameters/@matchingFiles),Partition[matchingFiles,1],2];
+matchingFiles=temp[[All,-1]];
+DistrCombinations=(ExtractedProductionParameters/@matchingFiles);
+Do[
+Module[{thetamin,thetamax},
+DoubleDistrLLPdataTemp[DistrCombinations[[i]][[1]],DistrCombinations[[i]][[2]]]=Import[matchingFiles[[i]],"MX"];
+{thetamin,thetamax}=With[{d=DoubleDistrLLPdataTemp[DistrCombinations[[i]][[1]],DistrCombinations[[i]][[2]]][[All,2]]},{Select[d,#<=thetaminDistr&][[-1]],Select[d,#>thetamaxDistr&][[1]]}];
+DoubleDistrLLPdataTemp[DistrCombinations[[i]][[1]],DistrCombinations[[i]][[2]]]=selectordistr[DoubleDistrLLPdataTemp[DistrCombinations[[i]][[1]],DistrCombinations[[i]][[2]]],thetamin,thetamax];
+]
+,{i,1,Length[DistrCombinations],1}];
+(*Fake distribution for HNLs produced by decays of kaons in case of mixing with [Nu]_tau*)
+If[MemberQ[prodchann,"K"],
+DoubleDistrLLPdataTemp[ListHNLs[[3]],"K"]={#[[1]],#[[2]],#[[3]],0.}&/@DoubleDistrLLPdataTemp[ListHNLs[[2]],"K"];
+];
+Print["If each tabulated distribution has its own production probability:"];
+WeightsCombinations=Cases[WeightsCombinations,_?(MemberQ[DistrCombinations,#]&)];
+Print[IfCondDistrToWeights=DistrCombinations==WeightsCombinations];
+]
+
+----- cell 54  label=Finding the relevant distributions for independent mixings -----
+If[LLPdirName=="HNL",
+DoubleDistrLLPdataTemp//Clear;
+WeightsCombinations=ProductionWeightsTemp[mLLP][[All,{1,2,3}]]//Sort;
+pattern="DoubleDistr_"<>LLPdirName<>"-mixing-*_"<>FacilitySelected<>".m";
+(*Search for files matching the pattern in the directory and its subdirectories*)
+matchingFiles=FileNames[pattern,{directory["Distribution"]},Infinity];
+ExtractedProductionParameters=Function[filename,parts=StringSplit[FileNameTake[filename],"_"];
+{parts[[2]],parts[[3]],StringDrop[parts[[4]],-2]} ];
+temp=Join[(ExtractedProductionParameters/@matchingFiles),Partition[matchingFiles,1],2];
+matchingFiles=temp[[All,-1]];
+DistrCombinations=(ExtractedProductionParameters/@matchingFiles);
+Do[
+Module[{thetamin,thetamax},
+DoubleDistrLLPdataTemp[DistrCombinations[[i]][[1]],DistrCombinations[[i]][[2]]]=Import[matchingFiles[[i]],"MX"];
+{thetamin,thetamax}=With[{d=DoubleDistrLLPdataTemp[DistrCombinations[[i]][[1]],DistrCombinations[[i]][[2]]][[All,2]]},{Select[d,#<=thetaminDistr&][[-1]],Select[d,#>thetamaxDistr&][[1]]}];
+DoubleDistrLLPdataTemp[DistrCombinations[[i]][[1]],DistrCombinations[[i]][[2]]]=selectordistr[DoubleDistrLLPdataTemp[DistrCombinations[[i]][[1]],DistrCombinations[[i]][[2]]],thetamin,thetamax];
+]
+,{i,1,Length[DistrCombinations],1}];
+(*Fake distribution for HNLs produced by decays of kaons in case of mixing with [Nu]_tau*)
+If[MemberQ[prodchann,"K"],
+DoubleDistrLLPdataTemp[ListHNLs[[3]],"K"]={#[[1]],#[[2]],#[[3]],0.}&/@DoubleDistrLLPdataTemp[ListHNLs[[2]],"K"];
+];
+Print["If each tabulated distribution has its own production probability:"];
+WeightsCombinations=Cases[WeightsCombinations,_?(MemberQ[DistrCombinations,#]&)];
+Print[IfCondDistrToWeights=DistrCombinations==WeightsCombinations];
+]
+
+----- cell 55  label= -----
+If[LLPdirName=="HNL",
+DoubleDistrLLPdataTemp//Clear;
+WeightsCombinations=ProductionWeightsTemp[mLLP][[All,{1,2,3}]]//Sort;
+pattern="DoubleDistr_"<>LLPdirName<>"-mixing-*_"<>FacilitySelected<>".m";
+(*Search for files matching the pattern in the directory and its subdirectories*)
+matchingFiles=FileNames[pattern,{directory["Distribution"]},Infinity];
+ExtractedProductionParameters=Function[filename,parts=StringSplit[FileNameTake[filename],"_"];
+{parts[[2]],parts[[3]],StringDrop[parts[[4]],-2]} ];
+temp=Join[(ExtractedProductionParameters/@matchingFiles),Partition[matchingFiles,1],2];
+matchingFiles=temp[[All,-1]];
+DistrCombinations=(ExtractedProductionParameters/@matchingFiles);
+Do[
+Module[{thetamin,thetamax},
+DoubleDistrLLPdataTemp[DistrCombinations[[i]][[1]],DistrCombinations[[i]][[2]]]=Import[matchingFiles[[i]],"MX"];
+{thetamin,thetamax}=With[{d=DoubleDistrLLPdataTemp[DistrCombinations[[i]][[1]],DistrCombinations[[i]][[2]]][[All,2]]},{Select[d,#<=thetaminDistr&][[-1]],Select[d,#>thetamaxDistr&][[1]]}];
+DoubleDistrLLPdataTemp[DistrCombinations[[i]][[1]],DistrCombinations[[i]][[2]]]=selectordistr[DoubleDistrLLPdataTemp[DistrCombinations[[i]][[1]],DistrCombinations[[i]][[2]]],thetamin,thetamax];
+]
+,{i,1,Length[DistrCombinations],1}];
+(*Fake distribution for HNLs produced by decays of kaons in case of mixing with [Nu]_tau*)
+If[MemberQ[prodchann,"K"],
+DoubleDistrLLPdataTemp[ListHNLs[[3]],"K"]={#[[1]],#[[2]],#[[3]],0.}&/@DoubleDistrLLPdataTemp[ListHNLs[[2]],"K"];
+];
+Print["If each tabulated distribution has its own production probability:"];
+WeightsCombinations=Cases[WeightsCombinations,_?(MemberQ[DistrCombinations,#]&)];
+Print[IfCondDistrToWeights=DistrCombinations==WeightsCombinations];
+]
+
+----- cell 56  label=Averaging over the given mixing pattern -----
+If[LLPdirName=="HNL",
+DoubleDistrLLPdata//Clear;
+(*Code supplementing the data for the distribution up to the given mass with zeros*)
+DataSupplementedBlock[data_,mmax_]:=Block[{},
+mdatamax=Max[data[[All,1]]];
+datathetaEgrid=SortBy[DeleteDuplicatesBy[data,{#[[2]],#[[3]]}&][[All,{2,3}]],{#[[1]],#[[2]]}&]//N;
+Join[data,Flatten[Table[{mLLP,datathetaEgrid[[i]][[1]],datathetaEgrid[[i]][[2]],0},{mLLP,1.001mdatamax,mmax,((mmax-1.001mdatamax))/(3)},{i,1,Length[datathetaEgrid],1}],{1,2}]]
+];
+DataLogarithmiedComp1=Compile[{{data,_Real,2}},Table[If[data[[i]][[4]]==0,-90.,Log10[data[[i]][[4]]]],{i,1,Length[data],1}],CompilationTarget->"MVM",RuntimeOptions->"Speed"];
+(*The block that glues the distributions according to the mixing pattern*)
+BlockDistrGluing[ProdChannel_]:=Block[{},
+(*Angle-energy distribution data corresponding to the given production channel*)
+DataList=DoubleDistrLLPdataTemp[#,ProdChannel]&/@ListHNLs;
+(*List of the production probabilities per mixing for the given production channel: P_prod(m,(U_i^2)/(U^2))*)
+[Chi]list[mLLP_]=(*ProbLLP[mLLP,MixingPattern[[#]],HNLsList[[#]],ProdChannel]&/@{1,2,3}*)PmotherToLLPtemp[mLLP,1,fake,ProdChannel,ListHNLs[[#]]]&/@Range[1,numHNLs];
+[Chi]weights=[Chi]list[#]&/@(DataList[[1]][[All,1]]//DeleteDuplicates);
+[Chi]weights={(#[[1]])/(Max[10^-90.,#[[1]]+#[[2]]+#[[3]]]),(#[[2]])/(Max[10^-90.,#[[1]]+#[[2]]+#[[3]]]),(#[[3]])/(Max[10^-90.,#[[1]]+#[[2]]+#[[3]]])}&/@[Chi]weights;
+DataListFin=Join[DataList[[1]][[All,{1,2,3}]],(List/@Flatten[[Chi]weights[[All,#]]* Partition[DataList[[#]][[All,-1]],(Length[DataList[[#]]])/(Length[[Chi]weights])]]&/@{1,2,3})//Total,2];
+{#[[1]],#[[2]],#[[3]],Max[#[[4]],10^-90.]}&/@DataListFin
+];
+(*Actual averaging*)
+Do[
+DoubleDistrLLPdata[prod]=BlockDistrGluing[prod];
+maxvalGluing=DoubleDistrLLPdata[prod][[All,-1]]//Max;
+maxMassGluing=Select[DoubleDistrLLPdata[prod],#[[-1]]>10^-20.maxvalGluing&][[All,1]]//Max;
+mLLPlist[prod]=DoubleDistrLLPdata[prod][[All,1]]//DeleteDuplicates;
+{mLLPmin[prod],mLLPmax[prod]}=mLLPlist[prod]//MinMax;
+{GridInFinal[prod],DistrVals[prod]}=BlockGridsValsDistr1[prod,DoubleDistrLLPdata];
+,{prod,prodchann}];//AbsoluteTiming
+]
+
+----- cell 57  label= -----
+If[LLPdirName=="HNL",
+DoubleDistrLLPdata//Clear;
+(*Code supplementing the data for the distribution up to the given mass with zeros*)
+DataSupplementedBlock[data_,mmax_]:=Block[{},
+mdatamax=Max[data[[All,1]]];
+datathetaEgrid=SortBy[DeleteDuplicatesBy[data,{#[[2]],#[[3]]}&][[All,{2,3}]],{#[[1]],#[[2]]}&]//N;
+Join[data,Flatten[Table[{mLLP,datathetaEgrid[[i]][[1]],datathetaEgrid[[i]][[2]],0},{mLLP,1.001mdatamax,mmax,((mmax-1.001mdatamax))/(3)},{i,1,Length[datathetaEgrid],1}],{1,2}]]
+];
+DataLogarithmiedComp1=Compile[{{data,_Real,2}},Table[If[data[[i]][[4]]==0,-90.,Log10[data[[i]][[4]]]],{i,1,Length[data],1}],CompilationTarget->"MVM",RuntimeOptions->"Speed"];
+(*The block that glues the distributions according to the mixing pattern*)
+BlockDistrGluing[ProdChannel_]:=Block[{},
+(*Angle-energy distribution data corresponding to the given production channel*)
+DataList=DoubleDistrLLPdataTemp[#,ProdChannel]&/@ListHNLs;
+(*List of the production probabilities per mixing for the given production channel: P_prod(m,(U_i^2)/(U^2))*)
+[Chi]list[mLLP_]=(*ProbLLP[mLLP,MixingPattern[[#]],HNLsList[[#]],ProdChannel]&/@{1,2,3}*)PmotherToLLPtemp[mLLP,1,fake,ProdChannel,ListHNLs[[#]]]&/@Range[1,numHNLs];
+[Chi]weights=[Chi]list[#]&/@(DataList[[1]][[All,1]]//DeleteDuplicates);
+[Chi]weights={(#[[1]])/(Max[10^-90.,#[[1]]+#[[2]]+#[[3]]]),(#[[2]])/(Max[10^-90.,#[[1]]+#[[2]]+#[[3]]]),(#[[3]])/(Max[10^-90.,#[[1]]+#[[2]]+#[[3]]])}&/@[Chi]weights;
+DataListFin=Join[DataList[[1]][[All,{1,2,3}]],(List/@Flatten[[Chi]weights[[All,#]]* Partition[DataList[[#]][[All,-1]],(Length[DataList[[#]]])/(Length[[Chi]weights])]]&/@{1,2,3})//Total,2];
+{#[[1]],#[[2]],#[[3]],Max[#[[4]],10^-90.]}&/@DataListFin
+];
+(*Actual averaging*)
+Do[
+DoubleDistrLLPdata[prod]=BlockDistrGluing[prod];
+maxvalGluing=DoubleDistrLLPdata[prod][[All,-1]]//Max;
+maxMassGluing=Select[DoubleDistrLLPdata[prod],#[[-1]]>10^-20.maxvalGluing&][[All,1]]//Max;
+mLLPlist[prod]=DoubleDistrLLPdata[prod][[All,1]]//DeleteDuplicates;
+{mLLPmin[prod],mLLPmax[prod]}=mLLPlist[prod]//MinMax;
+{GridInFinal[prod],DistrVals[prod]}=BlockGridsValsDistr1[prod,DoubleDistrLLPdata];
+,{prod,prodchann}];//AbsoluteTiming
+]
+
+----- cell 58  label=Common -----
+{ListProcesses=Keys[DownValues@DoubleDistrLLPdata][[All,1,1]]//DeleteDuplicates, 
+, Do[
+{mLLPminFacility[proc],mLLPmaxFacility[proc]}=Flatten[mLLPlist[#,proc]&/@ListProcesses]//MinMax
+,{proc,ListProcesses}];, 
+, If[Select[ListProcesses,StringContainsQ[#,"Bremsstrahlung"]&]!={}&&LLPdirName!="LDM-DP",
+bremchann=Select[ListProcesses,StringContainsQ[#,"Bremsstrahlung"]&][[1]];
+emaxbrem[x_]=ELLPmax[0.02,x,bremchann];
+EmaxBremComp=Hold@Compile[{{x,_Real}},Log[emaxbrem[Exp[x]]],CompilationTarget->"C",RuntimeAttributes->{Listable},RuntimeOptions->"Speed",Parallelization->True]/.DownValues@emaxbrem//ReleaseHold;
+];}
+
+----- cell 59  label= -----
+{ListProcesses=Keys[DownValues@DoubleDistrLLPdata][[All,1,1]]//DeleteDuplicates, 
+, Do[
+{mLLPminFacility[proc],mLLPmaxFacility[proc]}=Flatten[mLLPlist[#,proc]&/@ListProcesses]//MinMax
+,{proc,ListProcesses}];, 
+, If[Select[ListProcesses,StringContainsQ[#,"Bremsstrahlung"]&]!={}&&LLPdirName!="LDM-DP",
+bremchann=Select[ListProcesses,StringContainsQ[#,"Bremsstrahlung"]&][[1]];
+emaxbrem[x_]=ELLPmax[0.02,x,bremchann];
+EmaxBremComp=Hold@Compile[{{x,_Real}},Log[emaxbrem[Exp[x]]],CompilationTarget->"C",RuntimeAttributes->{Listable},RuntimeOptions->"Speed",Parallelization->True]/.DownValues@emaxbrem//ReleaseHold;
+];}
+
+----- cell 60  label= -----
+{ListProcesses=Keys[DownValues@DoubleDistrLLPdata][[All,1,1]]//DeleteDuplicates, 
+, Do[
+{mLLPminFacility[proc],mLLPmaxFacility[proc]}=Flatten[mLLPlist[#,proc]&/@ListProcesses]//MinMax
+,{proc,ListProcesses}];, 
+, If[Select[ListProcesses,StringContainsQ[#,"Bremsstrahlung"]&]!={}&&LLPdirName!="LDM-DP",
+bremchann=Select[ListProcesses,StringContainsQ[#,"Bremsstrahlung"]&][[1]];
+emaxbrem[x_]=ELLPmax[0.02,x,bremchann];
+EmaxBremComp=Hold@Compile[{{x,_Real}},Log[emaxbrem[Exp[x]]],CompilationTarget->"C",RuntimeAttributes->{Listable},RuntimeOptions->"Speed",Parallelization->True]/.DownValues@emaxbrem//ReleaseHold;
+];}
+
+----- cell 61  label= -----
+{"B-mixing","B-quartic","Bremsstrahlung-mixing","Bs-quartic","K-mixing","Upsilon-mixing","Upsilon-quartic"}

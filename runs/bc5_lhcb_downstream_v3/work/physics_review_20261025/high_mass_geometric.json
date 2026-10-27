@@ -1,0 +1,58 @@
+{
+  "5.0": {
+    "native_eta_fraction": 0.127245,
+    "ref_eta_fraction": 0.1668153442998489,
+    "native_m_over_pz": 0.00243846545596991,
+    "ref_m_over_pz": 0.0027860801142814595,
+    "native_over_ref": 0.8752316358278159
+  },
+  "10.0": {
+    "native_eta_fraction": 0.1283375,
+    "ref_eta_fraction": 0.16832771274653335,
+    "native_m_over_pz": 0.004943456369430792,
+    "ref_m_over_pz": 0.005665061577349736,
+    "native_over_ref": 0.8726218244821746
+  },
+  "15.0": {
+    "native_eta_fraction": 0.13055,
+    "ref_eta_fraction": 0.17114827986819708,
+    "native_m_over_pz": 0.007694844044347018,
+    "ref_m_over_pz": 0.008841733708246511,
+    "native_over_ref": 0.8702867897016836
+  },
+  "30.0": {
+    "native_eta_fraction": 0.14438499999999999,
+    "ref_eta_fraction": 0.1894090360438095,
+    "native_m_over_pz": 0.018843827357752474,
+    "ref_m_over_pz": 0.022079374136853114,
+    "native_over_ref": 0.8534584015359328
+  },
+  "35.0": {
+    "native_eta_fraction": 0.152555,
+    "ref_eta_fraction": 0.19973949126865664,
+    "native_m_over_pz": 0.024297936328003936,
+    "ref_m_over_pz": 0.028704674018924577,
+    "native_over_ref": 0.8464801346284113
+  },
+  "50.0": {
+    "native_eta_fraction": 0.1910825,
+    "ref_eta_fraction": 0.2494522372487617,
+    "native_m_over_pz": 0.05182284381638106,
+    "ref_m_over_pz": 0.06474909373247069,
+    "native_over_ref": 0.8003640024754924
+  },
+  "55.0": {
+    "native_eta_fraction": 0.21215,
+    "ref_eta_fraction": 0.2753150001384868,
+    "native_m_over_pz": 0.06923117113494129,
+    "ref_m_over_pz": 0.08961431077783186,
+    "native_over_ref": 0.7725459308232184
+  },
+  "62.49": {
+    "native_eta_fraction": 0.2636675,
+    "ref_eta_fraction": 0.3169900231237695,
+    "native_m_over_pz": 0.14836688851672597,
+    "ref_m_over_pz": 0.24405398094030423,
+    "native_over_ref": 0.6079265248822826
+  }
+}

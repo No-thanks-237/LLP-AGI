@@ -1,0 +1,3313 @@
+### FILE: 2. LLP distribution.nb
+
+----- cell 1  label=Launch this section to run the notebook -----
+{ClearAll["Global`*"], 
+, ParallelEvaluate[ClearAll["Global`*"]];, 
+, CloseKernels[];, 
+, LaunchKernels[];, 
+, FrontEndTokenExecute["SelectAll"], 
+, FrontEndTokenExecute["SelectionCloseAllGroups"], 
+, nb=EvaluationNotebook[];, 
+, NotebookFind[nb,"Evaluation",All,CellTags];, 
+, SelectionEvaluate[nb]}
+
+----- cell 2  label= -----
+{ClearAll["Global`*"], 
+, ParallelEvaluate[ClearAll["Global`*"]];, 
+, CloseKernels[];, 
+, LaunchKernels[];, 
+, FrontEndTokenExecute["SelectAll"], 
+, FrontEndTokenExecute["SelectionCloseAllGroups"], 
+, nb=EvaluationNotebook[];, 
+, NotebookFind[nb,"Evaluation",All,CellTags];, 
+, SelectionEvaluate[nb]}
+
+----- cell 3  label=Preliminary code: various definitions -----
+{SetAttributes[ruleDown,HoldAll];, 
+, ruleDown[list_]:=Flatten[DownValues/@(Unevaluated@list)], 
+, SetAttributes[ruleOwn,HoldAll];, 
+, ruleOwn[list_]:=Flatten[OwnValues/@(Unevaluated@list)], 
+, <<FeynCalc`, 
+, LLPdistr=True;, 
+, EventCalc=False;, 
+, AccCode=False;}
+
+----- cell 4  label=Creating relevant directories and critical definitions -----
+{SetAttributes[ruleDown,HoldAll];, 
+, ruleDown[list_]:=Flatten[DownValues/@(Unevaluated@list)], 
+, SetAttributes[ruleOwn,HoldAll];, 
+, ruleOwn[list_]:=Flatten[OwnValues/@(Unevaluated@list)], 
+, <<FeynCalc`, 
+, LLPdistr=True;, 
+, EventCalc=False;, 
+, AccCode=False;}
+
+----- cell 5  label= -----
+{SetAttributes[ruleDown,HoldAll];, 
+, ruleDown[list_]:=Flatten[DownValues/@(Unevaluated@list)], 
+, SetAttributes[ruleOwn,HoldAll];, 
+, ruleOwn[list_]:=Flatten[OwnValues/@(Unevaluated@list)], 
+, <<FeynCalc`, 
+, LLPdistr=True;, 
+, EventCalc=False;, 
+, AccCode=False;}
+
+----- cell 6  label=Launching preliminary notebooks -----
+{Print["Launching the code with generic definitions..."], 
+, Quiet[NotebookEvaluate[FileNameJoin[{NotebookDirectory[],"codes/Generic.nb"}]]];//AbsoluteTiming, 
+, Quiet[NotebookEvaluate[FileNameJoin[{NotebookDirectory[],"codes/dialog-windows.nb"}]]];//AbsoluteTiming, 
+, Quiet[NotebookEvaluate[FileNameJoin[{NotebookDirectory[],"codes/SensCalc/SM particles.nb"}]]];//AbsoluteTiming, 
+, Print["Defining the code calculating Lorentz boosts and kinematics of n-body decays..."], 
+, Block[{Print=Identity},
+Inactivate[Quiet[NotebookEvaluate[FileNameJoin[{NotebookDirectory[],"codes/kinematics.nb"}]]],Print];//AbsoluteTiming
+], 
+, Print["Defining sampler of the kinematics of mother particles..."], 
+, Block[{Print=Identity},
+Quiet[NotebookEvaluate[FileNameJoin[{NotebookDirectory[],"codes/LLP distribution/mother-sampler.nb"}]]];//AbsoluteTiming
+], 
+, Print["List of facilities:"], 
+, Join[{{"Facility","\!\(\*SqrtBox[SubscriptBox[\(s\), \(collision\)]]\), GeV"}},{#,EcmFacility[#]}&/@FacilitiesList]}
+
+----- cell 7  label= -----
+{Print["Launching the code with generic definitions..."], 
+, Quiet[NotebookEvaluate[FileNameJoin[{NotebookDirectory[],"codes/Generic.nb"}]]];//AbsoluteTiming, 
+, Quiet[NotebookEvaluate[FileNameJoin[{NotebookDirectory[],"codes/dialog-windows.nb"}]]];//AbsoluteTiming, 
+, Quiet[NotebookEvaluate[FileNameJoin[{NotebookDirectory[],"codes/SensCalc/SM particles.nb"}]]];//AbsoluteTiming, 
+, Print["Defining the code calculating Lorentz boosts and kinematics of n-body decays..."], 
+, Block[{Print=Identity},
+Inactivate[Quiet[NotebookEvaluate[FileNameJoin[{NotebookDirectory[],"codes/kinematics.nb"}]]],Print];//AbsoluteTiming
+], 
+, Print["Defining sampler of the kinematics of mother particles..."], 
+, Block[{Print=Identity},
+Quiet[NotebookEvaluate[FileNameJoin[{NotebookDirectory[],"codes/LLP distribution/mother-sampler.nb"}]]];//AbsoluteTiming
+], 
+, Print["List of facilities:"], 
+, Join[{{"Facility","\!\(\*SqrtBox[SubscriptBox[\(s\), \(collision\)]]\), GeV"}},{#,EcmFacility[#]}&/@FacilitiesList]}
+
+----- cell 8  label=Defining phenomenology of LLP production -----
+{notebookLaunchDistr[notebook_]:=Block[{Print=Identity},
+Quiet[NotebookEvaluate[FileNameJoin[{NotebookDirectory[],"codes","LLP distribution",notebook}]]];
+], 
+, listnotebooksfips=Select[Last@FileNameSplit[#]&/@FileNames["*.nb",FileNameJoin[{NotebookDirectory[],"codes","LLP distribution"}],1],StringContainsQ[#,"prod-pheno"]&], 
+, Do[
+Print["Launching "<>StringDelete[notebook,".nb"]<>"..."];
+AbsoluteTiming[notebookLaunchDistr[notebook]];
+,{notebook,listnotebooksfips}]
+(*Launching the notebook gathering all the imported data abot the phenmenology of LLP production*), 
+, AbsoluteTiming[notebookLaunchDistr["available-processes-facilities.nb"]];, 
+, Print["List of implemented LLPs:"], 
+, LLPlist=Keys[DownValues@ProcessesListAll][[All,1,1]]//Sort, 
+, Print["List of all implemented channels:"], 
+, TabProcesses=Flatten[Table[{LLP,Facility,ProcessesListFacility[LLP,Facility]},{LLP,LLPlist},{Facility,FacilitiesList}],1]}
+
+----- cell 9  label= -----
+{notebookLaunchDistr[notebook_]:=Block[{Print=Identity},
+Quiet[NotebookEvaluate[FileNameJoin[{NotebookDirectory[],"codes","LLP distribution",notebook}]]];
+], 
+, listnotebooksfips=Select[Last@FileNameSplit[#]&/@FileNames["*.nb",FileNameJoin[{NotebookDirectory[],"codes","LLP distribution"}],1],StringContainsQ[#,"prod-pheno"]&], 
+, Do[
+Print["Launching "<>StringDelete[notebook,".nb"]<>"..."];
+AbsoluteTiming[notebookLaunchDistr[notebook]];
+,{notebook,listnotebooksfips}]
+(*Launching the notebook gathering all the imported data abot the phenmenology of LLP production*), 
+, AbsoluteTiming[notebookLaunchDistr["available-processes-facilities.nb"]];, 
+, Print["List of implemented LLPs:"], 
+, LLPlist=Keys[DownValues@ProcessesListAll][[All,1,1]]//Sort, 
+, Print["List of all implemented channels:"], 
+, TabProcesses=Flatten[Table[{LLP,Facility,ProcessesListFacility[LLP,Facility]},{LLP,LLPlist},{Facility,FacilitiesList}],1]}
+
+----- cell 10  label=Preliminary code: PDFs of LLPs -----
+{Print["Defining the code calculating PDFs of LLPs produced by decays..."]
+(*Indices of the table with the corresponding boosted LLPs*), 
+, indexpx=1;, 
+, indexpy=2;, 
+, indexpz=3;, 
+, indexE=4;, 
+, indexm=5;, 
+, AbsoluteTiming[notebookLaunchDistr["llp-sampler-decays.nb"]]}
+
+----- cell 11  label=Production via decays -----
+{Print["Defining the code calculating PDFs of LLPs produced by decays..."]
+(*Indices of the table with the corresponding boosted LLPs*), 
+, indexpx=1;, 
+, indexpy=2;, 
+, indexpz=3;, 
+, indexE=4;, 
+, indexm=5;, 
+, AbsoluteTiming[notebookLaunchDistr["llp-sampler-decays.nb"]]}
+
+----- cell 12  label= -----
+{Print["Defining the code calculating PDFs of LLPs produced by decays..."]
+(*Indices of the table with the corresponding boosted LLPs*), 
+, indexpx=1;, 
+, indexpy=2;, 
+, indexpz=3;, 
+, indexE=4;, 
+, indexm=5;, 
+, AbsoluteTiming[notebookLaunchDistr["llp-sampler-decays.nb"]]}
+
+----- cell 13  label=Production via mixing (following 2201.05170): PDF -----
+theta_mother,E_mother->theta_LLP,E_LLP
+
+----- cell 14  label= -----
+theta_mother,E_mother->theta_LLP,E_LLP
+
+----- cell 15  label= -----
+theta_mother,E_mother->theta_LLP,E_LLP
+
+----- cell 16  label= -----
+{LLPkinematicsMixing=Hold@Compile[{{mdata,_Real,1},{mLLP,_Real},{Eplab,_Real},{IfCollider,True|False},{IfESS,True|False}},Module[{thetallpFin=0.,ellpFin=0.,pboost=0.,emes=0.,pxmes=0.,pymes=0.,pzmes=0.,mmes=0.,pzmesCM=0.,pzllpCM=0.,ellpCM=0.,pxllpLab=0.,pyllpLab=0.,pzllpLab=0.},
+pboost=Sqrt[Eplab^2-0.938^2];
+emes=Compile`GetElement[mdata,4];
+pxmes=Compile`GetElement[mdata,1];
+pymes=Compile`GetElement[mdata,2];
+pzmes=Compile`GetElement[mdata,3];
+mmes=Compile`GetElement[mdata,5];
+(*If the facility is beam dump, then boost the meson's kinematics to CM frame, relate it to the LLP's kinematics, and boost back. Otherwise (if it is collider), simply renormalize the LLP energy*)
+If[!IfCollider,
+(*Meson's and LLP's kinematics at CM frame, assuming that their CM momenta are the same. It is also assumed that the boost is in the z direction*)
+pzmesCM=pzllpCM=pproductLab3Cart[0.,0.,-pboost,Eplab,0.938,pxmes,pymes,pzmes,emes];
+ellpCM=Sqrt[pxmes^2+pymes^2+pzllpCM^2+mLLP^2];
+(*LLP's kinematics at lab frame*)
+pxllpLab=pxmes;
+pyllpLab=pymes;
+pzllpLab=pproductLab3Cart[0.,0.,pboost,Eplab,0.938,pxmes,pymes,pzllpCM,ellpCM];
+ellpFin=Sqrt[pxllpLab^2+pyllpLab^2+pzllpLab^2+mLLP^2];
+(*Warning! If relating the angle of the LLP to the meson angle by boosting to CM frame, inadequate results may be produced. I am working on improved approach of the production via mixing*)
+thetallpFin=If[!IfESS,ArcCos[(pzllpLab)/(Sqrt[pxllpLab^2+pyllpLab^2+pzllpLab^2])],ArcCos[(pzmes)/(Sqrt[pxmes^2+pymes^2+pzmes^2])]];
+,
+ellpFin=Sqrt[pxmes^2+pymes^2+pzmes^2+mLLP^2];
+thetallpFin=ArcCos[(Abs[pzmes])/(Sqrt[pxmes^2+pymes^2+pzmes^2])];
+];
+{thetallpFin,ellpFin}
+]
+,CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable},Parallelization->True]/.ruleDown[{pproductLab3Cart}]//ReleaseHold;, 
+, <<CompiledFunctionTools`, 
+, CompilePrint@LLPkinematicsMixing;, 
+, (*(*p_CM (proton-proton collisions) in terms of p_lab assuming that p_lab is aligned along the boost*)
+PcmPlab[plab_,m_,Eplab_,mp_]=Assuming[mp>0&&Eplab>0,Simplify[gammaCMbeamDump[Eplab,mp](plab-vCMbeamDump[Eplab,mp]*Sqrt[plab^2+m^2])]];
+(*inverse relation*)
+PlabPcm[pcm_,m_,Eplab_,mp_]=plab/.Solve[PcmPlab[plab,m,Eplab,mp]==pcm,plab][[2]]//Simplify;
+(*Relation between the meson and DP energies and angles in the CM frame. Obtained under assumption that at the CM frame of proton-proton collisions the meson and DP |momenta| are the same*)
+EcmMesonEcmLLP[EV_,mV_,mmeson_]=Sqrt[EV^2-mV^2+mmeson^2];
+(*Relation between meson and DP kinematics in lab frame. Obtained under assumption that at the CM frame of proton-proton collisions the meson and DP |momenta| are the same*)
+plabMesonElabLLP[EV_,mmeson_,mV_,Eplab_,mp_]=Assuming[EV>0,Simplify[PlabPcm[PcmPlab[Sqrt[EV^2-mV^2],mV,Eplab,mp],mmeson,Eplab,mp]]];
+ElabMesonElabDP[EV_,mmeson_,mV_,Eplab_,mp_]=Sqrt[plabMesonElabLLP[EV,mmeson,mV,Eplab,mp]^2+mmeson^2];
+thetalabMesonthetaElabDP[EV_,thetaV_,mmeson_,mV_,Eplab_,mp_]=ArcSin[Sin[thetaV](Sqrt[EV^2-mV^2])/(plabMesonElabLLP[EV,mmeson,mV,Eplab,mp])];
+(*If E_a < E_a,min, then there is no solution E_meson(E_a)*)
+EVminBeamDump[mmeson_,mV_,Eplab_,mp_]=EV/.Solve[plabMesonElabLLP[EV,mmeson,mV,Eplab,mp]==0,EV][[4]];
+EVminCM[mmeson_,mV_]=If[mV>mmeson,Evaluate[EV/.Solve[EcmMesonEcmLLP[EV,mV,mmeson]==0,EV][[2]]],mV];
+(*Jacobian E_meson,theta_meson -> E_a,theta_a*)
+JacobianthetamesonEmesonTothetaVEVBeamDump[Eplab_,mp_,mmeson_,mV_,thetaV_,EV_]=Abs[D[thetalabMesonthetaElabDP[EV,thetaV,mmeson,mV,Eplab,mp],thetaV]*D[ElabMesonElabDP[EV,mmeson,mV,Eplab,mp],EV]-D[thetalabMesonthetaElabDP[EV,thetaV,mmeson,mV,Eplab,mp],EV]*D[ElabMesonElabDP[EV,mmeson,mV,Eplab,mp],thetaV]]//Simplify;
+JacobianEmesonToEVCollider[EV_,mV_,mmeson_]=D[EcmMesonEcmLLP[EV,mV,mmeson],EV];*)}
+
+----- cell 17  label= -----
+E_meson,theta_meson ->E_LLP, theta_LLP
+
+----- cell 18  label= -----
+E_meson,theta_meson ->E_LLP, theta_LLP
+
+----- cell 19  label= -----
+{BlockTabulatedPDFsFromMixingsMass[LLP_,Facility_,mLLP_,process_,Nevents_,thetalist_,Elist_,thetaminExtr_]:=Module[{},
+maxmass=MaxMass[LLP,Facility,process];
+If[mLLP<maxmass,
+partcontent=ReactionProductsList[LLP,process];
+meson=partcontent[[1]];
+mmeson=mSM[meson];
+elab=EmaxFacility[Facility];
+If[Length[MotherPoints[meson,Facility,"False"]]!=Nevents,
+MotherPoints[meson,Facility,"False"]=PointsSampler[Facility,meson,Nevents,"False"];
+];
+IfCollider=MemberQ[{"LHC","FCC-hh"},Facility];
+IfESS=Facility=="ESS";
+thetaEdata=LLPkinematicsMixing[MotherPoints[meson,Facility,"False"],mLLP,elab,IfCollider,IfESS];
+FromDataToSmoothDistribution[thetaEdata,mLLP,Facility,"False"];
+(*The tabulated distribution*)
+tab1=Flatten[Table[{mLLP,thetaLLP,ELLP,If[thetaLLP<thetaminExtr,(thetaLLP)/(thetaminExtr)DoubleDistr[thetaminExtr,ELLP],DoubleDistr[thetaLLP,ELLP]]},{thetaLLP,thetalist},{ELLP,Elist}],1]//N//Developer`ToPackedArray;
+];
+If[mLLP>=maxmass,
+tab1=TabZeroDistr[mLLP,thetalist,Elist];
+];
+tab1
+], 
+, (*DoubleDistrLLPfromMixing[mLLP_,meson_,Facility_]:=Module[{mmeson,elab},
+(*This block produces the interpolation of the mother distribution function *)
+mmeson=mSM[meson];
+elab=EmaxFacility[Facility];
+distr[th_,e_]=DoubleDistrMotherInt[th,e,Facility,meson];
+If[!MemberQ[{"FCC-hh","LHC"},Facility],
+If[Facility!="ESS",
+distrmixing[thetaLLP_,ELLP_]=If[ELLP>Max[mLLP,EVminBeamDump[mmeson,mLLP,elab,mSM["p"]]]&&0<Sin[thetaLLP](Sqrt[ELLP^2-mLLP^2])/(plabMesonElabLLP[ELLP,mmeson,mLLP,elab,mSM["p"]])<1,Evaluate[JacobianthetamesonEmesonTothetaVEVBeamDump[elab,mSM["p"],mmeson,mLLP,thetaLLP,ELLP]*distr[thetalabMesonthetaElabDP[ELLP,thetaLLP,mmeson,mLLP,elab,mSM["p"]],ElabMesonElabDP[ELLP,mmeson,mLLP,elab,mSM["p"]]]],0.];
+,
+(*distrmixingTemp[thetaLLP_,ELLP_]=If[ELLP>mLLP,Evaluate[distr[thetaLLP,ELLP]],0.];
+distrmixingNorm=NIntegrate[distrmixingTemp[Exp[thetaLLP],Exp[ELLP]]Exp[thetaLLP+ELLP],{thetaLLP,Log[10^-5.],Log[Pi-10^-5.]},{ELLP,Log[mLLP],Log[elab]},Method->"InterpolationPointsSubdivision"];
+distrmixing[thetaLLP_,ELLP_]=(distrmixingTemp[thetaLLP,ELLP])/(distrmixingNorm);*)
+distrmixing[thetaLLP_,ELLP_]=If[ELLP>Max[mLLP,EVminBeamDump[mmeson,mLLP,elab,mSM["p"]]]&&0<Sin[thetaLLP](Sqrt[ELLP^2-mLLP^2])/(plabMesonElabLLP[ELLP,mmeson,mLLP,elab,mSM["p"]])<1,Evaluate[JacobianthetamesonEmesonTothetaVEVBeamDump[elab,mSM["p"],mmeson,mLLP,thetaLLP,ELLP]*distr[thetalabMesonthetaElabDP[ELLP,thetaLLP,mmeson,mLLP,elab,mSM["p"]],ElabMesonElabDP[ELLP,mmeson,mLLP,elab,mSM["p"]]]],0.];
+]
+,
+distrmixing[thetaLLP_,ELLP_]=If[ELLP>Max[mLLP,EVminCM[mmeson,mLLP]],Evaluate[JacobianEmesonToEVCollider[ELLP,mLLP,mmeson]*distr[thetaLLP,EcmMesonEcmLLP[ELLP,mLLP,mmeson]]],0.];
+];
+distrmixing[thetaLLP,ELLP]
+]
+BlockTabulatedPDFsFromMixing[LLP_,Facility_,mLLP_,mode_,thetalist_,Elist_]:=Module[{(*meson,distr,tab1,maxmass*)},
+meson=ReactionProductsList[LLP,mode][[1]];
+If[!IfMotherInterpolated[Facility,meson],MotherInterpolation[Facility,meson]];
+distrMixing[thetaLLP_,ELLP_]=DoubleDistrLLPfromMixing[mLLP,meson,Facility];
+maxmass=MaxMass[LLP,Facility,mode];
+If[mLLP<maxmass,
+tab1=Quiet[Flatten[Table[{mLLP,thetaLLP,ELLP,distrMixing[thetaLLP,ELLP]},{thetaLLP,thetalist},{ELLP,Elist}],1]];
+];
+If[mLLP>=maxmass,
+tab1=TabZeroDistr[mLLP,thetalist,Elist];
+];
+tab1
+]*)}
+
+----- cell 20  label=Production via bremsstrahlung: PDF and normalization -----
+{mVminFromBrem=0.02;, 
+, mVmaxFromBrem["SPS"]=mVmaxFromBrem["LHC"]=mVmaxFromBrem["FCC-hh"]=5.;, 
+, mVmaxFromBrem["Serpukhov"]=mVmaxFromBrem["FermilabBD"]=3.;, 
+, BlockTabulatedPDFsFromBrem[LLP_,Facility_,Description_]:=Module[{(*ProdBremExportName,DistrBremName,scales,mmax,mrangeProdProb,mrangeDistr,distrbrem,pbeam,eminbrem,normdata,tabdistrbrem,thetamaxAbs,thetagridBrem,ELLPgridBrem(*pbeam,eminbrem,thetaVlistbrem,EvlistBremTemp,EvlistBrem,thetalist1*),mlistbrem*)},
+pbeam=EmaxFacility[Facility];
+eminbrem=ELLPminBrem[Facility];
+intmethod="AdaptiveMonteCarlo";
+ProdBremExportName=FileNameJoin[{NotebookDirectory[],"phenomenology/"<>LLP<>"/Production probabilities/ProdProb_"<>LLP<>"_Bremsstrahlung-"<>Description<>"_"<>Facility<>".m"}];
+DistrBremName=If[LLP=="Scalar","Bremsstrahlung-"<>Description<>"-mixing","Bremsstrahlung-"<>Description];
+If[Description=="Baseline",
+(*Defining non-normalized distribution*)
+distrbrem[mV_,thetaV_,EV_]=(FluxBrem[mV,thetaV,EV,LLP,Description,Facility])/(FormFactorSquaredBrem[mV,LLP]);
+(*Computing the normalization*)
+mlistbrem=Join[{10^-3.},Table[mV,{mV,mVminFromBrem,mVmaxFromBrem[Facility],((mVmaxFromBrem[Facility]-mVminFromBrem))/(25)}]];
+normdata=ParallelTable[{mV,NIntegrate[distrbrem[mV,thetaV,EV],{thetaV,10^-6.,thetamaxBremBaseline[Facility]},{EV,eminbrem,Max[eminbrem,ELLPmaxBremBaseline[Facility,mV,thetaV]]},Method->intmethod]},{mV,mlistbrem}];
+normBrem[mV_]=Interpolation[normdata//Log,InterpolationOrder->1][Log[mV]]//Exp;
+(*The distribution normalized by 1*)
+DoubleDistrBrem[mV_,thetaV_,EV_]=If[EV<EmaxFacility[Facility]*zMaxBrem[Facility],Evaluate[(distrbrem[mV,thetaV,EV])/(normBrem[mV])],0.];
+(*Exporting bremsstrahlung probabilities and maximal energy as a function of theta*)
+Export[ProdBremExportName,{normBrem[mLLP]*FormFactorSquaredBrem[mLLP,LLP],eminbrem,thetamaxBremBaseline[Facility],ELLPmaxBremBaseline[Facility,mLLP,thetaLLP]},"MX"];
+(*Tabulated normalized distribution*)
+tabdistrbrem=Flatten[Table[{mV,thetaV,EV,DoubleDistrBrem[mV,thetaV,EV]},{mV,mlistbrem},{thetaV,thetaLLPgridBremBaseline[Facility]},{EV,ELLPgridBremBaseline[Facility]}],{1,2,3}]//N//Developer`ToPackedArray;
+Export[filenameToExport[LLP,DistrBremName,Facility],tabdistrbrem,"MX"]
+];
+If[MemberQ[{"AP","FR"},Description],
+(*Defining the lower and upper boundaries for the production probability. Determined by the choice of the proton virtuality scale \[CapitalLambda]_p and the elastic ppX form-factor*)
+{\[CapitalLambda]pVal["Lower"],\[CapitalLambda]pVal["Central"],\[CapitalLambda]pVal["Upper"]}={0.5,1.,2.};
+scales=Keys[DownValues@\[CapitalLambda]pVal][[All,1,1]];
+mmax["Lower"]=mmax["Upper"]=mmax["Central"]=mVmaxFromBrem[Facility];
+ResourceFunction["MonitorProgress"]@Do[
+(*________________________________________________________*)
+(*Mass grids*)
+(*________________________________________________________*)
+(*Temporary assignment of different maximal masses for the dark photon*)
+If[MemberQ[Join[{"DP"},BLlist],LLP],
+(*Dark photons*)
+mrangeProdProb[ff]=Join[Table[m,{m,0.01,1.99,0.01}],{0.001,0.775,1.018,1.022,0.78},Table[m,{m,2.,mVmaxFromBrem[Facility],(mVmaxFromBrem[Facility]-2.)/(15.)}]]//Sort//DeleteDuplicates;
+mrangeDistr[ff]=Join[Table[m,{m,0.099,1.89,0.2}],{0.001,0.02,0.05,0.775,0.95,1.022,1.99,1.4,1.47,1.53,1.58,1.65},Table[m,{m,2.,mVmaxFromBrem[Facility],(mVmaxFromBrem[Facility]-2.)/(15.)}]]//Sort//DeleteDuplicates;
+distrbrem[mV_,thetaV_,EV_,ff]=FluxBrem[mV,thetaV,EV,LLP,Description,Facility,ff,\[CapitalLambda]pVal[ff]];
+,
+mrangeProdProb[ff]=mrangeDistr[ff]=Join[Table[10^x,{x,-3.,Log10[0.45],((Log10[0.45]+3.))/(10)}],Table[mV,{mV,0.5,mVmaxFromBrem[Facility],((mVmaxFromBrem[Facility]-0.5))/(25)}]];
+distrbrem[mV_,thetaV_,EV_,ff]=(FluxBrem[mV,thetaV,EV,LLP,Description,Facility,ff,\[CapitalLambda]pVal[ff]])/(FormFactorSquaredBrem[mV,LLP]);
+];
+(*Calculating the maximal polar angle for which the brem distribution is non-zero, as well as the specific grids in theta,E for the tabulated distribution*)
+{thetamaxAbs[ff],thetagridBrem[ff],ELLPgridBrem[ff]}=GridBremAP[\[CapitalLambda]pVal[ff],Facility];
+(*normdata[ff]=ParallelTable[{mV,Mean[Table[Quiet[NIntegrate[distrbrem[mV,thetaV,EV,ff],{thetaV,10^-6.,thetamaxAbs[ff]},{EV,eminbrem,ELLPmaxBremAP[Facility,mV,thetaV,\[CapitalLambda]pVal[ff]]},Method->intmethod]],5]]},{mV,mrangeProdProb[ff]}];*)
+normdata[ff]=ParallelTable[{mV,Quiet[NIntegrate[distrbrem[mV,thetaV,EV,ff],{thetaV,10^-6.,thetamaxAbs[ff]},{EV,eminbrem,ELLPmaxBremAP[Facility,mV,thetaV,\[CapitalLambda]pVal[ff]]},Method->"QuasiMonteCarlo"]]},{mV,mrangeProdProb[ff]}];
+normBrem[mV_,ff]=Interpolation[normdata[ff]//Log,InterpolationOrder->1][Log[mV]]//Exp;
+DoubleDistrBrem[mV_,thetaV_,EV_,ff]=(distrbrem[mV,thetaV,EV,ff])/(normBrem[mV,ff]);
+tabdistrbrem[ff]=Flatten[Table[{mV,thetaV,EV,If[thetaV<=1.3thetamaxAbs[ff],DoubleDistrBrem[mV,thetaV,EV,ff],0.]},{mV,mrangeDistr[ff]},{thetaV,thetagridBrem[ff]},{EV,ELLPgridBrem[ff]}],{1,2,3}]//N//Developer`ToPackedArray;
+,{ff,scales}];
+Export[ProdBremExportName,{#,If[LLP=="DP",1,FormFactorSquaredBrem[mLLP,LLP]]*normBrem[mLLP,#],eminbrem,thetamaxAbs[#],ELLPmaxBremAP[Facility,mLLP,thetaLLP,\[CapitalLambda]pVal[#]]}&/@scales,"MX"];
+Export[filenameToExport[LLP,DistrBremName,Facility],{#,tabdistrbrem[#]}&/@scales,"MX"]
+];
+]}
+
+----- cell 21  label=Proton bremsstrahlung -----
+{mVminFromBrem=0.02;, 
+, mVmaxFromBrem["SPS"]=mVmaxFromBrem["LHC"]=mVmaxFromBrem["FCC-hh"]=5.;, 
+, mVmaxFromBrem["Serpukhov"]=mVmaxFromBrem["FermilabBD"]=3.;, 
+, BlockTabulatedPDFsFromBrem[LLP_,Facility_,Description_]:=Module[{(*ProdBremExportName,DistrBremName,scales,mmax,mrangeProdProb,mrangeDistr,distrbrem,pbeam,eminbrem,normdata,tabdistrbrem,thetamaxAbs,thetagridBrem,ELLPgridBrem(*pbeam,eminbrem,thetaVlistbrem,EvlistBremTemp,EvlistBrem,thetalist1*),mlistbrem*)},
+pbeam=EmaxFacility[Facility];
+eminbrem=ELLPminBrem[Facility];
+intmethod="AdaptiveMonteCarlo";
+ProdBremExportName=FileNameJoin[{NotebookDirectory[],"phenomenology/"<>LLP<>"/Production probabilities/ProdProb_"<>LLP<>"_Bremsstrahlung-"<>Description<>"_"<>Facility<>".m"}];
+DistrBremName=If[LLP=="Scalar","Bremsstrahlung-"<>Description<>"-mixing","Bremsstrahlung-"<>Description];
+If[Description=="Baseline",
+(*Defining non-normalized distribution*)
+distrbrem[mV_,thetaV_,EV_]=(FluxBrem[mV,thetaV,EV,LLP,Description,Facility])/(FormFactorSquaredBrem[mV,LLP]);
+(*Computing the normalization*)
+mlistbrem=Join[{10^-3.},Table[mV,{mV,mVminFromBrem,mVmaxFromBrem[Facility],((mVmaxFromBrem[Facility]-mVminFromBrem))/(25)}]];
+normdata=ParallelTable[{mV,NIntegrate[distrbrem[mV,thetaV,EV],{thetaV,10^-6.,thetamaxBremBaseline[Facility]},{EV,eminbrem,Max[eminbrem,ELLPmaxBremBaseline[Facility,mV,thetaV]]},Method->intmethod]},{mV,mlistbrem}];
+normBrem[mV_]=Interpolation[normdata//Log,InterpolationOrder->1][Log[mV]]//Exp;
+(*The distribution normalized by 1*)
+DoubleDistrBrem[mV_,thetaV_,EV_]=If[EV<EmaxFacility[Facility]*zMaxBrem[Facility],Evaluate[(distrbrem[mV,thetaV,EV])/(normBrem[mV])],0.];
+(*Exporting bremsstrahlung probabilities and maximal energy as a function of theta*)
+Export[ProdBremExportName,{normBrem[mLLP]*FormFactorSquaredBrem[mLLP,LLP],eminbrem,thetamaxBremBaseline[Facility],ELLPmaxBremBaseline[Facility,mLLP,thetaLLP]},"MX"];
+(*Tabulated normalized distribution*)
+tabdistrbrem=Flatten[Table[{mV,thetaV,EV,DoubleDistrBrem[mV,thetaV,EV]},{mV,mlistbrem},{thetaV,thetaLLPgridBremBaseline[Facility]},{EV,ELLPgridBremBaseline[Facility]}],{1,2,3}]//N//Developer`ToPackedArray;
+Export[filenameToExport[LLP,DistrBremName,Facility],tabdistrbrem,"MX"]
+];
+If[MemberQ[{"AP","FR"},Description],
+(*Defining the lower and upper boundaries for the production probability. Determined by the choice of the proton virtuality scale \[CapitalLambda]_p and the elastic ppX form-factor*)
+{\[CapitalLambda]pVal["Lower"],\[CapitalLambda]pVal["Central"],\[CapitalLambda]pVal["Upper"]}={0.5,1.,2.};
+scales=Keys[DownValues@\[CapitalLambda]pVal][[All,1,1]];
+mmax["Lower"]=mmax["Upper"]=mmax["Central"]=mVmaxFromBrem[Facility];
+ResourceFunction["MonitorProgress"]@Do[
+(*________________________________________________________*)
+(*Mass grids*)
+(*________________________________________________________*)
+(*Temporary assignment of different maximal masses for the dark photon*)
+If[MemberQ[Join[{"DP"},BLlist],LLP],
+(*Dark photons*)
+mrangeProdProb[ff]=Join[Table[m,{m,0.01,1.99,0.01}],{0.001,0.775,1.018,1.022,0.78},Table[m,{m,2.,mVmaxFromBrem[Facility],(mVmaxFromBrem[Facility]-2.)/(15.)}]]//Sort//DeleteDuplicates;
+mrangeDistr[ff]=Join[Table[m,{m,0.099,1.89,0.2}],{0.001,0.02,0.05,0.775,0.95,1.022,1.99,1.4,1.47,1.53,1.58,1.65},Table[m,{m,2.,mVmaxFromBrem[Facility],(mVmaxFromBrem[Facility]-2.)/(15.)}]]//Sort//DeleteDuplicates;
+distrbrem[mV_,thetaV_,EV_,ff]=FluxBrem[mV,thetaV,EV,LLP,Description,Facility,ff,\[CapitalLambda]pVal[ff]];
+,
+mrangeProdProb[ff]=mrangeDistr[ff]=Join[Table[10^x,{x,-3.,Log10[0.45],((Log10[0.45]+3.))/(10)}],Table[mV,{mV,0.5,mVmaxFromBrem[Facility],((mVmaxFromBrem[Facility]-0.5))/(25)}]];
+distrbrem[mV_,thetaV_,EV_,ff]=(FluxBrem[mV,thetaV,EV,LLP,Description,Facility,ff,\[CapitalLambda]pVal[ff]])/(FormFactorSquaredBrem[mV,LLP]);
+];
+(*Calculating the maximal polar angle for which the brem distribution is non-zero, as well as the specific grids in theta,E for the tabulated distribution*)
+{thetamaxAbs[ff],thetagridBrem[ff],ELLPgridBrem[ff]}=GridBremAP[\[CapitalLambda]pVal[ff],Facility];
+(*normdata[ff]=ParallelTable[{mV,Mean[Table[Quiet[NIntegrate[distrbrem[mV,thetaV,EV,ff],{thetaV,10^-6.,thetamaxAbs[ff]},{EV,eminbrem,ELLPmaxBremAP[Facility,mV,thetaV,\[CapitalLambda]pVal[ff]]},Method->intmethod]],5]]},{mV,mrangeProdProb[ff]}];*)
+normdata[ff]=ParallelTable[{mV,Quiet[NIntegrate[distrbrem[mV,thetaV,EV,ff],{thetaV,10^-6.,thetamaxAbs[ff]},{EV,eminbrem,ELLPmaxBremAP[Facility,mV,thetaV,\[CapitalLambda]pVal[ff]]},Method->"QuasiMonteCarlo"]]},{mV,mrangeProdProb[ff]}];
+normBrem[mV_,ff]=Interpolation[normdata[ff]//Log,InterpolationOrder->1][Log[mV]]//Exp;
+DoubleDistrBrem[mV_,thetaV_,EV_,ff]=(distrbrem[mV,thetaV,EV,ff])/(normBrem[mV,ff]);
+tabdistrbrem[ff]=Flatten[Table[{mV,thetaV,EV,If[thetaV<=1.3thetamaxAbs[ff],DoubleDistrBrem[mV,thetaV,EV,ff],0.]},{mV,mrangeDistr[ff]},{thetaV,thetagridBrem[ff]},{EV,ELLPgridBrem[ff]}],{1,2,3}]//N//Developer`ToPackedArray;
+,{ff,scales}];
+Export[ProdBremExportName,{#,If[LLP=="DP",1,FormFactorSquaredBrem[mLLP,LLP]]*normBrem[mLLP,#],eminbrem,thetamaxAbs[#],ELLPmaxBremAP[Facility,mLLP,thetaLLP,\[CapitalLambda]pVal[#]]}&/@scales,"MX"];
+Export[filenameToExport[LLP,DistrBremName,Facility],{#,tabdistrbrem[#]}&/@scales,"MX"]
+];
+]}
+
+----- cell 22  label= -----
+{mVminFromBrem=0.02;, 
+, mVmaxFromBrem["SPS"]=mVmaxFromBrem["LHC"]=mVmaxFromBrem["FCC-hh"]=5.;, 
+, mVmaxFromBrem["Serpukhov"]=mVmaxFromBrem["FermilabBD"]=3.;, 
+, BlockTabulatedPDFsFromBrem[LLP_,Facility_,Description_]:=Module[{(*ProdBremExportName,DistrBremName,scales,mmax,mrangeProdProb,mrangeDistr,distrbrem,pbeam,eminbrem,normdata,tabdistrbrem,thetamaxAbs,thetagridBrem,ELLPgridBrem(*pbeam,eminbrem,thetaVlistbrem,EvlistBremTemp,EvlistBrem,thetalist1*),mlistbrem*)},
+pbeam=EmaxFacility[Facility];
+eminbrem=ELLPminBrem[Facility];
+intmethod="AdaptiveMonteCarlo";
+ProdBremExportName=FileNameJoin[{NotebookDirectory[],"phenomenology/"<>LLP<>"/Production probabilities/ProdProb_"<>LLP<>"_Bremsstrahlung-"<>Description<>"_"<>Facility<>".m"}];
+DistrBremName=If[LLP=="Scalar","Bremsstrahlung-"<>Description<>"-mixing","Bremsstrahlung-"<>Description];
+If[Description=="Baseline",
+(*Defining non-normalized distribution*)
+distrbrem[mV_,thetaV_,EV_]=(FluxBrem[mV,thetaV,EV,LLP,Description,Facility])/(FormFactorSquaredBrem[mV,LLP]);
+(*Computing the normalization*)
+mlistbrem=Join[{10^-3.},Table[mV,{mV,mVminFromBrem,mVmaxFromBrem[Facility],((mVmaxFromBrem[Facility]-mVminFromBrem))/(25)}]];
+normdata=ParallelTable[{mV,NIntegrate[distrbrem[mV,thetaV,EV],{thetaV,10^-6.,thetamaxBremBaseline[Facility]},{EV,eminbrem,Max[eminbrem,ELLPmaxBremBaseline[Facility,mV,thetaV]]},Method->intmethod]},{mV,mlistbrem}];
+normBrem[mV_]=Interpolation[normdata//Log,InterpolationOrder->1][Log[mV]]//Exp;
+(*The distribution normalized by 1*)
+DoubleDistrBrem[mV_,thetaV_,EV_]=If[EV<EmaxFacility[Facility]*zMaxBrem[Facility],Evaluate[(distrbrem[mV,thetaV,EV])/(normBrem[mV])],0.];
+(*Exporting bremsstrahlung probabilities and maximal energy as a function of theta*)
+Export[ProdBremExportName,{normBrem[mLLP]*FormFactorSquaredBrem[mLLP,LLP],eminbrem,thetamaxBremBaseline[Facility],ELLPmaxBremBaseline[Facility,mLLP,thetaLLP]},"MX"];
+(*Tabulated normalized distribution*)
+tabdistrbrem=Flatten[Table[{mV,thetaV,EV,DoubleDistrBrem[mV,thetaV,EV]},{mV,mlistbrem},{thetaV,thetaLLPgridBremBaseline[Facility]},{EV,ELLPgridBremBaseline[Facility]}],{1,2,3}]//N//Developer`ToPackedArray;
+Export[filenameToExport[LLP,DistrBremName,Facility],tabdistrbrem,"MX"]
+];
+If[MemberQ[{"AP","FR"},Description],
+(*Defining the lower and upper boundaries for the production probability. Determined by the choice of the proton virtuality scale \[CapitalLambda]_p and the elastic ppX form-factor*)
+{\[CapitalLambda]pVal["Lower"],\[CapitalLambda]pVal["Central"],\[CapitalLambda]pVal["Upper"]}={0.5,1.,2.};
+scales=Keys[DownValues@\[CapitalLambda]pVal][[All,1,1]];
+mmax["Lower"]=mmax["Upper"]=mmax["Central"]=mVmaxFromBrem[Facility];
+ResourceFunction["MonitorProgress"]@Do[
+(*________________________________________________________*)
+(*Mass grids*)
+(*________________________________________________________*)
+(*Temporary assignment of different maximal masses for the dark photon*)
+If[MemberQ[Join[{"DP"},BLlist],LLP],
+(*Dark photons*)
+mrangeProdProb[ff]=Join[Table[m,{m,0.01,1.99,0.01}],{0.001,0.775,1.018,1.022,0.78},Table[m,{m,2.,mVmaxFromBrem[Facility],(mVmaxFromBrem[Facility]-2.)/(15.)}]]//Sort//DeleteDuplicates;
+mrangeDistr[ff]=Join[Table[m,{m,0.099,1.89,0.2}],{0.001,0.02,0.05,0.775,0.95,1.022,1.99,1.4,1.47,1.53,1.58,1.65},Table[m,{m,2.,mVmaxFromBrem[Facility],(mVmaxFromBrem[Facility]-2.)/(15.)}]]//Sort//DeleteDuplicates;
+distrbrem[mV_,thetaV_,EV_,ff]=FluxBrem[mV,thetaV,EV,LLP,Description,Facility,ff,\[CapitalLambda]pVal[ff]];
+,
+mrangeProdProb[ff]=mrangeDistr[ff]=Join[Table[10^x,{x,-3.,Log10[0.45],((Log10[0.45]+3.))/(10)}],Table[mV,{mV,0.5,mVmaxFromBrem[Facility],((mVmaxFromBrem[Facility]-0.5))/(25)}]];
+distrbrem[mV_,thetaV_,EV_,ff]=(FluxBrem[mV,thetaV,EV,LLP,Description,Facility,ff,\[CapitalLambda]pVal[ff]])/(FormFactorSquaredBrem[mV,LLP]);
+];
+(*Calculating the maximal polar angle for which the brem distribution is non-zero, as well as the specific grids in theta,E for the tabulated distribution*)
+{thetamaxAbs[ff],thetagridBrem[ff],ELLPgridBrem[ff]}=GridBremAP[\[CapitalLambda]pVal[ff],Facility];
+(*normdata[ff]=ParallelTable[{mV,Mean[Table[Quiet[NIntegrate[distrbrem[mV,thetaV,EV,ff],{thetaV,10^-6.,thetamaxAbs[ff]},{EV,eminbrem,ELLPmaxBremAP[Facility,mV,thetaV,\[CapitalLambda]pVal[ff]]},Method->intmethod]],5]]},{mV,mrangeProdProb[ff]}];*)
+normdata[ff]=ParallelTable[{mV,Quiet[NIntegrate[distrbrem[mV,thetaV,EV,ff],{thetaV,10^-6.,thetamaxAbs[ff]},{EV,eminbrem,ELLPmaxBremAP[Facility,mV,thetaV,\[CapitalLambda]pVal[ff]]},Method->"QuasiMonteCarlo"]]},{mV,mrangeProdProb[ff]}];
+normBrem[mV_,ff]=Interpolation[normdata[ff]//Log,InterpolationOrder->1][Log[mV]]//Exp;
+DoubleDistrBrem[mV_,thetaV_,EV_,ff]=(distrbrem[mV,thetaV,EV,ff])/(normBrem[mV,ff]);
+tabdistrbrem[ff]=Flatten[Table[{mV,thetaV,EV,If[thetaV<=1.3thetamaxAbs[ff],DoubleDistrBrem[mV,thetaV,EV,ff],0.]},{mV,mrangeDistr[ff]},{thetaV,thetagridBrem[ff]},{EV,ELLPgridBrem[ff]}],{1,2,3}]//N//Developer`ToPackedArray;
+,{ff,scales}];
+Export[ProdBremExportName,{#,If[LLP=="DP",1,FormFactorSquaredBrem[mLLP,LLP]]*normBrem[mLLP,#],eminbrem,thetamaxAbs[#],ELLPmaxBremAP[Facility,mLLP,thetaLLP,\[CapitalLambda]pVal[#]]}&/@scales,"MX"];
+Export[filenameToExport[LLP,DistrBremName,Facility],{#,tabdistrbrem[#]}&/@scales,"MX"]
+];
+]}
+
+----- cell 23  label=Electron bremsstrahlung -----
+BlockTabulatedPDFsFromBreme[LLP_,Facility_,mLLPlist_]:=Module[{},
+TabulatedDoubleDistrBremeTot={{}};
+NormBremeTot={{}};
+ResourceFunction["MonitorProgress"]@Do[
+TabulatedDoubleDistrBreme[mLLP]=Flatten[ParallelTable[{mLLP,thetaLLP,ELLP,d2PBremsstrahlungedthetagammadEgamma[LLP,mLLP,1,thetaLLP,ELLP]},{thetaLLP,thetaNlist[Facility]},{ELLP,ENlist[Facility]}],1];
+distrMaxValBreme=TabulatedDoubleDistrBreme[mLLP][[All,-1]]//Max;
+thetamaxNonZeroBreme=Max[Select[TabulatedDoubleDistrBreme[mLLP],(#[[-1]])/(distrMaxValBreme)>10^-15&][[All,2]]];
+TabulatedDoubleDistrBremeInt[thetaLLP_,ELLP_]=Interpolation[TabulatedDoubleDistrBreme[mLLP][[All,{2,3,4}]],InterpolationOrder->1][thetaLLP,ELLP];
+TabulatedDoubleDistrBremeNormVal=NIntegrate[TabulatedDoubleDistrBremeInt[thetaLLP,ELLP],{thetaLLP,Min[thetaNlist[Facility]],Min[thetamaxNonZeroBreme,Max[thetaNlist[Facility]]]},{ELLP,mLLP,Max[ENlist[Facility]]},Method->"InterpolationPointsSubdivision"];
+TabulatedDoubleDistrBremeTot=Join[TabulatedDoubleDistrBremeTot,{#[[1]],#[[2]],#[[3]],(#[[4]])/(TabulatedDoubleDistrBremeNormVal)}&/@TabulatedDoubleDistrBreme[mLLP]];
+NormBremeTot=Join[NormBremeTot,{{mLLP,TabulatedDoubleDistrBremeNormVal}}];
+,{mLLP,mLLPlist}];
+TabulatedDoubleDistrBremeTot=Drop[TabulatedDoubleDistrBremeTot,1]//Developer`ToPackedArray;
+NormBremeTotInt[mLLP_]=Interpolation[{Log[#[[1]]],Log[#[[2]]+10^-90.]}&/@Drop[NormBremeTot,1],InterpolationOrder->1][Log[mLLP]]//Exp;
+Export[filenameToExport[LLP,"Bremsstrahlung-e",Facility],TabulatedDoubleDistrBremeTot,"MX"];
+Export[FileNameJoin[{NotebookDirectory[],"phenomenology/",LLP,"/Production probabilities/ProdProb_"<>LLP<>"_Bremsstrahlung-e_"<>Facility<>".m"}],NormBremeTotInt[mLLP],"MX"]
+]
+
+----- cell 24  label= -----
+BlockTabulatedPDFsFromBreme[LLP_,Facility_,mLLPlist_]:=Module[{},
+TabulatedDoubleDistrBremeTot={{}};
+NormBremeTot={{}};
+ResourceFunction["MonitorProgress"]@Do[
+TabulatedDoubleDistrBreme[mLLP]=Flatten[ParallelTable[{mLLP,thetaLLP,ELLP,d2PBremsstrahlungedthetagammadEgamma[LLP,mLLP,1,thetaLLP,ELLP]},{thetaLLP,thetaNlist[Facility]},{ELLP,ENlist[Facility]}],1];
+distrMaxValBreme=TabulatedDoubleDistrBreme[mLLP][[All,-1]]//Max;
+thetamaxNonZeroBreme=Max[Select[TabulatedDoubleDistrBreme[mLLP],(#[[-1]])/(distrMaxValBreme)>10^-15&][[All,2]]];
+TabulatedDoubleDistrBremeInt[thetaLLP_,ELLP_]=Interpolation[TabulatedDoubleDistrBreme[mLLP][[All,{2,3,4}]],InterpolationOrder->1][thetaLLP,ELLP];
+TabulatedDoubleDistrBremeNormVal=NIntegrate[TabulatedDoubleDistrBremeInt[thetaLLP,ELLP],{thetaLLP,Min[thetaNlist[Facility]],Min[thetamaxNonZeroBreme,Max[thetaNlist[Facility]]]},{ELLP,mLLP,Max[ENlist[Facility]]},Method->"InterpolationPointsSubdivision"];
+TabulatedDoubleDistrBremeTot=Join[TabulatedDoubleDistrBremeTot,{#[[1]],#[[2]],#[[3]],(#[[4]])/(TabulatedDoubleDistrBremeNormVal)}&/@TabulatedDoubleDistrBreme[mLLP]];
+NormBremeTot=Join[NormBremeTot,{{mLLP,TabulatedDoubleDistrBremeNormVal}}];
+,{mLLP,mLLPlist}];
+TabulatedDoubleDistrBremeTot=Drop[TabulatedDoubleDistrBremeTot,1]//Developer`ToPackedArray;
+NormBremeTotInt[mLLP_]=Interpolation[{Log[#[[1]]],Log[#[[2]]+10^-90.]}&/@Drop[NormBremeTot,1],InterpolationOrder->1][Log[mLLP]]//Exp;
+Export[filenameToExport[LLP,"Bremsstrahlung-e",Facility],TabulatedDoubleDistrBremeTot,"MX"];
+Export[FileNameJoin[{NotebookDirectory[],"phenomenology/",LLP,"/Production probabilities/ProdProb_"<>LLP<>"_Bremsstrahlung-e_"<>Facility<>".m"}],NormBremeTotInt[mLLP],"MX"]
+]
+
+----- cell 25  label=Production via Primakov process: PDF and normalization -----
+BlockTabulatedPDFsFromPrimakov[Facility_,Nucleus_,thetalist_,Elist_]:=Module[{thetamin,thetamax,mlist,filename1,filename2,proc,fipn},
+proc="Primakov";
+fipn="ALP-photon";
+mlist=MassList[fipn,proc,Facility];
+ProbPrimakovTab=Flatten[ParallelTable[{ma,Egamma,Max[10^-90.,(1)/(\[Sigma]gammaAbs[Nucleus])(Quiet[\[Sigma]PrimakovNucleus[ma,Egamma,mnucleus[Nucleus],anucleus[Nucleus],znucleus[Nucleus]]]+Quiet[\[Sigma]PrimakovNucleons[ma,Egamma,znucleus[Nucleus]]])]},{ma,mlist},{Egamma,ENlist[Facility]}],{1,2}]//N//Developer`ToPackedArray;
+(*Approximation: E_a = E_gamma, theta_a = theta_gamma*)
+ProbPrimakov[ma_,Ea_]=Exp[Interpolation[Log[ProbPrimakovTab],InterpolationOrder->1][Log[ma],Log[Ea]]];
+MotherInterpolation[Facility,"photon"];
+ALPdoubleFlux[ma_,thetaa_,Ea_]=DoubleDistrMotherInt[thetaa,Ea,Facility,"photon"]*ProbPrimakov[ma,Ea];
+{thetamin,thetamax}=thetaMinMax[Facility,"photon"][[#]]&/@{1,2};
+NormalizationALP[ma_]=Interpolation[ParallelTable[{ma,Quiet[NIntegrate[ALPdoubleFlux[ma,Exp[t],Exp[e]]Exp[t+e],{t,Log[thetamin],Log[thetamax]},{e,Log[ma],Log[Emax[thetamin,Facility,"photon"]]},Method->"InterpolationPointsSubdivision"]]},{ma,mlist}],InterpolationOrder->1][ma];
+DoubleDistrALP[ma_,thetaa_,Ea_]=ALPdoubleFlux[ma,thetaa,Ea]/NormalizationALP[ma];
+filename1=FileNameJoin[{NotebookDirectory[],"spectra/New physics particles spectra",LLPfolder["ALP-photon"],ToString@StringForm["DoubleDistr_``_``-``_``.m",Sequence@@{fipn,proc,Nucleus,Facility}]}];
+filename2=FileNameJoin[{NotebookDirectory[],"phenomenology/",LLPfolder[fipn],"Production probabilities",ToString@StringForm["Pprod_``_``-``_``.m",Sequence@@{fipn,proc,Nucleus,Facility}]}];
+tabulatedDistr=Flatten[Table[{ma,thetaa,Ea,DoubleDistrALP[ma,thetaa,Ea]},{ma,mlist},{thetaa,thetalist},{Ea,Elist}],{1,2,3}]//N//Developer`ToPackedArray;
+Export[filename1,tabulatedDistr,"MX"];
+Export[filename2,NormalizationALP[ma],"MX"];
+]
+
+----- cell 26  label= -----
+BlockTabulatedPDFsFromPrimakov[Facility_,Nucleus_,thetalist_,Elist_]:=Module[{thetamin,thetamax,mlist,filename1,filename2,proc,fipn},
+proc="Primakov";
+fipn="ALP-photon";
+mlist=MassList[fipn,proc,Facility];
+ProbPrimakovTab=Flatten[ParallelTable[{ma,Egamma,Max[10^-90.,(1)/(\[Sigma]gammaAbs[Nucleus])(Quiet[\[Sigma]PrimakovNucleus[ma,Egamma,mnucleus[Nucleus],anucleus[Nucleus],znucleus[Nucleus]]]+Quiet[\[Sigma]PrimakovNucleons[ma,Egamma,znucleus[Nucleus]]])]},{ma,mlist},{Egamma,ENlist[Facility]}],{1,2}]//N//Developer`ToPackedArray;
+(*Approximation: E_a = E_gamma, theta_a = theta_gamma*)
+ProbPrimakov[ma_,Ea_]=Exp[Interpolation[Log[ProbPrimakovTab],InterpolationOrder->1][Log[ma],Log[Ea]]];
+MotherInterpolation[Facility,"photon"];
+ALPdoubleFlux[ma_,thetaa_,Ea_]=DoubleDistrMotherInt[thetaa,Ea,Facility,"photon"]*ProbPrimakov[ma,Ea];
+{thetamin,thetamax}=thetaMinMax[Facility,"photon"][[#]]&/@{1,2};
+NormalizationALP[ma_]=Interpolation[ParallelTable[{ma,Quiet[NIntegrate[ALPdoubleFlux[ma,Exp[t],Exp[e]]Exp[t+e],{t,Log[thetamin],Log[thetamax]},{e,Log[ma],Log[Emax[thetamin,Facility,"photon"]]},Method->"InterpolationPointsSubdivision"]]},{ma,mlist}],InterpolationOrder->1][ma];
+DoubleDistrALP[ma_,thetaa_,Ea_]=ALPdoubleFlux[ma,thetaa,Ea]/NormalizationALP[ma];
+filename1=FileNameJoin[{NotebookDirectory[],"spectra/New physics particles spectra",LLPfolder["ALP-photon"],ToString@StringForm["DoubleDistr_``_``-``_``.m",Sequence@@{fipn,proc,Nucleus,Facility}]}];
+filename2=FileNameJoin[{NotebookDirectory[],"phenomenology/",LLPfolder[fipn],"Production probabilities",ToString@StringForm["Pprod_``_``-``_``.m",Sequence@@{fipn,proc,Nucleus,Facility}]}];
+tabulatedDistr=Flatten[Table[{ma,thetaa,Ea,DoubleDistrALP[ma,thetaa,Ea]},{ma,mlist},{thetaa,thetalist},{Ea,Elist}],{1,2,3}]//N//Developer`ToPackedArray;
+Export[filename1,tabulatedDistr,"MX"];
+Export[filename2,NormalizationALP[ma],"MX"];
+]
+
+----- cell 27  label=Production via photon fusion: PDF and normalization -----
+{TabulatedDistrFusion[m_,Facility_,Nucleus_,thetalist_,Elist_]:=Module[{(*norm,tabulateddistr,distr*)logemin,logemax,logthmin,logthmax},
+distrprob[th_,e_]:=If[!MemberQ[{"LHC","FCC-hh"},Facility],d2PdthetaadEaFusion1[m,th,e,Facility,Nucleus],d2PdthetaadEaFusion[m,th,e,Facility,Nucleus]];
+tabulateddistr=Flatten[ParallelTable[{m,th,e,Max[Quiet[distrprob[th,e]],10^-90.]},{th,thetalist},{e,Elist}],1];
+distr[logth_,loge_]=Interpolation[Log[tabulateddistr[[All,{2,3,4}]]],InterpolationOrder->1][logth,loge]//Exp;
+{logthmin,logthmax,logemin,logemax}=Log[Flatten[{MinMax[tabulateddistr[[All,2]]],MinMax[tabulateddistr[[All,3]]]}]];
+norm=Quiet[NIntegrate[distr[logth,loge]Exp[logth+loge],{logth,logthmin,logthmax},{loge,Max[Log[m],logemin],logemax},Method->"InterpolationPointsSubdivision"]];
+normalizedDistr=({#[[1]],#[[2]],#[[3]],(#[[4]])/(norm)}&/@tabulateddistr)//N//Developer`ToPackedArray;
+{normalizedDistr,{m,norm}}
+];, 
+, BlockTabulatedPDFsFromFusion[Facility_,Nucleus_,thetalist_,Elist_]:=Module[{thetamin,thetamax,mlist,filename1,filename2,fipn,procn},
+fipn="ALP-photon";
+procn="Photon-fusion";
+mlist=MassList[fipn,procn,Facility];
+tabphoton=Monitor[Table[TabulatedDistrFusion[mlist[[t]],Facility,Nucleus,thetalist,Elist],{t,1,Length[mlist],1}],Row[{ProgressIndicator[t,{1,Length[mlist]}]," \!\(\*SubscriptBox[\(m\), \(LLP\)]\) = ",mlist[[t]]," GeV"," (",t,"/",Length[mlist],")"}," "]];
+(*Approximation: E_a = E_gamma, theta_a = theta_gamma*)
+ProbFusion[ma_]=Interpolation[Log[tabphoton[[All,2]]],InterpolationOrder->1][Log[ma]]//Exp;
+DoubleDistrDataTemp=(Join[##]&@@tabphoton[[All,1]])//N//Developer`ToPackedArray;
+filename1=FileNameJoin[{NotebookDirectory[],"spectra/New physics particles spectra",LLPfolder[fipn],ToString@StringForm["DoubleDistr_``_``-``_``.m",Sequence@@{fipn,procn,Nucleus,Facility}]}];
+filename2=FileNameJoin[{NotebookDirectory[],"phenomenology/",LLPfolder[fipn],"Production probabilities",ToString@StringForm["Pprod_``_``-``_``.m",Sequence@@{fipn,procn,Nucleus,Facility}]}];
+Export[filename1,DoubleDistrDataTemp,"MX"];
+Export[filename2,ProbFusion[ma],"MX"];
+]}
+
+----- cell 28  label= -----
+{TabulatedDistrFusion[m_,Facility_,Nucleus_,thetalist_,Elist_]:=Module[{(*norm,tabulateddistr,distr*)logemin,logemax,logthmin,logthmax},
+distrprob[th_,e_]:=If[!MemberQ[{"LHC","FCC-hh"},Facility],d2PdthetaadEaFusion1[m,th,e,Facility,Nucleus],d2PdthetaadEaFusion[m,th,e,Facility,Nucleus]];
+tabulateddistr=Flatten[ParallelTable[{m,th,e,Max[Quiet[distrprob[th,e]],10^-90.]},{th,thetalist},{e,Elist}],1];
+distr[logth_,loge_]=Interpolation[Log[tabulateddistr[[All,{2,3,4}]]],InterpolationOrder->1][logth,loge]//Exp;
+{logthmin,logthmax,logemin,logemax}=Log[Flatten[{MinMax[tabulateddistr[[All,2]]],MinMax[tabulateddistr[[All,3]]]}]];
+norm=Quiet[NIntegrate[distr[logth,loge]Exp[logth+loge],{logth,logthmin,logthmax},{loge,Max[Log[m],logemin],logemax},Method->"InterpolationPointsSubdivision"]];
+normalizedDistr=({#[[1]],#[[2]],#[[3]],(#[[4]])/(norm)}&/@tabulateddistr)//N//Developer`ToPackedArray;
+{normalizedDistr,{m,norm}}
+];, 
+, BlockTabulatedPDFsFromFusion[Facility_,Nucleus_,thetalist_,Elist_]:=Module[{thetamin,thetamax,mlist,filename1,filename2,fipn,procn},
+fipn="ALP-photon";
+procn="Photon-fusion";
+mlist=MassList[fipn,procn,Facility];
+tabphoton=Monitor[Table[TabulatedDistrFusion[mlist[[t]],Facility,Nucleus,thetalist,Elist],{t,1,Length[mlist],1}],Row[{ProgressIndicator[t,{1,Length[mlist]}]," \!\(\*SubscriptBox[\(m\), \(LLP\)]\) = ",mlist[[t]]," GeV"," (",t,"/",Length[mlist],")"}," "]];
+(*Approximation: E_a = E_gamma, theta_a = theta_gamma*)
+ProbFusion[ma_]=Interpolation[Log[tabphoton[[All,2]]],InterpolationOrder->1][Log[ma]]//Exp;
+DoubleDistrDataTemp=(Join[##]&@@tabphoton[[All,1]])//N//Developer`ToPackedArray;
+filename1=FileNameJoin[{NotebookDirectory[],"spectra/New physics particles spectra",LLPfolder[fipn],ToString@StringForm["DoubleDistr_``_``-``_``.m",Sequence@@{fipn,procn,Nucleus,Facility}]}];
+filename2=FileNameJoin[{NotebookDirectory[],"phenomenology/",LLPfolder[fipn],"Production probabilities",ToString@StringForm["Pprod_``_``-``_``.m",Sequence@@{fipn,procn,Nucleus,Facility}]}];
+Export[filename1,DoubleDistrDataTemp,"MX"];
+Export[filename2,ProbFusion[ma],"MX"];
+]}
+
+----- cell 29  label=Choose LLP and run -----
+{infoDialog[phrase_]:=DialogInput[{choice=""},Column[{TextCell[phrase],Button["Proceed",DialogReturn[choice]]}]]
+(*The code which evaluates the sections whose tags are included in the list listproduction*), 
+, headstypes={"Title","Chapter","Section","Subsection","Subsubsection"};, 
+, cells=Association[Table[type->Select[Cells[],CurrentValue[#,"CellStyle"]=={type}&],{type,headstypes}]];, 
+, inp=(#->First@NotebookRead[#])&/@cells["Section"];, 
+, SectionEvaluator[section_]:=Block[{},
+SectionCell=Select[inp,#[[2]]==section&][[1]][[1]];
+If[!(SectionCell=!=$Canceled),infoDialog[Column[{"There is no section/section name associated with the given LLP and production channel: ",section,"Add them"}]],
+If[SectionCell=!=$Canceled,
+SelectionMove[SectionCell,All,CellGroup];
+SelectionEvaluate[InputNotebook[]]];
+]
+], 
+, BlockProductionComputation[LLP_,prodlist_]:=Module[{seclist,LLPsel=If[StringContainsQ[LLP,"Inelastic-dipole-DM"],"Inelastic-dipole-DM",LLP]},
+seclist=LLPsel<>"_"<>#&/@prodlist;
+Do[SectionEvaluator[sec],{sec,seclist}]]
+(*Pattern for filename of the tabulated distribution*), 
+, filenameToExport[LLP_,mode_,facility_]:=FileNameJoin[{NotebookDirectory[],"spectra/New physics particles spectra",LLPfolder[LLP],ToString@StringForm["DoubleDistr_``_``_``.m",Sequence@@{LLP,mode,facility}]}]
+(*This block produces the table m,theta,E,distr for m belonging to mlist. function is BlockTabulatedPDFsFromDecays/Mixing where all the arguments except for mLLP are fixed*), 
+, tabulatedblock[function_,mlist_,filename_]:=Module[{},
+tabb=Monitor[Table[function[mlist[[t]]],{t,1,Length[mlist],1}],Row[{ProgressIndicator[t,{1,Length[mlist]}],"i = ",t,"/",Length[mlist],", m = ",mlist[[t]]," GeV"}," "]];
+tabb=Flatten[tabb,1]//N//Developer`ToPackedArray;
+Export[filename,tabb,"MX"];
+]
+(*List of the directories associated with the given LLP*), 
+, Do[
+LLPfolder[LLP]=LLP;
+If[StringContainsQ[LLP,"HNL"],LLPfolder[LLP]="HNL"];
+,{LLP,LLPlist}];, 
+, directories=Join[FileNameJoin[{NotebookDirectory[],#}]&/@{"spectra","spectra/New physics particles spectra"},FileNameJoin[{NotebookDirectory[],"spectra/New physics particles spectra",LLPfolder[#]}]&/@Keys[DownValues@LLPfolder][[All,1,1]]]//DeleteDuplicates;, 
+, Do[If[!DirectoryQ[dir],CreateDirectory[dir]],{dir,directories}]}
+
+----- cell 30  label=Some definitions -----
+{infoDialog[phrase_]:=DialogInput[{choice=""},Column[{TextCell[phrase],Button["Proceed",DialogReturn[choice]]}]]
+(*The code which evaluates the sections whose tags are included in the list listproduction*), 
+, headstypes={"Title","Chapter","Section","Subsection","Subsubsection"};, 
+, cells=Association[Table[type->Select[Cells[],CurrentValue[#,"CellStyle"]=={type}&],{type,headstypes}]];, 
+, inp=(#->First@NotebookRead[#])&/@cells["Section"];, 
+, SectionEvaluator[section_]:=Block[{},
+SectionCell=Select[inp,#[[2]]==section&][[1]][[1]];
+If[!(SectionCell=!=$Canceled),infoDialog[Column[{"There is no section/section name associated with the given LLP and production channel: ",section,"Add them"}]],
+If[SectionCell=!=$Canceled,
+SelectionMove[SectionCell,All,CellGroup];
+SelectionEvaluate[InputNotebook[]]];
+]
+], 
+, BlockProductionComputation[LLP_,prodlist_]:=Module[{seclist,LLPsel=If[StringContainsQ[LLP,"Inelastic-dipole-DM"],"Inelastic-dipole-DM",LLP]},
+seclist=LLPsel<>"_"<>#&/@prodlist;
+Do[SectionEvaluator[sec],{sec,seclist}]]
+(*Pattern for filename of the tabulated distribution*), 
+, filenameToExport[LLP_,mode_,facility_]:=FileNameJoin[{NotebookDirectory[],"spectra/New physics particles spectra",LLPfolder[LLP],ToString@StringForm["DoubleDistr_``_``_``.m",Sequence@@{LLP,mode,facility}]}]
+(*This block produces the table m,theta,E,distr for m belonging to mlist. function is BlockTabulatedPDFsFromDecays/Mixing where all the arguments except for mLLP are fixed*), 
+, tabulatedblock[function_,mlist_,filename_]:=Module[{},
+tabb=Monitor[Table[function[mlist[[t]]],{t,1,Length[mlist],1}],Row[{ProgressIndicator[t,{1,Length[mlist]}],"i = ",t,"/",Length[mlist],", m = ",mlist[[t]]," GeV"}," "]];
+tabb=Flatten[tabb,1]//N//Developer`ToPackedArray;
+Export[filename,tabb,"MX"];
+]
+(*List of the directories associated with the given LLP*), 
+, Do[
+LLPfolder[LLP]=LLP;
+If[StringContainsQ[LLP,"HNL"],LLPfolder[LLP]="HNL"];
+,{LLP,LLPlist}];, 
+, directories=Join[FileNameJoin[{NotebookDirectory[],#}]&/@{"spectra","spectra/New physics particles spectra"},FileNameJoin[{NotebookDirectory[],"spectra/New physics particles spectra",LLPfolder[#]}]&/@Keys[DownValues@LLPfolder][[All,1,1]]]//DeleteDuplicates;, 
+, Do[If[!DirectoryQ[dir],CreateDirectory[dir]],{dir,directories}]}
+
+----- cell 31  label= -----
+{infoDialog[phrase_]:=DialogInput[{choice=""},Column[{TextCell[phrase],Button["Proceed",DialogReturn[choice]]}]]
+(*The code which evaluates the sections whose tags are included in the list listproduction*), 
+, headstypes={"Title","Chapter","Section","Subsection","Subsubsection"};, 
+, cells=Association[Table[type->Select[Cells[],CurrentValue[#,"CellStyle"]=={type}&],{type,headstypes}]];, 
+, inp=(#->First@NotebookRead[#])&/@cells["Section"];, 
+, SectionEvaluator[section_]:=Block[{},
+SectionCell=Select[inp,#[[2]]==section&][[1]][[1]];
+If[!(SectionCell=!=$Canceled),infoDialog[Column[{"There is no section/section name associated with the given LLP and production channel: ",section,"Add them"}]],
+If[SectionCell=!=$Canceled,
+SelectionMove[SectionCell,All,CellGroup];
+SelectionEvaluate[InputNotebook[]]];
+]
+], 
+, BlockProductionComputation[LLP_,prodlist_]:=Module[{seclist,LLPsel=If[StringContainsQ[LLP,"Inelastic-dipole-DM"],"Inelastic-dipole-DM",LLP]},
+seclist=LLPsel<>"_"<>#&/@prodlist;
+Do[SectionEvaluator[sec],{sec,seclist}]]
+(*Pattern for filename of the tabulated distribution*), 
+, filenameToExport[LLP_,mode_,facility_]:=FileNameJoin[{NotebookDirectory[],"spectra/New physics particles spectra",LLPfolder[LLP],ToString@StringForm["DoubleDistr_``_``_``.m",Sequence@@{LLP,mode,facility}]}]
+(*This block produces the table m,theta,E,distr for m belonging to mlist. function is BlockTabulatedPDFsFromDecays/Mixing where all the arguments except for mLLP are fixed*), 
+, tabulatedblock[function_,mlist_,filename_]:=Module[{},
+tabb=Monitor[Table[function[mlist[[t]]],{t,1,Length[mlist],1}],Row[{ProgressIndicator[t,{1,Length[mlist]}],"i = ",t,"/",Length[mlist],", m = ",mlist[[t]]," GeV"}," "]];
+tabb=Flatten[tabb,1]//N//Developer`ToPackedArray;
+Export[filename,tabb,"MX"];
+]
+(*List of the directories associated with the given LLP*), 
+, Do[
+LLPfolder[LLP]=LLP;
+If[StringContainsQ[LLP,"HNL"],LLPfolder[LLP]="HNL"];
+,{LLP,LLPlist}];, 
+, directories=Join[FileNameJoin[{NotebookDirectory[],#}]&/@{"spectra","spectra/New physics particles spectra"},FileNameJoin[{NotebookDirectory[],"spectra/New physics particles spectra",LLPfolder[#]}]&/@Keys[DownValues@LLPfolder][[All,1,1]]]//DeleteDuplicates;, 
+, Do[If[!DirectoryQ[dir],CreateDirectory[dir]],{dir,directories}]}
+
+----- cell 32  label=Selecting LLP, facility, and production channels -----
+{NotebookDirectory[]//ParentDirectory;
+(*Facilities*), 
+, Print["List of implemented LLPs:"], 
+, LLPlist, 
+, filepheno=Import[FileNameJoin[{NotebookDirectory[],"phenomenology","ModelDescriptors.mx"}],"MX"];, 
+, Do[
+ModelDescription[filepheno[[i]][[1]]]=filepheno[[i]][[2]]
+,{i,1,Length[filepheno],1}];, 
+, Print["Selected facility:"], 
+, dropdownDialog[list_,phrase_]:=DialogInput[{choice=""},Column[{TextCell[phrase],PopupMenu[Dynamic[choice],list],Button["OK",DialogReturn[choice]]}]], 
+, SelectedFacility=selectionDialogExplanationOneOption[FacilitiesList,FacilityDescription[#]&/@FacilitiesList,"Select the facility for which tabulated distributions will be computed:",300], 
+, Print["Selected LLP:"], 
+, LLPlistFacility=Select[LLPlistEffective,Length[ProcessesListFacility[#,SelectedFacility]]!=0&];, 
+, SelectedLLP=selectionDialogExplanationOneOption[LLPlistFacility,ModelDescription[#]&/@LLPlistFacility,"Select the LLP for which tabulated distributions will be computed:",300], 
+, Print["Implemented production channels:"], 
+, listproductionall=ProcessesListFacility[SelectedLLP,SelectedFacility];, 
+, listproductionall//TableForm
+(*selectionDialog[list_]:=DialogInput[{choice={}},Column[{Row[{"Select the production channels by clicking on them:"}],TogglerBar[Dynamic[choice],list,Appearance->"Vertical"],Button["OK",DialogReturn[choice]]}]]
+listproductionForComputation=selectionDialog[Join[{"All channels"},listproductionall]];*), 
+, Print["Production channels selected for the computation:"], 
+, listproductionForComputation=With[{proclist=Join[{"All channels"},listproductionall]},selectionDialogExplanation[proclist,DescriptionProcess[SelectedLLP,#]&/@proclist,"Select production channels for which the tabulated distribution will be computed:",200]];, 
+, If[listproductionForComputation=={"All channels"},listproductionForComputation=listproductionall];, 
+, listproductionForComputation//TableForm, 
+, (*BlockProductionComputation[listproduction_]:=Module[{facility},
+nb=EvaluationNotebook[];
+Do[NotebookFind[nb,listproduction[[index]],All,CellTags];
+SelectionEvaluate[nb],{index,1,Length[listproduction],1}]
+]*)}
+
+----- cell 33  label= -----
+{NotebookDirectory[]//ParentDirectory;
+(*Facilities*), 
+, Print["List of implemented LLPs:"], 
+, LLPlist, 
+, filepheno=Import[FileNameJoin[{NotebookDirectory[],"phenomenology","ModelDescriptors.mx"}],"MX"];, 
+, Do[
+ModelDescription[filepheno[[i]][[1]]]=filepheno[[i]][[2]]
+,{i,1,Length[filepheno],1}];, 
+, Print["Selected facility:"], 
+, dropdownDialog[list_,phrase_]:=DialogInput[{choice=""},Column[{TextCell[phrase],PopupMenu[Dynamic[choice],list],Button["OK",DialogReturn[choice]]}]], 
+, SelectedFacility=selectionDialogExplanationOneOption[FacilitiesList,FacilityDescription[#]&/@FacilitiesList,"Select the facility for which tabulated distributions will be computed:",300], 
+, Print["Selected LLP:"], 
+, LLPlistFacility=Select[LLPlistEffective,Length[ProcessesListFacility[#,SelectedFacility]]!=0&];, 
+, SelectedLLP=selectionDialogExplanationOneOption[LLPlistFacility,ModelDescription[#]&/@LLPlistFacility,"Select the LLP for which tabulated distributions will be computed:",300], 
+, Print["Implemented production channels:"], 
+, listproductionall=ProcessesListFacility[SelectedLLP,SelectedFacility];, 
+, listproductionall//TableForm
+(*selectionDialog[list_]:=DialogInput[{choice={}},Column[{Row[{"Select the production channels by clicking on them:"}],TogglerBar[Dynamic[choice],list,Appearance->"Vertical"],Button["OK",DialogReturn[choice]]}]]
+listproductionForComputation=selectionDialog[Join[{"All channels"},listproductionall]];*), 
+, Print["Production channels selected for the computation:"], 
+, listproductionForComputation=With[{proclist=Join[{"All channels"},listproductionall]},selectionDialogExplanation[proclist,DescriptionProcess[SelectedLLP,#]&/@proclist,"Select production channels for which the tabulated distribution will be computed:",200]];, 
+, If[listproductionForComputation=={"All channels"},listproductionForComputation=listproductionall];, 
+, listproductionForComputation//TableForm, 
+, (*BlockProductionComputation[listproduction_]:=Module[{facility},
+nb=EvaluationNotebook[];
+Do[NotebookFind[nb,listproduction[[index]],All,CellTags];
+SelectionEvaluate[nb],{index,1,Length[listproduction],1}]
+]*)}
+
+----- cell 34  label=Launching the computation of the distributions of LLPs -----
+{CondSelLLP[prod_]:=If[SelectedLLP!="HNL",StringContainsQ[ProductionType[SelectedLLP,prod],{"Decay","Mixing"}],StringContainsQ[ProductionType[ListHNLs[[1]],prod],{"Decay","Mixing"}]], 
+, If[Select[Table[CondSelLLP[prod],{prod,listproductionForComputation}],#==True&]!={},
+Print["Number of simulated decays:"];
+nsim=DialogInput[{br=10^6},Column[{"Enter the number of simulated decays (for decays only) in the form y*10^x. Reasonable values are ~\!\(\*SuperscriptBox[\(10\), \(6\)]\)-\!\(\*SuperscriptBox[\(10\), \(7\)]\)",InputField[Dynamic[br],Expression],Button["Proceed",DialogReturn[br],ImageSize->Automatic]}]]//IntegerPart;
+nsim=Ceiling[nsim-0.5]+Mod[Ceiling[nsim-0.5],2]
+]
+(*Empirical estimate of the angles below which the distribution d^2f/dthetadE ~ sin(theta)df/dE*), 
+, modes=Table[ProcessesListFacility[LLP,Facility],{LLP,LLPlistEffective},{Facility,FacilitiesList}]//Flatten//DeleteDuplicates;, 
+, Do[
+thetaminExtrFacility["ESS",mode]=0.1;
+thetaminExtrFacility["Serpukhov",mode]=10^-1.3;
+thetaminExtrFacility["SPS",mode]=If[StringContainsQ[mode,"Pi0"]||StringContainsQ[mode,"Primakov"]||StringContainsQ[mode,"Eta"]||StringContainsQ[mode,"Rho0"]||StringContainsQ[mode,"Omega"],0.5*10^-3.,10^-3.];
+thetaminExtrFacility["FermilabBD",mode]=thetaminExtrFacility["Serpukhov",mode]=10^-3.;
+thetaminExtrFacility["LHC",mode]=If[StringContainsQ[mode,"Pi0"]||StringContainsQ[mode,"Primakov"]||StringContainsQ[mode,"Eta"]||StringContainsQ[mode,"Rho0"]||StringContainsQ[mode,"Omega"]||StringContainsQ[mode,"EtaPr"],10^-4,0.5*10^-3.];
+thetaminExtrFacility["FCC-hh",mode]=If[StringContainsQ[mode,"Pi0"]||StringContainsQ[mode,"Primakov"]||StringContainsQ[mode,"Eta"]||StringContainsQ[mode,"Rho0"]||StringContainsQ[mode,"Omega"]||StringContainsQ[mode,"EtaPr"],0.7*10^-4,2*10^-4.];
+,{mode,modes}], 
+, BlockProductionComputation[SelectedLLP,listproductionForComputation]}
+
+----- cell 35  label= -----
+{CondSelLLP[prod_]:=If[SelectedLLP!="HNL",StringContainsQ[ProductionType[SelectedLLP,prod],{"Decay","Mixing"}],StringContainsQ[ProductionType[ListHNLs[[1]],prod],{"Decay","Mixing"}]], 
+, If[Select[Table[CondSelLLP[prod],{prod,listproductionForComputation}],#==True&]!={},
+Print["Number of simulated decays:"];
+nsim=DialogInput[{br=10^6},Column[{"Enter the number of simulated decays (for decays only) in the form y*10^x. Reasonable values are ~\!\(\*SuperscriptBox[\(10\), \(6\)]\)-\!\(\*SuperscriptBox[\(10\), \(7\)]\)",InputField[Dynamic[br],Expression],Button["Proceed",DialogReturn[br],ImageSize->Automatic]}]]//IntegerPart;
+nsim=Ceiling[nsim-0.5]+Mod[Ceiling[nsim-0.5],2]
+]
+(*Empirical estimate of the angles below which the distribution d^2f/dthetadE ~ sin(theta)df/dE*), 
+, modes=Table[ProcessesListFacility[LLP,Facility],{LLP,LLPlistEffective},{Facility,FacilitiesList}]//Flatten//DeleteDuplicates;, 
+, Do[
+thetaminExtrFacility["ESS",mode]=0.1;
+thetaminExtrFacility["Serpukhov",mode]=10^-1.3;
+thetaminExtrFacility["SPS",mode]=If[StringContainsQ[mode,"Pi0"]||StringContainsQ[mode,"Primakov"]||StringContainsQ[mode,"Eta"]||StringContainsQ[mode,"Rho0"]||StringContainsQ[mode,"Omega"],0.5*10^-3.,10^-3.];
+thetaminExtrFacility["FermilabBD",mode]=thetaminExtrFacility["Serpukhov",mode]=10^-3.;
+thetaminExtrFacility["LHC",mode]=If[StringContainsQ[mode,"Pi0"]||StringContainsQ[mode,"Primakov"]||StringContainsQ[mode,"Eta"]||StringContainsQ[mode,"Rho0"]||StringContainsQ[mode,"Omega"]||StringContainsQ[mode,"EtaPr"],10^-4,0.5*10^-3.];
+thetaminExtrFacility["FCC-hh",mode]=If[StringContainsQ[mode,"Pi0"]||StringContainsQ[mode,"Primakov"]||StringContainsQ[mode,"Eta"]||StringContainsQ[mode,"Rho0"]||StringContainsQ[mode,"Omega"]||StringContainsQ[mode,"EtaPr"],0.7*10^-4,2*10^-4.];
+,{mode,modes}], 
+, BlockProductionComputation[SelectedLLP,listproductionForComputation]}
+
+----- cell 36  label=Actual computation of the distributions -----
+{If[MemberQ[{"LHC","FCC-hh"},SelectedFacility]==True,
+proc="W";
+(*List of masses for which the distribution will be tabulated*)
+Do[
+MassList["HNL",proc,Facility]={0.02,0.05,1,2,5,7,10,15,20,25,30,35,40,50,60,65,70,75,mSM["W"]-mSM["e"]-0.1}//N;
+,{Facility,{"LHC","FCC-hh"}}];
+Do[
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLP,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLP,proc,SelectedFacility];
+mlist=MassList["HNL",proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename]
+,{LLP,ListHNLs}
+]
+]//AbsoluteTiming, 
+, {proc,mlist}//Clear}
+
+----- cell 37  label=HNL -----
+{If[MemberQ[{"LHC","FCC-hh"},SelectedFacility]==True,
+proc="W";
+(*List of masses for which the distribution will be tabulated*)
+Do[
+MassList["HNL",proc,Facility]={0.02,0.05,1,2,5,7,10,15,20,25,30,35,40,50,60,65,70,75,mSM["W"]-mSM["e"]-0.1}//N;
+,{Facility,{"LHC","FCC-hh"}}];
+Do[
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLP,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLP,proc,SelectedFacility];
+mlist=MassList["HNL",proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename]
+,{LLP,ListHNLs}
+]
+]//AbsoluteTiming, 
+, {proc,mlist}//Clear}
+
+----- cell 38  label=HNL_W -----
+{If[MemberQ[{"LHC","FCC-hh"},SelectedFacility]==True,
+proc="W";
+(*List of masses for which the distribution will be tabulated*)
+Do[
+MassList["HNL",proc,Facility]={0.02,0.05,1,2,5,7,10,15,20,25,30,35,40,50,60,65,70,75,mSM["W"]-mSM["e"]-0.1}//N;
+,{Facility,{"LHC","FCC-hh"}}];
+Do[
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLP,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLP,proc,SelectedFacility];
+mlist=MassList["HNL",proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename]
+,{LLP,ListHNLs}
+]
+]//AbsoluteTiming, 
+, {proc,mlist}//Clear}
+
+----- cell 39  label= -----
+{If[MemberQ[{"LHC","FCC-hh"},SelectedFacility]==True,
+proc="W";
+(*List of masses for which the distribution will be tabulated*)
+Do[
+MassList["HNL",proc,Facility]={0.02,0.05,1,2,5,7,10,15,20,25,30,35,40,50,60,65,70,75,mSM["W"]-mSM["e"]-0.1}//N;
+,{Facility,{"LHC","FCC-hh"}}];
+Do[
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLP,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLP,proc,SelectedFacility];
+mlist=MassList["HNL",proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename]
+,{LLP,ListHNLs}
+]
+]//AbsoluteTiming, 
+, {proc,mlist}//Clear}
+
+----- cell 40  label=HNL_B -----
+Module[{LLPn,LLP,mlist,proc},
+LLPn="HNL";
+proc="B";
+(*List of masses for which the distribution will be tabulated*)
+Do[
+MassList[LLPn,proc,Facility]=If[MemberQ[{"LHC","FCC-hh"},Facility]==True,{0.02,0.05,0.07,0.1,0.15,0.2,0.5,1,1.5,2.,2.5,2.8,3.,3.45,4.,4.5,5.16,5.27,5.8,6.25},{0.02,0.05,0.1,0.2,0.5,1,1.5,2.,2.5,2.8,3.,3.45,4.,4.5,5.16,5.27}]//N;
+,{Facility,FacilitiesList}];
+Monitor[
+Do[
+LLP=ListHNLs[[k]];
+Print[Row[{LLP}]];
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLP,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLP,proc,SelectedFacility];
+mlist=MassList[LLPn,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename]
+,{k,1,Length[ListHNLs],1}],
+Row[{ProgressIndicator[k,{1,Length[ListHNLs]}]," ","HNL = ",ListHNLs[[k]]," (",k,"/",Length[ListHNLs],")"}]]//AbsoluteTiming
+]
+
+----- cell 41  label= -----
+Module[{LLPn,LLP,mlist,proc},
+LLPn="HNL";
+proc="B";
+(*List of masses for which the distribution will be tabulated*)
+Do[
+MassList[LLPn,proc,Facility]=If[MemberQ[{"LHC","FCC-hh"},Facility]==True,{0.02,0.05,0.07,0.1,0.15,0.2,0.5,1,1.5,2.,2.5,2.8,3.,3.45,4.,4.5,5.16,5.27,5.8,6.25},{0.02,0.05,0.1,0.2,0.5,1,1.5,2.,2.5,2.8,3.,3.45,4.,4.5,5.16,5.27}]//N;
+,{Facility,FacilitiesList}];
+Monitor[
+Do[
+LLP=ListHNLs[[k]];
+Print[Row[{LLP}]];
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLP,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLP,proc,SelectedFacility];
+mlist=MassList[LLPn,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename]
+,{k,1,Length[ListHNLs],1}],
+Row[{ProgressIndicator[k,{1,Length[ListHNLs]}]," ","HNL = ",ListHNLs[[k]]," (",k,"/",Length[ListHNLs],")"}]]//AbsoluteTiming
+]
+
+----- cell 42  label=HNL_D -----
+Module[{LLPn,LLP,mlist,proc},
+LLPn="HNL";
+proc="D";
+Do[
+MassList[LLPn,proc,Facility]={0.02,0.05`,0.07,0.1,0.15,0.17,0.1825,0.2`,0.5`,0.7`,1.,1.2`,1.5`,1.75`,1.84,1.95`};
+,{Facility,FacilitiesList}];
+Monitor[
+Do[
+LLP=ListHNLs[[k]];
+Print[Row[{LLP}]];
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLP,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLP,proc,SelectedFacility];
+mlist=MassList[LLPn,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename]
+,{k,1,Length[ListHNLs],1}],
+Row[{ProgressIndicator[k,{1,Length[ListHNLs]}]," ","HNL = ",ListHNLs[[k]]," (",k,"/",Length[ListHNLs],")"}]]//AbsoluteTiming
+]
+
+----- cell 43  label= -----
+Module[{LLPn,LLP,mlist,proc},
+LLPn="HNL";
+proc="D";
+Do[
+MassList[LLPn,proc,Facility]={0.02,0.05`,0.07,0.1,0.15,0.17,0.1825,0.2`,0.5`,0.7`,1.,1.2`,1.5`,1.75`,1.84,1.95`};
+,{Facility,FacilitiesList}];
+Monitor[
+Do[
+LLP=ListHNLs[[k]];
+Print[Row[{LLP}]];
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLP,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLP,proc,SelectedFacility];
+mlist=MassList[LLPn,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename]
+,{k,1,Length[ListHNLs],1}],
+Row[{ProgressIndicator[k,{1,Length[ListHNLs]}]," ","HNL = ",ListHNLs[[k]]," (",k,"/",Length[ListHNLs],")"}]]//AbsoluteTiming
+]
+
+----- cell 44  label=HNL_K -----
+{If[MemberQ[{"SPS"},SelectedFacility],
+proc="K";
+Do[
+MassList["HNL",proc,Facility]={0.02,0.05`,0.07,0.1,0.15,0.17,0.2,0.3,0.4,0.99*MaxMass[ListHNLs[[2]],SelectedFacility,proc],0.99*MaxMass[ListHNLs[[1]],SelectedFacility,proc]}//Sort;
+,{Facility,FacilitiesList}];
+Do[
+Print[Row[{LLP}]];
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLP,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLP,proc,SelectedFacility];
+mlist=MassList["HNL",proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename]
+,{LLP,Drop[ListHNLs,-1]}
+];
+tabb=(Join[##]&@@(TabZeroDistr[#,thetaNlist[SelectedFacility],ENlist[SelectedFacility]]&/@mlist))//Developer`ToPackedArray;
+filename=filenameToExport[ListHNLs[[-1]],proc,SelectedFacility];
+Export[filename,tabb,"MX"]
+]//AbsoluteTiming, 
+, {proc,mlist,filename}//Clear;}
+
+----- cell 45  label= -----
+{If[MemberQ[{"SPS"},SelectedFacility],
+proc="K";
+Do[
+MassList["HNL",proc,Facility]={0.02,0.05`,0.07,0.1,0.15,0.17,0.2,0.3,0.4,0.99*MaxMass[ListHNLs[[2]],SelectedFacility,proc],0.99*MaxMass[ListHNLs[[1]],SelectedFacility,proc]}//Sort;
+,{Facility,FacilitiesList}];
+Do[
+Print[Row[{LLP}]];
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLP,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLP,proc,SelectedFacility];
+mlist=MassList["HNL",proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename]
+,{LLP,Drop[ListHNLs,-1]}
+];
+tabb=(Join[##]&@@(TabZeroDistr[#,thetaNlist[SelectedFacility],ENlist[SelectedFacility]]&/@mlist))//Developer`ToPackedArray;
+filename=filenameToExport[ListHNLs[[-1]],proc,SelectedFacility];
+Export[filename,tabb,"MX"]
+]//AbsoluteTiming, 
+, {proc,mlist,filename}//Clear;}
+
+----- cell 46  label=HNL_mu -----
+{If[MemberQ[{"ESS"},SelectedFacility],
+proc="mu";
+Do[
+MassList["HNL",proc,Facility]={0.005,0.01,0.015,0.02,0.025,0.03,0.035,0.04,0.045,0.05,0.055,0.06,0.065,0.07,0.075,0.08,0.085,0.09,0.095,0.1,0.99*MaxMass[ListHNLs[[1]],SelectedFacility,proc]}//Sort//DeleteDuplicates;
+,{Facility,FacilitiesList}];
+Do[
+mlist=MassList["HNL",proc,SelectedFacility];
+mlistExt=Join[mlist,Table[With[{mass=mlist[[i]],mmax=(mSM["mu"]^2-mSM["e"]^2+mlist[[i]]^2)/(2mSM["mu"])},Table[m,{m,mass+0.01(mmax-mass),mass+0.99(mmax-mass),(0.9(mmax-mass))/(20)}]],{i,1,Length[mlist],1}]//Flatten]//Sort//DeleteDuplicates;
+elist=Join[Table[e,{e,10^-3.,mSM["mu"],0.001}],mlistExt,{mSM["mu"]}]//DeleteDuplicates//Sort;
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLP,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],elist,thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLP,proc,SelectedFacility];
+
+tabulatedblock[TabulatedPDF,mlist,filename]
+,{LLP,Drop[ListHNLs,-1]}
+]//AbsoluteTiming
+], 
+, {proc,mlist}//Clear;}
+
+----- cell 47  label= -----
+{If[MemberQ[{"ESS"},SelectedFacility],
+proc="mu";
+Do[
+MassList["HNL",proc,Facility]={0.005,0.01,0.015,0.02,0.025,0.03,0.035,0.04,0.045,0.05,0.055,0.06,0.065,0.07,0.075,0.08,0.085,0.09,0.095,0.1,0.99*MaxMass[ListHNLs[[1]],SelectedFacility,proc]}//Sort//DeleteDuplicates;
+,{Facility,FacilitiesList}];
+Do[
+mlist=MassList["HNL",proc,SelectedFacility];
+mlistExt=Join[mlist,Table[With[{mass=mlist[[i]],mmax=(mSM["mu"]^2-mSM["e"]^2+mlist[[i]]^2)/(2mSM["mu"])},Table[m,{m,mass+0.01(mmax-mass),mass+0.99(mmax-mass),(0.9(mmax-mass))/(20)}]],{i,1,Length[mlist],1}]//Flatten]//Sort//DeleteDuplicates;
+elist=Join[Table[e,{e,10^-3.,mSM["mu"],0.001}],mlistExt,{mSM["mu"]}]//DeleteDuplicates//Sort;
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLP,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],elist,thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLP,proc,SelectedFacility];
+
+tabulatedblock[TabulatedPDF,mlist,filename]
+,{LLP,Drop[ListHNLs,-1]}
+]//AbsoluteTiming
+], 
+, {proc,mlist}//Clear;}
+
+----- cell 48  label=HNL_PiCharged -----
+{If[MemberQ[{"ESS"},SelectedFacility],
+proc="PiCharged";
+Do[
+MassList["HNL",proc,Facility]={0.001,0.005,0.01,0.015,0.02,0.027,0.032,0.04,0.05,0.06,0.07,0.08,0.09,0.1,0.11,0.115,0.12,0.125,0.13,0.135};
+,{Facility,{"ESS"}}];
+Do[
+elist=Join[(mSM["PiCharged"]^2-mSM["e"]^2+MassList["HNL",proc,"ESS"]^2)/(2mSM["PiCharged"]),(mSM["PiCharged"]^2-mSM["mu"]^2+MassList["HNL",proc,"ESS"]^2)/(2mSM["PiCharged"])]//DeleteDuplicates//Sort;
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLP,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],elist,thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLP,proc,SelectedFacility];
+mlist=MassList["HNL",proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename]
+,{LLP,Drop[ListHNLs,-1]}
+]
+]//AbsoluteTiming, 
+, {proc,mlist}//Clear;}
+
+----- cell 49  label= -----
+{If[MemberQ[{"ESS"},SelectedFacility],
+proc="PiCharged";
+Do[
+MassList["HNL",proc,Facility]={0.001,0.005,0.01,0.015,0.02,0.027,0.032,0.04,0.05,0.06,0.07,0.08,0.09,0.1,0.11,0.115,0.12,0.125,0.13,0.135};
+,{Facility,{"ESS"}}];
+Do[
+elist=Join[(mSM["PiCharged"]^2-mSM["e"]^2+MassList["HNL",proc,"ESS"]^2)/(2mSM["PiCharged"]),(mSM["PiCharged"]^2-mSM["mu"]^2+MassList["HNL",proc,"ESS"]^2)/(2mSM["PiCharged"])]//DeleteDuplicates//Sort;
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLP,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],elist,thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLP,proc,SelectedFacility];
+mlist=MassList["HNL",proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename]
+,{LLP,Drop[ListHNLs,-1]}
+]
+]//AbsoluteTiming, 
+, {proc,mlist}//Clear;}
+
+----- cell 50  label=Scalar -----
+{proc="B-mixing";, 
+, LLPv="Scalar";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.2,0.5,1,1.3,1.5,1.7,2.,2.3,2.5,2.7,3.,3.3,3.6,4.,4.4,4.8,5.12};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 51  label=Scalar_B-mixing -----
+{proc="B-mixing";, 
+, LLPv="Scalar";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.2,0.5,1,1.3,1.5,1.7,2.,2.3,2.5,2.7,3.,3.3,3.6,4.,4.4,4.8,5.12};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 52  label= -----
+{proc="B-mixing";, 
+, LLPv="Scalar";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.2,0.5,1,1.3,1.5,1.7,2.,2.3,2.5,2.7,3.,3.3,3.6,4.,4.4,4.8,5.12};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 53  label=Scalar_B-quartic -----
+{LLPv="Scalar";, 
+, proc="B-quartic";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.2,0.5,1,1.5,2.,2.2,2.39},#<MaxMass[LLPv,SelectedFacility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist,filename}//Clear}
+
+----- cell 54  label= -----
+{LLPv="Scalar";, 
+, proc="B-quartic";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.2,0.5,1,1.5,2.,2.2,2.39},#<MaxMass[LLPv,SelectedFacility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist,filename}//Clear}
+
+----- cell 55  label=Scalar_Bs-quartic -----
+{proc="Bs-quartic";, 
+, LLPv="Scalar";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.2,0.5,1,1.5,2.,2.5,2.65};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 56  label= -----
+{proc="Bs-quartic";, 
+, LLPv="Scalar";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.2,0.5,1,1.5,2.,2.5,2.65};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 57  label=Scalar_h-quartic -----
+{If[MemberQ[{"LHC","FCC-hh"},SelectedFacility],
+proc="h-quartic";
+LLPv="Scalar";
+(*List of masses for which the distribution will be tabulated*)
+Do[
+MassList[LLPv,proc,Facility]={0.02,0.1,1.,5.,10.,15.,20.,25.,30.,35.,40.,45.,50.,55.,59.,60.,61.,62.,62.49};
+,{Facility,FacilitiesList}];
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming
+], 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 58  label= -----
+{If[MemberQ[{"LHC","FCC-hh"},SelectedFacility],
+proc="h-quartic";
+LLPv="Scalar";
+(*List of masses for which the distribution will be tabulated*)
+Do[
+MassList[LLPv,proc,Facility]={0.02,0.1,1.,5.,10.,15.,20.,25.,30.,35.,40.,45.,50.,55.,59.,60.,61.,62.,62.49};
+,{Facility,FacilitiesList}];
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming
+], 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 59  label=Scalar_K-mixing -----
+{proc="K-mixing";, 
+, LLPv="Scalar";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.2,0.3,0.99MaxMass["Scalar",SelectedFacility,proc]},#<MaxMass["Scalar",SelectedFacility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 60  label= -----
+{proc="K-mixing";, 
+, LLPv="Scalar";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.2,0.3,0.99MaxMass["Scalar",SelectedFacility,proc]},#<MaxMass["Scalar",SelectedFacility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 61  label=Scalar_Bremsstrahlung -----
+{LLPv="Scalar";, 
+, proc="Bremsstrahlung";, 
+, Do[BlockTabulatedPDFsFromBrem[LLPv,SelectedFacility,descr],{descr,{"AP"}}];//AbsoluteTiming
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 62  label= -----
+{LLPv="Scalar";, 
+, proc="Bremsstrahlung";, 
+, Do[BlockTabulatedPDFsFromBrem[LLPv,SelectedFacility,descr],{descr,{"AP"}}];//AbsoluteTiming
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 63  label=Scalar_Upsilon-mixing -----
+{LLPv="Scalar";, 
+, proc="Upsilon-mixing";, 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.2,0.5,1,1.5,2.,2.5,3.,3.5,4.,4.5,5.,5.5,6.,6.5,7.,7.5,8.,8.5,9.,9.4},#<MaxMass[LLPv,SelectedFacility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist,filename}//Clear}
+
+----- cell 64  label= -----
+{LLPv="Scalar";, 
+, proc="Upsilon-mixing";, 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.2,0.5,1,1.5,2.,2.5,3.,3.5,4.,4.5,5.,5.5,6.,6.5,7.,7.5,8.,8.5,9.,9.4},#<MaxMass[LLPv,SelectedFacility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist,filename}//Clear}
+
+----- cell 65  label=Scalar_Upsilon-quartic -----
+{LLPv="Scalar";, 
+, proc="Upsilon-quartic";, 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.2,0.5,1,1.5,2.,2.5,3.,3.5,4.,4.5,4.72},#<MaxMass[LLPv,SelectedFacility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist,filename}//Clear}
+
+----- cell 66  label= -----
+{LLPv="Scalar";, 
+, proc="Upsilon-quartic";, 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.2,0.5,1,1.5,2.,2.5,3.,3.5,4.,4.5,4.72},#<MaxMass[LLPv,SelectedFacility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist,filename}//Clear}
+
+----- cell 67  label=MCP -----
+{LLPv="MCP";, 
+, proc="Pi0";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,(mSM["Pi0"])/(2)*0.99};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 68  label=MCP_Pi0 -----
+{LLPv="MCP";, 
+, proc="Pi0";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,(mSM["Pi0"])/(2)*0.99};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 69  label= -----
+{LLPv="MCP";, 
+, proc="Pi0";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,(mSM["Pi0"])/(2)*0.99};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 70  label=MCP_Eta -----
+{LLPv="MCP";, 
+, proc="Eta";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.2,(mSM["Eta"])/(2)*0.99};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 71  label= -----
+{LLPv="MCP";, 
+, proc="Eta";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.2,(mSM["Eta"])/(2)*0.99};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 72  label=MCP_Phi -----
+{LLPv="MCP";, 
+, proc="Phi";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.2,0.3,0.45,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 73  label= -----
+{LLPv="MCP";, 
+, proc="Phi";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.2,0.3,0.45,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 74  label=MCP_JPsi -----
+{LLPv="MCP";, 
+, proc="JPsi";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.2,0.3,0.5,0.7,1.,1.3,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 75  label= -----
+{LLPv="MCP";, 
+, proc="JPsi";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.2,0.3,0.5,0.7,1.,1.3,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 76  label=MCP_Rho0 -----
+{LLPv="MCP";, 
+, proc="Rho0";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.2,0.3,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 77  label= -----
+{LLPv="MCP";, 
+, proc="Rho0";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.2,0.3,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 78  label=MCP_Omega -----
+{LLPv="MCP";, 
+, proc="Omega";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.2,0.3,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 79  label= -----
+{LLPv="MCP";, 
+, proc="Omega";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.2,0.3,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 80  label=MCP_Upsilon -----
+{LLPv="MCP";, 
+, proc="Upsilon";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.2,0.3,0.5,0.75,1.,1.25,1.5,1.75,2.,2.25,3.,3.5,4.,4.5,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&]//Sort;
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 81  label= -----
+{LLPv="MCP";, 
+, proc="Upsilon";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.2,0.3,0.5,0.75,1.,1.25,1.5,1.75,2.,2.25,3.,3.5,4.,4.5,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&]//Sort;
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 82  label=DP -----
+{LLPv="DP";, 
+, Do[BlockTabulatedPDFsFromBrem[LLPv,SelectedFacility,descr],{descr,{"FR","Baseline"}}];//AbsoluteTiming
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 83  label=DP_Bremsstrahlung -----
+{LLPv="DP";, 
+, Do[BlockTabulatedPDFsFromBrem[LLPv,SelectedFacility,descr],{descr,{"FR","Baseline"}}];//AbsoluteTiming
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 84  label= -----
+{LLPv="DP";, 
+, Do[BlockTabulatedPDFsFromBrem[LLPv,SelectedFacility,descr],{descr,{"FR","Baseline"}}];//AbsoluteTiming
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 85  label=DP_Bremsstrahlung-e -----
+{LLPv="DP";, 
+, proc="Bremsstrahlung-e";, 
+, Do[
+MassList[LLPv,proc,Facility]={0.01,0.02,0.05,0.07,0.1,0.13,0.15,0.2,0.25,0.3,0.35,0.4};
+,{Facility,{"SLAC-E137"}}];, 
+, BlockTabulatedPDFsFromBreme[LLPv,SelectedFacility,MassList[LLPv,proc,SelectedFacility]];//AbsoluteTiming
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 86  label= -----
+{LLPv="DP";, 
+, proc="Bremsstrahlung-e";, 
+, Do[
+MassList[LLPv,proc,Facility]={0.01,0.02,0.05,0.07,0.1,0.13,0.15,0.2,0.25,0.3,0.35,0.4};
+,{Facility,{"SLAC-E137"}}];, 
+, BlockTabulatedPDFsFromBreme[LLPv,SelectedFacility,MassList[LLPv,proc,SelectedFacility]];//AbsoluteTiming
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 87  label=DP_Pi0 -----
+{LLPv="DP";, 
+, proc="Pi0";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 88  label= -----
+{LLPv="DP";, 
+, proc="Pi0";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 89  label=DP_Eta -----
+{LLPv="DP";, 
+, proc="Eta";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.2,0.3,0.45,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 90  label= -----
+{LLPv="DP";, 
+, proc="Eta";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.2,0.3,0.45,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 91  label=DP_EtaPr -----
+{LLPv="DP";, 
+, proc="EtaPr";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.2,0.3,0.5,0.7,0.9,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 92  label= -----
+{LLPv="DP";, 
+, proc="EtaPr";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.2,0.3,0.5,0.7,0.9,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 93  label=DP_Old-Mixing -----
+{LLPv="DP";, 
+, proc="Old-Mixing";, 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.3,0.5,0.77,1.,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.,3.1,3.2,3.3,3.5},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromMixingsMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc]];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear, 
+}
+
+----- cell 94  label= -----
+{LLPv="DP";, 
+, proc="Old-Mixing";, 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.3,0.5,0.77,1.,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.,3.1,3.2,3.3,3.5},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromMixingsMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc]];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear, 
+}
+
+----- cell 95  label=DP_B-quartic -----
+(*LLPv="DP";
+proc="B-quartic";
+(*List of masses for which the distribution will be tabulated*)
+Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.2,0.5,1,1.5,2.,2.2,2.39},#<MaxMass[LLPv,SelectedFacility,proc]&];
+,{Facility,FacilitiesList}];
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming
+{LLPv,proc,mlist,filename}//Clear*)
+
+----- cell 96  label= -----
+(*LLPv="DP";
+proc="B-quartic";
+(*List of masses for which the distribution will be tabulated*)
+Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.2,0.5,1,1.5,2.,2.2,2.39},#<MaxMass[LLPv,SelectedFacility,proc]&];
+,{Facility,FacilitiesList}];
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming
+{LLPv,proc,mlist,filename}//Clear*)
+
+----- cell 97  label=DP_Bs-quartic -----
+(*LLPv="DP";
+proc="Bs-quartic";
+(*List of masses for which the distribution will be tabulated*)
+Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.2,0.5,1,1.5,2.,2.5,2.65};
+,{Facility,FacilitiesList}];
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming
+{LLPv,proc,mlist}//Clear*)
+
+----- cell 98  label= -----
+(*LLPv="DP";
+proc="Bs-quartic";
+(*List of masses for which the distribution will be tabulated*)
+Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.2,0.5,1,1.5,2.,2.5,2.65};
+,{Facility,FacilitiesList}];
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming
+{LLPv,proc,mlist}//Clear*)
+
+----- cell 99  label=B -----
+{LLPv="B";, 
+, Do[BlockTabulatedPDFsFromBrem[LLPv,SelectedFacility,descr],{descr,{"FR","Baseline"}}];//AbsoluteTiming
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 100  label=B_Bremsstrahlung -----
+{LLPv="B";, 
+, Do[BlockTabulatedPDFsFromBrem[LLPv,SelectedFacility,descr],{descr,{"FR","Baseline"}}];//AbsoluteTiming
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 101  label= -----
+{LLPv="B";, 
+, Do[BlockTabulatedPDFsFromBrem[LLPv,SelectedFacility,descr],{descr,{"FR","Baseline"}}];//AbsoluteTiming
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 102  label=B_Pi0 -----
+{LLPv="B";, 
+, proc="Pi0";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 103  label= -----
+{LLPv="B";, 
+, proc="Pi0";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 104  label=B_Eta -----
+{LLPv="B";, 
+, proc="Eta";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.2,0.3,0.45,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 105  label= -----
+{LLPv="B";, 
+, proc="Eta";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.2,0.3,0.45,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 106  label=B_EtaPr -----
+{LLPv="B";, 
+, proc="EtaPr";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.2,0.3,0.5,0.7,0.9,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 107  label= -----
+{LLPv="B";, 
+, proc="EtaPr";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.2,0.3,0.5,0.7,0.9,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 108  label=B_Old-Mixing -----
+{LLPv="B";, 
+, proc="Old-Mixing";, 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.3,0.5,0.77,1.,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.,3.1,3.2,3.3,3.5},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromMixingsMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc]];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear, 
+}
+
+----- cell 109  label= -----
+{LLPv="B";, 
+, proc="Old-Mixing";, 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.3,0.5,0.77,1.,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.,3.1,3.2,3.3,3.5},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromMixingsMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc]];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear, 
+}
+
+----- cell 110  label=B-L -----
+{LLPv="B-L";, 
+, Do[BlockTabulatedPDFsFromBrem[LLPv,SelectedFacility,descr],{descr,{"FR","Baseline"}}];//AbsoluteTiming
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 111  label=B-L_Bremsstrahlung -----
+{LLPv="B-L";, 
+, Do[BlockTabulatedPDFsFromBrem[LLPv,SelectedFacility,descr],{descr,{"FR","Baseline"}}];//AbsoluteTiming
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 112  label= -----
+{LLPv="B-L";, 
+, Do[BlockTabulatedPDFsFromBrem[LLPv,SelectedFacility,descr],{descr,{"FR","Baseline"}}];//AbsoluteTiming
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 113  label=B-L_Bremsstrahlung-e -----
+{LLPv="B-L";, 
+, proc="Bremsstrahlung-e";, 
+, Do[
+MassList[LLPv,proc,Facility]={0.01,0.02,0.05,0.07,0.1,0.13,0.15,0.2,0.25,0.3,0.35,0.4};
+,{Facility,{"SLAC-E137"}}];, 
+, BlockTabulatedPDFsFromBreme[LLPv,SelectedFacility,MassList[LLPv,proc,SelectedFacility]];
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 114  label= -----
+{LLPv="B-L";, 
+, proc="Bremsstrahlung-e";, 
+, Do[
+MassList[LLPv,proc,Facility]={0.01,0.02,0.05,0.07,0.1,0.13,0.15,0.2,0.25,0.3,0.35,0.4};
+,{Facility,{"SLAC-E137"}}];, 
+, BlockTabulatedPDFsFromBreme[LLPv,SelectedFacility,MassList[LLPv,proc,SelectedFacility]];
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 115  label=B-L_Pi0 -----
+{LLPv="B-L";, 
+, proc="Pi0";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 116  label= -----
+{LLPv="B-L";, 
+, proc="Pi0";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 117  label=B-L_Eta -----
+{LLPv="B-L";, 
+, proc="Eta";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.2,0.3,0.45,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 118  label= -----
+{LLPv="B-L";, 
+, proc="Eta";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.2,0.3,0.45,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 119  label=B-L_EtaPr -----
+{LLPv="B-L";, 
+, proc="EtaPr";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.2,0.3,0.5,0.7,0.9,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 120  label= -----
+{LLPv="B-L";, 
+, proc="EtaPr";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.2,0.3,0.5,0.7,0.9,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 121  label=B-L_Old-Mixing -----
+{LLPv="B-L";, 
+, proc="Old-Mixing";, 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.3,0.5,0.77,1.,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.,3.1,3.2,3.3,3.5},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromMixingsMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc]];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear, 
+}
+
+----- cell 122  label= -----
+{LLPv="B-L";, 
+, proc="Old-Mixing";, 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.3,0.5,0.77,1.,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.,3.1,3.2,3.3,3.5},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromMixingsMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc]];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear, 
+}
+
+----- cell 123  label=B-3Lmu -----
+{LLPv="B-3Lmu";, 
+, Do[BlockTabulatedPDFsFromBrem[LLPv,SelectedFacility,descr],{descr,{"FR","Baseline"}}];//AbsoluteTiming
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 124  label=B-3Lmu_Bremsstrahlung -----
+{LLPv="B-3Lmu";, 
+, Do[BlockTabulatedPDFsFromBrem[LLPv,SelectedFacility,descr],{descr,{"FR","Baseline"}}];//AbsoluteTiming
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 125  label= -----
+{LLPv="B-3Lmu";, 
+, Do[BlockTabulatedPDFsFromBrem[LLPv,SelectedFacility,descr],{descr,{"FR","Baseline"}}];//AbsoluteTiming
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 126  label=B-3Lmu_Pi0 -----
+{LLPv="B-3Lmu";, 
+, proc="Pi0";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 127  label= -----
+{LLPv="B-3Lmu";, 
+, proc="Pi0";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 128  label=B-3Lmu_Eta -----
+{LLPv="B-3Lmu";, 
+, proc="Eta";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.2,0.3,0.45,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 129  label= -----
+{LLPv="B-3Lmu";, 
+, proc="Eta";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.2,0.3,0.45,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 130  label=B-3Lmu_EtaPr -----
+{LLPv="B-3Lmu";, 
+, proc="EtaPr";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.2,0.3,0.5,0.7,0.9,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 131  label= -----
+{LLPv="B-3Lmu";, 
+, proc="EtaPr";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.2,0.3,0.5,0.7,0.9,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 132  label=B-3Lmu_Old-Mixing -----
+{LLPv="B-3Lmu";, 
+, proc="Old-Mixing";, 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.3,0.5,0.77,1.,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.,3.1,3.2,3.3,3.5},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromMixingsMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc]];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear, 
+}
+
+----- cell 133  label= -----
+{LLPv="B-3Lmu";, 
+, proc="Old-Mixing";, 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.3,0.5,0.77,1.,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.,3.1,3.2,3.3,3.5},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromMixingsMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc]];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear, 
+}
+
+----- cell 134  label=B-Le-3Lmu+Ltau -----
+{LLPv="B-Le-3Lmu+Ltau";, 
+, Do[BlockTabulatedPDFsFromBrem[LLPv,SelectedFacility,descr],{descr,{"FR","Baseline"}}];//AbsoluteTiming
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 135  label=B-Le-3Lmu+Ltau_Bremsstrahlung -----
+{LLPv="B-Le-3Lmu+Ltau";, 
+, Do[BlockTabulatedPDFsFromBrem[LLPv,SelectedFacility,descr],{descr,{"FR","Baseline"}}];//AbsoluteTiming
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 136  label= -----
+{LLPv="B-Le-3Lmu+Ltau";, 
+, Do[BlockTabulatedPDFsFromBrem[LLPv,SelectedFacility,descr],{descr,{"FR","Baseline"}}];//AbsoluteTiming
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 137  label=B-Le-3Lmu+Ltau_Bremsstrahlung-e -----
+{LLPv="B-Le-3Lmu+Ltau";, 
+, proc="Bremsstrahlung-e";, 
+, Do[
+MassList[LLPv,proc,Facility]={0.01,0.02,0.05,0.07,0.1,0.13,0.15,0.2,0.25,0.3,0.35,0.4};
+,{Facility,{"SLAC-E137"}}];, 
+, BlockTabulatedPDFsFromBreme[LLPv,SelectedFacility,MassList[LLPv,proc,SelectedFacility]];
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 138  label= -----
+{LLPv="B-Le-3Lmu+Ltau";, 
+, proc="Bremsstrahlung-e";, 
+, Do[
+MassList[LLPv,proc,Facility]={0.01,0.02,0.05,0.07,0.1,0.13,0.15,0.2,0.25,0.3,0.35,0.4};
+,{Facility,{"SLAC-E137"}}];, 
+, BlockTabulatedPDFsFromBreme[LLPv,SelectedFacility,MassList[LLPv,proc,SelectedFacility]];
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 139  label=B-Le-3Lmu+Ltau_Pi0 -----
+{LLPv="B-Le-3Lmu+Ltau";, 
+, proc="Pi0";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 140  label= -----
+{LLPv="B-Le-3Lmu+Ltau";, 
+, proc="Pi0";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 141  label=B-Le-3Lmu+Ltau_Eta -----
+{LLPv="B-Le-3Lmu+Ltau";, 
+, proc="Eta";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.2,0.3,0.45,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 142  label= -----
+{LLPv="B-Le-3Lmu+Ltau";, 
+, proc="Eta";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.2,0.3,0.45,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 143  label=B-Le-3Lmu+Ltau_EtaPr -----
+{LLPv="B-Le-3Lmu+Ltau";, 
+, proc="EtaPr";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.2,0.3,0.5,0.7,0.9,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 144  label= -----
+{LLPv="B-Le-3Lmu+Ltau";, 
+, proc="EtaPr";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.2,0.3,0.5,0.7,0.9,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 145  label=B-Le-3Lmu+Ltau_Old-Mixing -----
+{LLPv="B-Le-3Lmu+Ltau";, 
+, proc="Old-Mixing";, 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.3,0.5,0.77,1.,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.,3.1,3.2,3.3,3.5},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromMixingsMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc]];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear, 
+}
+
+----- cell 146  label= -----
+{LLPv="B-Le-3Lmu+Ltau";, 
+, proc="Old-Mixing";, 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.3,0.5,0.77,1.,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.,3.1,3.2,3.3,3.5},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromMixingsMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc]];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear, 
+}
+
+----- cell 147  label=B-3Le-Lmu+Ltau -----
+{LLPv="B-3Le-Lmu+Ltau";, 
+, Do[BlockTabulatedPDFsFromBrem[LLPv,SelectedFacility,descr],{descr,{"FR","Baseline"}}];//AbsoluteTiming
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 148  label=B-3Le-Lmu+Ltau_Bremsstrahlung -----
+{LLPv="B-3Le-Lmu+Ltau";, 
+, Do[BlockTabulatedPDFsFromBrem[LLPv,SelectedFacility,descr],{descr,{"FR","Baseline"}}];//AbsoluteTiming
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 149  label= -----
+{LLPv="B-3Le-Lmu+Ltau";, 
+, Do[BlockTabulatedPDFsFromBrem[LLPv,SelectedFacility,descr],{descr,{"FR","Baseline"}}];//AbsoluteTiming
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 150  label=B-3Le-Lmu+Ltau_Bremsstrahlung-e -----
+{LLPv="B-3Le-Lmu+Ltau";, 
+, proc="Bremsstrahlung-e";, 
+, Do[
+MassList[LLPv,proc,Facility]={0.01,0.02,0.05,0.07,0.1,0.13,0.15,0.2,0.25,0.3,0.35,0.4};
+,{Facility,{"SLAC-E137"}}];, 
+, BlockTabulatedPDFsFromBreme[LLPv,SelectedFacility,MassList[LLPv,proc,SelectedFacility]];
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 151  label= -----
+{LLPv="B-3Le-Lmu+Ltau";, 
+, proc="Bremsstrahlung-e";, 
+, Do[
+MassList[LLPv,proc,Facility]={0.01,0.02,0.05,0.07,0.1,0.13,0.15,0.2,0.25,0.3,0.35,0.4};
+,{Facility,{"SLAC-E137"}}];, 
+, BlockTabulatedPDFsFromBreme[LLPv,SelectedFacility,MassList[LLPv,proc,SelectedFacility]];
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 152  label=B-3Le-Lmu+Ltau_Pi0 -----
+{LLPv="B-3Le-Lmu+Ltau";, 
+, proc="Pi0";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 153  label= -----
+{LLPv="B-3Le-Lmu+Ltau";, 
+, proc="Pi0";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 154  label=B-3Le-Lmu+Ltau_Eta -----
+{LLPv="B-3Le-Lmu+Ltau";, 
+, proc="Eta";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.2,0.3,0.45,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 155  label= -----
+{LLPv="B-3Le-Lmu+Ltau";, 
+, proc="Eta";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.2,0.3,0.45,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 156  label=B-3Le-Lmu+Ltau_EtaPr -----
+{LLPv="B-3Le-Lmu+Ltau";, 
+, proc="EtaPr";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.2,0.3,0.5,0.7,0.9,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 157  label= -----
+{LLPv="B-3Le-Lmu+Ltau";, 
+, proc="EtaPr";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.2,0.3,0.5,0.7,0.9,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 158  label=B-3Le-Lmu+Ltau_Omega -----
+{LLPv="B-3Le-Lmu+Ltau";, 
+, proc="Old-Mixing";, 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.3,0.5,0.77,1.,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.,3.1,3.2,3.3,3.5},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromMixingsMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc]];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear, 
+}
+
+----- cell 159  label= -----
+{LLPv="B-3Le-Lmu+Ltau";, 
+, proc="Old-Mixing";, 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.001,0.01,0.02,0.05,0.1,0.3,0.5,0.77,1.,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.,3.1,3.2,3.3,3.5},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromMixingsMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlistLight[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc]];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear, 
+}
+
+----- cell 160  label=ALP-photon -----
+{LLPv="ALP-photon";, 
+, proc="Pi0";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.115,0.132},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 161  label=ALP-photon_Pi0 -----
+{LLPv="ALP-photon";, 
+, proc="Pi0";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.115,0.132},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 162  label= -----
+{LLPv="ALP-photon";, 
+, proc="Pi0";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.115,0.132},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 163  label=ALP-photon_Eta -----
+{LLPv="ALP-photon";, 
+, proc="Eta";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.25,0.4,0.5,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 164  label= -----
+{LLPv="ALP-photon";, 
+, proc="Eta";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.25,0.4,0.5,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 165  label=ALP-photon_Primakov -----
+{LLPv="ALP-photon";, 
+, proc="Primakov";, 
+, Do[MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.25,0.5,0.75,1.,1.3,1.5,1.75,2.,2.25,2.5,2.75,3.,3.25,3.5,3.75,4.};
+,{Facility,FacilitiesList}], 
+, Zlist=NucleiList[SelectedFacility,proc];, 
+, Monitor[Do[BlockTabulatedPDFsFromPrimakov[SelectedFacility,Zlist[[l]],thetaNlist[SelectedFacility],ENlist[SelectedFacility]],{l,1,Length[Zlist],1}],Row[{ProgressIndicator[l,{1,Length[Zlist]}]," Nucleus = ",Zlist[[l]]," (",l,"/",Length[Zlist],")"}]]//AbsoluteTiming, 
+, {LLPv,proc,Zlist}//Clear}
+
+----- cell 166  label= -----
+{LLPv="ALP-photon";, 
+, proc="Primakov";, 
+, Do[MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.25,0.5,0.75,1.,1.3,1.5,1.75,2.,2.25,2.5,2.75,3.,3.25,3.5,3.75,4.};
+,{Facility,FacilitiesList}], 
+, Zlist=NucleiList[SelectedFacility,proc];, 
+, Monitor[Do[BlockTabulatedPDFsFromPrimakov[SelectedFacility,Zlist[[l]],thetaNlist[SelectedFacility],ENlist[SelectedFacility]],{l,1,Length[Zlist],1}],Row[{ProgressIndicator[l,{1,Length[Zlist]}]," Nucleus = ",Zlist[[l]]," (",l,"/",Length[Zlist],")"}]]//AbsoluteTiming, 
+, {LLPv,proc,Zlist}//Clear}
+
+----- cell 167  label=ALP-photon_Photon-fusion -----
+(*Currently, it is very slow for LHC and FCC-hh. I cannot efficiently handle the singularity at the integration boundaries*)
+LLPv="ALP-photon";
+proc="Photon-fusion";
+Do[MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.25,0.5,0.75,1.,1.3,1.5,1.75,2.};
+,{Facility,FacilitiesList}]
+Zlist=NucleiList[SelectedFacility,proc];
+Monitor[Do[BlockTabulatedPDFsFromFusion[SelectedFacility,Zlist[[l]],thetaNlist[SelectedFacility],ENlist[SelectedFacility]],{l,1,Length[Zlist],1}],Row[{ProgressIndicator[l,{1,Length[Zlist]}]," Nucleus = ",Zlist[[l]]," (",l,"/",Length[Zlist],")"}]]//AbsoluteTiming
+{LLPv,proc}//Clear
+
+----- cell 168  label= -----
+(*Currently, it is very slow for LHC and FCC-hh. I cannot efficiently handle the singularity at the integration boundaries*)
+LLPv="ALP-photon";
+proc="Photon-fusion";
+Do[MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.25,0.5,0.75,1.,1.3,1.5,1.75,2.};
+,{Facility,FacilitiesList}]
+Zlist=NucleiList[SelectedFacility,proc];
+Monitor[Do[BlockTabulatedPDFsFromFusion[SelectedFacility,Zlist[[l]],thetaNlist[SelectedFacility],ENlist[SelectedFacility]],{l,1,Length[Zlist],1}],Row[{ProgressIndicator[l,{1,Length[Zlist]}]," Nucleus = ",Zlist[[l]]," (",l,"/",Length[Zlist],")"}]]//AbsoluteTiming
+{LLPv,proc}//Clear
+
+----- cell 169  label=ALP-gluon -----
+{LLPv="ALP-gluon";, 
+, proc="B";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.2,0.5,1,1.5,2.,2.5,3.,3.5,4.,4.8,5.13};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 170  label=ALP-gluon_B -----
+{LLPv="ALP-gluon";, 
+, proc="B";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.2,0.5,1,1.5,2.,2.5,3.,3.5,4.,4.8,5.13};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 171  label= -----
+{LLPv="ALP-gluon";, 
+, proc="B";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.2,0.5,1,1.5,2.,2.5,3.,3.5,4.,4.8,5.13};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 172  label=ALP-gluon_Omega -----
+{LLPv="ALP-gluon";, 
+, proc="Omega";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.2,0.35,0.5,0.6,0.775};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 173  label= -----
+{LLPv="ALP-gluon";, 
+, proc="Omega";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.2,0.35,0.5,0.6,0.775};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 174  label=ALP-gluon_KS -----
+{LLPv="ALP-gluon";, 
+, proc="KS";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.2,0.35};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 175  label= -----
+{LLPv="ALP-gluon";, 
+, proc="KS";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.2,0.35};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 176  label=ALP-gluon_RhoCh -----
+{LLPv="ALP-gluon";, 
+, proc="RhoCh";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.2,0.35,0.5,0.63};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 177  label= -----
+{LLPv="ALP-gluon";, 
+, proc="RhoCh";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.2,0.35,0.5,0.63};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 178  label=ALP-gluon_Eta -----
+{LLPv="ALP-gluon";, 
+, proc="Eta";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.2,0.26};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 179  label= -----
+{LLPv="ALP-gluon";, 
+, proc="Eta";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.2,0.26};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 180  label=ALP-gluon_EtaPr -----
+{LLPv="ALP-gluon";, 
+, proc="EtaPr";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.2,0.35,0.5,0.67};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 181  label= -----
+{LLPv="ALP-gluon";, 
+, proc="EtaPr";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.2,0.35,0.5,0.67};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 182  label=ALP-gluon_Old-Mixing-Pi0 -----
+{LLPv="ALP-gluon";, 
+, proc="Old-Mixing-Pi0";, 
+, Do[
+If[Facility!="ESS",
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.135,0.2,0.3,0.4,0.5,0.65,0.7,0.8,0.9,1.,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.,3.1,3.2,3.3,3.4,3.5},0<#<MaxMass[LLPv,Facility,proc]&];
+,
+MassList[LLPv,proc,Facility]={0.02,0.03,0.04,0.05,0.06,0.065,0.07,0.075,0.08,0.085,0.09,0.095,0.1,0.105,0.11,0.115,0.12,0.125,0.13,0.135};
+]
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromMixingsMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc]];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 183  label= -----
+{LLPv="ALP-gluon";, 
+, proc="Old-Mixing-Pi0";, 
+, Do[
+If[Facility!="ESS",
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.135,0.2,0.3,0.4,0.5,0.65,0.7,0.8,0.9,1.,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.,3.1,3.2,3.3,3.4,3.5},0<#<MaxMass[LLPv,Facility,proc]&];
+,
+MassList[LLPv,proc,Facility]={0.02,0.03,0.04,0.05,0.06,0.065,0.07,0.075,0.08,0.085,0.09,0.095,0.1,0.105,0.11,0.115,0.12,0.125,0.13,0.135};
+]
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromMixingsMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc]];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 184  label=ALP-gluon_Old-Mixing-Eta -----
+{LLPv="ALP-gluon";, 
+, proc="Old-Mixing-Eta";, 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.135,0.2,0.3,0.4,0.547,0.65,0.7,0.8,0.9,1.,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.,3.1,3.2,3.3,3.4,3.5},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromMixingsMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc]];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 185  label= -----
+{LLPv="ALP-gluon";, 
+, proc="Old-Mixing-Eta";, 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.135,0.2,0.3,0.4,0.547,0.65,0.7,0.8,0.9,1.,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.,3.1,3.2,3.3,3.4,3.5},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromMixingsMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc]];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 186  label=ALP-gluon_Old-Mixing-EtaPr -----
+{LLPv="ALP-gluon";, 
+, proc="Old-Mixing-EtaPr";, 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.3,0.5,0.7,0.95,1.5,2.,2.5,3.,3.5},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromMixingsMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc]];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 187  label= -----
+{LLPv="ALP-gluon";, 
+, proc="Old-Mixing-EtaPr";, 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.3,0.5,0.7,0.95,1.5,2.,2.5,3.,3.5},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromMixingsMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc]];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 188  label=ALP-gluon_Bremsstrahlung -----
+{LLPv="ALP-gluon";, 
+, descrlistbrem={"AP"};, 
+, ResourceFunction["MonitorProgress"]@Do[
+BlockTabulatedPDFsFromBrem[LLPv,SelectedFacility,descr]
+,{descr,descrlistbrem}];//AbsoluteTiming
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 189  label= -----
+{LLPv="ALP-gluon";, 
+, descrlistbrem={"AP"};, 
+, ResourceFunction["MonitorProgress"]@Do[
+BlockTabulatedPDFsFromBrem[LLPv,SelectedFacility,descr]
+,{descr,descrlistbrem}];//AbsoluteTiming
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 190  label=ALP-fermion -----
+{LLPv="ALP-fermion";, 
+, proc="B";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.2,0.5,1,1.5,2.,2.5,3.,3.5,4.,4.8,5.13};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 191  label=ALP-fermion_B -----
+{LLPv="ALP-fermion";, 
+, proc="B";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.2,0.5,1,1.5,2.,2.5,3.,3.5,4.,4.8,5.13};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 192  label= -----
+{LLPv="ALP-fermion";, 
+, proc="B";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.2,0.5,1,1.5,2.,2.5,3.,3.5,4.,4.8,5.13};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 193  label=ALP-fermion_Omega -----
+{LLPv="ALP-fermion";, 
+, proc="Omega";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.2,0.35,0.5,0.6,0.775};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 194  label= -----
+{LLPv="ALP-fermion";, 
+, proc="Omega";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.2,0.35,0.5,0.6,0.775};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 195  label=ALP-fermion_KS -----
+{LLPv="ALP-fermion";, 
+, proc="KS";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.2,0.35};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 196  label= -----
+{LLPv="ALP-fermion";, 
+, proc="KS";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.2,0.35};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 197  label=ALP-fermion_RhoCh -----
+{LLPv="ALP-fermion";, 
+, proc="RhoCh";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.2,0.35,0.5,0.63};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 198  label= -----
+{LLPv="ALP-fermion";, 
+, proc="RhoCh";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.2,0.35,0.5,0.63};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 199  label=ALP-fermion_Eta -----
+{LLPv="ALP-fermion";, 
+, proc="Eta";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.2,0.26};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 200  label= -----
+{LLPv="ALP-fermion";, 
+, proc="Eta";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.2,0.26};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 201  label=ALP-fermion_EtaPr -----
+{LLPv="ALP-fermion";, 
+, proc="EtaPr";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.2,0.35,0.5,0.67};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 202  label= -----
+{LLPv="ALP-fermion";, 
+, proc="EtaPr";
+(*List of masses for which the distribution will be tabulated*), 
+, Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.2,0.35,0.5,0.67};
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 203  label=ALP-fermion_Old-Mixing-Pi0 -----
+{LLPv="ALP-fermion";, 
+, proc="Old-Mixing-Pi0";, 
+, Do[
+If[Facility!="ESS",
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.135,0.2,0.3,0.4,0.5,0.65,0.7,0.8,0.9,1.,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.,3.1,3.2,3.3,3.4,3.5},0<#<MaxMass[LLPv,Facility,proc]&];
+,
+MassList[LLPv,proc,Facility]={0.02,0.03,0.04,0.05,0.06,0.065,0.07,0.075,0.08,0.085,0.09,0.095,0.1,0.105,0.11,0.115,0.12,0.125,0.13,0.135};
+]
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromMixingsMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc]];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 204  label= -----
+{LLPv="ALP-fermion";, 
+, proc="Old-Mixing-Pi0";, 
+, Do[
+If[Facility!="ESS",
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.135,0.2,0.3,0.4,0.5,0.65,0.7,0.8,0.9,1.,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.,3.1,3.2,3.3,3.4,3.5},0<#<MaxMass[LLPv,Facility,proc]&];
+,
+MassList[LLPv,proc,Facility]={0.02,0.03,0.04,0.05,0.06,0.065,0.07,0.075,0.08,0.085,0.09,0.095,0.1,0.105,0.11,0.115,0.12,0.125,0.13,0.135};
+]
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromMixingsMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc]];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 205  label=ALP-fermion_Old-Mixing-Eta -----
+{LLPv="ALP-fermion";, 
+, proc="Old-Mixing-Eta";, 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.135,0.2,0.3,0.4,0.547,0.65,0.7,0.8,0.9,1.,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.,3.1,3.2,3.3,3.4,3.5},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromMixingsMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc]];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 206  label= -----
+{LLPv="ALP-fermion";, 
+, proc="Old-Mixing-Eta";, 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.135,0.2,0.3,0.4,0.547,0.65,0.7,0.8,0.9,1.,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.,3.1,3.2,3.3,3.4,3.5},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromMixingsMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc]];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 207  label=ALP-fermion_Old-Mixing-EtaPr -----
+{LLPv="ALP-fermion";, 
+, proc="Old-Mixing-EtaPr";, 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.3,0.5,0.7,0.95,1.5,2.,2.5,3.,3.5},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromMixingsMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc]];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 208  label= -----
+{LLPv="ALP-fermion";, 
+, proc="Old-Mixing-EtaPr";, 
+, Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.3,0.5,0.7,0.95,1.5,2.,2.5,3.,3.5},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];, 
+, TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromMixingsMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc]];, 
+, mlist=MassList[LLPv,proc,SelectedFacility];, 
+, filename=filenameToExport[LLPv,proc,SelectedFacility];, 
+, tabulatedblock[TabulatedPDF,mlist,filename]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 209  label=ALP-fermion_Bremsstrahlung -----
+{LLPv="ALP-fermion";, 
+, ResourceFunction["MonitorProgress"]@Do[
+BlockTabulatedPDFsFromBrem[LLPv,SelectedFacility,descr]
+,{descr,{"AP"}}];//AbsoluteTiming
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 210  label= -----
+{LLPv="ALP-fermion";, 
+, ResourceFunction["MonitorProgress"]@Do[
+BlockTabulatedPDFsFromBrem[LLPv,SelectedFacility,descr]
+,{descr,{"AP"}}];//AbsoluteTiming
+(*TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromBrem[LLPv,mLLP,thetalistBrem,SelectedFacility];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename];//AbsoluteTiming*), 
+, {LLPv,proc,mlist,\[CapitalLambda]plist,descr}//Clear}
+
+----- cell 211  label=Inelastic-dipole-DM -----
+{ResourceFunction["MonitorProgress"]@Do[
+Module[{LLPv=model\[CapitalLambda][[1]],\[CapitalLambda]val=model\[CapitalLambda][[2]]},
+If[SelectedLLP==LLPv,
+proc="Pi0";
+(*List of masses for which the distribution will be tabulated*)
+Do[
+MassList[LLPv,proc,Facility]={0.02,0.035,0.05,(mSM["Pi0"](1-\[CapitalLambda]val))/(2)*0.99};
+,{Facility,FacilitiesList}];
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename]
+]
+]
+,{model\[CapitalLambda],modelnames\[CapitalLambda]}]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 212  label=Inelastic-dipole-DM_Pi0 -----
+{ResourceFunction["MonitorProgress"]@Do[
+Module[{LLPv=model\[CapitalLambda][[1]],\[CapitalLambda]val=model\[CapitalLambda][[2]]},
+If[SelectedLLP==LLPv,
+proc="Pi0";
+(*List of masses for which the distribution will be tabulated*)
+Do[
+MassList[LLPv,proc,Facility]={0.02,0.035,0.05,(mSM["Pi0"](1-\[CapitalLambda]val))/(2)*0.99};
+,{Facility,FacilitiesList}];
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename]
+]
+]
+,{model\[CapitalLambda],modelnames\[CapitalLambda]}]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 213  label= -----
+{ResourceFunction["MonitorProgress"]@Do[
+Module[{LLPv=model\[CapitalLambda][[1]],\[CapitalLambda]val=model\[CapitalLambda][[2]]},
+If[SelectedLLP==LLPv,
+proc="Pi0";
+(*List of masses for which the distribution will be tabulated*)
+Do[
+MassList[LLPv,proc,Facility]={0.02,0.035,0.05,(mSM["Pi0"](1-\[CapitalLambda]val))/(2)*0.99};
+,{Facility,FacilitiesList}];
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename]
+]
+]
+,{model\[CapitalLambda],modelnames\[CapitalLambda]}]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear}
+
+----- cell 214  label=Inelastic-dipole-DM_Eta -----
+{ResourceFunction["MonitorProgress"]@Do[
+Module[{LLPv=model\[CapitalLambda][[1]],\[CapitalLambda]val=model\[CapitalLambda][[2]]},
+If[SelectedLLP==LLPv,
+proc="Eta";
+(*List of masses for which the distribution will be tabulated*)
+Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.2,(mSM["Eta"](1-\[CapitalLambda]val))/(2)*0.99};
+,{Facility,FacilitiesList}];
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename]
+]
+]
+,{model\[CapitalLambda],modelnames\[CapitalLambda]}]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear, 
+}
+
+----- cell 215  label= -----
+{ResourceFunction["MonitorProgress"]@Do[
+Module[{LLPv=model\[CapitalLambda][[1]],\[CapitalLambda]val=model\[CapitalLambda][[2]]},
+If[SelectedLLP==LLPv,
+proc="Eta";
+(*List of masses for which the distribution will be tabulated*)
+Do[
+MassList[LLPv,proc,Facility]={0.02,0.05,0.1,0.2,(mSM["Eta"](1-\[CapitalLambda]val))/(2)*0.99};
+,{Facility,FacilitiesList}];
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename]
+]
+]
+,{model\[CapitalLambda],modelnames\[CapitalLambda]}]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear, 
+}
+
+----- cell 216  label=Inelastic-dipole-DM_Phi -----
+{ResourceFunction["MonitorProgress"]@Do[
+Module[{LLPv=model\[CapitalLambda][[1]],\[CapitalLambda]val=model\[CapitalLambda][[2]]},
+If[SelectedLLP==LLPv,
+proc="Phi";
+(*List of masses for which the distribution will be tabulated*)
+Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.2,0.3,0.45,MaxMass[LLPv,Facility,proc]*(1-\[CapitalLambda]val)*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename]
+]
+]
+,{model\[CapitalLambda],modelnames\[CapitalLambda]}]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear, 
+}
+
+----- cell 217  label= -----
+{ResourceFunction["MonitorProgress"]@Do[
+Module[{LLPv=model\[CapitalLambda][[1]],\[CapitalLambda]val=model\[CapitalLambda][[2]]},
+If[SelectedLLP==LLPv,
+proc="Phi";
+(*List of masses for which the distribution will be tabulated*)
+Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.2,0.3,0.45,MaxMass[LLPv,Facility,proc]*(1-\[CapitalLambda]val)*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename]
+]
+]
+,{model\[CapitalLambda],modelnames\[CapitalLambda]}]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear, 
+}
+
+----- cell 218  label=Inelastic-dipole-DM_JPsi -----
+{ResourceFunction["MonitorProgress"]@Do[
+Module[{LLPv=model\[CapitalLambda][[1]],\[CapitalLambda]val=model\[CapitalLambda][[2]]},
+If[SelectedLLP==LLPv,
+proc="JPsi";
+(*List of masses for which the distribution will be tabulated*)
+Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.2,0.3,0.5,0.7,1.,1.3,MaxMass[LLPv,Facility,proc]*(1-\[CapitalLambda]val)*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename]
+]
+]
+,{model\[CapitalLambda],modelnames\[CapitalLambda]}]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear, 
+}
+
+----- cell 219  label= -----
+{ResourceFunction["MonitorProgress"]@Do[
+Module[{LLPv=model\[CapitalLambda][[1]],\[CapitalLambda]val=model\[CapitalLambda][[2]]},
+If[SelectedLLP==LLPv,
+proc="JPsi";
+(*List of masses for which the distribution will be tabulated*)
+Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.2,0.3,0.5,0.7,1.,1.3,MaxMass[LLPv,Facility,proc]*(1-\[CapitalLambda]val)*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename]
+]
+]
+,{model\[CapitalLambda],modelnames\[CapitalLambda]}]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear, 
+}
+
+----- cell 220  label=Inelastic-dipole-DM_Rho0 -----
+{ResourceFunction["MonitorProgress"]@Do[
+Module[{LLPv=model\[CapitalLambda][[1]],\[CapitalLambda]val=model\[CapitalLambda][[2]]},
+If[SelectedLLP==LLPv,
+proc="Rho0";
+(*List of masses for which the distribution will be tabulated*)
+Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.2,0.3,MaxMass[LLPv,Facility,proc]*(1-\[CapitalLambda]val)*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename]
+]
+]
+,{model\[CapitalLambda],modelnames\[CapitalLambda]}]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear, 
+}
+
+----- cell 221  label= -----
+{ResourceFunction["MonitorProgress"]@Do[
+Module[{LLPv=model\[CapitalLambda][[1]],\[CapitalLambda]val=model\[CapitalLambda][[2]]},
+If[SelectedLLP==LLPv,
+proc="Rho0";
+(*List of masses for which the distribution will be tabulated*)
+Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.2,0.3,MaxMass[LLPv,Facility,proc]*(1-\[CapitalLambda]val)*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename]
+]
+]
+,{model\[CapitalLambda],modelnames\[CapitalLambda]}]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear, 
+}
+
+----- cell 222  label=Inelastic-dipole-DM_Omega -----
+{ResourceFunction["MonitorProgress"]@Do[
+Module[{LLPv=model\[CapitalLambda][[1]],\[CapitalLambda]val=model\[CapitalLambda][[2]]},
+If[SelectedLLP==LLPv,
+proc="Omega";
+(*List of masses for which the distribution will be tabulated*)
+Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.2,0.3,MaxMass[LLPv,Facility,proc]*(1-\[CapitalLambda]val)*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename]
+]
+]
+,{model\[CapitalLambda],modelnames\[CapitalLambda]}]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear, 
+}
+
+----- cell 223  label= -----
+{ResourceFunction["MonitorProgress"]@Do[
+Module[{LLPv=model\[CapitalLambda][[1]],\[CapitalLambda]val=model\[CapitalLambda][[2]]},
+If[SelectedLLP==LLPv,
+proc="Omega";
+(*List of masses for which the distribution will be tabulated*)
+Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.2,0.3,MaxMass[LLPv,Facility,proc]*(1-\[CapitalLambda]val)*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename]
+]
+]
+,{model\[CapitalLambda],modelnames\[CapitalLambda]}]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear, 
+}
+
+----- cell 224  label=Inelastic-dipole-DM_Upsilon -----
+{ResourceFunction["MonitorProgress"]@Do[
+Module[{LLPv=model\[CapitalLambda][[1]],\[CapitalLambda]val=model\[CapitalLambda][[2]]},
+If[SelectedLLP==LLPv,
+proc="Upsilon";
+(*List of masses for which the distribution will be tabulated*)
+Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.2,0.3,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename]
+]
+]
+,{model\[CapitalLambda],modelnames\[CapitalLambda]}]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear, 
+}
+
+----- cell 225  label= -----
+{ResourceFunction["MonitorProgress"]@Do[
+Module[{LLPv=model\[CapitalLambda][[1]],\[CapitalLambda]val=model\[CapitalLambda][[2]]},
+If[SelectedLLP==LLPv,
+proc="Upsilon";
+(*List of masses for which the distribution will be tabulated*)
+Do[
+MassList[LLPv,proc,Facility]=Select[{0.02,0.05,0.1,0.2,0.3,MaxMass[LLPv,Facility,proc]*0.99},0<#<MaxMass[LLPv,Facility,proc]&];
+,{Facility,FacilitiesList}];
+TabulatedPDF[mLLP_]:=BlockTabulatedPDFsFromDecaysMass[LLPv,SelectedFacility,mLLP,proc,nsim,thetaNlist[SelectedFacility],ENlist[SelectedFacility],thetaminExtrFacility[SelectedFacility,proc],"False"];
+filename=filenameToExport[LLPv,proc,SelectedFacility];
+mlist=MassList[LLPv,proc,SelectedFacility];
+tabulatedblock[TabulatedPDF,mlist,filename]
+]
+]
+,{model\[CapitalLambda],modelnames\[CapitalLambda]}]//AbsoluteTiming, 
+, {LLPv,proc,mlist}//Clear, 
+}
+
+----- cell 226  label=Deleting generated cells -----
+{dropdownDialog[list_,phrase_]:=DialogInput[{choice=""},Column[{TextCell[phrase],PopupMenu[Dynamic[choice],list],Button["OK",DialogReturn[choice]]}]]
+(*deletecellsopt=dropdownDialog[{"Yes","No"},Row[{"Would you like to remove all the generated output cells?"}]]
+If[deletecellsopt=="Yes",FrontEndTokenExecute["DeleteGeneratedCells"]]*), 
+, FrontEndTokenExecute["DeleteGeneratedCells"], 
+, FrontEndTokenExecute["SelectAll"], 
+, FrontEndTokenExecute["SelectionCloseAllGroups"]}
+
+----- cell 227  label= -----
+{dropdownDialog[list_,phrase_]:=DialogInput[{choice=""},Column[{TextCell[phrase],PopupMenu[Dynamic[choice],list],Button["OK",DialogReturn[choice]]}]]
+(*deletecellsopt=dropdownDialog[{"Yes","No"},Row[{"Would you like to remove all the generated output cells?"}]]
+If[deletecellsopt=="Yes",FrontEndTokenExecute["DeleteGeneratedCells"]]*), 
+, FrontEndTokenExecute["DeleteGeneratedCells"], 
+, FrontEndTokenExecute["SelectAll"], 
+, FrontEndTokenExecute["SelectionCloseAllGroups"]}

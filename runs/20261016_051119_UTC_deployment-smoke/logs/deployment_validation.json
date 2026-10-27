@@ -1,0 +1,82 @@
+{
+  "utc": "2026-10-16T05:21:40.698018+00:00",
+  "beijing": "2026-10-16T13:21:40.698018+08:00",
+  "physics_events": 0,
+  "physical_end_to_end_validated": false,
+  "backend": {
+    "status": "ok"
+  },
+  "frontend_status": 200,
+  "blueprint_schemas": {
+    "generate-calchep": 4,
+    "generate-ufo": 4,
+    "madanalysis-process": 4,
+    "madgraph-compile": 5,
+    "madgraph-launch": 5,
+    "micromegas-calc": 4,
+    "micromegas-compile": 4,
+    "validate-feynrules": 2
+  },
+  "tools": {
+    "collider": {
+      "success": true,
+      "tool": "collider",
+      "sdk": "0.8.2",
+      "physics_events": 0,
+      "ROOT": "6.28/10",
+      "MG5": "/opt/MG5_aMC_v3_7_0/bin/mg5_aMC",
+      "DelphesHepMC2": true,
+      "Pythia8": "8.316"
+    },
+    "mma": {
+      "success": true,
+      "tool": "mma",
+      "sdk": "0.8.2",
+      "physics_events": 0,
+      "wolfram": " - FeynRules - \nVersion: 2.3.49 (*29 September 2021).\nAuthors: A. Alloul, N. Christensen, C. Degrande, C. Duhr, B. Fuks\n \nPlease cite:\n    - Comput.Phys.Commun.185:2250-2300,2014 (arXiv:1310.1921);\n    - Comput.Phys.Commun.180:1614-1641,2009 (arXiv:0806.4194).\n \nhttp://feynrules.phys.ucl.ac.be\n \nThe FeynRules palette can be opened using the command FRPalette[].\nLLP_DEPLOY_OK:4:13.3.0 for Linux x86 (64-bit) (June 12, 2023):$FeynRulesVersion\nNull\n"
+    },
+    "micromegas": {
+      "success": true,
+      "tool": "micromegas",
+      "sdk": "0.8.2",
+      "physics_events": 0,
+      "micromegas": "6.3.0",
+      "compiler": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+    }
+  },
+  "serial_queue": [
+    "8c59924a9acff6e8",
+    "a3fc42e33e2faa03"
+  ],
+  "successful_tool_jobs": {
+    "collider": "95484066ce9fa228",
+    "mma": "e4f8420cceeadef9",
+    "micromegas": "4de590e0cfdcd166"
+  },
+  "guard_unit": {
+    "resource_argument_test": true,
+    "audit_failure_preserves_started_job": true,
+    "privileged_request_rejected": true,
+    "actual_jobs_submitted": 0
+  },
+  "resource_limits": {
+    "95484066ce9fa228": {
+      "Memory": 8589934592,
+      "MemorySwap": 8589934592,
+      "NanoCpus": 4000000000,
+      "PidsLimit": 1024
+    },
+    "8c59924a9acff6e8": {
+      "Memory": 8589934592,
+      "MemorySwap": 8589934592,
+      "NanoCpus": 4000000000,
+      "PidsLimit": 1024
+    },
+    "a3fc42e33e2faa03": {
+      "Memory": 8589934592,
+      "MemorySwap": 8589934592,
+      "NanoCpus": 4000000000,
+      "PidsLimit": 1024
+    }
+  }
+}

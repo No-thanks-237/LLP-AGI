@@ -1,0 +1,81 @@
+{
+  "scope": "MX decay data conversion only; no sensitivity calculation or event generation",
+  "branching_ratio_long_rows": 442052,
+  "branching_ratio_wide_rows": 34004,
+  "lifetime_rows": 34004,
+  "sources": {
+    "1809.01876": {
+      "mass_nodes": 8501,
+      "mass_min_GeV": 0.001,
+      "mass_max_GeV": 69.982,
+      "sum_br_min": 0.0,
+      "sum_br_max": 0.9999997384465593,
+      "largest_abs_sum_br_minus_one": 1.0,
+      "negative_values": 6,
+      "values_above_one": 0,
+      "within_requested_scan": {
+        "nodes": 8106,
+        "sum_br_min": 0.9832458595679766,
+        "sum_br_max": 0.9999997384465593
+      }
+    },
+    "2407.13587-Central": {
+      "mass_nodes": 8501,
+      "mass_min_GeV": 0.001,
+      "mass_max_GeV": 69.982,
+      "sum_br_min": 0.0,
+      "sum_br_max": 4.315664222124919,
+      "largest_abs_sum_br_minus_one": 3.3156642221249193,
+      "negative_values": 0,
+      "values_above_one": 2,
+      "within_requested_scan": {
+        "nodes": 8106,
+        "sum_br_min": 0.9832458595679766,
+        "sum_br_max": 4.315664222124919
+      }
+    },
+    "2407.13587-Lower": {
+      "mass_nodes": 8501,
+      "mass_min_GeV": 0.001,
+      "mass_max_GeV": 69.982,
+      "sum_br_min": 0.0,
+      "sum_br_max": 4.17122519499577,
+      "largest_abs_sum_br_minus_one": 3.1712251949957704,
+      "negative_values": 0,
+      "values_above_one": 2,
+      "within_requested_scan": {
+        "nodes": 8106,
+        "sum_br_min": 0.9832458595679766,
+        "sum_br_max": 4.17122519499577
+      }
+    },
+    "2407.13587-Upper": {
+      "mass_nodes": 8501,
+      "mass_min_GeV": 0.001,
+      "mass_max_GeV": 69.982,
+      "sum_br_min": 0.0,
+      "sum_br_max": 4.463319762782046,
+      "largest_abs_sum_br_minus_one": 3.463319762782046,
+      "negative_values": 0,
+      "values_above_one": 2,
+      "within_requested_scan": {
+        "nodes": 8106,
+        "sum_br_min": 0.9832458595679766,
+        "sum_br_max": 4.463319762782046
+      }
+    }
+  },
+  "hbar_c_GeV_m": 1.973269804593025e-16,
+  "theta_squared_reference": 1,
+  "scaling": "ctau(m, theta_squared) = ctau_reference(m)/theta_squared; Gamma = Gamma_reference*theta_squared",
+  "sha256": {
+    "BrRatioScalar.mx": "a25fc6f7e4315d8ff6b69a9e77f0491e664afdb28b7accdba68e8cd7c17f6e32",
+    "ctauS.mx": "245b1f82f8b592e3570d4bd141df487855d6a2684f15187465cddb1ef7cffe8b",
+    "BrRatioScalar.csv": "555eaa5706d9b04fc0fd5f1c7850cf438951e28e9d8eda21bf44fda0f8c7d766",
+    "BrRatioScalar_channels.csv": "937c336061cacd2e2b73d80060265509da1d3625460fd260d707ba6004ce3958",
+    "BrRatioScalar_wide.csv": "10ab724a82a060829b383b82fa1bcb92e5bf3985f63147dcd0536f4ef53eb465",
+    "ctauS.csv": "fdfa740a9d962e0ac8fc31c21375d86e835b190922a16de42a2a8da5443d54a5",
+    "data_anomalies.csv": "623b874aabbc31ce8c20759570a09f641e44708adfc291ee7088e56876099ace",
+    "GammaS_reference.csv": "c5362c65787aa36f70d0d32e6140f33daa08fe31c4691c84e1ff3e73098f936b"
+  }
+}

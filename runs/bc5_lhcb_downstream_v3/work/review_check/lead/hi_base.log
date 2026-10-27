@@ -1,0 +1,6 @@
+  B_YIELD_CORR = 1.0172
+base       m=2.20000   lo=1.258e-10 hi=8.113e-06 (35s)
+base       m=10.58340  lo=1.591e-13 hi=2.079e-09 (57s)
+base       m=28.52741  lo=2.015e-15 hi=3.880e-11 (89s)
+base       m=62.49000  lo=1.221e-16 hi=5.072e-12 (139s)
+wrote impact_base_hi.json

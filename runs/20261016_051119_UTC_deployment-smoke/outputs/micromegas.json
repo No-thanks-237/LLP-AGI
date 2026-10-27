@@ -1,0 +1,8 @@
+{
+  "success": true,
+  "tool": "micromegas",
+  "sdk": "0.8.2",
+  "physics_events": 0,
+  "micromegas": "6.3.0",
+  "compiler": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+}

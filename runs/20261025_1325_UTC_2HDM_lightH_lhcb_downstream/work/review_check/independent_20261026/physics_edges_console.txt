@@ -1,0 +1,218 @@
+{
+  "endpoints_GeV": {
+    "charged_B_to_charged_K": 4.7856630000000004,
+    "neutral_B_to_neutral_K": 4.782039,
+    "neutral_B_code_endpoint_using_charged_K": 4.785973
+  },
+  "m4p784_closed_B0_experiment": [
+    {
+      "lumi_fb": 25.0,
+      "tanb_original": 231.95787231153278,
+      "tanb_removing_closed_B0": 190.62975115548906,
+      "signal_original": 2.3025755992516475,
+      "signal_removing_closed_B0": 1.1741952879206186,
+      "relative_boundary_change": -0.17817080638046923
+    },
+    {
+      "lumi_fb": 300.0,
+      "tanb_original": 403.0513770195357,
+      "tanb_removing_closed_B0": 354.05222433517974,
+      "signal_original": 2.302931669997276,
+      "signal_removing_closed_B0": 1.194199410834994,
+      "relative_boundary_change": -0.12157048822582495
+    }
+  ],
+  "inclusive_rate_near_charged_endpoint": [
+    {
+      "mass": 4.784,
+      "Bplus": 0.00013235802626886963,
+      "Bzero": 0.0001228746611976037
+    },
+    {
+      "mass": 4.78565999,
+      "Bplus": 0.00013151577019355627,
+      "Bzero": 0.00012209326450386536
+    },
+    {
+      "mass": 4.7856629989999995,
+      "Bplus": 0.00013151424564448246,
+      "Bzero": 0.0001220918501135219
+    },
+    {
+      "mass": 4.785663001,
+      "Bplus": 0.0,
+      "Bzero": 0.0001220918491734177
+    },
+    {
+      "mass": 4.785973001,
+      "Bplus": 0.0,
+      "Bzero": 0.0
+    }
+  ],
+  "multiple_crossings": {
+    "paper_mb": [
+      {
+        "m": 3.99192,
+        "lumi": 25.0,
+        "crossings": [
+          {
+            "param": 18.302959984740664,
+            "edge": "long_lived",
+            "ds_dparam_sign": -1,
+            "param_refined": 18.174298990339185,
+            "s_at_refined": 2.3024945186631243,
+            "bracket": [
+              18.173172291592156,
+              18.175425758939188
+            ],
+            "outside_validity_B": false
+          },
+          {
+            "param": 33.63369530672136,
+            "edge": "short_lived",
+            "ds_dparam_sign": 1,
+            "param_refined": 33.483103481096684,
+            "s_at_refined": 2.302468341491029,
+            "bracket": [
+              33.481027727266564,
+              33.4851793636192
+            ],
+            "outside_validity_B": false
+          },
+          {
+            "param": 144.06222813650933,
+            "edge": "long_lived",
+            "ds_dparam_sign": -1,
+            "param_refined": 145.02035967262907,
+            "s_at_refined": 2.3029403608528995,
+            "bracket": [
+              145.01136927043396,
+              145.02935063221034
+            ],
+            "outside_validity_B": false
+          }
+        ],
+        "boundary_csv_row": {
+          "mass_GeV": 3.99192,
+          "lumi_fb": 25.0,
+          "n_crossings": 3,
+          "b_mode": "paper_mb",
+          "tanb_short": 33.483103481096684,
+          "tanb_short_err": 3.6822189123394486,
+          "short_outside_validity": false,
+          "rel_ds_at_short": 0.25089757458303447,
+          "tanb_long": 145.02035967262907,
+          "tanb_long_err": 1.6585139734053773,
+          "long_outside_validity": false,
+          "rel_ds_at_long": 0.032078047493148874,
+          "s_at_tanb_5": 952.1931738142349,
+          "s_at_tanb_10": 32.88974121742975
+        }
+      }
+    ],
+    "exclusive": [
+      {
+        "m": 4.784,
+        "lumi": 25.0,
+        "crossings": [
+          {
+            "param": 22.026696488457354,
+            "edge": "long_lived",
+            "ds_dparam_sign": -1,
+            "param_refined": 21.97084142530973,
+            "s_at_refined": 2.303101081992958,
+            "bracket": [
+              21.96947936344873,
+              21.97220357161572
+            ],
+            "outside_validity_B": false
+          },
+          {
+            "param": 70.08449358220194,
+            "edge": "short_lived",
+            "ds_dparam_sign": 1,
+            "param_refined": 68.39903687534834,
+            "s_at_refined": 2.3026154759222828,
+            "bracket": [
+              68.39479654073149,
+              68.40327747285708
+            ],
+            "outside_validity_B": false
+          },
+          {
+            "param": 120.42141019633853,
+            "edge": "long_lived",
+            "ds_dparam_sign": -1,
+            "param_refined": 123.87590960066278,
+            "s_at_refined": 2.30263757931626,
+            "bracket": [
+              123.86823002896604,
+              123.88358964847694
+            ],
+            "outside_validity_B": false
+          }
+        ],
+        "boundary_csv_row": {
+          "mass_GeV": 4.784,
+          "lumi_fb": 25.0,
+          "n_crossings": 3,
+          "b_mode": "exclusive",
+          "tanb_short": 68.39903687534834,
+          "tanb_short_err": 4.811291521401899,
+          "short_outside_validity": false,
+          "rel_ds_at_short": 0.10797125454535197,
+          "tanb_long": 123.87590960066278,
+          "tanb_long_err": 2.3922763463624728,
+          "long_outside_validity": false,
+          "rel_ds_at_long": 0.03383169668013139,
+          "s_at_tanb_5": 1698.9860368564912,
+          "s_at_tanb_10": 95.49207323195579
+        }
+      }
+    ]
+  },
+  "vertex_equal_scales_removable_singularity": [
+    {
+      "alpha": 0.001,
+      "lambda": 1000.0,
+      "relative_difference": -0.0019941584537619406,
+      "exact": 2.620129754604683e-06
+    },
+    {
+      "alpha": 0.1,
+      "lambda": 10.0,
+      "relative_difference": -0.0018127741429286859,
+      "exact": 0.021820181000299477
+    },
+    {
+      "alpha": 1,
+      "lambda": 1.0,
+      "relative_difference": -0.00032437661072814983,
+      "exact": 0.4484613871592389
+    },
+    {
+      "alpha": 10,
+      "lambda": 0.1,
+      "relative_difference": 0.009133419316841751,
+      "exact": 0.000499398866300793
+    },
+    {
+      "alpha": 30,
+      "lambda": 0.03333333333333333,
+      "relative_difference": 0.029561401331010817,
+      "exact": 2.900863120340454e-12
+    }
+  ],
+  "parent_subsampling_OR_toy": {
+    "q": 0.1,
+    "true": 0.18999999999999995,
+    "estimator": 0.2,
+    "relative_bias": 0.05263157894736881
+  },
+  "nominal_tanb5_mc": {
+    "min": 0.032026278927515264,
+    "median": 0.060450780975034216,
+    "max": 0.421246193622396,
+    "worst_mass": 4.18
+  }
+}

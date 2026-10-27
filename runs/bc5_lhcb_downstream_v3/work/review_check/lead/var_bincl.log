@@ -1,0 +1,16 @@
+  B_YIELD_CORR = 1.0172
+bincl      m=0.50000   lo=4.291e-10 hi=1.773e-04 (17s)
+bincl      m=1.00000   lo=4.023e-11 hi=2.369e-06 (24s)
+bincl      m=1.50000   lo=1.033e-10 hi=8.561e-06 (32s)
+bincl      m=2.00000   lo=1.174e-10 hi=6.287e-06 (40s)
+bincl      m=2.20000   lo=1.200e-10 hi=4.866e-06 (47s)
+bincl      m=3.00000   lo=5.861e-11 hi=1.670e-06 (52s)
+bincl      m=4.34457   lo=3.833e-12 hi=6.865e-08 (58s)
+bincl      m=5.08225   lo=1.345e-12 hi=2.056e-08 (62s)
+bincl      m=7.50000   lo=3.751e-13 hi=5.424e-09 (67s)
+bincl      m=10.58340  lo=1.624e-13 hi=2.282e-09 (72s)
+bincl      m=15.23435  lo=1.672e-14 hi=2.609e-10 (81s)
+bincl      m=28.52741  lo=1.938e-15 hi=4.282e-11 (90s)
+bincl      m=45.66582  lo=5.150e-16 hi=1.297e-11 (99s)
+bincl      m=62.49000  lo=1.344e-16 hi=4.434e-12 (109s)
+wrote impact_bincl.json

@@ -1,0 +1,32 @@
+{
+  "5.082255": {
+    "coefficient_native_spectrum_reference_acceptance": 0.0028475747678856278,
+    "coefficient_native_spectrum_linear_epsilon": 0.002850833012929298,
+    "coefficient_reference_spectrum_and_acceptance_linear_spectrum": 0.0034302090875365852,
+    "coefficient_reference_spectrum_and_acceptance_log_spectrum": 0.0033910243140178207
+  },
+  "13.023095": {
+    "coefficient_native_spectrum_reference_acceptance": 0.007522997327537679,
+    "coefficient_native_spectrum_linear_epsilon": 0.007535630981528232,
+    "coefficient_reference_spectrum_and_acceptance_linear_spectrum": 0.009224027389606839,
+    "coefficient_reference_spectrum_and_acceptance_log_spectrum": 0.009128696318317635
+  },
+  "33.371213": {
+    "coefficient_native_spectrum_reference_acceptance": 0.02396118340608967,
+    "coefficient_native_spectrum_linear_epsilon": 0.024006388473611286,
+    "coefficient_reference_spectrum_and_acceptance_linear_spectrum": 0.030060273799779977,
+    "coefficient_reference_spectrum_and_acceptance_log_spectrum": 0.02975198892673811
+  },
+  "53.419632": {
+    "coefficient_native_spectrum_reference_acceptance": 0.055886800023766364,
+    "coefficient_native_spectrum_linear_epsilon": 0.05607750097435074,
+    "coefficient_reference_spectrum_and_acceptance_linear_spectrum": 0.07152397453360121,
+    "coefficient_reference_spectrum_and_acceptance_log_spectrum": 0.07010693354387197
+  },
+  "62.49": {
+    "coefficient_native_spectrum_reference_acceptance": 0.08405459379577242,
+    "coefficient_native_spectrum_linear_epsilon": 0.08489061902042293,
+    "coefficient_reference_spectrum_and_acceptance_linear_spectrum": 0.10417764873815255,
+    "coefficient_reference_spectrum_and_acceptance_log_spectrum": 0.10354009290588398
+  }
+}

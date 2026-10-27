@@ -1,0 +1,870 @@
+### FILE: EventCalc.nb
+
+----- cell 1  label= -----
+
+
+----- cell 2  label=Primary definitions -----
+{inecessary={};, 
+, ClearAll["Global`*"], 
+, ParallelEvaluate[ClearAll["Global`*"]];, 
+, CloseKernels[];, 
+, LaunchKernels[];, 
+, EventCalc=True;, 
+, $OutputSizeLimit=10000;, 
+, <<FeynCalc`
+(*{indexenergy,indexmass,indexpx,indexpy,indexpz,indexpm,indexctheta,indexpdec,indexxdec,indexydec,indexzdec,indexazacc}=Range[1,12];*), 
+, inecessary={};}
+
+----- cell 3  label=Restarting kernels -----
+{inecessary={};, 
+, ClearAll["Global`*"], 
+, ParallelEvaluate[ClearAll["Global`*"]];, 
+, CloseKernels[];, 
+, LaunchKernels[];, 
+, EventCalc=True;, 
+, $OutputSizeLimit=10000;, 
+, <<FeynCalc`
+(*{indexenergy,indexmass,indexpx,indexpy,indexpz,indexpm,indexctheta,indexpdec,indexxdec,indexydec,indexzdec,indexazacc}=Range[1,12];*), 
+, inecessary={};}
+
+----- cell 4  label= -----
+{inecessary={};, 
+, ClearAll["Global`*"], 
+, ParallelEvaluate[ClearAll["Global`*"]];, 
+, CloseKernels[];, 
+, LaunchKernels[];, 
+, EventCalc=True;, 
+, $OutputSizeLimit=10000;, 
+, <<FeynCalc`
+(*{indexenergy,indexmass,indexpx,indexpy,indexpz,indexpm,indexctheta,indexpdec,indexxdec,indexydec,indexzdec,indexazacc}=Range[1,12];*), 
+, inecessary={};}
+
+----- cell 5  label=Launching baseline notebooks -----
+
+DirectoryRoutinesEventCalc=FileNameJoin[{NotebookDirectory[],"codes/EventCalc"}];
+(*indices of the columns corresponding to the output data for decaying LLPs*)
+{indexpx,indexpy,indexpz,indexenergy,indexmass,indexctheta,indexptom,indexpdec,indexxdec,indexydec,indexzdec,indexazacc,indexnprodtot,indexyield}=Range[1,14];
+valsComp=Compile[{{data,_Real,1},{i,_Integer}},If[Compile`GetElement[data,i]==0,-90.,Log10[Compile`GetElement[data,i]]],CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable}];
+DataLogarithmiedComp=Compile[{{data,_Real,1}},{Log[Compile`GetElement[data,1]],Log[Compile`GetElement[data,2]],If[Compile`GetElement[data,3]==0,Log[10^-90.],Log[Compile`GetElement[data,3]]]},CompilationTarget->"MVM",RuntimeOptions->"Speed",RuntimeAttributes->{Listable}];
+If[Length[inecessary]==0,
+Block[{Print=Identity},
+(*Definitions*)
+NotebookEvaluate[FileNameJoin[{DirectoryRoutinesEventCalc//ParentDirectory,"generic.nb"}]];
+(*Definitions*)
+NotebookEvaluate[FileNameJoin[{DirectoryRoutinesEventCalc//ParentDirectory,"dialog-windows.nb"}]];
+(*Properties of SM particles*)
+NotebookEvaluate[FileNameJoin[{DirectoryRoutinesEventCalc//ParentDirectory,"SensCalc","SM particles.nb"}]];
+(*Defining the implemented experiments*)
+NotebookEvaluate[FileNameJoin[{DirectoryRoutinesEventCalc//ParentDirectory,"experiments.nb"}]];
+];
+inecessary={1,2,3};
+]
+
+----- cell 6  label= -----
+
+DirectoryRoutinesEventCalc=FileNameJoin[{NotebookDirectory[],"codes/EventCalc"}];
+(*indices of the columns corresponding to the output data for decaying LLPs*)
+{indexpx,indexpy,indexpz,indexenergy,indexmass,indexctheta,indexptom,indexpdec,indexxdec,indexydec,indexzdec,indexazacc,indexnprodtot,indexyield}=Range[1,14];
+valsComp=Compile[{{data,_Real,1},{i,_Integer}},If[Compile`GetElement[data,i]==0,-90.,Log10[Compile`GetElement[data,i]]],CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable}];
+DataLogarithmiedComp=Compile[{{data,_Real,1}},{Log[Compile`GetElement[data,1]],Log[Compile`GetElement[data,2]],If[Compile`GetElement[data,3]==0,Log[10^-90.],Log[Compile`GetElement[data,3]]]},CompilationTarget->"MVM",RuntimeOptions->"Speed",RuntimeAttributes->{Listable}];
+If[Length[inecessary]==0,
+Block[{Print=Identity},
+(*Definitions*)
+NotebookEvaluate[FileNameJoin[{DirectoryRoutinesEventCalc//ParentDirectory,"generic.nb"}]];
+(*Definitions*)
+NotebookEvaluate[FileNameJoin[{DirectoryRoutinesEventCalc//ParentDirectory,"dialog-windows.nb"}]];
+(*Properties of SM particles*)
+NotebookEvaluate[FileNameJoin[{DirectoryRoutinesEventCalc//ParentDirectory,"SensCalc","SM particles.nb"}]];
+(*Defining the implemented experiments*)
+NotebookEvaluate[FileNameJoin[{DirectoryRoutinesEventCalc//ParentDirectory,"experiments.nb"}]];
+];
+inecessary={1,2,3};
+]
+
+----- cell 7  label=Selecting experiment -----
+{SetDirectory[NotebookDirectory[]];, 
+, DynamicModule[{choice=None,options,rows,cols,gridButtons,maxWidth,paneHeight},options=experimentlist;(*Replace with your actual list items*)cols=3;(*Number of columns in the grid*)rows=Ceiling[Length[options]/cols];(*Number of rows*)gridButtons=Partition[PadRight[options,rows*cols,""],cols];
+(*Estimate the width of the widest button*)maxWidth=Max[StringLength/@ToString/@options]*5;(*Adjust multiplier as needed*)(*Set the height of the pane*)paneHeight=300;(*Adjust this value based on desired height*)GivenExperiment=DialogInput[Column[{TextCell["Choose the experiment:"],Pane[Dynamic@Grid[Table[With[{opt=gridButtons[[i,j]]},Button[opt,choice=opt,Background->If[choice===opt,LightBlue,None],ImageSize->{maxWidth,Automatic} (*Set width to maxWidth*)]],{i,rows},{j,cols}],Spacings->{2,2}],{Automatic,paneHeight},Scrollbars->{False,True}],Button["OK",DialogReturn[choice],ImageSize->Automatic]}]]];, 
+, Do[
+If[GivenExperiment==exp,
+width=If[MemberQ[{"LHCb-downstream","DarkQuest"},exp],170,100];
+GivenExperiment=selectionDialogExplanationOneOption[SetupsOptions[exp],SetupsDescription[exp],"Select the "<>exp<>" setup:",width];
+];
+,{exp,multiplesetups}], 
+, If[MemberQ[explistanub,GivenExperiment]==True,
+infoDialog["One of the decay volumes of ANUBIS-shaft has been selected. The full sensitivity requires calculating the acceptances for all the three volumes. You need to generate them afterwards"]], 
+, DecayVolumeExperiment=DecayVolumeGeometry[GivenExperiment];, 
+, plotExperiment=BoundaryMeshRegion[DecayVolumeExperiment,MeshCellStyle->{1->Directive[Thick,Black],2->Directive[Opacity[0.1],Interpreter["Color"]["aqua"]]},BoxRatios->{1,1,1},Boxed->True,Axes->True,AxesStyle->Directive[Thick,Black],(*Makes the axes thicker*)LabelStyle->{FontSize->20},(*Increases the font size of labels*)AxesLabel->{"x [m]","y [m]","z [m]"} (*Adds axes labels*)];, 
+, Print[Row[{"Selected experiment: ",GivenExperiment}]]}
+
+----- cell 8  label= -----
+{SetDirectory[NotebookDirectory[]];, 
+, DynamicModule[{choice=None,options,rows,cols,gridButtons,maxWidth,paneHeight},options=experimentlist;(*Replace with your actual list items*)cols=3;(*Number of columns in the grid*)rows=Ceiling[Length[options]/cols];(*Number of rows*)gridButtons=Partition[PadRight[options,rows*cols,""],cols];
+(*Estimate the width of the widest button*)maxWidth=Max[StringLength/@ToString/@options]*5;(*Adjust multiplier as needed*)(*Set the height of the pane*)paneHeight=300;(*Adjust this value based on desired height*)GivenExperiment=DialogInput[Column[{TextCell["Choose the experiment:"],Pane[Dynamic@Grid[Table[With[{opt=gridButtons[[i,j]]},Button[opt,choice=opt,Background->If[choice===opt,LightBlue,None],ImageSize->{maxWidth,Automatic} (*Set width to maxWidth*)]],{i,rows},{j,cols}],Spacings->{2,2}],{Automatic,paneHeight},Scrollbars->{False,True}],Button["OK",DialogReturn[choice],ImageSize->Automatic]}]]];, 
+, Do[
+If[GivenExperiment==exp,
+width=If[MemberQ[{"LHCb-downstream","DarkQuest"},exp],170,100];
+GivenExperiment=selectionDialogExplanationOneOption[SetupsOptions[exp],SetupsDescription[exp],"Select the "<>exp<>" setup:",width];
+];
+,{exp,multiplesetups}], 
+, If[MemberQ[explistanub,GivenExperiment]==True,
+infoDialog["One of the decay volumes of ANUBIS-shaft has been selected. The full sensitivity requires calculating the acceptances for all the three volumes. You need to generate them afterwards"]], 
+, DecayVolumeExperiment=DecayVolumeGeometry[GivenExperiment];, 
+, plotExperiment=BoundaryMeshRegion[DecayVolumeExperiment,MeshCellStyle->{1->Directive[Thick,Black],2->Directive[Opacity[0.1],Interpreter["Color"]["aqua"]]},BoxRatios->{1,1,1},Boxed->True,Axes->True,AxesStyle->Directive[Thick,Black],(*Makes the axes thicker*)LabelStyle->{FontSize->20},(*Increases the font size of labels*)AxesLabel->{"x [m]","y [m]","z [m]"} (*Adds axes labels*)];, 
+, Print[Row[{"Selected experiment: ",GivenExperiment}]]}
+
+----- cell 9  label= -----
+plotExperiment
+
+----- cell 10  label=Defining geometry -----
+{FacilitySelected=FacilityExperiment[GivenExperiment];, 
+, IfCollider=MemberQ[{"LHC","FCC-hh"},FacilitySelected];, 
+, EmaxGivenExperiment=EmaxFacility[FacilitySelected];, 
+, ECALoptionGivenExperiment=ECALoptionExperiment[GivenExperiment];, 
+, DipoleMagnetOptionGivenExperiment=DipoleMagnetOptionExperiment[GivenExperiment];
+(*Decay volume as detector: True, False*), 
+, DecayVolumeAsDetectorGivenExperiment=DecayVolumeAsDetectorExperiment[GivenExperiment];
+(*Default list of detectable decay products at the given experiment*), 
+, DetectablePDGsGivenExperiment=DetectablePDGsExperiment[GivenExperiment]//Sort;
+(*___________________________________________________________*)
+(*Box, Cylinder, Annular cylinder*), 
+, GeometryGivenExperiment=GeometryExperiment[GivenExperiment];
+(*Beam, Transverse*), 
+, DetectorPlaneOrientationGivenExperiment=DetectorPlaneOrientationExperiment[GivenExperiment];
+(*Decay volume parameters*), 
+, xToDecayVolumeCenterGivenExperiment[z_]=xToDecayVolumeCenterExperiment[z,GivenExperiment];, 
+, yToDecayVolumeCenterGivenExperiment[z_]=yToDecayVolumeCenterExperiment[z,GivenExperiment];, 
+, dxDecayVolumeGivenExperiment[z_]=dxDecayVolumeExperiment[z,GivenExperiment];, 
+, dyDecayVolumeGivenExperiment[z_]=dyDecayVolumeExperiment[z,GivenExperiment];, 
+, zDecVolMin=zToDecayVolumeExperiment[GivenExperiment]//N;, 
+, dzFidGivenExperiment=dzDecayVolumeExperiment[GivenExperiment];, 
+, zDecVolMax=zMaxDecayVolumeExperiment[GivenExperiment]//N;, 
+, xLongMaxDetectorGivenExperiment=xLongMaxDetectorExperiment[GivenExperiment];, 
+, dxDecayVolumeGivenExperimentMax=dxDecayVolumeGivenExperiment[zDecVolMax];, 
+, dyDecayVolumeGivenExperimentMax=dyDecayVolumeGivenExperiment[zDecVolMax];, 
+, RinnerDecayVolumeGivenExperiment[z_]=RinnerDecayVolumeExperiment[GivenExperiment,z];, 
+, RouterDecayVolumeGivenExperiment[z_]=RouterDecayVolumeExperiment[GivenExperiment,z];, 
+, DecayVolumeGeometryGivenExperiment=DecayVolumeGeometry[GivenExperiment];
+(*Detector parameters*), 
+, dxDetectorGivenExperiment[z_]=dxDetectorExperiment[GivenExperiment,z];, 
+, dyDetectorGivenExperiment[z_]=dyDetectorExperiment[GivenExperiment,z];, 
+, dzDetectorGivenExperiment=dzDetectorExperiment[GivenExperiment];, 
+, dx2PerpDetectorGivenExperiment[z_]=If[DetectorPlaneOrientationGivenExperiment=="Transverse",dyDetectorGivenExperiment[z],dzDetectorGivenExperiment];, 
+, {xToDetectorCenterGivenExperiment,yToDetectorCenterGivenExperiment,zToDetectorCenterGivenExperiment}=(Symbol[#<>"ToDetectorCenterExperiment"][GivenExperiment]//N)&/@{"x","y","z"};, 
+, x2PerpToDetectorCenterGivenExperiment=If[DetectorPlaneOrientationGivenExperiment=="Transverse",yToDetectorCenterGivenExperiment,zToDetectorCenterGivenExperiment];, 
+, {RinnerDetectorGivenExperiment[z_],RouterDetectorGivenExperiment[z_]}={RinnerDetectorExperiment[GivenExperiment,z],RouterDetectorExperiment[GivenExperiment,z]};
+(*____________________________________________________*)
+(*Given experiment boundaries*)
+(*____________________________________________________*), 
+, GivenExperimentBoundaries=thetaminmaxBlock[GivenExperiment];
+(*Min/max polar angles of the decay volume and detector, and the corresponding points*), 
+, {thetaminExp,thetamaxExp}={GivenExperimentBoundaries[[1]][[2]][[1]],GivenExperimentBoundaries[[1]][[2]][[2]]}//N;, 
+, {RthetaminDecayVolume,RthetamaxDecayVolume}={GivenExperimentBoundaries[[1]][[1]][[1]],GivenExperimentBoundaries[[1]][[1]][[2]]};, 
+, If[DecayVolumeAsDetectorGivenExperiment=="False",
+{ThetaDetGivenExperimentMin,ThetaDetGivenExperimentMax}={GivenExperimentBoundaries[[2]][[2]][[1]],GivenExperimentBoundaries[[2]][[2]][[2]]}//N;
+{RthetaminEndDetector,RthetamaxEndDetector}={GivenExperimentBoundaries[[2]][[1]][[1]],GivenExperimentBoundaries[[2]][[1]][[2]]}//N;
+DetectorGeometryGivenExperiment=DetectorGeometry[GivenExperiment],
+{ThetaDetGivenExperimentMin,ThetaDetGivenExperimentMax}={thetaminExp,thetamaxExp}
+];
+(*Min/max angles of the decay volume within margin*), 
+, margin=0.1;, 
+, {thetaminDistr,thetamaxDistr}={Max[(1-margin)thetaminExp,10^-5.],(1+margin)thetamaxExp};, 
+, margin=0.01;, 
+, {thetaminExp,thetamaxExp}={(1+margin)*Max[thetaminExp,10^-5.],(1-margin)*thetamaxExp};, 
+, FinalPlaneGivenExperiment=PlaneEndOfDetectorExperiment[GivenExperiment];
+(*Parameters of the dipole magnet in the spectrometer (if present)*), 
+, zMagnetMinGivenExperiment=zMagnetMinExperiment[GivenExperiment];, 
+, zMagnetMaxGivenExperiment=zMagnetMaxExperiment[GivenExperiment];, 
+, Bval=If[DipoleMagnetOptionGivenExperiment=="False",0.,MagneticFieldExperiment[GivenExperiment]];
+(*ECAL position*), 
+, ECALpositionGivenExperiment=zECALminExperiment[GivenExperiment];
+(*FinalPlaneGivenExperiment=If[finalPlaneGivenExperiment=="EndOfDetector",EndOfDetectorGivenExperiment,PlaneDetectorGivenExperiment];*), 
+, TableParticlesNumbersGivenExperiment=TableNumbersParticlesExperiment[GivenExperiment];, 
+, xLongMuonPlaneGivenExperiment=xLongMuonPlaneExperiment[GivenExperiment];, 
+, xLongNonMuonPlaneGivenExperiment=xLongNonMuonPlaneExperiment[GivenExperiment];
+(*Geometric conditions*), 
+, IfLLPinsideDecVol[zLLP_,xLLP_,yLLP_]=IfLLPinsideDecVol[zLLP,xLLP,yLLP,GivenExperiment];, 
+, {IfLLPtoDet[x1LLPproj_,x2LLPproj_,xLongProj_],IfLLPnotToDet[x1LLPproj_,x2LLPproj_,xLongProj_]}={IfLLPtoDet[x1LLPproj,x2LLPproj,xLongProj,GivenExperiment],IfLLPnotToDet[x1LLPproj,x2LLPproj,xLongProj,GivenExperiment]};, 
+, IfLLPdecVolToDet[zLLP_,xLLP_,yLLP_,x1LLPproj_,x2LLPproj_,xLongProj_]=IfLLPdecVolToDet[zLLP,xLLP,yLLP,x1LLPproj,x2LLPproj,xLongProj,GivenExperiment];, 
+, IfLLPdecVolNotToDet[zLLP_,xLLP_,yLLP_,x1LLPproj_,x2LLPproj_,xLongProj_]=IfLLPdecVolNotToDet[zLLP,xLLP,yLLP,x1LLPproj,x2LLPproj,xLongProj,GivenExperiment];, 
+, DecayAcceptanceGeometry[x1LLPproj_,x2LLPproj_,xLongProj_]=IfLLPtoDet[x1LLPproj,x2LLPproj,xLongProj];, 
+, AtargetSelected=AtargetExperiment[GivenExperiment];, 
+, NpotGivenExperiment=NPOTexperiment[GivenExperiment];, 
+, pointSecondCoordinate=If[DetectorPlaneOrientationGivenExperiment=="Transverse",2,If[DetectorPlaneOrientationGivenExperiment=="Parallel",3]];
+(*_______________*), 
+, Efficiency[mLLP_]=1;, 
+, If[GivenExperiment=="NuCal",Efficiency[mLLP_]=0.7];, 
+, If[GivenExperiment=="CHARM",Efficiency[mLLP_]=0.7];
+(*_______________*)
+(*Creating the grid of z values within the range of the decay volume*), 
+, zvals=Join[RandomReal[{zDecVolMin,zDecVolMax},10^4],{zDecVolMin,zDecVolMax}]//Sort//DeleteDuplicates;, 
+, nfzvals=Nearest[zvals->"Index"];}
+
+----- cell 11  label= -----
+{FacilitySelected=FacilityExperiment[GivenExperiment];, 
+, IfCollider=MemberQ[{"LHC","FCC-hh"},FacilitySelected];, 
+, EmaxGivenExperiment=EmaxFacility[FacilitySelected];, 
+, ECALoptionGivenExperiment=ECALoptionExperiment[GivenExperiment];, 
+, DipoleMagnetOptionGivenExperiment=DipoleMagnetOptionExperiment[GivenExperiment];
+(*Decay volume as detector: True, False*), 
+, DecayVolumeAsDetectorGivenExperiment=DecayVolumeAsDetectorExperiment[GivenExperiment];
+(*Default list of detectable decay products at the given experiment*), 
+, DetectablePDGsGivenExperiment=DetectablePDGsExperiment[GivenExperiment]//Sort;
+(*___________________________________________________________*)
+(*Box, Cylinder, Annular cylinder*), 
+, GeometryGivenExperiment=GeometryExperiment[GivenExperiment];
+(*Beam, Transverse*), 
+, DetectorPlaneOrientationGivenExperiment=DetectorPlaneOrientationExperiment[GivenExperiment];
+(*Decay volume parameters*), 
+, xToDecayVolumeCenterGivenExperiment[z_]=xToDecayVolumeCenterExperiment[z,GivenExperiment];, 
+, yToDecayVolumeCenterGivenExperiment[z_]=yToDecayVolumeCenterExperiment[z,GivenExperiment];, 
+, dxDecayVolumeGivenExperiment[z_]=dxDecayVolumeExperiment[z,GivenExperiment];, 
+, dyDecayVolumeGivenExperiment[z_]=dyDecayVolumeExperiment[z,GivenExperiment];, 
+, zDecVolMin=zToDecayVolumeExperiment[GivenExperiment]//N;, 
+, dzFidGivenExperiment=dzDecayVolumeExperiment[GivenExperiment];, 
+, zDecVolMax=zMaxDecayVolumeExperiment[GivenExperiment]//N;, 
+, xLongMaxDetectorGivenExperiment=xLongMaxDetectorExperiment[GivenExperiment];, 
+, dxDecayVolumeGivenExperimentMax=dxDecayVolumeGivenExperiment[zDecVolMax];, 
+, dyDecayVolumeGivenExperimentMax=dyDecayVolumeGivenExperiment[zDecVolMax];, 
+, RinnerDecayVolumeGivenExperiment[z_]=RinnerDecayVolumeExperiment[GivenExperiment,z];, 
+, RouterDecayVolumeGivenExperiment[z_]=RouterDecayVolumeExperiment[GivenExperiment,z];, 
+, DecayVolumeGeometryGivenExperiment=DecayVolumeGeometry[GivenExperiment];
+(*Detector parameters*), 
+, dxDetectorGivenExperiment[z_]=dxDetectorExperiment[GivenExperiment,z];, 
+, dyDetectorGivenExperiment[z_]=dyDetectorExperiment[GivenExperiment,z];, 
+, dzDetectorGivenExperiment=dzDetectorExperiment[GivenExperiment];, 
+, dx2PerpDetectorGivenExperiment[z_]=If[DetectorPlaneOrientationGivenExperiment=="Transverse",dyDetectorGivenExperiment[z],dzDetectorGivenExperiment];, 
+, {xToDetectorCenterGivenExperiment,yToDetectorCenterGivenExperiment,zToDetectorCenterGivenExperiment}=(Symbol[#<>"ToDetectorCenterExperiment"][GivenExperiment]//N)&/@{"x","y","z"};, 
+, x2PerpToDetectorCenterGivenExperiment=If[DetectorPlaneOrientationGivenExperiment=="Transverse",yToDetectorCenterGivenExperiment,zToDetectorCenterGivenExperiment];, 
+, {RinnerDetectorGivenExperiment[z_],RouterDetectorGivenExperiment[z_]}={RinnerDetectorExperiment[GivenExperiment,z],RouterDetectorExperiment[GivenExperiment,z]};
+(*____________________________________________________*)
+(*Given experiment boundaries*)
+(*____________________________________________________*), 
+, GivenExperimentBoundaries=thetaminmaxBlock[GivenExperiment];
+(*Min/max polar angles of the decay volume and detector, and the corresponding points*), 
+, {thetaminExp,thetamaxExp}={GivenExperimentBoundaries[[1]][[2]][[1]],GivenExperimentBoundaries[[1]][[2]][[2]]}//N;, 
+, {RthetaminDecayVolume,RthetamaxDecayVolume}={GivenExperimentBoundaries[[1]][[1]][[1]],GivenExperimentBoundaries[[1]][[1]][[2]]};, 
+, If[DecayVolumeAsDetectorGivenExperiment=="False",
+{ThetaDetGivenExperimentMin,ThetaDetGivenExperimentMax}={GivenExperimentBoundaries[[2]][[2]][[1]],GivenExperimentBoundaries[[2]][[2]][[2]]}//N;
+{RthetaminEndDetector,RthetamaxEndDetector}={GivenExperimentBoundaries[[2]][[1]][[1]],GivenExperimentBoundaries[[2]][[1]][[2]]}//N;
+DetectorGeometryGivenExperiment=DetectorGeometry[GivenExperiment],
+{ThetaDetGivenExperimentMin,ThetaDetGivenExperimentMax}={thetaminExp,thetamaxExp}
+];
+(*Min/max angles of the decay volume within margin*), 
+, margin=0.1;, 
+, {thetaminDistr,thetamaxDistr}={Max[(1-margin)thetaminExp,10^-5.],(1+margin)thetamaxExp};, 
+, margin=0.01;, 
+, {thetaminExp,thetamaxExp}={(1+margin)*Max[thetaminExp,10^-5.],(1-margin)*thetamaxExp};, 
+, FinalPlaneGivenExperiment=PlaneEndOfDetectorExperiment[GivenExperiment];
+(*Parameters of the dipole magnet in the spectrometer (if present)*), 
+, zMagnetMinGivenExperiment=zMagnetMinExperiment[GivenExperiment];, 
+, zMagnetMaxGivenExperiment=zMagnetMaxExperiment[GivenExperiment];, 
+, Bval=If[DipoleMagnetOptionGivenExperiment=="False",0.,MagneticFieldExperiment[GivenExperiment]];
+(*ECAL position*), 
+, ECALpositionGivenExperiment=zECALminExperiment[GivenExperiment];
+(*FinalPlaneGivenExperiment=If[finalPlaneGivenExperiment=="EndOfDetector",EndOfDetectorGivenExperiment,PlaneDetectorGivenExperiment];*), 
+, TableParticlesNumbersGivenExperiment=TableNumbersParticlesExperiment[GivenExperiment];, 
+, xLongMuonPlaneGivenExperiment=xLongMuonPlaneExperiment[GivenExperiment];, 
+, xLongNonMuonPlaneGivenExperiment=xLongNonMuonPlaneExperiment[GivenExperiment];
+(*Geometric conditions*), 
+, IfLLPinsideDecVol[zLLP_,xLLP_,yLLP_]=IfLLPinsideDecVol[zLLP,xLLP,yLLP,GivenExperiment];, 
+, {IfLLPtoDet[x1LLPproj_,x2LLPproj_,xLongProj_],IfLLPnotToDet[x1LLPproj_,x2LLPproj_,xLongProj_]}={IfLLPtoDet[x1LLPproj,x2LLPproj,xLongProj,GivenExperiment],IfLLPnotToDet[x1LLPproj,x2LLPproj,xLongProj,GivenExperiment]};, 
+, IfLLPdecVolToDet[zLLP_,xLLP_,yLLP_,x1LLPproj_,x2LLPproj_,xLongProj_]=IfLLPdecVolToDet[zLLP,xLLP,yLLP,x1LLPproj,x2LLPproj,xLongProj,GivenExperiment];, 
+, IfLLPdecVolNotToDet[zLLP_,xLLP_,yLLP_,x1LLPproj_,x2LLPproj_,xLongProj_]=IfLLPdecVolNotToDet[zLLP,xLLP,yLLP,x1LLPproj,x2LLPproj,xLongProj,GivenExperiment];, 
+, DecayAcceptanceGeometry[x1LLPproj_,x2LLPproj_,xLongProj_]=IfLLPtoDet[x1LLPproj,x2LLPproj,xLongProj];, 
+, AtargetSelected=AtargetExperiment[GivenExperiment];, 
+, NpotGivenExperiment=NPOTexperiment[GivenExperiment];, 
+, pointSecondCoordinate=If[DetectorPlaneOrientationGivenExperiment=="Transverse",2,If[DetectorPlaneOrientationGivenExperiment=="Parallel",3]];
+(*_______________*), 
+, Efficiency[mLLP_]=1;, 
+, If[GivenExperiment=="NuCal",Efficiency[mLLP_]=0.7];, 
+, If[GivenExperiment=="CHARM",Efficiency[mLLP_]=0.7];
+(*_______________*)
+(*Creating the grid of z values within the range of the decay volume*), 
+, zvals=Join[RandomReal[{zDecVolMin,zDecVolMax},10^4],{zDecVolMin,zDecVolMax}]//Sort//DeleteDuplicates;, 
+, nfzvals=Nearest[zvals->"Index"];}
+
+----- cell 12  label=Specifying LLP -----
+{LLPlist={"HNL","Scalar","DP","ALP-photon"};, 
+, DynamicModule[{choice=None,options,rows,cols,gridButtons,maxWidth,paneHeight},
+options=LLPlist;(*Replace with your actual list items*)
+cols=3;(*Number of columns in the grid*)
+rows=Ceiling[Length[options]/cols];(*Number of rows*)
+gridButtons=Partition[PadRight[options,rows*cols,""],cols];
+(*Estimate the width of the widest button*)
+maxWidth=Max[StringLength/@ToString/@options]*15;(*Adjust multiplier as needed*)
+(*Set the height of the pane*)
+paneHeight=300;
+(*Adjust this value based on desired height*)LLPdirName=DialogInput[Column[{TextCell["Choose the LLP:"],Pane[Dynamic@Grid[Table[With[{opt=gridButtons[[i,j]]},Button[opt,choice=opt,Background->If[choice===opt,LightBlue,None],ImageSize->{maxWidth,Automatic} (*Set width to maxWidth*)]],{i,rows},{j,cols}],Spacings->{2,2}],{Automatic,paneHeight},Scrollbars->{False,True}],Button["OK",DialogReturn[choice],ImageSize->Automatic]}]]];, 
+, If[LLPdirName=="HNL",
+ListHNLtype={"Dirac","Majorana"};
+HNLtype=dropdownDialog[ListHNLtype,"Select the HNL type:"];
+{MixingPatterne,MixingPatternmu,MixingPatterntau}=DialogInput[{pattern={1.,0.,0.}},Column[{"Enter the mixing pattern \!\(\*SubscriptBox[SuperscriptBox[\(U\), \(2\)], \(e\)]\):\!\(\*SubscriptBox[SuperscriptBox[\(U\), \(2\)], \(mu\)]\):\!\(\*SubscriptBox[SuperscriptBox[\(U\), \(2\)], \(tau\)]\) = \!\(\*SuperscriptBox[\(U\), \(2\)]\)(\!\(\*SubscriptBox[\(x\), \(e\)]\):\!\(\*SubscriptBox[\(x\), \(mu\)]\):\!\(\*SubscriptBox[\(x\), \(tau\)]\)) (where \!\(\*SubscriptBox[\([CapitalSigma]\), \(i\)]\)\!\(\*SubscriptBox[\(x\), \(i\)]\) = 1) in the form {xe,xmu,xtau}:",InputField[Dynamic[pattern],Expression],Button["Proceed",DialogReturn[pattern],ImageSize->Automatic]}]]//N;
+MixingPattern=(MixingPatterne+MixingPatternmu+MixingPatterntau)^-1{MixingPatterne,MixingPatternmu,MixingPatterntau}//N;
+{{"HNL type","Mixing pattern:"},{HNLtype,MixingPattern}}
+]}
+
+----- cell 13  label=LLP selector -----
+{LLPlist={"HNL","Scalar","DP","ALP-photon"};, 
+, DynamicModule[{choice=None,options,rows,cols,gridButtons,maxWidth,paneHeight},
+options=LLPlist;(*Replace with your actual list items*)
+cols=3;(*Number of columns in the grid*)
+rows=Ceiling[Length[options]/cols];(*Number of rows*)
+gridButtons=Partition[PadRight[options,rows*cols,""],cols];
+(*Estimate the width of the widest button*)
+maxWidth=Max[StringLength/@ToString/@options]*15;(*Adjust multiplier as needed*)
+(*Set the height of the pane*)
+paneHeight=300;
+(*Adjust this value based on desired height*)LLPdirName=DialogInput[Column[{TextCell["Choose the LLP:"],Pane[Dynamic@Grid[Table[With[{opt=gridButtons[[i,j]]},Button[opt,choice=opt,Background->If[choice===opt,LightBlue,None],ImageSize->{maxWidth,Automatic} (*Set width to maxWidth*)]],{i,rows},{j,cols}],Spacings->{2,2}],{Automatic,paneHeight},Scrollbars->{False,True}],Button["OK",DialogReturn[choice],ImageSize->Automatic]}]]];, 
+, If[LLPdirName=="HNL",
+ListHNLtype={"Dirac","Majorana"};
+HNLtype=dropdownDialog[ListHNLtype,"Select the HNL type:"];
+{MixingPatterne,MixingPatternmu,MixingPatterntau}=DialogInput[{pattern={1.,0.,0.}},Column[{"Enter the mixing pattern \!\(\*SubscriptBox[SuperscriptBox[\(U\), \(2\)], \(e\)]\):\!\(\*SubscriptBox[SuperscriptBox[\(U\), \(2\)], \(mu\)]\):\!\(\*SubscriptBox[SuperscriptBox[\(U\), \(2\)], \(tau\)]\) = \!\(\*SuperscriptBox[\(U\), \(2\)]\)(\!\(\*SubscriptBox[\(x\), \(e\)]\):\!\(\*SubscriptBox[\(x\), \(mu\)]\):\!\(\*SubscriptBox[\(x\), \(tau\)]\)) (where \!\(\*SubscriptBox[\([CapitalSigma]\), \(i\)]\)\!\(\*SubscriptBox[\(x\), \(i\)]\) = 1) in the form {xe,xmu,xtau}:",InputField[Dynamic[pattern],Expression],Button["Proceed",DialogReturn[pattern],ImageSize->Automatic]}]]//N;
+MixingPattern=(MixingPatterne+MixingPatternmu+MixingPatterntau)^-1{MixingPatterne,MixingPatternmu,MixingPatterntau}//N;
+{{"HNL type","Mixing pattern:"},{HNLtype,MixingPattern}}
+]}
+
+----- cell 14  label= -----
+{LLPlist={"HNL","Scalar","DP","ALP-photon"};, 
+, DynamicModule[{choice=None,options,rows,cols,gridButtons,maxWidth,paneHeight},
+options=LLPlist;(*Replace with your actual list items*)
+cols=3;(*Number of columns in the grid*)
+rows=Ceiling[Length[options]/cols];(*Number of rows*)
+gridButtons=Partition[PadRight[options,rows*cols,""],cols];
+(*Estimate the width of the widest button*)
+maxWidth=Max[StringLength/@ToString/@options]*15;(*Adjust multiplier as needed*)
+(*Set the height of the pane*)
+paneHeight=300;
+(*Adjust this value based on desired height*)LLPdirName=DialogInput[Column[{TextCell["Choose the LLP:"],Pane[Dynamic@Grid[Table[With[{opt=gridButtons[[i,j]]},Button[opt,choice=opt,Background->If[choice===opt,LightBlue,None],ImageSize->{maxWidth,Automatic} (*Set width to maxWidth*)]],{i,rows},{j,cols}],Spacings->{2,2}],{Automatic,paneHeight},Scrollbars->{False,True}],Button["OK",DialogReturn[choice],ImageSize->Automatic]}]]];, 
+, If[LLPdirName=="HNL",
+ListHNLtype={"Dirac","Majorana"};
+HNLtype=dropdownDialog[ListHNLtype,"Select the HNL type:"];
+{MixingPatterne,MixingPatternmu,MixingPatterntau}=DialogInput[{pattern={1.,0.,0.}},Column[{"Enter the mixing pattern \!\(\*SubscriptBox[SuperscriptBox[\(U\), \(2\)], \(e\)]\):\!\(\*SubscriptBox[SuperscriptBox[\(U\), \(2\)], \(mu\)]\):\!\(\*SubscriptBox[SuperscriptBox[\(U\), \(2\)], \(tau\)]\) = \!\(\*SuperscriptBox[\(U\), \(2\)]\)(\!\(\*SubscriptBox[\(x\), \(e\)]\):\!\(\*SubscriptBox[\(x\), \(mu\)]\):\!\(\*SubscriptBox[\(x\), \(tau\)]\)) (where \!\(\*SubscriptBox[\([CapitalSigma]\), \(i\)]\)\!\(\*SubscriptBox[\(x\), \(i\)]\) = 1) in the form {xe,xmu,xtau}:",InputField[Dynamic[pattern],Expression],Button["Proceed",DialogReturn[pattern],ImageSize->Automatic]}]]//N;
+MixingPattern=(MixingPatterne+MixingPatternmu+MixingPatterntau)^-1{MixingPatterne,MixingPatternmu,MixingPatterntau}//N;
+{{"HNL type","Mixing pattern:"},{HNLtype,MixingPattern}}
+]}
+
+----- cell 15  label=Production probabilities and tabulated distributions -----
+(*Defining the following functions:*)
+(*
+DoubleDistrLLPdata[proc], which is the tabulated distribution for the given production process
+*)
+(*
+GridInFinal[process], which is Log10grids {mass, polar angle, energy} for the given tabulated distribution function
+*)
+(*
+DistrVals[process], which are reshaped distribution values for this grid
+*)
+(*
+PmotherToLLP[mLLP,coupling1,coupling2,process], which are interpolations of the production probabilities 
+coupling1, coupling2 are two couplings controlling the production rates; for some models, there is only one coupling
+*)
+inecessary={};
+If[Length[inecessary]==0,
+NotebookEvaluate[FileNameJoin[{DirectoryRoutinesEventCalc,"ProductionProbabilities.nb"}]];
+inecessary={1,2,3};
+]//AbsoluteTiming
+Print[Row[{"List of production channels and facilities implemented for ",LLPdirName," at ", FacilitySelected,":"}]]
+ListProcesses
+productionlist=Join[{"All"},ListProcesses];
+DynamicModule[{choice={"All"},list,phrase},
+DialogInput[Column[{Row[{"Select the production channels to be used for the sensitivity calculation:"}],Pane[TogglerBar[Dynamic[choice],productionlist,Appearance->{Automatic,Automatic}],ImageSize->{Automatic,Automatic},Scrollbars->{False,True}],Button["Submit",DialogReturn[{ProdChannelsSelected}={choice}],ImageSize->Automatic]}]]];
+If[MemberQ[ProdChannelsSelected,"All"],ProdChannelsSelected=ListProcesses;]
+Print["Selected production channels:"]
+ProdChannelsSelected
+Print["If there are production probabilities to all available distributions:"];
+If[LLPdirName!="HNL",
+IfCondDistrToWeights=ProdChannelsSelected==Select[WeightsCombinations,MemberQ[ProdChannelsSelected,#]&]
+,
+IfCondDistrToWeights=Sort[ProdChannelsSelected]==Sort[Select[DeleteDuplicates[WeightsCombinations[[All,2]]],MemberQ[ProdChannelsSelected,#]&]]
+]
+Do[
+ProbabilityProcess[mLLP_,coupling1_,coupling2_,proc]=MotherFraction[proc]*PmotherToLLP[mLLP,coupling1,coupling2,proc]
+,{proc,ProdChannelsSelected}]
+If[LLPdirName=="HNL",
+MixingPatternShortened=ToString[NumberForm[#,{Infinity,2}]]&/@MixingPattern;
+rowprodprob=Row[{LLPdirName," with mixing pattern = ",MixingPatternShortened," at ",GivenExperiment}];
+,
+rowprodprob=Row[{LLPdirName," at ",GivenExperiment}];
+]
+{mLLPminSelected,mLLPmaxSelected}={Min[mLLPmin[#]&/@ProdChannelsSelected],Max[mLLPmax[#]&/@ProdChannelsSelected]};
+
+
+----- cell 16  label= -----
+(*Defining the following functions:*)
+(*
+DoubleDistrLLPdata[proc], which is the tabulated distribution for the given production process
+*)
+(*
+GridInFinal[process], which is Log10grids {mass, polar angle, energy} for the given tabulated distribution function
+*)
+(*
+DistrVals[process], which are reshaped distribution values for this grid
+*)
+(*
+PmotherToLLP[mLLP,coupling1,coupling2,process], which are interpolations of the production probabilities 
+coupling1, coupling2 are two couplings controlling the production rates; for some models, there is only one coupling
+*)
+inecessary={};
+If[Length[inecessary]==0,
+NotebookEvaluate[FileNameJoin[{DirectoryRoutinesEventCalc,"ProductionProbabilities.nb"}]];
+inecessary={1,2,3};
+]//AbsoluteTiming
+Print[Row[{"List of production channels and facilities implemented for ",LLPdirName," at ", FacilitySelected,":"}]]
+ListProcesses
+productionlist=Join[{"All"},ListProcesses];
+DynamicModule[{choice={"All"},list,phrase},
+DialogInput[Column[{Row[{"Select the production channels to be used for the sensitivity calculation:"}],Pane[TogglerBar[Dynamic[choice],productionlist,Appearance->{Automatic,Automatic}],ImageSize->{Automatic,Automatic},Scrollbars->{False,True}],Button["Submit",DialogReturn[{ProdChannelsSelected}={choice}],ImageSize->Automatic]}]]];
+If[MemberQ[ProdChannelsSelected,"All"],ProdChannelsSelected=ListProcesses;]
+Print["Selected production channels:"]
+ProdChannelsSelected
+Print["If there are production probabilities to all available distributions:"];
+If[LLPdirName!="HNL",
+IfCondDistrToWeights=ProdChannelsSelected==Select[WeightsCombinations,MemberQ[ProdChannelsSelected,#]&]
+,
+IfCondDistrToWeights=Sort[ProdChannelsSelected]==Sort[Select[DeleteDuplicates[WeightsCombinations[[All,2]]],MemberQ[ProdChannelsSelected,#]&]]
+]
+Do[
+ProbabilityProcess[mLLP_,coupling1_,coupling2_,proc]=MotherFraction[proc]*PmotherToLLP[mLLP,coupling1,coupling2,proc]
+,{proc,ProdChannelsSelected}]
+If[LLPdirName=="HNL",
+MixingPatternShortened=ToString[NumberForm[#,{Infinity,2}]]&/@MixingPattern;
+rowprodprob=Row[{LLPdirName," with mixing pattern = ",MixingPatternShortened," at ",GivenExperiment}];
+,
+rowprodprob=Row[{LLPdirName," at ",GivenExperiment}];
+]
+{mLLPminSelected,mLLPmaxSelected}={Min[mLLPmin[#]&/@ProdChannelsSelected],Max[mLLPmax[#]&/@ProdChannelsSelected]};
+
+
+----- cell 17  label= -----
+(*Defining the following functions:*)
+(*
+DoubleDistrLLPdata[proc], which is the tabulated distribution for the given production process
+*)
+(*
+GridInFinal[process], which is Log10grids {mass, polar angle, energy} for the given tabulated distribution function
+*)
+(*
+DistrVals[process], which are reshaped distribution values for this grid
+*)
+(*
+PmotherToLLP[mLLP,coupling1,coupling2,process], which are interpolations of the production probabilities 
+coupling1, coupling2 are two couplings controlling the production rates; for some models, there is only one coupling
+*)
+inecessary={};
+If[Length[inecessary]==0,
+NotebookEvaluate[FileNameJoin[{DirectoryRoutinesEventCalc,"ProductionProbabilities.nb"}]];
+inecessary={1,2,3};
+]//AbsoluteTiming
+Print[Row[{"List of production channels and facilities implemented for ",LLPdirName," at ", FacilitySelected,":"}]]
+ListProcesses
+productionlist=Join[{"All"},ListProcesses];
+DynamicModule[{choice={"All"},list,phrase},
+DialogInput[Column[{Row[{"Select the production channels to be used for the sensitivity calculation:"}],Pane[TogglerBar[Dynamic[choice],productionlist,Appearance->{Automatic,Automatic}],ImageSize->{Automatic,Automatic},Scrollbars->{False,True}],Button["Submit",DialogReturn[{ProdChannelsSelected}={choice}],ImageSize->Automatic]}]]];
+If[MemberQ[ProdChannelsSelected,"All"],ProdChannelsSelected=ListProcesses;]
+Print["Selected production channels:"]
+ProdChannelsSelected
+Print["If there are production probabilities to all available distributions:"];
+If[LLPdirName!="HNL",
+IfCondDistrToWeights=ProdChannelsSelected==Select[WeightsCombinations,MemberQ[ProdChannelsSelected,#]&]
+,
+IfCondDistrToWeights=Sort[ProdChannelsSelected]==Sort[Select[DeleteDuplicates[WeightsCombinations[[All,2]]],MemberQ[ProdChannelsSelected,#]&]]
+]
+Do[
+ProbabilityProcess[mLLP_,coupling1_,coupling2_,proc]=MotherFraction[proc]*PmotherToLLP[mLLP,coupling1,coupling2,proc]
+,{proc,ProdChannelsSelected}]
+If[LLPdirName=="HNL",
+MixingPatternShortened=ToString[NumberForm[#,{Infinity,2}]]&/@MixingPattern;
+rowprodprob=Row[{LLPdirName," with mixing pattern = ",MixingPatternShortened," at ",GivenExperiment}];
+,
+rowprodprob=Row[{LLPdirName," at ",GivenExperiment}];
+]
+{mLLPminSelected,mLLPmaxSelected}={Min[mLLPmin[#]&/@ProdChannelsSelected],Max[mLLPmax[#]&/@ProdChannelsSelected]};
+
+
+----- cell 18  label=Gluing distributions for all production channels -----
+(*Defining the following functions*)
+(*
+DistrMapperMassProd[mLLP,ProdChannel], that maps the tabulated distribution {mass,theta,energy,distr} on the given mass for the given production channel
+*)
+(*
+DistrMapperMass[mLLP,coupling1, coupling2,listprocesses], that maps the tabulated distribution {mass,theta,energy,distr} averaged over the list of the production channels `listprocesses` on the given mass
+*)
+(*
+DistrMapper[mlist,coupling1, coupling2,listprocesses], that maps the tabulated distribution {mass,theta,energy,distr} averaged over the list of the production channels `listprocesses` on the given mass list mlist
+*)
+(*
+FindingEmaxtheta[mLLP,process,order], that returns the list {theta, E_max(theta)} for the given LLP mass and the production channel. The parameter `order` defines E_max: 1-CDF_distr(E_max,theta) = 10^-order
+*)
+inecessary={};
+If[Length[inecessary]==0,
+NotebookEvaluate[FileNameJoin[{DirectoryRoutinesEventCalc,"DistrMapper.nb"}]];
+inecessary={1,2,3};
+]//AbsoluteTiming
+
+----- cell 19  label= -----
+(*Defining the following functions*)
+(*
+DistrMapperMassProd[mLLP,ProdChannel], that maps the tabulated distribution {mass,theta,energy,distr} on the given mass for the given production channel
+*)
+(*
+DistrMapperMass[mLLP,coupling1, coupling2,listprocesses], that maps the tabulated distribution {mass,theta,energy,distr} averaged over the list of the production channels `listprocesses` on the given mass
+*)
+(*
+DistrMapper[mlist,coupling1, coupling2,listprocesses], that maps the tabulated distribution {mass,theta,energy,distr} averaged over the list of the production channels `listprocesses` on the given mass list mlist
+*)
+(*
+FindingEmaxtheta[mLLP,process,order], that returns the list {theta, E_max(theta)} for the given LLP mass and the production channel. The parameter `order` defines E_max: 1-CDF_distr(E_max,theta) = 10^-order
+*)
+inecessary={};
+If[Length[inecessary]==0,
+NotebookEvaluate[FileNameJoin[{DirectoryRoutinesEventCalc,"DistrMapper.nb"}]];
+inecessary={1,2,3};
+]//AbsoluteTiming
+
+----- cell 20  label=Total production probability and plots -----
+(*Total LLP's production probability defined as N_prod,total/N_PoT*)
+Do[ProbabilityProcess[mLLP_,coupling1_,coupling2_,proc]=If[mLLPmin[proc]<=mLLP<=mLLPmax[proc],Evaluate[ProbabilityProcess[mLLP,coupling1,coupling2,proc]],0]
+,{proc,ProdChannelsSelected}]
+ProbabilityLLPprodTot[mLLP_,coupling1_,coupling2_]=Sum[ProbabilityProcess[mLLP,coupling1,coupling2,proc],{proc,ProdChannelsSelected}];
+ptprodprob=Quiet[LogLogPlot[Evaluate[Join[{ProbabilityLLPprodTot[mLLP,1,1]},Table[ProbabilityProcess[mLLP,1,1,proc],{proc,ProdChannelsSelected}]]],{mLLP,Max[mLLPminSelected,0.02],mLLPmaxSelected},Frame->True,ImageSize->Large,PlotLegends->Placed[Style[#,16]&/@Join[{"Total"},ProdChannelsSelected],{0.23,0.32}], FrameStyle->Directive[Black,Thick, 25],PlotRange->{{Max[mLLPminSelected,0.02],1.1mLLPmaxSelected},All},PlotStyle->{{Thick,Gray,Dashing[0.02]},{Thick,Blue},{Thick,Darker@Red},{Thick,Darker@Darker@Green},{Thick,Darker@Cyan},{Thick,Magenta},{Thick,Brown}},AspectRatio->0.66,ImageSize->Large,FrameLabel->{"\!\(\*SubscriptBox[\(m\), \(LLP\)]\) [GeV]","\!\(\*SubscriptBox[\(P\), \(LLP, prod\)]\)/\!\(\*SuperscriptBox[\(g\), \(2\)]\)"},PlotLabel->Style[rowprodprob,16,Black],PlotPoints->200]]
+
+----- cell 21  label= -----
+(*Total LLP's production probability defined as N_prod,total/N_PoT*)
+Do[ProbabilityProcess[mLLP_,coupling1_,coupling2_,proc]=If[mLLPmin[proc]<=mLLP<=mLLPmax[proc],Evaluate[ProbabilityProcess[mLLP,coupling1,coupling2,proc]],0]
+,{proc,ProdChannelsSelected}]
+ProbabilityLLPprodTot[mLLP_,coupling1_,coupling2_]=Sum[ProbabilityProcess[mLLP,coupling1,coupling2,proc],{proc,ProdChannelsSelected}];
+ptprodprob=Quiet[LogLogPlot[Evaluate[Join[{ProbabilityLLPprodTot[mLLP,1,1]},Table[ProbabilityProcess[mLLP,1,1,proc],{proc,ProdChannelsSelected}]]],{mLLP,Max[mLLPminSelected,0.02],mLLPmaxSelected},Frame->True,ImageSize->Large,PlotLegends->Placed[Style[#,16]&/@Join[{"Total"},ProdChannelsSelected],{0.23,0.32}], FrameStyle->Directive[Black,Thick, 25],PlotRange->{{Max[mLLPminSelected,0.02],1.1mLLPmaxSelected},All},PlotStyle->{{Thick,Gray,Dashing[0.02]},{Thick,Blue},{Thick,Darker@Red},{Thick,Darker@Darker@Green},{Thick,Darker@Cyan},{Thick,Magenta},{Thick,Brown}},AspectRatio->0.66,ImageSize->Large,FrameLabel->{"\!\(\*SubscriptBox[\(m\), \(LLP\)]\) [GeV]","\!\(\*SubscriptBox[\(P\), \(LLP, prod\)]\)/\!\(\*SuperscriptBox[\(g\), \(2\)]\)"},PlotLabel->Style[rowprodprob,16,Black],PlotPoints->200]]
+
+----- cell 22  label=Exporting some data -----
+{ifExport=True;, 
+, If[ifExport,
+fastExport[filename_,tab_]:=Export[filename,StringJoin[Riffle[Riffle[#,"\t"]&/@Map[Internal`MRealToString[#,False,17]&,tab,{2}],"\n"]]];
+direxportdata=FileNameJoin[{NotebookDirectory[],"temp1","EventCalc-python-data",LLPdirName}];
+If[!MemberQ[{"Scalar"},LLPdirName],
+{mminexp,mmaxexp}={Max[Min[DoubleDistrLLPdata["Total"][[All,1]]],0.02],Max[DoubleDistrLLPdata["Total"][[All,1]]]};
+[CapitalDelta]mexp=0.002;
+Export[FileNameJoin[{direxportdata,"DoubleDistr-"<>LLPdirName<>".txt"}],DoubleDistrLLPdata["Total"],"Table"];
+Export[FileNameJoin[{direxportdata,"Total-yield-"<>LLPdirName<>".txt"}],Table[{m,ProbabilityLLPprodTot[m,1,1]},{m,mminexp,mmaxexp,[CapitalDelta]mexp}],"Table"];
+Export[FileNameJoin[{direxportdata,"Emax-"<>LLPdirName<>".txt"}],EmaxTabulatedData["Total"],"Table"];
+];
+If[LLPdirName=="Scalar",
+Do[
+{mminexp,mmaxexp}={Max[Min[DoubleDistrLLPdata["Total-"<>patt][[All,1]]],0.02],Max[DoubleDistrLLPdata["Total-"<>patt][[All,1]]]};
+[CapitalDelta]mexp=If[patt=="mixing",0.002,0.002];
+{coupl1exp,coupl2exp}={If[patt=="mixing",1,0.],If[patt=="mixing",0,1.]};
+Export[FileNameJoin[{direxportdata,"DoubleDistr-"<>LLPdirName<>"-"<>patt<>".txt"}],DoubleDistrLLPdata["Total-"<>patt],"Table"];
+Export[FileNameJoin[{direxportdata,"Total-yield-"<>LLPdirName<>"-"<>patt<>".txt"}],Table[{m,ProbabilityLLPprodTot[m,coupl1exp,coupl2exp]},{m,mminexp,mmaxexp,[CapitalDelta]mexp}],"Table"];
+Export[FileNameJoin[{direxportdata,"Emax-"<>LLPdirName<>"-"<>patt<>".txt"}],EmaxTabulatedData["Total-"<>patt],"Table"];
+,{patt,{"mixing","quartic"}}];
+]
+], 
+, (*{ff1,ff2,ff3}=Import[FileNameJoin[{direxportdata,"DoubleDistr-"<>LLPdirName<>#<>".txt"}],"Table"]&/@{"-mixing-e","-mixing-mu","-mixing-tau"};
+Do[
+Print[DeleteDuplicates[ff1[[All,i]]]==DeleteDuplicates[ff2[[All,i]]]==DeleteDuplicates[ff3[[All,i]]]]
+,{i,{1,2,3}}]*)}
+
+----- cell 23  label= -----
+{ifExport=True;, 
+, If[ifExport,
+fastExport[filename_,tab_]:=Export[filename,StringJoin[Riffle[Riffle[#,"\t"]&/@Map[Internal`MRealToString[#,False,17]&,tab,{2}],"\n"]]];
+direxportdata=FileNameJoin[{NotebookDirectory[],"temp1","EventCalc-python-data",LLPdirName}];
+If[!MemberQ[{"Scalar"},LLPdirName],
+{mminexp,mmaxexp}={Max[Min[DoubleDistrLLPdata["Total"][[All,1]]],0.02],Max[DoubleDistrLLPdata["Total"][[All,1]]]};
+[CapitalDelta]mexp=0.002;
+Export[FileNameJoin[{direxportdata,"DoubleDistr-"<>LLPdirName<>".txt"}],DoubleDistrLLPdata["Total"],"Table"];
+Export[FileNameJoin[{direxportdata,"Total-yield-"<>LLPdirName<>".txt"}],Table[{m,ProbabilityLLPprodTot[m,1,1]},{m,mminexp,mmaxexp,[CapitalDelta]mexp}],"Table"];
+Export[FileNameJoin[{direxportdata,"Emax-"<>LLPdirName<>".txt"}],EmaxTabulatedData["Total"],"Table"];
+];
+If[LLPdirName=="Scalar",
+Do[
+{mminexp,mmaxexp}={Max[Min[DoubleDistrLLPdata["Total-"<>patt][[All,1]]],0.02],Max[DoubleDistrLLPdata["Total-"<>patt][[All,1]]]};
+[CapitalDelta]mexp=If[patt=="mixing",0.002,0.002];
+{coupl1exp,coupl2exp}={If[patt=="mixing",1,0.],If[patt=="mixing",0,1.]};
+Export[FileNameJoin[{direxportdata,"DoubleDistr-"<>LLPdirName<>"-"<>patt<>".txt"}],DoubleDistrLLPdata["Total-"<>patt],"Table"];
+Export[FileNameJoin[{direxportdata,"Total-yield-"<>LLPdirName<>"-"<>patt<>".txt"}],Table[{m,ProbabilityLLPprodTot[m,coupl1exp,coupl2exp]},{m,mminexp,mmaxexp,[CapitalDelta]mexp}],"Table"];
+Export[FileNameJoin[{direxportdata,"Emax-"<>LLPdirName<>"-"<>patt<>".txt"}],EmaxTabulatedData["Total-"<>patt],"Table"];
+,{patt,{"mixing","quartic"}}];
+]
+], 
+, (*{ff1,ff2,ff3}=Import[FileNameJoin[{direxportdata,"DoubleDistr-"<>LLPdirName<>#<>".txt"}],"Table"]&/@{"-mixing-e","-mixing-mu","-mixing-tau"};
+Do[
+Print[DeleteDuplicates[ff1[[All,i]]]==DeleteDuplicates[ff2[[All,i]]]==DeleteDuplicates[ff3[[All,i]]]]
+,{i,{1,2,3}}]*)}
+
+----- cell 24  label=Plots -----
+(*__________________________*)
+(*Defines the following functions*)
+(*ctauLLP[mass,coupling] - ctau of the LLP in meters*)
+(*ListProcessesLLP - list of all implemented decay channels*)
+(*ListBrRatios[LLPdirName,mLLP,process] - branching ratio for the given process `process` (from `ListProcessesLLP`)*)
+(*PhaseSpacePerDecay[LLP,mLLP,ListDecays,Nevents,HadronizationOption,DecayUnstable] - the block simulating phase space for the given LLP with particular mass `mLLP`, averaging over the list of decays specified by `ListDecays`. The partons are hadronized if HadronizationOption = "True" (not supported yet). Unstable decay products are decayed if `DecayUnstable` = True*)
+inecessary={};
+If[Length[inecessary]==0,
+NotebookEvaluate[FileNameJoin[{DirectoryRoutinesEventCalc,"DecayProductsSampler.nb"}]];
+inecessary={1,2,3};
+]//AbsoluteTiming
+Print["List of all implemented decay channels:"]
+ListProcessesLLP
+decaylist=Join[{"All"},ListProcessesLLP];
+DynamicModule[{choice={"All"},list,phrase},
+DialogInput[Column[{Row[{"Select the production channels to be used for the sensitivity calculation:"}],Pane[TogglerBar[Dynamic[choice],decaylist,Appearance->"Vertical"->{Automatic,Automatic}],ImageSize->{Automatic,Automatic},Scrollbars->{False,True}],Button["Submit",DialogReturn[{ListDecaysLLPselected}={choice}],ImageSize->Automatic]}]]];
+If[MemberQ[ListDecaysLLPselected,"All"],ListDecaysLLPselected=ListProcessesLLP;]
+Print["List of selected decay channels:"]
+ListDecaysLLPselected
+PhaseSpacePerDecayFinal[mLLP_,Nevents_,HadronizationOption_,DecayUnstable_]:=PhaseSpacePerDecay[LLPdirName,mLLP,ListDecaysLLPselected,Nevents,HadronizationOption,DecayUnstable]
+
+----- cell 25  label= -----
+(*__________________________*)
+(*Defines the following functions*)
+(*ctauLLP[mass,coupling] - ctau of the LLP in meters*)
+(*ListProcessesLLP - list of all implemented decay channels*)
+(*ListBrRatios[LLPdirName,mLLP,process] - branching ratio for the given process `process` (from `ListProcessesLLP`)*)
+(*PhaseSpacePerDecay[LLP,mLLP,ListDecays,Nevents,HadronizationOption,DecayUnstable] - the block simulating phase space for the given LLP with particular mass `mLLP`, averaging over the list of decays specified by `ListDecays`. The partons are hadronized if HadronizationOption = "True" (not supported yet). Unstable decay products are decayed if `DecayUnstable` = True*)
+inecessary={};
+If[Length[inecessary]==0,
+NotebookEvaluate[FileNameJoin[{DirectoryRoutinesEventCalc,"DecayProductsSampler.nb"}]];
+inecessary={1,2,3};
+]//AbsoluteTiming
+Print["List of all implemented decay channels:"]
+ListProcessesLLP
+decaylist=Join[{"All"},ListProcessesLLP];
+DynamicModule[{choice={"All"},list,phrase},
+DialogInput[Column[{Row[{"Select the production channels to be used for the sensitivity calculation:"}],Pane[TogglerBar[Dynamic[choice],decaylist,Appearance->"Vertical"->{Automatic,Automatic}],ImageSize->{Automatic,Automatic},Scrollbars->{False,True}],Button["Submit",DialogReturn[{ListDecaysLLPselected}={choice}],ImageSize->Automatic]}]]];
+If[MemberQ[ListDecaysLLPselected,"All"],ListDecaysLLPselected=ListProcessesLLP;]
+Print["List of selected decay channels:"]
+ListDecaysLLPselected
+PhaseSpacePerDecayFinal[mLLP_,Nevents_,HadronizationOption_,DecayUnstable_]:=PhaseSpacePerDecay[LLPdirName,mLLP,ListDecaysLLPselected,Nevents,HadronizationOption,DecayUnstable]
+
+----- cell 26  label=Plots -----
+{ptprodprob=LogLogPlot[Evaluate[ctauLLP[mLLP,1]],{mLLP,mLLPminSelected,1.1mLLPmaxSelected},Frame->True,ImageSize->Large, FrameStyle->Directive[Black, 25],PlotRange->{{mLLPminSelected,1.1mLLPmaxSelected},All},PlotStyle->{{Thick,Blue},{Thick,Darker@Red},{Thick,Darker@Darker@Green},{Thick,Darker@Cyan},{Thick,Magenta},{Thick,Brown}},AspectRatio->0.66,ImageSize->Large,FrameLabel->{"\!\(\*SubscriptBox[\(m\), \(LLP\)]\) [GeV]","\!\(\*SubscriptBox[\(ctau\), \(LLP\)]\) [m]"},PlotLabel->Style[Row[{"ctau of ", LLPdirName," for coupling = 1 [units]"}],20,Black],PlotPoints->200]
+, 
+, prdecaybrs=LogLogPlot[Evaluate[Max[ListBrRatios[LLPdirName,mLLP,#,decayDescrSelected],10^-5]&/@ListDecaysLLPselected],{mLLP,Max[mLLPminSelected,0.02],1.1mLLPmaxSelected},Frame->True,ImageSize->Large, FrameStyle->Directive[Black, 25],PlotRange->{{Max[mLLPminSelected,0.02],1.1mLLPmaxSelected},{10^-4,2}},PlotStyle->{{Thick,Blue},{Thick,Darker@Red},{Thick,Darker@Darker@Green},{Thick,Darker@Cyan},{Thick,Magenta},{Thick,Brown},{Thick,Gray},{Thick,Black},{Thick,Blue,Dashing[0.02]},{Thick,Darker@Red,Dashing[0.02]},{Thick,Darker@Darker@Green,Dashing[0.02]},{Thick,Darker@Cyan,Dashing[0.02]},{Thick,Magenta,Dashing[0.02]},{Thick,Brown,Dashing[0.02]},{Thick,Gray,Dashing[0.02]},{Thick,Black,Dashing[0.02]}},AspectRatio->0.66,ImageSize->Large,FrameLabel->{"\!\(\*SubscriptBox[\(m\), \(LLP\)]\) [GeV]","Br(LLP->SM)"},PlotLabel->Style[Row[{"Br ratios of selected decay channels for ", LLPdirName}],20,Black],PlotPoints->200,PlotLegends->Placed[Style[#,16]&/@Join[ListDecaysLLPselected],Right]]}
+
+----- cell 27  label= -----
+{ptprodprob=LogLogPlot[Evaluate[ctauLLP[mLLP,1]],{mLLP,mLLPminSelected,1.1mLLPmaxSelected},Frame->True,ImageSize->Large, FrameStyle->Directive[Black, 25],PlotRange->{{mLLPminSelected,1.1mLLPmaxSelected},All},PlotStyle->{{Thick,Blue},{Thick,Darker@Red},{Thick,Darker@Darker@Green},{Thick,Darker@Cyan},{Thick,Magenta},{Thick,Brown}},AspectRatio->0.66,ImageSize->Large,FrameLabel->{"\!\(\*SubscriptBox[\(m\), \(LLP\)]\) [GeV]","\!\(\*SubscriptBox[\(ctau\), \(LLP\)]\) [m]"},PlotLabel->Style[Row[{"ctau of ", LLPdirName," for coupling = 1 [units]"}],20,Black],PlotPoints->200]
+, 
+, prdecaybrs=LogLogPlot[Evaluate[Max[ListBrRatios[LLPdirName,mLLP,#,decayDescrSelected],10^-5]&/@ListDecaysLLPselected],{mLLP,Max[mLLPminSelected,0.02],1.1mLLPmaxSelected},Frame->True,ImageSize->Large, FrameStyle->Directive[Black, 25],PlotRange->{{Max[mLLPminSelected,0.02],1.1mLLPmaxSelected},{10^-4,2}},PlotStyle->{{Thick,Blue},{Thick,Darker@Red},{Thick,Darker@Darker@Green},{Thick,Darker@Cyan},{Thick,Magenta},{Thick,Brown},{Thick,Gray},{Thick,Black},{Thick,Blue,Dashing[0.02]},{Thick,Darker@Red,Dashing[0.02]},{Thick,Darker@Darker@Green,Dashing[0.02]},{Thick,Darker@Cyan,Dashing[0.02]},{Thick,Magenta,Dashing[0.02]},{Thick,Brown,Dashing[0.02]},{Thick,Gray,Dashing[0.02]},{Thick,Black,Dashing[0.02]}},AspectRatio->0.66,ImageSize->Large,FrameLabel->{"\!\(\*SubscriptBox[\(m\), \(LLP\)]\) [GeV]","Br(LLP->SM)"},PlotLabel->Style[Row[{"Br ratios of selected decay channels for ", LLPdirName}],20,Black],PlotPoints->200,PlotLegends->Placed[Style[#,16]&/@Join[ListDecaysLLPselected],Right]]}
+
+----- cell 28  label=Sampling events -----
+(*Defining the following functions*)
+(*
+KinematicsFromTabulatedDistribution[mLLP,coupling1,coupling2,Nevents,ctau] - takes the tabulated distribution {theta,E,distr} as an input, samples from it N_events values {theta_LLP,E_LLP} in the range (theta_min,experiment,theta_max,experiment). Uses the function EmaxMapperMassToDecayTot to sample only the relevant energy range for the given polar angles. Also, takes into account that for small lifetimes the decay probability is not exponentially suppressed only for sufficiently large LLPs' energies. So effectively, for the given polar angle theta_rand, the energies are sampled from some E_min for which P_decay is not too suppressed and to E_max possible(theta_rand)
+*)
+(*
+LLPyieldtheta[mLLP,coupling1,coupling2,thetamin,thetamax,Emin,Emax] - quickly calculates the amount of LLPs with mass mLLP flying in the angular domain {theta_min,theta_max} and having energies within {E_min,E_max}. In general, it is controlled by two production couplings. In case of particles that have only 1 production couplings, their values are not relevant
+*)
+(*
+Momenta[pts,-Pi,Pi] - evalutes the 4-momenta given `pts` generated by KinematicsFromTabulatedDistribution. The 4-momenta are fixed in a way such that the LLP's trajectory intersects the decay volume  
+*)
+thetaminYield=thetaminExp;
+thetamaxYield=thetamaxExp;
+inecessary={};
+If[Length[inecessary]==0,
+NotebookEvaluate[FileNameJoin[{DirectoryRoutinesEventCalc,"LLPkinematicsSampler.nb"}]];
+inecessary={1,2,3};
+]//AbsoluteTiming
+(*KinematicsFromTabulatedDistribution[datatest,"SPS",mLLPtest,thetamintest,thetamaxtest,Neventstest,EmaxMapperMassToDecay]*)
+
+----- cell 29  label=Sampling 4-momenta of the LLPs  -----
+(*Defining the following functions*)
+(*
+KinematicsFromTabulatedDistribution[mLLP,coupling1,coupling2,Nevents,ctau] - takes the tabulated distribution {theta,E,distr} as an input, samples from it N_events values {theta_LLP,E_LLP} in the range (theta_min,experiment,theta_max,experiment). Uses the function EmaxMapperMassToDecayTot to sample only the relevant energy range for the given polar angles. Also, takes into account that for small lifetimes the decay probability is not exponentially suppressed only for sufficiently large LLPs' energies. So effectively, for the given polar angle theta_rand, the energies are sampled from some E_min for which P_decay is not too suppressed and to E_max possible(theta_rand)
+*)
+(*
+LLPyieldtheta[mLLP,coupling1,coupling2,thetamin,thetamax,Emin,Emax] - quickly calculates the amount of LLPs with mass mLLP flying in the angular domain {theta_min,theta_max} and having energies within {E_min,E_max}. In general, it is controlled by two production couplings. In case of particles that have only 1 production couplings, their values are not relevant
+*)
+(*
+Momenta[pts,-Pi,Pi] - evalutes the 4-momenta given `pts` generated by KinematicsFromTabulatedDistribution. The 4-momenta are fixed in a way such that the LLP's trajectory intersects the decay volume  
+*)
+thetaminYield=thetaminExp;
+thetamaxYield=thetamaxExp;
+inecessary={};
+If[Length[inecessary]==0,
+NotebookEvaluate[FileNameJoin[{DirectoryRoutinesEventCalc,"LLPkinematicsSampler.nb"}]];
+inecessary={1,2,3};
+]//AbsoluteTiming
+(*KinematicsFromTabulatedDistribution[datatest,"SPS",mLLPtest,thetamintest,thetamaxtest,Neventstest,EmaxMapperMassToDecay]*)
+
+----- cell 30  label= -----
+(*Defining the following functions*)
+(*
+KinematicsFromTabulatedDistribution[mLLP,coupling1,coupling2,Nevents,ctau] - takes the tabulated distribution {theta,E,distr} as an input, samples from it N_events values {theta_LLP,E_LLP} in the range (theta_min,experiment,theta_max,experiment). Uses the function EmaxMapperMassToDecayTot to sample only the relevant energy range for the given polar angles. Also, takes into account that for small lifetimes the decay probability is not exponentially suppressed only for sufficiently large LLPs' energies. So effectively, for the given polar angle theta_rand, the energies are sampled from some E_min for which P_decay is not too suppressed and to E_max possible(theta_rand)
+*)
+(*
+LLPyieldtheta[mLLP,coupling1,coupling2,thetamin,thetamax,Emin,Emax] - quickly calculates the amount of LLPs with mass mLLP flying in the angular domain {theta_min,theta_max} and having energies within {E_min,E_max}. In general, it is controlled by two production couplings. In case of particles that have only 1 production couplings, their values are not relevant
+*)
+(*
+Momenta[pts,-Pi,Pi] - evalutes the 4-momenta given `pts` generated by KinematicsFromTabulatedDistribution. The 4-momenta are fixed in a way such that the LLP's trajectory intersects the decay volume  
+*)
+thetaminYield=thetaminExp;
+thetamaxYield=thetamaxExp;
+inecessary={};
+If[Length[inecessary]==0,
+NotebookEvaluate[FileNameJoin[{DirectoryRoutinesEventCalc,"LLPkinematicsSampler.nb"}]];
+inecessary={1,2,3};
+]//AbsoluteTiming
+(*KinematicsFromTabulatedDistribution[datatest,"SPS",mLLPtest,thetamintest,thetamaxtest,Neventstest,EmaxMapperMassToDecay]*)
+
+----- cell 31  label=Sampling decay vertices of the LLPs -----
+(*Defining the following functions*)
+(*EventBlockFinal[mLLP,coupling1,coupling2,Nev,ctau] - samples 4-momenta of LLPs in the direction of the decay volume, decay vertices inside it from the value of ctau, together with computing the yield of LLPs flying to the decay volume and the azimuthal acceptance defined for the given decay vertex (it depends on theta_decay, z_decay)*)
+(*SimulateFullEvent[mLLP,coupling1,coupling2,Nev,ctau,HadronizationOption,DecayUnstable] - includes the output from EventBlockFinal[mLLP,coupling1,coupling2,Nev,ctau] plus the simulated phase space of the decay products, as described in the previous section*)
+inecessary={};
+If[Length[inecessary]==0,
+NotebookEvaluate[FileNameJoin[{DirectoryRoutinesEventCalc,"DecayVerticesSampler.nb"}]];
+inecessary={1,2,3};
+]//AbsoluteTiming
+Print["Meanings of columns of the output data for LLP:"]
+{{"Column index",indexpx,indexpy,indexpz,indexenergy,indexmass,indexctheta,indexptom,indexpdec,indexxdec,indexydec,indexzdec,indexazacc,indexnprodtot,indexyield},{"Meaning","\!\(\*FractionBox[SubscriptBox[\(p\), \(LLP, x\)], \(GeV\)]\)","\!\(\*FractionBox[SubscriptBox[\(p\), \(LLP, y\)], \(GeV\)]\)","\!\(\*FractionBox[SubscriptBox[\(p\), \(LLP, z\)], \(GeV\)]\)","\!\(\*FractionBox[SubscriptBox[\(E\), \(LLP\)], \(GeV\)]\)","\!\(\*FractionBox[SubscriptBox[\(m\), \(LLP\)], \(GeV\)]\)","cos(\!\(\*SubscriptBox[\(theta\), \(LLP\)]\))","\!\(\*FractionBox[SubscriptBox[\(p\), \(LLP\)], SubscriptBox[\(m\), \(LLP\)]]\)","\!\(\*SubscriptBox[\(P\), \(decay\)]\)","\!\(\*SubscriptBox[\(x\), \(dec\)]\)","\!\(\*SubscriptBox[\(y\), \(dec\)]\)","\!\(\*SubscriptBox[\(z\), \(dec\)]\)","\!\(\*SubscriptBox[\(epsilon\), \(az\)]\)","\!\(\*SubscriptBox[\(N\), \(prod, tot\)]\)","\!\(\*SubscriptBox[\(epsilon\), \(geom\)]\)"}}//TableForm
+Print["Meanings of columns of the output data for decay products (each decay product corresponds to its 8 columns):"]
+{{"Column index",indexpx1,indexpy1,indexpz1,indexE1,indexm1,indexpdg1,indexcharge1,indexstability1},{"Meaning","\!\(\*FractionBox[SubscriptBox[\(p\), \(decay\\ product, x\)], \(GeV\)]\)","\!\(\*FractionBox[SubscriptBox[\(p\), \(decay\\ product, y\)], \(GeV\)]\)","\!\(\*FractionBox[SubscriptBox[\(p\), \(decay\\ product, z\)], \(GeV\)]\)","\!\(\*FractionBox[SubscriptBox[\(E\), \(decay\\ product\)], \(GeV\)]\)","\!\(\*FractionBox[SubscriptBox[\(m\), \(decay\\ product\)], \(GeV\)]\)","\!\(\*SubscriptBox[\(pdg\), \(decay\\ product\)]\)","electric \!\(\*SubscriptBox[\(charge\), \(decay\\ product\)]\)","\!\(\*SubscriptBox[\(stability\), \(decay\\ product\)]\)"}}//TableForm
+
+----- cell 32  label= -----
+(*Defining the following functions*)
+(*EventBlockFinal[mLLP,coupling1,coupling2,Nev,ctau] - samples 4-momenta of LLPs in the direction of the decay volume, decay vertices inside it from the value of ctau, together with computing the yield of LLPs flying to the decay volume and the azimuthal acceptance defined for the given decay vertex (it depends on theta_decay, z_decay)*)
+(*SimulateFullEvent[mLLP,coupling1,coupling2,Nev,ctau,HadronizationOption,DecayUnstable] - includes the output from EventBlockFinal[mLLP,coupling1,coupling2,Nev,ctau] plus the simulated phase space of the decay products, as described in the previous section*)
+inecessary={};
+If[Length[inecessary]==0,
+NotebookEvaluate[FileNameJoin[{DirectoryRoutinesEventCalc,"DecayVerticesSampler.nb"}]];
+inecessary={1,2,3};
+]//AbsoluteTiming
+Print["Meanings of columns of the output data for LLP:"]
+{{"Column index",indexpx,indexpy,indexpz,indexenergy,indexmass,indexctheta,indexptom,indexpdec,indexxdec,indexydec,indexzdec,indexazacc,indexnprodtot,indexyield},{"Meaning","\!\(\*FractionBox[SubscriptBox[\(p\), \(LLP, x\)], \(GeV\)]\)","\!\(\*FractionBox[SubscriptBox[\(p\), \(LLP, y\)], \(GeV\)]\)","\!\(\*FractionBox[SubscriptBox[\(p\), \(LLP, z\)], \(GeV\)]\)","\!\(\*FractionBox[SubscriptBox[\(E\), \(LLP\)], \(GeV\)]\)","\!\(\*FractionBox[SubscriptBox[\(m\), \(LLP\)], \(GeV\)]\)","cos(\!\(\*SubscriptBox[\(theta\), \(LLP\)]\))","\!\(\*FractionBox[SubscriptBox[\(p\), \(LLP\)], SubscriptBox[\(m\), \(LLP\)]]\)","\!\(\*SubscriptBox[\(P\), \(decay\)]\)","\!\(\*SubscriptBox[\(x\), \(dec\)]\)","\!\(\*SubscriptBox[\(y\), \(dec\)]\)","\!\(\*SubscriptBox[\(z\), \(dec\)]\)","\!\(\*SubscriptBox[\(epsilon\), \(az\)]\)","\!\(\*SubscriptBox[\(N\), \(prod, tot\)]\)","\!\(\*SubscriptBox[\(epsilon\), \(geom\)]\)"}}//TableForm
+Print["Meanings of columns of the output data for decay products (each decay product corresponds to its 8 columns):"]
+{{"Column index",indexpx1,indexpy1,indexpz1,indexE1,indexm1,indexpdg1,indexcharge1,indexstability1},{"Meaning","\!\(\*FractionBox[SubscriptBox[\(p\), \(decay\\ product, x\)], \(GeV\)]\)","\!\(\*FractionBox[SubscriptBox[\(p\), \(decay\\ product, y\)], \(GeV\)]\)","\!\(\*FractionBox[SubscriptBox[\(p\), \(decay\\ product, z\)], \(GeV\)]\)","\!\(\*FractionBox[SubscriptBox[\(E\), \(decay\\ product\)], \(GeV\)]\)","\!\(\*FractionBox[SubscriptBox[\(m\), \(decay\\ product\)], \(GeV\)]\)","\!\(\*SubscriptBox[\(pdg\), \(decay\\ product\)]\)","electric \!\(\*SubscriptBox[\(charge\), \(decay\\ product\)]\)","\!\(\*SubscriptBox[\(stability\), \(decay\\ product\)]\)"}}//TableForm
+
+----- cell 33  label=Number of events -----
+NeventsBlock[mass_,coupling1_,coupling2_,Nevents_]:=Module[{c1,c2,m1},
+{llpinfodata,decayproductsdata}=SimulateFullEvent[mass,coupling1,coupling2,Nevents];
+(*Computing the number of events with decays of LLPs*)
+NeventsVal=NeventsLLP[llpinfodata];
+(*Converting the parameters to strings*)
+{c1,c2}=ToString[ScientificForm[N[#],NumberFormat->(Row[{#1,"e",#3}]&)]]&/@{coupling1,coupling2};
+m1=(mass//CForm//ToString);
+Export[FileNameJoin[{NotebookDirectory[],"Sampled Nevents",GivenExperiment,LLPdirName,"DecayEvents_mass="<>m1<>"_coupling1="<>c1<>"_coupling2="<>c2<>".mx"}],decayproductsdata,"MX"];
+Export[FileNameJoin[{NotebookDirectory[],"Sampled Nevents",GivenExperiment,LLPdirName,"LLPinfo_mass="<>m1<>"_coupling1="<>c1<>"_coupling2="<>c2<>".mx"}],llpinfodata,"MX"];
+{NeventsVal,llpinfodata,decayproductsdata}
+]
+
+----- cell 34  label= -----
+NeventsBlock[mass_,coupling1_,coupling2_,Nevents_]:=Module[{c1,c2,m1},
+{llpinfodata,decayproductsdata}=SimulateFullEvent[mass,coupling1,coupling2,Nevents];
+(*Computing the number of events with decays of LLPs*)
+NeventsVal=NeventsLLP[llpinfodata];
+(*Converting the parameters to strings*)
+{c1,c2}=ToString[ScientificForm[N[#],NumberFormat->(Row[{#1,"e",#3}]&)]]&/@{coupling1,coupling2};
+m1=(mass//CForm//ToString);
+Export[FileNameJoin[{NotebookDirectory[],"Sampled Nevents",GivenExperiment,LLPdirName,"DecayEvents_mass="<>m1<>"_coupling1="<>c1<>"_coupling2="<>c2<>".mx"}],decayproductsdata,"MX"];
+Export[FileNameJoin[{NotebookDirectory[],"Sampled Nevents",GivenExperiment,LLPdirName,"LLPinfo_mass="<>m1<>"_coupling1="<>c1<>"_coupling2="<>c2<>".mx"}],llpinfodata,"MX"];
+{NeventsVal,llpinfodata,decayproductsdata}
+]
+
+----- cell 35  label=Test -----
+
+
+----- cell 36  label= -----
+
+
+----- cell 37  label= -----
+{mt=4.2;, 
+, proctot=Select[Keys[DownValues@GridInFinal][[All,1,1]],StringContainsQ[#,"Total"]&][[1]];, 
+, mommax=10^GridInFinal[proctot][[3]]//Max;, 
+, coupling1val=3(ctauLLP[mt,1](mommax)/(mt))/(zDecVolMin), 
+, coupling2val=0.;, 
+, If[Exp[-zDecVolMin/(ctauLLP[mt,coupling1val](mommax)/(mt))]>10^-10.,
+{NeventsVal,llpinfodata,decayproductsdata}=NeventsBlock[mt,coupling1val,coupling2val,10^6];
+Print[Row[{"Number of events: ",NeventsVal}]];
+(*____________________*)
+(*Plot decay vertices and energies distributions*)
+(*____________________*)
+energies=llpinfodata[[All,indexenergy]];
+DecPos=llpinfodata[[All,{indexxdec,indexydec,indexzdec}]];
+wts1=wts2=llpinfodata[[All,indexpdec]]*llpinfodata[[All,indexazacc]];
+TruePos=RandomChoice[wts1->DecPos,10^4];
+TrueEn=RandomChoice[wts2->energies,10^4];
+{xminmaxplot,yminmaxplot,zminmaxplot}=(DecPos[[All,#]]//MinMax)&/@{1,2,3};
+yminmaxplot={-3,3};
+zminmaxplot=zminmaxplot+{-1,1}Min[1,((zminmaxplot[[2]]-zminmaxplot[[1]]))/(10)];
+pt1=Show[ListPointPlot3D[TruePos,PlotStyle->{{Thickness[0.01],Blue}}],plotExperiment(*,PlotRange->{xminmaxplot,yminmaxplot,zminmaxplot}*)];
+pt2=Histogram[{TrueEn,energies},100,"ProbabilityDensity",PlotRange->All,ScalingFunctions->{"Linear","Log"}];
+,
+Print["The selected combination of masses and couplings gives too small decay lengths for the given experiment!"]
+], 
+, pt1, 
+, pt2}
+
+----- cell 38  label=Some plots -----
+(*
+binnedData[data_,[CapitalDelta]_]:=Module[{datamin,datamax,binspos,bins,dataconv,tot},
+{datamin,datamax}=MinMax[data];
+tot=Total[data];
+binspos=Table[x,{x,datamin,datamax-[CapitalDelta],[CapitalDelta]}];
+bins=BinCounts[data,{datamin,datamax,[CapitalDelta]}];
+dataconv={binspos,bins}//Transpose;
+tot=Total[dataconv[[All,2]]];
+dataconv=({#[[1]],(#[[2]])/([CapitalDelta]*tot)}&/@dataconv)//Developer`ToPackedArray
+]
+decproddatae=Select[Partition[Flatten[decayproductsdata],LengthDataProduct],Abs[#[[indexpdg1]]]==11.&][[All,indexE1]]//N;
+decproddatamu=Select[Partition[Flatten[decayproductsdata],LengthDataProduct],Abs[#[[indexpdg1]]]==13.&][[All,indexE1]]//N;
+ListLogPlot[{binnedData[energies,10],binnedData[decproddatae,10],binnedData[decproddatamu,10]},InterpolationOrder->0,Joined->True,Frame->True,FrameStyle->Directive[Black,Thick,18],FrameLabel->{"E [GeV]","Yield"},ImageSize->Large,PlotRange->{{0.5,1000},All}]
+*)
+
+----- cell 39  label= -----
+(*
+binnedData[data_,[CapitalDelta]_]:=Module[{datamin,datamax,binspos,bins,dataconv,tot},
+{datamin,datamax}=MinMax[data];
+tot=Total[data];
+binspos=Table[x,{x,datamin,datamax-[CapitalDelta],[CapitalDelta]}];
+bins=BinCounts[data,{datamin,datamax,[CapitalDelta]}];
+dataconv={binspos,bins}//Transpose;
+tot=Total[dataconv[[All,2]]];
+dataconv=({#[[1]],(#[[2]])/([CapitalDelta]*tot)}&/@dataconv)//Developer`ToPackedArray
+]
+decproddatae=Select[Partition[Flatten[decayproductsdata],LengthDataProduct],Abs[#[[indexpdg1]]]==11.&][[All,indexE1]]//N;
+decproddatamu=Select[Partition[Flatten[decayproductsdata],LengthDataProduct],Abs[#[[indexpdg1]]]==13.&][[All,indexE1]]//N;
+ListLogPlot[{binnedData[energies,10],binnedData[decproddatae,10],binnedData[decproddatamu,10]},InterpolationOrder->0,Joined->True,Frame->True,FrameStyle->Directive[Black,Thick,18],FrameLabel->{"E [GeV]","Yield"},ImageSize->Large,PlotRange->{{0.5,1000},All}]
+*)
+
+----- cell 40  label= -----
+(*
+datamerged=Join[decayproductsdata,llpinfodata,2]//Developer`ToPackedArray;//AbsoluteTiming
+fastselector=Hold@Compile[{{data,_Real,2}},Select[data,MemberQ[{11.,12.},Abs[#[[indexpdg1]]]]&&MemberQ[{11.,12.},Abs[#[[LengthDataProduct+indexpdg1]]]]&],CompilationTarget->"C",RuntimeOptions->"Speed"]/.ruleOwn[{indexpdg1,LengthDataProduct}]//ReleaseHold;
+subdata=fastselector[decayproductsdata];//AbsoluteTiming
+llpdatasel=subdata[[All,Range[-14,-1]]];//AbsoluteTiming
+llpdatasel=Riffle[llpdatasel,llpdatasel];
+epemdatasel=Partition[Flatten[subdata[[All,Range[1,16]]]],LengthDataProduct];//AbsoluteTiming
+pointingtodet=Hold@Compile[{{data,_Real,1},{llpdata,_Real,1}},Module[{energies,px,py,pz,xmother,ymother,zmother,xprojtodet,yprojtodet,cond},
+energies=Compile`GetElement[data,indexE1];
+px=Compile`GetElement[data,indexpx];
+py=Compile`GetElement[data,indexpy];
+pz=Compile`GetElement[data,indexpz];
+xmother=Compile`GetElement[data,indexxdec];
+ymother=Compile`GetElement[data,indexydec];
+zmother=Compile`GetElement[data,indexzdec];
+xprojtodet=xmother+(zDecVolMax-zmother)*px/pz;
+yprojtodet=ymother+(zDecVolMax-zmother)*py/pz;
+cond=Boole[xToDecayVolumeCenterGivenExperiment[zDecVolMax]-dxDecayVolumeGivenExperiment[zDecVolMax]<=xprojtodet<=xToDecayVolumeCenterGivenExperiment[zDecVolMax]+dxDecayVolumeGivenExperiment[zDecVolMax]&&yToDecayVolumeCenterGivenExperiment[zDecVolMax]-dyDecayVolumeGivenExperiment[zDecVolMax]<=yprojtodet<=yToDecayVolumeCenterGivenExperiment[zDecVolMax]+dyDecayVolumeGivenExperiment[zDecVolMax]];
+{energies,cond}
+]
+,CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable}]/.ruleOwn[{indexE1,indexpx,indexpy,indexpz,indexxdec,indexydec,indexzdec,zDecVolMax}]/.ruleDown[{xToDecayVolumeCenterExperiment,dxDecayVolumeGivenExperiment,yToDecayVolumeCenterGivenExperiment,dyDecayVolumeGivenExperiment}]//ReleaseHold;
+pointingelectrons=pointingtodet[epemdatasel,llpdatasel];//AbsoluteTiming
+pointingelectrons=Select[pointingelectrons,#[[2]]==1.&];//AbsoluteTiming
+ListLogPlot[{binnedData[energies,10],binnedData[pointingelectrons[[All,1]],10]},InterpolationOrder->0,Joined->True,Frame->True,FrameStyle->Directive[Black,Thick,18],FrameLabel->{"E [GeV]","Yield"},ImageSize->Large,PlotRange->{{0.5,1000},{10^-5,0.02}},PlotStyle->{{Thick,Blue},{Thick,Darker@Red},{Thick,Darker@Darker@Green}},PlotLegends->Placed[Style[Row[{#}],18]&/@{"HNL","\!\(\*SuperscriptBox[\(e\), \(+\(/\(-\)\)\)]\)","\!\(\*SuperscriptBox[\(e\), \(+\)]\)+\!\(\*SuperscriptBox[\(e\), \(-\)]\)"},{0.8,0.8}]]
+*)
+(*
+decproddatae1=Select[Partition[Flatten[subdata],LengthDataProduct],Abs[#[[indexpdg1]]]==11.&][[All,indexE1]];
+decproddatae2=subdata[[All,indexE1]]+subdata[[All,LengthDataProduct+indexE1]];
+ListLogPlot[{binnedData[energies,10],binnedData[decproddatae1,10],binnedData[decproddatae2,10]},InterpolationOrder->0,Joined->True,Frame->True,FrameStyle->Directive[Black,Thick,18],FrameLabel->{"E [GeV]","Yield"},ImageSize->Large,PlotRange->{{0.5,1000},{10^-5,0.02}},PlotStyle->{{Thick,Blue},{Thick,Darker@Red},{Thick,Darker@Darker@Green}},PlotLegends->Placed[Style[Row[{#}],18]&/@{"HNL","\!\(\*SuperscriptBox[\(e\), \(+\(/\(-\)\)\)]\)","\!\(\*SuperscriptBox[\(e\), \(+\)]\)+\!\(\*SuperscriptBox[\(e\), \(-\)]\)"},{0.8,0.8}]]
+*)
+
+
+----- cell 41  label=Deleting generated cells -----
+{FrontEndTokenExecute["DeleteGeneratedCells"];, 
+, FrontEndTokenExecute["SelectAll"];, 
+, FrontEndTokenExecute["SelectionCloseAllGroups"];}
+
+----- cell 42  label= -----
+{FrontEndTokenExecute["DeleteGeneratedCells"];, 
+, FrontEndTokenExecute["SelectAll"];, 
+, FrontEndTokenExecute["SelectionCloseAllGroups"];}

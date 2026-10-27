@@ -1,0 +1,82 @@
+[
+ {
+  "m": 0.5,
+  "BR_pipi": 0.593402595,
+  "BR_KK": 0.0,
+  "G_pipi_ours_over_Gref_pipi": 1.5416413593092275,
+  "G_KK_ours_over_Gref_KK": NaN
+ },
+ {
+  "m": 0.8,
+  "BR_pipi": 0.579154921,
+  "BR_KK": 0.0,
+  "G_pipi_ours_over_Gref_pipi": 1.6325377534058516,
+  "G_KK_ours_over_Gref_KK": NaN
+ },
+ {
+  "m": 1.0,
+  "BR_pipi": 0.537296291,
+  "BR_KK": 0.0815960793,
+  "G_pipi_ours_over_Gref_pipi": 0.8489710154617974,
+  "G_KK_ours_over_Gref_KK": 2.455137534551752
+ },
+ {
+  "m": 1.3,
+  "BR_pipi": 0.0468058537,
+  "BR_KK": 0.301636981,
+  "G_pipi_ours_over_Gref_pipi": 1.5704380503406925,
+  "G_KK_ours_over_Gref_KK": 2.146742757094997
+ },
+ {
+  "m": 1.6,
+  "BR_pipi": 0.0217874722,
+  "BR_KK": 0.225862962,
+  "G_pipi_ours_over_Gref_pipi": 1.7446703804975874,
+  "G_KK_ours_over_Gref_KK": 2.0023033026262484
+ },
+ {
+  "m": 1.99,
+  "BR_pipi": 0.0117714607,
+  "BR_KK": 0.0876586393,
+  "G_pipi_ours_over_Gref_pipi": 1.5747193427181765,
+  "G_KK_ours_over_Gref_KK": 2.0031535454580065
+ },
+ {
+  "m": 2.5,
+  "BR_pipi": 0.0,
+  "BR_KK": 0.0,
+  "G_pipi_ours_over_Gref_pipi": NaN,
+  "G_KK_ours_over_Gref_KK": NaN
+ },
+ {
+  "m": 3.0,
+  "BR_pipi": 0.0,
+  "BR_KK": 0.0,
+  "G_pipi_ours_over_Gref_pipi": NaN,
+  "G_KK_ours_over_Gref_KK": NaN
+ },
+ {
+  "m": 4.0,
+  "BR_pipi": 0.0,
+  "BR_KK": 0.0,
+  "G_pipi_ours_over_Gref_pipi": NaN,
+  "G_KK_ours_over_Gref_KK": NaN
+ },
+ {
+  "m": 5.0,
+  "BR_pipi": 0.0,
+  "BR_KK": 0.0,
+  "G_pipi_ours_over_Gref_pipi": NaN,
+  "G_KK_ours_over_Gref_KK": NaN
+ }
+]
+m=1.00  visible_cur/visible_corrected = 1.1574  A_pipi=0.557 A_KK=0.874 A_multi=0.909
+m=1.30  visible_cur/visible_corrected = 1.0103  A_pipi=0.546 A_KK=0.855 A_multi=0.859
+m=1.60  visible_cur/visible_corrected = 0.9582  A_pipi=0.537 A_KK=0.843 A_multi=0.694
+m=1.99  visible_cur/visible_corrected = 0.9818  A_pipi=0.533 A_KK=0.796 A_multi=0.647
+m=2.2  ss run/fixed=0.902  cc run/fixed=nan
+m=2.5  ss run/fixed=0.849  cc run/fixed=nan
+m=3.0  ss run/fixed=0.785  cc run/fixed=nan
+m=4.0  ss run/fixed=0.702  cc run/fixed=0.664
+m=5.0  ss run/fixed=0.649  cc run/fixed=0.614
+m=7.0  ss run/fixed=0.583  cc run/fixed=0.552

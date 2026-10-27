@@ -1,0 +1,39 @@
+{
+  "_comment": "Monte-Carlo normalisation for the BC5 sensitivity scan.  n_gen is the number of generated events (max event id + 1) and is read back from the sample files; run_scan.py uses these values unless the BC5_NGEN_* environment variables are set.",
+  "B": {
+    "file": "bbar_heavy.txt.gz",
+    "role": "B mesons in the LHCb acceptance",
+    "n_gen": 800000,
+    "rows": 1509528,
+    "sigma_pb": 560000000.0,
+    "sigma_note": "assumed total pp -> b bbar cross section at 13 TeV. v3 uses 560 ub: LHCb measured sigma(pp->H_b X, 2<eta<5, full pT) = 144 +- 1 +- 21 ub at 13 TeV (PRL 118, 052002) and 25.41 % of the b hadrons in our own parent sample fall in that window, giving 567 +- 83 ub total; the same procedure at 7 TeV reproduces the known ~290 ub. The previous 500 ub was 12 % low and the chi_bb = 8.6e-3 of Boiarska tab:meson-amounts implies 684 ub (21 % high). UNIT: 1 ub = 1e6 pb, so 560 ub = 5.6e8 pb.",
+    "_note_etacut": "The previous sample held only B mesons with 1.5 < eta < 5.5 (0.435 B per event).  Removing the window gives 1.498 B per event over the full rapidity range.",
+    "b_mesons_per_event": 1.8855,
+    "_v3_note": "2026-10-21: sample regenerated with the correct Pythia status filter (91/92 + 83/84 + 81/82/85/86). It now carries 1.8855 B+-/B0/Bs per generated event instead of 1.318 (Magnus job 9d36fa12b8485053). The old status-91-only file is kept as bbar_heavy_status91only.txt. The B-channel yield correction in run_scan.py is derived at run time as 1.918 / measured, so it is now 1.017 instead of 1.455."
+  },
+  "K": {
+    "file": "minbias_light.txt.gz",
+    "role": "K mesons from inelastic pp",
+    "n_gen": 200000,
+    "rows": 1122896,
+    "_v35_note": "2026-10-25: regenerated (Magnus job bc5_minbias4) without the 1.5 < eta_K < 5.5 pre-cut (review N03/F09); 1.65 -> 5.61 K per generated event, Pythia sigmaGen = 78.05 mb (the normalisation still uses the measured 79.5 mb, a 1.8 % inconsistency on a channel that is ~1e-4 of the signal).",
+    "sigma_pb": 79500000000.0,
+    "sigma_note": "inelastic pp cross section 79.5 mb"
+  },
+  "H": {
+    "file": "higgs.txt.gz",
+    "role": "SM Higgs bosons, reweighted to the LHC HXSWG total",
+    "n_gen": 200000,
+    "rows": 1411171,
+    "_v35_note": "2026-10-25: regenerated again (Magnus job bc5_higgs4) without the |eta_H| <= 6 generation-time pre-cut (review N03) and with the Pythia status in column 11.  0.98 % of the Higgs have |eta_H| > 6 and were being thrown away; the selection must be applied to the scalars, not the mother.  200000 generated events, 200000 status-62 rows (one per event).",
+    "_v34_note": "2026-10-24: regenerated (Magnus job bc5_higgs3) so that the 11th column carries the Pythia STATUS (-44 shower copies, -23, +62 pre-decay copy).  run_scan.py selects |status| = 62 explicitly; the previous file (higgs_v33_backup.txt, no status column) is only a backup.  The pre-decay copy has <pT> = 60.28 GeV against 55.28 GeV for the first record of the event, i.e. the old first-copy choice biased the Higgs channel by 3-5 %.",
+    "sigma_pb": 55.4527,
+    "sigma_note": "sum of the 13 TeV SM Higgs production cross sections, pb"
+  },
+  "luminosities_fb": [
+    25.0,
+    300.0
+  ],
+  "s_threshold": 2.3,
+  "hadron_lib": "../hadron_lib"
+}

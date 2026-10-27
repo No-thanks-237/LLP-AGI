@@ -1,0 +1,457 @@
+{
+  "job_ids": [
+    "8c59924a9acff6e8",
+    "a3fc42e33e2faa03"
+  ],
+  "snapshots": [
+    {
+      "time": 1792127753.371935,
+      "states": [
+        "Preparing",
+        "Preparing"
+      ]
+    },
+    {
+      "time": 1792127753.8903751,
+      "states": [
+        "Preparing",
+        "Preparing"
+      ]
+    },
+    {
+      "time": 1792127754.410364,
+      "states": [
+        "Preparing",
+        "Preparing"
+      ]
+    },
+    {
+      "time": 1792127754.932255,
+      "states": [
+        "Preparing",
+        "Preparing"
+      ]
+    },
+    {
+      "time": 1792127755.4561138,
+      "states": [
+        "Pending",
+        "Preparing"
+      ]
+    },
+    {
+      "time": 1792127755.9745688,
+      "states": [
+        "Pending",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127756.495252,
+      "states": [
+        "Pending",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127757.0163498,
+      "states": [
+        "Pending",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127757.5382555,
+      "states": [
+        "Pending",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127758.057157,
+      "states": [
+        "Pending",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127758.5758147,
+      "states": [
+        "Pending",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127759.0961876,
+      "states": [
+        "Pending",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127759.6166275,
+      "states": [
+        "Pending",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127760.137593,
+      "states": [
+        "Running",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127760.658556,
+      "states": [
+        "Running",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127761.1786444,
+      "states": [
+        "Running",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127761.6989787,
+      "states": [
+        "Running",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127762.2196186,
+      "states": [
+        "Running",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127773.2824712,
+      "states": [
+        "Running",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127773.802507,
+      "states": [
+        "Running",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127774.3252833,
+      "states": [
+        "Running",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127774.8456197,
+      "states": [
+        "Running",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127775.3656178,
+      "states": [
+        "Running",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127775.8862998,
+      "states": [
+        "Running",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127776.4063692,
+      "states": [
+        "Running",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127776.9260733,
+      "states": [
+        "Running",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127777.444541,
+      "states": [
+        "Running",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127777.9675243,
+      "states": [
+        "Running",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127778.4905682,
+      "states": [
+        "Running",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127779.0099614,
+      "states": [
+        "Running",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127779.5315068,
+      "states": [
+        "Running",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127780.0510447,
+      "states": [
+        "Running",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127780.5733497,
+      "states": [
+        "Running",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127781.0950036,
+      "states": [
+        "Success",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127781.6162133,
+      "states": [
+        "Success",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127782.135746,
+      "states": [
+        "Success",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127782.6543925,
+      "states": [
+        "Success",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127783.1734564,
+      "states": [
+        "Success",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127783.6933982,
+      "states": [
+        "Success",
+        "Pending"
+      ]
+    },
+    {
+      "time": 1792127784.2133312,
+      "states": [
+        "Success",
+        "Running"
+      ]
+    },
+    {
+      "time": 1792127784.7320106,
+      "states": [
+        "Success",
+        "Running"
+      ]
+    },
+    {
+      "time": 1792127785.2526424,
+      "states": [
+        "Success",
+        "Running"
+      ]
+    },
+    {
+      "time": 1792127785.7738876,
+      "states": [
+        "Success",
+        "Running"
+      ]
+    },
+    {
+      "time": 1792127786.294296,
+      "states": [
+        "Success",
+        "Running"
+      ]
+    },
+    {
+      "time": 1792127786.814292,
+      "states": [
+        "Success",
+        "Running"
+      ]
+    },
+    {
+      "time": 1792127787.3359416,
+      "states": [
+        "Success",
+        "Running"
+      ]
+    },
+    {
+      "time": 1792127787.8555205,
+      "states": [
+        "Success",
+        "Running"
+      ]
+    },
+    {
+      "time": 1792127790.0420752,
+      "states": [
+        "Success",
+        "Running"
+      ]
+    },
+    {
+      "time": 1792127790.5616717,
+      "states": [
+        "Success",
+        "Running"
+      ]
+    },
+    {
+      "time": 1792127791.0829947,
+      "states": [
+        "Success",
+        "Running"
+      ]
+    },
+    {
+      "time": 1792127791.6043203,
+      "states": [
+        "Success",
+        "Running"
+      ]
+    },
+    {
+      "time": 1792127792.1245704,
+      "states": [
+        "Success",
+        "Running"
+      ]
+    },
+    {
+      "time": 1792127792.6458395,
+      "states": [
+        "Success",
+        "Running"
+      ]
+    },
+    {
+      "time": 1792127793.1653578,
+      "states": [
+        "Success",
+        "Running"
+      ]
+    },
+    {
+      "time": 1792127793.6863213,
+      "states": [
+        "Success",
+        "Running"
+      ]
+    },
+    {
+      "time": 1792127794.2058158,
+      "states": [
+        "Success",
+        "Running"
+      ]
+    },
+    {
+      "time": 1792127794.725304,
+      "states": [
+        "Success",
+        "Running"
+      ]
+    },
+    {
+      "time": 1792127795.2466323,
+      "states": [
+        "Success",
+        "Running"
+      ]
+    },
+    {
+      "time": 1792127795.7714918,
+      "states": [
+        "Success",
+        "Running"
+      ]
+    },
+    {
+      "time": 1792127796.291902,
+      "states": [
+        "Success",
+        "Running"
+      ]
+    },
+    {
+      "time": 1792127796.811226,
+      "states": [
+        "Success",
+        "Running"
+      ]
+    },
+    {
+      "time": 1792127797.3320878,
+      "states": [
+        "Success",
+        "Running"
+      ]
+    },
+    {
+      "time": 1792127797.8555276,
+      "states": [
+        "Success",
+        "Running"
+      ]
+    },
+    {
+      "time": 1792127798.3757071,
+      "states": [
+        "Success",
+        "Success"
+      ]
+    }
+  ],
+  "observed_serial_queue": true
+}

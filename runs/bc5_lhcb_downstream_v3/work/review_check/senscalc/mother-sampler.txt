@@ -1,0 +1,760 @@
+### FILE: codes/LLP distribution/mother-sampler.nb
+
+----- cell 1  label=Preliminary code: mother particles sampling -----
+(*List all files matching the distribution name pattern*)
+files=FileNames["DoubleDistr_*_*.txt",FileNameJoin[{NotebookDirectory[]//ParentDirectory//ParentDirectory,"spectra/SM particles"}],Infinity];
+(*Extracting the information about the facility and particle from the filename*)
+extractData[filename_]:=StringCases[FileNameTake[filename],"DoubleDistr_"~~facility:(Shortest[___])~~"_"~~particle:(ShortestMatch[___])~~".txt":>{facility,particle}][[1]]
+(*Extract<Particle>, <Facility>pairs and remove duplicates*)
+dataPairs=extractData[#]&/@files;
+(*Sort the pairs by Facility*)
+sortedDataPairs=SortBy[dataPairs,{#[[1]],#[[2]]}&];
+(*Importing all the distributions*)
+MotherImportingBlock[Facility_,Particle_]:=Block[{},
+filenameimport=ToString@StringForm["DoubleDistr_``_``.txt",Sequence@@{Facility,Particle}];
+dataimport=Import[FileNameJoin[{NotebookDirectory[]//ParentDirectory//ParentDirectory,"spectra/SM particles",filenameimport}],"Table"]
+]
+Do[DataDistr[sortedDataPairs[[i]][[1]],sortedDataPairs[[i]][[2]]]=MotherImportingBlock[sortedDataPairs[[i]][[1]],sortedDataPairs[[i]][[2]]],{i,1,Length[sortedDataPairs]}]//AbsoluteTiming
+sortedDataPairs=Join[sortedDataPairs,Table[{Facility,"p"},{Facility,Select[FacilitiesList,!MemberQ[{"SLAC-E137","SuperKEKB"},#]&]}]];
+sortedDataPairs=Join[sortedDataPairs,{{"ESS","PiCharged"},{"ESS","mu"}},{{"SLAC-E137","e"}}];
+sortedDataPairs=Join[sortedDataPairs,{"SuperKEKB",#}&/@{"Bcharged","B0","Bs"}];
+sortedDataPairs=SortBy[sortedDataPairs,{#[[1]],#[[2]]}&];
+(*In case some of the distributions are absent, the notebook will replace them with the distribution of the "similar" particle. This is a temporary approximation*)
+SimilarParticle["FCC-hh","Bc"]=SimilarParticle["LHC","Bc"]=SimilarParticle["SPS","Bc"]=SimilarParticle["FermilabBD","Bc"]="Bcharged";
+SimilarParticle["FCC-hh","B0"]=SimilarParticle["LHC","B0"]=SimilarParticle["SPS","B0"]=SimilarParticle["FermilabBD","B0"]=SimilarParticle["SuperKEKB","B0"]="Bcharged";
+SimilarParticle["FCC-hh","Bs"]=SimilarParticle["LHC","Bs"]=SimilarParticle["SPS","Bs"]=SimilarParticle["FermilabBD","Bs"]="Bcharged";
+SimilarParticle["FCC-hh","tau"]=SimilarParticle["LHC","tau"]=SimilarParticle["SPS","tau"]=SimilarParticle["FermilabBD","tau"]="Ds";
+SimilarParticle["FCC-hh","D0"]=SimilarParticle["FCC-hh","Ds"]="Dcharged";
+sortedDataPairs
+
+----- cell 2  label=Importing tabulated mother particles distributions -----
+(*List all files matching the distribution name pattern*)
+files=FileNames["DoubleDistr_*_*.txt",FileNameJoin[{NotebookDirectory[]//ParentDirectory//ParentDirectory,"spectra/SM particles"}],Infinity];
+(*Extracting the information about the facility and particle from the filename*)
+extractData[filename_]:=StringCases[FileNameTake[filename],"DoubleDistr_"~~facility:(Shortest[___])~~"_"~~particle:(ShortestMatch[___])~~".txt":>{facility,particle}][[1]]
+(*Extract<Particle>, <Facility>pairs and remove duplicates*)
+dataPairs=extractData[#]&/@files;
+(*Sort the pairs by Facility*)
+sortedDataPairs=SortBy[dataPairs,{#[[1]],#[[2]]}&];
+(*Importing all the distributions*)
+MotherImportingBlock[Facility_,Particle_]:=Block[{},
+filenameimport=ToString@StringForm["DoubleDistr_``_``.txt",Sequence@@{Facility,Particle}];
+dataimport=Import[FileNameJoin[{NotebookDirectory[]//ParentDirectory//ParentDirectory,"spectra/SM particles",filenameimport}],"Table"]
+]
+Do[DataDistr[sortedDataPairs[[i]][[1]],sortedDataPairs[[i]][[2]]]=MotherImportingBlock[sortedDataPairs[[i]][[1]],sortedDataPairs[[i]][[2]]],{i,1,Length[sortedDataPairs]}]//AbsoluteTiming
+sortedDataPairs=Join[sortedDataPairs,Table[{Facility,"p"},{Facility,Select[FacilitiesList,!MemberQ[{"SLAC-E137","SuperKEKB"},#]&]}]];
+sortedDataPairs=Join[sortedDataPairs,{{"ESS","PiCharged"},{"ESS","mu"}},{{"SLAC-E137","e"}}];
+sortedDataPairs=Join[sortedDataPairs,{"SuperKEKB",#}&/@{"Bcharged","B0","Bs"}];
+sortedDataPairs=SortBy[sortedDataPairs,{#[[1]],#[[2]]}&];
+(*In case some of the distributions are absent, the notebook will replace them with the distribution of the "similar" particle. This is a temporary approximation*)
+SimilarParticle["FCC-hh","Bc"]=SimilarParticle["LHC","Bc"]=SimilarParticle["SPS","Bc"]=SimilarParticle["FermilabBD","Bc"]="Bcharged";
+SimilarParticle["FCC-hh","B0"]=SimilarParticle["LHC","B0"]=SimilarParticle["SPS","B0"]=SimilarParticle["FermilabBD","B0"]=SimilarParticle["SuperKEKB","B0"]="Bcharged";
+SimilarParticle["FCC-hh","Bs"]=SimilarParticle["LHC","Bs"]=SimilarParticle["SPS","Bs"]=SimilarParticle["FermilabBD","Bs"]="Bcharged";
+SimilarParticle["FCC-hh","tau"]=SimilarParticle["LHC","tau"]=SimilarParticle["SPS","tau"]=SimilarParticle["FermilabBD","tau"]="Ds";
+SimilarParticle["FCC-hh","D0"]=SimilarParticle["FCC-hh","Ds"]="Dcharged";
+sortedDataPairs
+
+----- cell 3  label= -----
+(*List all files matching the distribution name pattern*)
+files=FileNames["DoubleDistr_*_*.txt",FileNameJoin[{NotebookDirectory[]//ParentDirectory//ParentDirectory,"spectra/SM particles"}],Infinity];
+(*Extracting the information about the facility and particle from the filename*)
+extractData[filename_]:=StringCases[FileNameTake[filename],"DoubleDistr_"~~facility:(Shortest[___])~~"_"~~particle:(ShortestMatch[___])~~".txt":>{facility,particle}][[1]]
+(*Extract<Particle>, <Facility>pairs and remove duplicates*)
+dataPairs=extractData[#]&/@files;
+(*Sort the pairs by Facility*)
+sortedDataPairs=SortBy[dataPairs,{#[[1]],#[[2]]}&];
+(*Importing all the distributions*)
+MotherImportingBlock[Facility_,Particle_]:=Block[{},
+filenameimport=ToString@StringForm["DoubleDistr_``_``.txt",Sequence@@{Facility,Particle}];
+dataimport=Import[FileNameJoin[{NotebookDirectory[]//ParentDirectory//ParentDirectory,"spectra/SM particles",filenameimport}],"Table"]
+]
+Do[DataDistr[sortedDataPairs[[i]][[1]],sortedDataPairs[[i]][[2]]]=MotherImportingBlock[sortedDataPairs[[i]][[1]],sortedDataPairs[[i]][[2]]],{i,1,Length[sortedDataPairs]}]//AbsoluteTiming
+sortedDataPairs=Join[sortedDataPairs,Table[{Facility,"p"},{Facility,Select[FacilitiesList,!MemberQ[{"SLAC-E137","SuperKEKB"},#]&]}]];
+sortedDataPairs=Join[sortedDataPairs,{{"ESS","PiCharged"},{"ESS","mu"}},{{"SLAC-E137","e"}}];
+sortedDataPairs=Join[sortedDataPairs,{"SuperKEKB",#}&/@{"Bcharged","B0","Bs"}];
+sortedDataPairs=SortBy[sortedDataPairs,{#[[1]],#[[2]]}&];
+(*In case some of the distributions are absent, the notebook will replace them with the distribution of the "similar" particle. This is a temporary approximation*)
+SimilarParticle["FCC-hh","Bc"]=SimilarParticle["LHC","Bc"]=SimilarParticle["SPS","Bc"]=SimilarParticle["FermilabBD","Bc"]="Bcharged";
+SimilarParticle["FCC-hh","B0"]=SimilarParticle["LHC","B0"]=SimilarParticle["SPS","B0"]=SimilarParticle["FermilabBD","B0"]=SimilarParticle["SuperKEKB","B0"]="Bcharged";
+SimilarParticle["FCC-hh","Bs"]=SimilarParticle["LHC","Bs"]=SimilarParticle["SPS","Bs"]=SimilarParticle["FermilabBD","Bs"]="Bcharged";
+SimilarParticle["FCC-hh","tau"]=SimilarParticle["LHC","tau"]=SimilarParticle["SPS","tau"]=SimilarParticle["FermilabBD","tau"]="Ds";
+SimilarParticle["FCC-hh","D0"]=SimilarParticle["FCC-hh","Ds"]="Dcharged";
+sortedDataPairs
+
+----- cell 4  label= -----
+(*List all files matching the distribution name pattern*)
+files=FileNames["DoubleDistr_*_*.txt",FileNameJoin[{NotebookDirectory[]//ParentDirectory//ParentDirectory,"spectra/SM particles"}],Infinity];
+(*Extracting the information about the facility and particle from the filename*)
+extractData[filename_]:=StringCases[FileNameTake[filename],"DoubleDistr_"~~facility:(Shortest[___])~~"_"~~particle:(ShortestMatch[___])~~".txt":>{facility,particle}][[1]]
+(*Extract<Particle>, <Facility>pairs and remove duplicates*)
+dataPairs=extractData[#]&/@files;
+(*Sort the pairs by Facility*)
+sortedDataPairs=SortBy[dataPairs,{#[[1]],#[[2]]}&];
+(*Importing all the distributions*)
+MotherImportingBlock[Facility_,Particle_]:=Block[{},
+filenameimport=ToString@StringForm["DoubleDistr_``_``.txt",Sequence@@{Facility,Particle}];
+dataimport=Import[FileNameJoin[{NotebookDirectory[]//ParentDirectory//ParentDirectory,"spectra/SM particles",filenameimport}],"Table"]
+]
+Do[DataDistr[sortedDataPairs[[i]][[1]],sortedDataPairs[[i]][[2]]]=MotherImportingBlock[sortedDataPairs[[i]][[1]],sortedDataPairs[[i]][[2]]],{i,1,Length[sortedDataPairs]}]//AbsoluteTiming
+sortedDataPairs=Join[sortedDataPairs,Table[{Facility,"p"},{Facility,Select[FacilitiesList,!MemberQ[{"SLAC-E137","SuperKEKB"},#]&]}]];
+sortedDataPairs=Join[sortedDataPairs,{{"ESS","PiCharged"},{"ESS","mu"}},{{"SLAC-E137","e"}}];
+sortedDataPairs=Join[sortedDataPairs,{"SuperKEKB",#}&/@{"Bcharged","B0","Bs"}];
+sortedDataPairs=SortBy[sortedDataPairs,{#[[1]],#[[2]]}&];
+(*In case some of the distributions are absent, the notebook will replace them with the distribution of the "similar" particle. This is a temporary approximation*)
+SimilarParticle["FCC-hh","Bc"]=SimilarParticle["LHC","Bc"]=SimilarParticle["SPS","Bc"]=SimilarParticle["FermilabBD","Bc"]="Bcharged";
+SimilarParticle["FCC-hh","B0"]=SimilarParticle["LHC","B0"]=SimilarParticle["SPS","B0"]=SimilarParticle["FermilabBD","B0"]=SimilarParticle["SuperKEKB","B0"]="Bcharged";
+SimilarParticle["FCC-hh","Bs"]=SimilarParticle["LHC","Bs"]=SimilarParticle["SPS","Bs"]=SimilarParticle["FermilabBD","Bs"]="Bcharged";
+SimilarParticle["FCC-hh","tau"]=SimilarParticle["LHC","tau"]=SimilarParticle["SPS","tau"]=SimilarParticle["FermilabBD","tau"]="Ds";
+SimilarParticle["FCC-hh","D0"]=SimilarParticle["FCC-hh","Ds"]="Dcharged";
+sortedDataPairs
+
+----- cell 5  label= -----
+{3.0861264`,Null}
+
+----- cell 6  label= -----
+<PARSE ERROR 'in <string>' requires string as left operand, not NoneType: 
+ FormBox[
+  RowBox[{"(", "\[NoBreak]", GridBox[{
+     {"\<\"ESS\"\>", "\<\"mu\"\>"},
+     {"\<\"ESS\"\>", "\<\"p\"\>"},
+     {"\<\"ESS\"\>", "\<\"Pi0\"\>"},
+     {"\<\"ESS\"\>", "\<\"PiCharged\"\>"},
+     {"\<\"FCC-hh\"\>", "\<\"Bcharged\"\>"},
+     {"\<\"FCC-hh\"\>", "\<\"Dcharged\"\>"},
+     {"\<>
+
+----- cell 7  label=Preliminary definitions -----
+{nd=2;, 
+, cf2=Module[{xgvars=Unique["xg"]&/@slist@@Range@nd,igvars=Unique["ig"]&/@slist@@Range@nd,tgvars=Unique["tg"]&/@slist@@Range@nd,ivars=Unique["i"]&/@slist@@Range@nd,svars=Unique["s"]&/@slist@@Range@nd,tvars=Unique["t"]&/@slist@@Range@nd,jvars=Unique["j"]&/@slist@@Range@nd},Inactivate[Compile[{seq@{xgvars,_Real,1},{y,_Real,nd}},Module[{seq@igvars,seq@tgvars,seq@ivars,seq@svars,seq@tvars},seq[igvars=Floor[xgvars]-UnitStep[xgvars-indexed@Dimensions@y]];
+seq[tgvars=xgvars-igvars];
+Table[seq[tvars=Compile`GetElement[tgvars,jvars]];
+seq[ivars=Compile`GetElement[igvars,jvars]];
+seq[svars=1.-tvars];
+eval@Total[Times@@#[[All,1]] Compile`GetElement[y,Sequence@@#[[All,2]]]&/@Tuples@Transpose[{{svars,ivars},{tvars,ivars+1}},{2,3,1}]],seq@{jvars,Length@igvars}]],CompilationTarget->"C",RuntimeAttributes->{Listable},Parallelization->True,RuntimeOptions->"Speed"],Except[seq|eval|indexed]]/.seq[expr_]:>RuleCondition@(Sequence@@Table[Inactivate[expr,Except[slist|indexed]]/.{l_slist:>l[[i]],indexed[l_]:>Inactive[Compile`GetElement][l,i]},{i,nd}])/.eval@expr_:>RuleCondition[Activate[expr/.slist->List]]]//Activate;}
+
+----- cell 8  label=Preliminary definitions -----
+{nd=2;, 
+, cf2=Module[{xgvars=Unique["xg"]&/@slist@@Range@nd,igvars=Unique["ig"]&/@slist@@Range@nd,tgvars=Unique["tg"]&/@slist@@Range@nd,ivars=Unique["i"]&/@slist@@Range@nd,svars=Unique["s"]&/@slist@@Range@nd,tvars=Unique["t"]&/@slist@@Range@nd,jvars=Unique["j"]&/@slist@@Range@nd},Inactivate[Compile[{seq@{xgvars,_Real,1},{y,_Real,nd}},Module[{seq@igvars,seq@tgvars,seq@ivars,seq@svars,seq@tvars},seq[igvars=Floor[xgvars]-UnitStep[xgvars-indexed@Dimensions@y]];
+seq[tgvars=xgvars-igvars];
+Table[seq[tvars=Compile`GetElement[tgvars,jvars]];
+seq[ivars=Compile`GetElement[igvars,jvars]];
+seq[svars=1.-tvars];
+eval@Total[Times@@#[[All,1]] Compile`GetElement[y,Sequence@@#[[All,2]]]&/@Tuples@Transpose[{{svars,ivars},{tvars,ivars+1}},{2,3,1}]],seq@{jvars,Length@igvars}]],CompilationTarget->"C",RuntimeAttributes->{Listable},Parallelization->True,RuntimeOptions->"Speed"],Except[seq|eval|indexed]]/.seq[expr_]:>RuleCondition@(Sequence@@Table[Inactivate[expr,Except[slist|indexed]]/.{l_slist:>l[[i]],indexed[l_]:>Inactive[Compile`GetElement][l,i]},{i,nd}])/.eval@expr_:>RuleCondition[Activate[expr/.slist->List]]]//Activate;}
+
+----- cell 9  label= -----
+{nd=2;, 
+, cf2=Module[{xgvars=Unique["xg"]&/@slist@@Range@nd,igvars=Unique["ig"]&/@slist@@Range@nd,tgvars=Unique["tg"]&/@slist@@Range@nd,ivars=Unique["i"]&/@slist@@Range@nd,svars=Unique["s"]&/@slist@@Range@nd,tvars=Unique["t"]&/@slist@@Range@nd,jvars=Unique["j"]&/@slist@@Range@nd},Inactivate[Compile[{seq@{xgvars,_Real,1},{y,_Real,nd}},Module[{seq@igvars,seq@tgvars,seq@ivars,seq@svars,seq@tvars},seq[igvars=Floor[xgvars]-UnitStep[xgvars-indexed@Dimensions@y]];
+seq[tgvars=xgvars-igvars];
+Table[seq[tvars=Compile`GetElement[tgvars,jvars]];
+seq[ivars=Compile`GetElement[igvars,jvars]];
+seq[svars=1.-tvars];
+eval@Total[Times@@#[[All,1]] Compile`GetElement[y,Sequence@@#[[All,2]]]&/@Tuples@Transpose[{{svars,ivars},{tvars,ivars+1}},{2,3,1}]],seq@{jvars,Length@igvars}]],CompilationTarget->"C",RuntimeAttributes->{Listable},Parallelization->True,RuntimeOptions->"Speed"],Except[seq|eval|indexed]]/.seq[expr_]:>RuleCondition@(Sequence@@Table[Inactivate[expr,Except[slist|indexed]]/.{l_slist:>l[[i]],indexed[l_]:>Inactive[Compile`GetElement][l,i]},{i,nd}])/.eval@expr_:>RuleCondition[Activate[expr/.slist->List]]]//Activate;}
+
+----- cell 10  label= -----
+{nd=2;, 
+, cf2=Module[{xgvars=Unique["xg"]&/@slist@@Range@nd,igvars=Unique["ig"]&/@slist@@Range@nd,tgvars=Unique["tg"]&/@slist@@Range@nd,ivars=Unique["i"]&/@slist@@Range@nd,svars=Unique["s"]&/@slist@@Range@nd,tvars=Unique["t"]&/@slist@@Range@nd,jvars=Unique["j"]&/@slist@@Range@nd},Inactivate[Compile[{seq@{xgvars,_Real,1},{y,_Real,nd}},Module[{seq@igvars,seq@tgvars,seq@ivars,seq@svars,seq@tvars},seq[igvars=Floor[xgvars]-UnitStep[xgvars-indexed@Dimensions@y]];
+seq[tgvars=xgvars-igvars];
+Table[seq[tvars=Compile`GetElement[tgvars,jvars]];
+seq[ivars=Compile`GetElement[igvars,jvars]];
+seq[svars=1.-tvars];
+eval@Total[Times@@#[[All,1]] Compile`GetElement[y,Sequence@@#[[All,2]]]&/@Tuples@Transpose[{{svars,ivars},{tvars,ivars+1}},{2,3,1}]],seq@{jvars,Length@igvars}]],CompilationTarget->"C",RuntimeAttributes->{Listable},Parallelization->True,RuntimeOptions->"Speed"],Except[seq|eval|indexed]]/.seq[expr_]:>RuleCondition@(Sequence@@Table[Inactivate[expr,Except[slist|indexed]]/.{l_slist:>l[[i]],indexed[l_]:>Inactive[Compile`GetElement][l,i]},{i,nd}])/.eval@expr_:>RuleCondition[Activate[expr/.slist->List]]]//Activate;}
+
+----- cell 11  label= -----
+{x_random,y_random,f[x_random,y_random]
+
+----- cell 12  label= -----
+{x_random,y_random,f[x_random,y_random]
+
+----- cell 13  label= -----
+(*Random Log[theta] points, random Log[E] points, *)
+linint2=Compile[{{randthetalog,_Real},{randElog,_Real},{gridthetalog,_Real,1},{gridElog,_Real,1},{indextheta,_Integer},{indexE,_Integer},{distrlog,_Real,2}},Module[{thetael,Eel,x1,x2,y1,y2,z11,z21,z12,z22,\[CapitalDelta],indexlargertheta,indexlargerE,lenE},
+(*Finding the index of the grids with the elements larged than the given random point*)
+thetael=Compile`GetElement[gridthetalog,indextheta];
+indexlargertheta=indextheta+UnitStep[randthetalog-thetael];
+Eel=Compile`GetElement[gridElog,indexE];
+indexlargerE=indexE+UnitStep[randElog-Eel];
+(*The two points x1, x2 with x1 < x < x2*)
+x1=Compile`GetElement[gridthetalog,indexlargertheta-1];
+x2=Compile`GetElement[gridthetalog,indexlargertheta];
+y1=Compile`GetElement[gridElog,indexlargerE-1];
+y2=Compile`GetElement[gridElog,indexlargerE];
+(*Corresponding values of the function*)
+lenE=Length[gridElog];
+z11=Compile`GetElement[distrlog,(indexlargertheta-2)*lenE+indexlargerE-1,3];
+z21=Compile`GetElement[distrlog,(indexlargertheta-1)*lenE+indexlargerE-1,3];
+z12=Compile`GetElement[distrlog,(indexlargertheta-2)*lenE+indexlargerE,3];
+z22=Compile`GetElement[distrlog,(indexlargertheta-1)*lenE+indexlargerE,3];
+\[CapitalDelta]=(x2-x1)(y2-y1);
+Exp[(*{randthetalog,x1,x2,randElog,y1,y2,z11,z21,z12,z22,*)((x2-randthetalog)*(y2-randElog))/(\[CapitalDelta])*z11+((randthetalog-x1)*(y2-randElog))/(\[CapitalDelta])z21+((x2-randthetalog)(randElog-y1))/(\[CapitalDelta])*z12+((randthetalog-x1)(randElog-y1))/((x2-x1)(y2-y1))z22(*}*)]
+],CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable},Parallelization->True]
+<<CompiledFunctionTools`
+CompilePrint@linint2;
+linint1=Compile[{{randthetalog,_Real},{gridthetalog,_Real,1},{indextheta,_Integer},{distrlog,_Real,2}},Module[{thetael,x1,x2,z1,z2,\[CapitalDelta],indexlargertheta},
+(*Finding the index of the grids with the elements larged than the given random point*)
+thetael=Compile`GetElement[gridthetalog,indextheta];
+indexlargertheta=indextheta+UnitStep[randthetalog-thetael];
+(*The two points x1, x2 with x1 < x < x2*)
+x1=Compile`GetElement[gridthetalog,indexlargertheta-1];
+x2=Compile`GetElement[gridthetalog,indexlargertheta];
+(*Corresponding values of the function*)
+z1=Compile`GetElement[distrlog,indexlargertheta,2];
+z2=Compile`GetElement[distrlog,indexlargertheta-1,2];
+\[CapitalDelta]=(x2-x1);
+(*{randthetalog,x1,x2,z1,z2,*)
+z1+(randthetalog-x1)*(z2-z1)/\[CapitalDelta](*}*)
+],CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable},Parallelization->True]
+<<CompiledFunctionTools`
+CompilePrint@linint1;
+
+----- cell 14  label= -----
+(*Random Log[theta] points, random Log[E] points, *)
+linint2=Compile[{{randthetalog,_Real},{randElog,_Real},{gridthetalog,_Real,1},{gridElog,_Real,1},{indextheta,_Integer},{indexE,_Integer},{distrlog,_Real,2}},Module[{thetael,Eel,x1,x2,y1,y2,z11,z21,z12,z22,\[CapitalDelta],indexlargertheta,indexlargerE,lenE},
+(*Finding the index of the grids with the elements larged than the given random point*)
+thetael=Compile`GetElement[gridthetalog,indextheta];
+indexlargertheta=indextheta+UnitStep[randthetalog-thetael];
+Eel=Compile`GetElement[gridElog,indexE];
+indexlargerE=indexE+UnitStep[randElog-Eel];
+(*The two points x1, x2 with x1 < x < x2*)
+x1=Compile`GetElement[gridthetalog,indexlargertheta-1];
+x2=Compile`GetElement[gridthetalog,indexlargertheta];
+y1=Compile`GetElement[gridElog,indexlargerE-1];
+y2=Compile`GetElement[gridElog,indexlargerE];
+(*Corresponding values of the function*)
+lenE=Length[gridElog];
+z11=Compile`GetElement[distrlog,(indexlargertheta-2)*lenE+indexlargerE-1,3];
+z21=Compile`GetElement[distrlog,(indexlargertheta-1)*lenE+indexlargerE-1,3];
+z12=Compile`GetElement[distrlog,(indexlargertheta-2)*lenE+indexlargerE,3];
+z22=Compile`GetElement[distrlog,(indexlargertheta-1)*lenE+indexlargerE,3];
+\[CapitalDelta]=(x2-x1)(y2-y1);
+Exp[(*{randthetalog,x1,x2,randElog,y1,y2,z11,z21,z12,z22,*)((x2-randthetalog)*(y2-randElog))/(\[CapitalDelta])*z11+((randthetalog-x1)*(y2-randElog))/(\[CapitalDelta])z21+((x2-randthetalog)(randElog-y1))/(\[CapitalDelta])*z12+((randthetalog-x1)(randElog-y1))/((x2-x1)(y2-y1))z22(*}*)]
+],CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable},Parallelization->True]
+<<CompiledFunctionTools`
+CompilePrint@linint2;
+linint1=Compile[{{randthetalog,_Real},{gridthetalog,_Real,1},{indextheta,_Integer},{distrlog,_Real,2}},Module[{thetael,x1,x2,z1,z2,\[CapitalDelta],indexlargertheta},
+(*Finding the index of the grids with the elements larged than the given random point*)
+thetael=Compile`GetElement[gridthetalog,indextheta];
+indexlargertheta=indextheta+UnitStep[randthetalog-thetael];
+(*The two points x1, x2 with x1 < x < x2*)
+x1=Compile`GetElement[gridthetalog,indexlargertheta-1];
+x2=Compile`GetElement[gridthetalog,indexlargertheta];
+(*Corresponding values of the function*)
+z1=Compile`GetElement[distrlog,indexlargertheta,2];
+z2=Compile`GetElement[distrlog,indexlargertheta-1,2];
+\[CapitalDelta]=(x2-x1);
+(*{randthetalog,x1,x2,z1,z2,*)
+z1+(randthetalog-x1)*(z2-z1)/\[CapitalDelta](*}*)
+],CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable},Parallelization->True]
+<<CompiledFunctionTools`
+CompilePrint@linint1;
+
+----- cell 15  label= -----
+<PARSE ERROR list index out of range: 
+ FormBox[
+  InterpretationBox[
+   RowBox[{
+    TagBox["CompiledFunction",
+     "SummaryHead"], "[", 
+    DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
+     TemplateBox[{
+       PaneSelectorBox[{False -> GridBox[{{
+             PaneBox[
+              ButtonBox[
+        >
+
+----- cell 16  label= -----
+<PARSE ERROR 'in <string>' requires string as left operand, not NoneType: 
+ FormBox[
+  InterpretationBox[
+   RowBox[{
+    TagBox["CompiledFunction",
+     "SummaryHead"], "[", 
+    DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
+     TemplateBox[{
+       PaneSelectorBox[{False -> GridBox[{{
+             PaneBox[
+              ButtonBox[
+        >
+
+----- cell 17  label= -----
+E_max(theta)
+
+----- cell 18  label= -----
+E_max(theta)
+
+----- cell 19  label= -----
+(*Function to process the table*)
+FindingMaxEnergy[tab_,order_]:=Module[{Egrouped,tot},
+(*Group by y values*)
+Egrouped=GatherBy[tab,#[[2]]&];
+(*Sum z values for each y and create new table*)
+thetasummed=Table[{Egrouped[[i,1,2]],Total[Egrouped[[i,All,3]]]},{i,1,Length[Egrouped]}];
+If[Max[thetasummed[[All,2]]]>10^-30.,
+tot=thetasummed[[All,2]]//Total;
+accum=(tot-Accumulate[thetasummed[[All,2]]])/(tot);
+sel=Select[accum,#>=10^-order&];
+If[Length[sel]!=0.,
+emaxpos=Min[Position[accum,sel[[-1]]][[1]][[1]]+1,Length[accum]];
+emaxval=thetasummed[[emaxpos]][[1]],
+emaxval=thetasummed[[1]][[1]]]];
+emaxval
+]
+DataLogarithmiedComp=Compile[{{data,_Real,1}},{Log[Compile`GetElement[data,1]],Log[Compile`GetElement[data,2]],If[Compile`GetElement[data,3]==0,Log[10^-90.],Log[Compile`GetElement[data,3]]]},CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable}];
+Do[
+thetagridForEmax[fac]={10^-5.,10^-4.,0.001,0.005,0.008,0.01,0.02,0.03,0.04,0.06,0.08,0.1,0.11,0.12,0.13,0.15,0.17,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.,1.2,1.3,(Pi)/(2)}//N;
+If[fac=="LHC",thetagridForEmax[fac]=Join[thetagridForEmax[fac],{3*10^-4.,6*10^-4.,2*10^-3,3*10^-3,4*10^-3,6*10^-3,7*10^-3,9*10^-3.,0.011,0.013,0.016,0.018,0.022,0.024,0.027,0.033,0.036,0.045,0.05,0.07,0.09}//N]//Sort//DeleteDuplicates];
+If[fac=="FCC-hh",thetagridForEmax[fac]=Join[thetagridForEmax[fac],{5*10^-5.,2*10^-4.,4*10^-4.,6*10^-4.,8*10^-4.,2*10^-3,3*10^-3,4*10^-3.}//N]//Sort//DeleteDuplicates];
+,{fac,FacilitiesList}];
+FindingEmaxtheta[data_,Facility_,order_]:=Module[{(*thetaminmax,eminmax,GridIn,distrv,GridOut,xigDistr,distrvals,mappeddistr,thetaemax,emax,thetaranges,distrdatalog*)},
+IfCollider=MemberQ[{"LHC","FCC-hh"},Facility];
+distrdatalog=DataLogarithmiedComp[data];
+GridIn=(DeleteDuplicates[distrdatalog[[All,#]]]&/@{1,2})//N;
+distrv=ArrayReshape[distrdatalog[[All,3]],{Length[GridIn[[1]]],Length[GridIn[[2]]]}];
+{thetaminmax,eminmax}=MinMax[data[[All,#]]]&/@{1,2};
+thetaranges=If[IfCollider,Select[thetagridForEmax[Facility],thetaminmax[[1]]<=#&],Select[Flatten[Join[{#,Pi-#}&/@Join[thetagridForEmax[Facility],{thetaminmax[[2]]}]]]//N//Sort//DeleteDuplicates,thetaminmax[[1]]<=#<=thetaminmax[[2]]&]]//N;
+thetaemax={{}};
+Do[
+nintervals=If[thetaranges[[i+1]]-thetaranges[[i]]>10^-3,10,3];
+GridOut={Table[th,{th,thetaranges[[i]],thetaranges[[i+1]],(thetaranges[[i+1]]-thetaranges[[i]])/(nintervals)}],Join[Table[Exp[e],{e,Log[eminmax[[1]]],Log[eminmax[[2]]],Max[0.1,(Log[eminmax[[2]]]-Log[eminmax[[1]]])/(100)]}],{eminmax[[2]]}]//DeleteDuplicates}//Log;
+xigDistr=MapThread[Interpolation[Transpose@{#,Range@Length@#},InterpolationOrder->1][#2]&,{GridIn,GridOut}];
+distrvals=Flatten@cf2[Sequence@@xigDistr,distrv];
+mappeddistr=Exp[Join[Tuples[GridOut],Partition[distrvals,1],2]];
+emax=FindingMaxEnergy[mappeddistr,order];
+thetaemax=Join[thetaemax,{{(thetaranges[[i]]+thetaranges[[i+1]])/(2),emax}}];
+,{i,1,Length[thetaranges]-1,1}];
+thetaemax=Drop[thetaemax,1];
+thetaemax=Log[If[IfCollider,Flatten[Join[{#,{Pi-#[[1]],#[[2]]}&/@#}&/@{Join[{{thetaminmax[[1]],thetaemax[[1]][[2]]}},thetaemax]}][[1]],1],Join[{{thetaminmax[[1]],thetaemax[[1]][[2]]}},thetaemax,{{thetaminmax[[2]],thetaemax[[-1]][[2]]}}]]//Sort//DeleteDuplicates//N]
+]
+
+----- cell 20  label=Sampling points -----
+{erandcomp=Compile[{{eminv,_Real},{emaxv,_Real},{Nev,_Integer}},Log[RandomReal[{Exp[eminv],Exp[emaxv]}]],CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable}]//ReleaseHold;, 
+, MotherDataCompiled=Compile[{{Events,_Real,1},{m,_Real}},Module[{thv,ev,\[Phi]v,pv},
+thv=Compile`GetElement[Events,1];
+ev=Compile`GetElement[Events,2];
+\[Phi]v=RandomReal[{-Pi,Pi}];
+pv=Sqrt[ev^2-m^2];
+{pv*Cos[\[Phi]v]*Sin[thv],pv*Sin[\[Phi]v]*Sin[thv],pv*Cos[thv],ev,m}
+],CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable},Parallelization->True], 
+, BlockPointsFromSmoothDistribution1[data_,m_,Nevents_,order_,Facility_]:=Module[{Emaxlist,thetaminmax,Data\[Phi],Nev,eminmax,NevSampl},
+IfCollider=MemberQ[{"LHC","FCC-hh"},Facility];
+distrdatalog=DataLogarithmiedComp[data];
+GridIn=(DeleteDuplicates[distrdatalog[[All,#]]]&/@{1,2})//N;
+thetaminmax=({Min[#],If[IfCollider,(Pi)/(2.),Max[#]]}&/@{data[[All,1]]})[[1]];
+emin=Log[Min[data[[All,2]]]];
+(*Computing table E_max(theta)*)
+Nev=If[!IfCollider,Nevents,IntegerPart[Nevents/2]];
+NevSampl=Max[3*Nev,10^6];
+thetaemaxdata=FindingEmaxtheta[data,Facility,order];
+(*__________________________________*)
+(*Generating the grid of theta_rand,E_rand*)
+(*__________________________________*)
+(*Generating random theta*)
+thetarand=Log[RandomReal[thetaminmax,NevSampl]];
+(*For each theta, generaring random E\[Element]{E_min,E_max(theta)}*)
+nfthetaEmaxlog=Nearest[thetaemaxdata[[All,1]]->"Index"];
+indexthetaEmaxlog=nfthetaEmaxlog[thetarand]//Flatten;
+emaxrand=linint1[thetarand,thetaemaxdata[[All,1]],indexthetaEmaxlog,thetaemaxdata];
+erand=erandcomp[emin,emaxrand,NevSampl];
+(*Now, calculating the weights for the generated theta_rand,E_rand*)
+nfthetalog=Nearest[GridIn[[1]]->"Index"];
+nfElog=Nearest[GridIn[[2]]->"Index"];
+{indexthetarand,indexerand}={nfthetalog[thetarand]//Flatten,nfElog[erand]//Flatten};
+weights=(Exp[emaxrand]-Exp[emin])*linint2[thetarand,erand,GridIn[[1]],GridIn[[2]],indexthetarand,indexerand,distrdatalog];
+(*Generating "True" theta,E based on the weights*)
+PTS=RandomChoice[weights->Transpose[Exp[{thetarand,erand}]],Nev];
+motherdata=MotherDataCompiled[PTS,m];
+If[IfCollider,
+motherdataExtended=motherdata;
+motherdataExtended[[All,3]]=-motherdataExtended[[All,3]];
+motherdata=Join[motherdata,motherdataExtended]];
+If[Length[motherdata]!=Nevents,motherdata=Join[motherdata,{motherdata[[-1]]}]]//Developer`ToPackedArray;
+motherdata
+], 
+, DataConverted=Compile[{{data,_Real,1},{m,_Real}},Module[{px,py,pz,e},
+px=Compile`GetElement[data,1];
+py=Compile`GetElement[data,2];
+pz=Compile`GetElement[data,3];
+e=Sqrt[px^2+py^2+pz^2+m^2];
+{px,py,pz,e,m}],CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable},Parallelization->True]}
+
+----- cell 21  label= -----
+{erandcomp=Compile[{{eminv,_Real},{emaxv,_Real},{Nev,_Integer}},Log[RandomReal[{Exp[eminv],Exp[emaxv]}]],CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable}]//ReleaseHold;, 
+, MotherDataCompiled=Compile[{{Events,_Real,1},{m,_Real}},Module[{thv,ev,\[Phi]v,pv},
+thv=Compile`GetElement[Events,1];
+ev=Compile`GetElement[Events,2];
+\[Phi]v=RandomReal[{-Pi,Pi}];
+pv=Sqrt[ev^2-m^2];
+{pv*Cos[\[Phi]v]*Sin[thv],pv*Sin[\[Phi]v]*Sin[thv],pv*Cos[thv],ev,m}
+],CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable},Parallelization->True], 
+, BlockPointsFromSmoothDistribution1[data_,m_,Nevents_,order_,Facility_]:=Module[{Emaxlist,thetaminmax,Data\[Phi],Nev,eminmax,NevSampl},
+IfCollider=MemberQ[{"LHC","FCC-hh"},Facility];
+distrdatalog=DataLogarithmiedComp[data];
+GridIn=(DeleteDuplicates[distrdatalog[[All,#]]]&/@{1,2})//N;
+thetaminmax=({Min[#],If[IfCollider,(Pi)/(2.),Max[#]]}&/@{data[[All,1]]})[[1]];
+emin=Log[Min[data[[All,2]]]];
+(*Computing table E_max(theta)*)
+Nev=If[!IfCollider,Nevents,IntegerPart[Nevents/2]];
+NevSampl=Max[3*Nev,10^6];
+thetaemaxdata=FindingEmaxtheta[data,Facility,order];
+(*__________________________________*)
+(*Generating the grid of theta_rand,E_rand*)
+(*__________________________________*)
+(*Generating random theta*)
+thetarand=Log[RandomReal[thetaminmax,NevSampl]];
+(*For each theta, generaring random E\[Element]{E_min,E_max(theta)}*)
+nfthetaEmaxlog=Nearest[thetaemaxdata[[All,1]]->"Index"];
+indexthetaEmaxlog=nfthetaEmaxlog[thetarand]//Flatten;
+emaxrand=linint1[thetarand,thetaemaxdata[[All,1]],indexthetaEmaxlog,thetaemaxdata];
+erand=erandcomp[emin,emaxrand,NevSampl];
+(*Now, calculating the weights for the generated theta_rand,E_rand*)
+nfthetalog=Nearest[GridIn[[1]]->"Index"];
+nfElog=Nearest[GridIn[[2]]->"Index"];
+{indexthetarand,indexerand}={nfthetalog[thetarand]//Flatten,nfElog[erand]//Flatten};
+weights=(Exp[emaxrand]-Exp[emin])*linint2[thetarand,erand,GridIn[[1]],GridIn[[2]],indexthetarand,indexerand,distrdatalog];
+(*Generating "True" theta,E based on the weights*)
+PTS=RandomChoice[weights->Transpose[Exp[{thetarand,erand}]],Nev];
+motherdata=MotherDataCompiled[PTS,m];
+If[IfCollider,
+motherdataExtended=motherdata;
+motherdataExtended[[All,3]]=-motherdataExtended[[All,3]];
+motherdata=Join[motherdata,motherdataExtended]];
+If[Length[motherdata]!=Nevents,motherdata=Join[motherdata,{motherdata[[-1]]}]]//Developer`ToPackedArray;
+motherdata
+], 
+, DataConverted=Compile[{{data,_Real,1},{m,_Real}},Module[{px,py,pz,e},
+px=Compile`GetElement[data,1];
+py=Compile`GetElement[data,2];
+pz=Compile`GetElement[data,3];
+e=Sqrt[px^2+py^2+pz^2+m^2];
+{px,py,pz,e,m}],CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable},Parallelization->True]}
+
+----- cell 22  label= -----
+{erandcomp=Compile[{{eminv,_Real},{emaxv,_Real},{Nev,_Integer}},Log[RandomReal[{Exp[eminv],Exp[emaxv]}]],CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable}]//ReleaseHold;, 
+, MotherDataCompiled=Compile[{{Events,_Real,1},{m,_Real}},Module[{thv,ev,\[Phi]v,pv},
+thv=Compile`GetElement[Events,1];
+ev=Compile`GetElement[Events,2];
+\[Phi]v=RandomReal[{-Pi,Pi}];
+pv=Sqrt[ev^2-m^2];
+{pv*Cos[\[Phi]v]*Sin[thv],pv*Sin[\[Phi]v]*Sin[thv],pv*Cos[thv],ev,m}
+],CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable},Parallelization->True], 
+, BlockPointsFromSmoothDistribution1[data_,m_,Nevents_,order_,Facility_]:=Module[{Emaxlist,thetaminmax,Data\[Phi],Nev,eminmax,NevSampl},
+IfCollider=MemberQ[{"LHC","FCC-hh"},Facility];
+distrdatalog=DataLogarithmiedComp[data];
+GridIn=(DeleteDuplicates[distrdatalog[[All,#]]]&/@{1,2})//N;
+thetaminmax=({Min[#],If[IfCollider,(Pi)/(2.),Max[#]]}&/@{data[[All,1]]})[[1]];
+emin=Log[Min[data[[All,2]]]];
+(*Computing table E_max(theta)*)
+Nev=If[!IfCollider,Nevents,IntegerPart[Nevents/2]];
+NevSampl=Max[3*Nev,10^6];
+thetaemaxdata=FindingEmaxtheta[data,Facility,order];
+(*__________________________________*)
+(*Generating the grid of theta_rand,E_rand*)
+(*__________________________________*)
+(*Generating random theta*)
+thetarand=Log[RandomReal[thetaminmax,NevSampl]];
+(*For each theta, generaring random E\[Element]{E_min,E_max(theta)}*)
+nfthetaEmaxlog=Nearest[thetaemaxdata[[All,1]]->"Index"];
+indexthetaEmaxlog=nfthetaEmaxlog[thetarand]//Flatten;
+emaxrand=linint1[thetarand,thetaemaxdata[[All,1]],indexthetaEmaxlog,thetaemaxdata];
+erand=erandcomp[emin,emaxrand,NevSampl];
+(*Now, calculating the weights for the generated theta_rand,E_rand*)
+nfthetalog=Nearest[GridIn[[1]]->"Index"];
+nfElog=Nearest[GridIn[[2]]->"Index"];
+{indexthetarand,indexerand}={nfthetalog[thetarand]//Flatten,nfElog[erand]//Flatten};
+weights=(Exp[emaxrand]-Exp[emin])*linint2[thetarand,erand,GridIn[[1]],GridIn[[2]],indexthetarand,indexerand,distrdatalog];
+(*Generating "True" theta,E based on the weights*)
+PTS=RandomChoice[weights->Transpose[Exp[{thetarand,erand}]],Nev];
+motherdata=MotherDataCompiled[PTS,m];
+If[IfCollider,
+motherdataExtended=motherdata;
+motherdataExtended[[All,3]]=-motherdataExtended[[All,3]];
+motherdata=Join[motherdata,motherdataExtended]];
+If[Length[motherdata]!=Nevents,motherdata=Join[motherdata,{motherdata[[-1]]}]]//Developer`ToPackedArray;
+motherdata
+], 
+, DataConverted=Compile[{{data,_Real,1},{m,_Real}},Module[{px,py,pz,e},
+px=Compile`GetElement[data,1];
+py=Compile`GetElement[data,2];
+pz=Compile`GetElement[data,3];
+e=Sqrt[px^2+py^2+pz^2+m^2];
+{px,py,pz,e,m}],CompilationTarget->"C",RuntimeOptions->"Speed",RuntimeAttributes->{Listable},Parallelization->True]}
+
+----- cell 23  label= -----
+<PARSE ERROR list index out of range: 
+ FormBox[
+  InterpretationBox[
+   RowBox[{
+    TagBox["CompiledFunction",
+     "SummaryHead"], "[", 
+    DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
+     TemplateBox[{
+       PaneSelectorBox[{False -> GridBox[{{
+             PaneBox[
+              ButtonBox[
+        >
+
+----- cell 24  label= -----
+<PARSE ERROR 'in <string>' requires string as left operand, not NoneType: 
+ FormBox[
+  InterpretationBox[
+   RowBox[{
+    TagBox["CompiledFunction",
+     "SummaryHead"], "[", 
+    DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
+     TemplateBox[{
+       PaneSelectorBox[{False -> GridBox[{{
+             PaneBox[
+              ButtonBox[
+        >
+
+----- cell 25  label=Interpolation and phase space sampling -----
+{MotherInterpolation[Facility_,Particle_]:=Module[{data,datalog},
+data=DataDistr[Facility,Particle];
+datalog=DataLogarithmiedComp[data];
+thetaMinMax[Facility,Particle]=MinMax[data[[All,1]]];
+Emax[thetaX_,Facility,Particle]=Interpolation[FindingEmaxtheta[DataDistr[Facility,Particle],Facility,7],InterpolationOrder->1][Log[thetaX]]//Exp;
+DoubleDistrMotherInt[thetaX_,EX_,Facility,Particle]=If[mSM[Particle]<=EX<=Emax[thetaX,Facility,Particle]&&thetaMinMax[Facility,Particle][[1]]<=thetaX<=thetaMinMax[Facility,Particle][[2]],Evaluate[Exp[Interpolation[datalog,InterpolationOrder->1][Log[thetaX],Log[EX]]]],0.];
+], 
+, MotherInterpolation["LHC","Upsilon"];, 
+, IfMotherInterpolated[Facility_,Mother_]:=MemberQ[{Keys[DownValues@DoubleDistrMotherInt][[All,1,-2]],Keys[DownValues@DoubleDistrMotherInt][[All,1,-1]]}//Transpose,{Facility,Mother}], 
+, {IfMotherInterpolated["LHC","Upsilon"],IfMotherInterpolated["SPS","Kplus"]}, 
+, PointsSampler[Facility_,Particle_,Nevents_,IfTwo_]:=Module[{data,Nev,IfPresent,particle,motherpoints,datafin,condESS=(Facility=="ESS"&&MemberQ[{"PiCharged","mu"},Particle]),condKEKB=(Facility=="SuperKEKB")},
+(*For the moment, for some distributions that are absent, they will be approximated by the distributions of similar particles*)
+If[condESS,
+datafin=ConstantArray[{0.,0.,0.,mSM[Particle],mSM[Particle]},Nevents]
+,
+(*Option IfTwo: if "True", then the mother particle is supposed to decay into two LLPs. If "False", then it will produce only one LLP*)
+(*If "True", then N_events/2 mother particles will be sampled, and then the data will be doubled*)
+Nev=If[IfTwo=="True"&&LLPdistr,(Nevents)/(2),Nevents];
+If[!condKEKB,
+IfPresent=If[Length[DataDistr[Facility,Particle]]==2,False,True];
+particle=If[IfPresent,Particle,SimilarParticle[Facility,Particle]];
+data=DataDistr[Facility,particle];
+datafin=BlockPointsFromSmoothDistribution1[data,mSM[particle],Nev,9,Facility];
+,
+If[MemberQ[{"Bcharged","B0","Bs"},Particle],
+If[MemberQ[{"Bcharged","B0"},Particle],
+motherp="Upsilon(4S)";
+Upsilondata=ConstantArray[{0.,0.125,3.,11.006,mSM[motherp]},Nevents]//Developer`ToPackedArray;
+];
+If[MemberQ[{"Bs"},Particle],
+motherp="Upsilon(5S)";
+Upsilondata=With[{e=Sqrt[0.125^2+3.^2+mSM[motherp]^2]},ConstantArray[{0.,0.125,3.,e,mSM[motherp]},Nevents]//Developer`ToPackedArray];
+];
+particle=Particle;
+BdataRest=TwoBodyDecaysEventsAtRestNonLLP[motherp,Particle,Particle,Nevents][[All,Range[1,indexm]]];
+datafin=BoostedLLPsFromDecaysTable[Upsilondata,BdataRest];
+];
+];
+If[IfTwo=="True"&&LLPdistr,datafin=Riffle[datafin,datafin]];
+If[particle!=Particle,datafin=DataConverted[datafin,mSM[Particle]],datafin];
+];
+datafin
+]}
+
+----- cell 26  label=Phase space sampling -----
+{MotherInterpolation[Facility_,Particle_]:=Module[{data,datalog},
+data=DataDistr[Facility,Particle];
+datalog=DataLogarithmiedComp[data];
+thetaMinMax[Facility,Particle]=MinMax[data[[All,1]]];
+Emax[thetaX_,Facility,Particle]=Interpolation[FindingEmaxtheta[DataDistr[Facility,Particle],Facility,7],InterpolationOrder->1][Log[thetaX]]//Exp;
+DoubleDistrMotherInt[thetaX_,EX_,Facility,Particle]=If[mSM[Particle]<=EX<=Emax[thetaX,Facility,Particle]&&thetaMinMax[Facility,Particle][[1]]<=thetaX<=thetaMinMax[Facility,Particle][[2]],Evaluate[Exp[Interpolation[datalog,InterpolationOrder->1][Log[thetaX],Log[EX]]]],0.];
+], 
+, MotherInterpolation["LHC","Upsilon"];, 
+, IfMotherInterpolated[Facility_,Mother_]:=MemberQ[{Keys[DownValues@DoubleDistrMotherInt][[All,1,-2]],Keys[DownValues@DoubleDistrMotherInt][[All,1,-1]]}//Transpose,{Facility,Mother}], 
+, {IfMotherInterpolated["LHC","Upsilon"],IfMotherInterpolated["SPS","Kplus"]}, 
+, PointsSampler[Facility_,Particle_,Nevents_,IfTwo_]:=Module[{data,Nev,IfPresent,particle,motherpoints,datafin,condESS=(Facility=="ESS"&&MemberQ[{"PiCharged","mu"},Particle]),condKEKB=(Facility=="SuperKEKB")},
+(*For the moment, for some distributions that are absent, they will be approximated by the distributions of similar particles*)
+If[condESS,
+datafin=ConstantArray[{0.,0.,0.,mSM[Particle],mSM[Particle]},Nevents]
+,
+(*Option IfTwo: if "True", then the mother particle is supposed to decay into two LLPs. If "False", then it will produce only one LLP*)
+(*If "True", then N_events/2 mother particles will be sampled, and then the data will be doubled*)
+Nev=If[IfTwo=="True"&&LLPdistr,(Nevents)/(2),Nevents];
+If[!condKEKB,
+IfPresent=If[Length[DataDistr[Facility,Particle]]==2,False,True];
+particle=If[IfPresent,Particle,SimilarParticle[Facility,Particle]];
+data=DataDistr[Facility,particle];
+datafin=BlockPointsFromSmoothDistribution1[data,mSM[particle],Nev,9,Facility];
+,
+If[MemberQ[{"Bcharged","B0","Bs"},Particle],
+If[MemberQ[{"Bcharged","B0"},Particle],
+motherp="Upsilon(4S)";
+Upsilondata=ConstantArray[{0.,0.125,3.,11.006,mSM[motherp]},Nevents]//Developer`ToPackedArray;
+];
+If[MemberQ[{"Bs"},Particle],
+motherp="Upsilon(5S)";
+Upsilondata=With[{e=Sqrt[0.125^2+3.^2+mSM[motherp]^2]},ConstantArray[{0.,0.125,3.,e,mSM[motherp]},Nevents]//Developer`ToPackedArray];
+];
+particle=Particle;
+BdataRest=TwoBodyDecaysEventsAtRestNonLLP[motherp,Particle,Particle,Nevents][[All,Range[1,indexm]]];
+datafin=BoostedLLPsFromDecaysTable[Upsilondata,BdataRest];
+];
+];
+If[IfTwo=="True"&&LLPdistr,datafin=Riffle[datafin,datafin]];
+If[particle!=Particle,datafin=DataConverted[datafin,mSM[Particle]],datafin];
+];
+datafin
+]}
+
+----- cell 27  label= -----
+{MotherInterpolation[Facility_,Particle_]:=Module[{data,datalog},
+data=DataDistr[Facility,Particle];
+datalog=DataLogarithmiedComp[data];
+thetaMinMax[Facility,Particle]=MinMax[data[[All,1]]];
+Emax[thetaX_,Facility,Particle]=Interpolation[FindingEmaxtheta[DataDistr[Facility,Particle],Facility,7],InterpolationOrder->1][Log[thetaX]]//Exp;
+DoubleDistrMotherInt[thetaX_,EX_,Facility,Particle]=If[mSM[Particle]<=EX<=Emax[thetaX,Facility,Particle]&&thetaMinMax[Facility,Particle][[1]]<=thetaX<=thetaMinMax[Facility,Particle][[2]],Evaluate[Exp[Interpolation[datalog,InterpolationOrder->1][Log[thetaX],Log[EX]]]],0.];
+], 
+, MotherInterpolation["LHC","Upsilon"];, 
+, IfMotherInterpolated[Facility_,Mother_]:=MemberQ[{Keys[DownValues@DoubleDistrMotherInt][[All,1,-2]],Keys[DownValues@DoubleDistrMotherInt][[All,1,-1]]}//Transpose,{Facility,Mother}], 
+, {IfMotherInterpolated["LHC","Upsilon"],IfMotherInterpolated["SPS","Kplus"]}, 
+, PointsSampler[Facility_,Particle_,Nevents_,IfTwo_]:=Module[{data,Nev,IfPresent,particle,motherpoints,datafin,condESS=(Facility=="ESS"&&MemberQ[{"PiCharged","mu"},Particle]),condKEKB=(Facility=="SuperKEKB")},
+(*For the moment, for some distributions that are absent, they will be approximated by the distributions of similar particles*)
+If[condESS,
+datafin=ConstantArray[{0.,0.,0.,mSM[Particle],mSM[Particle]},Nevents]
+,
+(*Option IfTwo: if "True", then the mother particle is supposed to decay into two LLPs. If "False", then it will produce only one LLP*)
+(*If "True", then N_events/2 mother particles will be sampled, and then the data will be doubled*)
+Nev=If[IfTwo=="True"&&LLPdistr,(Nevents)/(2),Nevents];
+If[!condKEKB,
+IfPresent=If[Length[DataDistr[Facility,Particle]]==2,False,True];
+particle=If[IfPresent,Particle,SimilarParticle[Facility,Particle]];
+data=DataDistr[Facility,particle];
+datafin=BlockPointsFromSmoothDistribution1[data,mSM[particle],Nev,9,Facility];
+,
+If[MemberQ[{"Bcharged","B0","Bs"},Particle],
+If[MemberQ[{"Bcharged","B0"},Particle],
+motherp="Upsilon(4S)";
+Upsilondata=ConstantArray[{0.,0.125,3.,11.006,mSM[motherp]},Nevents]//Developer`ToPackedArray;
+];
+If[MemberQ[{"Bs"},Particle],
+motherp="Upsilon(5S)";
+Upsilondata=With[{e=Sqrt[0.125^2+3.^2+mSM[motherp]^2]},ConstantArray[{0.,0.125,3.,e,mSM[motherp]},Nevents]//Developer`ToPackedArray];
+];
+particle=Particle;
+BdataRest=TwoBodyDecaysEventsAtRestNonLLP[motherp,Particle,Particle,Nevents][[All,Range[1,indexm]]];
+datafin=BoostedLLPsFromDecaysTable[Upsilondata,BdataRest];
+];
+];
+If[IfTwo=="True"&&LLPdistr,datafin=Riffle[datafin,datafin]];
+If[particle!=Particle,datafin=DataConverted[datafin,mSM[Particle]],datafin];
+];
+datafin
+]}
+
+----- cell 28  label= -----
+{MotherInterpolation[Facility_,Particle_]:=Module[{data,datalog},
+data=DataDistr[Facility,Particle];
+datalog=DataLogarithmiedComp[data];
+thetaMinMax[Facility,Particle]=MinMax[data[[All,1]]];
+Emax[thetaX_,Facility,Particle]=Interpolation[FindingEmaxtheta[DataDistr[Facility,Particle],Facility,7],InterpolationOrder->1][Log[thetaX]]//Exp;
+DoubleDistrMotherInt[thetaX_,EX_,Facility,Particle]=If[mSM[Particle]<=EX<=Emax[thetaX,Facility,Particle]&&thetaMinMax[Facility,Particle][[1]]<=thetaX<=thetaMinMax[Facility,Particle][[2]],Evaluate[Exp[Interpolation[datalog,InterpolationOrder->1][Log[thetaX],Log[EX]]]],0.];
+], 
+, MotherInterpolation["LHC","Upsilon"];, 
+, IfMotherInterpolated[Facility_,Mother_]:=MemberQ[{Keys[DownValues@DoubleDistrMotherInt][[All,1,-2]],Keys[DownValues@DoubleDistrMotherInt][[All,1,-1]]}//Transpose,{Facility,Mother}], 
+, {IfMotherInterpolated["LHC","Upsilon"],IfMotherInterpolated["SPS","Kplus"]}, 
+, PointsSampler[Facility_,Particle_,Nevents_,IfTwo_]:=Module[{data,Nev,IfPresent,particle,motherpoints,datafin,condESS=(Facility=="ESS"&&MemberQ[{"PiCharged","mu"},Particle]),condKEKB=(Facility=="SuperKEKB")},
+(*For the moment, for some distributions that are absent, they will be approximated by the distributions of similar particles*)
+If[condESS,
+datafin=ConstantArray[{0.,0.,0.,mSM[Particle],mSM[Particle]},Nevents]
+,
+(*Option IfTwo: if "True", then the mother particle is supposed to decay into two LLPs. If "False", then it will produce only one LLP*)
+(*If "True", then N_events/2 mother particles will be sampled, and then the data will be doubled*)
+Nev=If[IfTwo=="True"&&LLPdistr,(Nevents)/(2),Nevents];
+If[!condKEKB,
+IfPresent=If[Length[DataDistr[Facility,Particle]]==2,False,True];
+particle=If[IfPresent,Particle,SimilarParticle[Facility,Particle]];
+data=DataDistr[Facility,particle];
+datafin=BlockPointsFromSmoothDistribution1[data,mSM[particle],Nev,9,Facility];
+,
+If[MemberQ[{"Bcharged","B0","Bs"},Particle],
+If[MemberQ[{"Bcharged","B0"},Particle],
+motherp="Upsilon(4S)";
+Upsilondata=ConstantArray[{0.,0.125,3.,11.006,mSM[motherp]},Nevents]//Developer`ToPackedArray;
+];
+If[MemberQ[{"Bs"},Particle],
+motherp="Upsilon(5S)";
+Upsilondata=With[{e=Sqrt[0.125^2+3.^2+mSM[motherp]^2]},ConstantArray[{0.,0.125,3.,e,mSM[motherp]},Nevents]//Developer`ToPackedArray];
+];
+particle=Particle;
+BdataRest=TwoBodyDecaysEventsAtRestNonLLP[motherp,Particle,Particle,Nevents][[All,Range[1,indexm]]];
+datafin=BoostedLLPsFromDecaysTable[Upsilondata,BdataRest];
+];
+];
+If[IfTwo=="True"&&LLPdistr,datafin=Riffle[datafin,datafin]];
+If[particle!=Particle,datafin=DataConverted[datafin,mSM[Particle]],datafin];
+];
+datafin
+]}
+
+----- cell 29  label= -----
+{True,False}
+
+----- cell 30  label=Test -----
+(*factest="Serpukhov";
+ptest="EtaPr";
+If[Length[DataDistr[factest,ptest]]!=2,
+pts=PointsSampler[factest,ptest,10^6,"False"];
+MotherInterpolation[factest,ptest];
+angdistrIntDat=With[{thmin=thetaMinMax[factest,ptest][[1]],thmax=thetaMinMax[factest,ptest][[2]]},ParallelTable[{10^x,Quiet[NIntegrate[DoubleDistrMotherInt[10^x,Exp[e],factest,ptest]Exp[e],{e,Log[pts[[All,4]]//Min],Log[pts[[All,4]]//Max]},Method->"InterpolationPointsSubdivision"]]},{x,Log10[thmin],Log10[thmax],((Log10[thmax]-Log10[thmin]))/(100)}]];
+angdistrInt[thetaX_]=Interpolation[angdistrIntDat,InterpolationOrder->1][thetaX];
+norm1=NIntegrate[angdistrInt[Exp[x]]Exp[x],{x,Log[Min[PTS[[All,1]]]],Log[Max[PTS[[All,1]]]]},Method->"InterpolationPointsSubdivision"];
+thvs=thetaNlist[factest];
+angles=PTS[[All,1]];
+bns=BinCounts[angles,{thvs}];
+tabpdf=Table[{Log[(thvs[[i]]+thvs[[i+1]])/(2)],Log[Max[10^-90.,(bns[[i]])/((thvs[[i+1]]-thvs[[i]]))]]},{i,1,Length[thvs]-1,1}];
+pdfint[x_]=If[Min[PTS[[All,1]]]<=x<=Max[PTS[[All,1]]],Evaluate[Exp[Interpolation[tabpdf,InterpolationOrder->1][Log[x]]]],0.];
+norm2=Quiet[NIntegrate[pdfint[Exp[x]]Exp[x],{x,Log[Min[PTS[[All,1]]]],Log[Max[PTS[[All,1]]]]},Method->"InterpolationPointsSubdivision"]];
+]//AbsoluteTiming
+Quiet[{(NIntegrate[pdfint[x]x,{x,10^-5,(Pi)/(2)}])/(NIntegrate[pdfint[x],{x,10^-5,(Pi)/(2)}]),NIntegrate[angdistrInt[Exp[x]]Exp[2x],{x,Log[Min[PTS[[All,1]]]],Min[(Pi)/(2),Log[Max[PTS[[All,1]]]]]}]/NIntegrate[angdistrInt[Exp[x]],{x,Log[Min[PTS[[All,1]]]],Min[(Pi)/(2),Log[Max[PTS[[All,1]]]]]}]}]
+Quiet[LogLogPlot[{(1)/(norm1)(angdistrInt[x])/(x),(1)/(norm2)(pdfint[x])/(x)},{x,10^-5.,(Pi)/(2)}]]*)
+
+----- cell 31  label= -----
+(*factest="Serpukhov";
+ptest="EtaPr";
+If[Length[DataDistr[factest,ptest]]!=2,
+pts=PointsSampler[factest,ptest,10^6,"False"];
+MotherInterpolation[factest,ptest];
+angdistrIntDat=With[{thmin=thetaMinMax[factest,ptest][[1]],thmax=thetaMinMax[factest,ptest][[2]]},ParallelTable[{10^x,Quiet[NIntegrate[DoubleDistrMotherInt[10^x,Exp[e],factest,ptest]Exp[e],{e,Log[pts[[All,4]]//Min],Log[pts[[All,4]]//Max]},Method->"InterpolationPointsSubdivision"]]},{x,Log10[thmin],Log10[thmax],((Log10[thmax]-Log10[thmin]))/(100)}]];
+angdistrInt[thetaX_]=Interpolation[angdistrIntDat,InterpolationOrder->1][thetaX];
+norm1=NIntegrate[angdistrInt[Exp[x]]Exp[x],{x,Log[Min[PTS[[All,1]]]],Log[Max[PTS[[All,1]]]]},Method->"InterpolationPointsSubdivision"];
+thvs=thetaNlist[factest];
+angles=PTS[[All,1]];
+bns=BinCounts[angles,{thvs}];
+tabpdf=Table[{Log[(thvs[[i]]+thvs[[i+1]])/(2)],Log[Max[10^-90.,(bns[[i]])/((thvs[[i+1]]-thvs[[i]]))]]},{i,1,Length[thvs]-1,1}];
+pdfint[x_]=If[Min[PTS[[All,1]]]<=x<=Max[PTS[[All,1]]],Evaluate[Exp[Interpolation[tabpdf,InterpolationOrder->1][Log[x]]]],0.];
+norm2=Quiet[NIntegrate[pdfint[Exp[x]]Exp[x],{x,Log[Min[PTS[[All,1]]]],Log[Max[PTS[[All,1]]]]},Method->"InterpolationPointsSubdivision"]];
+]//AbsoluteTiming
+Quiet[{(NIntegrate[pdfint[x]x,{x,10^-5,(Pi)/(2)}])/(NIntegrate[pdfint[x],{x,10^-5,(Pi)/(2)}]),NIntegrate[angdistrInt[Exp[x]]Exp[2x],{x,Log[Min[PTS[[All,1]]]],Min[(Pi)/(2),Log[Max[PTS[[All,1]]]]]}]/NIntegrate[angdistrInt[Exp[x]],{x,Log[Min[PTS[[All,1]]]],Min[(Pi)/(2),Log[Max[PTS[[All,1]]]]]}]}]
+Quiet[LogLogPlot[{(1)/(norm1)(angdistrInt[x])/(x),(1)/(norm2)(pdfint[x])/(x)},{x,10^-5.,(Pi)/(2)}]]*)
+
+----- cell 32  label=Final definitions -----
+(*Whether the given SM particle may be produced at the fiven facility*)
+Do[
+(*How many particles are produced per direct production process; the lowest possible number is considered*)
+nSMperProd[particle]=If[StringContainsQ[particle,"B"]||StringContainsQ[particle,"D"]||StringContainsQ[particle,"K"],2,1];
+Do[
+IfSMatFacility[particle,Facility]=If[nSMperProd[particle]*mSM[particle]>EcmFacility[Facility],0,1];
+(*Artificial condition to include Bs mesons at Belle II (from the Upsilon(5S) resonance)*)
+If[particle=="Bs"&&Facility=="SuperKEKB",IfSMatFacility[particle,Facility]=1];
+,{Facility,FacilitiesList}]
+,{particle,SMparticles}]
+Do[
+If[fbtobc[Facility]==0.,
+IfSMatFacility["Bc",Facility]=0]
+,{Facility,FacilitiesList}]
+
+----- cell 33  label= -----
+(*Whether the given SM particle may be produced at the fiven facility*)
+Do[
+(*How many particles are produced per direct production process; the lowest possible number is considered*)
+nSMperProd[particle]=If[StringContainsQ[particle,"B"]||StringContainsQ[particle,"D"]||StringContainsQ[particle,"K"],2,1];
+Do[
+IfSMatFacility[particle,Facility]=If[nSMperProd[particle]*mSM[particle]>EcmFacility[Facility],0,1];
+(*Artificial condition to include Bs mesons at Belle II (from the Upsilon(5S) resonance)*)
+If[particle=="Bs"&&Facility=="SuperKEKB",IfSMatFacility[particle,Facility]=1];
+,{Facility,FacilitiesList}]
+,{particle,SMparticles}]
+Do[
+If[fbtobc[Facility]==0.,
+IfSMatFacility["Bc",Facility]=0]
+,{Facility,FacilitiesList}]

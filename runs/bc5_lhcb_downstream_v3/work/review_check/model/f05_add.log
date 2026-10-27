@@ -1,0 +1,9 @@
+m=1.00 eta=3.0 Acur=0.9180  pi pi 2pi0 A=0.7799 dR/R=-0.2% isospin 4pi A=0.9098 dR/R=-0.0%
+m=1.30 eta=3.0 Acur=0.8559  pi pi 2pi0 A=0.6951 dR/R=-1.6% isospin 4pi A=0.8590 dR/R=+0.0%
+m=1.60 eta=3.0 Acur=0.6804  pi pi 2pi0 A=0.6470 dR/R=-0.7% isospin 4pi A=0.8209 dR/R=+3.0%
+m=1.99 eta=3.0 Acur=0.6420  pi pi 2pi0 A=0.6006 dR/R=-2.4% isospin 4pi A=0.8016 dR/R=+9.2%
+m=1.00 eta=4.0 Acur=0.3052  pi pi 2pi0 A=0.1343 dR/R=-0.4% isospin 4pi A=0.2905 dR/R=-0.0%
+m=1.30 eta=4.0 Acur=0.3442  pi pi 2pi0 A=0.1568 dR/R=-3.7% isospin 4pi A=0.3224 dR/R=-0.4%
+m=1.60 eta=4.0 Acur=0.2281  pi pi 2pi0 A=0.1944 dR/R=-1.5% isospin 4pi A=0.3727 dR/R=+6.4%
+m=1.99 eta=4.0 Acur=0.2663  pi pi 2pi0 A=0.2223 dR/R=-4.6% isospin 4pi A=0.4301 dR/R=+17.3%
+done

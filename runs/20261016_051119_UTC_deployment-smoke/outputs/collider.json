@@ -1,0 +1,10 @@
+{
+  "success": true,
+  "tool": "collider",
+  "sdk": "0.8.2",
+  "physics_events": 0,
+  "ROOT": "6.28/10",
+  "MG5": "/opt/MG5_aMC_v3_7_0/bin/mg5_aMC",
+  "DelphesHepMC2": true,
+  "Pythia8": "8.316"
+}

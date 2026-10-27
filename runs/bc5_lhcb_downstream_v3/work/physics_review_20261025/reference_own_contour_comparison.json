@@ -1,0 +1,30 @@
+{
+  "5.082255": {
+    "current_SensCalc_theta2_lo": 1.3775966155244261e-12,
+    "paper_theta2_lo": 2.2107616501309937e-12,
+    "ours_theta2_lo": 1.503675145234513e-12,
+    "SensCalc_over_paper": 0.6231321297991576,
+    "ours_over_SensCalc": 1.0915206442069336
+  },
+  "13.023095": {
+    "current_SensCalc_theta2_lo": 3.5733161009712495e-14,
+    "paper_theta2_lo": 5.796856888583742e-14,
+    "ours_theta2_lo": 3.469660584355385e-14,
+    "SensCalc_over_paper": 0.6164230322829763,
+    "ours_over_SensCalc": 0.970991786428385
+  },
+  "33.371213": {
+    "current_SensCalc_theta2_lo": 1.6102805527044297e-15,
+    "paper_theta2_lo": 2.6120359208538896e-15,
+    "ours_theta2_lo": 1.8448113648796784e-15,
+    "SensCalc_over_paper": 0.6164848422827277,
+    "ours_over_SensCalc": 1.145645932183283
+  },
+  "53.419632": {
+    "current_SensCalc_theta2_lo": 4.3007477452880163e-16,
+    "paper_theta2_lo": 7.867832406887884e-16,
+    "ours_theta2_lo": 5.418593129431785e-16,
+    "SensCalc_over_paper": 0.5466242190826195,
+    "ours_over_SensCalc": 1.2599188444308325
+  }
+}

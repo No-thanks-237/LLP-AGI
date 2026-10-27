@@ -1,0 +1,67 @@
+{
+  "client": {
+    "jobs": {
+      "poll_interval": 2
+    }
+  },
+  "server": {
+    "address": "http://172.30.11.2",
+    "front_end_port": 3011,
+    "back_end_port": 8017,
+    "root": "/var/lib/docker/volumes/llp-agi-magnus-20261016/_data",
+    "display_timezone": "Asia/Shanghai",
+    "cors_origins": [
+      "http://localhost:3011",
+      "http://127.0.0.1:3011"
+    ],
+    "database": {
+      "pool_size": 4,
+      "max_overflow": 8,
+      "pool_timeout": 10,
+      "pool_recycle": 3600
+    },
+    "auth": {
+      "provider": "local",
+      "jwt_signer": {
+        "secret_key": "build-only-placeholder",
+        "algorithm": "HS256",
+        "expire_minutes": 10080
+      }
+    },
+    "scheduler": {
+      "heartbeat_interval": 2,
+      "snapshot_interval": 300,
+      "workspace_size_cap": null
+    },
+    "service_proxy": {
+      "max_concurrency": 64
+    },
+    "file_custody": {
+      "max_size": "10G",
+      "max_file_size": "2G",
+      "max_processes": 128,
+      "default_ttl_minutes": 60,
+      "max_ttl_minutes": 1440
+    }
+  },
+  "execution": {
+    "backend": "local",
+    "container_runtime": "docker",
+    "resource_cache": {
+      "container_cache_size": "20G",
+      "repo_cache_size": "5G"
+    }
+  },
+  "cluster": {
+    "name": "LLP-AGI Docker",
+    "gpus": [],
+    "max_cpu_count": 8,
+    "max_memory_demand": "12G",
+    "default_cpu_count": 2,
+    "default_memory_demand": "4G",
+    "default_runner": "root",
+    "default_container_image": "docker://python:3.14-slim-bookworm",
+    "default_ephemeral_storage": "10G",
+    "default_system_entry_command": ""
+  }
+}

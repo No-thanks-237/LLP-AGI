@@ -1,0 +1,8 @@
+*
+!sources/
+!sources/**
+!container/
+!container/**
+**/__pycache__/
+**/node_modules/
+**/.venv/

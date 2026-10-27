@@ -1,0 +1,16 @@
+  B_YIELD_CORR = 1.0172
+multi4pi   m=0.50000   lo=5.057e-10 hi=1.334e-04 (17s)
+multi4pi   m=1.00000   lo=4.556e-11 hi=2.253e-06 (25s)
+multi4pi   m=1.50000   lo=1.154e-10 hi=7.235e-06 (33s)
+multi4pi   m=2.00000   lo=1.184e-10 hi=7.947e-06 (42s)
+multi4pi   m=2.20000   lo=1.295e-10 hi=4.730e-06 (48s)
+multi4pi   m=3.00000   lo=5.859e-11 hi=1.705e-06 (53s)
+multi4pi   m=4.34457   lo=3.704e-12 hi=6.464e-08 (60s)
+multi4pi   m=5.08225   lo=1.433e-12 hi=2.334e-08 (66s)
+multi4pi   m=7.50000   lo=3.751e-13 hi=5.424e-09 (71s)
+multi4pi   m=10.58340  lo=1.624e-13 hi=2.282e-09 (77s)
+multi4pi   m=15.23435  lo=1.672e-14 hi=2.609e-10 (85s)
+multi4pi   m=28.52741  lo=1.938e-15 hi=4.282e-11 (94s)
+multi4pi   m=45.66582  lo=5.150e-16 hi=1.297e-11 (103s)
+multi4pi   m=62.49000  lo=1.344e-16 hi=4.434e-12 (113s)
+wrote impact_multi4pi.json

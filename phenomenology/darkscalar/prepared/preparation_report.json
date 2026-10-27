@@ -1,0 +1,45 @@
+{
+  "source": "1809.01876",
+  "mass_min_GeV": 0.021,
+  "mass_max_GeV": 62.49,
+  "rows": 8115,
+  "normalization_includes_invisible": true,
+  "reference_lifetime_changed": false,
+  "theta_squared_reference": 1,
+  "lifetime_interpolation": "log-log linear, no extrapolation",
+  "branching_interpolation": "linear per channel, exact exclusive thresholds, normalize at query mass",
+  "negative_rule": "closed channels zero; open kaon defects bridged linearly between nonnegative nodes",
+  "masses_GeV": {
+    "electron": 0.00051099895,
+    "muon": 0.1056583755,
+    "tau": 1.77686,
+    "pi_charged": 0.13957039,
+    "pi0": 0.1349768,
+    "K_charged": 0.493677,
+    "K_neutral": 0.497611
+  },
+  "exclusive_thresholds_GeV": {
+    "e_plus_e_minus": 0.0010219979,
+    "mu_plus_mu_minus": 0.211316751,
+    "tau_plus_tau_minus": 3.55372,
+    "pi_plus_pi_minus": 0.27914078,
+    "pi0_pi0": 0.2699536,
+    "K_plus_K_minus": 0.987354,
+    "K_L_K_S": 0.995222,
+    "2pi_plus_2pi_minus": 0.55828156,
+    "pi_plus_pi_minus_2pi0": 0.54909438
+  },
+  "mass_input_note": "Explicit particle mass values for threshold preparation; generation must use compatible masses.",
+  "max_abs_sum_minus_one": 2.220446049250313e-16,
+  "repair_count_in_scan": 9,
+  "input_sha256": {
+    "BrRatioScalar_wide.csv": "10ab724a82a060829b383b82fa1bcb92e5bf3985f63147dcd0536f4ef53eb465",
+    "ctauS.csv": "fdfa740a9d962e0ac8fc31c21375d86e835b190922a16de42a2a8da5443d54a5"
+  },
+  "output_sha256": {
+    "branching_ratios.csv": "19f0f1d6c432ef967b5952e1fed4287f6c568e509f91771ac1f95062816d1e02",
+    "lifetime.csv": "c38024dd4438b23da4db45234c67beeec6a09301b01050466639e896c1e00af0",
+    "repairs.csv": "640266d6c8b1456275af51a2a1939d83db23adbd95585f3608778be53fbb126d"
+  },
+  "assumption": "Normalize the user-selected listed channels; does not establish completeness of physical decays."
+}

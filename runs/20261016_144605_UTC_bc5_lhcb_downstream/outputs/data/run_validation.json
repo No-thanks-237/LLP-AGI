@@ -1,0 +1,344 @@
+{
+  "bbar_sample": {
+    "n_b_mesons_kept": 162530,
+    "eta_min": 1.5000174523918284,
+    "eta_max": 5.49990881202546,
+    "fraction_of_kept_in_2_lt_eta_lt_5": 0.7760167353719314,
+    "sigma_bb_total_pb_assumed": 500000.0,
+    "lhcbl_forward_reference_ub": 79.8,
+    "note": "The LHCb measurement sigma(pp -> b bbar X; 2<eta<5) = 79.8 ub cannot be used directly as the normalisation because the Pythia sample is already eta-cut at generation (1.5 < eta < 5.5), so the 4pi b bbar cross section is the correct normalisation. The forward/4pi ratio implied here is therefore a lower bound on the true acceptance fraction and is quoted for information only.",
+    "open_item": "replace the assumed 500 ub 4pi b bbar cross section by a documented FONLL/NNLO value and rerun without the generation-level eta cut"
+  },
+  "lifetime_integral_convergence": {
+    "n": 37,
+    "median_rel_dev_13vs25_nodes": 8.265831882704786e-05,
+    "max_rel_dev": 0.023411526987714686,
+    "note": "same A(z) sampled on 25 nodes; the trapezoidal lifetime integral on the 13-node production grid is compared with the 25-node result over 1 < z_dec < 2.5 m"
+  },
+  "widths_reference_comparison": {
+    "comment": "independent implementation vs the two published references",
+    "vs_winkler_figure": {
+      "muons": {
+        "n": 288,
+        "median_ratio_fig_over_mine": 1.0095267304974755,
+        "scatter": 0.00012420841160520237,
+        "note": "Winkler figure value / this implementation; includes a +0.95% digitisation scale offset",
+        "median_ratio_corrected": 1.0
+      },
+      "taus": {
+        "n": 203,
+        "median_ratio_fig_over_mine": 0.9440314452049015,
+        "scatter": 0.22081040868401694,
+        "note": "Winkler figure value / this implementation; includes a +0.95% digitisation scale offset",
+        "median_ratio_corrected": 0.9351227824742201
+      },
+      "gluons_gg": {
+        "n": 209,
+        "median_ratio_fig_over_mine": 0.9520480992064286,
+        "scatter": 0.0771358274331965,
+        "note": "Winkler figure value / this implementation; includes a +0.95% digitisation scale offset",
+        "median_ratio_corrected": 0.9430637846877788
+      },
+      "strange_quarks_ss": {
+        "n": 208,
+        "median_ratio_fig_over_mine": 1.2602838486993564,
+        "scatter": 0.1389895344630026,
+        "note": "Winkler figure value / this implementation; includes a +0.95% digitisation scale offset",
+        "median_ratio_corrected": 1.248390766313154
+      },
+      "charm_quarks_cc": {
+        "n": 155,
+        "median_ratio_fig_over_mine": 1.5308302705363848,
+        "scatter": 74.15671481665535,
+        "note": "Winkler figure value / this implementation; includes a +0.95% digitisation scale offset",
+        "median_ratio_corrected": 1.5163840879993546
+      }
+    },
+    "digitisation_scale_offset": 1.0095267304974755,
+    "vs_senscalc_total_width": {
+      "n_points": 8115,
+      "median_ratio_mine_over_ref": NaN,
+      "ratio_at_1GeV": 0.6725996018792956,
+      "ratio_at_3GeV": 0.5452716317283027,
+      "ratio_at_10GeV": 0.9587406689642123,
+      "ratio_at_30GeV": 0.928315068948008,
+      "note": "SensCalc is a cross-reference only; the leptonic channels agree to <0.1% while its gluon channel is ~2x our LO value and its hadronic channels differ by ~1.5x"
+    }
+  },
+  "production_reference_comparison": {
+    "paper": "Boiarska et al. arXiv:1904.10447 tab:BR (m_S -> 0, theta^2-normalised)",
+    "B_to_XsS": {
+      "K": {
+        "ours": 0.43183341454661994,
+        "paper": 0.43,
+        "ratio": 1.0042637547595812
+      },
+      "pi": {
+        "ours": 0.012481424192240452,
+        "paper": 0.013,
+        "ratio": 0.9601095532492656
+      },
+      "K*892": {
+        "ours": 0.4775585121209459,
+        "paper": 0.47,
+        "ratio": 1.0160819406828636
+      },
+      "K*1410": {
+        "ours": 0.21006382398637272,
+        "paper": 0.21,
+        "ratio": 1.000303923744632
+      },
+      "K*1680": {
+        "ours": 0.1331369065694853,
+        "paper": 0.13,
+        "ratio": 1.0241300505345021
+      },
+      "K0*700": {
+        "ours": 0.732330961773179,
+        "paper": 0.76,
+        "ratio": 0.9635933707541829
+      },
+      "K0*1430": {
+        "ours": 0.08583461945981798,
+        "paper": 0.081,
+        "ratio": 1.0596866599977528
+      },
+      "K1_1270": {
+        "ours": 0.9523195629348392,
+        "paper": 0.91,
+        "ratio": 1.046505014214109
+      },
+      "K1_1400": {
+        "ours": 0.015892322238113404,
+        "paper": 0.016,
+        "ratio": 0.9932701398820878
+      },
+      "K2*1430": {
+        "ours": 0.30451991710159654,
+        "paper": 0.3,
+        "ratio": 1.0150663903386552
+      }
+    },
+    "total_exclusive": {
+      "ours": 3.3559714649232104,
+      "paper": 3.3
+    },
+    "K_to_piS": {
+      "K+": {
+        "ours": 0.0016098671923401781,
+        "paper": 0.0017,
+        "ratio": 0.9469807013765754
+      },
+      "K0L": {
+        "ours": 0.006955127513891136,
+        "paper": 0.007,
+        "ratio": 0.9935896448415908
+      }
+    },
+    "alpha_from_bh_1GeV": 0.7195253304612083,
+    "sigma_h_total_pb": 55.4527
+  },
+  "hadronisation_library": {
+    "source": "Pythia 8.316 forceHadronLevel on an isolated colour-singlet S decay",
+    "library": "work/magnus/hadron_lib/hadron_lib_<channel>.txt.gz",
+    "comparison": {
+      "gg": {
+        "1.0": {
+          "pythia_ncharged": 2.1293333333333333,
+          "pythia_sumE": 1.1301633439198044
+        },
+        "2.0": {
+          "pythia_ncharged": 2.6226666666666665,
+          "pythia_sumE": 1.6230468434986667
+        },
+        "5.0": {
+          "pythia_ncharged": 5.568,
+          "pythia_sumE": 3.435276683481467
+        },
+        "10.0": {
+          "pythia_ncharged": 8.089333333333334,
+          "pythia_sumE": 5.789622816900005
+        },
+        "30.0": {
+          "pythia_ncharged": 13.934666666666667,
+          "pythia_sumE": 17.568141305232462
+        },
+        "60.0": {
+          "pythia_ncharged": 17.745333333333335,
+          "pythia_sumE": 38.72173378460566
+        }
+      },
+      "ss": {
+        "1.0": {
+          "pythia_ncharged": 2.336,
+          "pythia_sumE": 1.2051948508066692
+        },
+        "2.0": {
+          "pythia_ncharged": 2.688,
+          "pythia_sumE": 1.707831365509534
+        },
+        "5.0": {
+          "pythia_ncharged": 4.601333333333334,
+          "pythia_sumE": 3.597633579663332
+        },
+        "10.0": {
+          "pythia_ncharged": 5.873333333333333,
+          "pythia_sumE": 6.121644408190873
+        },
+        "30.0": {
+          "pythia_ncharged": 8.494666666666667,
+          "pythia_sumE": 18.614095974402534
+        },
+        "60.0": {
+          "pythia_ncharged": 10.409333333333333,
+          "pythia_sumE": 40.10757903716232
+        }
+      },
+      "cc": {
+        "1.0": {
+          "pythia_ncharged": 0.0,
+          "pythia_sumE": 0.0
+        },
+        "2.0": {
+          "pythia_ncharged": 0.7946666666666666,
+          "pythia_sumE": 0.4278787506938699
+        },
+        "5.0": {
+          "pythia_ncharged": 5.897333333333333,
+          "pythia_sumE": 3.3572560068447412
+        },
+        "10.0": {
+          "pythia_ncharged": 7.222666666666667,
+          "pythia_sumE": 5.790522718640931
+        },
+        "30.0": {
+          "pythia_ncharged": 10.150666666666666,
+          "pythia_sumE": 17.60125591019736
+        },
+        "60.0": {
+          "pythia_ncharged": 12.101333333333333,
+          "pythia_sumE": 38.353319377506516
+        }
+      },
+      "bb": {
+        "1.0": {
+          "pythia_ncharged": 0.0,
+          "pythia_sumE": 0.0
+        },
+        "2.0": {
+          "pythia_ncharged": 0.7946666666666666,
+          "pythia_sumE": 0.4278787506938699
+        },
+        "5.0": {
+          "pythia_ncharged": 1.958,
+          "pythia_sumE": 1.9496805347486645
+        },
+        "10.0": {
+          "pythia_ncharged": 10.862666666666666,
+          "pythia_sumE": 6.64054732588501
+        },
+        "30.0": {
+          "pythia_ncharged": 12.618666666666666,
+          "pythia_sumE": 17.241143842281925
+        },
+        "60.0": {
+          "pythia_ncharged": 14.822666666666667,
+          "pythia_sumE": 37.21502026472245
+        }
+      },
+      "tau": {
+        "1.0": {
+          "pythia_ncharged": 0.0,
+          "pythia_sumE": 0.0
+        },
+        "2.0": {
+          "pythia_ncharged": 0.0,
+          "pythia_sumE": 0.0
+        },
+        "5.0": {
+          "pythia_ncharged": 2.6853333333333333,
+          "pythia_sumE": 2.22049133217113
+        },
+        "10.0": {
+          "pythia_ncharged": 2.66,
+          "pythia_sumE": 3.806313691730929
+        },
+        "30.0": {
+          "pythia_ncharged": 2.644,
+          "pythia_sumE": 11.095735134360403
+        },
+        "60.0": {
+          "pythia_ncharged": 2.6653333333333333,
+          "pythia_sumE": 25.043333278842674
+        }
+      }
+    },
+    "energy_conservation": {
+      "gg": {
+        "n": 1200,
+        "median_charged_energy_fraction": 0.7037653007,
+        "note": "fraction of m_S carried by stable charged particles; sum over ALL final particles was verified to equal m_S in the generator"
+      },
+      "ss": {
+        "n": 1200,
+        "median_charged_energy_fraction": 0.7736538254,
+        "note": "fraction of m_S carried by stable charged particles; sum over ALL final particles was verified to equal m_S in the generator"
+      },
+      "cc": {
+        "n": 900,
+        "median_charged_energy_fraction": 0.6576601253000001,
+        "note": "fraction of m_S carried by stable charged particles; sum over ALL final particles was verified to equal m_S in the generator"
+      },
+      "bb": {
+        "n": 862,
+        "median_charged_energy_fraction": 0.58575981535,
+        "note": "fraction of m_S carried by stable charged particles; sum over ALL final particles was verified to equal m_S in the generator"
+      }
+    },
+    "library_loaded": true,
+    "analytic_fallback": {
+      "gg": {
+        "2.0": {
+          "ncharged": 1.1666666666666667,
+          "sumE": 0.6006791474329897
+        },
+        "10.0": {
+          "ncharged": 3.69,
+          "sumE": 5.750434905676021
+        },
+        "30.0": {
+          "ncharged": 7.6273333333333335,
+          "sumE": 25.385826174511248
+        }
+      },
+      "bb": {
+        "2.0": {
+          "ncharged": 0.7946666666666666,
+          "sumE": 0.4278787506938699
+        },
+        "10.0": {
+          "ncharged": 3.0766666666666667,
+          "sumE": 5.038615710143414
+        },
+        "30.0": {
+          "ncharged": 6.342,
+          "sumE": 22.66275485520742
+        }
+      },
+      "tau": {
+        "2.0": {
+          "ncharged": 0.0,
+          "sumE": 0.0
+        },
+        "10.0": {
+          "ncharged": 2.8026666666666666,
+          "sumE": 4.909755110002677
+        },
+        "30.0": {
+          "ncharged": 2.8026666666666666,
+          "sumE": 14.72396458307293
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,80 @@
+  loaded B     bbar_heavy.txt.gz      rows=1509528   n_gen=800000   (max_ev+1=800000   ) 3.9 s
+  loaded inel  minbias_light.txt.gz   rows=1122895   n_gen=200000   (max_ev+1=200000   ) 2.9 s
+  loaded h     higgs.txt.gz           rows=1411171   n_gen=200000   (max_ev+1=200000   ) 3.7 s
+  [BC5 B yield] all b mesons per event = 1.8855 -> B_YIELD_CORR = 1.0172
+  [table bc5 mH=0.483517] scalars=14694 (nonzero response 2073) histories=8694 response 15.6 s, total 26.8 s
+  cached -> response_bc5_m0.483517_v3.npz (0.2 MB)
+  mS=0.483517  table  26.8s eval 20.2s  edge mine/published = 5.51e-10  ratio 0.9775  delta_s/s@edge 0.043
+  [BC5 B yield] all b mesons per event = 1.8855 -> B_YIELD_CORR = 1.0172
+  [table bc5 mH=0.661654] scalars=14703 (nonzero response 2064) histories=8703 response 23.8 s, total 24.5 s
+  cached -> response_bc5_m0.661654_v3.npz (0.2 MB)
+  mS=0.661654  table  24.5s eval 24.9s  edge mine/published = 3.431e-10  ratio 1.0739  delta_s/s@edge 0.042
+  [BC5 B yield] all b mesons per event = 1.8855 -> B_YIELD_CORR = 1.0172
+  [table bc5 mH=0.905421] scalars=14712 (nonzero response 2130) histories=8712 response 21.2 s, total 21.8 s
+  cached -> response_bc5_m0.905421_v3.npz (0.2 MB)
+  mS=0.905421  table  21.8s eval 25.6s  edge mine/published = 1.057e-10  ratio 0.9846  delta_s/s@edge 0.034
+  [BC5 B yield] all b mesons per event = 1.8855 -> B_YIELD_CORR = 1.0172
+  [table bc5 mH=0.9884] scalars=14754 (nonzero response 2277) histories=8754 response 28.3 s, total 29.0 s
+  cached -> response_bc5_m0.988400_v3.npz (0.2 MB)
+  mS=0.9884    table  29.0s eval 30.4s  edge mine/published = 4.587e-11  ratio 1.0132  delta_s/s@edge 0.032
+  [BC5 B yield] all b mesons per event = 1.8855 -> B_YIELD_CORR = 1.0172
+  [table bc5 mH=1] scalars=14696 (nonzero response 2375) histories=8696 response 31.6 s, total 32.3 s
+  cached -> response_bc5_m1.000000_v3.npz (0.2 MB)
+  mS=1         table  32.3s eval 31.3s  edge mine/published = 4.936e-11  ratio 1.0252  delta_s/s@edge 0.030
+  [BC5 B yield] all b mesons per event = 1.8855 -> B_YIELD_CORR = 1.0172
+  [table bc5 mH=1.2] scalars=14706 (nonzero response 2310) histories=8706 response 27.6 s, total 28.3 s
+  cached -> response_bc5_m1.200000_v3.npz (0.2 MB)
+  mS=1.2       table  28.3s eval 30.6s  edge mine/published = 1.342e-10  ratio 1.0051  delta_s/s@edge 0.035
+  [BC5 B yield] all b mesons per event = 1.8855 -> B_YIELD_CORR = 1.0172
+  [table bc5 mH=1.44937] scalars=14679 (nonzero response 2378) histories=8679 response 34.3 s, total 35.1 s
+  cached -> response_bc5_m1.449370_v3.npz (0.2 MB)
+  mS=1.44937   table  35.1s eval 30.4s  edge mine/published = 1.348e-10  ratio 1.0661  delta_s/s@edge 0.034
+  [BC5 B yield] all b mesons per event = 1.8855 -> B_YIELD_CORR = 1.0172
+  [table bc5 mH=1.98335] scalars=14668 (nonzero response 2577) histories=8668 response 34.2 s, total 34.8 s
+  cached -> response_bc5_m1.983347_v3.npz (0.2 MB)
+  mS=1.98335   table  34.8s eval 30.8s  edge mine/published = 1.361e-10  ratio 0.9884  delta_s/s@edge 0.031
+  [BC5 B yield] all b mesons per event = 1.8855 -> B_YIELD_CORR = 1.0172
+  [table bc5 mH=2.2] scalars=14688 (nonzero response 2519) histories=8688 response 20.5 s, total 21.0 s
+  cached -> response_bc5_m2.200000_v3.npz (0.2 MB)
+  mS=2.2       table  21.0s eval 25.6s  edge mine/published = 1.179e-10  ratio 1.0307  delta_s/s@edge 0.032
+  [BC5 B yield] all b mesons per event = 1.8855 -> B_YIELD_CORR = 1.0172
+  [table bc5 mH=2.6834] scalars=8783 (nonzero response 1379) histories=5735 response 13.9 s, total 14.3 s
+  cached -> response_bc5_m2.683400_v3.npz (0.1 MB)
+  mS=2.6834    table  14.3s eval 12.2s  edge mine/published = 7.803e-11  ratio 1.0156  delta_s/s@edge 0.033
+  [BC5 B yield] all b mesons per event = 1.8855 -> B_YIELD_CORR = 1.0172
+  [table bc5 mH=3.17488] scalars=8693 (nonzero response 1341) histories=5693 response 13.8 s, total 14.2 s
+  cached -> response_bc5_m3.174881_v3.npz (0.1 MB)
+  mS=3.17488   table  14.2s eval 11.5s  edge mine/published = 5.576e-11  ratio 0.9930  delta_s/s@edge 0.034
+  [BC5 B yield] all b mesons per event = 1.8855 -> B_YIELD_CORR = 1.0172
+  [table bc5 mH=3.7579] scalars=8705 (nonzero response 1404) histories=5705 response 17.7 s, total 18.0 s
+  cached -> response_bc5_m3.757900_v3.npz (0.1 MB)
+  mS=3.7579    table  18.0s eval 15.3s  edge mine/published = 2.837e-11  ratio 1.0764  delta_s/s@edge 0.039
+  [BC5 B yield] all b mesons per event = 1.8855 -> B_YIELD_CORR = 1.0172
+  [table bc5 mH=4.34457] scalars=8694 (nonzero response 1327) histories=5694 response 20.2 s, total 20.4 s
+  cached -> response_bc5_m4.344570_v3.npz (0.1 MB)
+  mS=4.34457   table  20.4s eval 16.3s  edge mine/published = 4.024e-12  ratio 1.0432  delta_s/s@edge 0.043
+  [BC5 B yield] all b mesons per event = 1.8855 -> B_YIELD_CORR = 1.0172
+  [table bc5 mH=5.08225] scalars=8683 (nonzero response 1400) histories=5683 response 22.4 s, total 22.7 s
+  cached -> response_bc5_m5.082255_v3.npz (0.1 MB)
+  mS=5.08225   table  22.7s eval 15.5s  edge mine/published = 1.459e-12  ratio 1.0651  delta_s/s@edge 0.043
+  [BC5 B yield] all b mesons per event = 1.8855 -> B_YIELD_CORR = 1.0172
+  [table bc5 mH=6.95466] scalars=6000 (nonzero response 771) histories=3000 response 11.4 s, total 11.6 s
+  cached -> response_bc5_m6.954656_v3.npz (0.1 MB)
+  mS=6.95466   table  11.6s eval 10.7s  edge mine/published = 4.153e-13  ratio 1.0095  delta_s/s@edge 0.042
+  [BC5 B yield] all b mesons per event = 1.8855 -> B_YIELD_CORR = 1.0172
+  [table bc5 mH=10.5834] scalars=6000 (nonzero response 800) histories=3000 response 18.1 s, total 18.3 s
+  cached -> response_bc5_m10.583400_v3.npz (0.1 MB)
+  mS=10.5834   table  18.3s eval 11.6s  edge mine/published = 1.313e-13  ratio 0.9793  delta_s/s@edge 0.042
+
+BC5 REGRESSION SUMMARY
+{
+ "n_masses": 16,
+ "boundary_ratio_median": 1.014433200719537,
+ "boundary_ratio_min": 0.9775188545039333,
+ "boundary_ratio_max": 1.0763689687059803,
+ "max_abs_relative_deviation": 0.07636896870598031,
+ "median_abs_relative_deviation": 0.021590766314867005,
+ "fraction_within_5pct": 0.75,
+ "curve_ratio_median": 0.9838378741790721
+}
+wrote E:\AAAwork\LLP-AGI\runs\20261025_1325_UTC_2HDM_lightH_lhcb_downstream\work\analysis\bc5_regression.json

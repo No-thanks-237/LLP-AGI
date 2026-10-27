@@ -1,0 +1,291 @@
+
+====================================================================================================
+a.  xi_H^{bs} at mH = 1 GeV, tanb = 100: hand calculation, per-term
+====================================================================================================
+prefactor -(4 sqrt2 G_F)/(16 pi^2) = -4.178254034734e-07
+lambda_HH+H- = -(2 m_Hpm^2 - mH^2) c/v = -2.9268252033e+01 GeV
+2v/mW^2 * lambda                  = -2.2284959888e+00
+c = 0.0100000000   s = 0.999949998750
+
+paper eq. xi_H_2HDM lower (H) row per loop quark:
+  bracket_k = g1_k*c - g2_k*s - g0_k*(2v/mW^2)*lambda_HH+H-
+k         g1_k*c      -g2_k*s      -g0_k*k        bracket     V*_ks V_kb   m_k^2*ckm*br
+u   -7.500000e-03 -3.514977e-02 -7.499990e-07 -4.2650522886e-02  (3.547e-04-7.800e-04i)  -7.321736e-11 +1.610060e-10i
+c   -7.500000e-03 -3.509492e-02 -7.499487e-07 -4.2595665762e-02  (3.973e-02+1.298e-06i)  -2.772458e-03 -9.061040e-08i
+t   -7.500140e-03 -1.051249e-02 -6.102262e-07 -1.8013241758e-02  (-4.008e-02+7.787e-04i)   2.163345e+01 -4.202763e-01i
+sum_k = 2.1630681759e+01 -4.2027634756e-01i
+xi_H^{bs} = prefactor * sum = -9.0378483335e-06 +1.7560213449e-07i
+|xi_H^{bs}| = 9.0395541156e-06
+
+comparison with the LEAD independent bracket calculation:
+  tanb=5      bracket(t) = -0.36091937   lead = -0.3609   delta = -1.94e-05
+  tanb=100    bracket(t) = -0.01801324   lead = -0.0180   delta = -1.32e-05
+
+independent numpy re-implementation of the whole sum: xi_H^{bs} = -9.0378483335e-06 +1.7560213449e-07i  (delta = 0.00e+00)
+
+Wolfram-Language check of App. D g0,g1,g2 (tanb=100):
+  u  g0  python -3.365493865753e-07  wolfram -3.365493865750e-07  rel.diff 8.07e-13
+  u  g1  python -7.500000000000e-01  wolfram -7.500000000000e-01  rel.diff 4.26e-14
+  u  g2  python 3.515153050766e-02  wolfram 3.515153050770e-02  rel.diff 1.12e-12
+  u  X1  python 3.515153050766e+00  wolfram 3.515153050770e+00  rel.diff 1.11e-12
+  u  X2  python -3.197418969963e-10  wolfram -3.197418969960e-10  rel.diff 9.70e-13
+  c  g0  python -3.365268195065e-07  wolfram -3.365268195070e-07  rel.diff 1.40e-12
+  c  g1  python -7.500000050291e-01  wolfram -7.500000050290e-01  rel.diff 1.35e-13
+  c  g2  python 3.509667064070e-02  wolfram 3.509667064070e-02  rel.diff 4.88e-14
+  c  X1  python 3.509667069099e+00  wolfram 3.509667069100e+00  rel.diff 2.07e-13
+  c  X2  python -5.029101176365e-05  wolfram -5.029101176370e-05  rel.diff 9.29e-13
+  t  g0  python -2.738287013835e-07  wolfram -2.738287013840e-07  rel.diff 1.82e-12
+  t  g1  python -7.500139772990e-01  wolfram -7.500139772990e-01  rel.diff 2.49e-14
+  t  g2  python 1.051301742302e-02  wolfram 1.051301742300e-02  rel.diff 1.99e-12
+  t  X1  python 1.051315719601e+00  wolfram 1.051315719600e+00  rel.diff 1.02e-12
+  t  X2  python -1.397729898131e-01  wolfram -1.397729898130e-01  rel.diff 5.31e-13
+
+====================================================================================================
+b.  Br(B->XsH) at mH -> 0, tanb = 100: inclusive (nominal) vs Boiarska exclusive
+====================================================================================================
+mH=0.021  nominal=4.137747e-03  exclusive(module)=2.111851e-03  Boiarska-excl-rescaled=2.085045e-03  nom/excl=1.959  nom/boi=1.984
+mH=0.100  nominal=4.134910e-03  exclusive(module)=2.111622e-03  Boiarska-excl-rescaled=2.084225e-03  nom/excl=1.958  nom/boi=1.984
+mH=1.000  nominal=3.846279e-03  exclusive(module)=2.086305e-03  Boiarska-excl-rescaled=1.999060e-03  nom/excl=1.844  nom/boi=1.924
+mH=2.000  nominal=3.035401e-03  exclusive(module)=1.991518e-03  Boiarska-excl-rescaled=1.736412e-03  nom/excl=1.524  nom/boi=1.748
+mH=3.000  nominal=1.897007e-03  exclusive(module)=1.646920e-03  Boiarska-excl-rescaled=1.272622e-03  nom/excl=1.152  nom/boi=1.491
+mH=4.000  nominal=7.506981e-04  exclusive(module)=5.578665e-04  Boiarska-excl-rescaled=4.108943e-04  nom/excl=1.346  nom/boi=1.827
+mH=4.170  nominal=5.853175e-04  exclusive(module)=4.488696e-04  Boiarska-excl-rescaled=2.826209e-04  nom/excl=1.304  nom/boi=2.071
+
+HAND CHECK Br(B->XsH) at mH=0.1, tanb=100 (all terms printed):
+  12 pi^2            = 118.43525281
+  v^2/m_b^2          = 3463.51960807  (v=246.0, m_b=4.18)
+  (1-mH^2/m_b^2)^2   = 0.99885567
+  1/f(mc^2/mb^2)     = 1.97590341  (f=0.50609761, mc=1.28)
+  |xi_H^bs/Vcb|^2    = 4.90885303e-08  (|xi|=9.039554e-06, |Vcb|=0.040800)
+  product            = 3.97417620e-02
+  x Br(B->Xc e nu)   = 4.13314325e-03  (0.104)
+  module total       = 4.13490964e-03
+
+RATE MODES (DEFAULT_B_MODE=foresee), tanb=100:
+  mH=0.1  foresee=4.13491e-03 paper_mb=4.13314e-03 exclusive=2.11162e-03 | foresee/paper_mb=1.000     foresee/excl=1.958
+  mH=1.0  foresee=3.84628e-03 paper_mb=3.67779e-03 exclusive=2.08631e-03 | foresee/paper_mb=1.046     foresee/excl=1.844
+  mH=3.0  foresee=1.89701e-03 paper_mb=9.72939e-04 exclusive=1.64692e-03 | foresee/paper_mb=1.950     foresee/excl=1.152
+  mH=4.0  foresee=7.50698e-04 paper_mb=2.93849e-05 exclusive=5.57866e-04 | foresee/paper_mb=25.547    foresee/excl=1.346
+  mH=4.5  foresee=3.09408e-04 paper_mb=0.00000e+00 exclusive=2.67380e-04 | foresee/paper_mb=inf       foresee/excl=1.157
+
+(i) our top-quark bracket vs FORESEE f(c):
+  tanb=5        bracket=-0.36091937  FORESEE f=-0.35841365  ratio=1.00699
+  tanb=10       bracket=-0.18021552  FORESEE f=-0.17894855  ratio=1.00708
+  tanb=20       bracket=-0.09007634  FORESEE f=-0.08944112  ratio=1.00710
+  tanb=50       bracket=-0.03602699  FORESEE f=-0.03577271  ratio=1.00711
+  tanb=100      bracket=-0.01801324  FORESEE f=-0.01788609  ratio=1.00711
+  tanb=300      bracket=-0.00600439  FORESEE f=-0.00596200  ratio=1.00711
+  tanb=1000     bracket=-0.00180132  FORESEE f=-0.00178860  ratio=1.00711
+  tanb=10000    bracket=-0.00018013  FORESEE f=-0.00017886  ratio=1.00711
+  tanb=100000   bracket=-0.00001801  FORESEE f=-0.00001789  ratio=1.00711
+
+(ii) our br_B_to_XsH(mode="foresee") vs FORESEE formula, B+ (mH<4):
+  54 nodes: ratio ours/FORESEE min=1.0162 max=1.0165 mean=1.0164
+   mH=1_tanb=100  ours=3.84628e-03 FORESEE=3.78391e-03 ratio=1.0165
+   mH=3_tanb=100  ours=1.89701e-03 FORESEE=1.86625e-03 ratio=1.0165
+   mH=4_tanb=10   ours=7.51391e-02 FORESEE=7.39250e-02 ratio=1.0164
+  B0 at (1,100): ours=3.56688e-03 FORESEE=3.50925e-03 ratio=1.0164  (both now carry BR(B0)=Gamma_B+/Gamma_B0*BR(B+), Gamma_B+/Gamma_B0=0.92735)
+  B0/B+ lifetime scaling (all modes): foresee=0.92736, paper_mb=0.92735, exclusive=0.92735
+  mesonic endpoint: mB - mK = 4.785663 (B+), 4.785973 (B0); foresee mode returns 0 at/above it
+  foresee mode near the endpoint: mH=4.500:total=3.0941e-04 flag=False, mH=4.700:total=1.7805e-04 flag=False, mH=4.780:total=1.3440e-04 flag=False, mH=4.786:total=0.0000e+00 flag=True, mH=4.790:total=0.0000e+00 flag=True, mH=5.000:total=0.0000e+00 flag=True
+  other modes at mH=4.8: paper_mb=0.000e+00 exclusive=0.000e+00 (natural thresholds); beyond_mesonic_endpoint=True
+
+Boiarska inclusive/exclusive relation (their eq:exclusive-to-inclusive): 0.5 -> inclusive/exclusive = 2.  We find 1.958 at mH=0.1 (1.957 expected): agreement -2.1%
+Boiarska total exclusive B->XsS at mS=0: 3.3 theta^2 (their eq:total-exclusive);
+our Boiarska-normalised exclusive sum at mS=0.021: 3.307 theta^2
+
+High-mass behaviour: foresee closes at the B-meson mass 5.279, paper_mb at m_b=4.18, exclusive at each channel threshold (~4.79)
+  mH=4.17  foresee=5.8532e-04  paper_mb=9.4503e-08  exclusive=4.4887e-04  channels open: ['K', 'K*892', 'K0*700']
+  mH=4.20  foresee=5.5761e-04  paper_mb=0.0000e+00  exclusive=4.2873e-04  channels open: ['K', 'K*892', 'K0*700']
+  mH=4.50  foresee=3.0941e-04  paper_mb=0.0000e+00  exclusive=2.6738e-04  channels open: ['K']
+  mH=4.78  foresee=1.3440e-04  paper_mb=0.0000e+00  exclusive=4.6991e-05  channels open: ['K']
+  mH=4.79  foresee=0.0000e+00  paper_mb=0.0000e+00  exclusive=0.0000e+00  channels open: []
+  mH=5.00  foresee=0.0000e+00  paper_mb=0.0000e+00  exclusive=0.0000e+00  channels open: []
+
+validity boundaries (Br(B->XsH) = 0.1 and 1):
+  mH=0.021   tanb(BR=0.1)=20.34  tanb(BR=1)=6.44
+  mH=0.100   tanb(BR=0.1)=20.34  tanb(BR=1)=6.44
+  mH=0.500   tanb(BR=0.1)=20.16  tanb(BR=1)=6.38
+  mH=1.000   tanb(BR=0.1)=19.61  tanb(BR=1)=6.21
+  mH=2.000   tanb(BR=0.1)=17.43  tanb(BR=1)=5.52
+  mH=3.000   tanb(BR=0.1)=13.78  tanb(BR=1)=none
+  mH=4.000   tanb(BR=0.1)=8.67  tanb(BR=1)=none
+  mH=4.170   tanb(BR=0.1)=7.66  tanb(BR=1)=none
+
+Br(B->XsH) monotonically decreasing in tanb on the 60-point check: True
+
+FASER-paper B picture: the paper uses exactly this inclusive ratio with Br(B->Xc e nu)=0.104 (their Eq. after eq:Lfceff_phi) and takes B production only
+for m_H above the kaon window; at tanb < 19.6 (mH=1) Br(B->XsH)>0.1 -> the effective/inclusive description is saturated (flag).
+
+====================================================================================================
+c.  K->pi H at mH -> 0, tanb = 100: FCNC vs four-quark vs interference
+====================================================================================================
+xi_H^{ds} = -7.4629867252e-08 -3.1964607095e-08i  |xi| = 8.118715e-08   (Boiarska xi_ds = 3.30e-06)
+
+mH=0.0000  p*=0.227109  |M|=3.616988e-11
+   |FCNC|^2          = 1.395091e-21   (BR_FCNC_only = 9.733970e-07)
+   |4-quark|^2       = 1.660697e-24   (BR_4q_only   = 1.158718e-09)
+   interference 2Re  = -8.849158e-23   (-6.76 % of |M|^2)
+   |M|^2 total       = 1.308260e-21   BR(K+->pi+H) = 9.128125e-07
+   Boiarska K->piS master formula rescaled: 9.761424e-07   FCNC-only/boiarska = 0.9972
+
+mH=0.0500  p*=0.224132  |M|=3.618107e-11
+   |FCNC|^2          = 1.395091e-21   (BR_FCNC_only = 9.606360e-07)
+   |4-quark|^2       = 1.629299e-24   (BR_4q_only   = 1.121907e-09)
+   interference 2Re  = -8.765103e-23   (-6.70 % of |M|^2)
+   |M|^2 total       = 1.309070e-21   BR(K+->pi+H) = 9.014029e-07
+   Boiarska K->piS master formula rescaled: 9.633455e-07   FCNC-only/boiarska = 0.9972
+
+mH=0.1396  p*=0.203581  |M|=3.625708e-11
+   |FCNC|^2          = 1.395091e-21   (BR_FCNC_only = 8.725547e-07)
+   |4-quark|^2       = 1.423873e-24   (BR_4q_only   = 8.905559e-10)
+   interference 2Re  = -8.193930e-23   (-6.23 % of |M|^2)
+   |M|^2 total       = 1.314576e-21   BR(K+->pi+H) = 8.221966e-07
+   Boiarska K->piS master formula rescaled: 8.750157e-07   FCNC-only/boiarska = 0.9972
+
+mH=0.2000  p*=0.177824  |M|=3.634890e-11
+   |FCNC|^2          = 1.395091e-21   (BR_FCNC_only = 7.621576e-07)
+   |4-quark|^2       = 1.194278e-24   (BR_4q_only   = 6.524503e-10)
+   interference 2Re  = -7.504285e-23   (-5.68 % of |M|^2)
+   |M|^2 total       = 1.321243e-21   BR(K+->pi+H) = 7.218131e-07
+   Boiarska K->piS master formula rescaled: 7.643073e-07   FCNC-only/boiarska = 0.9972
+
+mH=0.3000  p*=0.106257  |M|=3.657292e-11
+   |FCNC|^2          = 1.395091e-21   (BR_FCNC_only = 4.554217e-07)
+   |4-quark|^2       = 7.191329e-25   (BR_4q_only   = 2.347579e-10)
+   interference 2Re  = -5.823194e-23   (-4.35 % of |M|^2)
+   |M|^2 total       = 1.337579e-21   BR(K+->pi+H) = 4.366469e-07
+   Boiarska K->piS master formula rescaled: 4.567062e-07   FCNC-only/boiarska = 0.9972
+
+mH=0.3541  p*=0.001150  |M|=3.673163e-11
+   |FCNC|^2          = 1.395091e-21   (BR_FCNC_only = 4.930773e-09)
+   |4-quark|^2       = 4.552929e-25   (BR_4q_only   = 1.609175e-12)
+   interference 2Re  = -4.633425e-23   (-3.43 % of |M|^2)
+   |M|^2 total       = 1.349212e-21   BR(K+->pi+H) = 4.768620e-09
+   Boiarska K->piS master formula rescaled: 4.944681e-09   FCNC-only/boiarska = 0.9972
+
+K0L->pi0 H at mH=0, tanb=100: 3.943562e-06  (per K0L; response applies 1/2 PDG-311)
+K0S->pi0 H: 0.0  (CP suppressed, as in BC5)
+K0L / K+ ratio: 4.3202   (Boiarska table: 7e-3/1.7e-3 = 4.12)
+
+====================================================================================================
+d.  Br(pi->H e nu), Br(K->H e nu) at mH -> 0
+====================================================================================================
+pi : Br = 1.963947e-13 at tanb=100 (c^2=1.00e-04);  at tanb=1 (c=1): 1.963947e-09
+K  : Br = 3.911730e-12 at tanb=100 (c^2=1.00e-04);  at tanb=1 (c=1): 3.911730e-08
+
+Boiarska table tab:BR-3-body: BR(K->S e nu)/f(x)/theta^2 = 4.1e-8; we get 3.912e-08 (normalisation, theta=1)
+Boiarska table tab:BR-3-body (their text) and our pi normalisation: 1.964e-09
+K0L -> H e nu: 0.0 (not a physical two-body leptonic channel)
+mH=0.0210  Br(pi->He nu)=1.6542e-13  Br(K->He nu)=3.8561e-12
+mH=0.1000  Br(pi->He nu)=2.8771e-15  Br(K->He nu)=2.8822e-12
+mH=0.1300  Br(pi->He nu)=3.4303e-18  Br(K->He nu)=2.3544e-12
+mH=0.1395  Br(pi->He nu)=4.8719e-29  Br(K->He nu)=2.1852e-12
+mH=0.1396  Br(pi->He nu)=0.0000e+00  Br(K->He nu)=2.1835e-12
+
+====================================================================================================
+e.  g_C, g3, Gamma(h->HH), BR(h->HH)
+====================================================================================================
+paper approximation g_hHH ~ -mh^2 c^2/(4v) (their text after eq:BM_H).
+mH=0.02  tanb=5      g_C=+6.411251e-01  |g_C|/|appr|=1.0094  g3=-1.282250e+00  Gamma_hHH=1.3084e-04  Gamma_h_other=4.153201e-03  BR_hHH=3.054093e-02  BR(4700 g^2/v^2)=3.192370e-02  ratio=0.9567
+mH=0.02  tanb=10     g_C=+1.591807e-01  |g_C|/|appr|=1.0025  g3=-3.183615e-01  Gamma_hHH=8.0655e-06  Gamma_h_other=4.090811e-03  BR_hHH=1.967734e-03  BR(4700 g^2/v^2)=1.967926e-03  ratio=0.9999
+mH=0.02  tanb=100    g_C=+1.587050e-03  |g_C|/|appr|=0.9995  g3=-3.174100e-03  Gamma_hHH=8.0174e-10  Gamma_h_other=4.070208e-03  BR_hHH=1.969766e-07  BR(4700 g^2/v^2)=1.956180e-07  ratio=1.0069
+mH=0.10  tanb=5      g_C=+6.411056e-01  |g_C|/|appr|=1.0094  g3=-1.282211e+00  Gamma_hHH=1.3083e-04  Gamma_h_other=4.153201e-03  BR_hHH=3.053910e-02  BR(4700 g^2/v^2)=3.192176e-02  ratio=0.9567
+mH=0.10  tanb=10     g_C=+1.591613e-01  |g_C|/|appr|=1.0023  g3=-3.183226e-01  Gamma_hHH=8.0635e-06  Gamma_h_other=4.090811e-03  BR_hHH=1.967252e-03  BR(4700 g^2/v^2)=1.967445e-03  ratio=0.9999
+mH=0.10  tanb=100    g_C=+1.567621e-03  |g_C|/|appr|=0.9872  g3=-3.135242e-03  Gamma_hHH=7.8223e-10  Gamma_h_other=4.070208e-03  BR_hHH=1.921830e-07  BR(4700 g^2/v^2)=1.908577e-07  ratio=1.0069
+mH=1.00  tanb=5      g_C=+6.390935e-01  |g_C|/|appr|=1.0062  g3=-1.278187e+00  Gamma_hHH=1.2999e-04  Gamma_h_other=4.153201e-03  BR_hHH=3.034978e-02  BR(4700 g^2/v^2)=3.172170e-02  ratio=0.9568
+mH=1.00  tanb=10     g_C=+1.571491e-01  |g_C|/|appr|=0.9897  g3=-3.142983e-01  Gamma_hHH=7.8599e-06  Gamma_h_other=4.090811e-03  BR_hHH=1.917677e-03  BR(4700 g^2/v^2)=1.918013e-03  ratio=0.9998
+mH=1.00  tanb=100    g_C=-4.445741e-04  |g_C|/|appr|=0.2800  g3=+8.891483e-04  Gamma_hHH=6.2905e-11  Gamma_h_other=4.070208e-03  BR_hHH=1.545490e-08  BR(4700 g^2/v^2)=1.535027e-08  ratio=1.0068
+mH=2.00  tanb=5      g_C=+6.329960e-01  |g_C|/|appr|=0.9966  g3=-1.265992e+00  Gamma_hHH=1.2748e-04  Gamma_h_other=4.153201e-03  BR_hHH=2.977948e-02  BR(4700 g^2/v^2)=3.111928e-02  ratio=0.9569
+mH=2.00  tanb=10     g_C=+1.510516e-01  |g_C|/|appr|=0.9513  g3=-3.021031e-01  Gamma_hHH=7.2590e-06  Gamma_h_other=4.090811e-03  BR_hHH=1.771327e-03  BR(4700 g^2/v^2)=1.772059e-03  ratio=0.9996
+mH=2.00  tanb=100    g_C=-6.542135e-03  |g_C|/|appr|=4.1200  g3=+1.308427e-02  Gamma_hHH=1.3617e-08  Gamma_h_other=4.070208e-03  BR_hHH=3.345404e-06  BR(4700 g^2/v^2)=3.324043e-06  ratio=1.0064
+mH=4.00  tanb=5      g_C=+6.086062e-01  |g_C|/|appr|=0.9582  g3=-1.217212e+00  Gamma_hHH=1.1766e-04  Gamma_h_other=4.153201e-03  BR_hHH=2.754965e-02  BR(4700 g^2/v^2)=2.876738e-02  ratio=0.9577
+mH=4.00  tanb=10     g_C=+1.266613e-01  |g_C|/|appr|=0.7977  g3=-2.533227e-01  Gamma_hHH=5.0962e-06  Gamma_h_other=4.090811e-03  BR_hHH=1.244219e-03  BR(4700 g^2/v^2)=1.245993e-03  ratio=0.9986
+mH=4.00  tanb=100    g_C=-3.093238e-02  |g_C|/|appr|=19.4800  g3=+6.186476e-02  Gamma_hHH=3.0394e-07  Gamma_h_other=4.070208e-03  BR_hHH=7.466833e-05  BR(4700 g^2/v^2)=7.431120e-05  ratio=1.0048
+
+mH -> 0 convergence of g_C to -mh^2 c^2/(4v) at tanb=100:
+  mH=1.0000 g_C=-4.445741e-04  paper approx=-1.587907e-03  ratio=0.27998
+  mH=0.1000 g_C=+1.567621e-03  paper approx=-1.587907e-03  ratio=-0.98722
+  mH=0.0210 g_C=+1.587050e-03  paper approx=-1.587907e-03  ratio=-0.99946
+  (the deviation at mH=1 is the exact -(mH^2 c^2/2) term of the bracket; it vanishes as mH->0)
+
+4700*(g/v)^2 vs our Gamma(h->HH)/(Gamma_h^other): the paper coefficient 4700 = v^2/(8 pi mh Gamma_h^SM) = 4732.9
+paper text also claims Br(h->HH) ~ 75 c^4; our exact formula gives ~19.68 c^4 at mH->0 (flagged as a paper inconsistency, see report)
+
+====================================================================================================
+f.  kappa -> 1 and sigma_total -> 55.4527 pb as tanb -> infinity
+====================================================================================================
+tanb=10       kappa_f-1=+4.987e-03 kappa_V-1=-5.013e-03 kappa_g-1=+4.987e-03 kappa_gamma-1=-7.707e-03 sigma_total=55.886382
+tanb=100      kappa_f-1=+5.000e-05 kappa_V-1=-5.000e-05 kappa_g-1=+5.000e-05 kappa_gamma-1=-7.695e-05 sigma_total=55.457037
+tanb=1000     kappa_f-1=+5.000e-07 kappa_V-1=-5.000e-07 kappa_g-1=+5.000e-07 kappa_gamma-1=-7.695e-07 sigma_total=55.452743
+tanb=10000    kappa_f-1=+5.000e-09 kappa_V-1=-5.000e-09 kappa_g-1=+5.000e-09 kappa_gamma-1=-7.695e-09 sigma_total=55.452700
+tanb=100000   kappa_f-1=+5.000e-11 kappa_V-1=-5.000e-11 kappa_g-1=+5.000e-11 kappa_gamma-1=-7.695e-11 sigma_total=55.452700
+
+SIGMA_H sum = 55.452700 pb ; at tanb=1e5 sigma_total = 55.452700 pb (delta = 4.34e-09)
+
+per-process at tanb=5 and tanb=1000 vs sigma_SM*kappa^2 (Lead request):
+  tanb=5   kappa_f=1.019796 kappa_V=0.979796 kappa_g=1.019796
+  proc    sigma_SM sigma_2HDM SM*kappa^2        ratio
+  ggF      48.5800    50.5224    50.5224     1.000000
+  VBF       3.7820     3.6307     3.6307     1.000000
+  WH        1.3690     1.3142     1.3142     1.000000
+  ZH        0.8830     0.8477     0.8477     1.000000
+  bbH       0.2384     0.2479     0.2479     1.000000
+  ttH       0.5065     0.5268     0.5268     1.000000
+  tHj       0.0740     0.0770     0.0770     1.000000
+  tHW       0.0152     0.0152     0.0158     0.961161
+  tHb       0.0046     0.0048     0.0048     1.000000
+  total = 57.1867 pb
+  tanb=1000   kappa_f=1.000000 kappa_V=0.999999 kappa_g=1.000000
+  proc    sigma_SM sigma_2HDM SM*kappa^2        ratio
+  ggF      48.5800    48.5800    48.5800     1.000000
+  VBF       3.7820     3.7820     3.7820     1.000000
+  WH        1.3690     1.3690     1.3690     1.000000
+  ZH        0.8830     0.8830     0.8830     1.000000
+  bbH       0.2384     0.2384     0.2384     1.000000
+  ttH       0.5065     0.5065     0.5065     1.000000
+  tHj       0.0740     0.0740     0.0740     1.000000
+  tHW       0.0152     0.0152     0.0152     0.999999
+  tHb       0.0046     0.0046     0.0046     1.000000
+  total = 55.4527 pb
+
+ tHW interference bracket: sigma = sigma_SM*[kt^2+kV^2+2 kt kV cos(phi)]/4, baseline phi=0
+  tanb=5      kt=1.019796 kV=0.979796 -> sigma_tHW base=1.519380e-02 pb  range=[6.080000e-06, 1.519380e-02]  weight in total=0.0266%
+  tanb=100    kt=1.000050 kV=0.999950 -> sigma_tHW base=1.520000e-02 pb  range=[3.800000e-11, 1.520000e-02]  weight in total=0.0274%
+  tanb=1000   kt=1.000000 kV=0.999999 -> sigma_tHW base=1.520000e-02 pb  range=[3.799494e-15, 1.520000e-02]  weight in total=0.0274%
+
+====================================================================================================
+extra.  CKM choice, coupling identities, sanity/provenance
+====================================================================================================
+unitary CKM |V|:
+   0.974513 0.224298 0.003820
+   0.224176 0.973694 0.040800
+   0.008331 0.040122 0.999160
+max |V^dag V - 1| = 1.11e-16
+|Vtd Vts| unitary = 3.342519e-04 ; nominal-list variant = 3.569000e-04 ; ratio = 1.0678
+BR(K+->pi+H) with unitary CKM = 9.128125e-07 ; with nominal list = 1.033400e-06 ; ratio = 1.1321
+
+GIM check: sum_k V*_ki V_kj for i!=j = max 2.06e-18 (must vanish)
+
+coupling identities at tanb = 100, 1e3, 1e5:
+  tanb=100      xi_H^f = c-s/tb = 5.000125006243e-07 ; 1/(tb^3(1+s)) = 5.000125006250e-07 ; rel 1.5e-12
+  tanb=1000     xi_H^f = c-s/tb = 5.000001250706e-10 ; 1/(tb^3(1+s)) = 5.000001250001e-10 ; rel 1.4e-10
+  tanb=100000   xi_H^f = c-s/tb = 5.000001606324e-16 ; 1/(tb^3(1+s)) = 5.000000000125e-16 ; rel 3.2e-07
+
+lambda_HH+H- at lambda v^2 = 0: -(2 m_Hpm^2 - mH^2) c/v
+  mH=1.0   tanb=100: -29.26825203  (c=0.01 -> -29.26825203)
+  mH=10.0  tanb=100: -29.26422764  (c=0.01 -> -29.26422764)
+
+BR(h->HH)=0 above mh/2: 0.0
+channel weights sum: 1.000000000000  (mH=1)
+channel weights independent of tanb: yes by construction (mH-only function)
+
+provenance sha256:
+  inputs/references/FASER_light.tex             ac5caa0268ca1be82dd767d2a21fefeab15e61d5c71d2d7dbfc203ee2a7e1a8f
+  inputs/bc5_reuse/bc5_production.py            11fb6f925e7323746162f044f2ece55ad63293d3329ccec792f7ee9e12ec7367
+  work/common/mass_grid.txt                     3edeb6d4a09a69ac18f2c1bd8fd62e23a9ad0107495addc2579298752cf3c21f
+  work/production/twohdm_production.py          4cc687ad2bac7334763d893dde0edfb81310992638f1b158bf9cf4c0025a0ad6
+  work/production/b_channels.py                 6cf70445852fe027fe45d865dc4a1ce94fc9a11bfae26ffcbfa5f758f8651c4d
+  DESIGN.md                                     e8df2cb127ec4ee7a82f002d80b4bbd653a3f29ae6c6de64b98a46fed71c2c7d
+
+wrote E:\AAAwork\LLP-AGI\runs\20261025_1325_UTC_2HDM_lightH_lhcb_downstream\work\production\validation.json
