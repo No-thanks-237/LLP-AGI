@@ -1,0 +1,21 @@
+{
+  "run_id": "bc5_lhcb_downstream_v4",
+  "program": "bc5_lhcb_downstream",
+  "version": "4.0.0",
+  "date": "2026-11-14",
+  "status": "current",
+  "model_tag": "v4.0-2026-11-14",
+  "physics_baseline": "bc5_lhcb_downstream_v3 (v3.6-2026-10-25) — unchanged",
+  "predecessor": "bc5_lhcb_downstream_v3",
+  "successor": null,
+  "description": "BC5 Higgs-portal scalar at the LHCb Downstream detector: (m_S, theta^2) 90% CL exclusion, L = 25 / 300 fb^-1. v4 is a pure code reorganisation; every physics product reproduces v3.6 bit for bit.",
+  "entry_points": {
+    "sensitivity": "scripts/run_sensitivity.py",
+    "scan": "scripts/run_scan.py",
+    "curves": "scripts/make_curves.py",
+    "package": "bc5/"
+  },
+  "python": ">=3.11",
+  "platform": "Windows x64 (precompiled downstream_kernel.dll)",
+  "license": "GPL-3.0-or-later (detector kernel); analysis code as in the repository"
+}

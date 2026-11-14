@@ -1,0 +1,143 @@
+==============================================================================
+production parameter-space figures  (13 TeV, LHCb downstream 2 < eta < 5)
+output directory: E:\AAAwork\LLP-AGI\runs\bc5_lhcb_downstream_v3\outputs\figures\production
+==============================================================================
+
+normalisation from E:\AAAwork\LLP-AGI\runs\bc5_lhcb_downstream_v3\work\magnus\samples\normalisation.json:
+  B: sigma_ref = 5.6e+08 pb   n_gen = 800000   file = bbar_heavy.txt.gz
+  K: sigma_ref = 7.95e+10 pb   n_gen = 200000   file = minbias_light.txt.gz
+  H: sigma_ref = 55.4527 pb   n_gen = 200000   file = higgs.txt.gz
+
+reading samples ...
+  read bbar_heavy.txt.gz       1509528 of  1509528 rows  ( 36.2 MB)  3.02 s
+    distinct events 796346
+  read minbias_light.txt.gz    1122895 of  1122895 rows  ( 26.5 MB)  2.20 s
+    distinct events 173577
+  read higgs.txt.gz             200000 of  1411171 rows  ( 30.5 MB)  2.71 s
+    distinct events 200000
+
+==============================================================================
+SANITY CHECKS
+==============================================================================
+
+bbar_heavy.txt: 1509528 rows, 796346 distinct event ids
+  PDG codes present (code: rows):
+      521 :  342516
+      511 :  342461
+     -511 :  336891
+     -521 :  334676
+      531 :   76647
+     -531 :   75243
+      541 :     548
+     -541 :     546
+  pz < 0 fraction: 0.4999
+
+minbias_light.txt: 1122895 rows, 173577 distinct event ids
+  PDG codes present (code: rows):
+      321 :  297439
+     -321 :  292517
+      311 :  270356
+     -311 :  262583
+  pz < 0 fraction: 0.4995
+
+higgs.txt: 200000 rows, 200000 distinct event ids
+  PDG codes present (code: rows):
+      902 :  159678
+      907 :   16045
+      905 :    6801
+      906 :    6022
+      901 :    5561
+      904 :    3824
+      908 :    1479
+      909 :     584
+      903 :       6
+  pz < 0 fraction: 0.5010
+
+hand check A: B+ candidate (first row of bbar_heavy.txt)
+  px=0.7771620 py=0.8218481 pz=481.6232700 E=481.6535300 GeV
+  p = sqrt(px^2+py^2+pz^2)              = 481.6245982 GeV
+  sqrt(p^2 + m_B+^2) (m_B+ = 5.27934)   = 481.6535322 GeV
+  E_file - sqrt(p^2+m^2)                = -2.170e-06 GeV
+  E^2 - p^2 = 27.86934 GeV^2   (m_B+^2 = 27.87143 GeV^2)
+
+hand check B: a B+ candidate with negative pz (theta uses |pz|)
+  event 1: px=-0.110015 py=-4.079567 pz=-76.542954 E=76.833256 GeV
+  pT=4.081050 GeV  p=76.651672 GeV  theta=atan(pT/|pz|)=0.053267 rad (in (0, pi/2): True)
+
+mass consistency  sqrt(E^2-p^2) [GeV]:
+  bbar_heavy   pdg (521, -521)  nominal 5.2793  median 5.279250  0.1-99.9% [5.261195, 5.297265]
+  bbar_heavy   pdg (511, -511)  nominal 5.2797  median 5.279580  0.1-99.9% [5.261344, 5.297974]
+  bbar_heavy   pdg (531, -531)  nominal 5.3669  median 5.366770  0.1-99.9% [5.349148, 5.384813]
+  minbias_light pdg (321, -321)  nominal 0.4937  median 0.493680  0.1-99.9% [0.337265, 0.617299]
+  minbias_light pdg (311, -311)  nominal 0.4976  median 0.497610  0.1-99.9% [0.316425, 0.630864]
+  higgs        200000 rows, 200000 distinct events; several copies per event, only the FIRST row per event is kept
+    unique events 200000  (event ids 0 .. 199999)  rows kept 200000
+    mass of the first-row Higgs: median 125.2500 GeV, 1-99% [125.2002, 125.2988] GeV
+    -> the Higgs mass is generated over a finite range (not a delta); this does not affect the (theta, p) spectra.
+
+kinematic coverage (all rows of each sample, except Higgs: first row per event):
+  bbar_heavy     p [0.03181, 4719] GeV   theta [1.398e-05, 1.571] rad   eta(|pz|) [1.22e-06, 11.87]
+  minbias_light  p [0.007337, 5139] GeV   theta [4.042e-06, 1.571] rad   eta(|pz|) [1.238e-06, 13.11]
+  higgs          p [1.449, 4666] GeV   theta [4.073e-05, 1.571] rad   eta(|pz|) [2.015e-05, 10.8]
+
+LHCb downstream window: theta(eta) = 2 atan(exp(-eta))
+  eta = 2.0  ->  theta = 0.2690360 rad
+  eta = 5.0  ->  theta = 0.0134757 rad
+
+==============================================================================
+HISTOGRAMS  (100 x 80 bins, 20 bins per decade)
+==============================================================================
+  Bplus: pdg (521, -521) -> 677192 candidates in the sample
+       sigma_ref * N_cand / n_gen = 4.254236e+08 pb
+  B0   : pdg (511, -511) -> 679352 candidates in the sample
+       sigma_ref * N_cand / n_gen = 4.271659e+08 pb
+  Bs   : pdg (531, -531) -> 151890 candidates in the sample
+       sigma_ref * N_cand / n_gen = 9.547020e+07 pb
+  Kplus: pdg (321, -321) -> 589956 candidates in the sample
+       sigma_ref * N_cand / n_gen = 1.921881e+11 pb
+  K0L  : pdg (311, -311) -> 532939 candidates in the sample
+       sigma_ref * N_cand / n_gen = 1.742517e+11 pb
+  Higgs: kept first row of 200000 distinct events (of 200000 raw rows)
+       sigma_ref * N_cand / n_gen = 4.947934e+01 pb
+  colour scale for the B mesons panels: 1e+02 .. 1e+07 pb/bin (shared)
+  colour scale for the K mesons panels: 1e+05 .. 1e+09 pb/bin (shared)
+  colour scale for the Higgs    panels: 1e-04 .. 1e+00 pb/bin (shared)
+
+====================================================================================================
+CLOSURE CHECK   dsigma_bin = sigma_ref * N_bin / n_gen ;  N_cand = candidates
+inside the plotted window (1e-5 <= theta <= 1 rad, 1 <= p <= 1e4 GeV)
+====================================================================================================
+spec   PDG           N_species     N_cand     n_gen sigma_ref[pb]   sigma_exp[pb]    sum_bins[pb]    rel.dev
+------------------------------------------------------------------------------------------------------------
+Bplus  (521, -521)      677192     607748    800000    5.6000e+08    4.254236e+08    4.254236e+08   0.00e+00
+B0     (511, -511)      679352     610237    800000    5.6000e+08    4.271659e+08    4.271659e+08   0.00e+00
+Bs     (531, -531)      151890     136386    800000    5.6000e+08    9.547020e+07    9.547020e+07   0.00e+00
+Kplus  (321, -321)      589956     483492    200000    7.9500e+10    1.921881e+11    1.921881e+11   0.00e+00
+K0L    (311, -311)      532939     438369    200000    7.9500e+10    1.742517e+11    1.742517e+11   0.00e+00
+Higgs  901-909          200000     178456    200000    5.5453e+01    4.947934e+01    4.947934e+01   0.00e+00
+------------------------------------------------------------------------------------------------------------
+max |sum_bins - sigma_expected| / sigma_expected = 0.000e+00
+tolerance 1e-2 -> PASS (the binned and analytic normalisations are the same sum, so they agree to floating point)
+
+full-sample normalisation (all candidates of the species, not only the plotted window):
+  Bplus  N_species   677192  sigma_ref*N_species/n_gen = 4.740344e+08 pb   (89.75% inside the plotted window)
+  B0     N_species   679352  sigma_ref*N_species/n_gen = 4.755464e+08 pb   (89.83% inside the plotted window)
+  Bs     N_species   151890  sigma_ref*N_species/n_gen = 1.063230e+08 pb   (89.79% inside the plotted window)
+  Kplus  N_species   589956  sigma_ref*N_species/n_gen = 2.345075e+11 pb   (81.95% inside the plotted window)
+  K0L    N_species   532939  sigma_ref*N_species/n_gen = 2.118433e+11 pb   (82.26% inside the plotted window)
+  Higgs  N_species   200000  sigma_ref*N_species/n_gen = 5.545270e+01 pb   (89.23% inside the plotted window)
+====================================================================================================
+
+==============================================================================
+FIGURES
+==============================================================================
+  wrote E:\AAAwork\LLP-AGI\runs\bc5_lhcb_downstream_v3\outputs\figures\production\production_Bplus.png / .pdf
+  wrote E:\AAAwork\LLP-AGI\runs\bc5_lhcb_downstream_v3\outputs\figures\production\production_B0.png / .pdf
+  wrote E:\AAAwork\LLP-AGI\runs\bc5_lhcb_downstream_v3\outputs\figures\production\production_Bs.png / .pdf
+  wrote E:\AAAwork\LLP-AGI\runs\bc5_lhcb_downstream_v3\outputs\figures\production\production_Kplus.png / .pdf
+  wrote E:\AAAwork\LLP-AGI\runs\bc5_lhcb_downstream_v3\outputs\figures\production\production_K0L.png / .pdf
+  wrote E:\AAAwork\LLP-AGI\runs\bc5_lhcb_downstream_v3\outputs\figures\production\production_Higgs.png / .pdf
+  wrote E:\AAAwork\LLP-AGI\runs\bc5_lhcb_downstream_v3\outputs\figures\production\production_all_particles.png
+
+DONE in 14.6 s
+regeneration command (from the run directory):  D:\py\python.exe work\analysis\plot_production.py
