@@ -6,16 +6,20 @@
 
 | 分析 | 模型/基准 | 参数空间 | 结果 | 目录 |
 |---|---|---|---|---|
-| **BC5 暗标量** | Higgs 混合单态实标量 `S`，`BR(h→SS)=0.01`（PBC BC5） | (m_S, θ²) | v3.6 验收基线：排除曲线 + 完整自检 | [`runs/bc5_lhcb_downstream_v3/`](runs/bc5_lhcb_downstream_v3/) |
-| **Type-I 2HDM 轻 H** | CP-even `H`，`m_h=125`、`m_A=m_H±=600`、`λv²=0`、`cos(β−α)=1/tanβ` | (m_H, tanβ) | 2026-10-27 最终版：长寿边 22–358 / 30–489 | [`runs/20261025_1325_UTC_2HDM_lightH_lhcb_downstream/`](runs/20261025_1325_UTC_2HDM_lightH_lhcb_downstream/) |
+| **BC5 暗标量** | Higgs 混合单态实标量 `S`，`BR(h→SS)=0.01`（PBC BC5） | (m_S, θ²) | **v4.0 代码基线**（物理 = v3.6 验收基线）：排除曲线 + 完整自检 | [`runs/bc5_lhcb_downstream_v4/`](runs/bc5_lhcb_downstream_v4/) |
+| **Type-I 2HDM 轻 H** | CP-even `H`，`m_h=125`、`m_A=m_H±=600`、`λv²=0`、`cos(β−α)=1/tanβ` | (m_H, tanβ) | 2026-10-27 最终版：长寿边 22–358 / 30–489 | [`runs/2hdm_light_h_lhcb_downstream_v1/`](runs/2hdm_light_h_lhcb_downstream_v1/) |
 
 两次运行为 pp √s = 13 TeV、LHCb Downstream（1 < z_dec < 2.5 m、2 < η < 5、反向双径迹
 E > 5 GeV / pT > 0.5 GeV、ε_rec = 0.4、零背景零观测 s₉₀ = −ln 0.1 = 2.3026）、
 L = 25 与 300 fb⁻¹。全部结果都是"该假设下的**预期**灵敏度"，不含真实背景与探测器系统误差。
 
+> **命名规则**：每个 run 目录是 `<程序>_v<版本>`（如 `bc5_lhcb_downstream_v4`）。
+> 历史目录保留原名对应的版本号：`bc5_lhcb_downstream_v1..v3`、`2hdm_light_h_lhcb_downstream_v1`、
+> `deployment_smoke_v1`；日期与状态见 [`runs/README.md`](runs/README.md)。
+
 ## 主结果：Type-I 2HDM 轻 H
 
-![2HDM light H exclusion](runs/20261025_1325_UTC_2HDM_lightH_lhcb_downstream/outputs/figures/exclusion_2hdm_lhcb_downstream.png)
+![2HDM light H exclusion](runs/2hdm_light_h_lhcb_downstream_v1/outputs/figures/exclusion_2hdm_lhcb_downstream.png)
 
 长寿边（tanβ 排除上限；m_H > 4.786 GeV 后 `B→X_sH` 运动学关闭）：
 
@@ -46,8 +50,10 @@ L = 25 与 300 fb⁻¹。全部结果都是"该假设下的**预期**灵敏度"�
 | 0.138 | 1.1×10⁻⁶ | — | | 1.000 | 4.8×10⁻¹¹ | 2.1×10⁻⁶ |
 | 0.280 | 3.2×10⁻⁹ | — | | 2.000 | 1.4×10⁻¹⁰ | 5.9×10⁻⁶ |
 
-细节、变体与自检见 [`runs/bc5_lhcb_downstream_v3/`](runs/bc5_lhcb_downstream_v3/)（v3.6 验收记录
-[`logs/v36_acceptance.md`](runs/bc5_lhcb_downstream_v3/logs/v36_acceptance.md)）。
+v4 是 v3.6 的**纯代码重构**（`bc5/` 包 + `scripts/` 入口，物理/数值/种子不变），重跑结果与
+v3.6 逐位一致；细节见 [`runs/bc5_lhcb_downstream_v4/README.md`](runs/bc5_lhcb_downstream_v4/README.md)、
+[`CHANGELOG.md`](runs/bc5_lhcb_downstream_v4/CHANGELOG.md) 与
+[`logs/v36_acceptance.md`](runs/bc5_lhcb_downstream_v3/logs/v36_acceptance.md)（v3.6 验收记录）。
 
 ## 仓库结构
 
@@ -61,26 +67,34 @@ L = 25 与 300 fb⁻¹。全部结果都是"该假设下的**预期**灵敏度"�
 | [`prompt.md`](prompt.md) / [`prompt_2HDM.md`](prompt_2HDM.md) | 两次运行的任务书（物理设定、验收标准） |
 | `temp/` | 临时脚本（不跟踪） |
 
-每个 run 目录的结构一致：`inputs/`（带 sha256 的输入快照）、`work/`（各阶段程序）、
+每个 run 目录的结构一致：`inputs/`（带 sha256 的输入快照）、`work/`（数据/作业/缓存）、
 `logs/`（报告/审查/验证）、`outputs/`（`data/` CSV/JSON + `figures/` 图）、
-`README.md`（结果与复现）、`RUNNING.md`（怎么跑）。
+`README.md`（结果与复现）、`RUNNING.md`（怎么跑）。BC5 v4 的代码单独放在 `bc5/` 包里，
+入口在 `scripts/`；其余 run 的代码在 `work/<阶段>/`。
 
 ## 复现
 
 环境：Windows x64（`downstream_kernel.dll` 为预编译内核）、Python 3.11+（numpy + matplotlib）、
-可选 g++（重建作者衰变程序）。两份 run 的详细步骤如下：
+可选 g++（重建作者衰变程序/探测器内核）。两份 run 的详细步骤如下：
 
-* 2HDM：[`runs/20261025_1325_UTC_2HDM_lightH_lhcb_downstream/RUNNING.md`](runs/20261025_1325_UTC_2HDM_lightH_lhcb_downstream/RUNNING.md)
-* BC5：[`runs/bc5_lhcb_downstream_v3/RUNNING.md`](runs/bc5_lhcb_downstream_v3/RUNNING.md)
+* 2HDM：[`runs/2hdm_light_h_lhcb_downstream_v1/RUNNING.md`](runs/2hdm_light_h_lhcb_downstream_v1/RUNNING.md)
+* BC5 v4：[`runs/bc5_lhcb_downstream_v4/RUNNING.md`](runs/bc5_lhcb_downstream_v4/RUNNING.md)
+  （历史 v3.6：[RUNNING.md](runs/bc5_lhcb_downstream_v3/RUNNING.md)）
 
-最短自检（不重跑扫描，从已提交的聚合结果重算边界并重画图）：
+最短自检：
 
 ```bash
-cd runs/20261025_1325_UTC_2HDM_lightH_lhcb_downstream
+# 2HDM：从已提交的聚合结果重算边界并重画图
+cd runs/2hdm_light_h_lhcb_downstream_v1
 python work/analysis/final_analysis.py     # 边界/交点表 + 系统误差图
 python work/analysis/final_figure.py       # 主图
 python work/analysis/signal_map.py         # 显著度图
 python work/analysis/make_manifest.py      # sha256 清单
+
+# BC5 v4：不重跑 MC，重画主图 + 跑测试
+cd ../bc5_lhcb_downstream_v4
+python scripts/run_sensitivity.py --curves-only
+python -m pytest tests -q
 ```
 
 ## 数据与第三方材料
@@ -90,14 +104,14 @@ python work/analysis/make_manifest.py      # sha256 清单
 | Pythia 母样本（`work/magnus/samples/*.txt.gz`） | **随仓库提供**（每个 run 一份，便于独立重跑） |
 | 强子化库（`work/magnus/hadron_lib/*.txt.gz` + manifest） | **随仓库提供** |
 | 2HDM 的 500k 事例 pi/K minbias 样本（`minbias_pik.txt.gz`，525 MB） | **以 Release 资产发布**（超过 GitHub 单文件 100 MB 限制），见下 |
-| 响应表缓存（`work/analysis/cache/`）与逐质量扫描 JSON | 不入库，由代码 + 样本自动重建（聚合结果 `outputs/data/signal_scan.json` 已入库） |
+| 响应表缓存（2HDM 的 `work/analysis/cache/`）与逐质量扫描 JSON | 不入库，由代码 + 样本自动重建（聚合结果 `outputs/data/signal_scan.json` 已入库） |
 | `references/`（论文 PDF/LaTeX、FORESEE 工具、作者源码包） | **随仓库提供**，按各自许可使用 |
 | `deployment/sources/`（ColliderAgent、Magnus 源码） | 不入库，见其上游仓库（均为公开项目） |
 
 下载 2HDM 的 minbias 样本（唯一不在 git 内的样本）：
 
 ```bash
-cd runs/20261025_1325_UTC_2HDM_lightH_lhcb_downstream/work/magnus/samples
+cd runs/2hdm_light_h_lhcb_downstream_v1/work/magnus/samples
 gh release download samples-2026-10 -R No-thanks-237/LLP-AGI -p minbias_pik.txt.gz -D .
 sha256sum minbias_pik.txt.gz
 # 期望 cc157eeef958d747da47df6c6e524b26de9eadeeeb73875678ff5cff8a9de41f
@@ -113,20 +127,24 @@ sha256sum minbias_pik.txt.gz
 
 ## 方法要点
 
-* **不用 FeynRules/UFO/MG5**：模型产生用解析公式（论文附录公式逐条对照），衰变用作者原版
+* **不用 FeynRules/UFO/MG5**：模型产生用解析公式（论文附录公式逐条对照），2HDM 衰变用作者原版
   `Light_scalar_decay` C++ 程序（仅批处理驱动补丁），探测器响应用 BC5 的 Downstream 传播内核。
 * **统计**：事例级 OR（同一碰撞内多母粒子/多历史合并）、母粒子按 |pz| 分层 + Horvitz–Thompson
   权重、母粒子衰变位置解析积分（Rao–Blackwell 化，去掉稀有顶点抽样的巨大方差）、
   0.4 重建效率只乘一次。
-* **可追溯**：输入带 sha256；`outputs/sha256_manifest.txt` 可用 `sha256sum -c` 完整校验；
-  响应表缓存与逐质量结果带完整配置指纹，改代码/样本会自动重建。
+* **可追溯**：输入带 sha256（BC5 v4 用 `python scripts/check_inputs.py` 校验）；
+  2HDM 的 `outputs/sha256_manifest.txt` 可用 `sha256sum -c` 完整校验；
+  BC5 的响应表缓存与逐质量结果带完整配置/源码指纹，改代码/样本会拒绝合并。
 
 ## 文档索引
 
 | 文档 | 内容 |
 |---|---|
-| [`runs/20261025_1325_UTC_2HDM_lightH_lhcb_downstream/README.md`](runs/20261025_1325_UTC_2HDM_lightH_lhcb_downstream/README.md) | 2HDM 运行：模型、产生、衰变、探测器、结果、限制 |
-| [`runs/20261025_1325_UTC_2HDM_lightH_lhcb_downstream/logs/physics_code_review.md`](runs/20261025_1325_UTC_2HDM_lightH_lhcb_downstream/logs/physics_code_review.md) | 2HDM 全流程审查（含第三方独立审计逐项处置） |
+| [`runs/README.md`](runs/README.md) | run 索引：目录、版本、状态、内容、数据说明 |
+| [`runs/2hdm_light_h_lhcb_downstream_v1/README.md`](runs/2hdm_light_h_lhcb_downstream_v1/README.md) | 2HDM 运行：模型、产生、衰变、探测器、结果、限制 |
+| [`runs/2hdm_light_h_lhcb_downstream_v1/logs/physics_code_review.md`](runs/2hdm_light_h_lhcb_downstream_v1/logs/physics_code_review.md) | 2HDM 全流程审查（含第三方独立审计逐项处置） |
+| [`runs/bc5_lhcb_downstream_v4/README.md`](runs/bc5_lhcb_downstream_v4/README.md) | BC5 v4：结构、结果、与 v3.6 的逐位一致性 |
+| [`runs/bc5_lhcb_downstream_v4/CHANGELOG.md`](runs/bc5_lhcb_downstream_v4/CHANGELOG.md) | v4 相对 v3.6 的逐文件迁移 |
 | [`runs/bc5_lhcb_downstream_v3/logs/v36_acceptance.md`](runs/bc5_lhcb_downstream_v3/logs/v36_acceptance.md) | BC5 v3.6 验收记录 |
 | [`runs/bc5_lhcb_downstream_v3/logs/run_report.md`](runs/bc5_lhcb_downstream_v3/logs/run_report.md) | BC5 物理报告 |
 | [`docs/downstream_import.md`](docs/downstream_import.md) | Downstream 探测器导入说明 |

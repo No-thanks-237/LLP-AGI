@@ -1,0 +1,563 @@
+{
+  "figure": {
+    "pdf": "E:\\AAAwork\\LLP-AGI\\references\\model\\BC5.pdf",
+    "page": 1,
+    "page_size_pt": [
+      415,
+      275
+    ],
+    "render_scale": 6,
+    "title": "Dark scalars (BC5)"
+  },
+  "method": {
+    "route": "vector",
+    "detail": "PyMuPDF page.get_drawings(); the blue curves exist as two stroked path objects with exact geometry, so no raster tracing was needed. Dashes come from the path object (solid: dashes=[]; dashed: '[6.909056 6.909056] 0 d'), so solid/dashed separation is exact.",
+    "raster_used_for": "independent verification only (6x render, blue-pixel centreline comparison)",
+    "path_objects": {
+      "solid_blue": {
+        "seqno": 15,
+        "colour": [
+          0,
+          0,
+          1
+        ],
+        "dashes": [],
+        "segments": 1385
+      },
+      "dashed_blue": {
+        "seqno": 16,
+        "colour": [
+          0,
+          0,
+          1
+        ],
+        "dashes": [
+          6.909056,
+          6.909056
+        ],
+        "segments": 1393
+      }
+    },
+    "clip_rects_pt": {
+      "solid": [
+        66.961,
+        16.559,
+        341.039,
+        175.441
+      ],
+      "dashed": [
+        66.961,
+        16.559,
+        341.039,
+        193.441
+      ]
+    },
+    "excluded_objects": "the two blue legend swatch strokes (separate 1-segment paths at y=185.4 and y=202.2, x=76.4-103.8), the grey \"Excluded\" fill, the red (FASER/FASER2) and green (LHCb) paths, and all text were not used. Because the blue is drawn last it is never occluded by the grey fill or by the red/green curves."
+  },
+  "axis_calibration": {
+    "x": {
+      "fit": "px = a + b*log10(mass_GeV)  (PDF points, origin top-left, y down)",
+      "a": 162.441416,
+      "b": 136.394637,
+      "px_per_decade": 136.3946,
+      "ticks": [
+        {
+          "value": 0.5,
+          "px_obs": 121.383,
+          "px_fit": 121.3825,
+          "resid_px": 0.000461
+        },
+        {
+          "value": 1.0,
+          "px_obs": 162.441,
+          "px_fit": 162.4414,
+          "resid_px": -0.000416
+        },
+        {
+          "value": 5.0,
+          "px_obs": 257.777,
+          "px_fit": 257.7772,
+          "resid_px": -0.000177
+        },
+        {
+          "value": 10.0,
+          "px_obs": 298.836,
+          "px_fit": 298.8361,
+          "resid_px": -5.4e-05
+        },
+        {
+          "value": 50.0,
+          "px_obs": 394.172,
+          "px_fit": 394.1718,
+          "resid_px": 0.000186
+        }
+      ],
+      "resid_rms_px": 0.000301,
+      "resid_max_px": 0.000461,
+      "resid_rms_dex": 1.9e-06,
+      "note": "px in PDF points, origin top-left, y increasing downwards; mass increases with px"
+    },
+    "y": {
+      "fit": "py = a + b*log10(theta2)",
+      "a": -67.562967,
+      "b": -16.839867,
+      "px_per_decade": 16.8399,
+      "ticks": [
+        {
+          "value": 1e-16,
+          "px_obs": 201.875,
+          "px_fit": 201.8749,
+          "resid_px": 0.0001
+        },
+        {
+          "value": 1e-13,
+          "px_obs": 151.355,
+          "px_fit": 151.3553,
+          "resid_px": -0.0003
+        },
+        {
+          "value": 1e-10,
+          "px_obs": 100.836,
+          "px_fit": 100.8357,
+          "resid_px": 0.0003
+        },
+        {
+          "value": 1e-07,
+          "px_obs": 50.316,
+          "px_fit": 50.3161,
+          "resid_px": -0.0001
+        }
+      ],
+      "resid_rms_px": 0.000224,
+      "resid_max_px": 0.0003,
+      "resid_rms_dex": 1.19e-05,
+      "note": "py in PDF points, y increasing downwards; theta2 increases as py decreases",
+      "px_per_decade_signed": -16.8399
+    },
+    "frame_px": {
+      "x0": 67.105,
+      "x1": 412.559,
+      "y0": 16.641,
+      "y1": 230.141
+    },
+    "plot_box_in_data": {
+      "mass_GeV": [
+        0.2,
+        68.1991
+      ],
+      "theta2": [
+        2.0964147605517688e-18,
+        9.993666656803548e-06
+      ]
+    }
+  },
+  "curves": {
+    "downstream_25fb": {
+      "style": "solid",
+      "pdf_dash_array": "[] 0",
+      "stroke_width_pt": 1.440000057220459,
+      "n_points_total": 594,
+      "mass_GeV_range": [
+        0.2012,
+        62.0
+      ],
+      "theta2_range": [
+        5.451075373472785e-16,
+        9.485070245052007e-06
+      ],
+      "segments": [
+        {
+          "branch": "lower",
+          "row_start": 2,
+          "row_end": 342,
+          "n": 341,
+          "mass_GeV": [
+            0.2012,
+            62.0
+          ],
+          "theta2": [
+            5.451075373472785e-16,
+            6.688202723575259e-07
+          ],
+          "residual_vs_raster_px": {
+            "n": 337,
+            "median_pt": 0.0534,
+            "mean_pt": 0.0618,
+            "p95_pt": 0.1311,
+            "max_pt": 0.4757,
+            "median_px_at_6x": 0.32
+          }
+        },
+        {
+          "branch": "upper",
+          "row_start": 343,
+          "row_end": 595,
+          "n": 253,
+          "mass_GeV": [
+            0.8924,
+            62.0
+          ],
+          "theta2": [
+            7.709528726420631e-12,
+            9.485070245052007e-06
+          ],
+          "residual_vs_raster_px": {
+            "n": 248,
+            "median_pt": 0.0696,
+            "mean_pt": 0.0828,
+            "p95_pt": 0.1398,
+            "max_pt": 1.0639,
+            "median_px_at_6x": 0.418
+          }
+        }
+      ]
+    },
+    "downstream_300fb": {
+      "style": "dashed",
+      "pdf_dash_array": "[ 6.909056 6.909056 ] 0",
+      "stroke_width_pt": 1.440000057220459,
+      "n_points_total": 573,
+      "mass_GeV_range": [
+        0.2012,
+        62.0
+      ],
+      "theta2_range": [
+        4.363770421841022e-17,
+        9.746705079826048e-06
+      ],
+      "segments": [
+        {
+          "branch": "lower",
+          "row_start": 596,
+          "row_end": 936,
+          "n": 341,
+          "mass_GeV": [
+            0.2012,
+            62.0
+          ],
+          "theta2": [
+            4.363770421841022e-17,
+            1.9308846197894744e-07
+          ],
+          "residual_vs_raster_px": {
+            "n": 188,
+            "median_pt": 0.0523,
+            "mean_pt": 0.1348,
+            "p95_pt": 0.6707,
+            "max_pt": 1.4424,
+            "median_px_at_6x": 0.314
+          }
+        },
+        {
+          "branch": "upper",
+          "row_start": 937,
+          "row_end": 947,
+          "n": 11,
+          "mass_GeV": [
+            0.9193,
+            1.0867
+          ],
+          "theta2": [
+            3.817612994486748e-06,
+            9.684267490906352e-06
+          ],
+          "residual_vs_raster_px": {
+            "n": 5,
+            "median_pt": 1.1599,
+            "mean_pt": 0.7796,
+            "p95_pt": 1.2942,
+            "max_pt": 1.2967,
+            "median_px_at_6x": 6.959
+          }
+        },
+        {
+          "branch": "upper",
+          "row_start": 948,
+          "row_end": 1168,
+          "n": 221,
+          "mass_GeV": [
+            1.5135,
+            62.0
+          ],
+          "theta2": [
+            1.3449811177137544e-11,
+            9.746705079826048e-06
+          ],
+          "residual_vs_raster_px": {
+            "n": 126,
+            "median_pt": 0.0596,
+            "mean_pt": 0.139,
+            "p95_pt": 0.6248,
+            "max_pt": 1.3041,
+            "median_px_at_6x": 0.357
+          }
+        }
+      ]
+    }
+  },
+  "topology": {
+    "summary": "Each blue curve is ONE connected closed path, but it is the outline of a closed excluded BAND, not a single-valued function. Inside the axes each curve therefore appears as TWO separate branches - an upper edge and a lower edge - that are joined only by a short near-vertical segment at m_S = 62 GeV right at the right-hand end of the curve. The rest of the closure runs outside the plot frame (path vertices at x=-66.4 pt, y=-17.0 pt, clipped away) and is not visible, so nothing was recovered there.",
+    "upper_lower_pair": true,
+    "joint_locations": {
+      "right": "x=406.914 pt (m_S=62.0 GeV): vertical segment linking the two edges (solid 119.6->190.0 pt, dashed 115.5->208.2 pt)",
+      "left": "outside the axes at x=-66.4 pt, y=-17.0 pt (clipped, invisible)"
+    },
+    "branches_are_never_joined_in_the_csv": "the two edges are written as separate contiguous row blocks; no line joins them and no value is interpolated between them",
+    "gaps_left_open": [
+      "downstream_300fb upper edge: m_S = 1.087 -> 1.514 GeV lies above the top of the frame (theta2 > 1e-5) and is clipped; it is kept as a gap, not filled",
+      "both edges are truncated at the left frame border (m_S = 0.201 GeV) because the drawn path leaves the axes there"
+    ]
+  },
+  "digitisation_residual": {
+    "definition": "distance between the sampled vector centreline and the centre of the rendered blue stroke, measured on the 6x render (1 pt = 6 px, stroke width 1.44 pt)",
+    "per_segment_px_at_6x": {
+      "downstream_25fb": [
+        {
+          "branch": "lower",
+          "row_start": 2,
+          "row_end": 342,
+          "n": 341,
+          "mass_GeV": [
+            0.2012,
+            62.0
+          ],
+          "theta2": [
+            5.451075373472785e-16,
+            6.688202723575259e-07
+          ],
+          "residual_vs_raster_px": {
+            "n": 337,
+            "median_pt": 0.0534,
+            "mean_pt": 0.0618,
+            "p95_pt": 0.1311,
+            "max_pt": 0.4757,
+            "median_px_at_6x": 0.32
+          }
+        },
+        {
+          "branch": "upper",
+          "row_start": 343,
+          "row_end": 595,
+          "n": 253,
+          "mass_GeV": [
+            0.8924,
+            62.0
+          ],
+          "theta2": [
+            7.709528726420631e-12,
+            9.485070245052007e-06
+          ],
+          "residual_vs_raster_px": {
+            "n": 248,
+            "median_pt": 0.0696,
+            "mean_pt": 0.0828,
+            "p95_pt": 0.1398,
+            "max_pt": 1.0639,
+            "median_px_at_6x": 0.418
+          }
+        }
+      ],
+      "downstream_300fb": [
+        {
+          "branch": "lower",
+          "row_start": 596,
+          "row_end": 936,
+          "n": 341,
+          "mass_GeV": [
+            0.2012,
+            62.0
+          ],
+          "theta2": [
+            4.363770421841022e-17,
+            1.9308846197894744e-07
+          ],
+          "residual_vs_raster_px": {
+            "n": 188,
+            "median_pt": 0.0523,
+            "mean_pt": 0.1348,
+            "p95_pt": 0.6707,
+            "max_pt": 1.4424,
+            "median_px_at_6x": 0.314
+          }
+        },
+        {
+          "branch": "upper",
+          "row_start": 937,
+          "row_end": 947,
+          "n": 11,
+          "mass_GeV": [
+            0.9193,
+            1.0867
+          ],
+          "theta2": [
+            3.817612994486748e-06,
+            9.684267490906352e-06
+          ],
+          "residual_vs_raster_px": {
+            "n": 5,
+            "median_pt": 1.1599,
+            "mean_pt": 0.7796,
+            "p95_pt": 1.2942,
+            "max_pt": 1.2967,
+            "median_px_at_6x": 6.959
+          }
+        },
+        {
+          "branch": "upper",
+          "row_start": 948,
+          "row_end": 1168,
+          "n": 221,
+          "mass_GeV": [
+            1.5135,
+            62.0
+          ],
+          "theta2": [
+            1.3449811177137544e-11,
+            9.746705079826048e-06
+          ],
+          "residual_vs_raster_px": {
+            "n": 126,
+            "median_pt": 0.0596,
+            "mean_pt": 0.139,
+            "p95_pt": 0.6248,
+            "max_pt": 1.3041,
+            "median_px_at_6x": 0.357
+          }
+        }
+      ]
+    },
+    "named_features": {
+      "downstream_25fb": {
+        "kink_at_m_1_upper_edge": {
+          "mass_GeV": 1.0,
+          "vector_py": 27.479,
+          "raster_centre_py": 27.333,
+          "delta_pt": 0.145,
+          "delta_px_at_6x": 0.87,
+          "x_offset_pt": -0.5
+        },
+        "kink_at_m_1_lower_edge": {
+          "mass_GeV": 1.0,
+          "vector_py": 107.36,
+          "raster_centre_py": 107.25,
+          "delta_pt": 0.11,
+          "delta_px_at_6x": 0.66,
+          "x_offset_pt": -0.5
+        },
+        "m_2_upper_edge": {
+          "mass_GeV": 2.0,
+          "vector_py": 23.92,
+          "raster_centre_py": 23.833,
+          "delta_pt": 0.087,
+          "delta_px_at_6x": 0.52
+        },
+        "m_5_lower_edge": {
+          "mass_GeV": 5.0,
+          "vector_py": 128.207,
+          "raster_centre_py": 128.167,
+          "delta_pt": 0.041,
+          "delta_px_at_6x": 0.24
+        },
+        "m_10_upper_edge": {
+          "mass_GeV": 10.0,
+          "vector_py": 76.35,
+          "raster_centre_py": 76.417,
+          "delta_pt": 0.066,
+          "delta_px_at_6x": 0.4,
+          "x_offset_pt": 0.5
+        },
+        "m_30_lower_edge": {
+          "mass_GeV": 30.0,
+          "vector_py": 176.091,
+          "raster_centre_py": 176.083,
+          "delta_pt": 0.008,
+          "delta_px_at_6x": 0.05
+        },
+        "right_vertical_closure": {
+          "segment_x_px": 406.914,
+          "vector_endpoints_py": [
+            119.58,
+            188.4
+          ],
+          "n_rows_measured": 4,
+          "median_abs_dx_pt": 0.081,
+          "max_abs_dx_pt": 0.081,
+          "max_abs_dx_px_at_6x": 0.48
+        }
+      },
+      "downstream_300fb": {
+        "kink_at_m_1_upper_edge": {
+          "mass_GeV": 1.0,
+          "vector_py": 23.678,
+          "raster_centre_py": 23.583,
+          "delta_pt": 0.095,
+          "delta_px_at_6x": 0.57
+        },
+        "kink_at_m_1_lower_edge": {
+          "mass_GeV": 1.0,
+          "vector_py": 123.451,
+          "raster_centre_py": 123.333,
+          "delta_pt": 0.117,
+          "delta_px_at_6x": 0.7,
+          "x_offset_pt": -0.5
+        },
+        "m_2_upper_edge": {
+          "mass_GeV": 2.0,
+          "vector_py": 20.92,
+          "raster_centre_py": 20.833,
+          "delta_pt": 0.086,
+          "delta_px_at_6x": 0.52
+        },
+        "m_5_lower_edge": {
+          "mass_GeV": 5.0,
+          "vector_py": 146.42,
+          "raster_centre_py": 146.417,
+          "delta_pt": 0.003,
+          "delta_px_at_6x": 0.02
+        },
+        "m_10_upper_edge": {
+          "mass_GeV": 10.0,
+          "vector_py": 71.884,
+          "raster_centre_py": 71.917,
+          "delta_pt": 0.032,
+          "delta_px_at_6x": 0.19,
+          "x_offset_pt": 0.5
+        },
+        "m_30_lower_edge": {
+          "mass_GeV": 30.0,
+          "vector_py": 194.298,
+          "raster_centre_py": 194.75,
+          "delta_pt": 0.452,
+          "delta_px_at_6x": 2.71,
+          "x_offset_pt": 1.5
+        },
+        "right_vertical_closure": {
+          "segment_x_px": 406.914,
+          "vector_endpoints_py": [
+            115.51,
+            206.04
+          ],
+          "n_rows_measured": 3,
+          "median_abs_dx_pt": 0.081,
+          "max_abs_dx_pt": 0.081,
+          "max_abs_dx_px_at_6x": 0.48
+        }
+      }
+    },
+    "worst_case_overall_pt": 1.44,
+    "note": "the largest column residuals (up to ~1.4 pt = 9 px) occur where a dashed sample falls in a dash gap and the nearest blue pixel belongs to a neighbouring dash, and on the steep top-left part of the upper edges; the true geometric agreement is the median, 0.05-0.07 pt = 0.3-0.4 px at 6x"
+  },
+  "assumptions": [
+    "Only the two pure-blue (RGB 0,0,1) stroked paths were digitised; blue is drawn after the grey shading and after the red/green curves, so nothing of the blue is hidden.",
+    "The blue paths are PDF-clipped to the axes rectangle; path points outside that rectangle are not visible and were discarded rather than extrapolated.",
+    "Points are sampled on a uniform 1.0 pt x-grid (max step 0.0073 dex in log10(mass)); all points lie on the drawn polyline, none are invented.",
+    "The excluded region is a closed band bounded by the two edges; both edges are reported because both are drawn blue and both are physical (upper edge = prompt/large-coupling side, lower edge = long-lived side).",
+    "At the extreme right tip the path doubles back on itself over ~3.3 pt (the band closes), so theta2 at m_S=62 GeV is uncertain by about 0.1 dex; the mean of the doubled segment is used.",
+    "Axis calibration uses the 5 major x ticks and the 4 major y ticks; the minor ticks agree with a pure log scale to <0.01 pt."
+  ],
+  "caveats": [
+    "The CSV has no branch column (schema fixed at curve_id,mass_GeV,theta2), so each curve is written as contiguous blocks: lower edge first (mass ascending), then upper edge (mass ascending). Row ranges are given in curves.<id>.segments[].row_start/row_end. Concatenating the blocks with a line would draw a fake connector between them.",
+    "The dashed upper edge has two blocks because it leaves the top of the plot for 1.09 < m_S < 1.51 GeV.",
+    "The \"Excluded\" text is drawn after the blue and slightly overlaps the upper edges near m_S ~ 1.5-2.5 GeV in the raster, which can bias pixel-based checks there; the vector route is unaffected."
+  ]
+}

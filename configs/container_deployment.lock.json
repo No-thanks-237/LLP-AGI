@@ -44,7 +44,7 @@
     }
   },
   "service_image": "sha256:100453c2fd32364e4e47779d41106c9779752f83120f9f76aad7aa166e3717e6",
-  "validation_run": "runs/20261016_051119_UTC_deployment-smoke",
+  "validation_run": "runs/deployment_smoke_v1",
   "official_blueprints": {
     "blueprints": [
       "generate-calchep",

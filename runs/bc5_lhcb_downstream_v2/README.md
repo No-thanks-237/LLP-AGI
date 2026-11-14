@@ -1,11 +1,11 @@
 # BC5 暗标量（第二版，历史）
 
-> **状态：历史记录。** 当前 BC5 结果以 [`../bc5_lhcb_downstream_v3/`](../bc5_lhcb_downstream_v3/)
+> **状态：历史记录。** 2026-11-14 起 `bc5_lhcb_downstream_v4` 是当前版本（纯代码重构，物理与 v3.6 相同）；历史结果仍以 [`../bc5_lhcb_downstream_v3/`](../bc5_lhcb_downstream_v3/)
 > 的 v3.6 验收基线为准。本目录保留用于对照 v1 → v2 → v3 的演化，其中的数字不作为最终结果。
 
 | | |
 |---|---|
-| 前身 | [`../20261016_144605_UTC_bc5_lhcb_downstream/`](../20261016_144605_UTC_bc5_lhcb_downstream/)（v1） |
+| 前身 | [`../bc5_lhcb_downstream_v1/`](../bc5_lhcb_downstream_v1/)（v1，原名 20261016_144605_UTC_bc5_lhcb_downstream） |
 | 后继 | [`../bc5_lhcb_downstream_v3/`](../bc5_lhcb_downstream_v3/)（v3.6 验收基线） |
 
 本版相对于 v1 的修改清单见 [`CHANGES_vs_v1.md`](CHANGES_vs_v1.md)。

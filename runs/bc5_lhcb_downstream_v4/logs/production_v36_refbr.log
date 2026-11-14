@@ -1,0 +1,266 @@
+preflight:
+  [ok] samples/bbar_heavy.txt
+  [ok] samples/minbias_light.txt
+  [ok] samples/higgs.txt
+  [ok] samples/normalisation.json
+  [ok] response/downstream_kernel.dll
+  [ok] widths/hadronic_table.csv
+  [ok] hadron_lib/hadron_lib_gg.txt.gz
+  [ok] hadron_lib/hadron_lib_ss.txt.gz
+  [ok] hadron_lib/hadron_lib_cc.txt.gz
+  [ok] hadron_lib/hadron_lib_bb.txt.gz
+  [ok] hadron_lib/hadron_lib_tautau.txt.gz
+  normalisation: n_gen B=800000  K=200000  H=200000
+
+scan stage: nsamp=1200  ndecay=8  s_cut=2.3  -> signal_scan_refbr.json
+  WIDTH MODEL: reference branching-ratio table (validation only)
+  hadronisation library loaded from E:\AAAwork\LLP-AGI\runs\bc5_lhcb_downstream_v3\work\magnus\hadron_lib
+  mass grid: 52 log-spaced points + physical threshold nodes -> 67 masses
+  b mesons in the parent sample: 1.8855 per generated event (reference 1.918) -> B-channel yield correction 1.0172
+  the sample carries the full b-meson yield; correction is 1.00
+  m_S=0.0210  N_S=5323  (B=747 K=4253 H=323)  26.2 s
+  m_S=0.0246  N_S=5426  (B=843 K=4250 H=333)  15.3 s
+  m_S=0.0287  N_S=5407  (B=763 K=4344 H=300)  12.7 s
+  m_S=0.0336  N_S=5247  (B=779 K=4132 H=336)  12.5 s
+  m_S=0.0393  N_S=5358  (B=810 K=4221 H=327)  12.9 s
+  m_S=0.0460  N_S=5458  (B=795 K=4352 H=311)  13.3 s
+  m_S=0.0538  N_S=5255  (B=775 K=4154 H=326)  12.6 s
+  m_S=0.0629  N_S=5236  (B=752 K=4183 H=301)  12.4 s
+  m_S=0.0736  N_S=5440  (B=725 K=4379 H=336)  13.7 s
+  m_S=0.0861  N_S=5456  (B=809 K=4320 H=327)  12.6 s
+  m_S=0.1008  N_S=5143  (B=789 K=4048 H=306)  12.0 s
+  m_S=0.1179  N_S=5404  (B=786 K=4278 H=340)  12.4 s
+  m_S=0.1379  N_S=5286  (B=741 K=4206 H=339)  12.4 s
+  m_S=0.1613  N_S=5419  (B=799 K=4314 H=306)  12.6 s
+  m_S=0.1887  N_S=3158  (B=737 K=2108 H=313)  8.9 s
+  m_S=0.2118  N_S=3253  (B=792 K=2169 H=292)  10.3 s
+  m_S=0.2207  N_S=3230  (B=791 K=2158 H=281)  9.8 s
+  m_S=0.2582  N_S=2201  (B=832 K=1059 H=310)  8.3 s
+  m_S=0.2802  N_S=2168  (B=800 K=1057 H=311)  8.0 s
+  m_S=0.3021  N_S=2146  (B=810 K=1042 H=294)  6.3 s
+  m_S=0.3541  N_S=2143  (B=803 K=1049 H=291)  6.1 s
+  m_S=0.3626  N_S=1660  (B=813 K=529 H=318)  5.3 s
+  m_S=0.4133  N_S=1166  (B=820 K=0 H=346)  4.9 s
+  m_S=0.4835  N_S=1214  (B=896 K=0 H=318)  4.9 s
+  m_S=0.5656  N_S=1160  (B=845 K=0 H=315)  4.8 s
+  m_S=0.6617  N_S=1147  (B=817 K=0 H=330)  4.9 s
+  m_S=0.7740  N_S=1086  (B=778 K=0 H=308)  4.6 s
+  m_S=0.9054  N_S=1168  (B=891 K=0 H=277)  5.0 s
+  m_S=0.9500  N_S=1172  (B=845 K=0 H=327)  4.8 s
+  m_S=0.9884  N_S=1149  (B=829 K=0 H=320)  4.5 s
+  m_S=1.0000  N_S=1095  (B=792 K=0 H=303)  4.8 s
+  m_S=1.0592  N_S=1162  (B=866 K=0 H=296)  5.7 s
+  m_S=1.1000  N_S=1172  (B=864 K=0 H=308)  5.8 s
+  m_S=1.2000  N_S=1136  (B=827 K=0 H=309)  5.1 s
+  m_S=1.2390  N_S=1150  (B=820 K=0 H=330)  5.0 s
+  m_S=1.4494  N_S=1271  (B=924 K=0 H=347)  6.3 s
+  m_S=1.6955  N_S=1163  (B=877 K=0 H=286)  5.4 s
+  m_S=1.9833  N_S=1162  (B=838 K=0 H=324)  5.8 s
+  m_S=2.0000  N_S=1202  (B=874 K=0 H=328)  5.3 s
+  m_S=2.2000  N_S=1278  (B=977 K=0 H=301)  5.8 s
+  m_S=2.3201  N_S=1197  (B=886 K=0 H=311)  5.5 s
+  m_S=2.6834  N_S=575  (B=291 K=0 H=284)  3.3 s
+  m_S=2.7140  N_S=658  (B=326 K=0 H=332)  4.1 s
+  m_S=3.1749  N_S=604  (B=288 K=0 H=316)  4.1 s
+  m_S=3.5567  N_S=627  (B=297 K=0 H=330)  5.6 s
+  m_S=3.7140  N_S=622  (B=298 K=0 H=324)  4.5 s
+  m_S=3.7579  N_S=610  (B=278 K=0 H=332)  3.6 s
+  m_S=4.3446  N_S=630  (B=313 K=0 H=317)  4.7 s
+  m_S=5.0823  N_S=272  (B=0 K=0 H=272)  3.0 s
+  m_S=5.9452  N_S=317  (B=0 K=0 H=317)  3.6 s
+  m_S=6.9547  N_S=285  (B=0 K=0 H=285)  3.4 s
+  m_S=7.5000  N_S=353  (B=0 K=0 H=353)  4.3 s
+  m_S=8.1355  N_S=333  (B=0 K=0 H=333)  4.1 s
+  m_S=9.5169  N_S=289  (B=0 K=0 H=289)  3.6 s
+  m_S=10.5834  N_S=304  (B=0 K=0 H=304)  3.8 s
+  m_S=11.1328  N_S=286  (B=0 K=0 H=286)  4.5 s
+  m_S=13.0231  N_S=339  (B=0 K=0 H=339)  6.5 s
+  m_S=15.2343  N_S=308  (B=0 K=0 H=308)  6.4 s
+  m_S=17.8211  N_S=329  (B=0 K=0 H=329)  6.8 s
+  m_S=20.8470  N_S=314  (B=0 K=0 H=314)  6.7 s
+  m_S=24.3867  N_S=346  (B=0 K=0 H=346)  6.4 s
+  m_S=28.5274  N_S=347  (B=0 K=0 H=347)  6.2 s
+  m_S=33.3712  N_S=356  (B=0 K=0 H=356)  6.3 s
+  m_S=39.0375  N_S=378  (B=0 K=0 H=378)  6.6 s
+  m_S=45.6658  N_S=457  (B=0 K=0 H=457)  9.0 s
+  m_S=53.4196  N_S=535  (B=0 K=0 H=535)  8.9 s
+  m_S=62.4900  N_S=579  (B=0 K=0 H=579)  11.2 s
+wrote signal_scan_refbr.json (67 masses, model v3.5-2026-10-25)
+
+adaptive round 1: re-running 67 masses, nsamp 1300..3400  (total 150500
+  WIDTH MODEL: reference branching-ratio table (validation only)
+  hadronisation library loaded from E:\AAAwork\LLP-AGI\runs\bc5_lhcb_downstream_v3\work\magnus\hadron_lib
+  mass grid: 52 log-spaced points + physical threshold nodes -> 67 masses
+  B-channel yield correction fixed by BC5_B_YIELD_CORR = 1.0172
+  per-mass nsamp map: 67 entries
+  merging into signal_scan_refbr.json: 67 masses kept, 67 re-evaluated (provenance ok)
+  m_S=0.0210  N_S=13988  (B=2044 K=11121 H=823)  31.4 s
+  m_S=0.0246  N_S=11770  (B=1791 K=9286 H=693)  20.3 s
+  m_S=0.0287  N_S=14120  (B=1994 K=11292 H=834)  22.0 s
+  m_S=0.0336  N_S=12293  (B=1849 K=9739 H=705)  19.5 s
+  m_S=0.0393  N_S=12215  (B=1720 K=9774 H=721)  19.2 s
+  m_S=0.0460  N_S=13223  (B=2006 K=10446 H=771)  20.9 s
+  m_S=0.0538  N_S=13905  (B=2135 K=10903 H=867)  22.0 s
+  m_S=0.0629  N_S=13422  (B=1897 K=10747 H=778)  20.9 s
+  m_S=0.0736  N_S=13675  (B=2096 K=10796 H=783)  24.0 s
+  m_S=0.0861  N_S=12508  (B=1802 K=9992 H=714)  19.0 s
+  m_S=0.1008  N_S=12861  (B=1818 K=10300 H=743)  19.8 s
+  m_S=0.1179  N_S=13053  (B=1945 K=10312 H=796)  20.5 s
+  m_S=0.1379  N_S=13371  (B=2029 K=10628 H=714)  21.7 s
+  m_S=0.1613  N_S=12923  (B=1875 K=10315 H=733)  22.4 s
+  m_S=0.1887  N_S=9092  (B=2126 K=6087 H=879)  21.5 s
+  m_S=0.2118  N_S=8489  (B=2072 K=5611 H=806)  19.5 s
+  m_S=0.2207  N_S=7298  (B=1763 K=4817 H=718)  14.6 s
+  m_S=0.2582  N_S=4636  (B=1742 K=2221 H=673)  12.2 s
+  m_S=0.2802  N_S=4790  (B=1727 K=2399 H=664)  11.9 s
+  m_S=0.3021  N_S=4993  (B=1863 K=2459 H=671)  10.6 s
+  m_S=0.3541  N_S=4414  (B=1642 K=2121 H=651)  8.6 s
+  m_S=0.3626  N_S=3951  (B=2001 K=1264 H=686)  8.1 s
+  m_S=0.4133  N_S=2145  (B=1526 K=0 H=619)  5.4 s
+  m_S=0.4835  N_S=1783  (B=1291 K=0 H=492)  4.4 s
+  m_S=0.5656  N_S=1907  (B=1383 K=0 H=524)  4.5 s
+  m_S=0.6617  N_S=1972  (B=1429 K=0 H=543)  4.8 s
+  m_S=0.7740  N_S=1753  (B=1237 K=0 H=516)  4.4 s
+  m_S=0.9054  N_S=1555  (B=1140 K=0 H=415)  3.7 s
+  m_S=0.9500  N_S=1324  (B=969 K=0 H=355)  3.3 s
+  m_S=0.9884  N_S=1377  (B=1010 K=0 H=367)  3.1 s
+  m_S=1.0000  N_S=1455  (B=1077 K=0 H=378)  3.7 s
+  m_S=1.0592  N_S=1391  (B=1032 K=0 H=359)  4.0 s
+  m_S=1.1000  N_S=1374  (B=1014 K=0 H=360)  4.5 s
+  m_S=1.2000  N_S=1665  (B=1226 K=0 H=439)  6.0 s
+  m_S=1.2390  N_S=1591  (B=1174 K=0 H=417)  5.8 s
+  m_S=1.4494  N_S=1234  (B=883 K=0 H=351)  4.4 s
+  m_S=1.6955  N_S=1500  (B=1088 K=0 H=412)  5.9 s
+  m_S=1.9833  N_S=1734  (B=1291 K=0 H=443)  6.7 s
+  m_S=2.0000  N_S=1620  (B=1238 K=0 H=382)  4.8 s
+  m_S=2.2000  N_S=1918  (B=1417 K=0 H=501)  5.8 s
+  m_S=2.3201  N_S=1856  (B=1362 K=0 H=494)  5.8 s
+  m_S=2.6834  N_S=1238  (B=639 K=0 H=599)  5.3 s
+  m_S=2.7140  N_S=1017  (B=478 K=0 H=539)  4.4 s
+  m_S=3.1749  N_S=1191  (B=594 K=0 H=597)  5.5 s
+  m_S=3.5567  N_S=1081  (B=519 K=0 H=562)  5.6 s
+  m_S=3.7140  N_S=1093  (B=538 K=0 H=555)  5.4 s
+  m_S=3.7579  N_S=1085  (B=539 K=0 H=546)  5.4 s
+  m_S=4.3446  N_S=1175  (B=568 K=0 H=607)  6.4 s
+  m_S=5.0823  N_S=747  (B=0 K=0 H=747)  5.7 s
+  m_S=5.9452  N_S=597  (B=0 K=0 H=597)  5.0 s
+  m_S=6.9547  N_S=633  (B=0 K=0 H=633)  5.0 s
+  m_S=7.5000  N_S=494  (B=0 K=0 H=494)  3.9 s
+  m_S=8.1355  N_S=542  (B=0 K=0 H=542)  4.6 s
+  m_S=9.5169  N_S=645  (B=0 K=0 H=645)  5.6 s
+  m_S=10.5834  N_S=605  (B=0 K=0 H=605)  5.2 s
+  m_S=11.1328  N_S=645  (B=0 K=0 H=645)  6.7 s
+  m_S=13.0231  N_S=484  (B=0 K=0 H=484)  6.1 s
+  m_S=15.2343  N_S=562  (B=0 K=0 H=562)  8.2 s
+  m_S=17.8211  N_S=538  (B=0 K=0 H=538)  7.5 s
+  m_S=20.8470  N_S=556  (B=0 K=0 H=556)  8.0 s
+  m_S=24.3867  N_S=610  (B=0 K=0 H=610)  8.7 s
+  m_S=28.5274  N_S=564  (B=0 K=0 H=564)  8.2 s
+  m_S=33.3712  N_S=570  (B=0 K=0 H=570)  8.1 s
+  m_S=39.0375  N_S=603  (B=0 K=0 H=603)  8.4 s
+  m_S=45.6658  N_S=580  (B=0 K=0 H=580)  8.1 s
+  m_S=53.4196  N_S=569  (B=0 K=0 H=569)  8.0 s
+  m_S=62.4900  N_S=882  (B=0 K=0 H=882)  11.2 s
+wrote signal_scan_refbr.json (67 masses, model v3.5-2026-10-25)
+
+adaptive round 2: re-running 31 masses, nsamp 1600..3200  (total 75000
+  WIDTH MODEL: reference branching-ratio table (validation only)
+  hadronisation library loaded from E:\AAAwork\LLP-AGI\runs\bc5_lhcb_downstream_v3\work\magnus\hadron_lib
+  mass grid: 52 log-spaced points + physical threshold nodes -> 67 masses
+  B-channel yield correction fixed by BC5_B_YIELD_CORR = 1.0172
+  per-mass nsamp map: 31 entries
+  merging into signal_scan_refbr.json: 67 masses kept, 31 re-evaluated (provenance ok)
+  m_S=0.0246  N_S=12005  (B=1866 K=9416 H=723)  16.0 s
+  m_S=0.0336  N_S=13325  (B=1945 K=10575 H=805)  17.8 s
+  m_S=0.0393  N_S=14020  (B=2139 K=11074 H=807)  18.9 s
+  m_S=0.0629  N_S=13897  (B=1983 K=11088 H=826)  18.5 s
+  m_S=0.0861  N_S=13344  (B=2011 K=10577 H=756)  18.8 s
+  m_S=0.1008  N_S=14185  (B=2143 K=11182 H=860)  19.2 s
+  m_S=0.1613  N_S=14213  (B=2176 K=11203 H=834)  18.9 s
+  m_S=0.2207  N_S=8416  (B=2000 K=5579 H=837)  14.2 s
+  m_S=0.2582  N_S=4612  (B=1720 K=2268 H=624)  9.7 s
+  m_S=0.2802  N_S=4837  (B=1712 K=2424 H=701)  10.2 s
+  m_S=0.3541  N_S=4614  (B=1759 K=2228 H=627)  8.0 s
+  m_S=0.4133  N_S=2599  (B=1903 K=0 H=696)  6.3 s
+  m_S=0.4835  N_S=2550  (B=1831 K=0 H=719)  6.0 s
+  m_S=0.5656  N_S=2073  (B=1528 K=0 H=545)  4.9 s
+  m_S=0.6617  N_S=2003  (B=1451 K=0 H=552)  4.8 s
+  m_S=0.7740  N_S=1884  (B=1408 K=0 H=476)  4.5 s
+  m_S=1.0592  N_S=1567  (B=1161 K=0 H=406)  4.6 s
+  m_S=1.1000  N_S=1721  (B=1236 K=0 H=485)  5.3 s
+  m_S=1.4494  N_S=1678  (B=1245 K=0 H=433)  6.0 s
+  m_S=1.9833  N_S=1980  (B=1460 K=0 H=520)  7.8 s
+  m_S=2.3201  N_S=2022  (B=1512 K=0 H=510)  6.2 s
+  m_S=2.7140  N_S=1079  (B=533 K=0 H=546)  4.5 s
+  m_S=3.5567  N_S=1173  (B=572 K=0 H=601)  5.9 s
+  m_S=3.7140  N_S=1163  (B=572 K=0 H=591)  6.0 s
+  m_S=3.7579  N_S=1144  (B=552 K=0 H=592)  5.8 s
+  m_S=7.5000  N_S=577  (B=0 K=0 H=577)  4.7 s
+  m_S=8.1355  N_S=567  (B=0 K=0 H=567)  4.8 s
+  m_S=13.0231  N_S=575  (B=0 K=0 H=575)  7.6 s
+  m_S=17.8211  N_S=573  (B=0 K=0 H=573)  9.5 s
+  m_S=20.8470  N_S=647  (B=0 K=0 H=647)  9.5 s
+  m_S=53.4196  N_S=685  (B=0 K=0 H=685)  9.6 s
+wrote signal_scan_refbr.json (67 masses, model v3.5-2026-10-25)
+
+adaptive round 3: re-running 6 masses, nsamp 2300..3300  (total 16400
+  WIDTH MODEL: reference branching-ratio table (validation only)
+  hadronisation library loaded from E:\AAAwork\LLP-AGI\runs\bc5_lhcb_downstream_v3\work\magnus\hadron_lib
+  mass grid: 52 log-spaced points + physical threshold nodes -> 67 masses
+  B-channel yield correction fixed by BC5_B_YIELD_CORR = 1.0172
+  per-mass nsamp map: 6 entries
+  merging into signal_scan_refbr.json: 67 masses kept, 6 re-evaluated (provenance ok)
+  m_S=0.0246  N_S=12701  (B=1819 K=10142 H=740)  18.6 s
+  m_S=0.0629  N_S=14600  (B=2072 K=11675 H=853)  25.5 s
+  m_S=0.2582  N_S=5327  (B=1948 K=2566 H=813)  12.1 s
+  m_S=0.2802  N_S=5360  (B=1990 K=2607 H=763)  11.6 s
+  m_S=0.6617  N_S=2149  (B=1573 K=0 H=576)  5.5 s
+  m_S=2.7140  N_S=1158  (B=547 K=0 H=611)  5.3 s
+wrote signal_scan_refbr.json (67 masses, model v3.5-2026-10-25)
+
+adaptive round 4: re-running 1 masses, nsamp 3000..3000  (total 3000
+  WIDTH MODEL: reference branching-ratio table (validation only)
+  hadronisation library loaded from E:\AAAwork\LLP-AGI\runs\bc5_lhcb_downstream_v3\work\magnus\hadron_lib
+  mass grid: 52 log-spaced points + physical threshold nodes -> 67 masses
+  B-channel yield correction fixed by BC5_B_YIELD_CORR = 1.0172
+  per-mass nsamp map: 1 entries
+  merging into signal_scan_refbr.json: 67 masses kept, 1 re-evaluated (provenance ok)
+  m_S=0.0246  N_S=12893  (B=1927 K=10170 H=796)  18.7 s
+wrote signal_scan_refbr.json (67 masses, model v3.5-2026-10-25)
+adaptive: every crossing is within 5.0% after round 4
+
+curve stage: s = 2.3, suffix '_refbr'
+s_cut = 2.3000  (P(n=0|s) = 0.1003)  output suffix '_refbr'
+wrote figures
+{
+  "s_cut": 2.3,
+  "cl": 0.8997411562771962,
+  "luminosities_fb": [
+    25.0,
+    300.0
+  ],
+  "n_mass_points": 67,
+  "points_with_two_edges_25fb": 46,
+  "points_with_two_edges_300fb": 45
+}
+
+comparison stage: our contour vs the digitised BC5 reference
+  comparison for s = 2.3, suffix '_refbr'
+  downstream_25fb    lower       341 points  m 0.201 - 62.000
+  downstream_25fb    upper       253 points  m 0.892 - 62.000
+  downstream_300fb   lower       341 points  m 0.201 - 62.000
+  downstream_300fb   upper        11 points  m 0.919 - 1.087
+  downstream_300fb   upper       221 points  m 1.514 - 62.000
+wrote E:\AAAwork\LLP-AGI\runs\bc5_lhcb_downstream_v3\outputs\figures\bc5_vs_reference_refbr.png / .pdf
+
+[L = 25 fb^-1]
+  MC error of s  delta_s/s   at the long-lived edge: median 4.8%  max 5.0%  above 5%: 0/67
+  MC error of s  delta_s/s   at the short-lived edge: median 26.3%  max 96.0%  above 5%: 46/46
+[L = 300 fb^-1]
+  MC error of s  delta_s/s   at the long-lived edge: median 4.8%  max 5.0%  above 5%: 0/67
+  MC error of s  delta_s/s   at the short-lived edge: median 38.7%  max 96.9%  above 5%: 45/45
+boundary-position error  dtheta2/theta2  long-lived edge: median 3.3%  max 5.0%  above 5%: 1/134
+boundary-position error  dtheta2/theta2  short-lived edge: median 6.1%  max 26.7%  above 5%: 80/91
+parent sample size per mass: min 1400  median 2300  max 3400
+
+done.  figures in outputs/figures, data in outputs/data

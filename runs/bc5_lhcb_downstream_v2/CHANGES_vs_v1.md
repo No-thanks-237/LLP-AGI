@@ -2,7 +2,7 @@
 
 | | |
 | --- | --- |
-| v1 | `runs/20261016_144605_UTC_bc5_lhcb_downstream` |
+| v1 | `runs/bc5_lhcb_downstream_v1`（原名 `20261016_144605_UTC_bc5_lhcb_downstream`） |
 | v2 | `runs/bc5_lhcb_downstream_v2`（本目录） |
 | v2 基线 | v1 的完整拷贝，冻结于 2026-10-18 |
 

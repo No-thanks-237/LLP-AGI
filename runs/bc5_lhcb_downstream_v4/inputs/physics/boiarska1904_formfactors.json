@@ -1,0 +1,231 @@
+{
+  "_meta": {
+    "source": "arXiv:1904.10447v4, I. Boiarska et al., 'Phenomenology of GeV-scale scalar portal'",
+    "source_file": "references/model/arXiv-1904.10447v4/main.tex",
+    "extracted_from": "Appendix 'Form-factors for the flavor changing neutral current meson decays' (main.tex lines 1079-1348)",
+    "units": {
+      "masses": "GeV",
+      "uncertainties": "absolute, same units as central value"
+    },
+    "q2_convention": "q^2 = (p_X - p_X')^2, evaluated at q^2 = m_S^2 for 2-body decays X -> X' S; pole factors are (1 - q^2/m^2). For 3-body X -> X' SS, q^2 is the SS invariant mass squared in [4 m_S^2, (m_X - m_X')^2].",
+    "mixing_angle_convention": "theta is the mixing angle itself (field shift h -> h + theta S); all rates are normalised by theta^2. No sin(theta) symbol is used.",
+    "M_XX_convention": "Scalar hadronic matrix element entering BR as |M_XX'(m_S^2)|^2; see reference markdown Sec. 0.4 for the two definitions and their ordering/parity caveats.",
+    "reference_markdown": "boiarska1904_production_reference.md"
+  },
+  "B->K:ps": {
+    "form": "F0 / (1 - q^2/m_fit^2)",
+    "F0": 0.33,
+    "F0_err": 0.04,
+    "m_fit": 6.16,
+    "M_XX": "M_XP = (m_X^2 - m_P^2)/(m_Qj - m_Qi) * f_0^XP(q^2)",
+    "source": [
+      "Ball:2004ye",
+      "Marciano:1996wy"
+    ],
+    "note": "column 'B^{+/0}, K^{+/0}' of tab:pseudoscalar-form-factor-parameters"
+  },
+  "B->pi:ps": {
+    "form": "F0 / (1 - q^2/m_fit^2)",
+    "F0": 0.258,
+    "F0_err": 0.031,
+    "m_fit": 6.16,
+    "M_XX": "M_XP = (m_X^2 - m_P^2)/(m_Qj - m_Qi) * f_0^XP(q^2)",
+    "source": [
+      "Ball:2004ye",
+      "Marciano:1996wy"
+    ],
+    "note": "column 'B^{+/0}, pi^{+/0}' of tab:pseudoscalar-form-factor-parameters"
+  },
+  "K->pi:ps": {
+    "form": "constant (pole removed: m_fit = infinity)",
+    "F0": 0.96,
+    "m_fit": null,
+    "m_fit_note": "infinity; f_0^{Kpi}(q^2) = F0 = 0.96",
+    "M_XX": "M_XP = (m_X^2 - m_P^2)/(m_Qj - m_Qi) * f_0^XP(q^2)",
+    "source": [
+      "Ball:2004ye",
+      "Marciano:1996wy"
+    ],
+    "note": "no uncertainty quoted for F0"
+  },
+  "B->K0*(700):sca": {
+    "form": "F0 / (1 - a*q^2/m_B^2 + b*(q^2/m_B^2)^2), m_B = 5.3 GeV",
+    "F0": 0.46,
+    "a": 1.6,
+    "b": 1.35,
+    "m_B": 5.3,
+    "M_XX": "M_XStilde = i*(m_X^2 - m_Stilde^2 - q^2)/(m_Qj + m_Qi) * f_+^{XStilde}(q^2)",
+    "source": [
+      "Sun:2010nv"
+    ],
+    "note": "K0*(700) assumed di-quark state; large theoretical uncertainty (Issadykov:2015iba, Daldrop:2012sr, Cheng:2013fba); no uncertainty on F0,a,b quoted"
+  },
+  "B->K0*(1430):sca": {
+    "form": "F0 / (1 - a*q^2/m_B^2 + b*(q^2/m_B^2)^2), m_B = 5.3 GeV",
+    "F0": 0.17,
+    "a": 4.4,
+    "b": 6.4,
+    "m_B": 5.3,
+    "M_XX": "M_XStilde = i*(m_X^2 - m_Stilde^2 - q^2)/(m_Qj + m_Qi) * f_+^{XStilde}(q^2)",
+    "source": [
+      "Sun:2010nv"
+    ],
+    "note": "no uncertainty on F0,a,b quoted"
+  },
+  "B->K*(892):vec": {
+    "form": "r1/(1 - q^2/m_R^2) + r2/(1 - q^2/m_fit^2)",
+    "r1": 1.364,
+    "r2": -0.99,
+    "m_R": 5.279,
+    "m_R_symbol": "m_B+ (per source table); 5.279 GeV = paper's B+- mass 5279 MeV",
+    "m_fit": 6.066300426,
+    "m_fit_symbol": "sqrt(36.8) GeV",
+    "A0_0": 0.374,
+    "A0_0_err": 0.033,
+    "M_XX": "M_XV = -2*m_X*|p_V|/(m_Qi + m_Qj) * A_0^{XV}(q^2)",
+    "source": [
+      "Ball:2004rg"
+    ]
+  },
+  "B->K*(1410):vec": {
+    "form": "A0 = (1 - 2*m_V^2/(m_B^2 + m_V^2 - q^2))*xi_par(q^2) + (m_V/m_B)*xi_perp(q^2); xi_perp/par(q^2) = xi_perp/par(0)/(1 - q^2/m_B^2)",
+    "xi_perp_0": 0.28,
+    "xi_perp_0_err": 0.04,
+    "xi_par_0": 0.22,
+    "xi_par_0_err": 0.03,
+    "A0_0": 0.3,
+    "A0_0_err": 0.036,
+    "m_B": 5.3,
+    "m_B_note": "m_B is not restated in this subsection; assume the 5.3 GeV of the scalar subsection",
+    "M_XX": "M_XV = -2*m_X*|p_V|/(m_Qi + m_Qj) * A_0^{XV}(q^2)",
+    "source": [
+      "Lu:2011jm",
+      "Hatanaka:2009gb"
+    ]
+  },
+  "B->K*(1680):vec": {
+    "form": "A0 = (1 - 2*m_V^2/(m_B^2 + m_V^2 - q^2))*xi_par(q^2) + (m_V/m_B)*xi_perp(q^2); xi_perp/par(q^2) = xi_perp/par(0)/(1 - q^2/m_B^2)",
+    "xi_perp_0": 0.24,
+    "xi_perp_0_err": 0.05,
+    "xi_par_0": 0.18,
+    "xi_par_0_err": 0.03,
+    "A0_0": 0.22,
+    "A0_0_err": 0.04,
+    "m_B": 5.3,
+    "M_XX": "M_XV = -2*m_X*|p_V|/(m_Qi + m_Qj) * A_0^{XV}(q^2)",
+    "source": [
+      "Lu:2011jm",
+      "Hatanaka:2009gb"
+    ]
+  },
+  "K1A:psv": {
+    "form": "F0_A / (1 - a_A*q^2/m_B^2 + b_A*(q^2/m_B^2)^2), m_B = 5.3 GeV (assumed)",
+    "F0_A": 0.22,
+    "F0_A_err": 0.04,
+    "a_A": 2.4,
+    "b_A": 1.78,
+    "source": [
+      "Bashiry:2009wq"
+    ],
+    "note": "unphysical K1A state"
+  },
+  "K1B:psv": {
+    "form": "F0_B / (1 - a_B*q^2/m_B^2 + b_B*(q^2/m_B^2)^2), m_B = 5.3 GeV (assumed)",
+    "F0_B": -0.45,
+    "F0_B_err_up": 0.12,
+    "F0_B_err_dn": 0.08,
+    "a_B": 1.34,
+    "b_B": 0.69,
+    "source": [
+      "Bashiry:2009wq"
+    ],
+    "note": "unphysical K1B state"
+  },
+  "B->K1(1270):psv": {
+    "form": "V0^{BK1(1270)}(q^2) = [sin(theta_K1)*m_K1A*V0_A(q^2) + cos(theta_K1)*m_K1B*V0_B(q^2)] / m_K1(1270)",
+    "theta_K1_deg": -34,
+    "theta_K1_deg_err": 13,
+    "m_K1A": 1.31,
+    "m_K1B": 1.34,
+    "m_K1_resonance": null,
+    "m_K1_resonance_note": "m_K1(1270) not tabulated in the paper",
+    "V0_0": -0.52,
+    "V0_0_err_up": 0.13,
+    "V0_0_err_dn": 0.09,
+    "M_XX": "M_XA = 2*m_X*|p_A|/(m_Qj - m_Qi) * V_0^{XA}(q^2)",
+    "source": [
+      "Bashiry:2009wq"
+    ]
+  },
+  "B->K1(1400):psv": {
+    "form": "V0^{BK1(1400)}(q^2) = [cos(theta_K1)*m_K1A*V0_A(q^2) - sin(theta_K1)*m_K1B*V0_B(q^2)] / m_K1(1400)",
+    "theta_K1_deg": -34,
+    "theta_K1_deg_err": 13,
+    "m_K1A": 1.31,
+    "m_K1B": 1.34,
+    "m_K1_resonance": null,
+    "m_K1_resonance_note": "m_K1(1400) not tabulated in the paper",
+    "V0_0": -0.07,
+    "V0_0_err_up": 0.033,
+    "V0_0_err_dn": 0.012,
+    "M_XX": "M_XA = 2*m_X*|p_A|/(m_Qj - m_Qi) * V_0^{XA}(q^2)",
+    "source": [
+      "Bashiry:2009wq"
+    ]
+  },
+  "B->K2*(1430):ten": {
+    "form": "F0 / [ (1 - q^2/m_X^2) * (1 - a_T*q^2/m_X^2 + b_T*(q^2/m_X^2)^2) ]",
+    "F0": 0.23,
+    "a_T": 1.23,
+    "b_T": 0.76,
+    "pole_mass_note": "first pole at q^2 = m_X^2 and second series uses m_X (decaying meson), as printed; NOT m_B = 5.3 GeV",
+    "M_XX": "M_XT = -(1/(m_Qi + m_Qj))*sqrt(2/3)*(m_X*|p_T|^2/m_T)*2*A_0^{XT}(q^2)",
+    "source": [
+      "Cheng:2010yd",
+      "Li:2010ra"
+    ],
+    "note": "no uncertainties quoted"
+  },
+  "mixing_matrix_K1": {
+    "form": "(|K1(1270)>, |K1(1400)>) = [[sin(theta_K1), cos(theta_K1)], [cos(theta_K1), -sin(theta_K1)]] (|K1A>, |K1B>)",
+    "source": [
+      "Bashiry:2009wq"
+    ]
+  },
+  "decay_constants_GeV": {
+    "B0": 0.19,
+    "Bs": 0.23,
+    "K0": 0.16,
+    "source": [
+      "Chang:2018aut"
+    ],
+    "note": "used only for the quartic-coupling channel X -> SS (Eq. eq:bstossbranching); no uncertainties quoted"
+  },
+  "xi_ij": {
+    "definition": "xi_ij = (3*G_F*sqrt(2)/(16*pi^2)) * sum_k V*_ki m_k^2 V_kj",
+    "xi_ds": 0.0000033,
+    "xi_uc": 1.4e-9,
+    "xi_db": 0.000079,
+    "xi_sb": 0.00036,
+    "source": "tab:xi, main.tex lines 659-670",
+    "note": "dimensionless; no uncertainties given"
+  },
+  "other_printed_parameters": {
+    "m_B_used_in_scalar_vector_pseudovector_FF_GeV": 5.3,
+    "m_K1A_GeV": 1.31,
+    "m_K1B_GeV": 1.34,
+    "Gamma_Bplus_over_Gamma_B0": 0.93,
+    "Gamma_h_GeV": 0.004,
+    "mbar_c_2GeV_GeV": 1.23,
+    "mbar_s_2GeV_GeV": 0.0924,
+    "g_SNN": 0.0012
+  },
+  "NOT_given_in_paper": [
+    "v, m_h, G_F, m_mu (symbolic only)",
+    "total widths / lifetimes Gamma_X for B+, B0, Bs, K+, KL, KS, D+, D0, Ds (paper cites PDG 2018, Tanabashi:2018oca)",
+    "m_K1(1270), m_K1(1400)",
+    "uncertainties for xi_ij, f_X, and tensor FF parameters",
+    "per-meson abundances chi_B, chi_D, chi_K (only chi_{c cbar}, chi_{b bbar} are tabulated)",
+    "K_S^0 -> S pi^0 branching ratio (assumed zero; a value 1.2e-5/theta^2 appears commented out in the source)"
+  ]
+}
